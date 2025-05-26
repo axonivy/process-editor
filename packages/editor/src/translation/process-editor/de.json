@@ -1,9 +1,9 @@
 {
   "a11y": {
     "hotkeyDesc": {
-      "focusGraph": "Fokus Graph",
-      "focusInscription": "Fokus Inscription",
-      "focusToolbar": "Fokus Toolbar",
+      "focusGraph": "Fokus auf den Graph",
+      "focusInscription": "Fokus auf die Inscription",
+      "focusToolbar": "Fokus auf die Toolbar",
       "move": "Element oder Ansicht verschieben",
       "navigation": "Navigieren nach Relation oder Nachbarn gemäss Navigationsmodus",
       "navigationActivate": "Standardnavigation aktivieren",
@@ -19,7 +19,7 @@
     "hotkeyGroup": {
       "graph": "Graph",
       "inscription": "Inskription",
-      "move": "Bewegen",
+      "move": "Verschieben",
       "navigation": "Navigation",
       "resize": "Grössenänderung",
       "search": "Suche",
@@ -136,7 +136,7 @@
     "enterName": "Geben Sie einen Namen ein",
     "enterUrl": "Geben Sie eine URL ein",
     "error": "Fehler",
-    "expiry": "Ablauf",
+    "expiry": "Fälligkeit",
     "expression": "Ausdruck",
     "mapped": "Zugeordnet",
     "message": "Nachricht",
@@ -159,7 +159,7 @@
   "message": {
     "boundaryData": "Daten:",
     "boundaryTitle": "Etwas ist schief gelaufen:",
-    "clickToReload": "{{message}} (Klicken zum Neuladen)",
+    "clickToReload": "{{message}} (Zum Aktualisieren klicken)",
     "connectionClosed": "Verbindung zum Server wurde geschlossen.",
     "connectionToServerError": "Verbindung zum Server fehlerhaft. Server wird heruntergefahren.",
     "globalError": "Ein Fehler ist aufgetreten: {{error}}",
@@ -189,8 +189,8 @@
       "scope": "Scope",
       "scopeMode": {
         "application": "Applikation",
-        "applicationDesc": "Verwenden Sie diese Option, um globale Daten zu cachen.",
-        "session": "Sitzung",
+        "applicationDesc": "Verwenden Sie diese Option, um Daten global zu cachen.",
+        "session": "Session",
         "sessionDesc": "Verwenden Sie diese Option, um benutzerspezifische Daten zu cachen."
       },
       "title": "Cache"
@@ -202,7 +202,7 @@
       },
       "processStart": "Prozessstart",
       "sub": {
-        "create": "Neuen Unterprozess erstellen"
+        "create": "Neuen Subprozess erstellen"
       },
       "title": "Prozess",
       "trigger": {
@@ -210,7 +210,7 @@
       }
     },
     "case": {
-      "title": "Fall"
+      "title": "Vorgang"
     },
     "category": {
       "empty": "<< Leer >>",
@@ -224,7 +224,7 @@
       "direction": "Richtung",
       "fields": "Felder",
       "limit": "Limit",
-      "lotSize": "Losgrösse",
+      "lotSize": "Batch-Größe",
       "queryKind": "Abfrageart",
       "quoteIvyScript": "IvyScript-Variablen zitieren",
       "read": "Lesen",
@@ -248,14 +248,14 @@
     },
     "general": {
       "displayName": "Anzeigename",
-      "meansAndDocuments": "Mittel / Dokumente",
+      "meansAndDocuments": "Dokumentation",
       "nameAndDescription": "Name / Beschreibung",
       "tags": "Tags",
       "title": "Allgemein"
     },
     "mail": {
       "attachments": {
-        "error": "Fehler auslösen, wenn ein Anhang fehlt",
+        "error": "Fehler werfen wenn der Anhang fehlt",
         "title": "Anhänge"
       },
       "content": {
@@ -267,7 +267,7 @@
         "bcc": "BCC",
         "cc": "CC",
         "from": "Von",
-        "replyTo": "Antwort an",
+        "replyTo": "Antworten an",
         "subject": "Betreff",
         "title": "Kopfzeile",
         "to": "An"
@@ -323,7 +323,7 @@
       "client": "Client",
       "contentType": "Inhaltstyp",
       "entityType": "Entitätstyp",
-      "headers": "Kopfzeilen",
+      "headers": "Header-Bereich",
       "jaxRs": "JAX-RS",
       "kind": "Art",
       "onError": "Bei Fehler (Verbindung, Zeitüberschreitung, etc.)",
@@ -331,7 +331,7 @@
       "openApi": "OpenAPI",
       "parameters": "Parameter",
       "properties": "Eigenschaften",
-      "readBodyType": "Body als Typ lesen (Ergebnisvariable)",
+      "readBodyType": "Body lesen als Typ (Ergebnisvariable)",
       "resource": "Ressource",
       "restConfigCreate": "Neuen Rest-Client erstellen",
       "restConfigOpen": "Rest-Konfiguration öffnen",
@@ -356,10 +356,10 @@
     },
     "task": {
       "delay": "Verzögerung",
-      "noTaskMessage": "Es ist kein (Task) Ausgabefluss verbunden.",
+      "noTaskMessage": "Es ist kein ausgehender Prozesspfad verbunden.",
       "notification": "Benachrichtigung",
       "options": "Optionen",
-      "persist": "Task bei Erstellung speichern",
+      "persist": "Task bei Erstellung persistieren",
       "persistDisabled": "Task bei Erstellung speichern (Funktioniert nur, wenn anonyme Benutzer nicht erlaubt sind)",
       "priority": "Priorität",
       "skipTasklist": "Taskliste überspringen",
@@ -409,7 +409,7 @@
     "bend": "Biegen ({{hotkey}})",
     "color": "Farbe auswählen",
     "connect": "Verbinden",
-    "createLane": "Spur erstellen",
+    "createLane": "Lane erstellen",
     "customIcon": "Benutzerdefiniertes Symbol",
     "delete": "Löschen",
     "editLabel": "Label bearbeiten ({{hotkey}})",
@@ -443,7 +443,7 @@
     "inscription": "Inskription"
   },
   "tool": {
-    "jumpOut": "Herausspringen ({{hotkey}})"
+    "jumpOut": "Eine Ebene höher springen ({{hotkey}})"
   },
   "toolbar": {
     "activities": "Aktivitäten",
@@ -455,7 +455,7 @@
     "extensions": "Erweiterungen",
     "gateways": "Gateways",
     "grid": "Raster",
-    "marquee": "Markier-Werkzeug ({{hotkey}})",
+    "marquee": "Auswahl-Werkzeug ({{hotkey}})",
     "openDataClass": "Datenklasse öffnen ({{hotkey}})",
     "openFormEditor": "Formulareditor öffnen ({{hotkey}})",
     "redo": "Wiederherstellen",
