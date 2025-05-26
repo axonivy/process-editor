@@ -98,6 +98,11 @@ describe('MappingPart', () => {
     assertTableRows([ATTRIBUTES, PARAMS, NODE_BOOLEAN, NODE_NUMBER, USER, /⛔bla/]);
   });
 
+  test('tree will render all inscribed values', () => {
+    renderTree({ 'param.procurementRequest.requester.email': 'louis' });
+    assertTableRows([ATTRIBUTES, PARAMS, NODE_BOOLEAN, NODE_NUMBER, USER, NODE_STRING]);
+  });
+
   test('tree will render description title', () => {
     renderTree({ 'workflow.humantask.Description': 'value' });
     expect(screen.getAllByRole('row')[1]).toHaveTextContent('param.procurementRequest');

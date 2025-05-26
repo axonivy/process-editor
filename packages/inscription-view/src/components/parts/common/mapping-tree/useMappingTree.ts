@@ -1,8 +1,8 @@
 import type { Dispatch } from 'react';
 import { useState } from 'react';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnFiltersState, Row } from '@tanstack/react-table';
-import type { MappingTreeData } from './mapping-tree-data';
+import type { ColumnFiltersState, ExpandedStateList, Row } from '@tanstack/react-table';
+import { MappingTreeData } from './mapping-tree-data';
 import type { FieldsetControl } from '../../../widgets/fieldset/fieldset-control';
 
 export type TableFilter<TFilter> = {
@@ -52,4 +52,23 @@ export const useTableOnlyInscribed = (): TableFilter<ColumnFiltersState> => {
 
 export const calcFullPathId = (row: Row<MappingTreeData>) => {
   return [...row.getParentRows().map(parent => parent.original.attribute), row.original.attribute].join('.');
+};
+
+export const expandState = (tree: Array<MappingTreeData>, path: string = '', expanded: ExpandedStateList = {}): ExpandedStateList => {
+  expandStateDeep(tree, path, expanded);
+  expanded['0'] = true;
+  return expanded;
+};
+
+const expandStateDeep = (tree: Array<MappingTreeData>, path: string, expanded: ExpandedStateList): boolean => {
+  let changed = false;
+  tree.forEach((node, index) => {
+    const id = `${path}${index}`;
+    const childExpanded = expandStateDeep(node.children, `${id}.`, expanded);
+    if (node.value.length > 0 || childExpanded) {
+      expanded[id] = true;
+      changed = true;
+    }
+  });
+  return changed;
 };
