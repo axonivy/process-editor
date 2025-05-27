@@ -7,7 +7,7 @@
   "homepage": "https://developer.axonivy.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/axonivy/process-editor-client"
+    "url": "https://github.com/axonivy/process-editor"
   },
   "keywords": [
     "glsp",
