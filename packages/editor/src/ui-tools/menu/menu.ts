@@ -154,13 +154,13 @@ export abstract class ItemMenu implements Menu {
     const itemsDiv = createElement('div', ['bar-menu-items']);
     let tabIndex = 0;
     this.paletteItems.sort(compare).forEach(item => {
-      if (item.children) {
+      if (item.children && item.children.length > 0) {
         const groupItems = this.createToolGroup(itemsDiv, item);
         item.children.sort(compare).forEach(child => groupItems.appendChild(this.createToolButton(child, tabIndex++)));
         this.appendItemToGroup(groupItems);
       }
     });
-    if (this.paletteItems.length === 0) {
+    if (this.paletteItems.length === 0 || itemsDiv.childElementCount === 0) {
       const noResultsDiv = createElement('div');
       noResultsDiv.innerText = t('label.empty');
       noResultsDiv.classList.add('no-result');
