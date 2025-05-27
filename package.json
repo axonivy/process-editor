@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "parent",
+  "name": "@axonivy/process-editor-root",
   "version": "11.4.0-next",
   "engines": {
     "node": ">=20.10.0"
@@ -21,10 +21,10 @@
     "i18n:extract": "i18next",
     "i18n:ci": "i18next --fail-on-update",
     "protocol:inscription": "npm run -w @axonivy/process-editor-inscription-protocol",
-    "dev": "npm run -w @axonivy/standalone-integration dev",
-    "dev:viewer": "npm run -w @axonivy/viewer-integration dev",
-    "dev:eclipse": "npm run -w @axonivy/eclipse-integration dev",
-    "dev:inscription": "npm run -w @axonivy/inscription-standalone dev",
+    "dev": "npm run -w @axonivy/process-editor-standalone dev",
+    "dev:viewer": "npm run -w @axonivy/process-editor-viewer dev",
+    "dev:eclipse": "npm run -w @axonivy/process-editor-eclipse dev",
+    "dev:inscription": "npm run -w @axonivy/process-editor-inscription-standalone dev",
     "test": "vitest test",
     "test:ci": "vitest test --watch=false --reporter=basic --reporter=junit --outputFile=report.xml",
     "webtest": "npm run -w @axonivy/process-editor-playwright webtest",

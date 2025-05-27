@@ -1,13 +1,13 @@
 {
   "private": true,
-  "name": "@axonivy/standalone-integration",
+  "name": "@axonivy/process-editor-standalone",
   "version": "13.1.0-next",
   "description": "Standalone browser-app for the Axon Ivy process editor",
   "author": "Axon Ivy AG",
   "homepage": "https://developer.axonivy.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/axonivy/process-editor-client"
+    "url": "https://github.com/axonivy/process-editor"
   },
   "dependencies": {
     "@axonivy/process-editor": "~13.1.0-next",
