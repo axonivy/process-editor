@@ -35,7 +35,7 @@ export default defineConfig(() => ({
   resolve: {
     alias: {
       path: 'path-browserify',
-      '@ivyteam/process-editor': resolve(__dirname, '../../editor/src')
+      '@axonivy/process-editor': resolve(__dirname, '../../editor/src')
     }
   }
 }));

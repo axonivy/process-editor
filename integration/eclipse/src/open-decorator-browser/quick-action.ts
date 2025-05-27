@@ -6,7 +6,7 @@ import {
   isWithCustomIcon,
   ActivityTypes,
   StreamlineIcons
-} from '@ivyteam/process-editor';
+} from '@axonivy/process-editor';
 import { injectable } from 'inversify';
 import { OpenDecoratorBrowserAction } from './action';
 

@@ -8,7 +8,7 @@ import {
   SingleQuickActionProvider,
   StartEventNode,
   StreamlineIcons
-} from '@ivyteam/process-editor';
+} from '@axonivy/process-editor';
 
 @injectable()
 export class StarProcessQuickActionProvider extends SingleQuickActionProvider {

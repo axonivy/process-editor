@@ -13,7 +13,7 @@ import {
   IvyBaseJsonrpcGLSPClient,
   GLSPWebSocketProvider,
   ShowGridAction
-} from '@ivyteam/process-editor';
+} from '@axonivy/process-editor';
 import { getParameters } from '@eclipse-glsp/ide';
 import { ApplicationIdProvider, GLSPClient, ServerMessageAction } from '@eclipse-glsp/protocol';
 

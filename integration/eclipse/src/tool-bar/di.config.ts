@@ -1,5 +1,5 @@
 import { ContainerModule } from 'inversify';
-import { IVY_TYPES } from '@ivyteam/process-editor';
+import { IVY_TYPES } from '@axonivy/process-editor';
 import { InscribeProcessButtonProvider, OpenDataClassButtonProvider, OpenInsertExtensionButtonProvider } from './button';
 
 const ivyToolBarModule = new ContainerModule(bind => {

@@ -1,5 +1,5 @@
 import { keepAliveModule } from '@eclipse-glsp/ide';
-import { ivyBreakpointModule, createIvyDiagramContainer, ivyThemeModule, IvyGLSPDiagramServer } from '@ivyteam/process-editor';
+import { ivyBreakpointModule, createIvyDiagramContainer, ivyThemeModule, IvyGLSPDiagramServer } from '@axonivy/process-editor';
 import { Container } from 'inversify';
 import { ConsoleLogger, LogLevel, TYPES } from '@eclipse-glsp/client';
 

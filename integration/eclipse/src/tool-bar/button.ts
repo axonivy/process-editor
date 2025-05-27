@@ -1,4 +1,4 @@
-import { type ToolBarButton, type ToolBarButtonProvider, ToolBarButtonLocation, StreamlineIcons } from '@ivyteam/process-editor';
+import { type ToolBarButton, type ToolBarButtonProvider, ToolBarButtonLocation, StreamlineIcons } from '@axonivy/process-editor';
 import { OpenInscriptionAction } from '../open-inscription/open-inscription-handler';
 import { OpenDataClassAction } from '../open-data-class/open-data-class';
 import { injectable } from 'inversify';
