@@ -1,5 +1,5 @@
 {
-  "name": "@ivyteam/process-editor",
+  "name": "@axonivy/process-editor",
   "version": "10.0.1",
   "description": "GLSP sprotty diagrams for the Axon Ivy Processes",
   "license": "(EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0)",
@@ -7,7 +7,7 @@
   "homepage": "https://developer.axonivy.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/axonivy/glsp-editor-client"
+    "url": "https://github.com/axonivy/process-editor"
   },
   "keywords": [
     "glsp",

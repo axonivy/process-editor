@@ -34,7 +34,7 @@ export default defineConfig(() => ({
   },
   resolve: {
     alias: {
-      '@ivyteam/process-editor': resolve(__dirname, '../../editor/src')
+      '@axonivy/process-editor': resolve(__dirname, '../../editor/src')
     }
   },
   base: './'

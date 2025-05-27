@@ -1,4 +1,4 @@
-import { IVY_TYPES } from '@ivyteam/process-editor';
+import { IVY_TYPES } from '@axonivy/process-editor';
 import { ContainerModule } from 'inversify';
 
 import { GoToSourceQuickActionProvider } from './quick-action';

@@ -1,5 +1,5 @@
 import { ConsoleLogger, LogLevel, TYPES } from '@eclipse-glsp/client';
-import { createIvyDiagramContainer, ivyThemeModule, IvyGLSPDiagramServer } from '@ivyteam/process-editor';
+import { createIvyDiagramContainer, ivyThemeModule, IvyGLSPDiagramServer } from '@axonivy/process-editor';
 import { Container } from 'inversify';
 import ivyStandaloneBreakpointModule from './breakpoint/di.config';
 import ivyDirtyStateModule from './dirty-state/di.config';

@@ -15,7 +15,7 @@ export default defineConfig({
   },
   webServer: [
     {
-      command: `npm run ${process.env.CI ? 'serve' : 'dev'} -w @ivyteam/standalone-integration`,
+      command: `npm run ${process.env.CI ? 'serve' : 'dev'} -w @axonivy/process-editor-standalone`,
       url: STANDALONE_URL,
       reuseExistingServer: !process.env.CI
     }

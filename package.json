@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "parent",
+  "name": "@axonivy/process-editor-root",
   "version": "10.0.1",
   "engines": {
     "node": ">=20.10.0"
@@ -9,18 +9,18 @@
     "ci": "npm install && npm run build:icons && npm run build && npm run type && npm run package",
     "clean": "lerna run clean",
     "build": "tsc --build && tscp --build",
-    "build:icons": "npm run -w @ivyteam/process-editor build:icons",
+    "build:icons": "npm run -w @axonivy/process-editor build:icons",
     "package": "lerna run package",
     "type": "lerna run type",
     "lint": "eslint",
     "lint:ci": "eslint -o eslint.xml -f checkstyle",
     "lint:fix": "eslint --fix",
     "lint:inspect": "eslint --inspect-config",
-    "dev": "npm run -w @ivyteam/standalone-integration dev",
-    "dev:eclipse": "npm run -w @ivyteam/eclipse-integration dev",
-    "test": "npm run -w @ivyteam/process-editor test",
-    "test:ci": "npm run -w @ivyteam/process-editor test:ci",
-    "webtest": "npm run -w @ivyteam/standalone-integration webtest"
+    "dev": "npm run -w @axonivy/process-editor-standalone dev",
+    "dev:eclipse": "npm run -w @axonivy/process-editor-eclipse dev",
+    "test": "npm run -w @axonivy/process-editor test",
+    "test:ci": "npm run -w @axonivy/process-editor test:ci",
+    "webtest": "npm run -w @axonivy/process-editor-standalone webtest"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

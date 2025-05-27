@@ -22,7 +22,7 @@ import {
   overrideIvyViewerOptions,
   IvyBaseJsonrpcGLSPClient,
   GLSPWebSocketProvider
-} from '@ivyteam/process-editor';
+} from '@axonivy/process-editor';
 import { ApplicationIdProvider, GLSPClient, NavigationTarget, ServerMessageAction } from '@eclipse-glsp/protocol';
 
 import createContainer from './di.config';
