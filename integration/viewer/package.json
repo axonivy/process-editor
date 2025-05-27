@@ -1,13 +1,13 @@
 {
   "private": true,
-  "name": "@axonivy/viewer-integration",
+  "name": "@axonivy/process-editor-viewer",
   "version": "13.1.0-next",
   "description": "Viewer browser-app for the Axon Ivy process editor",
   "author": "Axon Ivy AG",
   "homepage": "https://developer.axonivy.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/axonivy/process-editor-client"
+    "url": "https://github.com/axonivy/process-editor"
   },
   "dependencies": {
     "@axonivy/process-editor": "~13.1.0-next",
