@@ -189,8 +189,6 @@ export class InscriptionUi extends GLSPAbstractUIExtension implements IActionHan
       .filter(isOpenable)[0];
     if (selected) {
       this.inscriptionElement = selected.id;
-    } else if (selectedElements.length === 0) {
-      this.inscriptionElement = root.id;
     } else {
       this.inscriptionElement = this.inscriptionElement ? root.id : undefined;
       if (!this.isOutlineOpen()) {
