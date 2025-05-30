@@ -13,6 +13,7 @@ test('elements', async ({ page }) => {
 
   await processEditor.resetSelection();
   await view.expectHeaderText(/Business Process/);
+  await view.expectClosed();
 });
 
 test('undo', async ({ page }) => {
