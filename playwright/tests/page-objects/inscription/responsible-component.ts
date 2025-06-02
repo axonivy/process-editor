@@ -4,7 +4,7 @@ import type { Section } from './section';
 import type { Part } from './part';
 import { Tags } from './tags';
 
-type ResponsibleTypes = 'Role from Attr.' | 'User from Attr.' | 'Member from Attr.' | 'Roles' | 'Nobody & delete';
+type ResponsibleTypes = 'Role from Attribute' | 'User from Attribute' | 'Member from Attribute' | 'Roles' | 'Nobody & delete';
 
 export class ResponsibleComponent {
   typeSelect: Select;
@@ -21,8 +21,8 @@ export class ResponsibleComponent {
   async fill(type: ResponsibleTypes, responsible = '') {
     await this.typeSelect.choose(type);
     switch (type) {
-      case 'Role from Attr.':
-      case 'User from Attr.':
+      case 'Role from Attribute':
+      case 'User from Attribute':
         await this.script.fill(responsible);
         break;
       case 'Roles':
@@ -35,8 +35,8 @@ export class ResponsibleComponent {
   async expectFill(type: ResponsibleTypes, responsible = '') {
     await this.typeSelect.expectValue(type);
     switch (type) {
-      case 'Role from Attr.':
-      case 'User from Attr.':
+      case 'Role from Attribute':
+      case 'User from Attribute':
         await this.script.expectValue(responsible);
         break;
       case 'Roles':

@@ -108,7 +108,7 @@ class Task extends PartObject {
     await this.info.fill(this.nameValue);
 
     if (this.options.responsible) {
-      await this.responsible.fill('Role from Attr.', '"Teamleader"');
+      await this.responsible.fill('Role from Attribute', '"Teamleader"');
     }
 
     if (this.options.priority) {
@@ -152,7 +152,7 @@ class Task extends PartObject {
     await this.info.expectFill(this.nameValue);
 
     if (this.options.responsible) {
-      await this.responsible.expectFill('Role from Attr.', '"Teamleader"');
+      await this.responsible.expectFill('Role from Attribute', '"Teamleader"');
     }
 
     if (this.options.priority) {

@@ -53,7 +53,7 @@ describe('TriggerPart', () => {
       }
     };
     renderPart(triggerData);
-    await assertMainPart(true, 'Role from Attr.', 'test');
+    await assertMainPart(true, 'Role from Attribute', 'test');
   });
 
   function assertState(expectedState: PartStateFlag, data?: DeepPartial<TriggerData>, validation?: ValidationResult) {

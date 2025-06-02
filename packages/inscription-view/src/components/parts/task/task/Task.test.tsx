@@ -58,6 +58,6 @@ describe('Task', () => {
       customFields: [{ name: 'cf', type: 'NUMBER', value: '123' }],
       code: 'code'
     });
-    await assertMainPart('task', 'desc', 'cat', 'Role from Attr.', 'Exception', 'code');
+    await assertMainPart('task', 'desc', 'cat', 'Role from Attribute', 'Exception', 'code');
   });
 });

@@ -26,7 +26,7 @@ describe('ExpiryPart', () => {
     });
     expect(screen.getByLabelText('Timeout')).toHaveValue('timeout');
     await SelectUtil.assertValue('f0', { label: 'Error' });
-    await SelectUtil.assertValue('Role from Attr.', { index: 1 });
+    await SelectUtil.assertValue('Role from Attribute', { index: 1 });
     await SelectUtil.assertValue('High', { index: 2 });
   });
 });

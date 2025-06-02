@@ -23,7 +23,7 @@ class Trigger extends PartObject {
 
   async fill() {
     await this.triggerable.click();
-    await this.responsible.fill('Role from Attr.', 'Test');
+    await this.responsible.fill('Role from Attribute', 'Test');
     await this.options.expectIsClosed();
     await this.options.toggle();
     await this.attach.click();
@@ -32,7 +32,7 @@ class Trigger extends PartObject {
 
   async assertFill() {
     await this.triggerable.expectChecked();
-    await this.responsible.expectFill('Role from Attr.', 'Test');
+    await this.responsible.expectFill('Role from Attribute', 'Test');
     await this.options.expectIsOpen();
     await this.attach.expectUnchecked();
     await this.delay.expectValue('1d');

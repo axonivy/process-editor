@@ -28,7 +28,7 @@
     },
     "navigation": {
       "off": "Navigation Off: Press 'N' for default navigation, 'ALT+N' for position based navigation.",
-      "offPosition": "Position based Nav Off: Press 'N' for default navigation, 'ALT+N' for position based navigation.",
+      "offPosition": "Position based Navigation Off: Press 'N' for default navigation, or 'ALT+N' for position-based navigation.",
       "on": "Navigation On: Use arrow keys to select preceding (←) or succeding (→) elements. Use the up (↑) and down (↓) arrows to navigate paths. Press 'ESC' to exit.",
       "onPosition": "Position based Navigation On: Navigate nearest elements using arrow keys: (↑) for above, (↓) for below, (←) for previous, (→) for next element. Press 'ESC' to exit."
     },
@@ -428,10 +428,10 @@
   },
   "responsible": {
     "delete": "Nobody & delete",
-    "memberFromAttr": "Members from Attr.",
-    "roleFromAttr": "Role from Attr.",
+    "memberFromAttr": "Members from Attribute",
+    "roleFromAttr": "Role from Attribute",
     "roles": "Roles",
-    "userFromAttr": "User from Attr."
+    "userFromAttr": "User from Attribute"
   },
   "tags": {
     "addNew": "Add new tag",
