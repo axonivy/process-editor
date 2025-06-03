@@ -13,9 +13,10 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import type { Action, IActionDispatcher, IActionHandler, ViewerOptions } from '@eclipse-glsp/client';
-import { DeleteElementOperation, EditorContextService, TYPES } from '@eclipse-glsp/client';
-import { inject, injectable } from 'inversify';
+import type { Action } from '@eclipse-glsp/client';
+import { DeleteElementOperation } from '@eclipse-glsp/client';
+import { injectable } from 'inversify';
+import { InvokeActionHandler } from '../InvokeActionHandler';
 
 export class InvokeDeleteAction implements Action {
   static KIND = 'invoke-delete';
@@ -27,24 +28,10 @@ export function isInvokeDeleteAction(action: Action): action is InvokeDeleteActi
 }
 
 @injectable()
-export class IvyInvokeDeleteActionHandler implements IActionHandler {
-  @inject(TYPES.IActionDispatcher) protected actionDispatcher: IActionDispatcher;
-  @inject(EditorContextService) protected editorContext: EditorContextService;
-  @inject(TYPES.ViewerOptions) protected viewerOptions: ViewerOptions;
-
+export class IvyInvokeDeleteActionHandler extends InvokeActionHandler {
   handle(action: Action): void {
-    if (isInvokeDeleteAction(action)) {
-      this.handleDelete();
-    }
-  }
-
-  handleDelete(): void {
-    if (this.isDiagramActive()) {
+    if (isInvokeDeleteAction(action) && this.isDiagramActive()) {
       this.actionDispatcher.dispatch(DeleteElementOperation.create(this.editorContext.get().selectedElementIds));
     }
-  }
-
-  protected isDiagramActive(): boolean {
-    return document.activeElement?.parentElement?.id === this.viewerOptions.baseDiv;
   }
 }

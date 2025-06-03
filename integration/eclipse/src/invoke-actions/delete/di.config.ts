@@ -15,10 +15,10 @@
  ********************************************************************************/
 import { FeatureModule, configureActionHandler } from '@eclipse-glsp/client';
 
-import { IvyInvokeDeleteActionHandler } from './delete';
+import { InvokeDeleteAction, IvyInvokeDeleteActionHandler } from './delete';
 
 const ivyEclipseDeleteModule = new FeatureModule((bind, _unbind, isBound) => {
-  configureActionHandler({ bind, isBound }, 'invoke-delete', IvyInvokeDeleteActionHandler);
+  configureActionHandler({ bind, isBound }, InvokeDeleteAction.KIND, IvyInvokeDeleteActionHandler);
 });
 
 export default ivyEclipseDeleteModule;
