@@ -13,9 +13,10 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import type { Action, IActionDispatcher, IActionHandler, IAsyncClipboardService, ViewerOptions } from '@eclipse-glsp/client';
-import { CutOperation, EditorContextService, PasteOperation, RequestClipboardDataAction, TYPES } from '@eclipse-glsp/client';
+import type { Action, IAsyncClipboardService } from '@eclipse-glsp/client';
+import { CutOperation, PasteOperation, RequestClipboardDataAction, TYPES } from '@eclipse-glsp/client';
 import { inject, injectable } from 'inversify';
+import { InvokeActionHandler } from '../InvokeActionHandler';
 
 // Eclipse-specific integration: in Eclipse, we trigger the Copy/Paste actions from
 // the IDE Keybindings. We don't use the browser events. This is fine, because we
@@ -23,11 +24,8 @@ import { inject, injectable } from 'inversify';
 // we don't need special permission from the Browser.
 
 @injectable()
-export class IvyEclipseCopyPasteActionHandler implements IActionHandler {
-  @inject(TYPES.IActionDispatcher) protected actionDispatcher: IActionDispatcher;
-  @inject(TYPES.ViewerOptions) protected viewerOptions: ViewerOptions;
+export class IvyEclipseCopyPasteActionHandler extends InvokeActionHandler {
   @inject(TYPES.IAsyncClipboardService) protected clipboardService: IAsyncClipboardService;
-  @inject(EditorContextService) protected editorContext: EditorContextService;
 
   handle(action: Action): void {
     switch (action.kind) {
@@ -69,8 +67,5 @@ export class IvyEclipseCopyPasteActionHandler implements IActionHandler {
 
   protected shouldCopy(): boolean {
     return this.editorContext.get().selectedElementIds.length > 0 && this.isDiagramActive();
-  }
-  protected isDiagramActive(): boolean {
-    return document.activeElement?.parentElement?.id === this.viewerOptions.baseDiv;
   }
 }
