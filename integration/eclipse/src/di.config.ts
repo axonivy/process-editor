@@ -11,13 +11,14 @@ import {
 import type { Container } from 'inversify';
 
 import { ivyInscriptionModule } from '@axonivy/process-editor-inscription';
-import ivyEclipseCopyPasteModule from './copy-paste/di.config';
-import ivyEclipseDeleteModule from './delete/di.config';
+import ivyEclipseCopyPasteModule from './invoke-actions/copy-paste/di.config';
+import ivyEclipseDeleteModule from './invoke-actions/delete/di.config';
 import ivyOpenQuickOutlineModule from './open-quick-outline/di.config';
 import type { IDiagramOptions } from '@eclipse-glsp/client';
 import { createDiagramOptionsModule, standaloneExportModule } from '@eclipse-glsp/client';
 import type { ThemeMode } from '@axonivy/process-editor-protocol';
 import { ivyStartupDiagramModule as ivyStartupDiagramModule } from './startup';
+import ivyEclipseSelectAllModule from './invoke-actions/select/di.config';
 
 export interface IvyDiagramOptions extends IDiagramOptions {
   theme: ThemeMode;
@@ -31,6 +32,7 @@ export default function createContainer(widgetId: string, options: IvyDiagramOpt
     ivyThemeModule,
     ivyEclipseCopyPasteModule,
     ivyEclipseDeleteModule,
+    ivyEclipseSelectAllModule,
     ivyOpenDecoratorBrowserModule,
     ivyOpenQuickOutlineModule,
     ivyGoToSourceModule,
