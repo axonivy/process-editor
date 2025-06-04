@@ -1,10 +1,9 @@
-import { createIvyDiagramContainer, ivyThemeModule } from '@axonivy/process-editor';
+import { createIvyDiagramContainer, ivyCopyPasteModule, ivyThemeModule } from '@axonivy/process-editor';
 import { ivyInscriptionModule } from '@axonivy/process-editor-inscription';
 import type { IDiagramOptions } from '@eclipse-glsp/client';
 import { createDiagramOptionsModule, standaloneExportModule, standaloneSelectModule, undoRedoModule } from '@eclipse-glsp/client';
 import type { Container } from 'inversify';
 import ivyStandaloneBreakpointModule from './breakpoint/di.config';
-import ivyStandaloneCopyPasteModule from './copy-paste/di.config';
 import ivyDirtyStateModule from './dirty-state/di.config';
 import ivyNavigationModule from './navigate/di.config';
 import type { ThemeMode } from '@axonivy/process-editor-protocol';
@@ -26,7 +25,7 @@ export default function createContainer(options: IvyDiagramOptions): Container {
     standaloneExportModule,
     undoRedoModule,
     ivyStandaloneBreakpointModule,
-    ivyStandaloneCopyPasteModule,
+    ivyCopyPasteModule,
     ivyThemeModule,
 
     // ivyNavigationModule is a replacement for navigationModule but it is already removed in the default IvyDiagramContainer

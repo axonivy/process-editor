@@ -25,7 +25,9 @@ export class InvokeCopyPasteActionHandler implements IActionHandler {
 
   handleCopy(): void {
     if (this.shouldCopy()) {
-      this.dispatcher.request(RequestClipboardDataAction.create(this.editorContext.get()));
+      this.dispatcher
+        .request(RequestClipboardDataAction.create(this.editorContext.get()))
+        .then(response => this.clipboadService.put(response.clipboardData));
     } else {
       this.clipboadService.clear();
     }
