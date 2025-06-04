@@ -9,6 +9,7 @@ import {
   baseViewModule,
   bindOrRebind,
   contextMenuModule,
+  copyPasteModule,
   gridModule,
   helperLineModule,
   hoverModule,
@@ -48,7 +49,7 @@ export default function createContainer(widgetId: string, ...containerConfigurat
   const container = initializeDiagramContainer(
     new Container(),
     // removals: not needed defaults
-    { remove: [hoverModule, navigationModule, statusModule, contextMenuModule] },
+    { remove: [hoverModule, navigationModule, statusModule, contextMenuModule, copyPasteModule] },
 
     // GLSP additions: optional modules from GLSP
     baseViewModule,

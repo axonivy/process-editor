@@ -23,7 +23,6 @@ export default function createContainer(options: IvyDiagramOptions): Container {
     // standalone modules
     standaloneSelectModule,
     standaloneExportModule,
-    // standaloneCopyPasteModule,
     undoRedoModule,
     ivyStandaloneBreakpointModule,
     ivyStandaloneCopyPasteModule,
