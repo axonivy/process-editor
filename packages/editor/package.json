@@ -21,7 +21,8 @@
     "@axonivy/process-editor-protocol": "~13.2.0-next",
     "@eclipse-glsp/client": "2.3.0",
     "marked": "^15.0.6",
-    "toastify-js": "1.12.0"
+    "toastify-js": "1.12.0",
+    "uuid": "^11.1.0"
   },
   "peerDependencies": {
     "@axonivy/ui-components": "~13.2.0-next",

@@ -7,6 +7,7 @@ import type {
 } from '@eclipse-glsp/client';
 import { TYPES, EditorContextService, RequestClipboardDataAction, CutOperation, PasteOperation } from '@eclipse-glsp/client';
 import { injectable, inject } from 'inversify';
+import { v4 as uuid } from 'uuid';
 
 interface ClipboardId {
   readonly clipboardId: string;
@@ -38,7 +39,7 @@ export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
 
   handleCopy(event: ClipboardEvent): void {
     if (event.clipboardData && this.shouldCopy()) {
-      const clipboardId = crypto.randomUUID();
+      const clipboardId = uuid();
       event.clipboardData.setData(CLIPBOARD_DATA_FORMAT, toClipboardId(clipboardId));
       this.actionDispatcher
         .request<SetClipboardDataAction>(RequestClipboardDataAction.create(this.editorContext.get()))
@@ -74,6 +75,8 @@ export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
     this.clipboardService.put(action.clipboardData, clipboardId);
     if (navigator.clipboard) {
       navigator.clipboard.writeText(action.clipboardData[PROCESS_DATA_FORMAT]);
+    } else {
+      console.log('Could not access native clipboard, use local memory instead');
     }
   }
 
