@@ -30,7 +30,7 @@
     "publish:next": "lerna publish --exact --canary --preid next --pre-dist-tag next --no-git-tag-version --no-push --ignore-scripts --yes"
   },
   "devDependencies": {
-    "@axonivy/eslint-config": "~12.0.6-next.584",
+    "@axonivy/eslint-config": "~12.0.7-next.596",
     "@lerna-lite/cli": "^3.12.1",
     "@lerna-lite/publish": "^3.12.1",
     "@lerna-lite/run": "^3.12.1",
