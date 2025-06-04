@@ -42,6 +42,7 @@ import ivyZorderModule from './zorder/di.config';
 import './colors.css';
 import './toastify.css';
 import { ivyAccessibilityModule } from './accessibility/di.config';
+import { ivyCopyPasteModule } from './copy-paste/di.config';
 
 export default function createContainer(widgetId: string, ...containerConfiguration: ContainerConfiguration): Container {
   const container = initializeDiagramContainer(
@@ -66,6 +67,7 @@ export default function createContainer(widgetId: string, ...containerConfigurat
     { replace: ivyChangeBoundsToolModule },
     { replace: ivyExportModule },
     { replace: ivySelectModule },
+    { replace: ivyCopyPasteModule },
 
     // Ivy additions
     ivyDiagramModule,

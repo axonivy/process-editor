@@ -7,7 +7,6 @@ import {
   EditorContextService,
   RequestClipboardDataAction,
   PasteOperation,
-  SvgExporter,
   type IAsyncClipboardService
 } from '@eclipse-glsp/client';
 import { inject, injectable } from 'inversify';

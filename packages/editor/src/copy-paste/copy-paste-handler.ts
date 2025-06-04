@@ -1,58 +1,99 @@
-import type { IActionHandler, IActionDispatcher, IAsyncClipboardService, ViewerOptions, InvokeCopyPasteAction } from '@eclipse-glsp/client';
+import type {
+  IActionDispatcher,
+  IAsyncClipboardService,
+  ViewerOptions,
+  ICopyPasteHandler,
+  SetClipboardDataAction
+} from '@eclipse-glsp/client';
 import { TYPES, EditorContextService, RequestClipboardDataAction, CutOperation, PasteOperation } from '@eclipse-glsp/client';
 import { injectable, inject } from 'inversify';
 
+interface ClipboardId {
+  readonly clipboardId: string;
+}
+
+function toClipboardId(clipboardId: string): string {
+  return JSON.stringify({ clipboardId });
+}
+
+function isClipboardId(jsonData: unknown): jsonData is ClipboardId {
+  return jsonData !== null && typeof jsonData === 'object' && 'clipboardId' in jsonData;
+}
+
+function getClipboardIdFromDataTransfer(dataTransfer: DataTransfer): string | undefined {
+  const jsonString = dataTransfer.getData(CLIPBOARD_DATA_FORMAT);
+  const jsonObject = jsonString ? JSON.parse(jsonString) : undefined;
+  return isClipboardId(jsonObject) ? jsonObject.clipboardId : undefined;
+}
+
+const CLIPBOARD_DATA_FORMAT = 'ivyprocess/clipboardid';
+const PROCESS_DATA_FORMAT = 'application/json';
+
 @injectable()
-export class InvokeCopyPasteActionHandler implements IActionHandler {
-  @inject(TYPES.IActionDispatcher) protected dispatcher: IActionDispatcher;
-  @inject(EditorContextService) protected editorContext: EditorContextService;
-  @inject(TYPES.IAsyncClipboardService) protected clipboadService: IAsyncClipboardService;
+export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
+  @inject(TYPES.IActionDispatcher) protected actionDispatcher: IActionDispatcher;
   @inject(TYPES.ViewerOptions) protected viewerOptions: ViewerOptions;
+  @inject(TYPES.IAsyncClipboardService) protected clipboardService: IAsyncClipboardService;
+  @inject(EditorContextService) protected editorContext: EditorContextService;
 
-  handle(action: InvokeCopyPasteAction): void {
-    switch (action.command) {
-      case 'copy':
-        this.handleCopy();
-        break;
-      case 'paste':
-        this.handlePaste();
-        break;
-      case 'cut':
-        this.handleCut();
-        break;
-    }
-  }
-
-  handleCopy(): void {
-    if (this.shouldCopy()) {
-      this.dispatcher
-        .request(RequestClipboardDataAction.create(this.editorContext.get()))
-        .then(response => this.clipboadService.put(response.clipboardData));
+  handleCopy(event: ClipboardEvent): void {
+    if (event.clipboardData && this.shouldCopy()) {
+      const clipboardId = crypto.randomUUID();
+      event.clipboardData.setData(CLIPBOARD_DATA_FORMAT, toClipboardId(clipboardId));
+      this.actionDispatcher
+        .request<SetClipboardDataAction>(RequestClipboardDataAction.create(this.editorContext.get()))
+        .then(action => this.setClipboardData(action, clipboardId));
+      event.preventDefault();
     } else {
-      this.clipboadService.clear();
+      if (event.clipboardData) {
+        event.clipboardData.clearData();
+      }
+      this.clipboardService.clear();
     }
   }
 
-  handleCut(): void {
-    if (this.shouldCopy()) {
-      this.handleCopy();
-      this.dispatcher.dispatch(CutOperation.create(this.editorContext.get()));
+  handleCut(event: ClipboardEvent): void {
+    if (event.clipboardData && this.shouldCopy()) {
+      this.handleCopy(event);
+      this.actionDispatcher.dispatch(CutOperation.create(this.editorContext.get()));
+      event.preventDefault();
     }
   }
 
-  handlePaste(): void {
-    // In the Eclipse Integration case, the server manages its own clipboard.
-    // Just pass an empty clipboard data to remain compliant with the API.
-    const clipboardData = {};
-    this.dispatcher.dispatch(PasteOperation.create({ clipboardData: clipboardData, editorContext: this.editorContext.get() }));
+  handlePaste(event: ClipboardEvent): void {
+    if (event.clipboardData && this.shouldPaste()) {
+      const clipboardData = this.getClipboardData(event.clipboardData);
+      if (clipboardData) {
+        this.actionDispatcher.dispatch(PasteOperation.create({ clipboardData, editorContext: this.editorContext.get() }));
+      }
+      event.preventDefault();
+    }
   }
 
-  protected shouldCopy(): boolean | null {
-    return (
-      this.editorContext.get().selectedElementIds.length > 0 &&
-      (document.activeElement instanceof SVGElement || document.activeElement instanceof HTMLElement) &&
-      document.activeElement.parentElement &&
-      document.activeElement.parentElement.id === this.viewerOptions.baseDiv
-    );
+  setClipboardData(action: SetClipboardDataAction, clipboardId: string) {
+    this.clipboardService.put(action.clipboardData, clipboardId);
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(action.clipboardData[PROCESS_DATA_FORMAT]);
+    }
+  }
+
+  getClipboardData(data: DataTransfer) {
+    const clipboardId = getClipboardIdFromDataTransfer(data);
+    if (clipboardId) {
+      return this.clipboardService.get(clipboardId);
+    }
+    return { [PROCESS_DATA_FORMAT]: data.getData('text/plain') };
+  }
+
+  protected shouldCopy(): boolean {
+    return this.editorContext.get().selectedElementIds.length > 0 && this.isDiagramActive();
+  }
+
+  protected shouldPaste(): boolean {
+    return this.isDiagramActive();
+  }
+
+  private isDiagramActive(): boolean {
+    return document.activeElement?.parentElement?.id === this.viewerOptions.baseDiv;
   }
 }

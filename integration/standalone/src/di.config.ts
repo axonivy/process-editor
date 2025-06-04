@@ -1,4 +1,4 @@
-import { createIvyDiagramContainer, ivyCopyPasteModule, ivyThemeModule } from '@axonivy/process-editor';
+import { createIvyDiagramContainer, ivyStandaloneCopyPasteModule, ivyThemeModule } from '@axonivy/process-editor';
 import { ivyInscriptionModule } from '@axonivy/process-editor-inscription';
 import type { IDiagramOptions } from '@eclipse-glsp/client';
 import { createDiagramOptionsModule, standaloneExportModule, standaloneSelectModule, undoRedoModule } from '@eclipse-glsp/client';
@@ -23,9 +23,10 @@ export default function createContainer(options: IvyDiagramOptions): Container {
     // standalone modules
     standaloneSelectModule,
     standaloneExportModule,
+    // standaloneCopyPasteModule,
     undoRedoModule,
     ivyStandaloneBreakpointModule,
-    ivyCopyPasteModule,
+    ivyStandaloneCopyPasteModule,
     ivyThemeModule,
 
     // ivyNavigationModule is a replacement for navigationModule but it is already removed in the default IvyDiagramContainer
