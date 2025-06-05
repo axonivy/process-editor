@@ -5,6 +5,20 @@ import { getAbsoluteEdgeBounds, getAbsoluteLabelBounds } from '../../utils/diagr
 
 @injectable()
 export class IvySvgExporter extends GLSPSvgExporter {
+  public plainExport(root: GModelRoot) {
+    if (typeof document !== 'undefined') {
+      let svgElement = this.findSvgElement();
+      if (svgElement) {
+        svgElement = this.prepareSvgElement(svgElement, root);
+        const serializedSvg = this.createSvg(svgElement, root);
+        const svgExport = this.getSvgExport(serializedSvg, svgElement, root);
+        // do not give request/response id here as otherwise the action is treated as an unrequested response
+        return svgExport;
+      }
+    }
+    return undefined;
+  }
+
   protected getBounds(root: GModelRoot): Bounds {
     const allBounds: Bounds[] = [];
     root.index

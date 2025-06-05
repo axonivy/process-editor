@@ -8,6 +8,7 @@ import type {
 import { TYPES, EditorContextService, RequestClipboardDataAction, CutOperation, PasteOperation } from '@eclipse-glsp/client';
 import { injectable, inject } from 'inversify';
 import { v4 as uuid } from 'uuid';
+import type { IvySvgExporter } from '../tools/export/ivy-svg-exporter';
 
 interface ClipboardId {
   readonly clipboardId: string;
@@ -36,6 +37,7 @@ export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
   @inject(TYPES.ViewerOptions) protected viewerOptions: ViewerOptions;
   @inject(TYPES.IAsyncClipboardService) protected clipboardService: IAsyncClipboardService;
   @inject(EditorContextService) protected editorContext: EditorContextService;
+  @inject(TYPES.SvgExporter) protected svgExporter: IvySvgExporter;
 
   handleCopy(event: ClipboardEvent): void {
     if (event.clipboardData && this.shouldCopy()) {
@@ -74,7 +76,16 @@ export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
   setClipboardData(action: SetClipboardDataAction, clipboardId: string) {
     this.clipboardService.put(action.clipboardData, clipboardId);
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(action.clipboardData[PROCESS_DATA_FORMAT]);
+      const clipboardItemData: Record<string, string | Blob | PromiseLike<string | Blob>> = {
+        'text/plain': action.clipboardData[PROCESS_DATA_FORMAT]
+      };
+      const svg = this.svgExporter.plainExport(this.editorContext.modelRoot);
+      if (svg) {
+        clipboardItemData['image/png'] = toPNGBlob(svg, this.editorContext.modelRoot.canvasBounds);
+      }
+      const clipboardItem = new ClipboardItem(clipboardItemData);
+      // navigator.clipboard.writeText(action.clipboardData[PROCESS_DATA_FORMAT]);
+      navigator.clipboard.write([clipboardItem]);
     } else {
       console.log('Could not access native clipboard, use local memory instead');
     }
@@ -85,6 +96,12 @@ export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
     if (clipboardId) {
       return this.clipboardService.get(clipboardId);
     }
+    for (const item of data.items) {
+      console.log(item.type);
+      console.log(item.getAsFile()?.size);
+      item.getAsString(console.log);
+    }
+    console.log(data.items);
     return { [PROCESS_DATA_FORMAT]: data.getData('text/plain') };
   }
 
@@ -100,3 +117,24 @@ export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
     return document.activeElement?.parentElement?.id === this.viewerOptions.baseDiv;
   }
 }
+
+const toPNGBlob = async (svg: string, size: { width: number; height: number }) => {
+  return new Promise<Blob>((resolve, reject) => {
+    const canvas = new OffscreenCanvas(size.width, size.height);
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {
+      reject(new Error('Failed to get 2D rendering context.'));
+      return;
+    }
+    const img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0, size.width, size.height);
+      canvas.convertToBlob({ type: 'image/png' }).then(resolve).catch(reject);
+    };
+    img.onerror = error => {
+      reject(new Error(`Failed to load SVG as image: ${error}`));
+    };
+    const encodedSvg = encodeURIComponent(svg);
+    img.src = `data:image/svg+xml;charset=utf-8,${encodedSvg}`;
+  });
+};
