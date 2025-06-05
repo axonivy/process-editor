@@ -28,7 +28,7 @@ function getClipboardIdFromDataTransfer(dataTransfer: DataTransfer): string | un
 }
 
 const CLIPBOARD_DATA_FORMAT = 'ivyprocess/clipboardid';
-const PROCESS_DATA_FORMAT = 'application/json';
+const PROCESS_DATA_FORMAT = 'text/plain';
 
 @injectable()
 export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
@@ -42,7 +42,7 @@ export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
       const clipboardId = uuid();
       event.clipboardData.setData(CLIPBOARD_DATA_FORMAT, toClipboardId(clipboardId));
       this.actionDispatcher
-        .request<SetClipboardDataAction>(RequestClipboardDataAction.create(this.editorContext.get()))
+        .request(RequestClipboardDataAction.create(this.editorContext.get()))
         .then(action => this.setClipboardData(action, clipboardId));
       event.preventDefault();
     } else {
