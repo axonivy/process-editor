@@ -28,7 +28,7 @@
     "test": "vitest test",
     "test:ci": "vitest test --watch=false --reporter=basic --reporter=junit --outputFile=report.xml",
     "webtest": "npm run -w @axonivy/process-editor-playwright webtest",
-    "update:axonivy:next": "npx --yes npm-check-updates @axonivy* -ws -t patch -u",
+    "update:axonivy:next": "npx --yes npm-check-updates @axonivy* -ws -t semver -u",
     "publish:next": "lerna publish --exact --canary --preid next --pre-dist-tag next --no-git-tag-version --no-push --ignore-scripts --yes"
   },
   "devDependencies": {
