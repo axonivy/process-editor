@@ -68,7 +68,7 @@ export default function createContainer(widgetId: string, ...containerConfigurat
     { replace: ivyChangeBoundsToolModule },
     { replace: ivyExportModule },
     { replace: ivySelectModule },
-    { replace: ivyCopyPasteModule },
+    ivyCopyPasteModule,
 
     // Ivy additions
     ivyDiagramModule,

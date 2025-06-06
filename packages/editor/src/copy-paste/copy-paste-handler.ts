@@ -72,6 +72,7 @@ export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
   }
 
   setClipboardData(action: SetClipboardDataAction, clipboardId: string) {
+    console.debug('Added data to clipboard: ', action.clipboardData[PROCESS_DATA_FORMAT]);
     this.clipboardService.put(action.clipboardData, clipboardId);
     if (navigator.clipboard) {
       navigator.clipboard.writeText(action.clipboardData[PROCESS_DATA_FORMAT]);
