@@ -10,7 +10,7 @@
   </parent>
   <groupId>process.test.project</groupId>
   <artifactId>process-test-project</artifactId>
-  <version>13.1.0-SNAPSHOT</version>
+  <version>13.1.1-SNAPSHOT</version>
   <packaging>iar-integration-test</packaging>
   <properties>
     <engine.test.app>process-test-project</engine.test.app>
