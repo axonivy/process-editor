@@ -1,21 +1,6 @@
-/********************************************************************************
- * Copyright (c) 2020-2023 EclipseSource and others.
- *
- * This program and the accompanying materials are made available under the
- * terms of the Eclipse Public License v. 2.0 which is available at
- * http://www.eclipse.org/legal/epl-2.0.
- *
- * This Source Code may also be made available under the following Secondary
- * Licenses when the conditions for such availability set forth in the Eclipse
- * Public License v. 2.0 are satisfied: GNU General Public License, version 2
- * with the GNU Classpath Exception which is available at
- * https://www.gnu.org/software/classpath/license.html.
- *
- * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
- ********************************************************************************/
-import type { Action, IAsyncClipboardService } from '@eclipse-glsp/client';
-import { CutOperation, PasteOperation, RequestClipboardDataAction, TYPES } from '@eclipse-glsp/client';
-import { inject, injectable } from 'inversify';
+import type { Action } from '@eclipse-glsp/client';
+import { CutOperation, PasteOperation, RequestClipboardDataAction } from '@eclipse-glsp/client';
+import { injectable } from 'inversify';
 import { InvokeActionHandler } from '../InvokeActionHandler';
 
 // Eclipse-specific integration: in Eclipse, we trigger the Copy/Paste actions from
@@ -25,8 +10,6 @@ import { InvokeActionHandler } from '../InvokeActionHandler';
 
 @injectable()
 export class IvyEclipseCopyPasteActionHandler extends InvokeActionHandler {
-  @inject(TYPES.IAsyncClipboardService) protected clipboardService: IAsyncClipboardService;
-
   handle(action: Action): void {
     switch (action.kind) {
       case 'invoke-copy':
@@ -44,8 +27,6 @@ export class IvyEclipseCopyPasteActionHandler extends InvokeActionHandler {
   handleCopy() {
     if (this.shouldCopy()) {
       this.actionDispatcher.request(RequestClipboardDataAction.create(this.editorContext.get()));
-    } else {
-      this.clipboardService.clear();
     }
   }
 
@@ -58,10 +39,7 @@ export class IvyEclipseCopyPasteActionHandler extends InvokeActionHandler {
 
   handlePaste() {
     if (this.isDiagramActive()) {
-      // In the Eclipse Integration case, the server manages its own clipboard.
-      // Just pass an empty clipboard data to remain compliant with the API.
-      const clipboardData = {};
-      this.actionDispatcher.dispatch(PasteOperation.create({ clipboardData: clipboardData, editorContext: this.editorContext.get() }));
+      this.actionDispatcher.dispatch(PasteOperation.create({ clipboardData: {}, editorContext: this.editorContext.get() }));
     }
   }
 

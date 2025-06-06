@@ -14,6 +14,7 @@ export { default as ivyQuickActionModule } from './ui-tools/quick-action/di.conf
 export { ivyLabelEditModule, ivyLabelEditUiModule } from './edit-label/di.config';
 export { ivyChangeBoundsToolModule, ivyExportModule } from './tools/di.config';
 export { ivyAccessibilityModule, ivyKeyListenerModule } from './accessibility/di.config';
+export * from './copy-paste/di.config';
 
 /* Features */
 export * from './jump/action';

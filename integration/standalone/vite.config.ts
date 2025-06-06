@@ -28,6 +28,7 @@ export default defineConfig(() => ({
   },
   server: {
     port: 3000,
+    host: '0.0.0.0',
     open: false,
     sourcemapIgnoreList(sourcePath, sourcemapPath) {
       return sourcePath.includes('node_modules') && !sourcePath.includes('@eclipse-glsp') && !sourcePath.includes('@axonivy');

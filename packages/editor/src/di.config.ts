@@ -9,6 +9,7 @@ import {
   baseViewModule,
   bindOrRebind,
   contextMenuModule,
+  copyPasteModule,
   gridModule,
   helperLineModule,
   hoverModule,
@@ -42,12 +43,13 @@ import ivyZorderModule from './zorder/di.config';
 import './colors.css';
 import './toastify.css';
 import { ivyAccessibilityModule } from './accessibility/di.config';
+import { ivyCopyPasteModule } from './copy-paste/di.config';
 
 export default function createContainer(widgetId: string, ...containerConfiguration: ContainerConfiguration): Container {
   const container = initializeDiagramContainer(
     new Container(),
     // removals: not needed defaults
-    { remove: [hoverModule, navigationModule, statusModule, contextMenuModule] },
+    { remove: [hoverModule, navigationModule, statusModule, contextMenuModule, copyPasteModule] },
 
     // GLSP additions: optional modules from GLSP
     baseViewModule,
@@ -66,6 +68,7 @@ export default function createContainer(widgetId: string, ...containerConfigurat
     { replace: ivyChangeBoundsToolModule },
     { replace: ivyExportModule },
     { replace: ivySelectModule },
+    ivyCopyPasteModule,
 
     // Ivy additions
     ivyDiagramModule,

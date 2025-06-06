@@ -1,10 +1,9 @@
-import { createIvyDiagramContainer, ivyThemeModule } from '@axonivy/process-editor';
+import { createIvyDiagramContainer, ivyStandaloneCopyPasteModule, ivyThemeModule } from '@axonivy/process-editor';
 import { ivyInscriptionModule } from '@axonivy/process-editor-inscription';
 import type { IDiagramOptions } from '@eclipse-glsp/client';
 import { createDiagramOptionsModule, standaloneExportModule, standaloneSelectModule, undoRedoModule } from '@eclipse-glsp/client';
 import type { Container } from 'inversify';
 import ivyStandaloneBreakpointModule from './breakpoint/di.config';
-import ivyStandaloneCopyPasteModule from './copy-paste/di.config';
 import ivyDirtyStateModule from './dirty-state/di.config';
 import ivyNavigationModule from './navigate/di.config';
 import type { ThemeMode } from '@axonivy/process-editor-protocol';
