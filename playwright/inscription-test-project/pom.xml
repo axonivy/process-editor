@@ -14,7 +14,6 @@
   <packaging>iar-integration-test</packaging>
   <properties>
     <engine.test.app>inscription-test</engine.test.app>
-    <project.build.plugin.version>13.2.0-SNAPSHOT</project.build.plugin.version>
     <engine.page.url>https://product.ivyteam.io/</engine.page.url>
     <webtest.cmd>webtest</webtest.cmd>
   </properties>
