@@ -5,7 +5,9 @@ import {
   GridManager,
   GViewportRootElement,
   isViewport,
+  type IViewArgs,
   type RenderingContext,
+  setAttr,
   SGraphImpl,
   type Writable
 } from '@eclipse-glsp/client';
@@ -14,6 +16,18 @@ import { type VNode, h } from 'snabbdom';
 
 @injectable()
 export class IvyGraphView extends GLSPProjectionView {
+  override render(model: Readonly<GViewportRootElement>, context: RenderingContext, args?: IViewArgs): VNode {
+    const rootNode = h('div', { 'aria-label': 'Diagram', style: { width: '100%', height: '100%' } }, [
+      this.renderSvg(model, context),
+      ...this.renderProjections(model, context, args)
+    ]);
+    if (context.targetKind === 'main') {
+      setAttr(rootNode, 'tabindex', 1);
+    }
+    setAttr(rootNode, 'aria-label', 'Diagram');
+    return rootNode;
+  }
+
   protected override getBackgroundBounds(
     viewport: Readonly<SGraphImpl>,
     context: RenderingContext,
