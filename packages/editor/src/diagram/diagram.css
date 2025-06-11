@@ -342,6 +342,9 @@ g[id*='_label']:has(~ .activity-icon) .node-child-label > div {
   font-size: 14pt;
   text-anchor: middle;
 }
+.sprotty-hidden {
+  visibility: hidden;
+}
 svg {
   border: none;
 }
