@@ -144,11 +144,11 @@
     "openCustomField": "Konfiguration des benutzerdefinierten Feldes öffnen",
     "openFile": "Datei öffnen",
     "openUrl": "URL öffnen",
-    "output": "Ausgabe",
+    "output": "Ausgang",
     "permission": "Berechtigung",
     "process": "Prozess",
     "removeRow": "Zeile entfernen",
-    "request": "Anfrage",
+    "request": "Aufruf",
     "resetPart": "{{name}} zurücksetzen",
     "responsible": "Verantwortlich",
     "timeout": "Zeitüberschreitung",
@@ -180,9 +180,9 @@
       },
       "mode": {
         "cache": "Cache",
-        "cacheDesc": "Verwenden Sie dies, wenn Sie eine Operation aufrufen, die nur Daten liest.",
+        "cacheDesc": "Verwenden Sie diese Option, wenn Sie eine Operation aufrufen, die nur Daten liest.",
         "invalidate": "Cache ungültig machen",
-        "invalidateMode": "Verwenden Sie dies, wenn Sie eine Operation aufrufen, die Daten ändert",
+        "invalidateMode": "Verwenden Sie diese Option, wenn Sie eine Operation aufrufen, die Daten ändert",
         "noCache": "Nicht zwischenspeichern",
         "noCacheMode": "Verwendet kein Caching."
       },
@@ -223,7 +223,7 @@
       "definition": "Definition",
       "direction": "Richtung",
       "fields": "Felder",
-      "limit": "Limit",
+      "limit": "Limite",
       "lotSize": "Batch-Größe",
       "queryKind": "Abfrageart",
       "quoteIvyScript": "IvyScript-Variablen zitieren",
@@ -274,8 +274,8 @@
       }
     },
     "output": {
-      "disablePermission": "Berechtigungsprüfungen deaktivieren (Dieses Skriptschritt als SYSTEM ausführen)",
-      "title": "Ausgabe"
+      "disablePermission": "Permission Checks deaktivieren (Dieses Skriptschritt als SYSTEM ausführen)",
+      "title": "Ausgang"
     },
     "permission": {
       "allowProcessViewer": "Allen Workflow-Benutzern erlauben, den Prozess auf der Engine anzuzeigen",
@@ -313,8 +313,8 @@
     },
     "request": {
       "showOnStartList": "In der Startliste anzeigen",
-      "startPerHttp": "Ja, dies kann mit einer HTTP-Anfrage / -Link gestartet werden",
-      "title": "Anfrage"
+      "startPerHttp": "Dieser Prozess kann mit einem HTTP-Aufruf / -Link gestartet werden",
+      "title": "Aufruf"
     },
     "rest": {
       "accept": "Akzeptieren",
@@ -343,14 +343,14 @@
       "title": "Ergebnis"
     },
     "signal": {
-      "attachBusinessCase": "An den Business Case anhängen, der diesen Prozess signalisiert hat",
+      "attachBusinessCase": "An den Business Case anhängen, der diesen Prozess ausgelöst hat",
       "code": "Signalcode",
       "empty": "<< Leer >>",
       "emptyDesc": "Empfängt jedes Signal",
       "title": "Signal"
     },
     "start": {
-      "inputParamters": "Eingabeparameter",
+      "inputParamters": "Eingangsparameter",
       "signature": "Signatur",
       "title": "Start"
     },
@@ -370,7 +370,7 @@
     },
     "trigger": {
       "attachBusinessCase": "An den Business Case anhängen, der diesen Prozess ausgelöst hat",
-      "startTriggerable": "Ja, dies kann mit einer Trigger-Aktivität gestartet werden",
+      "startTriggerable": "Dieser Prozess kann mit einer Trigger-Aktivität gestartet werden",
       "title": "Trigger"
     },
     "ws": {
@@ -383,7 +383,7 @@
       "operation": "Operation",
       "port": "Port",
       "properties": "Eigenschaften",
-      "request": "Anfrage",
+      "request": "Aufruf",
       "title": "Webservice"
     },
     "wsprocess": {
@@ -424,11 +424,11 @@
     "straighten": "Gerade machen ({{hotkey}})",
     "toggleBreakpoint": "Haltepunkt umschalten ({{hotkey}})",
     "unwrap": "Eingebetteten Unterprozess aufheben ({{hotkey}})",
-    "wrap": "In eingebetteten Prozess einwickeln ({{hotkey}})"
+    "wrap": "In eingebetteten Subprozess zusammenfassen ({{hotkey}})"
   },
   "responsible": {
-    "delete": "Niemand & löschen",
-    "memberFromAttr": "Mitglieder aus Attribut",
+    "delete": "Niemand, Task löschen",
+    "memberFromAttr": "Mitgliederliste aus Attribut",
     "roleFromAttr": "Rolle aus Attribut",
     "roles": "Rollen",
     "userFromAttr": "Benutzer aus Attribut"
