@@ -193,6 +193,12 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
       .filter(isOpenable)[0];
     if (selected) {
       this.inscriptionElement = selected.id;
+    } else if (
+      selectedElements.length === 0 &&
+      (document.activeElement === document.getElementById('btn_undo_tools') ||
+        document.activeElement === document.getElementById('btn_redo_tools'))
+    ) {
+      return;
     } else {
       this.inscriptionElement = this.inscriptionElement ? root.id : undefined;
       if (!this.isOutlineOpen()) {
