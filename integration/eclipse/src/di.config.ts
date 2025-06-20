@@ -1,5 +1,6 @@
 import {
   createIvyDiagramContainer,
+  IVY_ACCESSIBILITY_MODULES,
   ivyBreakpointModule,
   ivyGoToSourceModule,
   ivyOpenDataClassModule,
@@ -42,7 +43,8 @@ export default function createContainer(widgetId: string, options: IvyDiagramOpt
     ivyOpenFormModule,
     ivyInscriptionModule,
     ivyStartupDiagramModule,
-    standaloneExportModule
+    standaloneExportModule,
+    ...IVY_ACCESSIBILITY_MODULES
   );
 
   return container;

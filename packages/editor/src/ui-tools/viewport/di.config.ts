@@ -1,5 +1,6 @@
 import './viewport-bar.css';
 
+import { EnableViewportAction, SetViewportZoomAction } from '@axonivy/process-editor-protocol';
 import {
   bindAsService,
   configureActionHandler,
@@ -8,14 +9,21 @@ import {
   EnableToolsAction,
   FeatureModule,
   GetViewportCommand,
+  MoveViewportAction,
+  MoveViewportHandler,
+  MoveViewportKeyListener,
   RepositionCommand,
   SetViewportAction,
   SetViewportCommand,
   TYPES,
-  viewportModule
+  viewportModule,
+  ZoomAction,
+  ZoomFactors,
+  ZoomHandler,
+  ZoomKeyListener
 } from '@eclipse-glsp/client';
-
-import { EnableViewportAction, SetViewportZoomAction } from '@axonivy/process-editor-protocol';
+import { IvyViewportKeyTool } from './ivy-viewport-key-tool';
+import { IvyZoomKeyListener } from './ivy-zoom-key-listener';
 import { IvyScrollMouseListener } from './scroll';
 import { ViewportBar } from './viewport-bar';
 import {
@@ -36,14 +44,26 @@ const ivyViewportModule = new FeatureModule(
     configureCommand(context, SetViewportCommand);
     configureCommand(context, RepositionCommand);
 
+    bind(TYPES.ZoomFactors).toConstantValue(ZoomFactors.DEFAULT);
+
+    bind(MoveViewportHandler).toSelf().inSingletonScope();
+    bind(MoveViewportKeyListener).toSelf();
+    configureActionHandler(context, MoveViewportAction.KIND, MoveViewportHandler);
+    bind(ZoomHandler).toSelf().inSingletonScope();
+    configureActionHandler(context, ZoomAction.KIND, ZoomHandler);
+
     // GLSP replacements
     configureCommand(context, IvyCenterCommand);
     configureCommand(context, IvyFitToScreenCommand);
+    configureCommand(context, OriginViewportCommand);
     bindAsService(context, TYPES.MouseListener, IvyZoomMouseListener);
 
     bind(IvyScrollMouseListener).toSelf().inSingletonScope();
     configureActionHandler(context, EnableToolsAction.KIND, IvyScrollMouseListener);
     configureActionHandler(context, EnableDefaultToolsAction.KIND, IvyScrollMouseListener);
+
+    bindAsService(context, TYPES.IDefaultTool, IvyViewportKeyTool);
+    bind(ZoomKeyListener).to(IvyZoomKeyListener);
 
     // Ivy extensions
     bindAsService(context, TYPES.IUIExtension, ViewportBar);
@@ -51,7 +71,6 @@ const ivyViewportModule = new FeatureModule(
     configureActionHandler(context, SetViewportAction.KIND, ViewportBar);
     configureActionHandler(context, SetViewportZoomAction.KIND, ViewportBar);
 
-    configureCommand(context, OriginViewportCommand);
     configureCommand(context, MoveIntoViewportCommand);
     configureCommand(context, IvySetViewportZoomCommand);
   },

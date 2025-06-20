@@ -1,20 +1,32 @@
 {
   "a11y": {
+    "autocomplete": {
+      "noSuggestions": "No suggestions available"
+    },
+    "diagram": {
+      "label": "Diagram"
+    },
+    "grid": {
+      "message": "Select a digit from 1-9 to zoom in on the respective box."
+    },
     "hotkeyDesc": {
+      "center": "Center",
+      "fitToScreen": "Fit to screen",
       "focusGraph": "Focus on graph",
       "focusInscription": "Focus on inscription",
       "focusToolbar": "Focus on tool palette",
       "move": "Move element or viewport",
-      "navigation": "Navigate by relation or neighbors according to navigation mode",
       "navigationActivate": "Activate default navigation",
       "navigationActivatePosition": "Activate position based navigation",
+      "origin": "Origin screen",
       "resizeActivate": "Activate resize mode for selected element",
+      "resizeDeactivate": "Deactivate resize mode for selected element",
       "resizeDecrease": "Decrease size of element",
       "resizeDefault": "Set element size to default",
       "resizeIncrease": "Increase size of element",
       "searchPalette": "Activate search for elements",
       "zoomIn": "Zoom in to element or viewport",
-      "zoomOut": "Zoom out to element or viewport"
+      "zoomInGrid": "Zoom in via grid"
     },
     "hotkeyGroup": {
       "graph": "Graph",
@@ -37,11 +49,13 @@
       "on": "Resize On: Use plus(+) and minus(-) to resize, 'CTRL'+'0' for default size. Press 'ESC' to exit."
     },
     "search": {
+      "label": "Search Field",
       "placeholder": "Search for elements"
     },
     "ui": {
       "command": "Command",
       "keybinding": "Keybinding",
+      "menuTitle": "Shortcut Menu",
       "title": "Keyboard Shortcuts"
     }
   },
