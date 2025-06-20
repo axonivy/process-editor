@@ -4,7 +4,7 @@
   height: 48px;
   background: var(--glsp-tool-bar-bg);
   border-bottom: var(--basic-border, 1px solid var(--glsp-border));
-  z-index: 10;
+  z-index: 11;
   container: toolbar / inline-size;
   position: relative;
 }
