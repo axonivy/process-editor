@@ -7,7 +7,6 @@ import {
   type IEditModeListener,
   ISelectionListener,
   MouseListener,
-  SelectAllAction,
   SelectionService,
   SetUIExtensionVisibilityAction,
   TYPES,
@@ -156,14 +155,10 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
   }
 
   protected handleToolbarButtonClicked(evt: ToolBarButtonClickEvent): void {
-    this.dispatchAction([evt.source.action()]);
+    this.actionDispatcher.dispatch(evt.source.action());
     if (evt.source.switchFocus) {
       this.changeActiveButton(evt);
     }
-  }
-
-  private dispatchAction(actions: Action[]): void {
-    this.actionDispatcher.dispatchAll(actions.concat(SelectAllAction.create(false)));
   }
 
   handle(action: Action) {
