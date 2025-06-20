@@ -9,7 +9,6 @@ import {
   type IEditModeListener,
   ISelectionListener,
   MouseListener,
-  SelectAllAction,
   SelectionService,
   SetUIExtensionVisibilityAction,
   TYPES,
@@ -142,7 +141,7 @@ export class ToolBar extends GLSPAbstractUIExtension implements IActionHandler, 
       button.id = toolBarButton.id;
     }
     button.onclick = () => {
-      this.dispatchAction([toolBarButton.action()]);
+      this.actionDispatcher.dispatch(toolBarButton.action());
       if (toolBarButton.switchFocus) {
         this.changeActiveButton(button);
       }
@@ -163,10 +162,6 @@ export class ToolBar extends GLSPAbstractUIExtension implements IActionHandler, 
       return titleButton;
     }
     return button;
-  }
-
-  private dispatchAction(actions: Action[]): void {
-    this.actionDispatcher.dispatchAll(actions.concat(SelectAllAction.create(false)));
   }
 
   handle(action: Action) {
