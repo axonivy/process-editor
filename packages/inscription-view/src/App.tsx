@@ -21,11 +21,16 @@ import { useTranslation } from 'react-i18next';
 function App({ outline, app, pmv, pid }: InscriptionElementContext & InscriptionOutlineProps) {
   const { t } = useTranslation();
   const [context, setContext] = useState({ app, pmv, pid });
-  const [initData, setInitData] = useState<Record<string, ElementData>>({});
+  const [initData, setInitData] = useState<ElementData | undefined>();
   const [showOutline, setShowOutline] = useState(false);
 
   useEffect(() => {
-    setContext({ app, pmv, pid });
+    setContext(old => {
+      if (old.pid !== pid) {
+        setInitData(undefined);
+      }
+      return { app, pmv, pid };
+    });
   }, [app, pmv, pid]);
 
   const client = useClient();
@@ -56,13 +61,10 @@ function App({ outline, app, pmv, pid }: InscriptionElementContext & Inscription
   });
 
   useEffect(() => {
-    if (isSuccess && !initData[context.pid]) {
-      setInitData(initData => {
-        initData[context.pid] = data.data;
-        return initData;
-      });
+    if (isSuccess && initData === undefined) {
+      setInitData(data.data);
     }
-  }, [context.pid, data, initData, isSuccess]);
+  }, [isSuccess, data, initData]);
 
   const { data: validations } = useQuery({
     queryKey: queryKeys.validation(context),
@@ -121,7 +123,7 @@ function App({ outline, app, pmv, pid }: InscriptionElementContext & Inscription
               data: data.data,
               setData: mutation.mutate,
               defaultData: data.defaults,
-              initData: initData[context.pid] ?? data.data,
+              initData: initData ?? data.data,
               validations
             }}
           >

@@ -20,18 +20,23 @@ test('undo', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
   const start = processEditor.startElement;
   const view = await start.inscribe();
+  const resetBtn = view.reset();
+  await expect(resetBtn).toBeHidden();
   await changeName(view, 'start', 'hello');
+  await expect(resetBtn).toBeVisible();
 
   await processEditor.endElement.select();
   const { part, input } = await changeName(view, '', 'world');
-  const resetBtn = view.reset();
 
   await resetBtn.click();
   await input.expectValue('');
   await start.select();
+  await expect(resetBtn).toBeHidden();
   await part.open();
+  await changeName(view, 'hello', 'start');
+  await expect(resetBtn).toBeVisible();
   await resetBtn.click();
-  await input.expectValue('start');
+  await input.expectValue('hello');
 });
 
 test('ivyscript lsp', async ({ page }) => {
