@@ -14,14 +14,17 @@ import {
   TYPES,
   isNotUndefined,
   isOpenable,
-  type IActionDispatcher
+  type IActionDispatcher,
+  UndoAction,
+  RedoAction,
+  OpenAction,
+  UpdateModelAction
 } from '@eclipse-glsp/client';
 import { webSocketConnection, type Connection } from '@axonivy/jsonrpc';
 import type { MonacoLanguageClient } from 'monaco-languageclient';
 import { QueryClient } from '@tanstack/react-query';
 import { inject, injectable, postConstruct } from 'inversify';
 
-import { OpenAction } from 'sprotty-protocol';
 import InscriptionView from './InscriptionView';
 import { EnableInscriptionAction, ToggleInscriptionAction } from './action';
 import * as React from 'react';
@@ -40,6 +43,7 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
   private inscriptionClient?: Promise<InscriptionClientJsonRpc>;
   private resolvedInscriptionClient?: InscriptionClientJsonRpc;
   private queryClient: QueryClient;
+  private invalidateAfterNextUpdate: boolean;
 
   public id(): string {
     return InscriptionUi.ID;
@@ -162,6 +166,13 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
     if (SwitchThemeAction.is(action)) {
       this.update();
       MonacoEditorUtil.setTheme(action.theme);
+    }
+    if (UndoAction.is(action) || RedoAction.is(action)) {
+      this.invalidateAfterNextUpdate = true;
+    }
+    if (Action.hasKind(action, UpdateModelAction.KIND) && this.invalidateAfterNextUpdate) {
+      this.invalidateAfterNextUpdate = false;
+      this.queryClient.invalidateQueries({ queryKey: ['data'] });
     }
     return;
   }

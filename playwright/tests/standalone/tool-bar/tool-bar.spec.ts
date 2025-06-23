@@ -24,6 +24,32 @@ test('undo / redo', async ({ page }) => {
   await expect(start.locator()).toBeHidden();
 });
 
+test('undo / redo with inscription', async ({ page }) => {
+  const processEditor = await ProcessEditor.openProcess(page);
+  const start = processEditor.startElement;
+  const inscription = await start.inscribe();
+  const accordion = inscription.accordion('General');
+  await accordion.open();
+  const section = accordion.section('Name / Description');
+  await section.open();
+  const name = section.textArea({ label: 'Display Name' });
+  await name.expectValue('start');
+
+  await name.fill('Test');
+  // Trigger update (as memory process do not automatically update)
+  await start.locator().click();
+  await page.keyboard.press('ArrowDown');
+  await start.expectLabel('Test');
+
+  await processEditor.toolbar().triggerUndo();
+  await start.expectLabel('start');
+  await name.expectValue('start');
+
+  await processEditor.toolbar().triggerRedo();
+  await start.expectLabel('Test');
+  await name.expectValue('Test');
+});
+
 test('search', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
   const menu = await processEditor.toolbar().openElementPalette('all_elements');
