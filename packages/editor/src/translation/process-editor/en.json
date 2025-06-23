@@ -149,6 +149,7 @@
     "process": "Process",
     "removeRow": "Remove row",
     "request": "Request",
+    "reset": "Reset {{name}}",
     "responsible": "Responsible",
     "timeout": "Timeout",
     "URL": "URL",

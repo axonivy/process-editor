@@ -68,6 +68,10 @@ export class Inscription {
     await expect(this.root).toHaveAttribute('data-mutation-state', 'success');
   }
 
+  reset() {
+    return this.page.locator('button[aria-label^="Reset"]');
+  }
+
   async waitForView() {
     await expect(this.root).toBeVisible();
   }

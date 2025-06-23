@@ -33,6 +33,12 @@ export function usePartState(defaultData: unknown, data: unknown, validations: V
   return { state, validations };
 }
 
+export function usePartDirty(initData: unknown, data: unknown): boolean {
+  return useMemo<boolean>(() => {
+    return !deepEqual(data, initData);
+  }, [data, initData]);
+}
+
 const INSCRIPTIONTAB_STORAGE_KEY = 'process-inscription-tab';
 
 export const useInscriptionTabState = (parts: Array<PartProps>) => {
