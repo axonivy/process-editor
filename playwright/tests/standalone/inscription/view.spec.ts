@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { ProcessEditor } from '../../page-objects/editor/process-editor';
+import type { Inscription } from '../../page-objects/inscription/inscription-view';
 
 test('elements', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
@@ -13,6 +14,29 @@ test('elements', async ({ page }) => {
   await processEditor.resetSelection();
   await view.expectHeaderText(/Business Process/);
   await view.expectClosed();
+});
+
+test('undo', async ({ page }) => {
+  const processEditor = await ProcessEditor.openProcess(page);
+  const start = processEditor.startElement;
+  const view = await start.inscribe();
+  const resetBtn = view.reset();
+  await expect(resetBtn).toBeHidden();
+  await changeName(view, 'start', 'hello');
+  await expect(resetBtn).toBeVisible();
+
+  await processEditor.endElement.select();
+  const { part, input } = await changeName(view, '', 'world');
+
+  await resetBtn.click();
+  await input.expectValue('');
+  await start.select();
+  await expect(resetBtn).toBeHidden();
+  await part.open();
+  await changeName(view, 'hello', 'start');
+  await expect(resetBtn).toBeVisible();
+  await resetBtn.click();
+  await input.expectValue('hello');
 });
 
 test('ivyscript lsp', async ({ page }) => {
@@ -71,3 +95,14 @@ test('web service auth link', async ({ page }) => {
   await wsStart.expectNotSelected();
   await view.expectHeaderText('Web Service Process');
 });
+
+async function changeName(view: Inscription, oldValue: string, value: string) {
+  const part = view.inscriptionTab('General');
+  await part.open();
+  const section = part.section('Name / Description');
+  await section.open();
+  const input = section.textArea({ label: 'Display name' });
+  await input.expectValue(oldValue);
+  await input.fill(value);
+  return { part, input };
+}
