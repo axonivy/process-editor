@@ -15,7 +15,10 @@ import {
   TYPES,
   isNotUndefined,
   isOpenable,
-  type IActionDispatcher
+  type IActionDispatcher,
+  UndoAction,
+  RedoAction,
+  UpdateModelAction
 } from '@eclipse-glsp/client';
 import { webSocketConnection, type Connection } from '@axonivy/jsonrpc';
 import type { MonacoLanguageClient } from 'monaco-languageclient';
@@ -41,6 +44,7 @@ export class InscriptionUi extends GLSPAbstractUIExtension implements IActionHan
   private root: Root;
   private inscriptionClient?: Promise<InscriptionClientJsonRpc>;
   private queryClient: QueryClient;
+  private invalidateAfterNextUpdate: boolean;
 
   public id(): string {
     return InscriptionUi.ID;
@@ -158,6 +162,13 @@ export class InscriptionUi extends GLSPAbstractUIExtension implements IActionHan
     if (SwitchThemeAction.is(action)) {
       this.updateInscriptionUi();
       MonacoEditorUtil.setTheme(action.theme);
+    }
+    if (UndoAction.is(action) || RedoAction.is(action)) {
+      this.invalidateAfterNextUpdate = true;
+    }
+    if (Action.hasKind(action, UpdateModelAction.KIND) && this.invalidateAfterNextUpdate) {
+      this.invalidateAfterNextUpdate = false;
+      this.queryClient.invalidateQueries({ queryKey: ['data'] });
     }
     return;
   }
