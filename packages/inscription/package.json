@@ -17,7 +17,7 @@
     "@codingame/monaco-vscode-editor-service-override": "1.83.3",
     "@codingame/monaco-vscode-languages-service-override": "1.83.3",
     "@codingame/monaco-vscode-model-service-override": "1.83.3",
-    "@eclipse-glsp/client": "2.3.0"
+    "@eclipse-glsp/client": "2.4.0"
   },
   "peerDependencies": {
     "@axonivy/jsonrpc": "~13.2.0-next",

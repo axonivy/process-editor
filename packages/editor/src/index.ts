@@ -13,7 +13,7 @@ export { default as ivyConnectorModule } from './connector/di.config';
 export { default as ivyQuickActionModule } from './ui-tools/quick-action/di.config';
 export { ivyLabelEditModule, ivyLabelEditUiModule } from './edit-label/di.config';
 export { ivyChangeBoundsToolModule, ivyExportModule } from './tools/di.config';
-export { ivyAccessibilityModule, ivyKeyListenerModule } from './accessibility/di.config';
+export * from './accessibility/di.config';
 export * from './copy-paste/di.config';
 export * from './ui-tools/notification/di.config';
 

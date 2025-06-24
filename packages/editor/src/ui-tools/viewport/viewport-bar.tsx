@@ -81,11 +81,7 @@ export class ViewportBar extends ReactUIExtension implements IActionHandler {
     const model = this.editorContext.modelRoot;
     if (isViewport(model)) {
       this.actionDispatcher.dispatchAll([
-        SetUIExtensionVisibilityAction.create({
-          extensionId: QuickActionUI.ID,
-          visible: true,
-          contextElementsId: [...this.selectionService.getSelectedElementIDs()]
-        }),
+        QuickActionUI.show([...this.selectionService.getSelectedElementIDs()]),
         SetViewportAction.create(model.id, model, {})
       ]);
     }

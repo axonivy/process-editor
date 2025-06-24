@@ -1,21 +1,20 @@
 import { IvyIcons } from '@axonivy/ui-icons';
 import {
   type AutocompleteSuggestion,
+  CenterAction,
+  GEdge,
+  GLabel,
   GModelElement,
   GModelRoot,
+  GNode,
   type IAutocompleteSuggestionProvider,
   SearchAutocompletePalette,
   SelectAction,
-  toArray,
-  CenterAction,
-  GEdge,
-  GNode,
-  GLabel
+  toArray
 } from '@eclipse-glsp/client';
 import { injectable } from 'inversify';
 import { ActivityTypes, EventTypes, GatewayTypes } from '../../diagram/view-types';
 import './search-palette.css';
-import { t } from 'i18next';
 
 @injectable()
 export class IvySearchAutocompletePalette extends SearchAutocompletePalette {
@@ -23,12 +22,8 @@ export class IvySearchAutocompletePalette extends SearchAutocompletePalette {
     return [new RevealNodeAutocompleteSuggestionProvider(), new RevealEdgeElementAutocompleteSuggestionProvider()];
   }
 
-  protected override initializeContents(containerElement: HTMLElement): void {
-    super.initializeContents(containerElement);
-    this.autocompleteWidget.inputField.placeholder = t('a11y.search.placeholder');
-  }
-
   show(root: Readonly<GModelRoot>, ...contextElementIds: string[]): void {
+    // customization: Skip deselecting all elements
     this.activeElement = document.activeElement;
     if (!this.containerElement) {
       if (!this.initialize()) return;

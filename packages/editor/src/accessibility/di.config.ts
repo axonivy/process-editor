@@ -1,106 +1,122 @@
 import {
-  accessibilityModule,
-  AccessibleKeyShortcutTool,
   bindAsService,
-  type BindingContext,
   configureActionHandler,
-  configureMoveZoom,
+  DefaultResizeKeyListener,
+  DefaultResizeKeyTool,
   DeselectKeyTool,
-  EnableKeyboardGridAction,
+  elementNavigationModule,
   FeatureModule,
   FocusDomAction,
   HideToastAction,
-  KeyboardGrid,
-  KeyboardGridCellSelectedAction,
-  KeyboardGridKeyboardEventAction,
-  LocalElementNavigator,
-  PositionNavigator,
+  type ModuleConfiguration,
   ResizeElementAction,
-  SetAccessibleKeyShortcutAction,
+  ResizeKeyListener,
+  ResizeKeyTool,
+  resizeModule,
+  searchPaletteModule,
   ShowToastMessageAction,
-  TYPES
+  standaloneShortcutsModule,
+  toastModule,
+  TYPES,
+  viewKeyToolsModule
 } from '@eclipse-glsp/client';
-import { IvyResizeElementHandler } from './resize-key-tool/resize-key-handler';
-import { IvyZoomKeyTool } from './view-key-tool/zoom-key-tool';
 import { FocusDomActionHandler } from './focus-dom-handler';
-import { IvyMovementKeyTool } from './view-key-tool/movement-key-tool';
 import { IvyGlobalKeyListenerTool } from './key-listener/global-keylistener-tool';
-import { QuickActionKeyListener } from './key-listener/quick-actions';
 import { JumpOutKeyListener } from './key-listener/jump-out';
-import { IvySearchAutocompletePaletteTool } from './search/search-tool';
+import { QuickActionKeyListener } from './key-listener/quick-actions';
+import './key-shortcut/accessible-key-shortcut.css';
+import { IvyResizeElementHandler } from './resize-key-tool/resize-key-handler';
 import { IvySearchAutocompletePalette } from './search/search-palette';
-import { IvyElementNavigatorTool } from './element-navigation/diagram-navigarion-tool';
-import { IvyResizeKeyTool } from './resize-key-tool/resize-key-tool';
+import { IvySearchAutocompletePaletteTool } from './search/search-tool';
 import { IvyToast } from './toast/toast-tool';
-import { IvyKeyShortcutUIExtension } from './key-shortcut/accessible-key-shortcut';
+import { translateMessages } from '../translation/glsp-messages';
 
-export const ivyAccessibilityModule = new FeatureModule(
+translateMessages();
+
+export const ivyResizeModule = new FeatureModule(
   (bind, unbind, isBound, rebind) => {
     const context = { bind, unbind, isBound, rebind };
-    configureResizeTools(context);
-    configureViewKeyTools(context);
-    configureMoveZoom(context);
-    configureSearchPaletteModule(context);
-    configureShortcutHelpTool(context);
-    configureKeyboardControlTools(context);
-    configureElementNavigationTool(context);
-    configureToastTool(context);
-    configureActionHandler(context, FocusDomAction.KIND, FocusDomActionHandler);
-    configureIvyKeyListeners(context);
+    // custom resize element handler
+    bind(IvyResizeElementHandler).toSelf().inSingletonScope();
+    configureActionHandler(context, ResizeElementAction.KIND, IvyResizeElementHandler);
+
+    // bindings below are part of the standaloneResizeModule in GLSP, we merge them here for convenience
+    bindAsService(context, TYPES.IDefaultTool, DefaultResizeKeyTool);
+    context.bind(DefaultResizeKeyListener).toSelf();
+    bindAsService(context, TYPES.ITool, ResizeKeyTool);
+    context.bind(ResizeKeyListener).toSelf();
   },
   {
-    featureId: accessibilityModule.featureId
+    featureId: resizeModule.featureId
   }
 );
 
-export const ivyKeyListenerModule = new FeatureModule((bind, unbind, isBound, rebind) => {
-  const context = { bind, unbind, isBound, rebind };
-  configureIvyKeyListeners(context);
-});
+export const ivySearchPaletteModule = new FeatureModule(
+  (bind, _unbind, isBound, rebind) => {
+    const context = { bind, isBound, rebind };
+    // fully customized
+    bindAsService(context, TYPES.IUIExtension, IvySearchAutocompletePalette);
+    bindAsService(context, TYPES.IDefaultTool, IvySearchAutocompletePaletteTool);
+  },
+  { featureId: searchPaletteModule.featureId }
+);
 
-function configureResizeTools(context: BindingContext) {
-  context.bind(IvyResizeElementHandler).toSelf().inSingletonScope();
-  configureActionHandler(context, ResizeElementAction.KIND, IvyResizeElementHandler);
-  bindAsService(context, TYPES.IDefaultTool, IvyResizeKeyTool);
-}
+export const ivyToastModule = new FeatureModule(
+  (bind, unbind, isBound, rebind) => {
+    const context = { bind, unbind, isBound, rebind };
+    // fully customized
+    configureActionHandler(context, ShowToastMessageAction.KIND, IvyToast);
+    configureActionHandler(context, HideToastAction.KIND, IvyToast);
+  },
+  { featureId: toastModule.featureId }
+);
 
-function configureShortcutHelpTool(context: BindingContext): void {
-  bindAsService(context, TYPES.IDefaultTool, AccessibleKeyShortcutTool);
-  bindAsService(context, TYPES.IUIExtension, IvyKeyShortcutUIExtension);
-  configureActionHandler(context, SetAccessibleKeyShortcutAction.KIND, IvyKeyShortcutUIExtension);
-}
+export const ivyViewKeyToolsModule = new FeatureModule(
+  (bind, unbind, isBound, rebind) => {
+    const context = { bind, unbind, isBound, rebind };
+    // no grid support
+    bindAsService(context, TYPES.IDefaultTool, DeselectKeyTool);
+  },
+  { featureId: viewKeyToolsModule.featureId }
+);
 
-function configureViewKeyTools(context: BindingContext) {
-  bindAsService(context, TYPES.IDefaultTool, IvyMovementKeyTool);
-  bindAsService(context, TYPES.IDefaultTool, IvyZoomKeyTool);
-  configureActionHandler(context, KeyboardGridCellSelectedAction.KIND, IvyZoomKeyTool);
-  configureActionHandler(context, KeyboardGridKeyboardEventAction.KIND, IvyZoomKeyTool);
-  bindAsService(context, TYPES.IDefaultTool, DeselectKeyTool);
-}
+export const ivyGlobalListenerModule = new FeatureModule(
+  (bind, unbind, isBound, rebind) => {
+    const context = { bind, unbind, isBound, rebind };
+    bindAsService(context, TYPES.IDefaultTool, IvyGlobalKeyListenerTool);
+  },
+  { featureId: Symbol('ivy-global-key-listener') }
+);
 
-function configureKeyboardControlTools(context: BindingContext) {
-  bindAsService(context, TYPES.IDefaultTool, IvyGlobalKeyListenerTool);
-  bindAsService(context, TYPES.IUIExtension, KeyboardGrid);
-  configureActionHandler(context, EnableKeyboardGridAction.KIND, KeyboardGrid);
-}
+export const ivyKeyListenerModule = new FeatureModule(
+  (bind, unbind, isBound, rebind) => {
+    const context = { bind, unbind, isBound, rebind };
+    context.bind(TYPES.KeyListener).to(QuickActionKeyListener);
+    context.bind(TYPES.KeyListener).to(JumpOutKeyListener);
+  },
+  { featureId: Symbol('ivy-key-listener') }
+);
 
-function configureIvyKeyListeners({ bind }: BindingContext) {
-  bind(TYPES.KeyListener).to(QuickActionKeyListener);
-  bind(TYPES.KeyListener).to(JumpOutKeyListener);
-}
+export const ivyDomFocusModule = new FeatureModule(
+  (bind, unbind, isBound, rebind) => {
+    const context = { bind, unbind, isBound, rebind };
+    configureActionHandler(context, FocusDomAction.KIND, FocusDomActionHandler);
+  },
+  { featureId: Symbol('ivy-dom-focus') }
+);
 
-function configureSearchPaletteModule(context: BindingContext) {
-  bindAsService(context, TYPES.IUIExtension, IvySearchAutocompletePalette);
-  bindAsService(context, TYPES.IDefaultTool, IvySearchAutocompletePaletteTool);
-}
-
-function configureElementNavigationTool(context: BindingContext) {
-  bindAsService(context, TYPES.IDefaultTool, IvyElementNavigatorTool);
-  bindAsService(context, TYPES.IElementNavigator, PositionNavigator);
-  bindAsService(context, TYPES.ILocalElementNavigator, LocalElementNavigator);
-}
-
-export function configureToastTool(context: BindingContext): void {
-  configureActionHandler(context, ShowToastMessageAction.KIND, IvyToast);
-  configureActionHandler(context, HideToastAction.KIND, IvyToast);
-}
+export const IVY_ACCESSIBILITY_MODULES: ModuleConfiguration[] = [
+  { replace: ivyResizeModule }, // instead of: resizeModule
+  { add: ivySearchPaletteModule }, // instead of: searchPaletteModule
+  { add: ivyToastModule }, // instead of: toastModule
+  { add: ivyViewKeyToolsModule }, // instead of: viewKeyToolsModule
+  { add: elementNavigationModule }, // standard accessibility module
+  { add: standaloneShortcutsModule }, // standard accessibility module
+  { add: ivyKeyListenerModule }, // custom extension
+  { add: ivyDomFocusModule }, // custom extension
+  { add: ivyGlobalListenerModule } // custom extension
+  // unused: { add: viewKeyToolsModule } // we do not want any Grid view
+  // unused: { add: keyboardControlModule } // we do not want any keyboard or Grid control
+  // unused: { add: focusTrackerModule }
+  // unused: { add: keyboardToolPaletteModule }
+];

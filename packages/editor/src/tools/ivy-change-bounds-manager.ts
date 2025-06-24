@@ -3,7 +3,6 @@ import {
   FeedbackEmitter,
   GModelElement,
   SelectionService,
-  SetUIExtensionVisibilityAction,
   TrackedMove,
   type TrackedResize
 } from '@eclipse-glsp/client';
@@ -27,13 +26,6 @@ export class IvyChangeBoundsManager extends ChangeBoundsManager {
   }
 
   protected hideQuickUIFeedback(feedback: FeedbackEmitter): void {
-    feedback.add(
-      SetUIExtensionVisibilityAction.create({ extensionId: QuickActionUI.ID, visible: false }),
-      SetUIExtensionVisibilityAction.create({
-        extensionId: QuickActionUI.ID,
-        visible: true,
-        contextElementsId: [...this.selectionService.getSelectedElementIDs()]
-      })
-    );
+    feedback.add(QuickActionUI.hide(), QuickActionUI.show([...this.selectionService.getSelectedElementIDs()]));
   }
 }

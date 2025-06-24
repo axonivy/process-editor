@@ -143,21 +143,13 @@ export class QuickActionUI extends GLSPAbstractUIExtension implements IActionHan
   public showUi(): void {
     this.activeQuickActions = [];
     this.actionDispatcherProvider().then(actionDispatcher =>
-      actionDispatcher.dispatch(
-        SetUIExtensionVisibilityAction.create({
-          extensionId: QuickActionUI.ID,
-          visible: true,
-          contextElementsId: [...this.selectionService.getSelectedElementIDs()]
-        })
-      )
+      actionDispatcher.dispatch(QuickActionUI.show([...this.selectionService.getSelectedElementIDs()]))
     );
   }
 
   public hideUi(): void {
     this.activeQuickActions = [];
-    this.actionDispatcherProvider().then(actionDispatcher =>
-      actionDispatcher.dispatch(SetUIExtensionVisibilityAction.create({ extensionId: QuickActionUI.ID, visible: false }))
-    );
+    this.actionDispatcherProvider().then(actionDispatcher => actionDispatcher.dispatch(QuickActionUI.hide()));
   }
 
   protected onBeforeShow(containerElement: HTMLElement, root: Readonly<GModelRoot>, ...contextElementIds: string[]): void {
@@ -284,7 +276,7 @@ export class QuickActionUI extends GLSPAbstractUIExtension implements IActionHan
     button.title = quickAction.title;
     const actions = [quickAction.action];
     if (!quickAction.letQuickActionsOpen) {
-      actions.push(SetUIExtensionVisibilityAction.create({ extensionId: QuickActionUI.ID, visible: false }));
+      actions.push(QuickActionUI.hide());
     }
     if (quickAction.removeSelection) {
       actions.push(SelectAllAction.create(false));
@@ -323,6 +315,14 @@ export class QuickActionUI extends GLSPAbstractUIExtension implements IActionHan
 
   protected isReadonly(): boolean {
     return this.editorContext.isReadonly;
+  }
+
+  static show(contextElementsId?: string[]): SetUIExtensionVisibilityAction {
+    return SetUIExtensionVisibilityAction.create({ extensionId: QuickActionUI.ID, visible: true, contextElementsId });
+  }
+
+  static hide(contextElementsId?: string[]): SetUIExtensionVisibilityAction {
+    return SetUIExtensionVisibilityAction.create({ extensionId: QuickActionUI.ID, visible: false, contextElementsId });
   }
 }
 

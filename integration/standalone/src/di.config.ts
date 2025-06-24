@@ -1,4 +1,9 @@
-import { createIvyDiagramContainer, ivyStandaloneCopyPasteModule, ivyThemeModule } from '@axonivy/process-editor';
+import {
+  createIvyDiagramContainer,
+  IVY_ACCESSIBILITY_MODULES,
+  ivyStandaloneCopyPasteModule,
+  ivyThemeModule
+} from '@axonivy/process-editor';
 import { ivyInscriptionModule } from '@axonivy/process-editor-inscription';
 import type { IDiagramOptions } from '@eclipse-glsp/client';
 import { createDiagramOptionsModule, standaloneExportModule, standaloneSelectModule, undoRedoModule } from '@eclipse-glsp/client';
@@ -32,7 +37,8 @@ export default function createContainer(options: IvyDiagramOptions): Container {
     ivyNavigationModule,
     ivyDirtyStateModule,
     ivyInscriptionModule,
-    ivyStartupDiagramModule
+    ivyStartupDiagramModule,
+    ...IVY_ACCESSIBILITY_MODULES
   );
   return container;
 }

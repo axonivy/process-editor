@@ -16,7 +16,7 @@
     "@axonivy/process-editor-inscription-view": "~13.2.0-next",
     "@axonivy/ui-components": "~13.2.0-next.769",
     "@axonivy/ui-icons": "~13.2.0-next.769",
-    "@eclipse-glsp/client": "2.3.0",
+    "@eclipse-glsp/client": "2.4.0",
     "@tanstack/react-query": "^5.64",
     "@tanstack/react-query-devtools": "^5.64",
     "i18next": "^25.0.0",

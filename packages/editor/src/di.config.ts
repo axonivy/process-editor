@@ -41,7 +41,6 @@ import ivyWrapModule from './wrap/di.config';
 import ivyZorderModule from './zorder/di.config';
 
 import './colors.css';
-import { ivyAccessibilityModule } from './accessibility/di.config';
 import { ivyCopyPasteModule } from './copy-paste/di.config';
 
 export default function createContainer(widgetId: string, ...containerConfiguration: ContainerConfiguration): Container {
@@ -79,7 +78,6 @@ export default function createContainer(widgetId: string, ...containerConfigurat
     ivyExecutionModule,
     ivyConnectorModule,
     ivyNotificationModule,
-    ivyAccessibilityModule,
 
     // additional configurations
     ...containerConfiguration

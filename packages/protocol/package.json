@@ -18,7 +18,7 @@
     "bpmn"
   ],
   "dependencies": {
-    "@eclipse-glsp/protocol": "2.3.0"
+    "@eclipse-glsp/protocol": "2.4.0"
   },
   "scripts": {
     "clean": "rimraf lib tsconfig.tsbuildinfo",

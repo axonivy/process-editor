@@ -1,32 +1,63 @@
 import {
+  BaseEditTool,
   FocusDomAction,
-  GlobalKeyListenerTool,
-  KeyboardToolPalette,
+  repeatOnMessagesUpdated,
   SelectionService,
-  SetAccessibleKeyShortcutAction
+  type IShortcutManager,
+  type ShortcutRegistration
 } from '@eclipse-glsp/client';
-import { Action, matchesKeystroke, SelectAction, toArray } from '@eclipse-glsp/sprotty';
-import { injectable, inject } from 'inversify';
-import { StartEventNode } from '../../diagram/model';
+import { Action, matchesKeystroke, SelectAction, toArray, TYPES } from '@eclipse-glsp/sprotty';
 import { t } from 'i18next';
+import { inject, injectable } from 'inversify';
+import { StartEventNode } from '../../diagram/model';
 
 @injectable()
-export class IvyGlobalKeyListenerTool extends GlobalKeyListenerTool {
+export class IvyGlobalKeyListenerTool extends BaseEditTool {
   @inject(SelectionService) protected selectionService: SelectionService;
 
-  registerShortcutKey(): void {
-    this.actionDispatcher.onceModelInitialized().then(() => {
-      this.actionDispatcher.dispatchAll([
-        SetAccessibleKeyShortcutAction.create({
-          token: KeyboardToolPalette.name,
-          keys: [{ shortcuts: ['1'], description: t('a11y.hotkeyDesc.focusToolbar'), group: t('a11y.hotkeyGroup.toolbar'), position: 0 }]
-        }),
-        SetAccessibleKeyShortcutAction.create({
-          token: 'Graph',
-          keys: [{ shortcuts: ['2'], description: t('a11y.hotkeyDesc.focusGraph'), group: t('a11y.hotkeyGroup.graph'), position: 0 }]
-        })
-      ]);
-    });
+  static ID = 'ivy.global-key-listener';
+  static TOKEN = Symbol.for(IvyGlobalKeyListenerTool.name);
+
+  protected alreadyRegistered = false;
+
+  @inject(TYPES.IShortcutManager)
+  protected readonly shortcutManager: IShortcutManager;
+
+  get id(): string {
+    return IvyGlobalKeyListenerTool.ID;
+  }
+
+  enable(): void {
+    if (!this.alreadyRegistered) {
+      this.alreadyRegistered = true;
+      document.addEventListener('keyup', this.trigger.bind(this));
+      repeatOnMessagesUpdated(() => this.shortcutManager.register(this.shortcutRegistrationsToken(), this.shortcutRegistrations()));
+    }
+  }
+
+  protected shortcutRegistrationsToken(): symbol {
+    return IvyGlobalKeyListenerTool.TOKEN;
+  }
+
+  protected shortcutRegistrations(): ShortcutRegistration[] {
+    return [
+      {
+        shortcuts: ['1'],
+        description: t('a11y.hotkeyDesc.focusToolbar'),
+        group: t('a11y.hotkeyGroup.toolbar'),
+        position: 0
+      },
+      {
+        shortcuts: ['2'],
+        description: t('a11y.hotkeyDesc.focusGraph'),
+        group: t('a11y.hotkeyGroup.graph'),
+        position: 0
+      }
+    ];
+  }
+
+  trigger(event: KeyboardEvent): void {
+    this.actionDispatcher.dispatchAll(this.handleKeyEvent(event));
   }
 
   protected handleKeyEvent(event: KeyboardEvent): Action[] {

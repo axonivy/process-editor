@@ -13,7 +13,7 @@
     "@axonivy/process-editor": "~13.2.0-next",
     "@axonivy/ui-components": "~13.2.0-next.769",
     "@axonivy/ui-icons": "~13.2.0-next.769",
-    "@eclipse-glsp/client": "2.3.0"
+    "@eclipse-glsp/client": "2.4.0"
   },
   "devDependencies": {
     "@vscode/codicons": "^0.0.36",

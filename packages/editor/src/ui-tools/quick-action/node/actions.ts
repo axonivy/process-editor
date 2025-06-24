@@ -8,7 +8,6 @@ import {
   GConnectableElement,
   PaletteItem,
   isNotUndefined,
-  SetUIExtensionVisibilityAction,
   Operation
 } from '@eclipse-glsp/client';
 import { injectable, inject } from 'inversify';
@@ -52,7 +51,7 @@ export abstract class CreateElementQuickActionProvider extends SingleQuickAction
   }
 
   protected actions = (paletteItem: PaletteItem, elementIds: string[]): Action[] => [
-    SetUIExtensionVisibilityAction.create({ extensionId: QuickActionUI.ID, visible: false }),
+    QuickActionUI.hide(),
     ...paletteItem.actions.map(itemAction => convertToCreateNodeOperation(itemAction, elementIds[0])).filter(isNotUndefined)
   ];
 

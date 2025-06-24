@@ -14,7 +14,7 @@ export default defineConfig({
   use: {
     actionTimeout: 0,
     trace: 'retain-on-failure',
-    headless: process.env.CI ? true : false
+    headless: true
   },
   webServer: [
     {
