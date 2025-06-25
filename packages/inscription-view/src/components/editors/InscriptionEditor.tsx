@@ -53,7 +53,7 @@ const Header = ({ children }: { children?: ReactNode }) => {
       <SidebarHeader title={title} icon={icon} className='header'>
         {dirty && (
           <Button
-            icon={IvyIcons.Undo}
+            icon={IvyIcons.Reset}
             onClick={() => setData(() => initData)}
             title={t('label.reset', { name: title })}
             aria-label={t('label.reset', { name: title })}
