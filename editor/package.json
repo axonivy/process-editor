@@ -40,7 +40,7 @@
     "cp:icons": "cpx \"icons/dist/*.ts\" src/ && cpx \"icons/dist/*.{css,ttf}\" css/",
     "type": "tsc --noEmit",
     "test": "vitest",
-    "test:ci": "vitest --watch=false --reporter=basic --reporter=junit --outputFile=report.xml"
+    "test:ci": "vitest run --reporter=default --reporter=junit --outputFile=report.xml"
   },
   "files": [
     "lib",
