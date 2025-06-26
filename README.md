@@ -8,7 +8,7 @@ This repository contains the Axon Ivy (GLSP-based) process editor.
 
 The following libraries/frameworks need to be installed on your system:
 
-- [Node.js](https://nodejs.org/en/) `>= 20.10.0`
+- [Node.js](https://nodejs.org/en/) `>= 20.19`
 
 The editor is developed using [Visual Studio Code](https://code.visualstudio.com/).
 However, it's of course also possible to use another text editor.

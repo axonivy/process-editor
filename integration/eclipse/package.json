@@ -28,7 +28,7 @@
   "devDependencies": {
     "@vscode/codicons": "^0.0.36",
     "reflect-metadata": "~0.2.2",
-    "vite": "^6.0.0",
+    "vite": "^7.0.0",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "type": "module",
