@@ -1,6 +1,6 @@
 {
   "name": "@axonivy/process-editor",
-  "version": "12.0.7-next",
+  "version": "12.0.8-next",
   "description": "GLSP sprotty diagrams for the Axon Ivy Processes",
   "license": "(EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0)",
   "author": "Axon Ivy AG",
@@ -18,7 +18,7 @@
     "bpmn"
   ],
   "dependencies": {
-    "@axonivy/process-editor-protocol": "~12.0.7-next",
+    "@axonivy/process-editor-protocol": "12.0.8-next",
     "@eclipse-glsp/client": "2.3.0",
     "marked": "^15.0.6",
     "toastify-js": "1.12.0"
