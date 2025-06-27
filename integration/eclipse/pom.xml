@@ -4,7 +4,7 @@
 
   <groupId>ch.ivyteam.process</groupId>
   <artifactId>editor-client-eclipse</artifactId>
-  <version>13.1.1-SNAPSHOT</version>
+  <version>13.1.2-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <distributionManagement>

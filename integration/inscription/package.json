@@ -1,6 +1,6 @@
 {
   "name": "@axonivy/process-editor-inscription-standalone",
-  "version": "13.1.1-next",
+  "version": "13.1.2-next",
   "private": true,
   "author": "Axon Ivy AG",
   "homepage": "https://developer.axonivy.com/",
@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@axonivy/jsonrpc": "~13.1.1-next.734",
-    "@axonivy/process-editor-inscription-core": "~13.1.1-next",
-    "@axonivy/process-editor-inscription-view": "~13.1.1-next",
+    "@axonivy/process-editor-inscription-core": "13.1.2-next",
+    "@axonivy/process-editor-inscription-view": "13.1.2-next",
     "@axonivy/ui-components": "~13.1.1-next.734",
     "@axonivy/ui-icons": "~13.1.1-next.734",
     "@tanstack/react-query": "^5.64",
