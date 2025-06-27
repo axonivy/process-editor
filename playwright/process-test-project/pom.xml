@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>process.test.project</groupId>
   <artifactId>process-test-project</artifactId>
-  <version>12.0.7-SNAPSHOT</version>
+  <version>12.0.8-SNAPSHOT</version>
   <packaging>iar-integration-test</packaging>
 
   <properties>
