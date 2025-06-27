@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@axonivy/process-editor-playwright",
-  "version": "13.1.1-next",
+  "version": "13.1.2-next",
   "description": "Playwright tests for the Axon Ivy process editor",
   "author": "Axon Ivy AG",
   "homepage": "https://developer.axonivy.com",
