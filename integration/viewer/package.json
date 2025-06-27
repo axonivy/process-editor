@@ -10,9 +10,9 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "dependencies": {
-    "@axonivy/process-editor": "13.1.2-next",
-    "@axonivy/ui-components": "~13.1.1-next.734",
-    "@axonivy/ui-icons": "~13.1.1-next.734",
+    "@axonivy/process-editor": "~13.1.2-next",
+    "@axonivy/ui-components": "~13.1.2-next.740",
+    "@axonivy/ui-icons": "~13.1.2-next.740",
     "@eclipse-glsp/client": "2.3.0"
   },
   "devDependencies": {
