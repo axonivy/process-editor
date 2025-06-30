@@ -18,13 +18,13 @@
     "bpmn"
   ],
   "dependencies": {
-    "@axonivy/process-editor-protocol": "12.0.8-next",
+    "@axonivy/process-editor-protocol": "~12.0.8-next",
     "@eclipse-glsp/client": "2.3.0",
     "marked": "^15.0.6",
     "toastify-js": "1.12.0"
   },
   "peerDependencies": {
-    "@axonivy/ui-icons": "~12.0.7-next"
+    "@axonivy/ui-icons": "~12.0.8-next"
   },
   "devDependencies": {
     "@types/toastify-js": "^1.12.3",
