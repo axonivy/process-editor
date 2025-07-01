@@ -67,6 +67,10 @@
   box-shadow: none;
   background: none;
   font-size: 12px;
+  field-sizing: content;
+  @supports not (field-sizing: content) {
+    width: 100px;
+  }
 }
 
 .tags .combobox-menu {
