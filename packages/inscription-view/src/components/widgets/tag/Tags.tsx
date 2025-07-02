@@ -55,7 +55,6 @@ const Tags = (props: {
     getToggleButtonProps,
     getMenuProps,
     getInputProps,
-    inputValue,
     highlightedIndex,
     getItemProps,
     openMenu,
@@ -146,7 +145,6 @@ const Tags = (props: {
                     ref={inputRef}
                     value={addValue}
                     aria-label={t('tags.newTag')}
-                    style={{ width: inputValue.length * 8 > 28 ? inputValue.length * 8 : 28 }}
                   />
                 </button>
               )}
