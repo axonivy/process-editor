@@ -9,14 +9,14 @@ export class InfoComponent {
   category: MacroEditor;
 
   constructor(readonly part: Part) {
-    this.detailSection = part.section('Details');
+    this.detailSection = part.section('Name / Description');
     this.name = this.detailSection.macroInput('Name');
-    this.description = this.part.macroArea('Description');
-    this.category = this.part.macroInput('Category');
+    this.description = this.detailSection.macroArea('Description');
+    this.category = this.detailSection.macroInput('Category');
   }
 
   async fill(name = 'info name') {
-    await this.detailSection.open();
+    await this.detailSection.expectIsOpen();
     await this.name.fill(name);
     await this.description.fill('info desc');
     await this.category.fill('info cat');
@@ -35,6 +35,9 @@ export class InfoComponent {
   }
 
   async expectEmpty() {
-    await this.detailSection.expectIsClosed();
+    await this.detailSection.expectIsOpen();
+    await this.name.expectEmpty();
+    await this.description.expectEmpty();
+    await this.category.expectEmpty();
   }
 }

@@ -6,7 +6,7 @@ import ResponsibleSelect, { type ResponsibleSelectProps } from './ResponsibleSel
 import { PathFieldset } from '../path/PathFieldset';
 import { useTranslation } from 'react-i18next';
 
-type ResponsibleCollapsibleProps = ResponsibleSelectProps & { defaultResponsible: WfResponsible };
+type ResponsibleCollapsibleProps = ResponsibleSelectProps & { defaultResponsible: WfResponsible; defaultOpen?: boolean };
 
 export const ResponsibleCollapsible = (props: ResponsibleCollapsibleProps) => {
   const { t } = useTranslation();
@@ -14,7 +14,7 @@ export const ResponsibleCollapsible = (props: ResponsibleCollapsibleProps) => {
     <PathCollapsible
       label={t('label.responsible')}
       path='responsible'
-      defaultOpen={!deepEqual(props.responsible, props.defaultResponsible)}
+      defaultOpen={props.defaultOpen ?? !deepEqual(props.responsible, props.defaultResponsible)}
     >
       <ValidationFieldset>
         <ResponsibleSelect {...props} />

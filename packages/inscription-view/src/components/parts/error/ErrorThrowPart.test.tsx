@@ -24,7 +24,7 @@ describe('ErrorThrowPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Error');
+    await CollapsableUtil.assertOpen('Error');
   });
 
   test('full data', async () => {

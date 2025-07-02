@@ -19,7 +19,7 @@ describe('PermissionsPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Permissions');
+    await CollapsableUtil.assertOpen('Permissions');
   });
 
   test('full data', async () => {

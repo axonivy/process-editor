@@ -43,7 +43,7 @@ class RestRequest extends PartObject {
   }
 
   async fill() {
-    await this.serviceSection.open();
+    await this.serviceSection.expectIsOpen();
     await expect(this.targetUrl).toBeHidden();
     await this.client.choose('stock');
     await this.method.choose('POST');
@@ -113,7 +113,7 @@ class RestRequest extends PartObject {
 
 class RestRequestOpenApi extends RestRequest {
   override async fill() {
-    await this.serviceSection.open();
+    await this.serviceSection.expectIsOpen();
     await this.client.choose('pet');
     await expect(this.openapiSwitch).toBeVisible();
     await this.resource.choose('DELETE');

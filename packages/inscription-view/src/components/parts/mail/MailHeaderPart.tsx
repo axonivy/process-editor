@@ -1,7 +1,6 @@
 import { usePartState, type PartProps } from '../../editors/part/usePart';
 import { useMailData } from './useMailData';
 import type { MailData } from '@axonivy/process-editor-inscription-protocol';
-import { deepEqual } from '../../../utils/equals';
 import { useValidations } from '../../../context/useValidation';
 import type { BrowserType } from '../../browser/useBrowser';
 import { PathCollapsible } from '../common/path/PathCollapsible';
@@ -27,12 +26,12 @@ export function useMailHeaderPart(): PartProps {
 
 const MailHeaderPart = () => {
   const { t } = useTranslation();
-  const { config, defaultConfig, updateHeader } = useMailData();
+  const { config, updateHeader } = useMailData();
   const borwserTypes: BrowserType[] = ['attr', 'func', 'cms'];
 
   return (
     <>
-      <PathCollapsible label={t('part.mail.header.title')} path='headers' defaultOpen={!deepEqual(config.headers, defaultConfig.headers)}>
+      <PathCollapsible label={t('part.mail.header.title')} path='headers' defaultOpen={true}>
         <PathFieldset label={t('part.mail.header.subject')} path='subject'>
           <MacroInput value={config.headers.subject} onChange={change => updateHeader('subject', change)} browsers={borwserTypes} />
         </PathFieldset>

@@ -37,7 +37,7 @@ export function useDialogCallPart(options?: { offline?: boolean }): PartProps {
 
 const DialogCallPart = ({ offline }: { offline?: boolean }) => {
   const { t } = useTranslation();
-  const { config, defaultConfig, update } = useDialogCallData();
+  const { config, update } = useDialogCallData();
 
   const { context } = useEditorContext();
   const { data: startItems } = useMeta('meta/start/dialogs', { context, supportOffline: offline ?? false }, []);
@@ -51,12 +51,7 @@ const DialogCallPart = ({ offline }: { offline?: boolean }) => {
   const createDialog: FieldsetControl = { label: t('part.call.dialog.create'), icon: IvyIcons.Plus, action: () => action() };
   return (
     <>
-      <PathCollapsible
-        label={t('part.call.dialog.title')}
-        controls={[createDialog]}
-        defaultOpen={config.dialog !== defaultConfig.dialog}
-        path='dialog'
-      >
+      <PathCollapsible label={t('part.call.dialog.title')} controls={[createDialog]} defaultOpen={true} path='dialog'>
         <ValidationFieldset>
           <CallSelect
             start={config.dialog}

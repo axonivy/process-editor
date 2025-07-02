@@ -29,7 +29,7 @@ export function useErrorCatchPart(): PartProps {
 
 const ErrorCatchPart = () => {
   const { t } = useTranslation();
-  const { config, defaultConfig, updateError } = useErrorCatchData();
+  const { config, updateError } = useErrorCatchData();
   const { context } = useEditorContext();
   const errorCodes = [
     { value: '', label: t('part.error.empty'), info: t('part.error.emptyDesc') },
@@ -39,7 +39,7 @@ const ErrorCatchPart = () => {
   ];
 
   return (
-    <PathCollapsible label={t('part.error.code')} path='errorCode' defaultOpen={config.errorCode !== defaultConfig.errorCode}>
+    <PathCollapsible label={t('part.error.code')} path='errorCode' defaultOpen={true}>
       <ValidationFieldset>
         <ClassificationCombobox value={config.errorCode} onChange={change => updateError(change)} data={errorCodes} icon={IvyIcons.Error} />
       </ValidationFieldset>

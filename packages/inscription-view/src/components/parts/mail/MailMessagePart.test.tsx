@@ -23,7 +23,7 @@ describe('MailMessagePart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Content');
+    await CollapsableUtil.assertOpen('Content');
   });
 
   test('full data', async () => {

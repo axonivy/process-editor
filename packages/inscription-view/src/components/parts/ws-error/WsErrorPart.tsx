@@ -26,13 +26,9 @@ export function useWsErrorPart(): PartProps {
 
 const WsErrorPart = () => {
   const { t } = useTranslation();
-  const { config, defaultConfig, update } = useWsErrorData();
+  const { config, update } = useWsErrorData();
   return (
-    <PathCollapsible
-      label={t('label.error')}
-      defaultOpen={config.exceptionHandler !== defaultConfig.exceptionHandler}
-      path='exceptionHandler'
-    >
+    <PathCollapsible label={t('label.error')} defaultOpen={true} path='exceptionHandler'>
       <ValidationFieldset>
         <ExceptionSelect
           value={config.exceptionHandler}

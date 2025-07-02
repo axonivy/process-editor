@@ -20,7 +20,7 @@ describe('EndPagePart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('End Page');
+    await CollapsableUtil.assertOpen('End Page');
   });
 
   test('full data', async () => {

@@ -17,7 +17,7 @@ describe('WsRequestPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Web Service');
+    await CollapsableUtil.assertOpen('Web Service');
     await CollapsableUtil.assertClosed('Properties');
     await CollapsableUtil.assertClosed('Mapping');
   });

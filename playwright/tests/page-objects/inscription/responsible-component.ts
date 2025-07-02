@@ -59,9 +59,11 @@ export class ResponsibleComponent {
 
 export class ResponsibleSection extends ResponsibleComponent {
   readonly section: Section;
+  readonly defaultOpen: boolean;
 
-  constructor(part: Part | Section) {
+  constructor(part: Part | Section, defaultOpen: boolean = false) {
     super(part);
+    this.defaultOpen = defaultOpen;
     this.section = part.section('Responsible');
     this.typeSelect = this.section.select({ nth: 0 });
     this.script = this.section.scriptInput();
@@ -81,6 +83,10 @@ export class ResponsibleSection extends ResponsibleComponent {
   }
 
   override async expectEmpty() {
-    await this.section.expectIsClosed();
+    if (this.defaultOpen) {
+      await this.section.expectIsOpen();
+    } else {
+      await this.section.expectIsClosed();
+    }
   }
 }

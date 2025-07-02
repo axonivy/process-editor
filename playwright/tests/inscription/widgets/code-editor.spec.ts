@@ -18,7 +18,7 @@ test.describe('Code Editor', () => {
   test('MacroInput', async () => {
     const taskPart = view.inscriptionTab('Task');
     await taskPart.open();
-    const details = taskPart.section('Details');
+    const details = taskPart.section('Name / Description');
     await details.open();
     const name = details.macroInput('Name');
     await name.triggerContentAssist();
@@ -28,7 +28,7 @@ test.describe('Code Editor', () => {
   test('MacroArea', async () => {
     const taskPart = view.inscriptionTab('Task');
     await taskPart.open();
-    const details = taskPart.section('Details');
+    const details = taskPart.section('Name / Description');
     await details.open();
     const description = details.macroArea('Description');
     await description.triggerContentAssist();

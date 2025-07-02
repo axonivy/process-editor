@@ -22,7 +22,7 @@ describe('RestRequestPart', () => {
 
   test('empty', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Rest Service');
+    await CollapsableUtil.assertOpen('Rest Service');
     await CollapsableUtil.assertClosed('Parameters');
     await CollapsableUtil.assertClosed('Headers');
     await CollapsableUtil.assertClosed('Properties');

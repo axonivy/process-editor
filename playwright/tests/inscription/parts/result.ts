@@ -12,7 +12,10 @@ class Result extends PartObject {
   codeSection: Section;
   code: ScriptArea;
 
-  constructor(part: Part, private readonly hideParamDesc: boolean = false) {
+  constructor(
+    part: Part,
+    private readonly hideParamDesc: boolean = false
+  ) {
     super(part);
     this.paramSection = part.section('Result parameters');
     if (this.hideParamDesc) {
@@ -35,7 +38,7 @@ class Result extends PartObject {
       await paramRow.fill(['param', 'String', 'desc']);
     }
     await this.paramSection.toggle();
-    await this.mappingSection.open();
+    await this.mappingSection.expectIsOpen();
     await this.mapping.row(1).column(1).fill('"bla"');
     await this.codeSection.open();
     await this.code.fill('code');

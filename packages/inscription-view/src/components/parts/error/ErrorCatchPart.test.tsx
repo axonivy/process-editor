@@ -23,7 +23,7 @@ describe('ErrorCatchPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Error Code');
+    await CollapsableUtil.assertOpen('Error Code');
   });
 
   test('full data', async () => {

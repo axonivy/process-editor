@@ -37,7 +37,7 @@ export function useSubCallPart(): PartProps {
 
 const SubCallPart = () => {
   const { t } = useTranslation();
-  const { config, defaultConfig, update } = useProcessCallData();
+  const { config, update } = useProcessCallData();
 
   const { context } = useEditorContext();
   const { data: startItems } = useMeta('meta/start/calls', context, []);
@@ -51,12 +51,7 @@ const SubCallPart = () => {
   const createProcess: FieldsetControl = { label: t('part.call.sub.create'), icon: IvyIcons.Plus, action: () => action() };
   return (
     <>
-      <PathCollapsible
-        label={t('part.call.processStart')}
-        controls={[createProcess]}
-        defaultOpen={config.processCall !== defaultConfig.processCall}
-        path='processCall'
-      >
+      <PathCollapsible label={t('part.call.processStart')} controls={[createProcess]} defaultOpen={true} path='processCall'>
         <ValidationFieldset>
           <CallSelect
             start={config.processCall}

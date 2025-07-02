@@ -26,7 +26,7 @@ class ProgramStart extends PartObject {
   }
 
   async fill() {
-    await this.javaSection.open();
+    await this.javaSection.expectIsOpen();
     await this.javaClass.choose('ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean');
 
     await this.permissionSection.toggle();

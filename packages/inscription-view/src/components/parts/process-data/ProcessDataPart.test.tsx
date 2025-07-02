@@ -19,7 +19,7 @@ describe('ProcessDataPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Data Class');
+    await CollapsableUtil.assertOpen('Data Class');
   });
 
   test('full data', async () => {

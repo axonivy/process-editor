@@ -48,11 +48,7 @@ const RestOutputPart = () => {
     <PathContext path='response'>
       <PathContext path='entity'>
         {showResultType && (
-          <PathCollapsible
-            label={t('part.rest.resultType')}
-            path='type'
-            defaultOpen={config.response.entity.type !== defaultConfig.response.entity.type}
-          >
+          <PathCollapsible label={t('part.rest.resultType')} path='type' defaultOpen={true}>
             <ValidationFieldset label={t('part.rest.readBodyType')}>
               <RestEntityTypeCombobox
                 value={config.response.entity.type}
@@ -67,6 +63,8 @@ const RestOutputPart = () => {
           variableInfo={variableInfo}
           browsers={['attr', 'func', 'type']}
           onChange={change => updateEntity('map', change)}
+          defaultData={defaultConfig.response.entity.map}
+          defaultOpen={true}
         />
         <PathCollapsible
           label={t('label.code')}
