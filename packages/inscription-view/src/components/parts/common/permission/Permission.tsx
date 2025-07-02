@@ -14,12 +14,13 @@ interface PermissionProps {
   config: StartPermission;
   defaultConfig: StartPermission;
   updatePermission: DataUpdater<StartPermission>;
+  defaultOpen?: boolean;
 }
 
-export const Permission = ({ anonymousFieldActive, config, defaultConfig, updatePermission }: PermissionProps) => {
+export const Permission = ({ anonymousFieldActive, config, defaultConfig, updatePermission, defaultOpen }: PermissionProps) => {
   const { t } = useTranslation();
   return (
-    <PathCollapsible path='permission' label={t('label.permission')} defaultOpen={!deepEqual(config, defaultConfig)}>
+    <PathCollapsible path='permission' label={t('label.permission')} defaultOpen={defaultOpen ?? !deepEqual(config, defaultConfig)}>
       {anonymousFieldActive && (
         <Checkbox label={t('label.allowAnonymous')} value={config.anonymous} onChange={change => updatePermission('anonymous', change)} />
       )}

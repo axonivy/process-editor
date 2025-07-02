@@ -19,7 +19,7 @@ describe('WebServiceProcessPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Process');
+    await CollapsableUtil.assertOpen('Process');
   });
 
   test('full data', async () => {

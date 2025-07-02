@@ -24,7 +24,7 @@ class MailHeader extends PartObject {
   }
 
   async fill() {
-    await this.headers.open();
+    await this.headers.expectIsOpen();
     await this.subject.fill('subject');
     await this.from.fill('from');
     await this.reply.fill('reply');
@@ -49,7 +49,7 @@ class MailHeader extends PartObject {
     await this.bcc.clear();
   }
   async assertClear() {
-    await this.headers.expectIsClosed();
+    await this.headers.expectIsOpen();
   }
 }
 

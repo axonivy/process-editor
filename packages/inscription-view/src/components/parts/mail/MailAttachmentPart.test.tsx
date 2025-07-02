@@ -17,7 +17,7 @@ describe('MailAttachmentPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Attachments');
+    await CollapsableUtil.assertOpen('Attachments');
   });
 
   test('full data', async () => {

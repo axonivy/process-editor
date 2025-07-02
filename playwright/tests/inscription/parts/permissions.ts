@@ -7,14 +7,17 @@ class Permissions extends PartObject {
   section: Section;
   viewable: Checkbox;
 
-  constructor(part: Part, readonly defaultIsChecked: boolean) {
+  constructor(
+    part: Part,
+    readonly defaultIsChecked: boolean
+  ) {
     super(part);
     this.section = part.section('Permissions');
     this.viewable = this.section.checkbox('Allow all workflow users to view the process on the Engine');
   }
 
   async fill() {
-    await this.section.open();
+    await this.section.expectIsOpen();
     await this.viewable.click();
   }
 
@@ -31,7 +34,7 @@ class Permissions extends PartObject {
   }
 
   async assertClear() {
-    await this.section.expectIsClosed();
+    await this.section.expectIsOpen();
   }
 }
 

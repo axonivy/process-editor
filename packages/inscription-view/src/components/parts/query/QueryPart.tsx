@@ -37,7 +37,7 @@ const QueryPart = () => {
   return (
     <>
       <PathContext path='query'>
-        <ValidationCollapsible label={t('label.database')} defaultOpen={config.query.dbName.length > 0}>
+        <ValidationCollapsible label={t('label.database')} defaultOpen={true}>
           <QueryKindSelect />
           <DatabaseSelect />
           {config.query.sql.kind !== 'ANY' && <TableSelect />}

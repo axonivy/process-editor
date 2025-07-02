@@ -15,7 +15,7 @@ import { ScriptArea } from '../../widgets/code-editor/ScriptArea';
 import { useTranslation } from 'react-i18next';
 import { IvyIcons } from '@axonivy/ui-icons';
 
-type StartPartProps = { hideParamDesc?: boolean; synchParams?: boolean };
+type StartPartProps = { hideParamDesc?: boolean; synchParams?: boolean; signatureDefaultOpen?: boolean };
 
 export const useStartPartValidation = () => {
   const signarture = useValidations(['signature']);
@@ -38,7 +38,7 @@ export function useStartPart(props?: StartPartProps): PartProps {
   };
 }
 
-const StartPart = ({ hideParamDesc, synchParams }: StartPartProps) => {
+const StartPart = ({ hideParamDesc, synchParams, signatureDefaultOpen }: StartPartProps) => {
   const { t } = useTranslation();
   const { config, defaultConfig, updateSignature, update } = useStartData(synchParams);
   const { elementContext: context } = useEditorContext();
@@ -46,7 +46,11 @@ const StartPart = ({ hideParamDesc, synchParams }: StartPartProps) => {
   const { maximizeState, maximizeCode } = useMaximizedCodeEditor();
   return (
     <>
-      <PathCollapsible label={t('part.start.signature')} path='signature' defaultOpen={config.signature !== defaultConfig.signature}>
+      <PathCollapsible
+        label={t('part.start.signature')}
+        path='signature'
+        defaultOpen={signatureDefaultOpen ?? config.signature !== defaultConfig.signature}
+      >
         <ValidationFieldset>
           <Input value={config.signature} onChange={change => updateSignature(change)} />
         </ValidationFieldset>
@@ -60,9 +64,11 @@ const StartPart = ({ hideParamDesc, synchParams }: StartPartProps) => {
         />
         <MappingPart
           data={config.input.map}
+          defaultData={defaultConfig.input.map}
           variableInfo={variableInfo}
           onChange={change => update('map', change)}
           browsers={['attr', 'func', 'type']}
+          defaultOpen={true}
         />
         <PathCollapsible
           label={t('label.code')}

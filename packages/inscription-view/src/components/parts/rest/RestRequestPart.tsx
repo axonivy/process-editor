@@ -42,7 +42,7 @@ export function useRestRequestPart(): PartProps {
 
 const RestRequestPart = () => {
   const { t } = useTranslation();
-  const { config, defaultConfig } = useRestRequestData();
+  const { config } = useRestRequestData();
 
   const bodyPart = (method: HttpMethod) => {
     switch (method) {
@@ -60,7 +60,7 @@ const RestRequestPart = () => {
   return (
     <>
       <PathContext path='target'>
-        <ValidationCollapsible label={t('part.rest.service')} defaultOpen={config.target.clientId !== defaultConfig.target.clientId}>
+        <ValidationCollapsible label={t('part.rest.service')} defaultOpen={true}>
           <RestTargetUrl />
           <RestClientSelect />
           <RestMethodSelect />
@@ -81,7 +81,7 @@ const OpenApiSwitch = () => {
   const { config } = useRestRequestData();
   const resources = useMeta('meta/rest/resources', { context, clientId: config.target.clientId }, []).data;
   if (resources.length === 0) {
-    return null;
+    return;
   }
   return (
     <Field direction='row' alignItems='center' gap={2}>

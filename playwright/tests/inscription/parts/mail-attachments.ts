@@ -14,7 +14,7 @@ class Attachements extends PartObject {
   }
 
   async fill() {
-    await this.section.open();
+    await this.section.expectIsOpen();
     const row = await this.table.addRow();
     await row.fill(['hi']);
   }
@@ -25,7 +25,7 @@ class Attachements extends PartObject {
     await this.table.row(0).remove(true);
   }
   async assertClear() {
-    await this.section.expectIsClosed();
+    await this.section.expectIsOpen();
   }
 }
 

@@ -220,7 +220,10 @@ class Query extends PartObject {
   limit: LimitPart;
   definition: DefinitionPart;
 
-  constructor(part: Part, private readonly queryKind: QueryKind) {
+  constructor(
+    part: Part,
+    private readonly queryKind: QueryKind
+  ) {
     super(part);
     this.databaseSection = part.section('Database');
     this.kind = this.databaseSection.select({ label: 'Query Kind' });
@@ -250,7 +253,7 @@ class Query extends PartObject {
   }
 
   async fill() {
-    await this.databaseSection.open();
+    await this.databaseSection.expectIsOpen();
     await this.kind.choose(this.queryKind);
     await this.database.choose('IvySystemDatabase');
     for (const test of this.tests()) {

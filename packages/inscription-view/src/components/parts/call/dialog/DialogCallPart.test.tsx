@@ -22,8 +22,8 @@ describe('DialogCallPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Dialog');
-    await CollapsableUtil.assertClosed('Mapping');
+    await CollapsableUtil.assertOpen('Dialog');
+    await CollapsableUtil.assertOpen('Mapping');
     await CollapsableUtil.assertClosed('Code');
   });
 
