@@ -195,7 +195,8 @@
         "invalidate": "Invalidate Cache",
         "invalidateMode": "Use if you call an operation that modifies data",
         "noCache": "Do not cache",
-        "noCacheMode": "Does not use caching at all."
+        "noCacheMode": "Does not use caching at all.",
+        "title": "Mode"
       },
       "scope": "Scope",
       "scopeMode": {
