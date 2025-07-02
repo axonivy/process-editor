@@ -29,20 +29,22 @@ const CachePart = () => {
   const { config, update, updateGroup, updateEntry } = useCacheData();
   return (
     <PathContext path='cache'>
-      <Radio
-        value={config.cache.mode}
-        onChange={change => update('mode', change)}
-        items={[
-          { label: t('part.cache.mode.noCache'), value: 'DO_NOT_CACHE', description: t('part.cache.mode.noCacheMode') },
-          { label: t('part.cache.mode.cache'), value: 'CACHE', description: t('part.cache.mode.cacheDesc') },
-          {
-            label: t('part.cache.mode.invalidate'),
-            value: 'INVALIDATE_CACHE',
-            description: t('part.cache.mode.invalidateMode')
-          }
-        ]}
-        style={{ paddingInline: 'var(--size-2)' }}
-      />
+      <Collapsible label={t('part.cache.mode.title')} defaultOpen={true}>
+        <Radio
+          value={config.cache.mode}
+          onChange={change => update('mode', change)}
+          items={[
+            { label: t('part.cache.mode.noCache'), value: 'DO_NOT_CACHE', description: t('part.cache.mode.noCacheMode') },
+            { label: t('part.cache.mode.cache'), value: 'CACHE', description: t('part.cache.mode.cacheDesc') },
+            {
+              label: t('part.cache.mode.invalidate'),
+              value: 'INVALIDATE_CACHE',
+              description: t('part.cache.mode.invalidateMode')
+            }
+          ]}
+          style={{ paddingInline: 'var(--size-2)' }}
+        />
+      </Collapsible>
       {config.cache.mode !== 'DO_NOT_CACHE' && (
         <>
           <Collapsible label={t('part.cache.scope')} defaultOpen={true}>

@@ -195,7 +195,8 @@
         "invalidate": "Cache ungültig machen",
         "invalidateMode": "Verwenden Sie diese Option, wenn Sie eine Operation aufrufen, die Daten ändert",
         "noCache": "Nicht zwischenspeichern",
-        "noCacheMode": "Verwendet kein Caching."
+        "noCacheMode": "Verwendet kein Caching.",
+        "title": "Modus"
       },
       "scope": "Scope",
       "scopeMode": {
