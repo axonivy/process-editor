@@ -100,8 +100,8 @@ export class ProcessEditor {
     return ProcessEditor.inscriptionView(this.page);
   }
 
-  async expectToastToContainText(text: string) {
-    await expect(this.page.locator('.ivy-notification-toaster li').first()).toContainText(text);
+  get toast() {
+    return this.page.locator('.ivy-notification-toaster li').first();
   }
 
   public static inscriptionView(page: Page) {

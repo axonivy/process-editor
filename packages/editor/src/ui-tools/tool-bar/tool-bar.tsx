@@ -20,11 +20,9 @@ import type { Menu } from '../menu/menu';
 import {
   DefaultSelectButton,
   MarqueeToolButton,
-  RedoToolButton,
   type ToolBarButton,
   ToolBarButtonLocation,
   type ToolBarButtonProvider,
-  UndoToolButton,
   compareButtons
 } from './button';
 import { ShowToolBarOptionsMenuAction } from './options/action';
@@ -34,8 +32,8 @@ import { UpdatePaletteItems } from '@axonivy/process-editor-protocol';
 import { ReactUIExtension } from '../../utils/react-ui-extension';
 import { SModelRootImpl } from 'sprotty';
 import React from 'react';
-import { Toolbar, Flex, ToolbarContainer, Separator, Button, cn, IvyIcon } from '@axonivy/ui-components';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { Toolbar, Flex, ToolbarContainer, Separator, Button, PaletteButton, PaletteButtonLabel } from '@axonivy/ui-components';
+import { EditButtons } from './edit-buttons';
 
 export type ToolBarButtonClickEvent = {
   source: ToolBarButton;
@@ -64,6 +62,7 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
   @postConstruct()
   protected init() {
     this.toDisposeOnDisable.push(this.editorContext.onEditModeChanged(() => this.editModeChanged()));
+    this.toDisposeOnDisable.push(this.editorContext.onModelRootChanged(() => this.update()));
   }
 
   containerClass() {
@@ -87,7 +86,6 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
 
   protected render(): React.ReactNode {
     const left = [DefaultSelectButton(), MarqueeToolButton(), ...this.getProvidedToolBarButtons(ToolBarButtonLocation.Left)];
-    const edit = this.editorContext.isReadonly ? [] : [UndoToolButton(), RedoToolButton()];
     const middle = this.getProvidedToolBarButtons(ToolBarButtonLocation.Middle);
     const right = this.getProvidedToolBarButtons(ToolBarButtonLocation.Right);
     const activeButtonId = this.lastButtonClickEvent?.source.id ?? DefaultSelectButton().id;
@@ -95,18 +93,16 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
       <Toolbar className='tool-bar-header'>
         <Flex className='left-buttons'>
           <Flex gap={1}>{left.map(btn => this.renderToolbarButton(btn, activeButtonId))}</Flex>
-          {edit.length > 0 && (
-            <ToolbarContainer maxWidth={650}>
+          {!this.editorContext.isReadonly && (
+            <ToolbarContainer maxWidth={450}>
               <Flex>
                 <Separator orientation='vertical' style={{ height: '26px' }} />
-                <Flex gap={1} className='edit-buttons'>
-                  {edit.map(btn => this.renderToolbarButton(btn, activeButtonId))}
-                </Flex>
+                <EditButtons root={this.editorContext.modelRoot} dispatcher={this.actionDispatcher} />
               </Flex>
             </ToolbarContainer>
           )}
         </Flex>
-        <Flex className='middle-buttons' gap={1}>
+        <Flex className='middle-buttons' gap={3}>
           {middle.map(btn => this.renderToolbarButton(btn, activeButtonId))}
         </Flex>
         <Flex className='right-buttons' gap={1}>
@@ -131,7 +127,8 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
         <Button
           key={button.id}
           id={button.id}
-          className={cn('tool-bar-button', activeButtonId === button.id ? 'clicked' : '')}
+          toggle={activeButtonId === button.id}
+          size='large'
           title={button.title}
           icon={button.icon}
           onClick={evt => this.handleToolbarButtonClicked({ source: button, reference: evt.currentTarget })}
@@ -139,18 +136,15 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
       );
     }
     return (
-      <span key={button.id} className='tool-bar-title-button'>
-        <label>{button.title}</label>
-        <Button
+      <PaletteButtonLabel key={button.id} label={button.title}>
+        <PaletteButton
           id={button.id}
-          className={cn('tool-bar-button', activeButtonId === button.id ? 'clicked' : '')}
-          title={button.title}
+          toggle={activeButtonId === button.id}
           icon={button.icon}
+          label={button.title}
           onClick={evt => this.handleToolbarButtonClicked({ source: button, reference: evt.currentTarget })}
-        >
-          {!button.isNotMenu && <IvyIcon icon={IvyIcons.Chevron} />}
-        </Button>
-      </span>
+        />
+      </PaletteButtonLabel>
     );
   }
 

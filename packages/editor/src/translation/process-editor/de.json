@@ -172,6 +172,7 @@
     "clickToReload": "{{message}} (Zum Aktualisieren klicken)",
     "connectionClosed": "Verbindung zum Server wurde geschlossen.",
     "connectionToServerError": "Verbindung zum Server fehlerhaft. Server wird heruntergefahren.",
+    "elementOpen": "Element öffnen",
     "globalError": "Ein Fehler ist aufgetreten: {{error}}",
     "noEditorForType": "Kein Editor für Typ gefunden: {{props.type}}",
     "noNativeClipboardAccess": "Kein Zugriff auf das native Clipboard, Kopieren funktioniert nur in diesem Editor.",
