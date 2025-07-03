@@ -19,7 +19,7 @@ describe('ProgramInterfaceStartPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Java Class');
+    await CollapsableUtil.assertOpen('Java Class');
   });
 
   test('full data', async () => {

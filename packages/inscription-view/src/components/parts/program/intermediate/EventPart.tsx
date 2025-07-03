@@ -52,7 +52,7 @@ const EventPart = ({ thirdParty }: { thirdParty?: boolean }) => {
         <JavaClassSelector javaClass={config.javaClass} onChange={change => update('javaClass', change)} type='INTERMEDIATE' />
       )}
 
-      <PathCollapsible label={t('part.program.event.id')} path='eventId' defaultOpen={config.eventId !== defaultConfig.eventId}>
+      <PathCollapsible label={t('part.program.event.id')} path='eventId' defaultOpen={true}>
         <ValidationFieldset>
           <ScriptInput
             value={config.eventId}

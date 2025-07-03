@@ -36,7 +36,7 @@ test.describe('Scripting', () => {
   test('Macro', async ({ page }) => {
     await page.setViewportSize({ width: 500, height: 600 });
     const inscriptionTab = await openInscriptionTab(page, GENERIC_PID.USER_TASK, 'Task');
-    const section = inscriptionTab.section('Details');
+    const section = inscriptionTab.section('Name / Description');
     await section.open();
     const script = section.macroArea('Name');
 

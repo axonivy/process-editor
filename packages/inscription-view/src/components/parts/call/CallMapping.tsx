@@ -23,9 +23,11 @@ const CallMapping = ({ variableInfo }: { variableInfo: VariableInfo }) => {
     <PathContext path='call'>
       <MappingPart
         data={config.call.map}
+        defaultData={defaultConfig.call.map}
         variableInfo={variableInfo}
         onChange={change => update('map', change)}
         browsers={['attr', 'func', 'type']}
+        defaultOpen={true}
       />
       <PathCollapsible
         label={t('label.code')}

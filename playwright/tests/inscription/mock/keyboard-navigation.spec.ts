@@ -6,7 +6,7 @@ test.describe('Keyboard Navigation', () => {
     const inscriptionView = await openMockInscription(page);
     const taskPart = inscriptionView.inscriptionTab('Task');
     await taskPart.open();
-    const detailsSection = taskPart.section('Details');
+    const detailsSection = taskPart.section('Name / Description');
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');

@@ -14,7 +14,11 @@ class General extends PartObject {
   tagsSection: Section;
   tags: Tags;
 
-  constructor(part: Part, private readonly hasTags: boolean, private readonly nameDisabled?: boolean) {
+  constructor(
+    part: Part,
+    private readonly hasTags: boolean,
+    private readonly nameDisabled?: boolean
+  ) {
     super(part);
     this.nameSection = part.section('Name / Description');
     this.displayName = this.nameSection.textArea({ label: 'Display name' });
@@ -26,7 +30,7 @@ class General extends PartObject {
   }
 
   async fill() {
-    await this.nameSection.open();
+    await this.nameSection.expectIsOpen();
     if (!this.nameDisabled) {
       await this.displayName.fill('test name');
     }
@@ -62,11 +66,7 @@ class General extends PartObject {
     }
   }
   async assertClear() {
-    if (!this.nameDisabled) {
-      await this.nameSection.expectIsClosed();
-    } else {
-      await this.nameSection.expectIsOpen();
-    }
+    await this.nameSection.expectIsOpen();
     await this.meansDocumentsSection.expectIsClosed();
     if (this.hasTags) {
       await this.tags.expectEmpty();

@@ -15,7 +15,13 @@ import Checkbox from '../../widgets/checkbox/Checkbox';
 import { useTranslation } from 'react-i18next';
 import { IvyIcons } from '@axonivy/ui-icons';
 
-export function useOutputPart(options?: { showSudo?: boolean; additionalBrowsers?: BrowserType[] }): PartProps {
+type OutputPartOptions = {
+  showSudo?: boolean;
+  additionalBrowsers?: BrowserType[];
+  defaultOpenCode?: boolean;
+};
+
+export function useOutputPart(options?: OutputPartOptions): PartProps {
   const { t } = useTranslation();
   const { config, defaultConfig } = useOutputData();
   const compareData = (data: OutputData) => [data];
@@ -25,30 +31,36 @@ export function useOutputPart(options?: { showSudo?: boolean; additionalBrowsers
     id: 'Output',
     name: t('part.output.title'),
     state,
-    content: <OutputPart showSudo={options?.showSudo} additionalBrowsers={options?.additionalBrowsers} />,
+    content: <OutputPart {...options} />,
     icon: IvyIcons.Output
   };
 }
 
-const OutputPart = (props: { showSudo?: boolean; additionalBrowsers?: BrowserType[] }) => {
+const OutputPart = ({ additionalBrowsers, showSudo, defaultOpenCode }: OutputPartOptions) => {
   const { t } = useTranslation();
   const { config, defaultConfig, update, updateSudo } = useOutputData();
 
   const { elementContext: context } = useEditorContext();
   const { data: variableInfo } = useMeta('meta/scripting/out', { context, location: 'output' }, { variables: [], types: {} });
 
-  const browsers: BrowserType[] = ['attr', 'func', 'type', ...(props.additionalBrowsers ?? [])];
+  const browsers: BrowserType[] = ['attr', 'func', 'type', ...(additionalBrowsers ?? [])];
 
   const { maximizeState, maximizeCode } = useMaximizedCodeEditor();
-
   return (
     <PathContext path='output'>
-      <MappingPart data={config.output.map} variableInfo={variableInfo} onChange={change => update('map', change)} browsers={browsers} />
+      <MappingPart
+        data={config.output.map}
+        variableInfo={variableInfo}
+        onChange={change => update('map', change)}
+        browsers={browsers}
+        defaultData={defaultConfig.output.map}
+        defaultOpen={defaultOpenCode ? undefined : true}
+      />
       <PathCollapsible
         label={t('label.code')}
         path='code'
         controls={[maximizeCode]}
-        defaultOpen={config.output.code !== defaultConfig.output.code || config.sudo !== defaultConfig.sudo}
+        defaultOpen={defaultOpenCode ?? (config.output.code !== defaultConfig.output.code || config.sudo !== defaultConfig.sudo)}
       >
         <ValidationFieldset>
           <ScriptArea
@@ -58,7 +70,7 @@ const OutputPart = (props: { showSudo?: boolean; additionalBrowsers?: BrowserTyp
             browsers={browsers}
           />
         </ValidationFieldset>
-        {props.showSudo && <Checkbox label={t('part.output.disablePermission')} value={config.sudo} onChange={updateSudo} />}
+        {showSudo && <Checkbox label={t('part.output.disablePermission')} value={config.sudo} onChange={updateSudo} />}
       </PathCollapsible>
     </PathContext>
   );

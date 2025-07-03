@@ -26,17 +26,10 @@ export function useRestErrorPart(): PartProps {
 
 const RestErrorPart = () => {
   const { t } = useTranslation();
-  const { config, defaultConfig, update } = useRestErrorData();
+  const { config, update } = useRestErrorData();
   return (
     <PathContext path='response'>
-      <ValidationCollapsible
-        label={t('label.error')}
-        defaultOpen={
-          config.response.clientError !== defaultConfig.response.clientError ||
-          config.response.statusError !== defaultConfig.response.statusError
-        }
-        paths={['clientError', 'statusError']}
-      >
+      <ValidationCollapsible label={t('label.error')} defaultOpen={true} paths={['clientError', 'statusError']}>
         <RestError
           label={t('part.rest.onError')}
           value={config.response.clientError}

@@ -27,7 +27,7 @@ class WsRequest extends PartObject {
   }
 
   async fill() {
-    await this.serviceSection.open();
+    await this.serviceSection.expectIsOpen();
     await this.client.choose('GeoIpService');
     await this.port.choose('GeoIPServiceSoap');
     await this.operation.choose('GetGeoIP');

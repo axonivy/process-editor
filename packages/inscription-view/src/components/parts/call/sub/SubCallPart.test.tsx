@@ -22,8 +22,8 @@ describe('SubCallPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Process start');
-    await CollapsableUtil.assertClosed('Mapping');
+    await CollapsableUtil.assertOpen('Process start');
+    await CollapsableUtil.assertOpen('Mapping');
     await CollapsableUtil.assertClosed('Code');
   });
 

@@ -47,6 +47,7 @@ const TriggerPart = () => {
                 responsible={config.task.responsible}
                 defaultResponsible={defaultConfig.task.responsible}
                 updateResponsible={updateResponsible}
+                defaultOpen={true}
               />
               <ValidationCollapsible
                 label={t('part.task.options')}

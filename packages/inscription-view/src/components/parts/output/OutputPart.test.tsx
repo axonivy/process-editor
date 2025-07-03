@@ -21,7 +21,7 @@ describe('OutputPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Mapping');
+    await CollapsableUtil.assertOpen('Mapping');
     await CollapsableUtil.assertClosed('Code');
   });
 

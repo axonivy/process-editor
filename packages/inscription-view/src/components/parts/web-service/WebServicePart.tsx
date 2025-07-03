@@ -41,6 +41,7 @@ const WebServicePart = () => {
         config={config.permission}
         defaultConfig={defaultConfig.permission}
         updatePermission={updatePermission}
+        defaultOpen={true}
       />
       <Exception />
     </>

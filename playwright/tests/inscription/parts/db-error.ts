@@ -14,8 +14,7 @@ class DbErrorPart extends PartObject {
   }
 
   async fill(): Promise<void> {
-    await this.section.expectIsClosed();
-    await this.section.toggle();
+    await this.section.expectIsOpen();
     await this.error.choose('>> Ignore Exception');
   }
   async assertFill(): Promise<void> {
@@ -26,7 +25,7 @@ class DbErrorPart extends PartObject {
     await this.error.choose('ivy:error:database');
   }
   async assertClear(): Promise<void> {
-    await this.section.expectIsClosed();
+    await this.section.expectIsOpen();
   }
 }
 

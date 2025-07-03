@@ -17,8 +17,8 @@ describe('RestOutputPart', () => {
 
   test('empty', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Result Type');
-    await CollapsableUtil.assertClosed('Mapping');
+    await CollapsableUtil.assertOpen('Result Type');
+    await CollapsableUtil.assertOpen('Mapping');
     await CollapsableUtil.assertClosed('Code');
   });
 

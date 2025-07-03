@@ -11,7 +11,10 @@ class SignalCatch extends PartObject {
   signalMacro: MacroEditor;
   attach: Checkbox;
 
-  constructor(part: Part, private readonly makroSupport: boolean = false) {
+  constructor(
+    part: Part,
+    private readonly makroSupport: boolean = false
+  ) {
     super(part);
     this.section = part.section('Signal Code');
     this.signal = this.section.combobox();
@@ -20,7 +23,7 @@ class SignalCatch extends PartObject {
   }
 
   async fill() {
-    await this.section.open();
+    await this.section.expectIsOpen();
     if (!this.makroSupport) {
       await this.signal.fill('test:signal');
       await this.attach.click();
@@ -48,7 +51,7 @@ class SignalCatch extends PartObject {
   }
 
   async assertClear() {
-    await this.section.expectIsClosed();
+    await this.section.expectIsOpen();
   }
 }
 

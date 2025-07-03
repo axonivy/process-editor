@@ -16,7 +16,7 @@ describe('SignalCatchPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Signal Code');
+    await CollapsableUtil.assertOpen('Signal Code');
   });
 
   test('boundary', async () => {

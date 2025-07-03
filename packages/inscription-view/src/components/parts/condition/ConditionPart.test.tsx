@@ -24,7 +24,7 @@ describe('ConditionPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Condition');
+    await CollapsableUtil.assertOpen('Condition');
   });
 
   test('full data', async () => {

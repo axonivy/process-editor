@@ -14,7 +14,7 @@ class ProcessData extends PartObject {
   }
 
   async fill() {
-    await this.section.open();
+    await this.section.expectIsOpen();
     await this.dataClass.fill('test');
   }
 

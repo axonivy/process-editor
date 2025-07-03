@@ -7,16 +7,18 @@ import type { BrowserType } from '../../../browser/useBrowser';
 import { PathContext } from '../../../../context/usePath';
 import Fieldset from '../../../widgets/fieldset/Fieldset';
 import { useTranslation } from 'react-i18next';
+import { deepEqual } from '@axonivy/ui-components';
 
 export type MappingPartProps = {
   data: Record<string, string>;
   variableInfo: VariableInfo;
   onChange: (change: Record<string, string>) => void;
-  path?: SchemaKeys;
   browsers: BrowserType[];
+  path?: SchemaKeys;
+  defaultOpen?: boolean;
 };
 
-const MappingPart = ({ path, data, ...props }: MappingPartProps) => {
+const MappingPart = ({ path, data, defaultData, defaultOpen, ...props }: MappingPartProps & { defaultData: Record<string, string> }) => {
   const { t } = useTranslation();
   const globalFilter = useTableGlobalFilter();
   const onlyInscribedFilter = useTableOnlyInscribed();
@@ -25,7 +27,7 @@ const MappingPart = ({ path, data, ...props }: MappingPartProps) => {
       label={t('common.label.mapping')}
       controls={[globalFilter.control, onlyInscribedFilter.control]}
       path={path ?? 'map'}
-      defaultOpen={Object.keys(data).length > 0}
+      defaultOpen={defaultOpen ?? !deepEqual(data, defaultData)}
     >
       <MappingTree data={data} {...props} globalFilter={globalFilter} onlyInscribedFilter={onlyInscribedFilter} />
     </PathCollapsible>

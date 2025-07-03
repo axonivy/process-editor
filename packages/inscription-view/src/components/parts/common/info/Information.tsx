@@ -39,7 +39,7 @@ const toWorkflowType = (path: '' | SchemaPath | SchemaKeys): WorkflowType => {
   return '' as WorkflowType;
 };
 
-const Information = <T extends InformationConfig>({ config, defaultConfig, update }: InformationProps<T>) => {
+const Information = <T extends InformationConfig>({ config, update }: InformationProps<T>) => {
   const { t } = useTranslation();
   const { context } = useEditorContext();
   const path = usePath();
@@ -53,13 +53,7 @@ const Information = <T extends InformationConfig>({ config, defaultConfig, updat
   ];
 
   return (
-    <ValidationCollapsible
-      label={t('common.label.details')}
-      defaultOpen={
-        config.name !== defaultConfig.name || config.description !== defaultConfig.description || config.category !== defaultConfig.category
-      }
-      paths={['name', 'description', 'category']}
-    >
+    <ValidationCollapsible label={t('part.general.nameAndDescription')} defaultOpen={true} paths={['name', 'description', 'category']}>
       <PathFieldset label={t('common.label.name')} path='name'>
         <MacroInput value={config.name} browsers={['attr', 'func', 'cms']} onChange={change => update('name', change)} />
       </PathFieldset>

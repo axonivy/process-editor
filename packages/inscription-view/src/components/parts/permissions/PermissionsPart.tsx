@@ -22,12 +22,9 @@ export function usePermissionsPart(): PartProps {
 
 const PermissionsPart = () => {
   const { t } = useTranslation();
-  const { config, defaultConfig, update } = usePermissionsData();
+  const { config, update } = usePermissionsData();
   return (
-    <Collapsible
-      label={t('part.permission.title')}
-      defaultOpen={config.permissions.view.allowed !== defaultConfig.permissions.view.allowed}
-    >
+    <Collapsible label={t('part.permission.title')} defaultOpen={true}>
       <Checkbox
         label={t('part.permission.allowProcessViewer')}
         value={config.permissions.view.allowed}

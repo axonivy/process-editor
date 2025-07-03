@@ -32,7 +32,7 @@ describe('StartPart', () => {
     renderPart();
     await CollapsableUtil.assertClosed('Signature');
     await CollapsableUtil.assertClosed('Input parameters');
-    await CollapsableUtil.assertClosed('Mapping');
+    await CollapsableUtil.assertOpen('Mapping');
     await CollapsableUtil.assertClosed('Code');
   });
 

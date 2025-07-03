@@ -14,7 +14,7 @@ class ProgramInterfaceStart extends PartObject {
   }
 
   async fill() {
-    await this.javaSection.open();
+    await this.javaSection.expectIsOpen();
     await this.javaClass.choose('ch.ivyteam.ivy.process.extension.impl.AbstractUserProcessExtension');
   }
 

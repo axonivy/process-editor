@@ -13,7 +13,12 @@ class Call extends PartObject {
   codeSection: Section;
   code: ScriptArea;
 
-  constructor(part: Part, readonly selectLabel: string, private readonly selectValue: string, private readonly assertSelectValue: string) {
+  constructor(
+    part: Part,
+    readonly selectLabel: string,
+    private readonly selectValue: string,
+    private readonly assertSelectValue: string
+  ) {
     super(part);
     this.callSection = part.section(selectLabel);
     this.call = this.callSection.combobox();
@@ -24,9 +29,9 @@ class Call extends PartObject {
   }
 
   async fill() {
-    await this.callSection.open();
+    await this.callSection.expectIsOpen();
     await this.call.choose(this.selectValue);
-    await this.mappingSection.open();
+    await this.mappingSection.expectIsOpen();
     await this.mapping.row(2).column(1).fill('"test"');
     await this.codeSection.open();
     await this.code.fill('code');
@@ -45,7 +50,7 @@ class Call extends PartObject {
 
   async assertClear() {
     await this.call.expectValue(this.assertSelectValue);
-    await this.mappingSection.expectIsClosed();
+    await this.mappingSection.expectIsOpen();
     await this.codeSection.expectIsClosed();
   }
 }

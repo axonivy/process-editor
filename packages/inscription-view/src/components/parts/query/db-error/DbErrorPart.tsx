@@ -25,13 +25,9 @@ export function useDbErrorPart(): PartProps {
 
 const QueryPart = () => {
   const { t } = useTranslation();
-  const { config, defaultConfig, updateException } = useDbErrorData();
+  const { config, updateException } = useDbErrorData();
   return (
-    <PathCollapsible
-      label={t('label.error')}
-      defaultOpen={config.exceptionHandler !== defaultConfig.exceptionHandler}
-      path='exceptionHandler'
-    >
+    <PathCollapsible label={t('label.error')} defaultOpen={true} path='exceptionHandler'>
       <ValidationFieldset>
         <ExceptionSelect
           value={config.exceptionHandler}

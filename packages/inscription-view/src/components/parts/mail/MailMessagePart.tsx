@@ -30,11 +30,11 @@ export function useMailMessagePart(): PartProps {
 
 const MailMessagePart = () => {
   const { t } = useTranslation();
-  const { config, defaultConfig, updateMessage } = useMailData();
+  const { config, updateMessage } = useMailData();
   const typeItems = useMemo<SelectItem[]>(() => Object.values(MAIL_TYPE).map(value => ({ label: value, value })), []);
 
   return (
-    <ValidationCollapsible label={t('part.mail.content.title')} defaultOpen={config.message.body !== defaultConfig.message.body}>
+    <ValidationCollapsible label={t('part.mail.content.title')} defaultOpen={true}>
       <PathFieldset label={t('part.mail.content.message')} path='message'>
         <MacroArea value={config.message.body} onChange={change => updateMessage('body', change)} browsers={['attr', 'func', 'cms']} />
       </PathFieldset>

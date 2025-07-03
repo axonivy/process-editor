@@ -99,7 +99,7 @@ const ConditionTable = ({ data, onChange }: { data: Condition[]; onChange: (chan
     : [];
 
   return (
-    <ValidationCollapsible label={t('part.condition.title')} controls={tableActions} defaultOpen={data.length > 0}>
+    <ValidationCollapsible label={t('part.condition.title')} controls={tableActions} defaultOpen={true}>
       <Table>
         <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
         <TableBody>

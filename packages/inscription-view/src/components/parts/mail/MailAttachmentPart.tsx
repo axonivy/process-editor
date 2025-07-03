@@ -73,7 +73,7 @@ const MailAttachmentTable = () => {
   const tableActions = table.getSelectedRowModel().rows.length > 0 ? [removeRowAction] : [];
 
   return (
-    <ValidationCollapsible label={t('part.mail.attachments.title')} controls={tableActions} defaultOpen={config.attachments.length > 0}>
+    <ValidationCollapsible label={t('part.mail.attachments.title')} controls={tableActions} defaultOpen={true}>
       <div>
         {table.getRowModel().rows.length > 0 && (
           <Table>

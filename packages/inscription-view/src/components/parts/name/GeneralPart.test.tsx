@@ -21,7 +21,7 @@ describe('NamePart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Name / Description');
+    await CollapsableUtil.assertOpen('Name / Description');
     await CollapsableUtil.assertClosed('Means / Documents');
     await CollapsableUtil.assertClosed('Tags');
   });

@@ -14,7 +14,7 @@ class EndPage extends PartObject {
   }
 
   async fill() {
-    await this.section.open();
+    await this.section.expectIsOpen();
     await this.endPage.fill('page.xhtml');
   }
 
@@ -27,7 +27,7 @@ class EndPage extends PartObject {
   }
 
   async assertClear() {
-    await this.section.open();
+    await this.section.expectIsOpen();
     await this.endPage.expectEmpty();
   }
 }

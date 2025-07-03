@@ -30,7 +30,7 @@ const UserTaskEditor = memo(() => {
 
 const ScriptEditor = memo(() => {
   const name = useGeneralPart();
-  const output = useOutputPart({ showSudo: true, additionalBrowsers: ['cms'] });
+  const output = useOutputPart({ showSudo: true, additionalBrowsers: ['cms'], defaultOpenCode: true });
   return <Part parts={[name, output]} />;
 });
 

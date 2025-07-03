@@ -19,7 +19,7 @@ class WsOutput extends PartObject {
   }
 
   async fill() {
-    await this.mappingSection.open();
+    await this.mappingSection.expectIsOpen();
     await this.mapping.row(1).column(1).fill('"bla"');
     await this.codeSection.open();
     await this.code.fill('code');

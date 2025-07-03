@@ -27,13 +27,10 @@ export function useMailErrorPart(): PartProps {
 
 const MailErrorPart = () => {
   const { t } = useTranslation();
-  const { config, defaultConfig, update } = useMailData();
+  const { config, update } = useMailData();
 
   return (
-    <ValidationCollapsible
-      label={t('part.error.title')}
-      defaultOpen={config.failIfMissingAttachments || config.exceptionHandler !== defaultConfig.exceptionHandler}
-    >
+    <ValidationCollapsible label={t('part.error.title')} defaultOpen={true}>
       <PathContext path='exceptionHandler'>
         <ExceptionSelect
           value={config.exceptionHandler}

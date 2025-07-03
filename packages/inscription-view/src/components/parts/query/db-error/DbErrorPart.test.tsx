@@ -19,7 +19,7 @@ describe('DbErrorPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Error');
+    await CollapsableUtil.assertOpen('Error');
   });
 
   function assertState(expectedState: PartStateFlag, data?: DeepPartial<DbErrorData>, validation?: ValidationResult) {

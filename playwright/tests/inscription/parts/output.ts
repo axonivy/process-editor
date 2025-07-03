@@ -38,7 +38,10 @@ class OutputCode extends Output {
   code: ScriptArea;
   sudo: Checkbox;
 
-  constructor(part: Part, private readonly hasSudo = false) {
+  constructor(
+    part: Part,
+    private readonly hasSudo = false
+  ) {
     super(part);
     this.codeSection = part.section('Code');
     this.code = this.codeSection.scriptArea();
@@ -78,11 +81,18 @@ class OutputCode extends Output {
 
 class OutputEmptyMap extends OutputCode {
   override async assertClear() {
-    await this.mappingSection.expectIsClosed();
+    await this.mappingSection.expectIsOpen();
     await this.codeSection.expectIsClosed();
   }
 }
 
+class OutputScriptPart extends OutputCode {
+  override async assertClear() {
+    await this.mappingSection.expectIsClosed();
+    await this.codeSection.expectIsOpen();
+  }
+}
+
 export const OutputTest = new NewPartTest('Output', (part: Part) => new OutputCode(part));
-export const ScriptOutputTest = new NewPartTest('Output', (part: Part) => new OutputCode(part, true));
+export const ScriptOutputTest = new NewPartTest('Output', (part: Part) => new OutputScriptPart(part, true));
 export const SignalOutputTest = new NewPartTest('Output', (part: Part) => new OutputEmptyMap(part));

@@ -17,7 +17,7 @@ class MailContent extends PartObject {
   }
 
   async fill() {
-    await this.section.open();
+    await this.section.expectIsOpen();
     await this.type.choose('text/html');
     await this.message.fill('Hello\nWorld');
   }
@@ -30,7 +30,7 @@ class MailContent extends PartObject {
     await this.message.clear();
   }
   async assertClear() {
-    await this.section.expectIsClosed();
+    await this.section.expectIsOpen();
   }
 }
 

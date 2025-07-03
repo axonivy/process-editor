@@ -20,7 +20,7 @@ describe('StartPart', () => {
 
   test('empty', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Java Class');
+    await CollapsableUtil.assertOpen('Java Class');
   });
 
   test('meta', async () => {

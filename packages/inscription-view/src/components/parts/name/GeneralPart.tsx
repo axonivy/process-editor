@@ -33,7 +33,7 @@ const GeneralPart = ({ hideTags, disableName }: { hideTags?: boolean; disableNam
 
   return (
     <>
-      <Collapsible label={t('part.general.nameAndDescription')} defaultOpen={data.name !== '' || data.description !== ''}>
+      <Collapsible label={t('part.general.nameAndDescription')} defaultOpen={true}>
         <Fieldset label={t('part.general.displayName')}>
           <Textarea maxRows={3} disabled={!!disableName} value={data.name} onChange={change => update('name', change)} />
         </Fieldset>

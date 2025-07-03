@@ -17,7 +17,7 @@ class MailError extends PartObject {
   }
 
   async fill() {
-    await this.error.toggle();
+    await this.error.expectIsOpen();
     await this.errorSelect.choose('>> Ignore Exception');
     await this.throw.click();
   }
@@ -31,7 +31,7 @@ class MailError extends PartObject {
     await this.throw.click();
   }
   async assertClear() {
-    await this.error.expectIsClosed();
+    await this.error.expectIsOpen();
   }
 }
 

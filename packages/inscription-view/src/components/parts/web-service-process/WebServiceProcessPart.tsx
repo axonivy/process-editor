@@ -40,10 +40,10 @@ const useAuthTypes = () => {
 
 const WebServiceProcessPart = () => {
   const { t } = useTranslation();
-  const { config, defaultConfig, update } = useWebServiceProcessData();
+  const { config, update } = useWebServiceProcessData();
   const items = useAuthTypes();
   return (
-    <ValidationCollapsible label={t('label.process')} defaultOpen={config.wsTypeName !== defaultConfig.wsTypeName}>
+    <ValidationCollapsible label={t('label.process')} defaultOpen={true}>
       <PathFieldset label={t('part.wsprocess.qualifiedName')} path='wsTypeName'>
         <Input value={config.wsTypeName} onChange={change => update('wsTypeName', change)} type={IVY_SCRIPT_TYPES.STRING} />
       </PathFieldset>

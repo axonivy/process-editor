@@ -24,9 +24,9 @@ class RestOutput extends PartObject {
   }
 
   async fill() {
-    await this.typeSection.open();
+    await this.typeSection.expectIsOpen();
     await this.type.fill('type');
-    await this.mappingSection.open();
+    await this.mappingSection.expectIsOpen();
     await this.mapping.row(1).column(1).fill('"bla"');
     await this.codeSection.open();
     await this.code.fill('code');
@@ -45,8 +45,8 @@ class RestOutput extends PartObject {
   }
 
   async assertClear() {
-    await this.typeSection.expectIsClosed();
-    await this.mappingSection.expectIsClosed();
+    await this.typeSection.expectIsOpen();
+    await this.mappingSection.expectIsOpen();
     await this.codeSection.expectIsClosed();
   }
 }

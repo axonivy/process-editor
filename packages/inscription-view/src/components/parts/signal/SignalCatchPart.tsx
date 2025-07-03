@@ -30,7 +30,7 @@ export function useSignalCatchPart(options?: { makroSupport?: boolean; withBrows
 
 const SignalCatchPart = ({ makroSupport, withBrowser }: { makroSupport?: boolean; withBrowser?: boolean }) => {
   const { t } = useTranslation();
-  const { config, defaultConfig, update, updateSignal } = useSignalCatchData();
+  const { config, update, updateSignal } = useSignalCatchData();
   const { context } = useEditorContext();
   const signalCodes = [
     { value: '', label: t('part.signal.empty'), info: t('part.signal.emptyDesc') },
@@ -40,7 +40,7 @@ const SignalCatchPart = ({ makroSupport, withBrowser }: { makroSupport?: boolean
   ];
 
   return (
-    <PathCollapsible label={t('part.signal.code')} path='signalCode' defaultOpen={config.signalCode !== defaultConfig.signalCode}>
+    <PathCollapsible label={t('part.signal.code')} path='signalCode' defaultOpen={true}>
       <ValidationFieldset>
         <ClassificationCombobox
           value={config.signalCode}

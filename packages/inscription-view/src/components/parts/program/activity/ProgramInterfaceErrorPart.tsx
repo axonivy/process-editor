@@ -33,11 +33,7 @@ const ProgramInterfaceErrorPart = () => {
 
   return (
     <>
-      <PathCollapsible
-        label={t('part.program.error.title')}
-        path='exceptionHandler'
-        defaultOpen={config.exceptionHandler !== defaultConfig.exceptionHandler}
-      >
+      <PathCollapsible label={t('part.program.error.title')} path='exceptionHandler' defaultOpen={true}>
         <PathContext path='error'>
           <ExceptionSelect
             value={config.exceptionHandler}
