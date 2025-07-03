@@ -50,12 +50,12 @@ export class Toolbar {
     await this.expectActiveButton('default_tools');
   }
 
-  async triggerUndo() {
-    await this.toolbar.locator('#btn_undo_tools').click();
+  undoButton() {
+    return this.toolbar.locator('#btn_undo_tools');
   }
 
-  async triggerRedo() {
-    await this.toolbar.locator('#btn_redo_tools').click();
+  redoButton() {
+    return this.toolbar.locator('#btn_redo_tools');
   }
 
   async triggerOptions() {
@@ -91,16 +91,16 @@ export class Toolbar {
   }
 
   async expectActiveButton(button: MenuBtn | ToolBtn) {
-    const activeBtn = this.toolbar.locator('.tool-bar-button.clicked');
+    const activeBtn = this.toolbar.locator('button[data-state="on"]');
     await expect(activeBtn).toHaveCount(1);
-    await expect(this.toolbar.locator('.tool-bar-button.clicked')).toHaveId(`btn_${button}`);
+    await expect(this.toolbar.locator('button[data-state="on"]')).toHaveId(`btn_${button}`);
   }
 
   async expectEditMode() {
     await expect(this.defaultTool).toBeVisible();
     await expect(this.optionsBtn).toBeVisible();
     await expect(this.toolbar.locator('.edit-buttons')).toBeVisible();
-    await expect(this.toolbar.locator('.middle-buttons > span')).toHaveCount(6);
+    await expect(this.toolbar.locator('.middle-buttons button')).toHaveCount(6);
   }
 
   async expectReadonly() {

@@ -40,6 +40,6 @@ test('paste raw text show toast', async ({ page, browserName }) => {
   await page.keyboard.press(`${cmdCtrl()}+C`);
   await page.keyboard.press('Escape');
   await page.keyboard.press(`${cmdCtrl(browserName)}+V`);
-  await processEditor.expectToastToContainText('Paste clipboard data does not match the process data format.');
+  await expect(processEditor.toast).toContainText('Paste clipboard data does not match the process data format.');
   await expect(start.locator()).toHaveCount(1);
 });
