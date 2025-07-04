@@ -11,7 +11,7 @@ import Browser from '../../browser/Browser';
 import { usePath } from '../../../context/usePath';
 import { MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
 
-export const MacroArea = ({ value, onChange, browsers, ...props }: CodeEditorAreaProps) => {
+export const MacroArea = ({ value, onChange, minHeight, browsers, ...props }: CodeEditorAreaProps) => {
   const { isFocusWithin, focusWithinProps, focusValue, browser } = useOnFocus(value, onChange);
   const { setEditor, modifyEditor, getSelectionRange } = useMonacoEditor({ modifyAction: value => `<%=${value}%>` });
   const path = usePath();
@@ -44,14 +44,22 @@ export const MacroArea = ({ value, onChange, browsers, ...props }: CodeEditorAre
                 location={path}
                 onMountFuncs={[setEditor, monacoAutoFocus, MonacoEditorUtil.keyActionEscShiftTab]}
                 macro={true}
-                initHeight={() => areaRef.current?.clientHeight ?? 90}
+                initHeight={() => areaRef.current?.clientHeight ?? minHeight ?? 90}
               />
               <Browser {...browser} types={browsers} accept={modifyEditor} location={path} />
             </>
           )}
         </>
       ) : (
-        <InputBadgeArea badgeProps={badgePropsExpression} value={value} tabIndex={0} {...inputProps} {...props} ref={areaRef} />
+        <InputBadgeArea
+          badgeProps={badgePropsExpression}
+          value={value}
+          tabIndex={0}
+          {...inputProps}
+          {...props}
+          style={{ height: minHeight }}
+          ref={areaRef}
+        />
       )}
     </div>
   );
