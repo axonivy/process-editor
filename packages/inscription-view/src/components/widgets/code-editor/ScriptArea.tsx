@@ -52,7 +52,7 @@ export const ScriptArea = (props: ScriptAreaProps) => {
           <ResizableCodeEditor
             {...inputProps}
             {...props}
-            initHeight={props.value.length > 0 ? () => 250 : undefined}
+            initHeight={props.value.length > 0 ? () => 350 : undefined}
             location={path}
             onMountFuncs={[setEditor, keyActionMountFunc, MonacoEditorUtil.keyActionEscShiftTab, setScrollPosition]}
           />
