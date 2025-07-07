@@ -22,6 +22,8 @@ import { IvyIcons } from '@axonivy/ui-icons';
 export function useRestRequestPart(): PartProps {
   const { t } = useTranslation();
   const { config, defaultConfig } = useRestRequestData();
+  const { context } = useEditorContext();
+  const resources = useMeta('meta/rest/resources', { context, clientId: config.target.clientId }, []).data;
   const validations = [
     ...useValidations(['method']),
     ...useValidations(['target']),
@@ -35,7 +37,7 @@ export function useRestRequestPart(): PartProps {
     name: t('label.request'),
     state: state,
     content: <RestRequestPart />,
-    control: <OpenApiSwitch />,
+    control: resources.length === 0 ? undefined : <OpenApiSwitch />,
     icon: IvyIcons.RestClient
   };
 }
@@ -77,12 +79,7 @@ const RestRequestPart = () => {
 const OpenApiSwitch = () => {
   const { t } = useTranslation();
   const { openApi, setOpenApi } = useOpenApi();
-  const { context } = useEditorContext();
-  const { config } = useRestRequestData();
-  const resources = useMeta('meta/rest/resources', { context, clientId: config.target.clientId }, []).data;
-  if (resources.length === 0) {
-    return;
-  }
+
   return (
     <Field direction='row' alignItems='center' gap={2}>
       <Label style={{ fontWeight: 'normal' }}>{t('part.rest.openApi')}</Label>

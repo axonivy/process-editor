@@ -88,17 +88,17 @@ const ConfigurationPart = () => {
     return null;
   };
 
-  if (editorItems.length === 0) {
-    return <Message message='No configuration needed' variant='info' />;
-  }
-
   return (
     <PathCollapsible label={t('part.program.configuration.title')} defaultOpen={true} path={'userConfig'}>
-      {editorItems.map((widget, index) => (
-        <Flex direction='column' className='configuration-widget' key={index}>
-          {renderWidgetComponent(widget)}
-        </Flex>
-      ))}
+      {editorItems.length === 0 ? (
+        <Message message='No configuration needed' variant='info' />
+      ) : (
+        editorItems.map((widget, index) => (
+          <Flex direction='column' className='configuration-widget' key={index}>
+            {renderWidgetComponent(widget)}
+          </Flex>
+        ))
+      )}
     </PathCollapsible>
   );
 };
