@@ -16,7 +16,12 @@ export const Statement = () => {
       path='sql'
     >
       <PathFieldset label={t('part.db.sqlQuery')} path='stmt'>
-        <MacroArea value={config.query.sql.stmt} onChange={change => updateSql('stmt', change)} browsers={['tablecol', 'attr']} />
+        <MacroArea
+          value={config.query.sql.stmt}
+          onChange={change => updateSql('stmt', change)}
+          minHeight={250}
+          browsers={['tablecol', 'attr']}
+        />
       </PathFieldset>
       <Message
         message='The use of "any query" can lead to SQL injection vulnerabilities. See the "help" docs for more information.'
