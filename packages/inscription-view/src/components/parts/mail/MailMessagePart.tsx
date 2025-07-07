@@ -34,14 +34,9 @@ const MailMessagePart = () => {
   const typeItems = useMemo<SelectItem[]>(() => Object.values(MAIL_TYPE).map(value => ({ label: value, value })), []);
 
   return (
-    <ValidationCollapsible label={t('part.mail.content.title')} defaultOpen={true}>
-      <PathFieldset label={t('part.mail.content.message')} path='message'>
-        <MacroArea
-          value={config.message.body}
-          onChange={change => updateMessage('body', change)}
-          minHeight={250}
-          browsers={['attr', 'func', 'cms']}
-        />
+    <ValidationCollapsible label={t('part.mail.content.title')} defaultOpen={true} fullsize={true}>
+      <PathFieldset label={t('part.mail.content.message')} path='message' className='full-size-field'>
+        <MacroArea value={config.message.body} onChange={change => updateMessage('body', change)} browsers={['attr', 'func', 'cms']} />
       </PathFieldset>
       <Fieldset label={t('part.mail.content.type')}>
         <Select

@@ -1,3 +1,4 @@
+import './Collapsible.css';
 import {
   Collapsible as CollapsibleRoot,
   CollapsibleContent,
@@ -19,6 +20,7 @@ export type CollapsibleProps = {
   children: ReactNode;
   controls?: Array<FieldsetControl>;
   validations?: Array<ValidationMessage>;
+  fullsize?: boolean;
 };
 
 const Controls = ({ controls, ...props }: Pick<CollapsibleProps, 'controls'> & CollapsibleControlProps) => {
@@ -46,7 +48,7 @@ const State = ({ validations }: Pick<CollapsibleProps, 'validations'>) => {
   return null;
 };
 
-const Collapsible = ({ label, defaultOpen, validations, children, autoClosable, controls }: CollapsibleProps) => {
+const Collapsible = ({ label, defaultOpen, validations, children, autoClosable, controls, fullsize }: CollapsibleProps) => {
   const [open, setOpen] = useState(defaultOpen || (validations?.length ?? 0) > 0);
   useEffect(() => {
     if (autoClosable) {
@@ -58,12 +60,12 @@ const Collapsible = ({ label, defaultOpen, validations, children, autoClosable, 
     }
   }, [autoClosable, defaultOpen]);
   return (
-    <CollapsibleRoot open={open} onOpenChange={setOpen}>
+    <CollapsibleRoot open={open} onOpenChange={setOpen} className={fullsize ? 'full-size-collapsible' : undefined}>
       <CollapsibleTrigger control={props => <Controls {...props} controls={controls} />} state={<State validations={validations} />}>
         {label}
       </CollapsibleTrigger>
-      <CollapsibleContent>
-        <Flex direction='column' gap={3}>
+      <CollapsibleContent style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
+        <Flex direction='column' gap={3} className={fullsize ? 'full-size-collapsible-content-container' : undefined}>
           {children}
         </Flex>
       </CollapsibleContent>

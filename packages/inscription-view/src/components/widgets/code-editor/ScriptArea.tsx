@@ -35,6 +35,7 @@ export const ScriptArea = (props: ScriptAreaProps) => {
   };
 
   const { inputProps } = useField();
+  const resolvedMinHeight = props.value.length > 0 ? 350 : undefined;
 
   return (
     <>
@@ -48,7 +49,7 @@ export const ScriptArea = (props: ScriptAreaProps) => {
         selectionRange={getSelectionRange()}
       />
       {!props.maximizeState.isMaximizedCodeEditorOpen && (
-        <div className='script-area'>
+        <div className='script-area' style={{ minHeight: resolvedMinHeight }}>
           <ResizableCodeEditor
             {...inputProps}
             {...props}

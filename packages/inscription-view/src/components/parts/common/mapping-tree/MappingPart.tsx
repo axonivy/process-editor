@@ -40,7 +40,11 @@ export const MappingField = ({ path, data, ...props }: MappingPartProps) => {
   const onlyInscribedFilter = useTableOnlyInscribed();
   return (
     <PathContext path={path ?? 'map'}>
-      <Fieldset label={t('common.label.mapping')} controls={[globalFilter.control, onlyInscribedFilter.control]}>
+      <Fieldset
+        label={t('common.label.mapping')}
+        controls={[globalFilter.control, onlyInscribedFilter.control]}
+        style={{ flex: '0 0 auto' }}
+      >
         <MappingTree data={data} {...props} globalFilter={globalFilter} onlyInscribedFilter={onlyInscribedFilter} />
       </Fieldset>
     </PathContext>

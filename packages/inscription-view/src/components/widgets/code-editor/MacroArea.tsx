@@ -17,10 +17,11 @@ export const MacroArea = ({ value, onChange, minHeight, browsers, ...props }: Co
   const path = usePath();
   const areaRef = useRef<HTMLOutputElement>(null);
   const { inputProps } = useField();
+  const resolvedMinHeight = areaRef.current?.clientHeight ?? minHeight ?? 90;
 
   return (
     // tabIndex is needed for safari to catch the focus when click on browser button
-    <div className='script-area' {...focusWithinProps} tabIndex={1}>
+    <div className='script-area' {...focusWithinProps} tabIndex={1} style={{ minHeight: resolvedMinHeight }}>
       {isFocusWithin || props.maximizeState?.isMaximizedCodeEditorOpen ? (
         <>
           {props.maximizeState && (

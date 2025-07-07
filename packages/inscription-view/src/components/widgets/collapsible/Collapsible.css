@@ -1,0 +1,60 @@
+.full-size-collapsible[data-state='open'] {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+
+  .ui-collapsible-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .full-size-collapsible-content-container {
+    flex: 1 1 auto;
+  }
+
+  .ui-field {
+    flex: 0 0 auto;
+  }
+
+  .ui-field.full-size-field {
+    flex: 1 1 auto;
+    min-height: 0;
+
+    .script-area {
+      flex: 1 1 auto;
+
+      .resizable-code-editor {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+
+        .code-editor {
+          display: flex;
+          flex-direction: column;
+          flex: 1 1 auto;
+
+          section {
+            flex: 1 1 auto;
+
+            height: auto !important;
+            overflow: auto;
+            width: auto !important;
+
+            .code-input {
+              padding: unset;
+              width: calc(100% - 2px) !important;
+            }
+          }
+        }
+      }
+    }
+
+    output {
+      flex: 1;
+      min-height: 0;
+      height: auto !important;
+      overflow: auto;
+    }
+  }
+}
