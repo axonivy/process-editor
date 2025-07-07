@@ -16,7 +16,7 @@ export abstract class Part extends Composite {
     return new ResponsibleComponent(this);
   }
 
-  responsibleSection() {
-    return new ResponsibleSection(this);
+  responsibleSection(defaultOpen: boolean = false) {
+    return new ResponsibleSection(this, defaultOpen);
   }
 }

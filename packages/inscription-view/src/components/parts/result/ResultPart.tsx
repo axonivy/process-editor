@@ -55,8 +55,10 @@ const ResultPart = ({ hideParamDesc }: { hideParamDesc?: boolean }) => {
       <MappingPart
         data={config.result.map}
         variableInfo={variableInfo}
+        defaultData={defaultConfig.result.map}
         onChange={change => update('map', change)}
         browsers={['attr', 'func', 'type']}
+        defaultOpen={true}
       />
       <PathCollapsible
         label={t('label.code')}

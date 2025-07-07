@@ -4,7 +4,6 @@ import type { ErrorThrowData } from '@axonivy/process-editor-inscription-protoco
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
 import { useErrorThrowData } from './useErrorThrowData';
 import { classifiedItemInfo } from '../../../utils/event-code-categorie';
-import { deepEqual } from '../../../utils/equals';
 import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
 import { useValidations } from '../../../context/useValidation';
 import { useEditorContext } from '../../../context/useEditorContext';
@@ -46,7 +45,7 @@ const ErrorThrowPart = () => {
 
   return (
     <>
-      <PathCollapsible label={t('part.error.title')} path='throws' defaultOpen={!deepEqual(config.throws, defaultConfig.throws)}>
+      <PathCollapsible label={t('part.error.title')} path='throws' defaultOpen={true}>
         <PathFieldset label={t('part.error.codeToThrow')} path='error'>
           <ClassificationCombobox
             value={config.throws.error}

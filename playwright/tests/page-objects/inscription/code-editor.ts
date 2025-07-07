@@ -6,7 +6,12 @@ class CodeEditor {
   private readonly code: Locator;
   private readonly scriptArea: Locator;
 
-  constructor(readonly page: Page, readonly locator: Locator, readonly value: Locator, readonly parentLocator: Locator) {
+  constructor(
+    readonly page: Page,
+    readonly locator: Locator,
+    readonly value: Locator,
+    readonly parentLocator: Locator
+  ) {
     this.contentAssist = parentLocator.locator('div.suggest-widget');
     this.code = parentLocator.locator('div.code-input').first();
     this.scriptArea = parentLocator.locator('div.script-area');
@@ -75,6 +80,7 @@ class CodeEditor {
       await this.page.keyboard.press('Control+KeyA');
     }
     await this.page.keyboard.press('Delete');
+    await expect(this.code).toHaveText('');
   }
 
   async expectValue(value: string) {

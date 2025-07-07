@@ -27,11 +27,11 @@ export function useEndPagePart(): PartProps {
 
 const EndPagePart = () => {
   const { t } = useTranslation();
-  const { config, defaultConfig, update } = useEndPageData();
+  const { config, update } = useEndPageData();
   const action = useAction('openEndPage');
   const openFile: FieldsetControl = { label: t('label.openFile'), icon: IvyIcons.GoToSource, action: () => action(config.page) };
   return (
-    <PathCollapsible label={t('part.endPage.title')} controls={[openFile]} path='page' defaultOpen={config.page !== defaultConfig.page}>
+    <PathCollapsible label={t('part.endPage.title')} controls={[openFile]} path='page' defaultOpen={true}>
       <ValidationFieldset>
         <InputWithBrowser browsers={['cms']} typeFilter={'FILE'} value={config.page} onChange={change => update('page', change)} />
       </ValidationFieldset>

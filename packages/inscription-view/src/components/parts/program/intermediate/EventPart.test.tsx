@@ -19,8 +19,8 @@ describe('EventPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Java Class');
-    await CollapsableUtil.assertClosed('Event ID');
+    await CollapsableUtil.assertOpen('Java Class');
+    await CollapsableUtil.assertOpen('Event ID');
     await CollapsableUtil.assertClosed('Expiry');
   });
 

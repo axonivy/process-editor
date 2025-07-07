@@ -9,7 +9,7 @@ test.describe('Validations', () => {
   test('case', async ({ page }) => {
     const inscriptionView = await openMockInscription(page);
     const part = inscriptionView.inscriptionTab('Case');
-    const section = part.section('Details');
+    const section = part.section('Name / Description');
     const name = section.macroInput('Name');
     const desc = section.macroArea('Description');
 

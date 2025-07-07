@@ -62,8 +62,10 @@ describe('MappingPart', () => {
       <MappingPart
         browsers={['attr', 'func', 'type']}
         data={data}
+        defaultData={initData ?? { 'param.procurementRequest': 'in' }}
         variableInfo={variableInfo}
         onChange={(change: Record<string, string>) => (data = change)}
+        defaultOpen={true}
       />
     );
     return {
@@ -164,7 +166,14 @@ describe('MappingPart', () => {
 
   test('tree support readonly mode', async () => {
     customRender(
-      <MappingPart browsers={['attr', 'func', 'type']} data={{ bla: 'unknown value' }} variableInfo={variableInfo} onChange={() => {}} />,
+      <MappingPart
+        browsers={['attr', 'func', 'type']}
+        data={{ bla: 'unknown value' }}
+        defaultData={{ bla: 'unknown value' }}
+        variableInfo={variableInfo}
+        defaultOpen={true}
+        onChange={() => {}}
+      />,
       {
         wrapperProps: { editor: { readonly: true } }
       }

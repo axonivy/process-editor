@@ -19,7 +19,7 @@ describe('ProgramInterfaceErrorPart', () => {
 
   test('empty data', async () => {
     renderPart();
-    await CollapsableUtil.assertClosed('Error');
+    await CollapsableUtil.assertOpen('Error');
     await CollapsableUtil.assertClosed('Timeout');
   });
 

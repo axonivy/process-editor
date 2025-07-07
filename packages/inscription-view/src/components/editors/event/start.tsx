@@ -18,7 +18,7 @@ import { useTriggerPart } from '../../parts/trigger/TriggerPart';
 
 const RequestStartEditor = memo(() => {
   const name = useGeneralPart();
-  const start = useStartPart();
+  const start = useStartPart({ signatureDefaultOpen: true });
   const request = useRequestPart();
   const trigger = useTriggerPart();
   const task = useTaskPart({ type: 'request' });

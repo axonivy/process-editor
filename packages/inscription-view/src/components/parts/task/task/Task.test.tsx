@@ -25,7 +25,7 @@ describe('Task', () => {
 
   test('task part render empty', async () => {
     renderTask();
-    await CollapsableUtil.assertClosed('Details');
+    await CollapsableUtil.assertOpen('Name / Description');
     await CollapsableUtil.assertClosed('Responsible');
     await CollapsableUtil.assertClosed('Priority');
     await CollapsableUtil.assertClosed('Options');

@@ -14,7 +14,7 @@ class WsError extends PartObject {
   }
 
   async fill() {
-    await this.errorSection.toggle();
+    await this.errorSection.expectIsOpen();
     await this.exception.choose('>> Ignore Exception');
   }
 
@@ -28,7 +28,7 @@ class WsError extends PartObject {
   }
 
   async assertClear() {
-    await this.errorSection.expectIsClosed();
+    await this.errorSection.expectIsOpen();
   }
 }
 

@@ -27,7 +27,7 @@ class WebService extends PartObject {
   }
 
   async fill() {
-    await this.permissionSection.toggle();
+    await this.permissionSection.expectIsOpen();
     await this.roles.chooseTags(['Support']);
     await this.error.choose('>> Ignore Exception');
 
@@ -58,7 +58,7 @@ class WebService extends PartObject {
   }
 
   async assertClear() {
-    await this.permissionSection.expectIsClosed();
+    await this.permissionSection.expectIsOpen();
     await this.exceptionSection.expectIsClosed();
   }
 }

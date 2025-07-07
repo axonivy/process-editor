@@ -29,7 +29,7 @@ export function useProcessDataPart(): PartProps {
 
 const ProcessDataPart = () => {
   const { t } = useTranslation();
-  const { config, defaultConfig, update } = useProcessDataData();
+  const { config, update } = useProcessDataData();
   const { context } = useEditorContext();
   const dataClasses = [
     ...useMeta('meta/scripting/dataClasses', context, []).data.map<DataClassItem>(dataClass => {
@@ -38,7 +38,7 @@ const ProcessDataPart = () => {
   ];
 
   return (
-    <PathCollapsible label={t('part.processData.dataClass')} path='data' defaultOpen={config.data !== defaultConfig.data}>
+    <PathCollapsible label={t('part.processData.dataClass')} path='data' defaultOpen={true}>
       <ValidationFieldset>
         <DataClassSelector dataClass={config.data} onChange={change => update('data', change)} dataClasses={dataClasses} />
       </ValidationFieldset>

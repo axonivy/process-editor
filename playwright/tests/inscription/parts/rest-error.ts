@@ -16,7 +16,7 @@ class RestError extends PartObject {
   }
 
   async fill() {
-    await this.errorSection.toggle();
+    await this.errorSection.expectIsOpen();
     await this.clientError.choose('>> Ignore error');
     await this.statusError.choose('>> Ignore error');
   }
@@ -33,7 +33,7 @@ class RestError extends PartObject {
   }
 
   async assertClear() {
-    await this.errorSection.expectIsClosed();
+    await this.errorSection.expectIsOpen();
   }
 }
 

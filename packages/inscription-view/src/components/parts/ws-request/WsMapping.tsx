@@ -5,7 +5,7 @@ import MappingPart from '../common/mapping-tree/MappingPart';
 import { useWsRequestData } from './useWsRequestData';
 
 export const WsMapping = () => {
-  const { config, updateOperation } = useWsRequestData();
+  const { config, defaultConfig, updateOperation } = useWsRequestData();
 
   const { context } = useEditorContext();
   const variableInfo = useMeta('meta/webservice/operations', { clientId: config.clientId, port: config.operation.port, context }, [])
@@ -17,6 +17,7 @@ export const WsMapping = () => {
     <PathContext path='operation'>
       <MappingPart
         data={config.operation.parameters}
+        defaultData={defaultConfig.operation.parameters}
         onChange={change => updateOperation('parameters', change)}
         variableInfo={variableInfo}
         path='parameters'

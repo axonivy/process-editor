@@ -28,10 +28,9 @@ export function useWsRequestPart(): PartProps {
 
 const WsRequestPart = () => {
   const { t } = useTranslation();
-  const { config, defaultConfig } = useWsRequestData();
   return (
     <>
-      <ValidationCollapsible label={t('part.ws.title')} defaultOpen={config.clientId !== defaultConfig.clientId}>
+      <ValidationCollapsible label={t('part.ws.title')} defaultOpen={true}>
         <WsClientSelect />
         <WsPortSelect />
         <WsOperationSelect />

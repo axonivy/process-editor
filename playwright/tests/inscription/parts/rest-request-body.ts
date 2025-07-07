@@ -15,7 +15,11 @@ class EntityPart extends PartObject {
   mapping: Table;
   code: ScriptArea;
 
-  constructor(part: Part, body: Section, readonly openApiMode = false) {
+  constructor(
+    part: Part,
+    body: Section,
+    readonly openApiMode = false
+  ) {
     super(part);
     this.bodyType = body.radioGroup();
     this.entityType = body.combobox('Entity-Type');
@@ -125,7 +129,10 @@ class RestRequestBody extends PartObject {
   rawPart: RawPart;
   contentType: Combobox;
 
-  constructor(part: Part, readonly type: InputType = 'ENTITY') {
+  constructor(
+    part: Part,
+    readonly type: InputType = 'ENTITY'
+  ) {
     super(part);
     this.openapiSwitch = part.currentLocator().getByRole('switch', { name: 'OpenAPI' });
     this.serviceSection = part.section('Rest Service');
@@ -210,7 +217,7 @@ class RestRequestBodyOpenApi extends RestRequestBody {
   }
 
   override async fill() {
-    await this.serviceSection.open();
+    await this.serviceSection.expectIsOpen();
     await this.client.choose('pet');
     await expect(this.openapiSwitch).toBeVisible();
     await this.resource.choose('POST');

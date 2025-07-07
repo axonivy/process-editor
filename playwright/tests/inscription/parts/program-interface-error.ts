@@ -23,7 +23,7 @@ class ProgramInterfaceError extends PartObject {
   }
 
   async fill() {
-    await this.programSection.toggle();
+    await this.programSection.expectIsOpen();
     await this.errorProgram.choose('>> Ignore Exception');
 
     await this.timeoutSection.toggle();
@@ -48,7 +48,7 @@ class ProgramInterfaceError extends PartObject {
   }
 
   async assertClear() {
-    await this.programSection.expectIsClosed();
+    await this.programSection.expectIsOpen();
     await this.timeoutSection.expectIsClosed();
   }
 }

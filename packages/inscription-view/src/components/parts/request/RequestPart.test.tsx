@@ -56,7 +56,7 @@ describe('RequestPart', () => {
     const httpCheckbox = screen.getByLabelText('Yes, this can be started with a HTTP-Request / -Link');
     expect(httpCheckbox).toBeChecked();
     expect(screen.getByLabelText('Show on start list')).not.toBeChecked();
-    expect(screen.queryByLabelText('Name')).not.toBeInTheDocument();
+    await CollapsableUtil.assertOpen('Name / Description');
   });
 
   test('full data', async () => {

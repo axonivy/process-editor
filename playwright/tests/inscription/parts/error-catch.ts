@@ -14,7 +14,7 @@ class ErrorCatch extends PartObject {
   }
 
   async fill() {
-    await this.section.open();
+    await this.section.expectIsOpen();
     await this.error.choose('ivy:error');
   }
 
@@ -27,7 +27,7 @@ class ErrorCatch extends PartObject {
   }
 
   async assertClear() {
-    await this.section.expectIsClosed();
+    await this.section.expectIsOpen();
   }
 }
 

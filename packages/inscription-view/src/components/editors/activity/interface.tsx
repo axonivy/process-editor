@@ -55,10 +55,10 @@ const RestEditor = memo(() => {
 const EMailEditor = memo(() => {
   const name = useGeneralPart();
   const header = useMailHeaderPart();
-  const error = useMailErrorPart();
   const content = useMailMessagePart();
   const attachment = useMailAttachmentPart();
-  return <Part parts={[name, header, error, content, attachment]} />;
+  const error = useMailErrorPart();
+  return <Part parts={[name, header, content, attachment, error]} />;
 });
 
 const ProgramInterfaceEditor = memo(() => {

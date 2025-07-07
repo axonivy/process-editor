@@ -38,7 +38,7 @@ const JavaClassSelector = ({ javaClass, onChange, type }: JavaClassSelectorProps
       label={t('part.program.javaClass')}
       path='javaClass'
       controls={[openJavaClassConfig, createJavaClass]}
-      defaultOpen={javaClass !== ''}
+      defaultOpen={true}
     >
       <ValidationFieldset>
         <Combobox value={javaClass} onChange={item => onChange(item)} items={javaClassItems} />
