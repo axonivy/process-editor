@@ -57,7 +57,7 @@ export const MacroArea = ({ value, onChange, minHeight, browsers, ...props }: Co
           tabIndex={0}
           {...inputProps}
           {...props}
-          style={{ height: minHeight }}
+          style={{ minHeight: minHeight }}
           ref={areaRef}
         />
       )}
