@@ -11,39 +11,62 @@ test('switch tool', async ({ page }) => {
 
 test('undo / redo', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
+  const undo = processEditor.toolbar().undoButton();
+  const redo = processEditor.toolbar().redoButton();
   const start = processEditor.startElement;
   await expect(start.locator()).toBeVisible();
+  await expect(undo).toBeDisabled();
+  await expect(redo).toBeDisabled();
 
   await start.delete();
   await expect(start.locator()).toBeHidden();
+  await expect(undo).toBeEnabled();
+  await expect(redo).toBeDisabled();
 
-  await processEditor.toolbar().triggerUndo();
+  await undo.click();
   await expect(start.locator()).toBeVisible();
+  await expect(undo).toBeDisabled();
+  await expect(redo).toBeEnabled();
 
-  await processEditor.toolbar().triggerRedo();
+  await redo.click();
   await expect(start.locator()).toBeHidden();
+  await expect(undo).toBeEnabled();
+  await expect(redo).toBeDisabled();
 });
 
 test('undo / redo with inscription', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
+  const undo = processEditor.toolbar().undoButton();
+  const redo = processEditor.toolbar().redoButton();
   const start = processEditor.startElement;
   const inscription = await start.inscribe();
   const name = inscription.inscriptionTab('General').section('Name / Description').textArea({ label: 'Display Name' });
   await name.expectValue('start');
+  await expect(undo).toBeDisabled();
+  await expect(redo).toBeDisabled();
 
   await name.fill('Test');
-  // Trigger update (as memory process do not automatically update)
-  await start.locator().click();
-  await page.keyboard.press('ArrowDown');
   await start.expectLabel('Test');
+  await expect(undo).toBeEnabled();
+  await expect(redo).toBeDisabled();
 
-  await processEditor.toolbar().triggerUndo();
+  await undo.click();
   await start.expectLabel('start');
   await name.expectValue('start');
+  await expect(undo).toBeDisabled();
+  await expect(redo).toBeEnabled();
 
-  await processEditor.toolbar().triggerRedo();
+  await processEditor.resetSelection();
+  await inscription.expectClosed();
+
+  await redo.click();
+  await expect(processEditor.toast).toContainText('Redo configuration');
+  await processEditor.toast.getByRole('button', { name: 'Open element' }).click();
+  await inscription.expectOpen();
   await start.expectLabel('Test');
   await name.expectValue('Test');
+  await expect(undo).toBeEnabled();
+  await expect(redo).toBeDisabled();
 });
 
 test('search', async ({ page }) => {

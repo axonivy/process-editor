@@ -1,14 +1,5 @@
 import { IvyIcons } from '@axonivy/ui-icons';
-import {
-  Action,
-  EnableDefaultToolsAction,
-  EnableToolsAction,
-  type IGridManager,
-  MarqueeMouseTool,
-  RedoAction,
-  TYPES,
-  UndoAction
-} from '@eclipse-glsp/client';
+import { Action, EnableDefaultToolsAction, EnableToolsAction, type IGridManager, MarqueeMouseTool, TYPES } from '@eclipse-glsp/client';
 import { inject, injectable } from 'inversify';
 import { ShowToolBarOptionsMenuAction } from './options/action';
 import { CustomIconToggleActionHandler } from './options/action-handler';
@@ -66,24 +57,6 @@ export const MarqueeToolButton = (): ToolBarButton => ({
   location: ToolBarButtonLocation.Left,
   readonly: true,
   switchFocus: true
-});
-
-export const UndoToolButton = (): ToolBarButton => ({
-  icon: IvyIcons.Undo,
-  title: t('toolbar.undo'),
-  sorting: 'C',
-  action: () => UndoAction.create(),
-  id: 'btn_undo_tools',
-  location: ToolBarButtonLocation.Left
-});
-
-export const RedoToolButton = (): ToolBarButton => ({
-  icon: IvyIcons.Redo,
-  title: t('toolbar.redo'),
-  sorting: 'D',
-  action: () => RedoAction.create(),
-  id: 'btn_redo_tools',
-  location: ToolBarButtonLocation.Left
 });
 
 @injectable()

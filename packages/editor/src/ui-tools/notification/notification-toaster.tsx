@@ -4,8 +4,11 @@ import {
   type IActionDispatcher,
   type IActionHandler,
   MessageAction,
+  OpenAction,
+  SelectAction,
   type SeverityLevel,
   StartProgressAction,
+  StatusAction,
   TYPES,
   UpdateProgressAction
 } from '@eclipse-glsp/client';
@@ -14,6 +17,10 @@ import React from 'react';
 import { ReactUIExtension } from '../../utils/react-ui-extension';
 import { toast, Toaster } from '@axonivy/ui-components';
 import { currentTheme } from '../../theme/current-theme';
+import { ElementMessageAction, MoveIntoViewportAction } from '@axonivy/process-editor-protocol';
+import { t } from 'i18next';
+
+type ToasterType = SeverityLevel | 'LOADING';
 
 @injectable()
 export class NotificationToaster extends ReactUIExtension implements IActionHandler {
@@ -42,6 +49,9 @@ export class NotificationToaster extends ReactUIExtension implements IActionHand
   }
 
   handle(action: Action) {
+    if (StatusAction.is(action)) {
+      console.debug(`[${action.severity}]: ${action.message}`);
+    }
     if (MessageAction.is(action)) {
       return this.updateToast(action.message, action.severity);
     }
@@ -53,6 +63,19 @@ export class NotificationToaster extends ReactUIExtension implements IActionHand
     }
     if (EndProgressAction.is(action)) {
       return this.updateToast(this.progress(action), 'NONE');
+    }
+    if (ElementMessageAction.is(action)) {
+      return this.updateToast(action.message, 'INFO', {
+        action: {
+          label: t('message.elementOpen'),
+          onClick: () =>
+            this.actionDispatcher.dispatchAll([
+              SelectAction.create({ selectedElementsIDs: [action.elementId], deselectedElementsIDs: true }),
+              MoveIntoViewportAction.create({ elementIds: [action.elementId] }),
+              OpenAction.create(action.elementId)
+            ])
+        }
+      });
     }
   }
 
@@ -74,15 +97,15 @@ export class NotificationToaster extends ReactUIExtension implements IActionHand
     return message;
   }
 
-  private updateToast(text: string, severity: SeverityLevel | 'LOADING'): void {
+  private updateToast(text: string, type: ToasterType, options?: Parameters<(typeof toast)['info']>[1]): void {
     toast.dismiss(this.messageToast);
-    if (severity !== 'NONE') {
-      this.messageToast = this.createToast(severity)(text);
+    if (type !== 'NONE') {
+      this.messageToast = this.createToast(type)(text, options);
     }
   }
 
-  private createToast(severity: SeverityLevel | 'LOADING') {
-    switch (severity) {
+  private createToast(type: ToasterType) {
+    switch (type) {
       case 'ERROR':
         return toast.error;
       case 'WARNING':

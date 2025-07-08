@@ -84,7 +84,7 @@ test('increase and decrease element size using shortcut', async ({ page }) => {
   await element.expectPosition({ x: 248, y: 170 });
   await element.expectSize(112, 60);
   await page.keyboard.press('Alt+KeyA');
-  await processEditor.expectToastToContainText('Resize On:');
+  await expect(processEditor.toast).toContainText('Resize On:');
   await processEditor.page.keyboard.press('+');
   await element.expectPosition({ x: 248, y: 170 });
   await element.expectSize(120, 68);
@@ -92,5 +92,5 @@ test('increase and decrease element size using shortcut', async ({ page }) => {
   await element.expectPosition({ x: 248, y: 170 });
   await element.expectSize(112, 60);
   await page.keyboard.press('Escape');
-  await processEditor.expectToastToContainText('Resize Off:');
+  await expect(processEditor.toast).toContainText('Resize Off:');
 });
