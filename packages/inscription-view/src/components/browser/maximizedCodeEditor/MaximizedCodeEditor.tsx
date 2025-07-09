@@ -5,6 +5,7 @@ import { monacoAutoFocus, useMonacoEditor } from '../../widgets/code-editor/useC
 import { CodeEditor } from '../../widgets/code-editor/CodeEditor';
 import Browser from '../Browser';
 import { MAXIMIZED_MONACO_OPTIONS, MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
+import type { IvyIcons } from '@axonivy/ui-icons';
 
 export type MaximizedCodeEditorProps = {
   editorValue: string;
@@ -18,6 +19,10 @@ export type MaximizedCodeEditorProps = {
   };
   macro?: boolean;
   type?: string;
+  header?: {
+    title?: string;
+    icon?: IvyIcons;
+  };
 };
 
 export const MaximizedCodeEditor = ({

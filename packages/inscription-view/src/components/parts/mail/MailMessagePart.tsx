@@ -10,6 +10,8 @@ import { PathFieldset } from '../common/path/PathFieldset';
 import { MacroArea } from '../../widgets/code-editor/MacroArea';
 import Fieldset from '../../widgets/fieldset/Fieldset';
 import Select from '../../widgets/select/Select';
+import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
+import { IvyIcons } from '@axonivy/ui-icons';
 
 export function useMailMessagePart(): PartProps {
   const { config, initConfig, defaultConfig, resetMessage } = useMailData();
@@ -23,11 +25,18 @@ export function useMailMessagePart(): PartProps {
 const MailMessagePart = () => {
   const { config, defaultConfig, updateMessage } = useMailData();
   const typeItems = useMemo<SelectItem[]>(() => Object.values(MAIL_TYPE).map(value => ({ label: value, value })), []);
+  const { maximizeState, maximizeCode } = useMaximizedCodeEditor();
 
   return (
-    <ValidationCollapsible label='Content' defaultOpen={config.message.body !== defaultConfig.message.body}>
+    <ValidationCollapsible label='Content' defaultOpen={config.message.body !== defaultConfig.message.body} controls={[maximizeCode]}>
       <PathFieldset label='Message' path='message'>
-        <MacroArea value={config.message.body} onChange={change => updateMessage('body', change)} browsers={['attr', 'func', 'cms']} />
+        <MacroArea
+          value={config.message.body}
+          onChange={change => updateMessage('body', change)}
+          browsers={['attr', 'func', 'cms']}
+          maximizeState={maximizeState}
+          maximizedHeader={{ title: 'Message', icon: IvyIcons.Note }}
+        />
       </PathFieldset>
       <Fieldset label='Type'>
         <Select
