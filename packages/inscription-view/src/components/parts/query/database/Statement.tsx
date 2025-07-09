@@ -5,15 +5,19 @@ import { PathFieldset } from '../../common/path/PathFieldset';
 import { MacroArea } from '../../../widgets/code-editor/MacroArea';
 import Checkbox from '../../../widgets/checkbox/Checkbox';
 import { useTranslation } from 'react-i18next';
+import useMaximizedCodeEditor from '../../../browser/useMaximizedCodeEditor';
+import { IvyIcons } from '@axonivy/ui-icons';
 
 export const Statement = () => {
   const { t } = useTranslation();
   const { config, defaultConfig, updateSql } = useQueryData();
+  const { maximizeState, maximizeCode } = useMaximizedCodeEditor();
   return (
     <PathCollapsible
       label={t('part.db.definition')}
       defaultOpen={config.query.sql.stmt !== defaultConfig.query.sql.stmt || config.query.sql.quote !== defaultConfig.query.sql.quote}
       path='sql'
+      controls={[maximizeCode]}
     >
       <PathFieldset label={t('part.db.sqlQuery')} path='stmt'>
         <MacroArea
@@ -21,6 +25,8 @@ export const Statement = () => {
           onChange={change => updateSql('stmt', change)}
           minHeight={250}
           browsers={['tablecol', 'attr']}
+          maximizeState={maximizeState}
+          maximizedHeader={{ title: t('part.db.sqlQuery'), icon: IvyIcons.Query }}
         />
       </PathFieldset>
       <Message
