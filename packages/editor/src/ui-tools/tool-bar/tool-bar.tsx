@@ -130,6 +130,7 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
           toggle={activeButtonId === button.id}
           size='large'
           title={button.title}
+          aria-label={button.title}
           icon={button.icon}
           onClick={evt => this.handleToolbarButtonClicked({ source: button, reference: evt.currentTarget })}
         />

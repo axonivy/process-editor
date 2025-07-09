@@ -11,6 +11,7 @@ export const EditButtons = ({ root, dispatcher }: { root: Readonly<GModelRoot>; 
       <Button
         id='btn_undo_tools'
         title={t('toolbar.undo')}
+        aria-label={t('toolbar.undo')}
         icon={IvyIcons.Undo}
         size='large'
         onClick={() => dispatcher.dispatch(UndoAction.create())}
@@ -19,6 +20,7 @@ export const EditButtons = ({ root, dispatcher }: { root: Readonly<GModelRoot>; 
       <Button
         id='btn_redo_tools'
         title={t('toolbar.redo')}
+        aria-label={t('toolbar.redo')}
         icon={IvyIcons.Redo}
         size='large'
         onClick={() => dispatcher.dispatch(RedoAction.create())}
