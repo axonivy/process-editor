@@ -12,6 +12,7 @@ import Fieldset from '../../widgets/fieldset/Fieldset';
 import Select from '../../widgets/select/Select';
 import { useTranslation } from 'react-i18next';
 import { IvyIcons } from '@axonivy/ui-icons';
+import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
 
 export function useMailMessagePart(): PartProps {
   const { t } = useTranslation();
@@ -32,15 +33,18 @@ const MailMessagePart = () => {
   const { t } = useTranslation();
   const { config, updateMessage } = useMailData();
   const typeItems = useMemo<SelectItem[]>(() => Object.values(MAIL_TYPE).map(value => ({ label: value, value })), []);
+  const { maximizeState, maximizeCode } = useMaximizedCodeEditor();
 
   return (
-    <ValidationCollapsible label={t('part.mail.content.title')} defaultOpen={true}>
+    <ValidationCollapsible label={t('part.mail.content.title')} defaultOpen={true} controls={[maximizeCode]}>
       <PathFieldset label={t('part.mail.content.message')} path='message'>
         <MacroArea
           value={config.message.body}
           onChange={change => updateMessage('body', change)}
           minHeight={250}
           browsers={['attr', 'func', 'cms']}
+          maximizeState={maximizeState}
+          maximizedHeader={{ title: t('part.mail.content.message'), icon: IvyIcons.Note }}
         />
       </PathFieldset>
       <Fieldset label={t('part.mail.content.type')}>

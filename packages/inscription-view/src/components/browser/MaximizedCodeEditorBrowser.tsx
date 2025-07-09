@@ -16,6 +16,7 @@ export const MaximizedCodeEditorBrowser = ({
   applyEditor,
   location,
   selectionRange,
+  header,
   macro,
   type
 }: MaximaziedCodeEditorBrowserProps) => {
@@ -40,8 +41,8 @@ export const MaximizedCodeEditorBrowser = ({
         />
       ),
       id: 'maxCode',
-      name: t('browser.code.title'),
-      icon: IvyIcons.StartProgram
+      name: header?.title ?? t('browser.code.title'),
+      icon: header?.icon ?? IvyIcons.StartProgram
     }
   ];
 
