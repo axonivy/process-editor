@@ -30,7 +30,7 @@ export const MacroArea = ({ value, onChange, minHeight, browsers, ...props }: Co
               browsers={browsers}
               editorValue={value}
               location={path}
-              applyEditor={focusValue.onChange}
+              applyEditor={onChange}
               selectionRange={getSelectionRange()}
               header={props.maximizedHeader}
               macro={true}
@@ -54,7 +54,7 @@ export const MacroArea = ({ value, onChange, minHeight, browsers, ...props }: Co
       ) : (
         <InputBadgeArea
           badgeProps={badgePropsExpression}
-          value={focusValue.value}
+          value={value}
           tabIndex={0}
           {...inputProps}
           {...props}
