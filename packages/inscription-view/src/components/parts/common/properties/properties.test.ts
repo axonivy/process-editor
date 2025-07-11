@@ -1,5 +1,4 @@
 import type { ScriptMappings } from '@axonivy/process-editor-inscription-protocol';
-import { cloneObject } from 'test-utils';
 import { describe, expect, test } from 'vitest';
 import { Property } from './properties';
 
@@ -19,9 +18,9 @@ describe('Properties', () => {
   });
 
   test('update', () => {
-    const expected = cloneObject(properties);
+    const expected = structuredClone(properties);
     expected[1].expression = 'test';
-    expect(Property.update(cloneObject(properties), 1, 'expression', 'test')).toEqual(expected);
+    expect(Property.update(structuredClone(properties), 1, 'expression', 'test')).toEqual(expected);
   });
 
   test('to', () => {

@@ -1,5 +1,5 @@
 import type { InscriptionType } from '@axonivy/process-editor-inscription-protocol';
-import { cloneObject, customRender, screen, userEvent } from 'test-utils';
+import { customRender, screen, userEvent } from 'test-utils';
 import { describe, expect, test } from 'vitest';
 import type { Condition } from './condition';
 import ConditionTable from './ConditionTable';
@@ -14,7 +14,7 @@ describe('ConditionTable', () => {
   function renderTable(): {
     data: () => Condition[];
   } {
-    let data: Condition[] = cloneObject(conditions);
+    let data: Condition[] = structuredClone(conditions);
     customRender(<ConditionTable data={data} onChange={change => (data = change)} />);
     return {
       data: () => data

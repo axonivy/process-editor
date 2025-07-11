@@ -202,7 +202,7 @@ const ContextHelper = (
       }
     }
   };
-  const editorContext = structuredClone(DEFAULT_EDITOR_CONTEXT);
+  const editorContext = JSON.parse(JSON.stringify(DEFAULT_EDITOR_CONTEXT));
   if (props.editor?.title) {
     editorContext.type.shortLabel = props.editor.title;
   }
@@ -245,7 +245,6 @@ export * from '@testing-library/react';
 export { default as userEvent } from '@testing-library/user-event';
 export * from './collapsible-utils';
 export * from './combobox-utils';
-export * from './object-utils';
 export * from './select-utils';
 export * from './table-utils';
 export * from './type-utils';

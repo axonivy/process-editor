@@ -1,5 +1,4 @@
 import type { VariableInfo } from '@axonivy/process-editor-inscription-protocol';
-import { cloneObject } from 'test-utils';
 import { describe, expect, test } from 'vitest';
 import { MappingTreeData } from './mapping-tree-data';
 
@@ -103,7 +102,7 @@ describe('MappingTreeData', () => {
   };
 
   function mappingTreeMultiRootData(): MappingTreeData[] {
-    const multiRoot = cloneObject(tree);
+    const multiRoot = structuredClone(tree);
     multiRoot.push({
       attribute: 'dummy',
       children: [],
@@ -162,7 +161,7 @@ describe('MappingTreeData', () => {
 
   test('update', () => {
     const resultTree = mappingTreeMultiRootData();
-    const tree = cloneObject(resultTree);
+    const tree = structuredClone(resultTree);
     MappingTreeData.update(variableInfo, tree, ['param', 'procurementRequest'], 'in');
     MappingTreeData.update(variableInfo, tree, ['param', 'procurementRequest', 'amount'], '12');
     MappingTreeData.update(variableInfo, tree, ['dummy'], 'dummy');
@@ -178,7 +177,7 @@ describe('MappingTreeData', () => {
     const treeData = MappingTreeData.of(variableInfo);
     MappingTreeData.update(variableInfo, treeData, ['param', 'procurementRequest', 'requester', 'email'], 'luke@skywalker.com');
 
-    const expectTree = cloneObject(tree);
+    const expectTree = structuredClone(tree);
     expectTree[0].children[2].isLoaded = true;
     expectTree[0].children[2].children = [{ ...email_node, value: 'luke@skywalker.com' }];
 
@@ -191,7 +190,7 @@ describe('MappingTreeData', () => {
     MappingTreeData.update(variableInfo, treeData, ['param', 'unknown'], 'unknown value');
     MappingTreeData.update(variableInfo, treeData, ['param', 'unknown', 'deep'], 'unknown deep value');
 
-    const expectTree = cloneObject(tree);
+    const expectTree = structuredClone(tree);
     expectTree[1] = { attribute: 'dummy', children: [], value: 'dummy', type: '', simpleType: '', isLoaded: true, description: '' };
     expectTree[2] = {
       attribute: 'param.unknown',
@@ -231,7 +230,7 @@ describe('MappingTreeData', () => {
     };
     const tree = MappingTreeData.of(variableInfoParam);
     MappingTreeData.update(variableInfo, tree, ['param', 'name'], 'Hans');
-    const expectedTree = cloneObject(tree);
+    const expectedTree = structuredClone(tree);
     expectedTree[0].children[0].value = 'Hans';
     expect(tree).toHaveLength(1);
     expect(tree).toEqual(expectedTree);
@@ -239,7 +238,7 @@ describe('MappingTreeData', () => {
 
   test('update deep', () => {
     const resultTree = mappingTreeMultiRootData();
-    let tree = cloneObject(resultTree);
+    let tree = structuredClone(resultTree);
     tree = MappingTreeData.updateDeep(tree, [0], 'value', 'root');
     tree = MappingTreeData.updateDeep(tree, [0, 1], 'value', '12');
     tree = MappingTreeData.updateDeep(tree, [1], 'value', 'dummy');

@@ -1,4 +1,3 @@
-import { cloneObject } from 'test-utils';
 import { describe, expect, test } from 'vitest';
 import { Parameter } from './parameters';
 
@@ -58,9 +57,9 @@ describe('Parameters', () => {
   });
 
   test('update', () => {
-    const expected = cloneObject(params);
+    const expected = structuredClone(params);
     expected[1].expression = 'test';
-    expect(Parameter.update(cloneObject(params), 1, 'expression', 'test')).toEqual(expected);
+    expect(Parameter.update(structuredClone(params), 1, 'expression', 'test')).toEqual(expected);
   });
 
   test('to', () => {
