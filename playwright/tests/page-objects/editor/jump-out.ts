@@ -6,7 +6,7 @@ export class JumpOutBar {
 
   constructor(page: Page) {
     this.page = page;
-    this.bar = this.page.locator('#sprotty_jumpOutUi .jump-out-btn');
+    this.bar = this.page.locator('#sprotty_ivy-jump-out-bar button');
   }
 
   async click() {

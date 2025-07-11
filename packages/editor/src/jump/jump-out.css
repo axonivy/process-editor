@@ -1,21 +1,8 @@
 .jump-out-container {
-  inset: var(--size-3, 0.75rem) 0 0 var(--size-3, 0.75rem);
-  width: 30px;
-  height: 30px;
-}
-.jump-out-container .jump-out-btn {
-  width: 100%;
-  height: 100%;
-  border-radius: 4px;
-  background: var(--glsp-tool-bar-bg);
+  top: var(--size-3, 0.75rem);
+  left: var(--size-3, 0.75rem);
+  background: var(--glsp-tool-bg);
+  border-radius: var(--border-r2, 5px);
   box-shadow: var(--glsp-box-shadow);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--body, var(--glsp-tool-button));
-  cursor: pointer;
-  border: none;
-}
-.jump-out-container .jump-out-btn:hover {
-  background: var(--glsp-tool-bar-button-active-bg);
+  padding: var(--size-1, 0.25rem);
 }

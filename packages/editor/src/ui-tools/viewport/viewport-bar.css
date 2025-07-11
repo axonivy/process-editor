@@ -2,9 +2,6 @@
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  z-index: 5;
-  color: var(--glsp-tool-text);
-  font-size: 13px;
   user-select: none;
 }
 .viewport-bar {
@@ -12,36 +9,7 @@
   border-radius: var(--border-r2, 5px);
   box-shadow: var(--glsp-box-shadow);
   padding: var(--size-1, 0.25rem);
-  font-size: 1.5em;
 }
-.viewport-bar .viewport-bar-tools {
-  display: flex;
-  align-items: center;
-  gap: var(--size-1, 0.25rem);
-}
-.viewport-bar .viewport-bar-tools button {
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: transparent;
-}
-.viewport-bar .viewport-bar-tools button i {
-  color: var(--body, var(--glsp-tool-button));
-  text-align: center;
-  font-size: 16px;
-}
-.viewport-bar .viewport-bar-tools button:hover {
-  background: var(--glsp-tool-button-active-bg);
-  border-radius: var(--border-r2, 5px);
-}
-.viewport-bar .viewport-bar-tools label {
-  font-size: 0.75em;
-  padding: 0 0.5rem;
-  border-left: 1px solid var(--glsp-tool-border);
-  margin-left: 0.2rem;
-  margin-bottom: 0.125rem;
+.viewport-bar .viewport-bar-zoom {
+  padding-inline: var(--size-2, 0.5rem);
 }

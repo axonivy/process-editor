@@ -15,7 +15,7 @@ import {
 import { inject, injectable } from 'inversify';
 
 import { EnableViewportAction, SetViewportZoomAction } from '@axonivy/process-editor-protocol';
-import { Button } from '@axonivy/ui-components';
+import { Button, Flex, Separator } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { t } from 'i18next';
 import React from 'react';
@@ -47,32 +47,31 @@ export class ViewportBar extends ReactUIExtension implements IActionHandler {
 
   protected render(): React.ReactNode {
     return (
-      <div className='viewport-bar'>
-        <div className='viewport-bar-tools'>
-          <Button
-            key='originBtn'
-            id='originBtn'
-            icon={IvyIcons.WindowMinimize}
-            title={t('viewport.origin', { hotkey: 'O' })}
-            onClick={() => this.onAction(OriginViewportAction.create())}
-          />
-          <Button
-            key='fitToScreenBtn'
-            id='fitToScreenBtn'
-            icon={IvyIcons.FitToScreen}
-            title={t('viewport.fitToScreen', { hotkey: 'F' })}
-            onClick={() => this.onAction(FitToScreenAction.create([], { padding: 10 }))}
-          />
-          <Button
-            key='centerBtn'
-            id='centerBtn'
-            icon={IvyIcons.Center}
-            title={t('viewport.center', { hotkey: 'M' })}
-            onClick={() => this.onAction(CenterAction.create([...this.selectionService.getSelectedElementIDs()]))}
-          />
-          <label>{this.zoomLevel}</label>
-        </div>
-      </div>
+      <Flex direction='row' alignItems='center' gap={1} className='viewport-bar'>
+        <Button
+          id='originBtn'
+          icon={IvyIcons.WindowMinimize}
+          title={t('viewport.origin', { hotkey: 'O' })}
+          size='large'
+          onClick={() => this.onAction(OriginViewportAction.create())}
+        />
+        <Button
+          id='fitToScreenBtn'
+          icon={IvyIcons.FitToScreen}
+          title={t('viewport.fitToScreen', { hotkey: 'F' })}
+          size='large'
+          onClick={() => this.onAction(FitToScreenAction.create([], { padding: 10 }))}
+        />
+        <Button
+          id='centerBtn'
+          icon={IvyIcons.Center}
+          title={t('viewport.center', { hotkey: 'M' })}
+          size='large'
+          onClick={() => this.onAction(CenterAction.create([...this.selectionService.getSelectedElementIDs()]))}
+        />
+        <Separator orientation='vertical' style={{ height: '26px', marginInline: 0 }} />
+        <span className='viewport-bar-zoom'>{this.zoomLevel}</span>
+      </Flex>
     );
   }
 

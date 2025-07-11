@@ -18,7 +18,7 @@ import { ReactUIExtension } from '../utils/react-ui-extension';
 
 @injectable()
 export class JumpOutUi extends ReactUIExtension implements IActionHandler {
-  static readonly ID = 'jumpOutUi';
+  static readonly ID = 'ivy-jump-out-bar';
 
   @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
   @inject(SelectionService) protected selectionService: SelectionService;
@@ -42,6 +42,7 @@ export class JumpOutUi extends ReactUIExtension implements IActionHandler {
         title={t('tool.jumpOut', { hotkey: 'J' })}
         className='jump-out-btn'
         icon={IvyIcons.JumpOut}
+        size='large'
         onClick={() => this.handleJumpOutClick()}
       />
     );
