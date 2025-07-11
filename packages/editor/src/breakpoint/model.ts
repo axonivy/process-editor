@@ -1,5 +1,5 @@
-import type { Action, BoundsAware, Hoverable, GModelElement, GParentElement } from '@eclipse-glsp/client';
-import { hoverFeedbackFeature, GChildElement, selectFeature } from '@eclipse-glsp/client';
+import type { Action, BoundsAware, GModelElement, GParentElement, Hoverable } from '@eclipse-glsp/client';
+import { GChildElement, hoverFeedbackFeature, selectFeature } from '@eclipse-glsp/client';
 
 export const breakpointFeature = Symbol('breakpointFeature');
 

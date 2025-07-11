@@ -1,6 +1,6 @@
 import { CollapsableUtil, customRender, screen } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import { Limit } from './Limit';
-import { describe, test, expect } from 'vitest';
 
 describe('Limit', () => {
   test('data', async () => {

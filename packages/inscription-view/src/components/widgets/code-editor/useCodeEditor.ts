@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import { useState } from 'react';
 import type { BrowserValue } from '../../browser/Browser';
 import type { BrowserType } from '../../browser/useBrowser';
 

@@ -1,9 +1,9 @@
+import type { ValidationResult, WsRequestData } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
 import { CollapsableUtil, customRender, customRenderHook } from 'test-utils';
-import type { ValidationResult, WsRequestData } from '@axonivy/process-editor-inscription-protocol';
-import { useWsRequestPart } from './WsRequestPart';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
-import { describe, test, expect } from 'vitest';
+import { useWsRequestPart } from './WsRequestPart';
 
 const Part = () => {
   const part = useWsRequestPart();

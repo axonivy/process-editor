@@ -1,13 +1,13 @@
 /** @jsx svg */
 import {
   GArgument,
-  RectangularNodeView,
-  type RenderingContext,
   GLabel,
   GLabelView,
-  svg,
   hasArgs,
-  isBoundsAware
+  isBoundsAware,
+  RectangularNodeView,
+  svg,
+  type RenderingContext
 } from '@eclipse-glsp/client';
 import { injectable } from 'inversify';
 import type { VNode, VNodeStyle } from 'snabbdom';

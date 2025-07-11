@@ -1,9 +1,9 @@
+import type { PermissionsData, ValidationResult } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
 import { CollapsableUtil, customRender, customRenderHook, screen } from 'test-utils';
-import type { ValidationResult, PermissionsData } from '@axonivy/process-editor-inscription-protocol';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
 import { usePermissionsPart } from './PermissionsPart';
-import { describe, test, expect } from 'vitest';
 
 const Part = () => {
   const part = usePermissionsPart();

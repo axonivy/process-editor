@@ -1,8 +1,8 @@
+import type { ValidationResult } from '@axonivy/process-editor-inscription-protocol';
 import { customRenderHook } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { PartProps, PartStateFlag } from './usePart';
 import { useInscriptionTabState, usePartState } from './usePart';
-import type { ValidationResult } from '@axonivy/process-editor-inscription-protocol';
-import { describe, test, expect } from 'vitest';
 
 describe('usePartState', () => {
   function assertState(expectedState: PartStateFlag, data?: unknown, message?: ValidationResult[]) {

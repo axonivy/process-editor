@@ -1,8 +1,8 @@
 import type { ValidationResult } from '@axonivy/process-editor-inscription-protocol';
+import type { IvyIcons } from '@axonivy/ui-icons';
 import type { ReactNode } from 'react';
 import { useMemo, useState } from 'react';
 import { deepEqual } from '../../../utils/equals';
-import type { IvyIcons } from '@axonivy/ui-icons';
 
 export type PartStateFlag = 'configured' | 'warning' | 'error' | undefined;
 

@@ -1,9 +1,9 @@
+import type { CacheData, ValidationResult } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
 import { customRender, customRenderHook, screen } from 'test-utils';
-import type { CacheData, ValidationResult } from '@axonivy/process-editor-inscription-protocol';
-import { useCachePart } from './CachePart';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
-import { describe, test, expect } from 'vitest';
+import { useCachePart } from './CachePart';
 
 const Part = () => {
   const part = useCachePart();

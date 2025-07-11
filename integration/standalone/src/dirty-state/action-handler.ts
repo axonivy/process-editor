@@ -1,5 +1,5 @@
-import { injectable } from 'inversify';
 import type { Action, IActionHandler } from '@eclipse-glsp/client';
+import { injectable } from 'inversify';
 
 export interface SetDirtyStateAction extends Action {
   kind: typeof SetDirtyStateAction.KIND;

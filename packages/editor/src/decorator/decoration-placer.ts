@@ -1,5 +1,5 @@
+import { type Decoration, DecorationPlacer, GChildElement, GModelElement, isSizeable, Point } from '@eclipse-glsp/client';
 import { injectable } from 'inversify';
-import { type Decoration, DecorationPlacer, isSizeable, Point, GChildElement, GModelElement } from '@eclipse-glsp/client';
 import { ActivityNode } from '../diagram/model';
 
 @injectable()

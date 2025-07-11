@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import { EMPTY_ROLE, type RoleMeta } from '@axonivy/process-editor-inscription-protocol';
+import { useEffect, useState } from 'react';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
 

@@ -1,7 +1,7 @@
 import type { VariableInfo } from '@axonivy/process-editor-inscription-protocol';
-import { MappingTreeData } from './mapping-tree-data';
 import { cloneObject } from 'test-utils';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
+import { MappingTreeData } from './mapping-tree-data';
 
 describe('MappingTreeData', () => {
   const variableInfo: VariableInfo = {

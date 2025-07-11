@@ -1,8 +1,8 @@
 import type { Page } from '@playwright/test';
 import { expect } from '@playwright/test';
+import { graphLocator } from '../../page-objects/editor/graph';
 import { ProcessEditor } from '../../page-objects/editor/process-editor';
 import type { ElementPaletteGroup } from '../../page-objects/editor/toolbar';
-import { graphLocator } from '../../page-objects/editor/graph';
 
 export async function createAllElements(
   page: Page,

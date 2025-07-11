@@ -1,22 +1,22 @@
-import type { ReactNode } from 'react';
-import './InscriptionEditor.css';
 import type { ElementType, Severity } from '@axonivy/process-editor-inscription-protocol';
+import { Button, Flex, Message, SidebarHeader, SidebarMessages, Switch, useHotkeys } from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
+import type { ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useAction } from '../../context/useAction';
+import { useDataContext } from '../../context/useDataContext';
+import { useEditorContext } from '../../context/useEditorContext';
+import { useKnownHotkeys } from '../../utils/useKnownHotkeys';
+import { useGeneralData } from '../parts/name/useGeneralData';
+import './InscriptionEditor.css';
 import NoEditor from './NoEditor';
+import { ProcessOutline, type ProcessOutlineProps } from './ProcessOutline';
 import { activityEditors } from './activity/all-activity-editors';
 import { eventEditors } from './event/all-event-editors';
 import { gatewayEditors } from './gateway/all-gateway-editors';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { useGeneralData } from '../parts/name/useGeneralData';
 import { otherEditors } from './other-editors';
-import { thirdPartyEditors } from './third-party/all-third-party-editors';
-import { Button, Flex, Message, SidebarHeader, SidebarMessages, Switch, useHotkeys } from '@axonivy/ui-components';
-import { ProcessOutline, type ProcessOutlineProps } from './ProcessOutline';
-import { useDataContext } from '../../context/useDataContext';
-import { useEditorContext } from '../../context/useEditorContext';
-import { useAction } from '../../context/useAction';
-import { useTranslation } from 'react-i18next';
-import { useKnownHotkeys } from '../../utils/useKnownHotkeys';
 import { usePartDirty } from './part/usePart';
+import { thirdPartyEditors } from './third-party/all-third-party-editors';
 
 export type KnownEditor = { editor: ReactNode; icon?: IvyIcons };
 

@@ -1,9 +1,9 @@
-import { useMemo } from 'react';
-import { useTemplates } from './useTemplates';
 import type { WfNotification } from '@axonivy/process-editor-inscription-protocol';
-import { PathFieldset } from '../../common/path/PathFieldset';
-import Select, { type SelectItem } from '../../../widgets/select/Select';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import Select, { type SelectItem } from '../../../widgets/select/Select';
+import { PathFieldset } from '../../common/path/PathFieldset';
+import { useTemplates } from './useTemplates';
 
 const TemplateSelect = ({ notification, onChange }: { notification: WfNotification; onChange: (value: SelectItem) => void }) => {
   const { t } = useTranslation();

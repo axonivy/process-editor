@@ -1,19 +1,19 @@
 import type { OutputData } from '@axonivy/process-editor-inscription-protocol';
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useOutputData } from './useOutputData';
-import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
-import { useValidations } from '../../../context/useValidation';
-import type { BrowserType } from '../../browser/useBrowser';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
 import { PathContext } from '../../../context/usePath';
+import { useValidations } from '../../../context/useValidation';
+import type { BrowserType } from '../../browser/useBrowser';
+import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
+import Checkbox from '../../widgets/checkbox/Checkbox';
+import { ScriptArea } from '../../widgets/code-editor/ScriptArea';
 import MappingPart from '../common/mapping-tree/MappingPart';
 import { PathCollapsible } from '../common/path/PathCollapsible';
 import { ValidationFieldset } from '../common/path/validation/ValidationFieldset';
-import { ScriptArea } from '../../widgets/code-editor/ScriptArea';
-import Checkbox from '../../widgets/checkbox/Checkbox';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { useOutputData } from './useOutputData';
 
 type OutputPartOptions = {
   showSudo?: boolean;

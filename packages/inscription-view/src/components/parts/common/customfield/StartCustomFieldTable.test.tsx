@@ -1,7 +1,7 @@
 import type { StartCustomStartField } from '@axonivy/process-editor-inscription-protocol';
-import { customRender, screen, userEvent, TableUtil } from 'test-utils';
+import { customRender, screen, TableUtil, userEvent } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import StartCustomFieldTable from './StartCustomFieldTable';
-import { describe, test, expect } from 'vitest';
 
 describe('StartCustomFieldTable', () => {
   const customFields: StartCustomStartField[] = [

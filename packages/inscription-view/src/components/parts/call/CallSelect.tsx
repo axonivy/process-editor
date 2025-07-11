@@ -1,5 +1,5 @@
-import type { IvyIcons } from '@axonivy/ui-icons';
 import type { CallableStart } from '@axonivy/process-editor-inscription-protocol';
+import type { IvyIcons } from '@axonivy/ui-icons';
 import { useMemo } from 'react';
 import type { ComboboxItem } from '../../widgets/combobox/Combobox';
 import Combobox from '../../widgets/combobox/Combobox';

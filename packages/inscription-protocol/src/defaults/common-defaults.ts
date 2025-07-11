@@ -24,8 +24,8 @@ import type {
   WebserviceStartData,
   WsRequestData
 } from '../data/part-data';
-import { MAIL_TYPE, IVY_EXCEPTIONS } from '../data/workflow-data';
-import { DEFAULT_TASK_DATA, DEFAULT_CASE_DATA } from './workflow-defaults';
+import { IVY_EXCEPTIONS, MAIL_TYPE } from '../data/workflow-data';
+import { DEFAULT_CASE_DATA, DEFAULT_TASK_DATA } from './workflow-defaults';
 
 export const DEFAULT_NAME_DATA: GeneralData = {
   name: '',

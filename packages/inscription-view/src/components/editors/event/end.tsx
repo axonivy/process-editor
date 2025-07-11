@@ -1,12 +1,12 @@
-import { IvyIcons } from '@axonivy/ui-icons';
 import type { ElementType } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { memo } from 'react';
-import { type KnownEditor } from '../InscriptionEditor';
-import NameEditor from '../NameEditor';
-import Part from '../part/Part';
 import { useEndPagePart } from '../../parts/end-page/EndPagePart';
 import { useErrorThrowPart } from '../../parts/error/ErrorThrowPart';
 import { useGeneralPart } from '../../parts/name/GeneralPart';
+import { type KnownEditor } from '../InscriptionEditor';
+import NameEditor from '../NameEditor';
+import Part from '../part/Part';
 
 const TaskEndPageEditor = memo(() => {
   const name = useGeneralPart();

@@ -1,5 +1,5 @@
+import { describe, expect, test } from 'vitest';
 import { classifiedItemInfo } from './event-code-categorie';
-import { describe, test, expect } from 'vitest';
 
 describe('event code info', () => {
   test('info', () => {

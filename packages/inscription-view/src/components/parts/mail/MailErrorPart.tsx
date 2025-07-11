@@ -1,3 +1,6 @@
+import type { MailData } from '@axonivy/process-editor-inscription-protocol';
+import { IVY_EXCEPTIONS } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
 import { PathContext } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
@@ -6,9 +9,6 @@ import Checkbox from '../../widgets/checkbox/Checkbox';
 import ExceptionSelect from '../common/exception-handler/ExceptionSelect';
 import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
 import { useMailData } from './useMailData';
-import type { MailData } from '@axonivy/process-editor-inscription-protocol';
-import { IVY_EXCEPTIONS } from '@axonivy/process-editor-inscription-protocol';
-import { IvyIcons } from '@axonivy/ui-icons';
 
 export function useMailErrorPart(): PartProps {
   const { t } = useTranslation();

@@ -1,9 +1,9 @@
-import './BrowserBody.css';
-import { DialogClose, DialogContent, DialogPortal, DialogTitle } from '@radix-ui/react-dialog';
 import { Button, Flex } from '@axonivy/ui-components';
-import { TabContent, TabList, TabRoot, type Tab } from '../widgets/tab/Tab';
-import { useEditorContext } from '../../context/useEditorContext';
+import { DialogClose, DialogContent, DialogPortal, DialogTitle } from '@radix-ui/react-dialog';
 import { useTranslation } from 'react-i18next';
+import { useEditorContext } from '../../context/useEditorContext';
+import { TabContent, TabList, TabRoot, type Tab } from '../widgets/tab/Tab';
+import './BrowserBody.css';
 
 interface ReusableBrowserDialogProps {
   open: boolean;

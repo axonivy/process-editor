@@ -1,7 +1,7 @@
+import { customRender, screen, userEvent } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { Tab } from './Tab';
 import { Tabs } from './Tab';
-import { customRender, screen, userEvent } from 'test-utils';
-import { describe, test, expect } from 'vitest';
 
 describe('Tabs', () => {
   const tabs: Tab[] = [

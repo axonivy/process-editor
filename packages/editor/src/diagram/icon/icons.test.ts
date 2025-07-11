@@ -1,6 +1,6 @@
-import { describe, test, expect } from 'vitest';
-import { IconStyle, NoIcon, resolveIcon, SvgIcons } from './icons';
+import { describe, expect, test } from 'vitest';
 import { ActivityTypes, EventStartTypes } from '../view-types';
+import { IconStyle, NoIcon, resolveIcon, SvgIcons } from './icons';
 
 describe('ElementIcons', () => {
   test('element icons are correctly mapped', () => {

@@ -1,8 +1,8 @@
 import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import enTranslation from '../../../packages/editor/src/translation/process-editor/en.json';
-import deTranslation from '../../../packages/editor/src/translation/process-editor/de.json';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { initReactI18next } from 'react-i18next';
+import deTranslation from '../../../packages/editor/src/translation/process-editor/de.json';
+import enTranslation from '../../../packages/editor/src/translation/process-editor/en.json';
 
 export const initTranslation = () => {
   if (i18n.isInitializing || i18n.isInitialized) return;

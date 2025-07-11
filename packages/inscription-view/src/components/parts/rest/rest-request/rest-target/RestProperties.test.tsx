@@ -1,8 +1,8 @@
-import type { DeepPartial } from 'test-utils';
-import { customRender, CollapsableUtil, TableUtil, ComboboxUtil, userEvent, screen } from 'test-utils';
 import type { RestRequestData } from '@axonivy/process-editor-inscription-protocol';
-import { RestProperties } from './RestProperties';
+import type { DeepPartial } from 'test-utils';
+import { CollapsableUtil, ComboboxUtil, customRender, screen, TableUtil, userEvent } from 'test-utils';
 import { describe, test } from 'vitest';
+import { RestProperties } from './RestProperties';
 
 describe('RestProperties', () => {
   function renderPart(data?: DeepPartial<RestRequestData>) {

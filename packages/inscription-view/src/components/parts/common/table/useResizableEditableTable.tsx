@@ -1,12 +1,12 @@
+import { TableAddRow } from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
 import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
 import { getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { deepEqual } from '../../../../utils/equals';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { TableAddRow } from '@axonivy/ui-components';
 import type { FieldsetControl } from '../../../widgets/fieldset/fieldset-control';
 import { focusNewCell } from './cellFocus-utils';
-import { useTranslation } from 'react-i18next';
 
 interface UseResizableEditableTableProps<TData> {
   data: TData[];

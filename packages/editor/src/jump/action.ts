@@ -1,22 +1,22 @@
+import { IvyIcons } from '@axonivy/ui-icons';
 import {
   Action,
-  type IActionHandler,
-  GModelElement,
   EditorContextService,
+  GModelElement,
   isViewport,
-  type Viewport,
-  TYPES,
   SetViewportAction,
-  type IActionDispatcher
+  TYPES,
+  type IActionDispatcher,
+  type IActionHandler,
+  type Viewport
 } from '@eclipse-glsp/client';
 import { SelectAllAction } from '@eclipse-glsp/protocol';
-import { injectable, inject } from 'inversify';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { inject, injectable } from 'inversify';
 
-import { type QuickAction, SingleQuickActionProvider } from '../ui-tools/quick-action/quick-action';
-import { isJumpable } from './model';
 import { JumpAction } from '@axonivy/process-editor-protocol';
 import { t } from 'i18next';
+import { SingleQuickActionProvider, type QuickAction } from '../ui-tools/quick-action/quick-action';
+import { isJumpable } from './model';
 
 @injectable()
 export class JumpActionHandler implements IActionHandler {

@@ -1,8 +1,8 @@
 import type { VariableInfo } from '@axonivy/process-editor-inscription-protocol';
 import { TableUtil, customRender, screen, userEvent } from 'test-utils';
-import { useAttributeBrowser } from './AttributeBrowser';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import type { BrowserValue } from '../Browser';
+import { useAttributeBrowser } from './AttributeBrowser';
 
 const TYPES = {
   'mock.Test': [

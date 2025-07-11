@@ -1,11 +1,10 @@
-import { GEdge, GModelElement } from '@eclipse-glsp/client';
-import { injectable } from 'inversify';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { QuickActionTriggerEdgeCreationAction } from '../ui-tools/quick-action/edge/edge-creation-tool';
-
-import { type QuickAction, SingleQuickActionProvider } from '../ui-tools/quick-action/quick-action';
 import { AutoBendEdgeOperation, StraightenEdgeOperation } from '@axonivy/process-editor-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { GEdge, GModelElement } from '@eclipse-glsp/client';
 import { t } from 'i18next';
+import { injectable } from 'inversify';
+import { QuickActionTriggerEdgeCreationAction } from '../ui-tools/quick-action/edge/edge-creation-tool';
+import { type QuickAction, SingleQuickActionProvider } from '../ui-tools/quick-action/quick-action';
 
 @injectable()
 export class StraightenEdgeQuickActionProvider extends SingleQuickActionProvider {

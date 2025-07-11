@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
 import { focusAdjacentTabIndexMonaco } from './focus';
 
 describe('focusAdjacentTabIndexMonaco', () => {

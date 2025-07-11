@@ -1,22 +1,22 @@
-import './App.css';
 import type {
   ElementData,
   InscriptionData,
   InscriptionElementContext,
-  ValidationResult,
-  PID
+  PID,
+  ValidationResult
 } from '@axonivy/process-editor-inscription-protocol';
 import { PanelMessage, ReadonlyProvider, Spinner } from '@axonivy/ui-components';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import AppStateView from './AppStateView';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import type { Unary } from './types/lambda';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import './App.css';
+import AppStateView from './AppStateView';
 import { InscriptionEditor, type InscriptionOutlineProps } from './components/editors/InscriptionEditor';
 import { useClient } from './context/useClient';
-import { DEFAULT_EDITOR_CONTEXT, EditorContextInstance } from './context/useEditorContext';
 import { DataContextInstance } from './context/useDataContext';
-import { useTranslation } from 'react-i18next';
+import { DEFAULT_EDITOR_CONTEXT, EditorContextInstance } from './context/useEditorContext';
+import type { Unary } from './types/lambda';
 
 function App({ outline, app, pmv, pid }: InscriptionElementContext & InscriptionOutlineProps) {
   const { t } = useTranslation();

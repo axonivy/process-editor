@@ -1,7 +1,7 @@
 import type { HttpMethod, RestRequestData, RestResource, RestResponseData } from '@axonivy/process-editor-inscription-protocol';
 import { produce } from 'immer';
-import { evalBodyType, evalInputType } from './known-types';
 import { useConfigDataContext } from '../../../context/useDataContext';
+import { evalBodyType, evalInputType } from './known-types';
 
 export function useUpdateRestResource(): {
   updateResource: (value: string, resource?: RestResource) => void;

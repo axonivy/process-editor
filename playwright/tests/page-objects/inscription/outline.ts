@@ -4,7 +4,10 @@ export class Outline {
   protected readonly page: Page;
   readonly view: Locator;
 
-  constructor(page: Page, readonly parentLocator: Locator) {
+  constructor(
+    page: Page,
+    readonly parentLocator: Locator
+  ) {
     this.page = page;
     this.view = parentLocator.locator('.ui-outline');
   }

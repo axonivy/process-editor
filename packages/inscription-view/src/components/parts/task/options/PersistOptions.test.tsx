@@ -1,7 +1,7 @@
-import PersistOptions from './PersistOptions';
 import type { TaskData } from '@axonivy/process-editor-inscription-protocol';
 import { customRender, screen, userEvent } from 'test-utils';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
+import PersistOptions from './PersistOptions';
 
 describe('PersistOptions', () => {
   function renderTaskPart(data?: Partial<TaskData>) {

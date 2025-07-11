@@ -1,8 +1,8 @@
-import { customRender, screen } from 'test-utils';
 import type { ValidationResult } from '@axonivy/process-editor-inscription-protocol';
-import { describe, test, expect } from 'vitest';
-import { ValidationRow } from './ValidationRow';
 import type { Row } from '@tanstack/react-table';
+import { customRender, screen } from 'test-utils';
+import { describe, expect, test } from 'vitest';
+import { ValidationRow } from './ValidationRow';
 
 describe('ValidationRow', () => {
   function renderTable(path: string) {

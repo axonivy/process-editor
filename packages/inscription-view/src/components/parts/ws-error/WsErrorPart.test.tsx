@@ -1,9 +1,9 @@
-import type { DeepPartial } from 'test-utils';
-import { customRender, customRenderHook, CollapsableUtil, SelectUtil } from 'test-utils';
 import type { ValidationResult, WsErrorData } from '@axonivy/process-editor-inscription-protocol';
+import type { DeepPartial } from 'test-utils';
+import { CollapsableUtil, customRender, customRenderHook, SelectUtil } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
 import { useWsErrorPart } from './WsErrorPart';
-import { describe, test, expect } from 'vitest';
 
 const Part = () => {
   const part = useWsErrorPart();

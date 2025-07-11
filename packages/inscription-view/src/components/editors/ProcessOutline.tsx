@@ -1,11 +1,11 @@
-import { Outline, type OutlineNode, type OutlineProps } from '@axonivy/ui-components';
 import type { OutlineNode as ProcessOutlineNode } from '@axonivy/process-editor-inscription-protocol';
-import { PID } from '../../utils/pid';
+import { Outline, type OutlineNode, type OutlineProps } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../context/useEditorContext';
 import { useMeta } from '../../context/useMeta';
-import { useTranslation } from 'react-i18next';
+import { PID } from '../../utils/pid';
 
 export type ProcessOutlineProps = Omit<OutlineProps, 'outline'>;
 

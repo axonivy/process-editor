@@ -1,12 +1,12 @@
+import { InputBadge, useField } from '@axonivy/ui-components';
+import { useOnFocus } from '../../../components/browser/useOnFocus';
+import { usePath } from '../../../context/usePath';
+import { badgePropsExpression } from '../../../utils/badgeproperties';
+import Browser from '../../browser/Browser';
 import './ScriptInput.css';
 import type { CodeEditorInputProps } from './SingleLineCodeEditor';
 import { SingleLineCodeEditor } from './SingleLineCodeEditor';
 import { useMonacoEditor } from './useCodeEditor';
-import { useOnFocus } from '../../../components/browser/useOnFocus';
-import { useField, InputBadge } from '@axonivy/ui-components';
-import { badgePropsExpression } from '../../../utils/badgeproperties';
-import { usePath } from '../../../context/usePath';
-import Browser from '../../browser/Browser';
 
 type MacroInputProps = Omit<CodeEditorInputProps, 'context'>;
 

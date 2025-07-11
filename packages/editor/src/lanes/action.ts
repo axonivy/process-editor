@@ -1,11 +1,10 @@
-import { CreateNodeOperation, GModelElement } from '@eclipse-glsp/client';
-import { injectable } from 'inversify';
 import { IvyIcons } from '@axonivy/ui-icons';
-
+import { CreateNodeOperation, GModelElement } from '@eclipse-glsp/client';
+import { t } from 'i18next';
+import { injectable } from 'inversify';
 import { LaneNode } from '../diagram/model';
 import { LaneTypes } from '../diagram/view-types';
 import { type QuickAction, SingleQuickActionProvider } from '../ui-tools/quick-action/quick-action';
-import { t } from 'i18next';
 
 @injectable()
 export class CreateLaneQuickActionProvider extends SingleQuickActionProvider {

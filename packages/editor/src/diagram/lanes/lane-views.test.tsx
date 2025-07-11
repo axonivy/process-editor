@@ -1,9 +1,9 @@
-import type { ModelRenderer, GGraph, GModelFactory, GNode, ViewRegistry } from '@eclipse-glsp/client';
-import { describe, test, expect, beforeEach } from 'vitest';
-import { LaneTypes } from '../view-types';
-import type { LaneNode } from '../model';
-import { setupViewTestContainer } from '../../test-utils/view-container.test-util';
+import type { GGraph, GModelFactory, GNode, ModelRenderer, ViewRegistry } from '@eclipse-glsp/client';
 import toHTML from 'snabbdom-to-html';
+import { beforeEach, describe, expect, test } from 'vitest';
+import { setupViewTestContainer } from '../../test-utils/view-container.test-util';
+import type { LaneNode } from '../model';
+import { LaneTypes } from '../view-types';
 
 function createModel(graphFactory: GModelFactory): GGraph {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

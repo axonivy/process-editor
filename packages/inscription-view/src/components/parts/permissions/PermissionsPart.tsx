@@ -1,10 +1,10 @@
+import type { PermissionsData } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
 import { usePartState, type PartProps } from '../../../components/editors/part/usePart';
 import Checkbox from '../../widgets/checkbox/Checkbox';
 import Collapsible from '../../widgets/collapsible/Collapsible';
 import { usePermissionsData } from './usePermissionsData';
-import type { PermissionsData } from '@axonivy/process-editor-inscription-protocol';
-import { IvyIcons } from '@axonivy/ui-icons';
 
 export function usePermissionsPart(): PartProps {
   const { t } = useTranslation();

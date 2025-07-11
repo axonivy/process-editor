@@ -1,4 +1,5 @@
 import { JumpAction } from '@axonivy/process-editor-protocol';
+import { Button } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import {
   Action,
@@ -10,11 +11,10 @@ import {
   TYPES,
   UpdateModelAction
 } from '@eclipse-glsp/client';
-import { inject, injectable } from 'inversify';
-import { ReactUIExtension } from '../utils/react-ui-extension';
-import React from 'react';
-import { Button } from '@axonivy/ui-components';
 import { t } from 'i18next';
+import { inject, injectable } from 'inversify';
+import React from 'react';
+import { ReactUIExtension } from '../utils/react-ui-extension';
 
 @injectable()
 export class JumpOutUi extends ReactUIExtension implements IActionHandler {

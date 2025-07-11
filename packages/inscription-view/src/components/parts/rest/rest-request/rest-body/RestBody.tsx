@@ -1,18 +1,18 @@
-import { useRestRequestData } from '../../useRestRequestData';
 import type { InputType } from '@axonivy/process-editor-inscription-protocol';
 import { REST_INPUT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { RestBodyRaw } from './RestBodyRaw';
-import { RestContentType } from './RestContentType';
-import { RestForm } from './RestForm';
-import { RestEntity } from './RestEntity';
-import { deepEqual } from '../../../../../utils/equals';
+import { useTranslation } from 'react-i18next';
 import type { RadioItemProps } from '../../../../../components/widgets/radio/Radio';
-import { useRestResourceMeta } from '../../useRestResourceMeta';
-import { isFormMedia } from '../../known-types';
-import { PathCollapsible } from '../../../common/path/PathCollapsible';
 import Radio from '../../../../../components/widgets/radio/Radio';
 import { useOpenApi } from '../../../../../context/useOpenApi';
-import { useTranslation } from 'react-i18next';
+import { deepEqual } from '../../../../../utils/equals';
+import { PathCollapsible } from '../../../common/path/PathCollapsible';
+import { isFormMedia } from '../../known-types';
+import { useRestRequestData } from '../../useRestRequestData';
+import { useRestResourceMeta } from '../../useRestResourceMeta';
+import { RestBodyRaw } from './RestBodyRaw';
+import { RestContentType } from './RestContentType';
+import { RestEntity } from './RestEntity';
+import { RestForm } from './RestForm';
 
 export const useBodyTypes = (currentType: InputType): RadioItemProps<InputType>[] => {
   const { openApi } = useOpenApi();

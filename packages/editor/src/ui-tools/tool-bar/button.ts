@@ -1,10 +1,10 @@
 import { IvyIcons } from '@axonivy/ui-icons';
 import { Action, EnableDefaultToolsAction, EnableToolsAction, type IGridManager, MarqueeMouseTool, TYPES } from '@eclipse-glsp/client';
+import { t } from 'i18next';
 import { inject, injectable } from 'inversify';
+import { currentTheme } from '../../theme/current-theme';
 import { ShowToolBarOptionsMenuAction } from './options/action';
 import { CustomIconToggleActionHandler } from './options/action-handler';
-import { t } from 'i18next';
-import { currentTheme } from '../../theme/current-theme';
 
 export interface ToolBarButtonProvider {
   button(): ToolBarButton | undefined;

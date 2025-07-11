@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { FieldsetControl } from '../widgets/fieldset/fieldset-control';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import type { FieldsetControl } from '../widgets/fieldset/fieldset-control';
 
 const useMaximizedCodeEditor = () => {
   const { t } = useTranslation();

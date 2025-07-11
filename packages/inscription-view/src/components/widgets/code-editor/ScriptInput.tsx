@@ -1,12 +1,12 @@
+import { useField } from '@axonivy/ui-components';
+import { useOnFocus } from '../../../components/browser/useOnFocus';
+import { usePath } from '../../../context/usePath';
+import Browser from '../../browser/Browser';
+import { Input } from '../input/Input';
 import './ScriptInput.css';
 import type { CodeEditorInputProps } from './SingleLineCodeEditor';
 import { SingleLineCodeEditor } from './SingleLineCodeEditor';
 import { useMonacoEditor } from './useCodeEditor';
-import { useOnFocus } from '../../../components/browser/useOnFocus';
-import { useField } from '@axonivy/ui-components';
-import { usePath } from '../../../context/usePath';
-import Browser from '../../browser/Browser';
-import { Input } from '../input/Input';
 
 export const ScriptInput = ({
   value,

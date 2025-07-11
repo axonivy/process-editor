@@ -1,8 +1,8 @@
-import { customRender, screen, TableUtil, customRenderHook, CollapsableUtil } from 'test-utils';
-import type { WfCase, CaseData } from '@axonivy/process-editor-inscription-protocol';
-import { useCasePart } from './CasePart';
+import type { CaseData, WfCase } from '@axonivy/process-editor-inscription-protocol';
+import { CollapsableUtil, customRender, customRenderHook, screen, TableUtil } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
-import { describe, test, expect } from 'vitest';
+import { useCasePart } from './CasePart';
 
 const Part = () => {
   const part = useCasePart();

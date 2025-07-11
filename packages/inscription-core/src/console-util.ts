@@ -24,7 +24,10 @@ export function timeLogIf(condition?: boolean, label?: string, ...data: any[]): 
 }
 
 export class ConsoleTimer {
-  constructor(protected condition: boolean | undefined, protected label: string) {}
+  constructor(
+    protected condition: boolean | undefined,
+    protected label: string
+  ) {}
 
   log(message?: any, ...optionalParams: any[]) {
     logIf(this.condition, message, ...optionalParams);

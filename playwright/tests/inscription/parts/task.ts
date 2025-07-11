@@ -1,14 +1,14 @@
-import type { PartTest } from './part-tester';
-import { NewPartTest, PartObject } from './part-tester';
-import type { Part } from '../../page-objects/inscription/part';
+import type { Checkbox } from '../../page-objects/inscription/checkbox';
 import type { ScriptArea, ScriptInput } from '../../page-objects/inscription/code-editor';
+import type { InfoComponent } from '../../page-objects/inscription/info-component';
+import type { InscriptionTab } from '../../page-objects/inscription/inscription-tab';
+import type { Part } from '../../page-objects/inscription/part';
+import type { ResponsibleComponent } from '../../page-objects/inscription/responsible-component';
 import type { Section } from '../../page-objects/inscription/section';
 import type { Select } from '../../page-objects/inscription/select';
 import type { Table } from '../../page-objects/inscription/table';
-import type { Checkbox } from '../../page-objects/inscription/checkbox';
-import type { InfoComponent } from '../../page-objects/inscription/info-component';
-import type { ResponsibleComponent } from '../../page-objects/inscription/responsible-component';
-import type { InscriptionTab } from '../../page-objects/inscription/inscription-tab';
+import type { PartTest } from './part-tester';
+import { NewPartTest, PartObject } from './part-tester';
 
 export class TasksTester implements PartTest {
   private tasks: { tab: string; test: PartTest }[];

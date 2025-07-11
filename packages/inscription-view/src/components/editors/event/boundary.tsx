@@ -1,12 +1,12 @@
-import { IvyIcons } from '@axonivy/ui-icons';
 import type { ElementType } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { memo } from 'react';
-import { type KnownEditor } from '../InscriptionEditor';
-import Part from '../part/Part';
 import { useErrorCatchPart } from '../../parts/error/ErrorCatchPart';
 import { useGeneralPart } from '../../parts/name/GeneralPart';
 import { useOutputPart } from '../../parts/output/OutputPart';
 import { useSignalCatchPart } from '../../parts/signal/SignalCatchPart';
+import { type KnownEditor } from '../InscriptionEditor';
+import Part from '../part/Part';
 
 const ErrorBoundaryEventEditor = memo(() => {
   const name = useGeneralPart();

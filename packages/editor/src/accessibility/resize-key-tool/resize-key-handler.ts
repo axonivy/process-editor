@@ -7,8 +7,8 @@ import {
   ResizeElementHandler,
   SelectionService
 } from '@eclipse-glsp/client';
-import { QuickActionUI } from '../../ui-tools/quick-action/quick-action-ui';
 import { inject } from 'inversify';
+import { QuickActionUI } from '../../ui-tools/quick-action/quick-action-ui';
 
 export class IvyResizeElementHandler extends ResizeElementHandler {
   @inject(SelectionService) protected selectionService: SelectionService;

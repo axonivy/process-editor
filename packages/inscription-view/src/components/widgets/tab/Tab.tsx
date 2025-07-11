@@ -1,10 +1,10 @@
-import './Tab.css';
-import { Tabs as TabsRoot, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
+import type { IvyIcons } from '@axonivy/ui-icons';
+import { TabsContent, TabsList, Tabs as TabsRoot, TabsTrigger } from '@radix-ui/react-tabs';
 import type { ReactNode } from 'react';
 import { useMemo } from 'react';
-import type { ValidationMessage } from '../message/Message';
 import IvyIcon from '../IvyIcon';
-import type { IvyIcons } from '@axonivy/ui-icons';
+import type { ValidationMessage } from '../message/Message';
+import './Tab.css';
 
 export type Tab = {
   id: string;

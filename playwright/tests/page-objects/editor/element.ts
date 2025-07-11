@@ -1,8 +1,8 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import type { Point } from './types';
-import { QuickActionBar } from './quick-action-bar';
 import { LabelEdit } from './label-edit';
 import { ProcessEditor } from './process-editor';
+import { QuickActionBar } from './quick-action-bar';
+import type { Point } from './types';
 
 export class BaseElement {
   protected readonly page: Page;

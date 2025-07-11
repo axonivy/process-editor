@@ -1,13 +1,13 @@
 import type { CacheData } from '@axonivy/process-editor-inscription-protocol';
-import { usePartState, type PartProps } from '../../../components/editors/part/usePart';
-import { useCacheData } from './useCacheData';
-import { CacheLifetime } from './CacheLifetime';
-import { useValidations } from '../../../context/useValidation';
-import { PathContext } from '../../../context/usePath';
-import Radio from '../../widgets/radio/Radio';
-import Collapsible from '../../widgets/collapsible/Collapsible';
-import { useTranslation } from 'react-i18next';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
+import { usePartState, type PartProps } from '../../../components/editors/part/usePart';
+import { PathContext } from '../../../context/usePath';
+import { useValidations } from '../../../context/useValidation';
+import Collapsible from '../../widgets/collapsible/Collapsible';
+import Radio from '../../widgets/radio/Radio';
+import { CacheLifetime } from './CacheLifetime';
+import { useCacheData } from './useCacheData';
 
 export function useCachePart(): PartProps {
   const { t } = useTranslation();

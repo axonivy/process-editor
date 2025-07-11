@@ -1,7 +1,7 @@
 import type { RequestData, TaskData } from '@axonivy/process-editor-inscription-protocol';
 import { produce } from 'immer';
-import type { Consumer } from '../../../../types/lambda';
 import { useConfigDataContext, type ConfigDataContext } from '../../../../context/useDataContext';
+import type { Consumer } from '../../../../types/lambda';
 
 export type TaskPersistData = Pick<TaskData, 'persistOnStart'> & Pick<RequestData, 'permission'>;
 

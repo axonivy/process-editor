@@ -1,8 +1,8 @@
-import type { DeepPartial } from 'test-utils';
-import { customRender, CollapsableUtil, TableUtil, ComboboxUtil, userEvent, screen } from 'test-utils';
 import type { WsRequestData } from '@axonivy/process-editor-inscription-protocol';
-import { WsProperties } from './WsProperties';
+import type { DeepPartial } from 'test-utils';
+import { CollapsableUtil, ComboboxUtil, customRender, screen, TableUtil, userEvent } from 'test-utils';
 import { describe, test } from 'vitest';
+import { WsProperties } from './WsProperties';
 
 describe('WsProperties', () => {
   function renderPart(data?: DeepPartial<WsRequestData>) {

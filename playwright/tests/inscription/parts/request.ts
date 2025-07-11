@@ -1,11 +1,11 @@
-import type { Part } from '../../page-objects/inscription/part';
-import { NewPartTest, PartObject } from './part-tester';
 import type { Checkbox } from '../../page-objects/inscription/checkbox';
-import type { Section } from '../../page-objects/inscription/section';
-import type { Table } from '../../page-objects/inscription/table';
-import type { Select } from '../../page-objects/inscription/select';
-import type { Tags } from '../../page-objects/inscription/tags';
 import type { InfoComponent } from '../../page-objects/inscription/info-component';
+import type { Part } from '../../page-objects/inscription/part';
+import type { Section } from '../../page-objects/inscription/section';
+import type { Select } from '../../page-objects/inscription/select';
+import type { Table } from '../../page-objects/inscription/table';
+import type { Tags } from '../../page-objects/inscription/tags';
+import { NewPartTest, PartObject } from './part-tester';
 
 class Request extends PartObject {
   httpable: Checkbox;

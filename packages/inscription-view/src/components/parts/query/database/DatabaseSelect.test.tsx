@@ -1,6 +1,6 @@
 import { SelectUtil, customRender } from 'test-utils';
-import { DatabaseSelect } from './DatabaseSelect';
 import { describe, test } from 'vitest';
+import { DatabaseSelect } from './DatabaseSelect';
 
 describe('DatabaseSelect', () => {
   test('data', async () => {

@@ -1,7 +1,7 @@
 import type { AlternativeConditions, ConnectorRef, InscriptionType } from '@axonivy/process-editor-inscription-protocol';
-import { Condition } from './condition';
 import { cloneObject } from 'test-utils';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
+import { Condition } from './condition';
 
 describe('Condition', () => {
   const altConditions: AlternativeConditions = {

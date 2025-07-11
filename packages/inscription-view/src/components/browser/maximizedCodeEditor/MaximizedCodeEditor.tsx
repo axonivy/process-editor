@@ -1,11 +1,11 @@
-import './MaximizedCodeEditor.css';
-import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-import { useBrowser, type BrowserType } from '../useBrowser';
-import { monacoAutoFocus, useMonacoEditor } from '../../widgets/code-editor/useCodeEditor';
-import { CodeEditor } from '../../widgets/code-editor/CodeEditor';
-import Browser from '../Browser';
-import { MAXIMIZED_MONACO_OPTIONS, MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
 import type { IvyIcons } from '@axonivy/ui-icons';
+import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import { MAXIMIZED_MONACO_OPTIONS, MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
+import { CodeEditor } from '../../widgets/code-editor/CodeEditor';
+import { monacoAutoFocus, useMonacoEditor } from '../../widgets/code-editor/useCodeEditor';
+import Browser from '../Browser';
+import { useBrowser, type BrowserType } from '../useBrowser';
+import './MaximizedCodeEditor.css';
 
 export type MaximizedCodeEditorProps = {
   editorValue: string;

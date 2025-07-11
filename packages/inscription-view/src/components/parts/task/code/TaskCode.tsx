@@ -1,9 +1,9 @@
-import { useTaskData } from '../useTaskData';
+import { useTranslation } from 'react-i18next';
 import useMaximizedCodeEditor from '../../../browser/useMaximizedCodeEditor';
+import { ScriptArea } from '../../../widgets/code-editor/ScriptArea';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
 import { ValidationFieldset } from '../../common/path/validation/ValidationFieldset';
-import { ScriptArea } from '../../../widgets/code-editor/ScriptArea';
-import { useTranslation } from 'react-i18next';
+import { useTaskData } from '../useTaskData';
 
 const TaskCode = () => {
   const { t } = useTranslation();

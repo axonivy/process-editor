@@ -1,8 +1,8 @@
-import { CollapsableUtil, ComboboxUtil, customRender, customRenderHook } from 'test-utils';
 import type { ErrorCatchData } from '@axonivy/process-editor-inscription-protocol';
-import { useErrorCatchPart } from './ErrorCatchPart';
+import { CollapsableUtil, ComboboxUtil, customRender, customRenderHook } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
-import { describe, test, expect } from 'vitest';
+import { useErrorCatchPart } from './ErrorCatchPart';
 
 const Part = () => {
   const part = useErrorCatchPart();

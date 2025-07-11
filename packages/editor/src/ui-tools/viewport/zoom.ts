@@ -1,4 +1,4 @@
-import { Action, isCtrlOrCmd, GModelElement, ZoomMouseListener } from '@eclipse-glsp/client';
+import { Action, GModelElement, isCtrlOrCmd, ZoomMouseListener } from '@eclipse-glsp/client';
 import { injectable } from 'inversify';
 
 @injectable()

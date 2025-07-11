@@ -1,14 +1,14 @@
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useRequestData } from './useRequestData';
 import type { RequestData } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
+import { PathContext } from '../../../context/usePath';
+import { useValidations } from '../../../context/useValidation';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
+import Checkbox from '../../widgets/checkbox/Checkbox';
+import StartCustomFieldTable from '../common/customfield/StartCustomFieldTable';
 import Information from '../common/info/Information';
 import { Permission } from '../common/permission/Permission';
-import StartCustomFieldTable from '../common/customfield/StartCustomFieldTable';
-import { useValidations } from '../../../context/useValidation';
-import Checkbox from '../../widgets/checkbox/Checkbox';
-import { PathContext } from '../../../context/usePath';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { useRequestData } from './useRequestData';
 
 export function useRequestPart(): PartProps {
   const { t } = useTranslation();

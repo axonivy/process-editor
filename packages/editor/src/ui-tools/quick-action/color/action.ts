@@ -1,13 +1,13 @@
-import { Action, PaletteItem, GModelElement, TYPES, type IActionDispatcher } from '@eclipse-glsp/client';
+import { ChangeColorOperation } from '@axonivy/process-editor-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { Action, GModelElement, PaletteItem, TYPES, type IActionDispatcher } from '@eclipse-glsp/client';
+import { t } from 'i18next';
+import { inject, injectable } from 'inversify';
+import { LaneTypes } from '../../../diagram/view-types';
+import { IVY_TYPES } from '../../../types';
 import type { QuickAction, QuickActionProvider } from '../quick-action';
 import { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
-import { injectable, inject } from 'inversify';
-import { IVY_TYPES } from '../../../types';
 import { ColorPaletteHandler } from './action-handler';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { ChangeColorOperation } from '@axonivy/process-editor-protocol';
-import { LaneTypes } from '../../../diagram/view-types';
-import { t } from 'i18next';
 
 @injectable()
 export class SelectColorQuickActionProvider implements QuickActionProvider {

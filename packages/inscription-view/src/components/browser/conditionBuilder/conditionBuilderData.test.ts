@@ -1,6 +1,6 @@
-import { describe, test, expect } from 'vitest';
-import { generateConditionString } from './conditionBuilderData';
 import type { ConditionGroupData } from '@axonivy/ui-components';
+import { describe, expect, test } from 'vitest';
+import { generateConditionString } from './conditionBuilderData';
 
 describe('generateConditionString', () => {
   test('returns "true" for always-true mode', () => {

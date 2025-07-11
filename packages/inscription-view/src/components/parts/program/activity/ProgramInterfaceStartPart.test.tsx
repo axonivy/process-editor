@@ -1,9 +1,9 @@
+import type { ProgramInterfaceStartData, ValidationResult } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
 import { CollapsableUtil, ComboboxUtil, customRender, customRenderHook } from 'test-utils';
-import type { ValidationResult, ProgramInterfaceStartData } from '@axonivy/process-editor-inscription-protocol';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../../editors/part/usePart';
 import { useProgramInterfaceStartPart } from './ProgramInterfaceStartPart';
-import { describe, test, expect } from 'vitest';
 
 const Part = () => {
   const part = useProgramInterfaceStartPart();

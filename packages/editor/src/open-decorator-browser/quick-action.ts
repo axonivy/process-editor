@@ -1,11 +1,11 @@
-import { GModelElement } from '@eclipse-glsp/client';
-import { injectable } from 'inversify';
 import { OpenDecoratorBrowserAction } from '@axonivy/process-editor-protocol';
-import { type QuickAction, SingleQuickActionProvider } from '../ui-tools/quick-action/quick-action';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { GModelElement } from '@eclipse-glsp/client';
+import { t } from 'i18next';
+import { injectable } from 'inversify';
 import { isWithCustomIcon } from '../diagram/icon/model';
 import { ActivityTypes } from '../diagram/view-types';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { t } from 'i18next';
+import { type QuickAction, SingleQuickActionProvider } from '../ui-tools/quick-action/quick-action';
 
 @injectable()
 export class CustomIconQuickActionProvider extends SingleQuickActionProvider {

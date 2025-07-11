@@ -1,11 +1,11 @@
+import { IvyIcons } from '@axonivy/ui-icons';
 import type { Action, IActionDispatcher, MaybePromise, PaletteItem } from '@eclipse-glsp/client';
 import { compare } from '@eclipse-glsp/client';
+import { t } from 'i18next';
 import { matchesKeystroke } from 'sprotty/lib/utils/keyboard';
 import { ActivityTypes, EventIntermediateTypes, EventStartTypes } from '../../diagram/view-types';
-import { IvyIcons } from '@axonivy/ui-icons';
 import { createElement, createIcon } from '../../utils/ui-utils';
 import { MenuIcons } from './icons';
-import { t } from 'i18next';
 
 export interface ShowMenuAction extends Action {
   paletteItems: () => MaybePromise<Array<PaletteItem>>;

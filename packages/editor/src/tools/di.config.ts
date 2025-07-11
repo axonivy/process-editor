@@ -21,8 +21,8 @@ import { IvyResizeHandleView } from '../diagram/views';
 import { IvySvgExporter } from './export/ivy-svg-exporter';
 import './helper-line.css';
 import { IvyChangeBoundsManager } from './ivy-change-bounds-manager';
-import { IvySelectMouseListener } from './select-mouse-listener';
 import { IvyChangeBoundsTool } from './ivy-change-bounds-tool';
+import { IvySelectMouseListener } from './select-mouse-listener';
 
 export const ivyChangeBoundsToolModule = new FeatureModule(
   (bind, unbind, isBound, rebind) => {

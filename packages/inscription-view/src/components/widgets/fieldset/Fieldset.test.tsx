@@ -1,10 +1,10 @@
+import { Input } from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { customRender, screen, userEvent } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { FieldsetProps } from './Fieldset';
 import Fieldset from './Fieldset';
-import { customRender, screen, userEvent } from 'test-utils';
-import { IvyIcons } from '@axonivy/ui-icons';
 import type { FieldsetControl } from './fieldset-control';
-import { describe, test, expect } from 'vitest';
-import { Input } from '@axonivy/ui-components';
 
 describe('Fieldset', () => {
   function renderFieldset(props: FieldsetProps) {

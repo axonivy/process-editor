@@ -1,10 +1,10 @@
 import type { RestRequestData, RestResource } from '@axonivy/process-editor-inscription-protocol';
 import { HTTP_METHOD } from '@axonivy/process-editor-inscription-protocol';
-import { RestMethodSelect } from './RestMethodSelect';
 import type { DeepPartial } from 'test-utils';
 import { ComboboxUtil, SelectUtil, customRender, screen } from 'test-utils';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { OpenApiContextProvider } from '../../../../../context/useOpenApi';
+import { RestMethodSelect } from './RestMethodSelect';
 
 describe('RestMethodSelect', () => {
   function renderMethodSelect(data?: DeepPartial<RestRequestData>) {

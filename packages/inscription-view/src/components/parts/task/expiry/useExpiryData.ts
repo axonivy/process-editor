@@ -1,9 +1,9 @@
 import type { WfExpiry } from '@axonivy/process-editor-inscription-protocol';
 import { produce } from 'immer';
-import type { DataUpdater } from '../../../../types/lambda';
-import type { PriorityUpdater } from '../priority/PrioritySelect';
-import type { ResponsibleUpdater } from '../../common/responsible/ResponsibleSelect';
 import { useTaskDataContext } from '../../../../context/useDataContext';
+import type { DataUpdater } from '../../../../types/lambda';
+import type { ResponsibleUpdater } from '../../common/responsible/ResponsibleSelect';
+import type { PriorityUpdater } from '../priority/PrioritySelect';
 
 export function useExpiryData(): {
   expiry: WfExpiry;

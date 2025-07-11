@@ -1,4 +1,4 @@
-import type { SchemaPath, SchemaKeys } from '@axonivy/process-editor-inscription-protocol';
+import type { SchemaKeys, SchemaPath } from '@axonivy/process-editor-inscription-protocol';
 import type { ReactNode } from 'react';
 import { createContext, useContext } from 'react';
 

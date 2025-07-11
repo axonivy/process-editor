@@ -1,7 +1,7 @@
 import type { VariableInfo } from '@axonivy/process-editor-inscription-protocol';
 import { customRender, screen, userEvent } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import MappingPart from './MappingPart';
-import { describe, test, expect } from 'vitest';
 
 describe('MappingPart', () => {
   const ATTRIBUTES = /Attribute/;

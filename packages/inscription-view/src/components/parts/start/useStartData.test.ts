@@ -1,8 +1,8 @@
+import type { ElementData, StartData } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
 import { customRenderHook } from 'test-utils';
-import type { ElementData, StartData } from '@axonivy/process-editor-inscription-protocol';
+import { describe, expect, test } from 'vitest';
 import { useStartData } from './useStartData';
-import { describe, test, expect } from 'vitest';
 
 describe('useStartData', () => {
   function renderDataHook(startData: StartData, options?: { name?: string; synchParams?: boolean }) {

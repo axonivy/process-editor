@@ -1,7 +1,7 @@
-import { customRender, screen } from 'test-utils';
-import MultipleRoleSelect from './MultipleRoleSelect';
 import type { RoleMeta } from '@axonivy/process-editor-inscription-protocol';
-import { describe, test, expect } from 'vitest';
+import { customRender, screen } from 'test-utils';
+import { describe, expect, test } from 'vitest';
+import MultipleRoleSelect from './MultipleRoleSelect';
 
 describe('MultipleRoleSelect', () => {
   function renderSelect(roles: string[]) {

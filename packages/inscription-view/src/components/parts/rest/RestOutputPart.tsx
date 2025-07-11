@@ -1,19 +1,19 @@
 import type { RestResponseData } from '@axonivy/process-editor-inscription-protocol';
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useRestOutputData } from './useRestOutputData';
-import { RestEntityTypeCombobox, useShowRestEntityTypeCombo } from './RestEntityTypeCombobox';
-import { useRestEntityTypeMeta, useRestResourceMeta } from './useRestResourceMeta';
-import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
-import { useValidations } from '../../../context/useValidation';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
 import { PathContext } from '../../../context/usePath';
+import { useValidations } from '../../../context/useValidation';
+import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
+import { ScriptArea } from '../../widgets/code-editor/ScriptArea';
+import MappingPart from '../common/mapping-tree/MappingPart';
 import { PathCollapsible } from '../common/path/PathCollapsible';
 import { ValidationFieldset } from '../common/path/validation/ValidationFieldset';
-import MappingPart from '../common/mapping-tree/MappingPart';
-import { ScriptArea } from '../../widgets/code-editor/ScriptArea';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { RestEntityTypeCombobox, useShowRestEntityTypeCombo } from './RestEntityTypeCombobox';
+import { useRestOutputData } from './useRestOutputData';
+import { useRestEntityTypeMeta, useRestResourceMeta } from './useRestResourceMeta';
 
 export function useRestOutputPart(): PartProps {
   const { t } = useTranslation();

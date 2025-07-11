@@ -1,11 +1,11 @@
 import type { ProgramStartData } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
+import { useValidations } from '../../../../context/useValidation';
 import { usePartState, type PartProps } from '../../../editors/part/usePart';
-import { useProgramStartData } from './useProgramStartData';
 import { Permission } from '../../common/permission/Permission';
 import JavaClassSelector from '../JavaClassSelector';
-import { useValidations } from '../../../../context/useValidation';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { useProgramStartData } from './useProgramStartData';
 
 export function useProgramStartPart(options?: { thirdParty?: boolean }): PartProps {
   const { t } = useTranslation();

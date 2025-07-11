@@ -1,3 +1,4 @@
+import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
 import { useAction } from '../../../../../context/useAction';
 import { useEditorContext } from '../../../../../context/useEditorContext';
@@ -7,7 +8,6 @@ import type { SelectItem } from '../../../../widgets/select/Select';
 import Select from '../../../../widgets/select/Select';
 import { PathFieldset } from '../../../common/path/PathFieldset';
 import { useRestRequestData } from '../../useRestRequestData';
-import { IvyIcons } from '@axonivy/ui-icons';
 
 export const RestClientSelect = () => {
   const { t } = useTranslation();

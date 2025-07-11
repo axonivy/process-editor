@@ -1,8 +1,8 @@
+import type { Checkbox } from '../../page-objects/inscription/checkbox';
 import type { ScriptInput } from '../../page-objects/inscription/code-editor';
 import type { Part } from '../../page-objects/inscription/part';
 import type { ResponsibleComponent } from '../../page-objects/inscription/responsible-component';
 import type { Section } from '../../page-objects/inscription/section';
-import type { Checkbox } from '../../page-objects/inscription/checkbox';
 import { NewPartTest, PartObject } from './part-tester';
 
 class Trigger extends PartObject {

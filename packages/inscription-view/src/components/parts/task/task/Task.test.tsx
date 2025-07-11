@@ -1,7 +1,7 @@
-import Task from './Task';
 import type { WfTask } from '@axonivy/process-editor-inscription-protocol';
 import { CollapsableUtil, customRender, screen, SelectUtil, userEvent } from 'test-utils';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
+import Task from './Task';
 
 describe('Task', () => {
   function renderTask(data?: Partial<WfTask>) {

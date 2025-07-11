@@ -1,7 +1,7 @@
+import { IvyIcons } from '@axonivy/ui-icons';
 import { expect, test } from 'vitest';
 import { getCursorValue } from './cursor-value';
 import type { TypeBrowserObject } from './TypeBrowser';
-import { IvyIcons } from '@axonivy/ui-icons';
 
 const value: TypeBrowserObject = {
   simpleName: 'SampleType',

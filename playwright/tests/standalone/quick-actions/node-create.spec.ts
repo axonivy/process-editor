@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
-import { ProcessEditor } from '../../page-objects/editor/process-editor';
 import type { Element } from '../../page-objects/editor/element';
+import { ProcessEditor } from '../../page-objects/editor/process-editor';
 
 test('switch categories', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);

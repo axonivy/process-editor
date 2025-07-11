@@ -1,13 +1,13 @@
-import { useState } from 'react';
 import type { IvyIcons } from '@axonivy/ui-icons';
+import { useState } from 'react';
+import type { Tab } from '../widgets/tab/Tab';
 import type { ATTRIBUTE_BROWSER_ID } from './attribute/AttributeBrowser';
 import type { CMS_BROWSER_ID } from './cms/CmsBrowser';
-import type { FUNCTION_BROWSER_ID } from './function/FunctionBrowser';
-import type { TYPE_BROWSER_ID } from './type/TypeBrowser';
-import type { TABLE_COL_BROWSER_ID } from './tableCol/TableColBrowser';
-import type { ROLE_BROWSER } from './role/RoleBrowser';
 import type { CONDITION_BUILDER_ID } from './conditionBuilder/useConditionBuilder';
-import type { Tab } from '../widgets/tab/Tab';
+import type { FUNCTION_BROWSER_ID } from './function/FunctionBrowser';
+import type { ROLE_BROWSER } from './role/RoleBrowser';
+import type { TABLE_COL_BROWSER_ID } from './tableCol/TableColBrowser';
+import type { TYPE_BROWSER_ID } from './type/TypeBrowser';
 
 export type BrowserType =
   | typeof ATTRIBUTE_BROWSER_ID

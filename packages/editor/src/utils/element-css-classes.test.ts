@@ -1,5 +1,5 @@
 import { GNode, addCssClassToElements, addCssClasses, removeCssClassOfElements, removeCssClasses } from '@eclipse-glsp/client';
-import { describe, test, expect, afterEach } from 'vitest';
+import { afterEach, describe, expect, test } from 'vitest';
 
 describe('ElementCssClassesUtil', () => {
   const node = new GNode();

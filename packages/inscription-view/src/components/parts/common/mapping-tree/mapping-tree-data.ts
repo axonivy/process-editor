@@ -1,4 +1,4 @@
-import type { VariableInfo, Variable } from '@axonivy/process-editor-inscription-protocol';
+import type { Variable, VariableInfo } from '@axonivy/process-editor-inscription-protocol';
 
 export interface MappingTreeData extends Variable {
   value: string;

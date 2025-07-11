@@ -1,7 +1,7 @@
 import type { WfCustomField } from '@axonivy/process-editor-inscription-protocol';
+import { customRender, screen, TableUtil, userEvent } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import CustomFieldTable from './CustomFieldTable';
-import { customRender, screen, userEvent, TableUtil } from 'test-utils';
-import { describe, test, expect } from 'vitest';
 
 describe('CustomFieldTable', () => {
   const customFields: WfCustomField[] = [

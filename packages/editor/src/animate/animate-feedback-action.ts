@@ -1,15 +1,14 @@
 import {
-  GChildElement,
-  Command,
-  type CommandExecutionContext,
-  GModelRoot,
-  TYPES,
   Action,
   addCssClasses,
-  removeCssClasses
+  Command,
+  type CommandExecutionContext,
+  GChildElement,
+  GModelRoot,
+  removeCssClasses,
+  TYPES
 } from '@eclipse-glsp/client';
 import { inject, injectable } from 'inversify';
-
 import { isAnimateable } from './model';
 
 export interface AnimateFeedbackAction extends Action {

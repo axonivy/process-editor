@@ -1,3 +1,4 @@
+import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
 import { useTranslation } from 'react-i18next';
 import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
@@ -6,7 +7,6 @@ import { ResponsiblePart } from '../../common/responsible/ResponsiblePart';
 import { PriorityPart } from '../priority/PriorityPart';
 import ErrorSelect from './ErrorSelect';
 import { useExpiryData } from './useExpiryData';
-import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
 
 const ExpiryPart = () => {
   const { t } = useTranslation();

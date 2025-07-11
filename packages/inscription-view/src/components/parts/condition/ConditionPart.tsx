@@ -1,15 +1,15 @@
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useConditionData } from './useConditionData';
-import { useEffect, useState } from 'react';
-import { Condition } from './condition';
-import ConditionTable from './ConditionTable';
 import type { ConditionData } from '@axonivy/process-editor-inscription-protocol';
-import { useValidations } from '../../../context/useValidation';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
 import { PathContext } from '../../../context/usePath';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { useValidations } from '../../../context/useValidation';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
+import { Condition } from './condition';
+import ConditionTable from './ConditionTable';
+import { useConditionData } from './useConditionData';
 
 export function useConditionPart(): PartProps {
   const { t } = useTranslation();

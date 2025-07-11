@@ -1,8 +1,8 @@
+import { EMPTY_VAR_INFO, type WsRequestData } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
 import { CollapsableUtil, customRender, TableUtil } from 'test-utils';
-import { EMPTY_VAR_INFO, type WsRequestData } from '@axonivy/process-editor-inscription-protocol';
-import { WsMapping } from './WsMapping';
 import { describe, test } from 'vitest';
+import { WsMapping } from './WsMapping';
 
 describe('WsMapping', () => {
   function renderPart(data?: DeepPartial<WsRequestData>) {

@@ -1,10 +1,10 @@
+import type { ScriptInput } from '../../page-objects/inscription/code-editor';
+import type { Combobox } from '../../page-objects/inscription/combobox';
 import type { Part } from '../../page-objects/inscription/part';
-import { NewPartTest, PartObject } from './part-tester';
+import type { RadioGroup } from '../../page-objects/inscription/radio-group';
 import type { Section } from '../../page-objects/inscription/section';
 import type { Select } from '../../page-objects/inscription/select';
-import type { ScriptInput } from '../../page-objects/inscription/code-editor';
-import type { RadioGroup } from '../../page-objects/inscription/radio-group';
-import type { Combobox } from '../../page-objects/inscription/combobox';
+import { NewPartTest, PartObject } from './part-tester';
 
 class Event extends PartObject {
   javaSection: Section;

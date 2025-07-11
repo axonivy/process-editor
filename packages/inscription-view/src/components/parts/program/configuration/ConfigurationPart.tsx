@@ -1,17 +1,17 @@
 import type { ConfigurationData, Label, Script, Text, Widget } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { usePartState, type PartProps } from '../../../editors/part/usePart';
-import { useConfigurationData } from './useConfigurationData';
-import './Configuration.css';
 import { Flex, Message } from '@axonivy/ui-components';
-import { useValidations } from '../../../../context/useValidation';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
+import { useValidations } from '../../../../context/useValidation';
+import { usePartState, type PartProps } from '../../../editors/part/usePart';
 import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
 import { Input } from '../../../widgets/input/Input';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import './Configuration.css';
+import { useConfigurationData } from './useConfigurationData';
 
 export function useConfigurationPart(): PartProps {
   const { t } = useTranslation();

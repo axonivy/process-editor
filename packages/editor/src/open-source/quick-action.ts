@@ -1,10 +1,10 @@
-import { GModelElement } from '@eclipse-glsp/client';
-import { injectable } from 'inversify';
 import { GoToSourceAction } from '@axonivy/process-editor-protocol';
-import { type QuickAction, SingleQuickActionProvider } from '../ui-tools/quick-action/quick-action';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { hasGoToSourceFeature } from './model';
+import { GModelElement } from '@eclipse-glsp/client';
 import { t } from 'i18next';
+import { injectable } from 'inversify';
+import { type QuickAction, SingleQuickActionProvider } from '../ui-tools/quick-action/quick-action';
+import { hasGoToSourceFeature } from './model';
 
 @injectable()
 export class GoToSourceQuickActionProvider extends SingleQuickActionProvider {

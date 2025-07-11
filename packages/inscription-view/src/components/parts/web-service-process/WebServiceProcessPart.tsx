@@ -1,15 +1,15 @@
 import type { WebServiceProcessData, WsAuth } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { usePartState, type PartProps } from '../../../components/editors/part/usePart';
-import { useWebServiceProcessData } from './useWebServiceProcessData';
 import { useValidations } from '../../../context/useValidation';
-import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
-import { PathFieldset } from '../common/path/PathFieldset';
 import { Input } from '../../widgets/input/Input';
 import Radio, { type RadioItemProps } from '../../widgets/radio/Radio';
-import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { PathFieldset } from '../common/path/PathFieldset';
+import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
+import { useWebServiceProcessData } from './useWebServiceProcessData';
 
 export function useWebServiceProcessPart(): PartProps {
   const { t } = useTranslation();

@@ -1,8 +1,8 @@
-import { useTaskData } from '../useTaskData';
+import CustomFieldTable from '../../common/customfield/CustomFieldTable';
 import Information from '../../common/info/Information';
 import TaskCode from '../code/TaskCode';
-import CustomFieldTable from '../../common/customfield/CustomFieldTable';
 import { PriorityCollapsible } from '../priority/PriorityPart';
+import { useTaskData } from '../useTaskData';
 
 const WsTask = () => {
   const { task, defaultTask, update, updatePriority } = useTaskData();

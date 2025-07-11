@@ -1,10 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useQueryData } from '../useQueryData';
-import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import { QUERY_ORDER } from '@axonivy/process-editor-inscription-protocol';
-import { arraymove, indexOf } from '../../../../utils/array';
-import { IvyIcons } from '@axonivy/ui-icons';
 import {
   ReorderHandleWrapper,
   ReorderRow,
@@ -15,12 +9,18 @@ import {
   TableCell,
   TableResizableHeader
 } from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
+import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
+import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
+import { arraymove, indexOf } from '../../../../utils/array';
 import type { SelectItem } from '../../../widgets/select/Select';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
 import { focusNewCell } from '../../common/table/cellFocus-utils';
-import { useTranslation } from 'react-i18next';
+import { useQueryData } from '../useQueryData';
 
 type OrderDirection = keyof typeof QUERY_ORDER;
 

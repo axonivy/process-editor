@@ -1,4 +1,4 @@
-import { GChildElement, TYPES, BringToFrontAction, BringToFrontCommand } from '@eclipse-glsp/client';
+import { BringToFrontAction, BringToFrontCommand, GChildElement, TYPES } from '@eclipse-glsp/client';
 import { inject, injectable } from 'inversify';
 
 import { LaneNode } from '../diagram/model';

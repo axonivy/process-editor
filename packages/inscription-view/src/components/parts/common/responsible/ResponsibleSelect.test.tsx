@@ -1,7 +1,7 @@
-import ResponsibleSelect from './ResponsibleSelect';
 import type { RoleMeta, WfResponsible, WfResponsibleType } from '@axonivy/process-editor-inscription-protocol';
 import { customRender, screen, SelectUtil } from 'test-utils';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
+import ResponsibleSelect from './ResponsibleSelect';
 
 describe('ResponsibleSelect', () => {
   function renderSelect(options?: { type?: WfResponsibleType; script?: string; roles?: string[]; optionsFilter?: WfResponsibleType[] }) {

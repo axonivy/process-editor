@@ -1,14 +1,13 @@
-import './Tags.css';
-import { memo, useEffect, useRef, useState } from 'react';
-import IvyIcon from '../IvyIcon';
-import { IvyIcons } from '@axonivy/ui-icons';
 import { useReadonly } from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { useCombobox } from 'downshift';
+import { memo, useEffect, useRef, useState } from 'react';
 import { useKeyboard } from 'react-aria';
+import IvyIcon from '../IvyIcon';
+import './Tags.css';
 
+import { Flex, Popover, PopoverAnchor, PopoverContent } from '@axonivy/ui-components';
 import { useTranslation } from 'react-i18next';
-import { Popover, PopoverAnchor, PopoverContent } from '@axonivy/ui-components';
-import { Flex } from '@axonivy/ui-components';
 
 const Tags = (props: {
   tags: string[];

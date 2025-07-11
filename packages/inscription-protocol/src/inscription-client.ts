@@ -1,4 +1,4 @@
-import type { InscriptionElementContext, ValidationResult, InscriptionActionArgs } from './data/inscription';
+import type { InscriptionActionArgs, InscriptionElementContext, ValidationResult } from './data/inscription';
 import type { InscriptionData, InscriptionSaveData } from './data/inscription-data';
 import type { InscriptionMetaRequestTypes } from './inscription-protocol';
 

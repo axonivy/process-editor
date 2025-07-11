@@ -1,4 +1,4 @@
-import type { ValidationResult, Severity } from '@axonivy/process-editor-inscription-protocol';
+import type { Severity, ValidationResult } from '@axonivy/process-editor-inscription-protocol';
 
 export type ValidationMessage = Omit<ValidationResult, 'path'>;
 

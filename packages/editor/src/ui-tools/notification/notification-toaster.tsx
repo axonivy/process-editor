@@ -1,3 +1,5 @@
+import { ElementMessageAction, MoveIntoViewportAction } from '@axonivy/process-editor-protocol';
+import { toast, Toaster } from '@axonivy/ui-components';
 import {
   Action,
   EndProgressAction,
@@ -12,13 +14,11 @@ import {
   TYPES,
   UpdateProgressAction
 } from '@eclipse-glsp/client';
+import { t } from 'i18next';
 import { inject, injectable } from 'inversify';
 import React from 'react';
-import { ReactUIExtension } from '../../utils/react-ui-extension';
-import { toast, Toaster } from '@axonivy/ui-components';
 import { currentTheme } from '../../theme/current-theme';
-import { ElementMessageAction, MoveIntoViewportAction } from '@axonivy/process-editor-protocol';
-import { t } from 'i18next';
+import { ReactUIExtension } from '../../utils/react-ui-extension';
 
 type ToasterType = SeverityLevel | 'LOADING';
 

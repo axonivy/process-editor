@@ -1,12 +1,12 @@
-import { useRestRequestData } from '../../useRestRequestData';
 import type { InputType } from '@axonivy/process-editor-inscription-protocol';
-import { useRestResourceMeta } from '../../useRestResourceMeta';
-import { useOpenApi } from '../../../../../context/useOpenApi';
-import { useMeta } from '../../../../../context/useMeta';
-import type { ComboboxItem } from '../../../../widgets/combobox/Combobox';
-import { PathFieldset } from '../../../common/path/PathFieldset';
-import Combobox from '../../../../widgets/combobox/Combobox';
 import { useTranslation } from 'react-i18next';
+import { useMeta } from '../../../../../context/useMeta';
+import { useOpenApi } from '../../../../../context/useOpenApi';
+import type { ComboboxItem } from '../../../../widgets/combobox/Combobox';
+import Combobox from '../../../../widgets/combobox/Combobox';
+import { PathFieldset } from '../../../common/path/PathFieldset';
+import { useRestRequestData } from '../../useRestRequestData';
+import { useRestResourceMeta } from '../../useRestResourceMeta';
 
 const useShowContentTypeCombo = (mode: InputType) => {
   const { openApi } = useOpenApi();

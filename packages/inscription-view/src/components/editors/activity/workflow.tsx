@@ -1,9 +1,6 @@
-import { memo } from 'react';
-import { type KnownEditor } from '../InscriptionEditor';
 import type { ElementType } from '@axonivy/process-editor-inscription-protocol';
-import NameEditor from '../NameEditor';
 import { IvyIcons } from '@axonivy/ui-icons';
-import Part from '../part/Part';
+import { memo } from 'react';
 import { useDialogCallPart } from '../../parts/call/dialog/DialogCallPart';
 import { useSubCallPart } from '../../parts/call/sub/SubCallPart';
 import { useTriggerCallPart } from '../../parts/call/trigger/TriggerCallPart';
@@ -11,6 +8,9 @@ import { useCasePart } from '../../parts/case/CasePart';
 import { useGeneralPart } from '../../parts/name/GeneralPart';
 import { useOutputPart } from '../../parts/output/OutputPart';
 import { useTaskPart } from '../../parts/task/TaskPart';
+import { type KnownEditor } from '../InscriptionEditor';
+import NameEditor from '../NameEditor';
+import Part from '../part/Part';
 
 const DialogCallEditor = memo(() => {
   const name = useGeneralPart();

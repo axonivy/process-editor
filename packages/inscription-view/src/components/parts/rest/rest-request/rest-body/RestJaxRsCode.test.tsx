@@ -1,8 +1,8 @@
 import type { RestRequestData } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
 import { customRender, screen } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import { RestJaxRsCode } from './RestJaxRsCode';
-import { describe, test, expect } from 'vitest';
 
 describe('RestEntityTypeCombobox', () => {
   function renderPart(data?: DeepPartial<RestRequestData>) {

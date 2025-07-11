@@ -1,13 +1,13 @@
 import type { Locator, Page } from '@playwright/test';
+import { Checkbox } from './checkbox';
 import { MacroEditor, ScriptArea, ScriptInput } from './code-editor';
+import { Combobox } from './combobox';
+import { RadioGroup } from './radio-group';
 import { Select } from './select';
 import type { ColumnType } from './table';
 import { Table } from './table';
-import { Checkbox } from './checkbox';
-import { TextArea } from './text-area';
 import { Tags } from './tags';
-import { Combobox } from './combobox';
-import { RadioGroup } from './radio-group';
+import { TextArea } from './text-area';
 
 export abstract class Composite {
   readonly page: Page;

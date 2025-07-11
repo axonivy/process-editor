@@ -1,18 +1,18 @@
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useMailData } from './useMailData';
 import type { MailData } from '@axonivy/process-editor-inscription-protocol';
 import { MAIL_TYPE } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useValidations } from '../../../context/useValidation';
-import type { SelectItem } from '../../widgets/select/Select';
-import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
-import { PathFieldset } from '../common/path/PathFieldset';
+import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
 import { MacroArea } from '../../widgets/code-editor/MacroArea';
 import Fieldset from '../../widgets/fieldset/Fieldset';
+import type { SelectItem } from '../../widgets/select/Select';
 import Select from '../../widgets/select/Select';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
-import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
+import { PathFieldset } from '../common/path/PathFieldset';
+import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
+import { useMailData } from './useMailData';
 
 export function useMailMessagePart(): PartProps {
   const { t } = useTranslation();

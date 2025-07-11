@@ -1,5 +1,5 @@
+import { describe, expect, test } from 'vitest';
 import { deepEqual } from './equals';
-import { describe, test, expect } from 'vitest';
 
 describe('equals', () => {
   test('equals is true', () => {

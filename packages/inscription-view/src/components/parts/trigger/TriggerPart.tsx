@@ -1,17 +1,17 @@
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useTriggerData } from './useTriggerData';
 import type { TriggerData } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { ResponsibleCollapsible } from '../common/responsible/ResponsiblePart';
-import { useValidations } from '../../../context/useValidation';
-import Checkbox from '../../widgets/checkbox/Checkbox';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
 import { PathContext } from '../../../context/usePath';
-import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
-import { PathFieldset } from '../common/path/PathFieldset';
+import { useValidations } from '../../../context/useValidation';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
+import Checkbox from '../../widgets/checkbox/Checkbox';
 import { ScriptInput } from '../../widgets/code-editor/ScriptInput';
 import EmptyWidget from '../../widgets/empty/EmptyWidget';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { PathFieldset } from '../common/path/PathFieldset';
+import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
+import { ResponsibleCollapsible } from '../common/responsible/ResponsiblePart';
+import { useTriggerData } from './useTriggerData';
 
 export function useTriggerPart(): PartProps {
   const { t } = useTranslation();

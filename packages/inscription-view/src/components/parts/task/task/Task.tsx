@@ -1,12 +1,12 @@
-import ExpiryPart from '../expiry/ExpiryPart';
-import TaskOptionsPart from '../options/TaskOptionsPart';
-import { useTaskData } from '../useTaskData';
-import Information from '../../common/info/Information';
-import TaskCode from '../code/TaskCode';
-import NotificationPart from '../notification/NotificationPart';
 import CustomFieldTable from '../../common/customfield/CustomFieldTable';
+import Information from '../../common/info/Information';
 import { ResponsibleCollapsible } from '../../common/responsible/ResponsiblePart';
+import TaskCode from '../code/TaskCode';
+import ExpiryPart from '../expiry/ExpiryPart';
+import NotificationPart from '../notification/NotificationPart';
+import TaskOptionsPart from '../options/TaskOptionsPart';
 import { PriorityCollapsible } from '../priority/PriorityPart';
+import { useTaskData } from '../useTaskData';
 
 const Task = () => {
   const { task, defaultTask, update, updateResponsible, updatePriority } = useTaskData();

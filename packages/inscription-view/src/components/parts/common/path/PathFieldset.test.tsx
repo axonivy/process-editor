@@ -1,8 +1,8 @@
 import type { ValidationResult } from '@axonivy/process-editor-inscription-protocol';
-import { customRender, screen } from 'test-utils';
-import { PathFieldset } from './PathFieldset';
-import { describe, test, expect } from 'vitest';
 import { Input } from '@axonivy/ui-components';
+import { customRender, screen } from 'test-utils';
+import { describe, expect, test } from 'vitest';
+import { PathFieldset } from './PathFieldset';
 
 describe('PathFieldset', () => {
   function renderFieldset(validations: ValidationResult[]) {

@@ -5,9 +5,9 @@ import { ApplicationIdProvider, GLSPClient } from '@eclipse-glsp/protocol';
 import type { Container } from 'inversify';
 import type { MessageConnection } from 'vscode-jsonrpc';
 import createContainer from './di.config';
+import { initTranslation } from './i18n';
 import './index.css';
 import { params } from './url-helper';
-import { initTranslation } from './i18n';
 
 const { webSocketUrl, app, pmv, pid, sourceUri, highlight, select, zoom, theme, previewMode } = params(
   new URL(window.location.href),

@@ -1,10 +1,10 @@
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { useTaskData } from '../useTaskData';
-import { PathCollapsible } from '../../common/path/PathCollapsible';
-import Checkbox from '../../../widgets/checkbox/Checkbox';
-import { ValidationFieldset } from '../../common/path/validation/ValidationFieldset';
-import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
 import { useTranslation } from 'react-i18next';
+import Checkbox from '../../../widgets/checkbox/Checkbox';
+import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
+import { PathCollapsible } from '../../common/path/PathCollapsible';
+import { ValidationFieldset } from '../../common/path/validation/ValidationFieldset';
+import { useTaskData } from '../useTaskData';
 
 const TaskOptionsPart = () => {
   const { t } = useTranslation();

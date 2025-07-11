@@ -1,10 +1,10 @@
-import type { Dispatch } from 'react';
-import { useState } from 'react';
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { ColumnFiltersState, ExpandedStateList, Row } from '@tanstack/react-table';
-import { MappingTreeData } from './mapping-tree-data';
-import type { FieldsetControl } from '../../../widgets/fieldset/fieldset-control';
+import type { Dispatch } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import type { FieldsetControl } from '../../../widgets/fieldset/fieldset-control';
+import { MappingTreeData } from './mapping-tree-data';
 
 export type TableFilter<TFilter> = {
   active: boolean;

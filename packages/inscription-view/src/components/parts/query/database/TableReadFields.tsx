@@ -1,14 +1,14 @@
-import type { ColumnDef, Row, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { useQueryData } from '../useQueryData';
-import { useEffect, useMemo, useState } from 'react';
 import type { DatabaseColumn } from '@axonivy/process-editor-inscription-protocol';
 import { SortableHeader, Table, TableBody, TableCell, TableResizableHeader, TableRow } from '@axonivy/ui-components';
+import type { ColumnDef, Row, SortingState } from '@tanstack/react-table';
+import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
-import { PathCollapsible } from '../../common/path/PathCollapsible';
 import Checkbox from '../../../widgets/checkbox/Checkbox';
-import { useTranslation } from 'react-i18next';
+import { PathCollapsible } from '../../common/path/PathCollapsible';
+import { useQueryData } from '../useQueryData';
 
 type Column = Omit<DatabaseColumn, 'ivyType'> & {
   selected: boolean;

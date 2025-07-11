@@ -1,8 +1,8 @@
-import { memo } from 'react';
 import { PanelMessage } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import AppStateView from '../../AppStateView';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import AppStateView from '../../AppStateView';
 
 const NoEditor = ({ type }: { type?: string }) => {
   const { t } = useTranslation();

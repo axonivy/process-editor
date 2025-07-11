@@ -1,7 +1,7 @@
 import type { HttpMethod, RestRequestData, ScriptMappings } from '@axonivy/process-editor-inscription-protocol';
 import { produce } from 'immer';
-import type { Consumer, DataUpdater } from '../../../types/lambda';
 import { useConfigDataContext, type ConfigDataContext } from '../../../context/useDataContext';
+import type { Consumer, DataUpdater } from '../../../types/lambda';
 
 export function useRestRequestData(): ConfigDataContext<RestRequestData> & {
   update: DataUpdater<RestRequestData>;

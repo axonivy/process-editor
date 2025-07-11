@@ -1,8 +1,8 @@
-import { expect, test } from 'vitest';
-import type { Row } from '@tanstack/react-table';
 import type { Function } from '@axonivy/process-editor-inscription-protocol';
-import { getParentNames } from './parent-name';
+import type { Row } from '@tanstack/react-table';
+import { expect, test } from 'vitest';
 import type { DeepPartial } from '../../../test-utils/type-utils';
+import { getParentNames } from './parent-name';
 
 const mockFunction: DeepPartial<Row<Function>> = {
   original: {

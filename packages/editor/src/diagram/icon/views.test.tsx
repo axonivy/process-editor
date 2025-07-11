@@ -1,11 +1,11 @@
-import { describe, test, expect } from 'vitest';
-import type { VNode, VNodeData } from 'snabbdom';
 import type { Bounds } from '@eclipse-glsp/client';
+import type { VNode, VNodeData } from 'snabbdom';
+import { describe, expect, test } from 'vitest';
 
-import { getActivityIconDecorator, getIconDecorator } from './views';
-import { GatewayTypes, EventStartTypes, ActivityTypes } from '../view-types';
-import { SvgIcons } from './icons';
 import type { ActivityNode } from '../model';
+import { ActivityTypes, EventStartTypes, GatewayTypes } from '../view-types';
+import { SvgIcons } from './icons';
+import { getActivityIconDecorator, getIconDecorator } from './views';
 
 describe('Event and Gateway Icons', () => {
   test('no icon', () => {

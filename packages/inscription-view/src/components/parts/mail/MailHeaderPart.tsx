@@ -1,13 +1,13 @@
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useMailData } from './useMailData';
 import type { MailData } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
 import { useValidations } from '../../../context/useValidation';
 import type { BrowserType } from '../../browser/useBrowser';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
+import { MacroInput } from '../../widgets/code-editor/MacroInput';
 import { PathCollapsible } from '../common/path/PathCollapsible';
 import { PathFieldset } from '../common/path/PathFieldset';
-import { MacroInput } from '../../widgets/code-editor/MacroInput';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { useMailData } from './useMailData';
 
 export function useMailHeaderPart(): PartProps {
   const { t } = useTranslation();

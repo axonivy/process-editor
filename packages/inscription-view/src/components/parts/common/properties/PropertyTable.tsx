@@ -1,17 +1,17 @@
-import { useMemo, useState } from 'react';
-import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { Property } from './properties';
-import { IvyIcons } from '@axonivy/ui-icons';
 import type { ScriptMappings } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { deepEqual } from '../../../../utils/equals';
 import { ComboCell, SortableHeader, Table, TableAddRow, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
+import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
+import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { deepEqual } from '../../../../utils/equals';
 import type { ComboboxItem } from '../../../widgets/combobox/Combobox';
 import { ScriptCell } from '../../../widgets/table/cell/ScriptCell';
 import { ValidationCollapsible } from '../path/validation/ValidationCollapsible';
 import { ValidationRow } from '../path/validation/ValidationRow';
-import { useTranslation } from 'react-i18next';
+import { Property } from './properties';
 
 type PropertyTableProps = {
   properties: ScriptMappings;

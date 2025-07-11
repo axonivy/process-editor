@@ -1,20 +1,19 @@
+import type { ElementExecution } from '@axonivy/process-editor-protocol';
 import {
-  GChildElement,
+  Action,
+  addCssClasses,
+  addCssClassToElements,
   Command,
-  type CommandExecutionContext,
+  GChildElement,
   GModelElement,
   GModelRoot,
-  TYPES,
-  Action,
   removeCssClasses,
   removeCssClassOfElements,
-  addCssClassToElements,
-  addCssClasses
+  TYPES,
+  type CommandExecutionContext
 } from '@eclipse-glsp/client';
 import { inject, injectable } from 'inversify';
-
 import { isExecutable, type Executable } from './model';
-import type { ElementExecution } from '@axonivy/process-editor-protocol';
 
 export interface ExecutedFeedbackAction extends Action {
   kind: typeof ExecutedFeedbackCommand.KIND;

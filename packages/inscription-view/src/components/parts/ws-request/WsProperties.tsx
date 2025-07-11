@@ -1,10 +1,10 @@
-import { useWsRequestData } from './useWsRequestData';
-import { PropertyTable } from '../common/properties/PropertyTable';
-import { deepEqual } from '../../../utils/equals';
-import { PathContext } from '../../../context/usePath';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
-import { useTranslation } from 'react-i18next';
+import { PathContext } from '../../../context/usePath';
+import { deepEqual } from '../../../utils/equals';
+import { PropertyTable } from '../common/properties/PropertyTable';
+import { useWsRequestData } from './useWsRequestData';
 
 export const WsProperties = () => {
   const { t } = useTranslation();

@@ -1,13 +1,13 @@
 import type { StartPermission } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_EXCEPTIONS } from '@axonivy/process-editor-inscription-protocol';
-import MultipleRoleSelect from '../role/MultipleRoleSelect';
-import { deepEqual } from '../../../../utils/equals';
-import { PathFieldset } from '../path/PathFieldset';
-import { PathCollapsible } from '../path/PathCollapsible';
-import ExceptionSelect from '../exception-handler/ExceptionSelect';
-import type { DataUpdater } from '../../../../types/lambda';
-import Checkbox from '../../../widgets/checkbox/Checkbox';
 import { useTranslation } from 'react-i18next';
+import type { DataUpdater } from '../../../../types/lambda';
+import { deepEqual } from '../../../../utils/equals';
+import Checkbox from '../../../widgets/checkbox/Checkbox';
+import ExceptionSelect from '../exception-handler/ExceptionSelect';
+import { PathCollapsible } from '../path/PathCollapsible';
+import { PathFieldset } from '../path/PathFieldset';
+import MultipleRoleSelect from '../role/MultipleRoleSelect';
 
 interface PermissionProps {
   anonymousFieldActive: boolean;

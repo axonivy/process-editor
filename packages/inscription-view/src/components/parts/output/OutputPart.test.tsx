@@ -1,8 +1,8 @@
-import { customRender, screen, TableUtil, customRenderHook, CollapsableUtil } from 'test-utils';
-import { useOutputPart } from './OutputPart';
-import type { PartStateFlag } from '../../editors/part/usePart';
 import type { OutputData } from '@axonivy/process-editor-inscription-protocol';
-import { describe, test, expect } from 'vitest';
+import { CollapsableUtil, customRender, customRenderHook, screen, TableUtil } from 'test-utils';
+import { describe, expect, test } from 'vitest';
+import type { PartStateFlag } from '../../editors/part/usePart';
+import { useOutputPart } from './OutputPart';
 
 const Part = (props: { showSudo?: boolean }) => {
   const part = useOutputPart({ showSudo: props.showSudo });

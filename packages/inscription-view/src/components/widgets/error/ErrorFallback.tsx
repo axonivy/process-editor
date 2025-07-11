@@ -1,9 +1,9 @@
-import './ErrorFallback.css';
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { FallbackProps } from 'react-error-boundary';
-import IvyIcon from '../IvyIcon';
-import { useDataContext } from '../../../context/useDataContext';
 import { useTranslation } from 'react-i18next';
+import { useDataContext } from '../../../context/useDataContext';
+import IvyIcon from '../IvyIcon';
+import './ErrorFallback.css';
 
 const ErrorFallback = (props: FallbackProps) => {
   const { t } = useTranslation();

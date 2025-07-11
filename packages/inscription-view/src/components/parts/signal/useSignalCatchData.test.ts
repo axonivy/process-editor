@@ -1,8 +1,8 @@
+import type { ElementData, SignalCatchData } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
 import { customRenderHook } from 'test-utils';
-import type { ElementData, SignalCatchData } from '@axonivy/process-editor-inscription-protocol';
+import { describe, expect, test } from 'vitest';
 import { useSignalCatchData } from './useSignalCatchData';
-import { describe, test, expect } from 'vitest';
 
 describe('useSignalCatchData', () => {
   function renderDataHook(signalData: Partial<SignalCatchData>) {

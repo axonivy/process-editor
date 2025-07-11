@@ -1,22 +1,22 @@
 import {
-  TYPES,
-  EditorContextService,
-  RequestClipboardDataAction,
   CutOperation,
-  PasteOperation,
+  EditorContextService,
   MessageAction,
+  PasteOperation,
+  RequestClipboardDataAction,
   RequestExportSvgAction,
   SelectionService,
+  TYPES,
+  type Bounds,
+  type GModelElement,
   type IActionDispatcher,
   type IAsyncClipboardService,
   type ICopyPasteHandler,
   type SetClipboardDataAction,
-  type ViewerOptions,
-  type Bounds,
-  type GModelElement
+  type ViewerOptions
 } from '@eclipse-glsp/client';
 import { t } from 'i18next';
-import { injectable, inject } from 'inversify';
+import { inject, injectable } from 'inversify';
 import { v4 as uuid } from 'uuid';
 import type { IvySvgExporter } from '../tools/export/ivy-svg-exporter';
 

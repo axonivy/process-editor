@@ -22,11 +22,10 @@ import {
   isConnectable,
   isCtrlOrCmd
 } from '@eclipse-glsp/client';
+import { t } from 'i18next';
 import { inject, injectable } from 'inversify';
-
 import { type QuickAction, SingleQuickActionProvider } from '../quick-action';
 import { isMultipleOutgoingEdgesFeature } from './model';
-import { t } from 'i18next';
 
 /**
  * Tool to create connections in a Diagram, by selecting a source and target node.

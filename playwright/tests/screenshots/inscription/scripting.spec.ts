@@ -1,7 +1,7 @@
 import { test, type Page } from '@playwright/test';
-import { screenshot } from './screenshot-util';
-import { openElementInscription } from '../../page-objects/inscription/inscription-view';
 import type { InscriptionTab } from '../../page-objects/inscription/inscription-tab';
+import { openElementInscription } from '../../page-objects/inscription/inscription-view';
+import { screenshot } from './screenshot-util';
 
 const GENERIC_PID = {
   SCRIPT: '168F0C6DF682858E-f3',

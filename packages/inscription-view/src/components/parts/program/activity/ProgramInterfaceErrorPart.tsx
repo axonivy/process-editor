@@ -1,16 +1,16 @@
 import type { ProgramInterfaceStartData } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_EXCEPTIONS, IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { usePartState, type PartProps } from '../../../editors/part/usePart';
-import { useProgramInterfaceData } from './useProgramInterfaceData';
-import { deepEqual } from '../../../../utils/equals';
-import { useValidations } from '../../../../context/useValidation';
-import { PathCollapsible } from '../../common/path/PathCollapsible';
-import { PathContext } from '../../../../context/usePath';
-import ExceptionSelect from '../../common/exception-handler/ExceptionSelect';
-import { PathFieldset } from '../../common/path/PathFieldset';
-import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
-import { useTranslation } from 'react-i18next';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
+import { PathContext } from '../../../../context/usePath';
+import { useValidations } from '../../../../context/useValidation';
+import { deepEqual } from '../../../../utils/equals';
+import { usePartState, type PartProps } from '../../../editors/part/usePart';
+import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
+import ExceptionSelect from '../../common/exception-handler/ExceptionSelect';
+import { PathCollapsible } from '../../common/path/PathCollapsible';
+import { PathFieldset } from '../../common/path/PathFieldset';
+import { useProgramInterfaceData } from './useProgramInterfaceData';
 
 export function useProgramInterfaceErrorPart(): PartProps {
   const { t } = useTranslation();

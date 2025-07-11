@@ -1,13 +1,4 @@
-import { useRestRequestData } from '../../useRestRequestData';
-import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { useEffect, useMemo, useState } from 'react';
 import { IVY_SCRIPT_TYPES, REST_PARAM_KIND } from '@axonivy/process-editor-inscription-protocol';
-import { Parameter } from './parameters';
-import { useRestResourceMeta } from '../../useRestResourceMeta';
-import { useFindPathParams } from './usePathParams';
-import { deepEqual } from '../../../../../utils/equals';
 import {
   InputCell,
   SelectCell,
@@ -18,12 +9,21 @@ import {
   TableCell,
   TableResizableHeader
 } from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
+import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
+import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { deepEqual } from '../../../../../utils/equals';
 import type { SelectItem } from '../../../../widgets/select/Select';
 import { ScriptCell } from '../../../../widgets/table/cell/ScriptCell';
 import { PathCollapsible } from '../../../common/path/PathCollapsible';
 import { ValidationRow } from '../../../common/path/validation/ValidationRow';
 import { focusNewCell } from '../../../common/table/cellFocus-utils';
-import { useTranslation } from 'react-i18next';
+import { useRestRequestData } from '../../useRestRequestData';
+import { useRestResourceMeta } from '../../useRestResourceMeta';
+import { Parameter } from './parameters';
+import { useFindPathParams } from './usePathParams';
 
 const EMPTY_PARAMETER: Parameter = { kind: 'Query', name: '', expression: '', known: false };
 

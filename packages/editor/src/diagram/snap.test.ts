@@ -1,6 +1,5 @@
 import { createFeatureSet, GModelElement, GridSnapper } from '@eclipse-glsp/client';
-import { describe, test, expect } from 'vitest';
-
+import { describe, expect, test } from 'vitest';
 import { ActivityNode } from './model';
 
 describe('IvyGridSnapper', () => {

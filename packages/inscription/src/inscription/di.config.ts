@@ -14,9 +14,9 @@ import {
 } from '@eclipse-glsp/client';
 import { EnableInscriptionAction, ToggleInscriptionAction } from './action';
 import { InscriptionUi } from './inscription-ui';
+import { IvyInscriptionGlobalKeyListenerTool } from './key-listener';
 import { OpenInscriptionKeyListener, OpenInscriptionMouseListener } from './open-inscription-listener';
 import { InscriptionButtonProvider } from './tool-bar';
-import { IvyInscriptionGlobalKeyListenerTool } from './key-listener';
 
 const ivyInscriptionModule = new FeatureModule((bind, _unbind, isBound) => {
   bindAsService(bind, TYPES.IUIExtension, InscriptionUi);

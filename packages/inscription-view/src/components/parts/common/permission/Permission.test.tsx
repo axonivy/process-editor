@@ -1,6 +1,6 @@
 import { CollapsableUtil, SelectUtil, customRender, screen } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import { Permission } from './Permission';
-import { describe, test, expect } from 'vitest';
 
 const defaultConfig = { anonymous: true, error: 'ivy:security:forbidden', roles: ['Everybody'] };
 

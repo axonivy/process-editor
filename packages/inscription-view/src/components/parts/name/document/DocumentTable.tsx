@@ -1,13 +1,13 @@
 import type { Document } from '@axonivy/process-editor-inscription-protocol';
+import { InputCell, SelectRow, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { ColumnDef } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 import { memo, useMemo } from 'react';
-import { useResizableEditableTable } from '../../common/table/useResizableEditableTable';
-import { InputCell, SelectRow, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import { useTranslation } from 'react-i18next';
 import { useAction } from '../../../../context/useAction';
 import Collapsible from '../../../widgets/collapsible/Collapsible';
-import { useTranslation } from 'react-i18next';
+import { useResizableEditableTable } from '../../common/table/useResizableEditableTable';
 
 const EMPTY_DOCUMENT: Document = { name: '', url: '' } as const;
 

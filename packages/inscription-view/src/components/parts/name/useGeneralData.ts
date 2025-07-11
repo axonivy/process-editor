@@ -1,7 +1,7 @@
 import type { GeneralData } from '@axonivy/process-editor-inscription-protocol';
 import { produce } from 'immer';
-import type { DataUpdater } from '../../../types/lambda';
 import { useDataContext } from '../../../context/useDataContext';
+import type { DataUpdater } from '../../../types/lambda';
 
 export function useGeneralData(): {
   data: GeneralData;

@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { ExpandableHeader, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
 import type { ColumnDef, ColumnFiltersState, ExpandedState, RowSelectionState } from '@tanstack/react-table';
 import {
   flexRender,
@@ -8,16 +8,16 @@ import {
   getSortedRowModel,
   useReactTable
 } from '@tanstack/react-table';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ExpandableCell } from '../../../widgets/table/cell/ExpandableCell';
+import { ScriptCell } from '../../../widgets/table/cell/ScriptCell';
+import { SearchTable } from '../../../widgets/table/table/Table';
+import { ValidationRow } from '../path/validation/ValidationRow';
 import { MappingTreeData } from './mapping-tree-data';
 import type { MappingPartProps } from './MappingPart';
 import type { TableFilter } from './useMappingTree';
 import { calcFullPathId, expandState } from './useMappingTree';
-import { ValidationRow } from '../path/validation/ValidationRow';
-import { ExpandableHeader, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
-import { ScriptCell } from '../../../widgets/table/cell/ScriptCell';
-import { SearchTable } from '../../../widgets/table/table/Table';
-import { ExpandableCell } from '../../../widgets/table/cell/ExpandableCell';
-import { useTranslation } from 'react-i18next';
 
 type MappingTreeProps = MappingPartProps & {
   globalFilter: TableFilter<string>;

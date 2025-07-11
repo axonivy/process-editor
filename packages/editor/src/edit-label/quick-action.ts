@@ -1,8 +1,8 @@
-import { EditLabelAction, isWithEditableLabel, GModelElement } from '@eclipse-glsp/client';
-import { type QuickAction, SingleQuickActionProvider } from '../ui-tools/quick-action/quick-action';
-import { injectable } from 'inversify';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { EditLabelAction, GModelElement, isWithEditableLabel } from '@eclipse-glsp/client';
 import { t } from 'i18next';
+import { injectable } from 'inversify';
+import { type QuickAction, SingleQuickActionProvider } from '../ui-tools/quick-action/quick-action';
 
 @injectable()
 export class EditLabelActionProvider extends SingleQuickActionProvider {

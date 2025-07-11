@@ -1,9 +1,9 @@
 import type { WfNotification, WfTask } from '@axonivy/process-editor-inscription-protocol';
 import { produce } from 'immer';
+import { useTaskDataContext, type TaskDataContext } from '../../../context/useDataContext';
 import type { DataUpdater } from '../../../types/lambda';
 import type { ResponsibleUpdater } from '../common/responsible/ResponsibleSelect';
 import type { PriorityUpdater } from './priority/PrioritySelect';
-import { useTaskDataContext, type TaskDataContext } from '../../../context/useDataContext';
 
 type NotificationUpdater = DataUpdater<WfNotification>;
 

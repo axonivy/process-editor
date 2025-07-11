@@ -1,16 +1,16 @@
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useErrorCatchData } from './useErrorCatchData';
-import { IvyIcons } from '@axonivy/ui-icons';
 import type { ErrorCatchData } from '@axonivy/process-editor-inscription-protocol';
-import { classifiedItemInfo } from '../../../utils/event-code-categorie';
-import { useValidations } from '../../../context/useValidation';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
+import { useValidations } from '../../../context/useValidation';
+import { classifiedItemInfo } from '../../../utils/event-code-categorie';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
 import type { ClassifiedItem } from '../common/classification/ClassificationCombobox';
+import ClassificationCombobox from '../common/classification/ClassificationCombobox';
 import { PathCollapsible } from '../common/path/PathCollapsible';
 import { ValidationFieldset } from '../common/path/validation/ValidationFieldset';
-import ClassificationCombobox from '../common/classification/ClassificationCombobox';
-import { useTranslation } from 'react-i18next';
+import { useErrorCatchData } from './useErrorCatchData';
 
 export function useErrorCatchPart(): PartProps {
   const { t } = useTranslation();

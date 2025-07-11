@@ -1,11 +1,11 @@
-import { GModelElement, GArgument } from '@eclipse-glsp/client';
+import { SearchProcessCallersAction, StartProcessAction } from '@axonivy/process-editor-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { GArgument, GModelElement } from '@eclipse-glsp/client';
+import { t } from 'i18next';
 import { injectable } from 'inversify';
-import { StartProcessAction, SearchProcessCallersAction } from '@axonivy/process-editor-protocol';
-import { type QuickAction, SingleQuickActionProvider } from '../ui-tools/quick-action/quick-action';
 import { StartEventNode } from '../diagram/model';
 import { EventStartTypes } from '../diagram/view-types';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { t } from 'i18next';
+import { type QuickAction, SingleQuickActionProvider } from '../ui-tools/quick-action/quick-action';
 
 @injectable()
 export class StarProcessQuickActionProvider extends SingleQuickActionProvider {

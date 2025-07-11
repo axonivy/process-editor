@@ -1,8 +1,8 @@
+import type { RestParameter } from '@axonivy/process-editor-inscription-protocol';
 import { cloneObject } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { RestParam } from './rest-parameter';
 import { restParamBuilder, toRestMap, updateRestParams } from './rest-parameter';
-import type { RestParameter } from '@axonivy/process-editor-inscription-protocol';
-import { describe, test, expect } from 'vitest';
 
 describe('RestParam', () => {
   const params: RestParam[] = [

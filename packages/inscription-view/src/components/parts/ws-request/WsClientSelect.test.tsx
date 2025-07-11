@@ -1,8 +1,8 @@
+import type { WsRequestData } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
 import { customRender, SelectUtil } from 'test-utils';
-import type { WsRequestData } from '@axonivy/process-editor-inscription-protocol';
-import { WsClientSelect } from './WsClientSelect';
 import { describe, test } from 'vitest';
+import { WsClientSelect } from './WsClientSelect';
 
 describe('WsClientSelect', () => {
   function renderPart(data?: DeepPartial<WsRequestData>) {

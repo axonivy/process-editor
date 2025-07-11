@@ -1,7 +1,7 @@
 import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
-import { ProcessEditor } from '../../page-objects/editor/process-editor';
 import { jumpToExternalTargetAndAssert } from '../../page-objects/editor/navigation-helper';
+import { ProcessEditor } from '../../page-objects/editor/process-editor';
 
 test('trigger process', async ({ page }) => {
   await jumpToExternalTargetAndAssert(page, '183E4A356E771204-f3', '1842D6FBB6A107AB', '1842D6FBB6A107AB-f0');

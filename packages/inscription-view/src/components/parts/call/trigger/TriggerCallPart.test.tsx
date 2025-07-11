@@ -1,8 +1,8 @@
-import { useTriggerCallPart } from './TriggerCallPart';
-import { customRender, screen, TableUtil, customRenderHook, CollapsableUtil } from 'test-utils';
 import type { CallData, ProcessCallData } from '@axonivy/process-editor-inscription-protocol';
+import { CollapsableUtil, customRender, customRenderHook, screen, TableUtil } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../../editors/part/usePart';
-import { describe, test, expect } from 'vitest';
+import { useTriggerCallPart } from './TriggerCallPart';
 
 const Part = () => {
   const part = useTriggerCallPart();

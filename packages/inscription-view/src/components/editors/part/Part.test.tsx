@@ -1,8 +1,8 @@
+import { IvyIcons } from '@axonivy/ui-icons';
 import { customRender, screen, userEvent } from 'test-utils';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import Part from './Part';
 import type { PartProps, PartStateFlag } from './usePart';
-import { describe, test, expect, beforeEach, afterEach, vi } from 'vitest';
-import { IvyIcons } from '@axonivy/ui-icons';
 
 const ErrorWidget = () => {
   throw new Error('this is an exception');

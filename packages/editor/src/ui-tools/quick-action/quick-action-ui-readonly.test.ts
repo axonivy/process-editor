@@ -1,11 +1,11 @@
 import type { GModelRoot } from '@eclipse-glsp/client';
 import { TYPES } from '@eclipse-glsp/client';
 import type { Container } from 'inversify';
-import { assertQuickAction, assertQuickActionUi, createContainer, createRoot } from '../../test-utils/quick-action-ui.test-util';
-import { QuickActionUI } from './quick-action-ui';
-import ivyQuickActionModule, { configureQuickActionProviders } from './di.config';
-import { describe, test, beforeAll } from 'vitest';
+import { beforeAll, describe, test } from 'vitest';
 import type { IvyViewerOptions } from '../../options';
+import { assertQuickAction, assertQuickActionUi, createContainer, createRoot } from '../../test-utils/quick-action-ui.test-util';
+import ivyQuickActionModule, { configureQuickActionProviders } from './di.config';
+import { QuickActionUI } from './quick-action-ui';
 
 class QuickActionUIReadonly extends QuickActionUI {
   protected isReadonly(): boolean {

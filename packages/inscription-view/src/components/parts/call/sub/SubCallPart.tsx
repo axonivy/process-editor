@@ -1,18 +1,18 @@
-import { useMemo } from 'react';
-import { usePartState, type PartProps } from '../../../editors/part/usePart';
-import type { CallData, VariableInfo, ProcessCallData } from '@axonivy/process-editor-inscription-protocol';
-import CallMapping, { useCallPartValidation } from '../CallMapping';
-import { useCallData, useProcessCallData } from '../useCallData';
-import CallSelect from '../CallSelect';
+import type { CallData, ProcessCallData, VariableInfo } from '@axonivy/process-editor-inscription-protocol';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { useValidations } from '../../../../context/useValidation';
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useAction } from '../../../../context/useAction';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
-import { useAction } from '../../../../context/useAction';
+import { useValidations } from '../../../../context/useValidation';
+import { usePartState, type PartProps } from '../../../editors/part/usePart';
 import type { FieldsetControl } from '../../../widgets/fieldset/fieldset-control';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
 import { ValidationFieldset } from '../../common/path/validation/ValidationFieldset';
-import { useTranslation } from 'react-i18next';
+import CallMapping, { useCallPartValidation } from '../CallMapping';
+import CallSelect from '../CallSelect';
+import { useCallData, useProcessCallData } from '../useCallData';
 
 export function useSubCallPart(): PartProps {
   const { t } = useTranslation();

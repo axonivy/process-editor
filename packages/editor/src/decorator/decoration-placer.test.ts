@@ -1,8 +1,7 @@
-import { boundsFeature, createFeatureSet, getOrCreateGIssueMarker, Point, GModelElement, GModelRoot } from '@eclipse-glsp/client';
-import { describe, test, expect } from 'vitest';
-
-import { IvyDecorationPlacer } from './decoration-placer';
+import { boundsFeature, createFeatureSet, getOrCreateGIssueMarker, GModelElement, GModelRoot, Point } from '@eclipse-glsp/client';
+import { describe, expect, test } from 'vitest';
 import { ActivityNode, EventNode } from '../diagram/model';
+import { IvyDecorationPlacer } from './decoration-placer';
 
 describe('IvyDecorationPlacer', () => {
   const placer = new IvyDecorationPlacer();

@@ -1,6 +1,6 @@
-import ExceptionSelect from './ExceptionSelect';
 import { customRender, SelectUtil } from 'test-utils';
 import { describe, test } from 'vitest';
+import ExceptionSelect from './ExceptionSelect';
 
 describe('ExceptionSelect', () => {
   function renderSelect(options?: { error?: string }) {

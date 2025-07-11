@@ -1,7 +1,7 @@
 import type { ErrorCatchData } from '@axonivy/process-editor-inscription-protocol';
 import { produce } from 'immer';
-import type { Consumer } from '../../../types/lambda';
 import { useConfigDataContext, useDataContext, type ConfigDataContext } from '../../../context/useDataContext';
+import type { Consumer } from '../../../types/lambda';
 
 export function useErrorCatchData(): ConfigDataContext<ErrorCatchData> & {
   updateError: Consumer<string>;

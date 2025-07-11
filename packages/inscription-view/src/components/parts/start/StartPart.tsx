@@ -1,19 +1,19 @@
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useStartData } from './useStartData';
 import type { StartData } from '@axonivy/process-editor-inscription-protocol';
-import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
-import { useValidations } from '../../../context/useValidation';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
+import { PathContext } from '../../../context/usePath';
+import { useValidations } from '../../../context/useValidation';
+import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
+import { ScriptArea } from '../../widgets/code-editor/ScriptArea';
+import { Input } from '../../widgets/input/Input';
+import MappingPart from '../common/mapping-tree/MappingPart';
+import ParameterTable from '../common/parameter/ParameterTable';
 import { PathCollapsible } from '../common/path/PathCollapsible';
 import { ValidationFieldset } from '../common/path/validation/ValidationFieldset';
-import { Input } from '../../widgets/input/Input';
-import { PathContext } from '../../../context/usePath';
-import ParameterTable from '../common/parameter/ParameterTable';
-import MappingPart from '../common/mapping-tree/MappingPart';
-import { ScriptArea } from '../../widgets/code-editor/ScriptArea';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { useStartData } from './useStartData';
 
 type StartPartProps = { hideParamDesc?: boolean; synchParams?: boolean; signatureDefaultOpen?: boolean };
 

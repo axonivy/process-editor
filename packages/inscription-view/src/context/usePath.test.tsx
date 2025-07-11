@@ -1,5 +1,5 @@
+import { describe, expect, test } from 'vitest';
 import { mergePaths } from './usePath';
-import { describe, test, expect } from 'vitest';
 
 describe('mergePath', () => {
   test('empty parent', async () => {

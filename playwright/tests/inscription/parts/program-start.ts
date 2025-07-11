@@ -1,10 +1,10 @@
-import type { Part } from '../../page-objects/inscription/part';
-import { NewPartTest, PartObject } from './part-tester';
 import type { Checkbox } from '../../page-objects/inscription/checkbox';
+import type { Combobox } from '../../page-objects/inscription/combobox';
+import type { Part } from '../../page-objects/inscription/part';
 import type { Section } from '../../page-objects/inscription/section';
 import type { Select } from '../../page-objects/inscription/select';
 import type { Tags } from '../../page-objects/inscription/tags';
-import type { Combobox } from '../../page-objects/inscription/combobox';
+import { NewPartTest, PartObject } from './part-tester';
 
 class ProgramStart extends PartObject {
   javaSection: Section;

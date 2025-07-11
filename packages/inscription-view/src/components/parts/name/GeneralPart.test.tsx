@@ -1,8 +1,8 @@
-import { CollapsableUtil, customRender, customRenderHook, screen, TableUtil } from 'test-utils';
 import type { GeneralData } from '@axonivy/process-editor-inscription-protocol';
+import { CollapsableUtil, customRender, customRenderHook, screen, TableUtil } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
 import { useGeneralPart } from './GeneralPart';
-import { describe, test, expect } from 'vitest';
 
 const Part = (props: { hideTags?: boolean; disableName?: boolean }) => {
   const part = useGeneralPart({ hideTags: props.hideTags, disableName: props.disableName });

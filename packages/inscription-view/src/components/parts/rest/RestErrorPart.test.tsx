@@ -1,9 +1,9 @@
+import type { RestResponseData, ValidationResult } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
-import { customRender, customRenderHook, CollapsableUtil, ComboboxUtil } from 'test-utils';
-import type { ValidationResult, RestResponseData } from '@axonivy/process-editor-inscription-protocol';
+import { CollapsableUtil, ComboboxUtil, customRender, customRenderHook } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
 import { useRestErrorPart } from './RestErrorPart';
-import { describe, test, expect } from 'vitest';
 
 const Part = () => {
   const part = useRestErrorPart();

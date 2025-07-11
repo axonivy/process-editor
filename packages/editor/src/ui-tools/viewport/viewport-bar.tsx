@@ -17,10 +17,10 @@ import { inject, injectable } from 'inversify';
 import { EnableViewportAction, SetViewportZoomAction } from '@axonivy/process-editor-protocol';
 import { Button } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { t } from 'i18next';
 import React from 'react';
 import { ReactUIExtension } from '../../utils/react-ui-extension';
 import { QuickActionUI } from '../quick-action/quick-action-ui';
-import { t } from 'i18next';
 
 @injectable()
 export class ViewportBar extends ReactUIExtension implements IActionHandler {

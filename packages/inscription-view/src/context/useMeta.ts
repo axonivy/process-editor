@@ -1,6 +1,6 @@
 import type { InscriptionMetaRequestTypes } from '@axonivy/process-editor-inscription-protocol';
-import { useClient } from './useClient';
 import { useQuery } from '@tanstack/react-query';
+import { useClient } from './useClient';
 
 type NonUndefinedGuard<T> = T extends undefined ? never : T;
 

@@ -20,7 +20,9 @@ import {
 } from '@eclipse-glsp/client';
 import { Container } from 'inversify';
 import ivyAnimateModule from './animate/di.config';
+import './colors.css';
 import ivyConnectorModule from './connector/di.config';
+import { ivyCopyPasteModule } from './copy-paste/di.config';
 import ivyDecorationModule from './decorator/di.config';
 import ivyDiagramModule from './diagram/di.config';
 import { LaneNode } from './diagram/model';
@@ -29,19 +31,16 @@ import ivyExecutionModule from './execution/di.config';
 import { IvyGLSPCommandStack } from './ivy-command-stack';
 import ivyJumpModule from './jump/di.config';
 import ivyLaneModule from './lanes/di.config';
-import { ivyNotificationModule } from './ui-tools/notification/di.config';
 import type { IvyViewerOptions } from './options';
 import { defaultIvyViewerOptions } from './options';
 import { ivyChangeBoundsToolModule, ivyExportModule, ivySelectModule } from './tools/di.config';
 import { IVY_TYPES } from './types';
+import { ivyNotificationModule } from './ui-tools/notification/di.config';
 import ivyQuickActionModule from './ui-tools/quick-action/di.config';
 import ivyToolBarModule from './ui-tools/tool-bar/di.config';
 import ivyViewportModule from './ui-tools/viewport/di.config';
 import ivyWrapModule from './wrap/di.config';
 import ivyZorderModule from './zorder/di.config';
-
-import './colors.css';
-import { ivyCopyPasteModule } from './copy-paste/di.config';
 
 export default function createContainer(widgetId: string, ...containerConfiguration: ContainerConfiguration): Container {
   const container = initializeDiagramContainer(

@@ -1,19 +1,19 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { VariableInfo } from '@axonivy/process-editor-inscription-protocol';
+import { ExpandableHeader, TableBody, TableHead, TableHeader, TableRow, useTableKeyHandler } from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
 import type { ColumnDef, ExpandedState, Row, RowSelectionState } from '@tanstack/react-table';
 import { flexRender, getCoreRowModel, getExpandedRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table';
-import { MappingTreeData } from '../../parts/common/mapping-tree/mapping-tree-data';
-import type { VariableInfo } from '@axonivy/process-editor-inscription-protocol';
-import { calcFullPathId } from '../../parts/common/mapping-tree/useMappingTree';
-import { IvyIcons } from '@axonivy/ui-icons';
-import type { BrowserValue } from '../Browser';
-import { ExpandableHeader, TableBody, TableHead, TableHeader, TableRow, useTableKeyHandler } from '@axonivy/ui-components';
-import BrowserTableRow from '../BrowserTableRow';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
+import { MappingTreeData } from '../../parts/common/mapping-tree/mapping-tree-data';
+import { calcFullPathId } from '../../parts/common/mapping-tree/useMappingTree';
 import { ExpandableCell } from '../../widgets/table/cell/ExpandableCell';
 import { SearchTable } from '../../widgets/table/table/Table';
-import { useTranslation } from 'react-i18next';
+import type { BrowserValue } from '../Browser';
+import BrowserTableRow from '../BrowserTableRow';
+import type { UseBrowserImplReturnValue } from '../useBrowser';
 
 export const ATTRIBUTE_BROWSER_ID = 'attr' as const;
 

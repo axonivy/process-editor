@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { ProcessEditor } from '../../page-objects/editor/process-editor';
 import { cmdCtrl } from '../../page-objects/editor/test-helper';
 

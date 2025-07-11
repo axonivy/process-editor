@@ -1,7 +1,7 @@
-import PrioritySelect from './PrioritySelect';
-import type { WfPriority, WfLevel } from '@axonivy/process-editor-inscription-protocol';
+import type { WfLevel, WfPriority } from '@axonivy/process-editor-inscription-protocol';
 import { customRender, screen, SelectUtil } from 'test-utils';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
+import PrioritySelect from './PrioritySelect';
 
 describe('PrioritySelect', () => {
   function renderSelect(options?: { level?: string; script?: string }) {

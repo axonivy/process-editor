@@ -1,10 +1,10 @@
-import './ResizableCodeEditor.css';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { useState } from 'react';
 import { useMove } from 'react-aria';
+import type { BrowserType } from '../../browser/useBrowser';
 import type { CodeEditorProps } from './CodeEditor';
 import { CodeEditor } from './CodeEditor';
-import type { BrowserType } from '../../browser/useBrowser';
-import { IvyIcons } from '@axonivy/ui-icons';
+import './ResizableCodeEditor.css';
 
 export type CodeEditorAreaProps = Omit<ResizableCodeEditorProps, 'macro' | 'options' | 'onMount' | 'location'> & {
   browsers: BrowserType[];

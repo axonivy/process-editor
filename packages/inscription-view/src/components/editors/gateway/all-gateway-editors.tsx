@@ -1,14 +1,14 @@
-import { IvyIcons } from '@axonivy/ui-icons';
 import type { ElementType } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { memo } from 'react';
-import { type KnownEditor } from '../InscriptionEditor';
-import Part from '../part/Part';
 import { useCasePart } from '../../parts/case/CasePart';
 import { useConditionPart } from '../../parts/condition/ConditionPart';
 import { useEndPagePart } from '../../parts/end-page/EndPagePart';
 import { useGeneralPart } from '../../parts/name/GeneralPart';
 import { useOutputPart } from '../../parts/output/OutputPart';
 import { useMultiTasksPart } from '../../parts/task/MultiTasksPart';
+import { type KnownEditor } from '../InscriptionEditor';
+import Part from '../part/Part';
 
 const AlternativeEditor = memo(() => {
   const name = useGeneralPart();

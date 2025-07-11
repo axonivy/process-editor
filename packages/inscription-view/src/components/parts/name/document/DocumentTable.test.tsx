@@ -1,7 +1,7 @@
 import type { Document } from '@axonivy/process-editor-inscription-protocol';
-import DocumentTable from './DocumentTable';
 import { CollapsableUtil, customRender, screen, TableUtil, userEvent } from 'test-utils';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
+import DocumentTable from './DocumentTable';
 
 describe('DocumentTable', () => {
   const documents: Document[] = [
