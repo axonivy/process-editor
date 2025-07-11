@@ -8,7 +8,6 @@ import { useField } from '@axonivy/ui-components';
 import '@testing-library/jest-dom/vitest';
 import { cleanup } from '@testing-library/react';
 import { afterEach, vi } from 'vitest';
-import { cloneObject } from './object-utils';
 
 afterEach(() => cleanup());
 
@@ -36,8 +35,6 @@ global.ResizeObserver = class ResizeObserver {
   unobserve() {}
   disconnect() {}
 };
-
-global.structuredClone = cloneObject;
 
 const CodeEditorMock = ({ id, value, onChange }: { id: string; value: string; onChange: (value: string) => void }) => {
   const { inputProps } = useField();

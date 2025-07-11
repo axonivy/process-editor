@@ -52,7 +52,7 @@ export abstract class ItemMenu implements Menu {
     readonly action: ShowMenuAction,
     protected paletteItems: Array<PaletteItem>
   ) {
-    this.paletteItemsCopy = JSON.parse(JSON.stringify(this.paletteItems));
+    this.paletteItemsCopy = structuredClone(this.paletteItems);
   }
 
   public create(containerElement: HTMLElement): HTMLElement {
@@ -110,7 +110,7 @@ export abstract class ItemMenu implements Menu {
   }
 
   private requestFilterUpdate(filter: string): void {
-    this.paletteItems = JSON.parse(JSON.stringify(this.paletteItemsCopy));
+    this.paletteItems = structuredClone(this.paletteItemsCopy);
     const filteredPaletteItems: PaletteItem[] = [];
     for (const itemGroup of this.paletteItems) {
       if (itemGroup.children) {

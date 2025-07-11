@@ -1,5 +1,4 @@
 import type { AlternativeConditions, ConnectorRef, InscriptionType } from '@axonivy/process-editor-inscription-protocol';
-import { cloneObject } from 'test-utils';
 import { describe, expect, test } from 'vitest';
 import { Condition } from './condition';
 
@@ -37,19 +36,19 @@ describe('Condition', () => {
       source: { name: 'alternative', pid: 'f5', type: altType },
       target: { name: 'end', pid: 'f7', type: altType }
     };
-    const expected = cloneObject(conditions);
+    const expected = structuredClone(conditions);
     expected[1].target = ref.target;
-    expect(Condition.replace(cloneObject(conditions), ref)).toEqual(expected);
+    expect(Condition.replace(structuredClone(conditions), ref)).toEqual(expected);
   });
 
   test('replace - undefined', () => {
     const ref = undefined as unknown as ConnectorRef;
-    expect(Condition.replace(cloneObject(conditions), ref)).toEqual(conditions);
+    expect(Condition.replace(structuredClone(conditions), ref)).toEqual(conditions);
   });
 
   test('replace - null', () => {
     const ref = null as unknown as ConnectorRef;
-    expect(Condition.replace(cloneObject(conditions), ref)).toEqual(conditions);
+    expect(Condition.replace(structuredClone(conditions), ref)).toEqual(conditions);
   });
 
   test('replace - unknown', () => {
@@ -59,25 +58,25 @@ describe('Condition', () => {
       source: { name: 'alternative', pid: 'f5', type: altType },
       target: { name: 'end', pid: 'f7', type: altType }
     };
-    expect(Condition.replace(cloneObject(conditions), ref)).toEqual(conditions);
+    expect(Condition.replace(structuredClone(conditions), ref)).toEqual(conditions);
   });
 
   test('remove', () => {
     const expected = [];
     expected.push(conditions[0], conditions[2]);
-    expect(Condition.remove(cloneObject(conditions), 'f6')).toEqual(expected);
+    expect(Condition.remove(structuredClone(conditions), 'f6')).toEqual(expected);
   });
 
   test('move', () => {
     const expected = [];
     expected.push(conditions[1], conditions[0], conditions[2]);
-    expect(Condition.move(cloneObject(conditions), 'f6', 'f1')).toEqual(expected);
+    expect(Condition.move(structuredClone(conditions), 'f6', 'f1')).toEqual(expected);
   });
 
   test('update', () => {
-    const expected = cloneObject(conditions);
+    const expected = structuredClone(conditions);
     expected[1].expression = 'test';
-    expect(Condition.update(cloneObject(conditions), 1, 'expression', 'test')).toEqual(expected);
+    expect(Condition.update(structuredClone(conditions), 1, 'expression', 'test')).toEqual(expected);
   });
 
   test('to', () => {
@@ -96,8 +95,8 @@ describe('Condition', () => {
       source: { name: 'alternative', pid: 'f5', type: altType },
       target: { name: 'end', pid: 'f7', type: altType }
     };
-    const expected = cloneObject(embeddedConditions);
+    const expected = structuredClone(embeddedConditions);
     expected[1].target = ref.target;
-    expect(Condition.replace(cloneObject(embeddedConditions), ref)).toEqual(expected);
+    expect(Condition.replace(structuredClone(embeddedConditions), ref)).toEqual(expected);
   });
 });

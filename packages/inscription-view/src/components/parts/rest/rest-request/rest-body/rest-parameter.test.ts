@@ -1,5 +1,4 @@
 import type { RestParameter } from '@axonivy/process-editor-inscription-protocol';
-import { cloneObject } from 'test-utils';
 import { describe, expect, test } from 'vitest';
 import type { RestParam } from './rest-parameter';
 import { restParamBuilder, toRestMap, updateRestParams } from './rest-parameter';
@@ -10,7 +9,7 @@ describe('RestParam', () => {
     { name: 'ownerId', expression: '', known: true, type: 'java.lang.Long', doc: '* required\nowner' }
   ];
 
-  const expressionParams = cloneObject(params);
+  const expressionParams = structuredClone(params);
   expressionParams[0].expression = '123';
   expressionParams[1].expression = '4';
 
@@ -55,7 +54,7 @@ describe('RestParam', () => {
   });
 
   test('of - mixed', () => {
-    const expectedParams = cloneObject(params);
+    const expectedParams = structuredClone(params);
     expectedParams[1].expression = '4';
     expectedParams.push({ name: 'test', known: false, expression: '123' });
     expect(
@@ -67,9 +66,9 @@ describe('RestParam', () => {
   });
 
   test('update', () => {
-    const expected = cloneObject(params);
+    const expected = structuredClone(params);
     expected[1].expression = 'test';
-    expect(updateRestParams(cloneObject(params), 1, 'expression', 'test')).toEqual(expected);
+    expect(updateRestParams(structuredClone(params), 1, 'expression', 'test')).toEqual(expected);
   });
 
   test('to', () => {
@@ -78,7 +77,7 @@ describe('RestParam', () => {
 
   //Rest forms support multiple values for the same key
   test('to - multiple same attributes', () => {
-    const sameParams = cloneObject(expressionParams);
+    const sameParams = structuredClone(expressionParams);
     sameParams.push(params[0]);
     sameParams[2].expression = 'blabla';
     expect(toRestMap(sameParams)).toEqual({ file: ['123', 'blabla'], ownerId: ['4'] });

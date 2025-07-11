@@ -93,7 +93,7 @@ export class InscriptionClientMock implements InscriptionClient {
               return { attribute: param.name, type: param.type, simpleType: param.type, description: param.desc };
             });
             if (!deepEqual(resultInfo.types, types)) {
-              resultInfo = JSON.parse(JSON.stringify(resultInfo));
+              resultInfo = structuredClone(resultInfo);
               resultInfo.types['<>'] = types;
             }
           }
@@ -101,7 +101,7 @@ export class InscriptionClientMock implements InscriptionClient {
         }
         return Promise.resolve(MetaMock.OUT_VAR_INFO);
       case 'meta/scripting/in':
-        return Promise.resolve(JSON.parse(JSON.stringify(MetaMock.IN_VAR_INFO)));
+        return Promise.resolve(structuredClone(MetaMock.IN_VAR_INFO));
       case 'meta/connector/out':
         return Promise.resolve(MetaMock.CONNECTORS_OUT);
       case 'meta/cms/tree':
