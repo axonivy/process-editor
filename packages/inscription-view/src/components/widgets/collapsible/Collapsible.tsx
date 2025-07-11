@@ -22,21 +22,21 @@ export type CollapsibleProps = {
 };
 
 const Controls = ({ controls, ...props }: Pick<CollapsibleProps, 'controls'> & CollapsibleControlProps) => {
-  if (controls) {
-    return (
-      <ButtonGroup
-        {...props}
-        controls={controls.map(({ action, icon, label, active }) => ({
-          icon,
-          title: label,
-          onClick: action,
-          toggle: active,
-          'aria-label': label
-        }))}
-      />
-    );
+  if (!controls) {
+    return null;
   }
-  return null;
+  return (
+    <ButtonGroup
+      {...props}
+      controls={controls.map(({ action, icon, label, active }) => ({
+        icon,
+        title: label,
+        onClick: action,
+        toggle: active,
+        'aria-label': label
+      }))}
+    />
+  );
 };
 
 const State = ({ validations }: Pick<CollapsibleProps, 'validations'>) => {

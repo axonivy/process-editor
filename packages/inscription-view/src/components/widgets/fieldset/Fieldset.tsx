@@ -9,24 +9,24 @@ export type FieldsetProps = Omit<BasicFieldProps, 'message' | 'control'> & {
 };
 
 const Controls = ({ controls }: Pick<FieldsetProps, 'controls'>) => {
-  if (controls) {
-    return (
-      <ButtonGroup
-        controls={controls.map(({ action, icon, label, active }) => ({
-          icon,
-          title: label,
-          onClick: action,
-          toggle: active,
-          'aria-label': label
-        }))}
-      />
-    );
+  if (!controls) {
+    return null;
   }
-  return null;
+  return (
+    <ButtonGroup
+      controls={controls.map(({ action, icon, label, active }) => ({
+        icon,
+        title: label,
+        onClick: action,
+        toggle: active,
+        'aria-label': label
+      }))}
+    />
+  );
 };
 
-const Fieldset = ({ label, controls, validation, ...props }: FieldsetProps) => {
-  return <BasicField label={label} message={toMessageData(validation)} control={<Controls controls={controls} />} {...props} />;
-};
+const Fieldset = ({ label, controls, validation, ...props }: FieldsetProps) => (
+  <BasicField label={label} message={toMessageData(validation)} control={<Controls controls={controls} />} {...props} />
+);
 
 export default memo(Fieldset);
