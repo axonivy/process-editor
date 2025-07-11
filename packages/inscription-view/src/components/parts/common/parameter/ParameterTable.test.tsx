@@ -1,7 +1,7 @@
 import type { ScriptVariable } from '@axonivy/process-editor-inscription-protocol';
+import { CollapsableUtil, customRender, screen, TableUtil, userEvent } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import ParameterTable from './ParameterTable';
-import { customRender, screen, userEvent, TableUtil, CollapsableUtil } from 'test-utils';
-import { describe, test, expect } from 'vitest';
 
 describe('ParameterTable', () => {
   const customFields: ScriptVariable[] = [

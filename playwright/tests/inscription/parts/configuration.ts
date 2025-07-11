@@ -1,8 +1,8 @@
-import type { Part } from '../../page-objects/inscription/part';
-import { NewPartTest, PartObject } from './part-tester';
-import type { TextArea } from '../../page-objects/inscription/text-area';
 import type { ScriptArea } from '../../page-objects/inscription/code-editor';
+import type { Part } from '../../page-objects/inscription/part';
 import type { Section } from '../../page-objects/inscription/section';
+import type { TextArea } from '../../page-objects/inscription/text-area';
+import { NewPartTest, PartObject } from './part-tester';
 
 abstract class Configuration extends PartObject {
   section: Section;

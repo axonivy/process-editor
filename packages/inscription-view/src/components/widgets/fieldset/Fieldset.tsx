@@ -1,7 +1,7 @@
+import { BasicField, ButtonGroup, type BasicFieldProps } from '@axonivy/ui-components';
 import { memo } from 'react';
-import type { FieldsetControl } from './fieldset-control';
-import { ButtonGroup, BasicField, type BasicFieldProps } from '@axonivy/ui-components';
 import { toMessageData, type ValidationMessage } from '../message/Message';
+import type { FieldsetControl } from './fieldset-control';
 
 export type FieldsetProps = Omit<BasicFieldProps, 'message' | 'control'> & {
   controls?: Array<FieldsetControl>;

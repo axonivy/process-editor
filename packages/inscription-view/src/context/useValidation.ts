@@ -1,4 +1,4 @@
-import type { ValidationResult, SchemaKeys } from '@axonivy/process-editor-inscription-protocol';
+import type { SchemaKeys, ValidationResult } from '@axonivy/process-editor-inscription-protocol';
 import { useDataContext } from './useDataContext';
 import { useFullPath, usePath } from './usePath';
 

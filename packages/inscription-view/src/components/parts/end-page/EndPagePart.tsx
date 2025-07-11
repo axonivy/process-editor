@@ -1,14 +1,14 @@
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useEndPageData } from './useEndPageData';
 import type { EndPageData } from '@axonivy/process-editor-inscription-protocol';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
 import InputWithBrowser from '../../../components/widgets/input/InputWithBrowser';
-import { useValidations } from '../../../context/useValidation';
 import { useAction } from '../../../context/useAction';
+import { useValidations } from '../../../context/useValidation';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
 import type { FieldsetControl } from '../../widgets/fieldset/fieldset-control';
 import { PathCollapsible } from '../common/path/PathCollapsible';
 import { ValidationFieldset } from '../common/path/validation/ValidationFieldset';
-import { useTranslation } from 'react-i18next';
+import { useEndPageData } from './useEndPageData';
 
 export function useEndPagePart(): PartProps {
   const { t } = useTranslation();

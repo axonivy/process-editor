@@ -9,12 +9,14 @@ export const useOnFocus = (initialValue: string, onChange: (change: string) => v
   useEffect(() => {
     setFocusValue(initialValue);
   }, [initialValue]);
-  const { focusWithinProps } = useFocusWithin({ onFocusWithin: () => setFocusWithin(true), onBlurWithin: () => {
-    if (!browser.open ) {
-      setFocusWithin(false); 
-      onChange(focusValue);
+  const { focusWithinProps } = useFocusWithin({
+    onFocusWithin: () => setFocusWithin(true),
+    onBlurWithin: () => {
+      if (!browser.open) {
+        setFocusWithin(false);
+        onChange(focusValue);
+      }
     }
-  }
   });
-    return { isFocusWithin, focusWithinProps, focusValue: { value: focusValue, onChange: setFocusValue }, browser };
+  return { isFocusWithin, focusWithinProps, focusValue: { value: focusValue, onChange: setFocusValue }, browser };
 };

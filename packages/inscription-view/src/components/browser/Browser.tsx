@@ -1,17 +1,17 @@
-import { Dialog, DialogTrigger } from '@radix-ui/react-dialog';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { useState } from 'react';
-import type { BrowserType, UseBrowserReturnValue } from './useBrowser';
-import { useAttributeBrowser } from './attribute/AttributeBrowser';
-import { useCmsBrowser, type CmsOptions } from './cms/CmsBrowser';
-import { useFuncBrowser } from './function/FunctionBrowser';
-import { useTypeBrowser } from './type/TypeBrowser';
-import { useTableColBrowser } from './tableCol/TableColBrowser';
-import BrowserBody from './BrowserBody';
-import { useRoleBrowser, type RoleOptions } from './role/RoleBrowser';
-import { useConditionBuilder } from './conditionBuilder/useConditionBuilder';
 import { Button } from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { Dialog, DialogTrigger } from '@radix-ui/react-dialog';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useAttributeBrowser } from './attribute/AttributeBrowser';
+import BrowserBody from './BrowserBody';
+import { useCmsBrowser, type CmsOptions } from './cms/CmsBrowser';
+import { useConditionBuilder } from './conditionBuilder/useConditionBuilder';
+import { useFuncBrowser } from './function/FunctionBrowser';
+import { useRoleBrowser, type RoleOptions } from './role/RoleBrowser';
+import { useTableColBrowser } from './tableCol/TableColBrowser';
+import { useTypeBrowser } from './type/TypeBrowser';
+import type { BrowserType, UseBrowserReturnValue } from './useBrowser';
 
 export type BrowserValue = { cursorValue: string; firstLineValue?: string };
 

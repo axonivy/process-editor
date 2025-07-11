@@ -1,12 +1,12 @@
-import { useQueryData } from '../useQueryData';
 import type { QueryKind } from '@axonivy/process-editor-inscription-protocol';
 import { QUERY_KIND } from '@axonivy/process-editor-inscription-protocol';
 import { useMemo } from 'react';
-import type { SelectItem } from '../../../widgets/select/Select';
-import { PathContext } from '../../../../context/usePath';
-import { PathFieldset } from '../../common/path/PathFieldset';
-import Select from '../../../widgets/select/Select';
 import { useTranslation } from 'react-i18next';
+import { PathContext } from '../../../../context/usePath';
+import type { SelectItem } from '../../../widgets/select/Select';
+import Select from '../../../widgets/select/Select';
+import { PathFieldset } from '../../common/path/PathFieldset';
+import { useQueryData } from '../useQueryData';
 
 export const QueryKindSelect = () => {
   const { t } = useTranslation();

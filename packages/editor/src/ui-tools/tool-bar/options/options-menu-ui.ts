@@ -1,11 +1,11 @@
+import { CustomIconToggleAction, SwitchThemeAction } from '@axonivy/process-editor-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
 import type { Action, IActionDispatcher } from '@eclipse-glsp/client';
 import { ShowGridAction } from '@eclipse-glsp/client';
-import type { Menu } from '../../menu/menu';
-import { createElement, createIcon, ToggleSwitch } from '../../../utils/ui-utils';
-import type { ShowToolBarOptionsMenuAction } from './action';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { CustomIconToggleAction, SwitchThemeAction } from '@axonivy/process-editor-protocol';
 import { t } from 'i18next';
+import { createElement, createIcon, ToggleSwitch } from '../../../utils/ui-utils';
+import type { Menu } from '../../menu/menu';
+import type { ShowToolBarOptionsMenuAction } from './action';
 
 interface Option {
   icon: IvyIcons;

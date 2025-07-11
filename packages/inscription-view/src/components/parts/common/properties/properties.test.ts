@@ -1,7 +1,7 @@
 import type { ScriptMappings } from '@axonivy/process-editor-inscription-protocol';
 import { cloneObject } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import { Property } from './properties';
-import { describe, test, expect } from 'vitest';
 
 describe('Properties', () => {
   const props: ScriptMappings = {

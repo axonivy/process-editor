@@ -1,7 +1,7 @@
+import { customRender, screen, userEvent } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { SelectItem } from './Select';
 import Select from './Select';
-import { customRender, screen, userEvent } from 'test-utils';
-import { describe, test, expect } from 'vitest';
 
 describe('Select', () => {
   const items: SelectItem[] = [

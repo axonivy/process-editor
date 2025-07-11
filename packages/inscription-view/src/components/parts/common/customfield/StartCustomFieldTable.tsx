@@ -1,18 +1,18 @@
 import type { StartCustomStartField } from '@axonivy/process-editor-inscription-protocol';
+import { ComboCell, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { ColumnDef } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 import { memo, useMemo } from 'react';
-import { ValidationRow } from '../path/validation/ValidationRow';
-import { PathCollapsible } from '../path/PathCollapsible';
-import { useResizableEditableTable } from '../table/useResizableEditableTable';
-import { ComboCell, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
-import { useEditorContext } from '../../../../context/useEditorContext';
-import type { ComboboxItem } from '../../../widgets/combobox/Combobox';
-import { useMeta } from '../../../../context/useMeta';
-import { MacroCell } from '../../../widgets/table/cell/MacroCell';
-import { useAction } from '../../../../context/useAction';
 import { useTranslation } from 'react-i18next';
+import { useAction } from '../../../../context/useAction';
+import { useEditorContext } from '../../../../context/useEditorContext';
+import { useMeta } from '../../../../context/useMeta';
+import type { ComboboxItem } from '../../../widgets/combobox/Combobox';
+import { MacroCell } from '../../../widgets/table/cell/MacroCell';
+import { PathCollapsible } from '../path/PathCollapsible';
+import { ValidationRow } from '../path/validation/ValidationRow';
+import { useResizableEditableTable } from '../table/useResizableEditableTable';
 
 type StartCustomFieldTableProps = {
   data: StartCustomStartField[];

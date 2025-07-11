@@ -1,6 +1,6 @@
 import { CollapsableUtil, SelectUtil, TableUtil, customRender } from 'test-utils';
-import { TableSort } from './TableSort';
 import { describe, test } from 'vitest';
+import { TableSort } from './TableSort';
 
 describe('TableSort', () => {
   test('empty', async () => {

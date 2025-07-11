@@ -1,8 +1,8 @@
+import type { InscriptionType } from '@axonivy/process-editor-inscription-protocol';
 import { cloneObject, customRender, screen, userEvent } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { Condition } from './condition';
 import ConditionTable from './ConditionTable';
-import type { InscriptionType } from '@axonivy/process-editor-inscription-protocol';
-import { describe, test, expect } from 'vitest';
 
 describe('ConditionTable', () => {
   const type: InscriptionType = { label: '', description: '', iconId: '', id: 'TaskEnd', impl: '', shortLabel: '', helpUrl: '' };

@@ -1,8 +1,8 @@
-import { CollapsableUtil, ComboboxUtil, customRender, customRenderHook, screen } from 'test-utils';
 import type { SignalCatchData } from '@axonivy/process-editor-inscription-protocol';
-import { useSignalCatchPart } from './SignalCatchPart';
+import { CollapsableUtil, ComboboxUtil, customRender, customRenderHook, screen } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
-import { describe, test, expect } from 'vitest';
+import { useSignalCatchPart } from './SignalCatchPart';
 
 const Part = (props: { makroSupport?: boolean }) => {
   const part = useSignalCatchPart({ makroSupport: props.makroSupport });

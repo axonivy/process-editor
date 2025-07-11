@@ -1,11 +1,10 @@
-import { GModelElement } from '@eclipse-glsp/client';
-import { injectable } from 'inversify';
-import { IvyIcons } from '@axonivy/ui-icons';
-
-import { type QuickActionProvider, type QuickAction, SingleQuickActionProvider } from '../ui-tools/quick-action/quick-action';
-import { isSingleWrapable, isUnwrapable, isWrapable } from './model';
 import { UnwrapSubOperation, WrapToSubOperation } from '@axonivy/process-editor-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { GModelElement } from '@eclipse-glsp/client';
 import { t } from 'i18next';
+import { injectable } from 'inversify';
+import { type QuickAction, type QuickActionProvider, SingleQuickActionProvider } from '../ui-tools/quick-action/quick-action';
+import { isSingleWrapable, isUnwrapable, isWrapable } from './model';
 
 @injectable()
 export class UnwrapQuickActionProvider extends SingleQuickActionProvider {

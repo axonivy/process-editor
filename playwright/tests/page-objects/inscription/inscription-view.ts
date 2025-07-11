@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
-import { Outline } from './outline';
 import { InscriptionTab } from './inscription-tab';
+import { Outline } from './outline';
 
 export const openElementInscription = async (page: Page, pid: string, pmv = 'inscription-test-project') => {
   const server = process.env.BASE_URL ?? 'localhost:8081';

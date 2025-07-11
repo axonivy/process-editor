@@ -1,5 +1,5 @@
-import type { WfResponsible, WfPriority, WfTask, WfCustomField } from '../data/inscription';
-import type { TaskData, CaseData } from '../data/part-data';
+import type { WfCustomField, WfPriority, WfResponsible, WfTask } from '../data/inscription';
+import type { CaseData, TaskData } from '../data/part-data';
 
 const DEFAULT_RESPONSIBLE: WfResponsible = {
   type: 'ROLES',

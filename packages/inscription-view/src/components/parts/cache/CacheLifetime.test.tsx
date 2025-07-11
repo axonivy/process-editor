@@ -1,6 +1,6 @@
 import { customRender, screen } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import { CacheLifetime } from './CacheLifetime';
-import { describe, test, expect } from 'vitest';
 
 describe('CacheLifetime', () => {
   test('data', async () => {

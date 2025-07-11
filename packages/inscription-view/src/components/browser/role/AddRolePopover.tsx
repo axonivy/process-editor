@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import type { RoleMeta } from '@axonivy/process-editor-inscription-protocol';
 import {
   BasicField,
   Button,
@@ -12,14 +12,14 @@ import {
   toast
 } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { useFunction } from '../../../context/useFunction';
 import { useQueryClient } from '@tanstack/react-query';
-import type { RoleMeta } from '@axonivy/process-editor-inscription-protocol';
 import { type Table } from '@tanstack/react-table';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useEditorContext } from '../../../context/useEditorContext';
+import { useFunction } from '../../../context/useFunction';
 import { useRoles } from '../../parts/common/role/useRoles';
 import { isValidRowSelected, newNameExists, newNameIsValid } from './validate-role';
-import { useEditorContext } from '../../../context/useEditorContext';
-import { useTranslation } from 'react-i18next';
 
 export const AddRolePopover = ({
   value,

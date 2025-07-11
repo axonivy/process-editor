@@ -1,10 +1,10 @@
-import type { Part } from '../../page-objects/inscription/part';
-import { NewPartTest, PartObject } from './part-tester';
 import type { Checkbox } from '../../page-objects/inscription/checkbox';
+import type { ScriptInput } from '../../page-objects/inscription/code-editor';
+import type { Part } from '../../page-objects/inscription/part';
 import type { Section } from '../../page-objects/inscription/section';
 import type { Select } from '../../page-objects/inscription/select';
 import type { Tags } from '../../page-objects/inscription/tags';
-import type { ScriptInput } from '../../page-objects/inscription/code-editor';
+import { NewPartTest, PartObject } from './part-tester';
 
 class WebService extends PartObject {
   permissionSection: Section;

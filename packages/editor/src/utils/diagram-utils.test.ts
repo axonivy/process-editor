@@ -1,5 +1,5 @@
 import { GEdge, GModelRoot, GNode } from '@eclipse-glsp/client';
-import { describe, test, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
 import { getAbsoluteEdgeBounds } from './diagram-utils';
 
 describe('DiagramUtils - absoluteEdgeBounds', () => {

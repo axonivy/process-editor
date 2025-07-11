@@ -1,7 +1,7 @@
 import { customRender, screen, userEvent } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { RadioItemProps } from './Radio';
 import Radio from './Radio';
-import { describe, test, expect } from 'vitest';
 
 describe('Radio', () => {
   const items: RadioItemProps<string>[] = [

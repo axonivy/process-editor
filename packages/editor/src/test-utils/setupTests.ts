@@ -1,5 +1,5 @@
-import 'reflect-metadata';
 import i18n from 'i18next';
+import 'reflect-metadata';
 import enTranslation from '../translation/process-editor/en.json';
 
 const initTranslation = () => {

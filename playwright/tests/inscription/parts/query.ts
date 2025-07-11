@@ -1,13 +1,13 @@
 import type { QueryKind } from '@axonivy/process-editor-inscription-protocol';
+import { expect } from '@playwright/test';
+import type { Checkbox } from '../../page-objects/inscription/checkbox';
+import type { MacroEditor, ScriptInput } from '../../page-objects/inscription/code-editor';
 import type { Combobox } from '../../page-objects/inscription/combobox';
 import type { Part } from '../../page-objects/inscription/part';
-import type { Select } from '../../page-objects/inscription/select';
-import { NewPartTest, PartObject } from './part-tester';
 import type { Section } from '../../page-objects/inscription/section';
-import type { Checkbox } from '../../page-objects/inscription/checkbox';
+import type { Select } from '../../page-objects/inscription/select';
 import type { Table } from '../../page-objects/inscription/table';
-import type { MacroEditor, ScriptInput } from '../../page-objects/inscription/code-editor';
-import { expect } from '@playwright/test';
+import { NewPartTest, PartObject } from './part-tester';
 
 class TablePart extends PartObject {
   table: Combobox;

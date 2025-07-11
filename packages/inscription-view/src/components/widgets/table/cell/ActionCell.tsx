@@ -1,6 +1,6 @@
-import './ActionCell.css';
-import type { IvyIcons } from '@axonivy/ui-icons';
 import { Button, Flex, TableCell, useReadonly } from '@axonivy/ui-components';
+import type { IvyIcons } from '@axonivy/ui-icons';
+import './ActionCell.css';
 
 interface Action {
   label: string;

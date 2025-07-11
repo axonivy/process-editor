@@ -1,12 +1,12 @@
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useCaseData } from './useCaseData';
 import type { CaseData } from '@axonivy/process-editor-inscription-protocol';
-import Information from '../common/info/Information';
-import CustomFieldTable from '../common/customfield/CustomFieldTable';
-import { useValidations } from '../../../context/useValidation';
-import { PathContext } from '../../../context/usePath';
-import { useTranslation } from 'react-i18next';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
+import { PathContext } from '../../../context/usePath';
+import { useValidations } from '../../../context/useValidation';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
+import CustomFieldTable from '../common/customfield/CustomFieldTable';
+import Information from '../common/info/Information';
+import { useCaseData } from './useCaseData';
 
 export function useCasePart(): PartProps {
   const { t } = useTranslation();

@@ -1,5 +1,6 @@
+import { IvyIcons } from '@axonivy/ui-icons';
 import type { GModelRoot } from '@eclipse-glsp/client';
-import { describe, test, beforeAll, expect } from 'vitest';
+import { beforeAll, describe, expect, test } from 'vitest';
 import {
   assertMultiQuickActionUi,
   assertQuickAction,
@@ -8,7 +9,6 @@ import {
   createRoot,
   getQuickActionDiv
 } from '../../test-utils/quick-action-ui.test-util';
-import { IvyIcons } from '@axonivy/ui-icons';
 import { QuickActionUI } from './quick-action-ui';
 
 describe('QuickActionUi', () => {

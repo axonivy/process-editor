@@ -1,14 +1,14 @@
-import './ScriptArea.css';
-import type { CodeEditorAreaProps } from './ResizableCodeEditor';
-import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-import { ResizableCodeEditor } from './ResizableCodeEditor';
-import { useMonacoEditor } from './useCodeEditor';
-import { MaximizedCodeEditorBrowser } from '../../browser/MaximizedCodeEditorBrowser';
-import { MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
 import { useField } from '@axonivy/ui-components';
-import { useBrowser } from '../../browser/useBrowser';
+import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import { usePath } from '../../../context/usePath';
+import { MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
 import Browser from '../../browser/Browser';
+import { MaximizedCodeEditorBrowser } from '../../browser/MaximizedCodeEditorBrowser';
+import { useBrowser } from '../../browser/useBrowser';
+import type { CodeEditorAreaProps } from './ResizableCodeEditor';
+import { ResizableCodeEditor } from './ResizableCodeEditor';
+import './ScriptArea.css';
+import { useMonacoEditor } from './useCodeEditor';
 
 type ScriptAreaProps = CodeEditorAreaProps & {
   maximizeState: {

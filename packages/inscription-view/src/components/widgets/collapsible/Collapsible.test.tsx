@@ -1,7 +1,7 @@
-import Collapsible from './Collapsible';
 import { CollapsableUtil, customRender, screen, userEvent } from 'test-utils';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import type { ValidationMessage } from '../message/Message';
+import Collapsible from './Collapsible';
 
 describe('Collapsible', () => {
   const COLLAPSE_DATA = /collapsible data/i;

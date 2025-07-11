@@ -1,10 +1,10 @@
-import { Dialog } from '@radix-ui/react-dialog';
-import { type UseBrowserReturnValue } from './useBrowser';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { MaximizedCodeEditor, type MaximizedCodeEditorProps } from './maximizedCodeEditor/MaximizedCodeEditor';
-import BrowserBody from './BrowserBody';
-import type { Tab } from '../widgets/tab/Tab';
+import { Dialog } from '@radix-ui/react-dialog';
 import { useTranslation } from 'react-i18next';
+import type { Tab } from '../widgets/tab/Tab';
+import BrowserBody from './BrowserBody';
+import { MaximizedCodeEditor, type MaximizedCodeEditorProps } from './maximizedCodeEditor/MaximizedCodeEditor';
+import { type UseBrowserReturnValue } from './useBrowser';
 
 type MaximaziedCodeEditorBrowserProps = UseBrowserReturnValue & MaximizedCodeEditorProps;
 

@@ -1,16 +1,16 @@
 import type {
   CallableStart,
-  ConnectorRef,
-  ErrorStartMeta,
-  VariableInfo,
-  NodeRef,
-  RoleMeta,
-  ContentObject,
-  DataclassType,
-  JavaType,
   CategoryPathMeta,
+  ConnectorRef,
+  ContentObject,
   DatabaseColumn,
-  OutlineNode
+  DataclassType,
+  ErrorStartMeta,
+  JavaType,
+  NodeRef,
+  OutlineNode,
+  RoleMeta,
+  VariableInfo
 } from '@axonivy/process-editor-inscription-protocol';
 
 export namespace MetaMock {

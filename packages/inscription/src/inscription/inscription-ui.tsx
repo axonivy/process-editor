@@ -1,34 +1,33 @@
+import { webSocketConnection, type Connection } from '@axonivy/jsonrpc';
+import { ReactUIExtension } from '@axonivy/process-editor';
 import { InscriptionClientJsonRpc, IvyScriptLanguage } from '@axonivy/process-editor-inscription-core';
-import { ClientContextProvider, MonacoEditorUtil, QueryProvider, initQueryClient } from '@axonivy/process-editor-inscription-view';
 import type { InscriptionContext } from '@axonivy/process-editor-inscription-protocol';
+import { ClientContextProvider, MonacoEditorUtil, QueryProvider, initQueryClient } from '@axonivy/process-editor-inscription-view';
 import { JumpAction, MoveIntoViewportAction, SwitchThemeAction } from '@axonivy/process-editor-protocol';
 import {
   Action,
   GArgument,
   GModelRoot,
-  type IActionHandler,
   ISelectionListener,
+  OpenAction,
+  RedoAction,
   SelectAction,
   SelectAllAction,
   SelectionService,
   TYPES,
+  UndoAction,
+  UpdateModelAction,
   isNotUndefined,
   isOpenable,
   type IActionDispatcher,
-  UndoAction,
-  RedoAction,
-  OpenAction,
-  UpdateModelAction
+  type IActionHandler
 } from '@eclipse-glsp/client';
-import { webSocketConnection, type Connection } from '@axonivy/jsonrpc';
-import type { MonacoLanguageClient } from 'monaco-languageclient';
 import { QueryClient } from '@tanstack/react-query';
 import { inject, injectable, postConstruct } from 'inversify';
-
+import type { MonacoLanguageClient } from 'monaco-languageclient';
+import * as React from 'react';
 import InscriptionView from './InscriptionView';
 import { EnableInscriptionAction, ToggleInscriptionAction } from './action';
-import * as React from 'react';
-import { ReactUIExtension } from '@axonivy/process-editor';
 
 @injectable()
 export class InscriptionUi extends ReactUIExtension implements IActionHandler, ISelectionListener {

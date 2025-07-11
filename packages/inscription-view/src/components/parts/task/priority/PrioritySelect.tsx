@@ -1,13 +1,13 @@
-import './PrioritySelect.css';
-import { useMemo } from 'react';
-import type { WfPriority, WfLevel, WfTask } from '@axonivy/process-editor-inscription-protocol';
+import type { WfLevel, WfPriority, WfTask } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import type { DataUpdater } from '../../../../types/lambda';
 import { Field, Flex } from '@axonivy/ui-components';
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import type { DataUpdater } from '../../../../types/lambda';
+import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
 import type { SelectItem } from '../../../widgets/select/Select';
 import Select from '../../../widgets/select/Select';
-import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
-import { useTranslation } from 'react-i18next';
+import './PrioritySelect.css';
 
 export type PriorityUpdater = DataUpdater<WfTask['priority']>;
 

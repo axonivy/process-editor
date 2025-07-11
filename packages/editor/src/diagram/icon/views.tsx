@@ -4,9 +4,9 @@ import { svg } from '@eclipse-glsp/client';
 import type { VNode } from 'snabbdom';
 import virtualize from 'sprotty/lib/lib/virtualize';
 
-import { IconStyle, resolveIcon } from './icons';
-import { ActivityTypes } from '../view-types';
 import type { ActivityNode } from '../model';
+import { ActivityTypes } from '../view-types';
+import { IconStyle, resolveIcon } from './icons';
 
 const WORKFLOW_ACTIVITY_TYPES = [
   ActivityTypes.USER,

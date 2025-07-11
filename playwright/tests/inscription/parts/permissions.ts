@@ -1,7 +1,7 @@
-import type { Part } from '../../page-objects/inscription/part';
-import { NewPartTest, PartObject } from './part-tester';
 import type { Checkbox } from '../../page-objects/inscription/checkbox';
+import type { Part } from '../../page-objects/inscription/part';
 import type { Section } from '../../page-objects/inscription/section';
+import { NewPartTest, PartObject } from './part-tester';
 
 class Permissions extends PartObject {
   section: Section;

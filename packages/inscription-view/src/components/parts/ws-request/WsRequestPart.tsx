@@ -1,15 +1,15 @@
 import type { WsRequestData } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
+import { useValidations } from '../../../context/useValidation';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
+import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
 import { useWsRequestData } from './useWsRequestData';
 import { WsClientSelect } from './WsClientSelect';
-import { WsPortSelect } from './WsPortSelect';
-import { WsOperationSelect } from './WsOperationSelect';
-import { WsProperties } from './WsProperties';
 import { WsMapping } from './WsMapping';
-import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
-import { useValidations } from '../../../context/useValidation';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { WsOperationSelect } from './WsOperationSelect';
+import { WsPortSelect } from './WsPortSelect';
+import { WsProperties } from './WsProperties';
 
 export function useWsRequestPart(): PartProps {
   const { t } = useTranslation();

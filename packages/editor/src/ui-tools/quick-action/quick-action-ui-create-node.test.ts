@@ -1,12 +1,12 @@
+import { IvyIcons } from '@axonivy/ui-icons';
 import type { GModelRoot, PaletteItem } from '@eclipse-glsp/client';
 import { EnableToolPaletteAction, configureActionHandler } from '@eclipse-glsp/client';
 import type { Container } from 'inversify';
-import { assertQuickAction, assertQuickActionUi, createContainer, createRoot } from '../../test-utils/quick-action-ui.test-util';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { ElementsPaletteHandler } from '../tool-bar/node/action-handler';
-import ivyToolBarModule from '../tool-bar/di.config';
-import { QuickActionUI } from './quick-action-ui';
 import { beforeAll, describe, test } from 'vitest';
+import { assertQuickAction, assertQuickActionUi, createContainer, createRoot } from '../../test-utils/quick-action-ui.test-util';
+import ivyToolBarModule from '../tool-bar/di.config';
+import { ElementsPaletteHandler } from '../tool-bar/node/action-handler';
+import { QuickActionUI } from './quick-action-ui';
 
 class ElementsPaletteHandlerMock extends ElementsPaletteHandler {
   public getElementPaletteItems(): PaletteItem[] | undefined {

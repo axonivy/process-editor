@@ -1,7 +1,7 @@
-import { ComboboxUtil, customRender, screen, TableUtil, userEvent } from 'test-utils';
-import { PropertyTable } from './PropertyTable';
 import type { ScriptMappings } from '@axonivy/process-editor-inscription-protocol';
+import { ComboboxUtil, customRender, screen, TableUtil, userEvent } from 'test-utils';
 import { describe, test } from 'vitest';
+import { PropertyTable } from './PropertyTable';
 
 describe('PropertyTable', () => {
   function renderPart(data: ScriptMappings, hide?: string[]) {

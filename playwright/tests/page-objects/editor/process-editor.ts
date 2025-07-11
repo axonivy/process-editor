@@ -1,16 +1,16 @@
 import type { ConsoleMessage, Locator, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
-import { Activity, Element, Lane, Pool } from './element';
-import { Toolbar } from './toolbar';
-import { NegativeArea } from './negative-area';
-import type { CmdCtrl, Point } from './types';
-import { Connector } from './connector';
-import { QuickActionBar } from './quick-action-bar';
-import { JumpOutBar } from './jump-out';
-import { ViewportBar } from './viewport';
-import { GRAPH_SELECTOR, diagramLocator, graphLocator } from './graph';
 import { randomUUID } from 'crypto';
 import { Inscription } from '../inscription/inscription-view';
+import { Connector } from './connector';
+import { Activity, Element, Lane, Pool } from './element';
+import { GRAPH_SELECTOR, diagramLocator, graphLocator } from './graph';
+import { JumpOutBar } from './jump-out';
+import { NegativeArea } from './negative-area';
+import { QuickActionBar } from './quick-action-bar';
+import { Toolbar } from './toolbar';
+import type { CmdCtrl, Point } from './types';
+import { ViewportBar } from './viewport';
 
 const startSelector = GRAPH_SELECTOR + ' .start\\:requestStart';
 

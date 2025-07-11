@@ -1,9 +1,9 @@
+import type { ValidationResult, WebserviceStartData } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
 import { customRender, customRenderHook, screen } from 'test-utils';
-import type { ValidationResult, WebserviceStartData } from '@axonivy/process-editor-inscription-protocol';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
 import { useWebServicePart } from './WebServicePart';
-import { describe, test, expect } from 'vitest';
 
 const Part = () => {
   const part = useWebServicePart();

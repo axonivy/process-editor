@@ -1,16 +1,16 @@
 import {
-  Collapsible as CollapsibleRoot,
-  CollapsibleContent,
-  CollapsibleTrigger,
-  type CollapsibleControlProps,
-  CollapsibleState,
   ButtonGroup,
+  CollapsibleContent,
+  type CollapsibleControlProps,
+  Collapsible as CollapsibleRoot,
+  CollapsibleState,
+  CollapsibleTrigger,
   Flex
 } from '@axonivy/ui-components';
 import type { ReactNode } from 'react';
 import { memo, useEffect, useState } from 'react';
-import { type ValidationMessage, toMessageDataArray } from '../message/Message';
 import type { FieldsetControl } from '../fieldset/fieldset-control';
+import { type ValidationMessage, toMessageDataArray } from '../message/Message';
 
 export type CollapsibleProps = {
   label: string;

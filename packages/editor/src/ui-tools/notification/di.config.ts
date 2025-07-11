@@ -1,16 +1,16 @@
+import { ElementMessageAction } from '@axonivy/process-editor-protocol';
 import {
+  bindAsService,
+  configureActionHandler,
   EndProgressAction,
   FeatureModule,
   MessageAction,
   StartProgressAction,
-  UpdateProgressAction,
-  configureActionHandler,
   StatusAction,
-  bindAsService,
-  TYPES
+  TYPES,
+  UpdateProgressAction
 } from '@eclipse-glsp/client';
 import { NotificationToaster } from './notification-toaster';
-import { ElementMessageAction } from '@axonivy/process-editor-protocol';
 
 export const ivyNotificationModule = new FeatureModule((bind, unbind, isBound, rebind) => {
   const context = { bind, unbind, isBound, rebind };

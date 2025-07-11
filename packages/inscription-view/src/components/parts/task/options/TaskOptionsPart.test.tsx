@@ -1,7 +1,7 @@
-import TaskOptionsPart from './TaskOptionsPart';
 import type { WfTask } from '@axonivy/process-editor-inscription-protocol';
 import { customRender, screen, userEvent } from 'test-utils';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
+import TaskOptionsPart from './TaskOptionsPart';
 
 describe('TaskOptionsPart', () => {
   function renderTaskPart(data?: Partial<WfTask>) {

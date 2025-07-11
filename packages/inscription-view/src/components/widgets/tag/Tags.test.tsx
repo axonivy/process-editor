@@ -1,6 +1,6 @@
-import Tags from './Tags';
 import { customRender, screen, userEvent, waitFor } from 'test-utils';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
+import Tags from './Tags';
 
 describe('Tags', () => {
   function renderTags(): {

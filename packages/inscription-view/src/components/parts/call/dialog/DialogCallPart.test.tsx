@@ -1,8 +1,8 @@
-import { useDialogCallPart } from './DialogCallPart';
-import { customRender, screen, TableUtil, customRenderHook, CollapsableUtil } from 'test-utils';
 import type { CallData, DialogCallData } from '@axonivy/process-editor-inscription-protocol';
+import { CollapsableUtil, customRender, customRenderHook, screen, TableUtil } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../../editors/part/usePart';
-import { describe, test, expect } from 'vitest';
+import { useDialogCallPart } from './DialogCallPart';
 
 const Part = () => {
   const part = useDialogCallPart();

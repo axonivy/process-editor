@@ -1,11 +1,11 @@
-import { IvyIcons } from '@axonivy/ui-icons';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
-import type { BrowserValue } from '../Browser';
-import { useState } from 'react';
-import { generateConditionString, logicOperators, operators } from './conditionBuilderData';
 import { ConditionBuilder } from '@axonivy/ui-components';
-import InputWithBrowser from '../../widgets/input/InputWithBrowser';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import InputWithBrowser from '../../widgets/input/InputWithBrowser';
+import type { BrowserValue } from '../Browser';
+import type { UseBrowserImplReturnValue } from '../useBrowser';
+import { generateConditionString, logicOperators, operators } from './conditionBuilderData';
 
 export const CONDITION_BUILDER_ID = 'condition' as const;
 

@@ -1,23 +1,23 @@
+import { IvyIcons } from '@axonivy/ui-icons';
 import {
   GArgument,
-  GIssueMarker,
-  isWithEditableLabel,
-  type JsonAny,
   GChildElement,
   GEdge,
+  GIssueMarker,
   GModelElement,
   TYPES,
   hasArgs,
-  type IActionDispatcher
+  isWithEditableLabel,
+  type IActionDispatcher,
+  type JsonAny
 } from '@eclipse-glsp/client';
-import { type QuickAction, SingleQuickActionProvider } from '../quick-action';
-import { ShowInfoQuickActionMenuAction } from '../quick-action-menu-ui';
-import { injectable, inject } from 'inversify';
-import { IVY_TYPES } from '../../../types';
-import type { IvyViewerOptions } from '../../../options';
-import { LaneNode } from '../../../diagram/model';
-import { IvyIcons } from '@axonivy/ui-icons';
 import { t } from 'i18next';
+import { inject, injectable } from 'inversify';
+import { LaneNode } from '../../../diagram/model';
+import type { IvyViewerOptions } from '../../../options';
+import { IVY_TYPES } from '../../../types';
+import { SingleQuickActionProvider, type QuickAction } from '../quick-action';
+import { ShowInfoQuickActionMenuAction } from '../quick-action-menu-ui';
 
 @injectable()
 export class InfoQuickActionProvider extends SingleQuickActionProvider {

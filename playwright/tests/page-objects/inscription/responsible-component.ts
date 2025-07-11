@@ -1,7 +1,7 @@
 import { ScriptInput } from './code-editor';
-import { Select } from './select';
-import type { Section } from './section';
 import type { Part } from './part';
+import type { Section } from './section';
+import { Select } from './select';
 import { Tags } from './tags';
 
 type ResponsibleTypes = 'Role from Attribute' | 'User from Attribute' | 'Member from Attribute' | 'Roles' | 'Nobody & delete';

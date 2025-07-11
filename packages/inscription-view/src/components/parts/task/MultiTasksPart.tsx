@@ -1,13 +1,13 @@
 import type { TaskData } from '@axonivy/process-editor-inscription-protocol';
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import Task from './task/Task';
-import { useValidations } from '../../../context/useValidation';
-import { Tabs, type Tab } from '../../widgets/tab/Tab';
-import { mergePaths, PathContext } from '../../../context/usePath';
-import { TaskDataContextInstance, useConfigDataContext } from '../../../context/useDataContext';
-import EmptyWidget from '../../widgets/empty/EmptyWidget';
-import { useTranslation } from 'react-i18next';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
+import { TaskDataContextInstance, useConfigDataContext } from '../../../context/useDataContext';
+import { mergePaths, PathContext } from '../../../context/usePath';
+import { useValidations } from '../../../context/useValidation';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
+import EmptyWidget from '../../widgets/empty/EmptyWidget';
+import { Tabs, type Tab } from '../../widgets/tab/Tab';
+import Task from './task/Task';
 
 export function useMultiTasksPart(): PartProps {
   const { t } = useTranslation();

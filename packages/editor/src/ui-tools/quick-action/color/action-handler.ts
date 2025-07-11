@@ -1,15 +1,15 @@
+import { UpdateColorPaletteAction, UpdatePaletteItems } from '@axonivy/process-editor-protocol';
 import {
   Action,
-  type IActionHandler,
   PaletteItem,
   RequestContextActions,
   SetContextActions,
   TYPES,
-  type IActionDispatcher
+  type IActionDispatcher,
+  type IActionHandler
 } from '@eclipse-glsp/client';
-import { injectable, inject } from 'inversify';
+import { inject, injectable } from 'inversify';
 import { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
-import { UpdateColorPaletteAction, UpdatePaletteItems } from '@axonivy/process-editor-protocol';
 
 @injectable()
 export class ColorPaletteHandler implements IActionHandler {

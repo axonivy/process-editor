@@ -1,7 +1,7 @@
 import { DiagramLoader } from '@eclipse-glsp/client';
 
-import { MonacoEditorUtil } from '@axonivy/process-editor-inscription-view';
 import { IvyBaseJsonrpcGLSPClient } from '@axonivy/process-editor';
+import { MonacoEditorUtil } from '@axonivy/process-editor-inscription-view';
 import { getParameters } from '@eclipse-glsp/ide';
 import { ApplicationIdProvider, GLSPClient, GLSPWebSocketProvider } from '@eclipse-glsp/protocol';
 import type { MessageConnection } from 'vscode-jsonrpc';
@@ -9,8 +9,8 @@ import type { MessageConnection } from 'vscode-jsonrpc';
 import type { ThemeMode } from '@axonivy/process-editor-protocol';
 import type { Container } from 'inversify';
 import createContainer from './di.config';
-import './index.css';
 import { initTranslation } from './i18n';
+import './index.css';
 
 const urlParameters = getParameters();
 const filePath = urlParameters.path;

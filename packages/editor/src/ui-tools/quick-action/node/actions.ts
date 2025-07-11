@@ -1,26 +1,25 @@
+import { AttachBoundaryOperation } from '@axonivy/process-editor-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
 import {
-  GModelElement,
-  isConnectable,
-  GEdge,
   Action,
   CreateNodeOperation,
-  TriggerNodeCreationAction,
   GConnectableElement,
-  PaletteItem,
+  GEdge,
+  GModelElement,
+  isConnectable,
   isNotUndefined,
-  Operation
+  Operation,
+  PaletteItem,
+  TriggerNodeCreationAction
 } from '@eclipse-glsp/client';
-import { injectable, inject } from 'inversify';
+import { t } from 'i18next';
+import { inject, injectable } from 'inversify';
+import { canAddErrorBoundary, canAddSignalBoundary } from '../../../diagram/boundary/model';
 import { ActivityTypes, EventBoundaryTypes } from '../../../diagram/view-types';
-
+import { ElementsPaletteHandler } from '../../tool-bar/node/action-handler';
 import { type QuickAction, SingleQuickActionProvider } from '../quick-action';
 import { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
-import { ElementsPaletteHandler } from '../../tool-bar/node/action-handler';
-import { canAddErrorBoundary, canAddSignalBoundary } from '../../../diagram/boundary/model';
 import { QuickActionUI } from '../quick-action-ui';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { AttachBoundaryOperation } from '@axonivy/process-editor-protocol';
-import { t } from 'i18next';
 
 export abstract class CreateElementQuickActionProvider extends SingleQuickActionProvider {
   @inject(ElementsPaletteHandler) protected paletteHandler: ElementsPaletteHandler;

@@ -1,19 +1,19 @@
-import { useQueryData } from './useQueryData';
 import type { QueryData } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
+import { usePartState, type PartProps } from '../../../components/editors/part/usePart';
+import { PathContext } from '../../../context/usePath';
+import { useValidations } from '../../../context/useValidation';
+import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
 import { DatabaseSelect } from './database/DatabaseSelect';
 import { QueryKindSelect } from './database/QueryKindSelect';
-import { usePartState, type PartProps } from '../../../components/editors/part/usePart';
-import { QueryRead } from './db-query/QueryRead';
-import { QueryWrite } from './db-query/QueryWrite';
-import { QueryUpdate } from './db-query/QueryUpdate';
-import { QueryDelete } from './db-query/QueryDelete';
-import { QueryAny } from './db-query/QueryAny';
 import { TableSelect } from './database/TableSelect';
-import { useValidations } from '../../../context/useValidation';
-import { PathContext } from '../../../context/usePath';
-import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { QueryAny } from './db-query/QueryAny';
+import { QueryDelete } from './db-query/QueryDelete';
+import { QueryRead } from './db-query/QueryRead';
+import { QueryUpdate } from './db-query/QueryUpdate';
+import { QueryWrite } from './db-query/QueryWrite';
+import { useQueryData } from './useQueryData';
 
 export function useQueryPart(): PartProps {
   const { t } = useTranslation();

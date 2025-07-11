@@ -1,8 +1,8 @@
+import type { ElementData, ErrorCatchData } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
 import { customRenderHook } from 'test-utils';
-import type { ElementData, ErrorCatchData } from '@axonivy/process-editor-inscription-protocol';
+import { describe, expect, test } from 'vitest';
 import { useErrorCatchData } from './useErrorCatchData';
-import { describe, test, expect } from 'vitest';
 
 describe('useErrorCatchData', () => {
   function renderDataHook(errorData: ErrorCatchData) {

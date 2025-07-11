@@ -1,11 +1,11 @@
 import type { CacheArtifact, CacheMode } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
+import { useTranslation } from 'react-i18next';
 import type { DataUpdater } from '../../../types/lambda';
-import { PathCollapsible, type PathCollapsibleProps } from '../common/path/PathCollapsible';
-import { PathFieldset } from '../common/path/PathFieldset';
 import { ScriptInput } from '../../widgets/code-editor/ScriptInput';
 import Radio from '../../widgets/radio/Radio';
-import { useTranslation } from 'react-i18next';
+import { PathCollapsible, type PathCollapsibleProps } from '../common/path/PathCollapsible';
+import { PathFieldset } from '../common/path/PathFieldset';
 
 type CacheLifetimeProps = Omit<PathCollapsibleProps, 'children'> & {
   description: string;

@@ -1,7 +1,7 @@
 import type { InscriptionMetaRequestTypes } from '@axonivy/process-editor-inscription-protocol';
-import { useClient } from './useClient';
 import { useMutation, type UseMutationResult } from '@tanstack/react-query';
 import { genQueryKey } from '../query/query-client';
+import { useClient } from './useClient';
 type UseFunctionOptions<TData> = {
   onSuccess?: (data: TData) => void;
   onError?: (error: Error) => void;

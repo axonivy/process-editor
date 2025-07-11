@@ -1,5 +1,5 @@
 import type { Page } from '@playwright/test';
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { openMockInscription } from '../../page-objects/inscription/inscription-view';
 
 test.describe('Theme mode dark', () => {

@@ -1,10 +1,10 @@
-import ExpiryPart from '../expiry/ExpiryPart';
-import PersistOptions from '../options/PersistOptions';
-import { useTaskData } from '../useTaskData';
+import CustomFieldTable from '../../common/customfield/CustomFieldTable';
 import Information from '../../common/info/Information';
 import TaskCode from '../code/TaskCode';
-import CustomFieldTable from '../../common/customfield/CustomFieldTable';
+import ExpiryPart from '../expiry/ExpiryPart';
+import PersistOptions from '../options/PersistOptions';
 import { PriorityCollapsible } from '../priority/PriorityPart';
+import { useTaskData } from '../useTaskData';
 
 const RequestTask = () => {
   const { task, defaultTask, update, updatePriority } = useTaskData();

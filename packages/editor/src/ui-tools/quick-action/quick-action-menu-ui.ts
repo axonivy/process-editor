@@ -1,12 +1,12 @@
-import type { GIssueMarker, IActionDispatcher, JsonAny, PaletteItem, GIssue, GIssueSeverity } from '@eclipse-glsp/client';
-import { Action } from '@eclipse-glsp/client';
-import { marked } from 'marked';
 import { IvyIcons } from '@axonivy/ui-icons';
+import type { GIssue, GIssueMarker, GIssueSeverity, IActionDispatcher, JsonAny, PaletteItem } from '@eclipse-glsp/client';
+import { Action } from '@eclipse-glsp/client';
+import { t } from 'i18next';
+import { marked } from 'marked';
 import { createElement, createIcon } from '../../utils/ui-utils';
 import type { ShowMenuAction } from '../menu/menu';
 import { ItemMenu, SimpleMenu } from '../menu/menu';
 import { EditColorUi } from './color/edit-color-ui';
-import { t } from 'i18next';
 
 export interface ShowQuickActionMenuAction extends ShowMenuAction {
   kind: typeof ShowQuickActionMenuAction.KIND;

@@ -1,9 +1,9 @@
-import type { ModelRenderer, GGraph, GModelFactory, GNode, ViewRegistry } from '@eclipse-glsp/client';
-import { describe, test, expect, beforeEach } from 'vitest';
-import { EventStartTypes, EventEndTypes, EventIntermediateTypes, EventBoundaryTypes } from '../view-types';
-import type { EventNode } from '../model';
+import type { GGraph, GModelFactory, GNode, ModelRenderer, ViewRegistry } from '@eclipse-glsp/client';
 import toHTML from 'snabbdom-to-html';
+import { beforeEach, describe, expect, test } from 'vitest';
 import { setupViewTestContainer } from '../../test-utils/view-container.test-util';
+import type { EventNode } from '../model';
+import { EventBoundaryTypes, EventEndTypes, EventIntermediateTypes, EventStartTypes } from '../view-types';
 
 function createModel(graphFactory: GModelFactory): GGraph {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,15 +1,15 @@
-import { useRestRequestData } from '../../useRestRequestData';
-import { RestEntityTypeCombobox, useShowRestEntityTypeCombo } from '../../RestEntityTypeCombobox';
-import { useRestEntityTypeMeta, useRestResourceMeta } from '../../useRestResourceMeta';
 import { EMPTY_VAR_INFO } from '@axonivy/process-editor-inscription-protocol';
-import useMaximizedCodeEditor from '../../../../browser/useMaximizedCodeEditor';
-import { MappingField } from '../../../common/mapping-tree/MappingPart';
-import { PathContext } from '../../../../../context/usePath';
-import { PathFieldset } from '../../../common/path/PathFieldset';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../../context/useEditorContext';
 import { useMeta } from '../../../../../context/useMeta';
+import { PathContext } from '../../../../../context/usePath';
+import useMaximizedCodeEditor from '../../../../browser/useMaximizedCodeEditor';
 import { ScriptArea } from '../../../../widgets/code-editor/ScriptArea';
-import { useTranslation } from 'react-i18next';
+import { MappingField } from '../../../common/mapping-tree/MappingPart';
+import { PathFieldset } from '../../../common/path/PathFieldset';
+import { RestEntityTypeCombobox, useShowRestEntityTypeCombo } from '../../RestEntityTypeCombobox';
+import { useRestRequestData } from '../../useRestRequestData';
+import { useRestEntityTypeMeta, useRestResourceMeta } from '../../useRestResourceMeta';
 
 const useShowEntityTypeCombo = (types: string[], currentType: string) => {
   const resource = useRestResourceMeta();

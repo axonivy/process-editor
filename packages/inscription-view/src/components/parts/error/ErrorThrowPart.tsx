@@ -1,21 +1,21 @@
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { IvyIcons } from '@axonivy/ui-icons';
 import type { ErrorThrowData } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { useErrorThrowData } from './useErrorThrowData';
-import { classifiedItemInfo } from '../../../utils/event-code-categorie';
-import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
-import { useValidations } from '../../../context/useValidation';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
+import { useValidations } from '../../../context/useValidation';
+import { classifiedItemInfo } from '../../../utils/event-code-categorie';
+import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
+import { ScriptArea } from '../../widgets/code-editor/ScriptArea';
+import { ScriptInput } from '../../widgets/code-editor/ScriptInput';
 import type { ClassifiedItem } from '../common/classification/ClassificationCombobox';
+import ClassificationCombobox from '../common/classification/ClassificationCombobox';
 import { PathCollapsible } from '../common/path/PathCollapsible';
 import { PathFieldset } from '../common/path/PathFieldset';
-import ClassificationCombobox from '../common/classification/ClassificationCombobox';
-import { ScriptInput } from '../../widgets/code-editor/ScriptInput';
 import { ValidationFieldset } from '../common/path/validation/ValidationFieldset';
-import { ScriptArea } from '../../widgets/code-editor/ScriptArea';
-import { useTranslation } from 'react-i18next';
+import { useErrorThrowData } from './useErrorThrowData';
 
 export function useErrorThrowPart(): PartProps {
   const { t } = useTranslation();

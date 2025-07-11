@@ -1,6 +1,6 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import { LabelEdit } from './label-edit';
 import type { BaseElement } from './element';
+import { LabelEdit } from './label-edit';
 import { Menu } from './menu';
 
 export class QuickActionBar {
@@ -9,7 +9,10 @@ export class QuickActionBar {
   protected readonly quickActionMenu: Menu;
   protected readonly simpleMenu: Menu;
 
-  constructor(page: Page, readonly element?: BaseElement) {
+  constructor(
+    page: Page,
+    readonly element?: BaseElement
+  ) {
     this.page = page;
     this.bar = this.page.locator('.quick-actions-bar');
     this.quickActionMenu = new Menu(page, this.page.locator('.quick-action-bar-menu'));

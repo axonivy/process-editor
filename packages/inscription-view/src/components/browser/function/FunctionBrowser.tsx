@@ -1,27 +1,27 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
 import type { Function } from '@axonivy/process-editor-inscription-protocol';
+import { TableBody, TableFooter, useTableKeyHandler } from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
 import {
+  getCoreRowModel,
+  getExpandedRowModel,
+  getFilteredRowModel,
   useReactTable,
   type ColumnDef,
   type ExpandedState,
-  type RowSelectionState,
-  getCoreRowModel,
-  getExpandedRowModel,
-  getFilteredRowModel
+  type RowSelectionState
 } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { IvyIcons } from '@axonivy/ui-icons';
-import type { BrowserValue } from '../Browser';
-import { getParentNames } from './parent-name';
-import { TableBody, TableFooter, useTableKeyHandler } from '@axonivy/ui-components';
-import BrowserTableRow from '../BrowserTableRow';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
 import { ExpandableCell } from '../../widgets/table/cell/ExpandableCell';
-import { SearchTable } from '../../widgets/table/table/Table';
 import { TableShowMore } from '../../widgets/table/footer/TableFooter';
-import { useTranslation } from 'react-i18next';
+import { SearchTable } from '../../widgets/table/table/Table';
+import type { BrowserValue } from '../Browser';
+import BrowserTableRow from '../BrowserTableRow';
+import type { UseBrowserImplReturnValue } from '../useBrowser';
+import { getParentNames } from './parent-name';
 export const FUNCTION_BROWSER_ID = 'func' as const;
 
 export const useFuncBrowser = (onDoubleClick: () => void): UseBrowserImplReturnValue => {

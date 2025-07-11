@@ -4,7 +4,11 @@ import { expect } from '@playwright/test';
 export class Select {
   readonly locator: Locator;
 
-  constructor(readonly page: Page, readonly parentLocator: Locator, options?: { label?: string; nth?: number }) {
+  constructor(
+    readonly page: Page,
+    readonly parentLocator: Locator,
+    options?: { label?: string; nth?: number }
+  ) {
     if (options?.label) {
       this.locator = parentLocator.getByRole('combobox', { name: options.label }).first();
     } else {

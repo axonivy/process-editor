@@ -1,4 +1,4 @@
-import { RadioGroup, RadioGroupItem, Label, Field } from '@axonivy/ui-components';
+import { Field, Label, RadioGroup, RadioGroupItem } from '@axonivy/ui-components';
 import type { ComponentProps } from 'react';
 
 export type RadioItemProps<T> = { value: T; label: string; description?: string };

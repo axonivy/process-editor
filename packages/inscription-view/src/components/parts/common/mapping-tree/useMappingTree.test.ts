@@ -1,5 +1,5 @@
+import { expect, test } from 'vitest';
 import { MappingTreeData } from './mapping-tree-data';
-import { test, expect } from 'vitest';
 import { expandState } from './useMappingTree';
 
 const tree = (mailValue = ''): MappingTreeData[] => [

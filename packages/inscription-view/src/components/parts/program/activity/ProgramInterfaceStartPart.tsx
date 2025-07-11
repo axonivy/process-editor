@@ -1,10 +1,10 @@
 import type { ProgramInterfaceStartData } from '@axonivy/process-editor-inscription-protocol';
-import { usePartState, type PartProps } from '../../../editors/part/usePart';
-import { useProgramInterfaceData } from './useProgramInterfaceData';
-import JavaClassSelector from '../JavaClassSelector';
-import { useValidations } from '../../../../context/useValidation';
-import { useTranslation } from 'react-i18next';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
+import { useValidations } from '../../../../context/useValidation';
+import { usePartState, type PartProps } from '../../../editors/part/usePart';
+import JavaClassSelector from '../JavaClassSelector';
+import { useProgramInterfaceData } from './useProgramInterfaceData';
 
 export function useProgramInterfaceStartPart(): PartProps {
   const { t } = useTranslation();

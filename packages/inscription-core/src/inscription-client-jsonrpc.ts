@@ -1,24 +1,24 @@
-import type {
-  InscriptionActionArgs,
-  InscriptionClient,
-  InscriptionData,
-  InscriptionNotificationTypes,
-  InscriptionRequestTypes,
-  InscriptionSaveData,
-  ValidationResult,
-  InscriptionMetaRequestTypes,
-  InscriptionElementContext,
-  Event
-} from '@axonivy/process-editor-inscription-protocol';
 import {
   BaseRpcClient,
   createMessageConnection,
   Emitter,
+  urlBuilder,
   type Connection,
   type Disposable,
-  urlBuilder,
   type MessageConnection
 } from '@axonivy/jsonrpc';
+import type {
+  Event,
+  InscriptionActionArgs,
+  InscriptionClient,
+  InscriptionData,
+  InscriptionElementContext,
+  InscriptionMetaRequestTypes,
+  InscriptionNotificationTypes,
+  InscriptionRequestTypes,
+  InscriptionSaveData,
+  ValidationResult
+} from '@axonivy/process-editor-inscription-protocol';
 
 export class InscriptionClientJsonRpc extends BaseRpcClient implements InscriptionClient {
   protected onDataChangedEmitter = new Emitter<void>();

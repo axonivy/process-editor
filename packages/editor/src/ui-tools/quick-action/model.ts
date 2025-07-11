@@ -1,5 +1,5 @@
-import type { BoundsAware, Selectable, GModelElement } from '@eclipse-glsp/client';
-import { isBoundsAware, isSelectable, GParentElement } from '@eclipse-glsp/client';
+import type { BoundsAware, GModelElement, Selectable } from '@eclipse-glsp/client';
+import { GParentElement, isBoundsAware, isSelectable } from '@eclipse-glsp/client';
 
 export const quickActionFeature = Symbol('quickActionFeature');
 

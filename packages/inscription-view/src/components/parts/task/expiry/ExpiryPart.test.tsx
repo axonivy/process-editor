@@ -1,7 +1,7 @@
-import ExpiryPart from './ExpiryPart';
-import { customRender, screen, SelectUtil, userEvent } from 'test-utils';
 import type { WfExpiry } from '@axonivy/process-editor-inscription-protocol';
-import { describe, test, expect } from 'vitest';
+import { customRender, screen, SelectUtil, userEvent } from 'test-utils';
+import { describe, expect, test } from 'vitest';
+import ExpiryPart from './ExpiryPart';
 
 describe('ExpiryPart', () => {
   function renderExpiryPart(data?: WfExpiry) {

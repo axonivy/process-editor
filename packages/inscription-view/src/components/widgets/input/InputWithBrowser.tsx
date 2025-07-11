@@ -1,10 +1,10 @@
-import { Input, type InputProps } from './Input';
-import type { BrowserValue } from '../../browser/Browser';
-import type { CmsTypeFilter } from '../../browser/cms/CmsBrowser';
 import { InputGroup } from '@axonivy/ui-components';
-import { useBrowser, type BrowserType } from '../../browser/useBrowser';
 import { usePath } from '../../../context/usePath';
+import type { BrowserValue } from '../../browser/Browser';
 import Browser from '../../browser/Browser';
+import type { CmsTypeFilter } from '../../browser/cms/CmsBrowser';
+import { useBrowser, type BrowserType } from '../../browser/useBrowser';
+import { Input, type InputProps } from './Input';
 
 type InputWithBrowserProps = InputProps & {
   browsers: BrowserType[];

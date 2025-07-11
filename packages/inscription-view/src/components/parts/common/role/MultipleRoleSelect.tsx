@@ -1,11 +1,11 @@
+import { Flex } from '@axonivy/ui-components';
+import { usePath } from '../../../../context/usePath';
+import type { BrowserValue } from '../../../browser/Browser';
+import Browser from '../../../browser/Browser';
+import { useBrowser } from '../../../browser/useBrowser';
+import Tags from '../../../widgets/tag/Tags';
 import './MultipleRoleSelect.css';
 import { useRoles } from './useRoles';
-import type { BrowserValue } from '../../../browser/Browser';
-import { Flex } from '@axonivy/ui-components';
-import { useBrowser } from '../../../browser/useBrowser';
-import { usePath } from '../../../../context/usePath';
-import Browser from '../../../browser/Browser';
-import Tags from '../../../widgets/tag/Tags';
 
 type MultipleRoleSelectProps = {
   value: string[];

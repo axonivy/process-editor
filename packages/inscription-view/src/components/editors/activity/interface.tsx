@@ -1,9 +1,7 @@
-import { IvyIcons } from '@axonivy/ui-icons';
 import type { ElementType } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { memo } from 'react';
-import { type KnownEditor } from '../InscriptionEditor';
 import { OpenApiContextProvider } from '../../../context/useOpenApi';
-import Part from '../part/Part';
 import { useCachePart } from '../../parts/cache/CachePart';
 import { useMailAttachmentPart } from '../../parts/mail/MailAttachmentPart';
 import { useMailErrorPart } from '../../parts/mail/MailErrorPart';
@@ -21,6 +19,8 @@ import { useRestOutputPart } from '../../parts/rest/RestOutputPart';
 import { useRestRequestPart } from '../../parts/rest/RestRequestPart';
 import { useWsErrorPart } from '../../parts/ws-error/WsErrorPart';
 import { useWsRequestPart } from '../../parts/ws-request/WsRequestPart';
+import { type KnownEditor } from '../InscriptionEditor';
+import Part from '../part/Part';
 
 const DatabaseEditor = memo(() => {
   const name = useGeneralPart();

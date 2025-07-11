@@ -1,8 +1,8 @@
 import type { Part } from '../../page-objects/inscription/part';
-import { NewPartTest, PartObject } from './part-tester';
 import type { Section } from '../../page-objects/inscription/section';
 import type { Select } from '../../page-objects/inscription/select';
 import type { Table } from '../../page-objects/inscription/table';
+import { NewPartTest, PartObject } from './part-tester';
 
 class WsRequest extends PartObject {
   serviceSection: Section;

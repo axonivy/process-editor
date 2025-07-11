@@ -1,5 +1,5 @@
 import { GEdge, GModelRoot } from '@eclipse-glsp/client';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
 import { ActivityNode, Edge, EndEventNode, EventNode, StartEventNode } from './model';
 

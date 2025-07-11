@@ -1,9 +1,9 @@
+import type { RequestData, ValidationResult } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
-import { customRender, screen, customRenderHook, TableUtil, SelectUtil, CollapsableUtil } from 'test-utils';
-import type { ValidationResult, RequestData } from '@axonivy/process-editor-inscription-protocol';
-import { useRequestPart } from './RequestPart';
+import { CollapsableUtil, customRender, customRenderHook, screen, SelectUtil, TableUtil } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
-import { describe, test, expect } from 'vitest';
+import { useRequestPart } from './RequestPart';
 
 const Part = () => {
   const part = useRequestPart();

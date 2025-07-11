@@ -1,5 +1,5 @@
-import { type ComponentProps } from 'react';
 import { BasicInput } from '@axonivy/ui-components';
+import { type ComponentProps } from 'react';
 
 export type InputProps = Omit<ComponentProps<typeof BasicInput>, 'onChange'> & {
   onChange: (change: string) => void;

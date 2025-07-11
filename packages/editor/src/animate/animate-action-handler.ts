@@ -1,8 +1,7 @@
+import { AnimateAction, MoveIntoViewportAction } from '@axonivy/process-editor-protocol';
 import { Action, type IActionDispatcher, type IActionHandler, type IFeedbackActionDispatcher, TYPES } from '@eclipse-glsp/client';
 import { inject, injectable } from 'inversify';
-
 import { AnimateFeedbackAction } from './animate-feedback-action';
-import { AnimateAction, MoveIntoViewportAction } from '@axonivy/process-editor-protocol';
 
 @injectable()
 export class AnimateActionHandler implements IActionHandler {

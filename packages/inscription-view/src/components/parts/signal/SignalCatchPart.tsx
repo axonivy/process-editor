@@ -1,17 +1,17 @@
-import { IvyIcons } from '@axonivy/ui-icons';
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useSignalCatchData } from './useSignalCatchData';
 import type { SignalCatchData } from '@axonivy/process-editor-inscription-protocol';
-import { classifiedItemInfo } from '../../../utils/event-code-categorie';
-import { useValidations } from '../../../context/useValidation';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
+import { useValidations } from '../../../context/useValidation';
+import { classifiedItemInfo } from '../../../utils/event-code-categorie';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
+import Checkbox from '../../widgets/checkbox/Checkbox';
 import type { ClassifiedItem } from '../common/classification/ClassificationCombobox';
+import ClassificationCombobox from '../common/classification/ClassificationCombobox';
 import { PathCollapsible } from '../common/path/PathCollapsible';
 import { ValidationFieldset } from '../common/path/validation/ValidationFieldset';
-import ClassificationCombobox from '../common/classification/ClassificationCombobox';
-import Checkbox from '../../widgets/checkbox/Checkbox';
-import { useTranslation } from 'react-i18next';
+import { useSignalCatchData } from './useSignalCatchData';
 
 export function useSignalCatchPart(options?: { makroSupport?: boolean; withBrowser?: boolean }): PartProps {
   const { t } = useTranslation();

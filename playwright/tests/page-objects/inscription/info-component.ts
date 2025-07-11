@@ -1,6 +1,6 @@
 import type { MacroEditor } from './code-editor';
-import type { Section } from './section';
 import type { Part } from './part';
+import type { Section } from './section';
 
 export class InfoComponent {
   detailSection: Section;

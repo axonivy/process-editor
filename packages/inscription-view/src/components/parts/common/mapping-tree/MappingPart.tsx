@@ -1,13 +1,13 @@
-import { memo } from 'react';
-import MappingTree from './MappingTree';
 import type { SchemaKeys, VariableInfo } from '@axonivy/process-editor-inscription-protocol';
-import { useTableGlobalFilter, useTableOnlyInscribed } from './useMappingTree';
-import { PathCollapsible } from '../path/PathCollapsible';
-import type { BrowserType } from '../../../browser/useBrowser';
-import { PathContext } from '../../../../context/usePath';
-import Fieldset from '../../../widgets/fieldset/Fieldset';
-import { useTranslation } from 'react-i18next';
 import { deepEqual } from '@axonivy/ui-components';
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { PathContext } from '../../../../context/usePath';
+import type { BrowserType } from '../../../browser/useBrowser';
+import Fieldset from '../../../widgets/fieldset/Fieldset';
+import { PathCollapsible } from '../path/PathCollapsible';
+import MappingTree from './MappingTree';
+import { useTableGlobalFilter, useTableOnlyInscribed } from './useMappingTree';
 
 export type MappingPartProps = {
   data: Record<string, string>;

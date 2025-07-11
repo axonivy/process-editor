@@ -1,11 +1,11 @@
-import type { DeepPartial } from 'test-utils';
-import { customRender, screen, customRenderHook, userEvent } from 'test-utils';
 import type { TaskData } from '@axonivy/process-editor-inscription-protocol';
 import { DEFAULT_TASK, DEFAULT_TASK_DATA } from '@axonivy/process-editor-inscription-protocol';
+import { deepmerge } from 'deepmerge-ts';
+import type { DeepPartial } from 'test-utils';
+import { customRender, customRenderHook, screen, userEvent } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
 import { useMultiTasksPart } from './MultiTasksPart';
-import { deepmerge } from 'deepmerge-ts';
-import { describe, test, expect } from 'vitest';
 
 const Part = () => {
   const part = useMultiTasksPart();

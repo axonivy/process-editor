@@ -1,4 +1,4 @@
-import type { HttpMethod, QueryKind, WfFieldType, InputType, RoleMeta, VariableInfo, Variable } from './inscription';
+import type { HttpMethod, InputType, QueryKind, RoleMeta, Variable, VariableInfo, WfFieldType } from './inscription';
 
 export const CUSTOM_FIELD_TYPE = {
   STRING: 'String',

@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { EditorContextService, GLSPAbstractUIExtension, GModelRoot } from '@eclipse-glsp/client';
 import { inject, injectable } from 'inversify';
+import * as React from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 
 @injectable()

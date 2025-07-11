@@ -1,6 +1,6 @@
 import type { ValidationResult } from '@axonivy/process-editor-inscription-protocol';
 import { customRender, screen } from 'test-utils';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { InscriptionEditor } from './InscriptionEditor';
 
 describe('Editor', () => {

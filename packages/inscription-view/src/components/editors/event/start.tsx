@@ -1,9 +1,8 @@
-import { IvyIcons } from '@axonivy/ui-icons';
 import type { ElementType } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { memo } from 'react';
 import { type KnownEditor } from '../InscriptionEditor';
 
-import Part from '../part/Part';
 import { useCasePart } from '../../parts/case/CasePart';
 import { useErrorCatchPart } from '../../parts/error/ErrorCatchPart';
 import { useGeneralPart } from '../../parts/name/GeneralPart';
@@ -15,6 +14,7 @@ import { useSignalCatchPart } from '../../parts/signal/SignalCatchPart';
 import { useStartPart } from '../../parts/start/StartPart';
 import { useTaskPart } from '../../parts/task/TaskPart';
 import { useTriggerPart } from '../../parts/trigger/TriggerPart';
+import Part from '../part/Part';
 
 const RequestStartEditor = memo(() => {
   const name = useGeneralPart();

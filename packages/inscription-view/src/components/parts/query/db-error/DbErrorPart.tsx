@@ -1,12 +1,12 @@
 import { IVY_EXCEPTIONS, type DbErrorData } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
 import { usePartState, type PartProps } from '../../../../components/editors/part/usePart';
-import { useDbErrorData } from './useDbErrorData';
 import { useValidations } from '../../../../context/useValidation';
+import ExceptionSelect from '../../common/exception-handler/ExceptionSelect';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
 import { ValidationFieldset } from '../../common/path/validation/ValidationFieldset';
-import ExceptionSelect from '../../common/exception-handler/ExceptionSelect';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { useDbErrorData } from './useDbErrorData';
 
 export function useDbErrorPart(): PartProps {
   const { t } = useTranslation();

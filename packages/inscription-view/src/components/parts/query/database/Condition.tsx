@@ -1,10 +1,10 @@
-import { useQueryData } from '../useQueryData';
-import useMaximizedCodeEditor from '../../../browser/useMaximizedCodeEditor';
+import { useTranslation } from 'react-i18next';
 import { PathContext } from '../../../../context/usePath';
+import useMaximizedCodeEditor from '../../../browser/useMaximizedCodeEditor';
+import { MacroArea } from '../../../widgets/code-editor/MacroArea';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
 import { ValidationFieldset } from '../../common/path/validation/ValidationFieldset';
-import { MacroArea } from '../../../widgets/code-editor/MacroArea';
-import { useTranslation } from 'react-i18next';
+import { useQueryData } from '../useQueryData';
 
 export const Condition = () => {
   const { t } = useTranslation();

@@ -1,14 +1,14 @@
+import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
+import { useEditorContext } from '../../../context/useEditorContext';
+import { useMeta } from '../../../context/useMeta';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
 import Collapsible from '../../widgets/collapsible/Collapsible';
 import Fieldset from '../../widgets/fieldset/Fieldset';
 import Textarea from '../../widgets/input/Textarea';
 import Tags from '../../widgets/tag/Tags';
 import DocumentTable from './document/DocumentTable';
-import { useEditorContext } from '../../../context/useEditorContext';
-import { useMeta } from '../../../context/useMeta';
 import { useGeneralData } from './useGeneralData';
-import { IvyIcons } from '@axonivy/ui-icons';
 
 export function useGeneralPart(options?: { hideTags?: boolean; disableName?: boolean }): PartProps {
   const { t } = useTranslation();

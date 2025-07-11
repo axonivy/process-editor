@@ -1,17 +1,17 @@
-import './CodeEditorCell.css';
+import { Button, selectNextPreviousCell } from '@axonivy/ui-components';
 import type { CellContext } from '@tanstack/react-table';
 import { useEffect, useState } from 'react';
-import { useMonacoEditor } from '../../code-editor/useCodeEditor';
-import { useOnFocus } from '../../../browser/useOnFocus';
-import useMaximizedCodeEditor from '../../../browser/useMaximizedCodeEditor';
-import { Button, selectNextPreviousCell } from '@axonivy/ui-components';
-import { type BrowserType } from '../../../browser/useBrowser';
 import { usePath } from '../../../../context/usePath';
-import { MaximizedCodeEditorBrowser } from '../../../browser/MaximizedCodeEditorBrowser';
-import { SingleLineCodeEditor } from '../../code-editor/SingleLineCodeEditor';
-import Browser from '../../../browser/Browser';
-import { Input } from '../../input/Input';
 import { focusAdjacentTabIndexMonaco } from '../../../../utils/focus';
+import Browser from '../../../browser/Browser';
+import { MaximizedCodeEditorBrowser } from '../../../browser/MaximizedCodeEditorBrowser';
+import { type BrowserType } from '../../../browser/useBrowser';
+import useMaximizedCodeEditor from '../../../browser/useMaximizedCodeEditor';
+import { useOnFocus } from '../../../browser/useOnFocus';
+import { SingleLineCodeEditor } from '../../code-editor/SingleLineCodeEditor';
+import { useMonacoEditor } from '../../code-editor/useCodeEditor';
+import { Input } from '../../input/Input';
+import './CodeEditorCell.css';
 
 type CodeEditorCellProps<TData> = {
   cell: CellContext<TData, string>;

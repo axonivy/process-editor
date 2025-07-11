@@ -1,14 +1,14 @@
 import type {
   Args,
+  ArgsAware,
   Dimension,
   EditableLabel,
-  Nameable,
-  ArgsAware,
   GChildElement,
   GParentElement,
   GRoutableElement,
-  WithEditableLabel,
-  ResizableModelElement
+  Nameable,
+  ResizableModelElement,
+  WithEditableLabel
 } from '@eclipse-glsp/client';
 import {
   Bounds,
@@ -21,6 +21,8 @@ import {
   editFeature,
   editLabelFeature,
   fadeFeature,
+  GEdge,
+  GLabel,
   hoverFeedbackFeature,
   isBoundsAware,
   isEditableLabel,
@@ -33,22 +35,20 @@ import {
   reconnectFeature,
   RectangularNode,
   resizeFeature,
-  GEdge,
+  ResizeHandleLocation,
   selectFeature,
-  GLabel,
-  withEditLabelFeature,
-  ResizeHandleLocation
+  withEditLabelFeature
 } from '@eclipse-glsp/client';
-import { singleWrapFeature, wrapFeature } from '../wrap/model';
 import { animateFeature } from '../animate/model';
-import { errorBoundaryFeature } from './boundary/model';
 import { breakpointFeature } from '../breakpoint/model';
 import type { Executable } from '../execution/model';
 import { executionFeature } from '../execution/model';
+import { multipleOutgoingEdgesFeature } from '../ui-tools/quick-action/edge/model';
 import { quickActionFeature } from '../ui-tools/quick-action/model';
+import { singleWrapFeature, wrapFeature } from '../wrap/model';
+import { errorBoundaryFeature } from './boundary/model';
 import type { WithCustomIcon } from './icon/model';
 import { ActivityTypes, EdgeTypes, LabelType, LaneTypes } from './view-types';
-import { multipleOutgoingEdgesFeature } from '../ui-tools/quick-action/edge/model';
 
 export class LaneNode extends RectangularNode implements WithEditableLabel, ArgsAware, ResizableModelElement {
   static readonly DEFAULT_FEATURES = [

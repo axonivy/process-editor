@@ -1,6 +1,6 @@
 import type { AlternativeConditions, ConnectorRef, NodeRef } from '@axonivy/process-editor-inscription-protocol';
-import { PID } from '../../../utils/pid';
 import { arraymove, indexOf } from '../../../utils/array';
+import { PID } from '../../../utils/pid';
 
 export interface Condition {
   fid: string;

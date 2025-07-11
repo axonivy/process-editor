@@ -1,8 +1,8 @@
-import { CollapsableUtil, customRender, customRenderHook, screen } from 'test-utils';
 import type { EndPageData } from '@axonivy/process-editor-inscription-protocol';
-import { useEndPagePart } from './EndPagePart';
+import { CollapsableUtil, customRender, customRenderHook, screen } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
-import { describe, test, expect } from 'vitest';
+import { useEndPagePart } from './EndPagePart';
 
 const Part = () => {
   const part = useEndPagePart();

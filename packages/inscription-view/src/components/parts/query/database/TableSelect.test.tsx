@@ -1,6 +1,6 @@
 import { ComboboxUtil, customRender } from 'test-utils';
-import { TableSelect } from './TableSelect';
 import { describe, test } from 'vitest';
+import { TableSelect } from './TableSelect';
 
 describe('TableSelect', () => {
   test('data', async () => {

@@ -12,7 +12,7 @@ import {
   type Writable
 } from '@eclipse-glsp/client';
 import { injectable } from 'inversify';
-import { type VNode, h } from 'snabbdom';
+import { h, type VNode } from 'snabbdom';
 
 @injectable()
 export class IvyGraphView extends GLSPProjectionView {

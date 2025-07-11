@@ -1,10 +1,10 @@
-import type { DeepPartial } from 'test-utils';
-import { CollapsableUtil, SelectUtil, customRender, customRenderHook, screen } from 'test-utils';
 import type { MailData } from '@axonivy/process-editor-inscription-protocol';
 import { MAIL_TYPE } from '@axonivy/process-editor-inscription-protocol';
+import type { DeepPartial } from 'test-utils';
+import { CollapsableUtil, SelectUtil, customRender, customRenderHook, screen } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
 import { useMailMessagePart } from './MailMessagePart';
-import { describe, test, expect } from 'vitest';
 
 const Part = () => {
   const part = useMailMessagePart();

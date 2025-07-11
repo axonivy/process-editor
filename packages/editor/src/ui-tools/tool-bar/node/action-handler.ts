@@ -1,15 +1,15 @@
+import { UpdatePaletteItems } from '@axonivy/process-editor-protocol';
 import {
   Action,
-  type IActionHandler,
   PaletteItem,
   RequestContextActions,
   SetContextActions,
   TYPES,
-  type IActionDispatcher
+  type IActionDispatcher,
+  type IActionHandler
 } from '@eclipse-glsp/client';
-import { injectable, inject } from 'inversify';
+import { inject, injectable } from 'inversify';
 import { ToolBar } from '../tool-bar';
-import { UpdatePaletteItems } from '@axonivy/process-editor-protocol';
 
 @injectable()
 export class ElementsPaletteHandler implements IActionHandler {

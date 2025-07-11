@@ -1,15 +1,15 @@
-import type { Consumer } from '../../../types/lambda';
 import type { Type } from '@axonivy/process-editor-inscription-protocol';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
+import { useAction } from '../../../context/useAction';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
+import type { Consumer } from '../../../types/lambda';
 import type { ComboboxItem } from '../../widgets/combobox/Combobox';
-import { useAction } from '../../../context/useAction';
+import Combobox from '../../widgets/combobox/Combobox';
 import type { FieldsetControl } from '../../widgets/fieldset/fieldset-control';
 import { PathCollapsible } from '../common/path/PathCollapsible';
 import { ValidationFieldset } from '../common/path/validation/ValidationFieldset';
-import Combobox from '../../widgets/combobox/Combobox';
-import { useTranslation } from 'react-i18next';
 
 type JavaClassSelectorProps = {
   javaClass: string;

@@ -1,11 +1,11 @@
-import './ValidationRow.css';
-import type { Row } from '@tanstack/react-table';
 import type { TableRow } from '@axonivy/ui-components';
 import { MessageRow, ReorderRow, SelectRow } from '@axonivy/ui-components';
+import type { Row } from '@tanstack/react-table';
 import type { ComponentPropsWithoutRef } from 'react';
+import { mergePaths, usePath } from '../../../../../context/usePath';
 import { useValidations } from '../../../../../context/useValidation';
 import { toMessageData, type ValidationMessage } from '../../../../widgets/message/Message';
-import { mergePaths, usePath } from '../../../../../context/usePath';
+import './ValidationRow.css';
 
 type ValidationProps<TData> = {
   row: Row<TData>;

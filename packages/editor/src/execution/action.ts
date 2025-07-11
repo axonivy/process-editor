@@ -8,8 +8,8 @@ import {
 } from '@eclipse-glsp/client';
 import { inject, injectable } from 'inversify';
 
-import { ExecutedFeedbackAction, StoppedFeedbackAction } from './feedback-action';
 import { type ElementExecution, SetExecutedElementsAction, StoppedAction } from '@axonivy/process-editor-protocol';
+import { ExecutedFeedbackAction, StoppedFeedbackAction } from './feedback-action';
 
 @injectable()
 export class SetExecutedElementsActionHandler implements IActionHandler {

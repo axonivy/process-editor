@@ -1,19 +1,19 @@
 import type { EventData, IntermediateEventTimeoutAction } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_EXCEPTIONS, IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { usePartState, type PartProps } from '../../../editors/part/usePart';
-import { useEventData } from './useEventData';
-import JavaClassSelector from '../JavaClassSelector';
-import { deepEqual } from '../../../../utils/equals';
-import { useValidations } from '../../../../context/useValidation';
-import { PathCollapsible } from '../../common/path/PathCollapsible';
-import { ValidationFieldset } from '../../common/path/validation/ValidationFieldset';
-import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
-import { PathFieldset } from '../../common/path/PathFieldset';
-import ExceptionSelect from '../../common/exception-handler/ExceptionSelect';
-import Radio, { type RadioItemProps } from '../../../widgets/radio/Radio';
-import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useValidations } from '../../../../context/useValidation';
+import { deepEqual } from '../../../../utils/equals';
+import { usePartState, type PartProps } from '../../../editors/part/usePart';
+import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
+import Radio, { type RadioItemProps } from '../../../widgets/radio/Radio';
+import ExceptionSelect from '../../common/exception-handler/ExceptionSelect';
+import { PathCollapsible } from '../../common/path/PathCollapsible';
+import { PathFieldset } from '../../common/path/PathFieldset';
+import { ValidationFieldset } from '../../common/path/validation/ValidationFieldset';
+import JavaClassSelector from '../JavaClassSelector';
+import { useEventData } from './useEventData';
 
 export function useEventPart(options?: { thirdParty?: boolean }): PartProps {
   const { t } = useTranslation();

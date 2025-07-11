@@ -1,8 +1,11 @@
+import { UpdatePaletteItems } from '@axonivy/process-editor-protocol';
+import { Button, Flex, PaletteButton, PaletteButtonLabel, Separator, Toolbar, ToolbarContainer } from '@axonivy/ui-components';
 import {
   Action,
   DisposableCollection,
   EnableDefaultToolsAction,
   EnableToolPaletteAction,
+  type IActionDispatcher,
   type IActionHandler,
   type IEditModeListener,
   ISelectionListener,
@@ -10,12 +13,13 @@ import {
   SelectionService,
   SetUIExtensionVisibilityAction,
   TYPES,
-  isNotUndefined,
-  type IActionDispatcher
+  isNotUndefined
 } from '@eclipse-glsp/client';
 import { inject, injectable, multiInject, postConstruct } from 'inversify';
-
+import React from 'react';
+import { SModelRootImpl } from 'sprotty';
 import { IVY_TYPES } from '../../types';
+import { ReactUIExtension } from '../../utils/react-ui-extension';
 import type { Menu } from '../menu/menu';
 import {
   DefaultSelectButton,
@@ -25,15 +29,10 @@ import {
   type ToolBarButtonProvider,
   compareButtons
 } from './button';
+import { EditButtons } from './edit-buttons';
 import { ShowToolBarOptionsMenuAction } from './options/action';
 import { ToolBarOptionsMenu } from './options/options-menu-ui';
 import { ShowToolBarMenuAction, ToolBarMenu } from './tool-bar-menu';
-import { UpdatePaletteItems } from '@axonivy/process-editor-protocol';
-import { ReactUIExtension } from '../../utils/react-ui-extension';
-import { SModelRootImpl } from 'sprotty';
-import React from 'react';
-import { Toolbar, Flex, ToolbarContainer, Separator, Button, PaletteButton, PaletteButtonLabel } from '@axonivy/ui-components';
-import { EditButtons } from './edit-buttons';
 
 export type ToolBarButtonClickEvent = {
   source: ToolBarButton;

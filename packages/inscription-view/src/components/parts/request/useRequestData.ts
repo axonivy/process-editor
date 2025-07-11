@@ -1,7 +1,7 @@
 import type { RequestData } from '@axonivy/process-editor-inscription-protocol';
 import { produce } from 'immer';
-import type { DataUpdater } from '../../../types/lambda';
 import { useConfigDataContext, type ConfigDataContext } from '../../../context/useDataContext';
+import type { DataUpdater } from '../../../types/lambda';
 
 export function useRequestData(): ConfigDataContext<RequestData> & {
   updateRequest: DataUpdater<RequestData['request']>;

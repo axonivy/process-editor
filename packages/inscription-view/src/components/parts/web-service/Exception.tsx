@@ -1,11 +1,11 @@
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { useWebServiceData } from './useWebServiceData';
-import { deepEqual } from '../../../utils/equals';
-import { PathCollapsible } from '../common/path/PathCollapsible';
-import Checkbox from '../../widgets/checkbox/Checkbox';
-import { PathFieldset } from '../common/path/PathFieldset';
-import { ScriptInput } from '../../widgets/code-editor/ScriptInput';
 import { useTranslation } from 'react-i18next';
+import { deepEqual } from '../../../utils/equals';
+import Checkbox from '../../widgets/checkbox/Checkbox';
+import { ScriptInput } from '../../widgets/code-editor/ScriptInput';
+import { PathCollapsible } from '../common/path/PathCollapsible';
+import { PathFieldset } from '../common/path/PathFieldset';
+import { useWebServiceData } from './useWebServiceData';
 
 export const Exception = () => {
   const { t } = useTranslation();

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
 import type { TextareaProps as TextareaPrimitiveProps } from '@axonivy/ui-components';
 import { Textarea as TextareaPrimitive } from '@axonivy/ui-components';
+import { useEffect, useState } from 'react';
 
 export type TextareaProps = Omit<TextareaPrimitiveProps, 'value' | 'onChange'> & {
   value?: string;

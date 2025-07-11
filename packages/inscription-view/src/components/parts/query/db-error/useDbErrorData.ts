@@ -1,7 +1,7 @@
 import type { DbErrorData } from '@axonivy/process-editor-inscription-protocol';
 import { produce } from 'immer';
-import type { Consumer } from '../../../../types/lambda';
 import { useConfigDataContext, type ConfigDataContext } from '../../../../context/useDataContext';
+import type { Consumer } from '../../../../types/lambda';
 
 export function useDbErrorData(): ConfigDataContext<DbErrorData> & {
   updateException: Consumer<string>;

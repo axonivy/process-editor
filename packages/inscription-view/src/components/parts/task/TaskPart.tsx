@@ -1,17 +1,17 @@
+import type { WfTask } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
+import { PathContext } from '../../../context/usePath';
+import { useValidations } from '../../../context/useValidation';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
+import EmptyWidget from '../../widgets/empty/EmptyWidget';
 import type { TaskPersistData } from './options/usePersistOptionsData';
 import { useTaskPersistData } from './options/usePersistOptionsData';
-import Task from './task/Task';
-import { useTaskData } from './useTaskData';
-import type { WfTask } from '@axonivy/process-editor-inscription-protocol';
 import RequestTask from './task/RequestTask';
+import Task from './task/Task';
 import WaitTask from './task/WaitTask';
 import WsTask from './task/WsTask';
-import { useValidations } from '../../../context/useValidation';
-import { PathContext } from '../../../context/usePath';
-import EmptyWidget from '../../widgets/empty/EmptyWidget';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { useTaskData } from './useTaskData';
 
 export function useTaskPart(options?: TaskPartProps): PartProps {
   const { t } = useTranslation();

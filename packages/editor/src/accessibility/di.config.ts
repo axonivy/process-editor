@@ -20,6 +20,7 @@ import {
   TYPES,
   viewKeyToolsModule
 } from '@eclipse-glsp/client';
+import { translateMessages } from '../translation/glsp-messages';
 import { FocusDomActionHandler } from './focus-dom-handler';
 import { IvyGlobalKeyListenerTool } from './key-listener/global-keylistener-tool';
 import { JumpOutKeyListener } from './key-listener/jump-out';
@@ -29,7 +30,6 @@ import { IvyResizeElementHandler } from './resize-key-tool/resize-key-handler';
 import { IvySearchAutocompletePalette } from './search/search-palette';
 import { IvySearchAutocompletePaletteTool } from './search/search-tool';
 import { IvyToast } from './toast/toast-tool';
-import { translateMessages } from '../translation/glsp-messages';
 
 translateMessages();
 

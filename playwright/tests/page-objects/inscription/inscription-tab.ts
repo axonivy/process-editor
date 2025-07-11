@@ -1,8 +1,8 @@
+import type { PartStateFlag } from '@axonivy/process-editor-inscription-view/src/components/editors/part/usePart';
 import type { Locator, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
 import { Part } from './part';
 import { Tab } from './tab';
-import type { PartStateFlag } from '@axonivy/process-editor-inscription-view/src/components/editors/part/usePart';
 
 export class InscriptionTab extends Part {
   readonly tabButtonLocator: Locator;

@@ -1,12 +1,12 @@
 import { Message } from '@axonivy/ui-components';
-import { useQueryData } from '../useQueryData';
-import { PathCollapsible } from '../../common/path/PathCollapsible';
-import { PathFieldset } from '../../common/path/PathFieldset';
-import { MacroArea } from '../../../widgets/code-editor/MacroArea';
-import Checkbox from '../../../widgets/checkbox/Checkbox';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
 import useMaximizedCodeEditor from '../../../browser/useMaximizedCodeEditor';
-import { IvyIcons } from '@axonivy/ui-icons';
+import Checkbox from '../../../widgets/checkbox/Checkbox';
+import { MacroArea } from '../../../widgets/code-editor/MacroArea';
+import { PathCollapsible } from '../../common/path/PathCollapsible';
+import { PathFieldset } from '../../common/path/PathFieldset';
+import { useQueryData } from '../useQueryData';
 
 export const Statement = () => {
   const { t } = useTranslation();

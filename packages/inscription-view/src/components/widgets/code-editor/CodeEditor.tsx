@@ -1,10 +1,10 @@
-import './CodeEditor.css';
-import { MONACO_OPTIONS, MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
-import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-import { useRef, Suspense, lazy } from 'react';
 import { useReadonly } from '@axonivy/ui-components';
-import { useEditorContext } from '../../../context/useEditorContext';
+import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import { Suspense, lazy, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useEditorContext } from '../../../context/useEditorContext';
+import { MONACO_OPTIONS, MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
+import './CodeEditor.css';
 
 const Editor = lazy(async () => {
   const editor = await import('@monaco-editor/react');

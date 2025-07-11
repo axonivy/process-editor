@@ -1,8 +1,8 @@
 import { FeatureModule, TYPES } from '@eclipse-glsp/client';
-import { OpenDataClassKeyListener } from './key-listener';
 import { IVY_TYPES } from '../types';
-import { OpenFormEditorButtonProvider } from './toolbar-button';
+import { OpenDataClassKeyListener } from './key-listener';
 import { OpenFormQuickActionProvider } from './quick-action';
+import { OpenFormEditorButtonProvider } from './toolbar-button';
 
 const ivyOpenFormModule = new FeatureModule(bind => {
   bind(TYPES.KeyListener).to(OpenDataClassKeyListener);

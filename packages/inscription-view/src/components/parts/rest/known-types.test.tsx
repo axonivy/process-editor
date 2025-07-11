@@ -1,6 +1,6 @@
 import type { RestPayload } from '@axonivy/process-editor-inscription-protocol';
+import { describe, expect, test } from 'vitest';
 import { evalBodyType, evalInputType, isFormMedia, typesSupportBinary } from './known-types';
-import { describe, test, expect } from 'vitest';
 
 describe('Known Types', () => {
   test('evalInputType', async () => {

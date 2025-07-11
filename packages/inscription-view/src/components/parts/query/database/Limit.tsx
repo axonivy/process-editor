@@ -1,9 +1,9 @@
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { useQueryData } from '../useQueryData';
-import { ValidationCollapsible } from '../../common/path/validation/ValidationCollapsible';
-import { PathFieldset } from '../../common/path/PathFieldset';
-import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
 import { useTranslation } from 'react-i18next';
+import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
+import { PathFieldset } from '../../common/path/PathFieldset';
+import { ValidationCollapsible } from '../../common/path/validation/ValidationCollapsible';
+import { useQueryData } from '../useQueryData';
 
 export const Limit = () => {
   const { t } = useTranslation();

@@ -1,17 +1,16 @@
+import { type ElementBreakpoint, ToggleBreakpointAction } from '@axonivy/process-editor-protocol';
 import {
-  MouseListener,
   Action,
   Command,
   type CommandExecutionContext,
   GChildElement,
   GModelElement,
   GModelRoot,
+  MouseListener,
   TYPES
 } from '@eclipse-glsp/client';
 import { inject, injectable } from 'inversify';
-
 import { addBreakpointHandles, type Breakable, isBreakable, removeBreakpointHandles, SBreakpointHandle } from './model';
-import { type ElementBreakpoint, ToggleBreakpointAction } from '@axonivy/process-editor-protocol';
 
 export interface BreakpointFeedbackAction extends Action {
   kind: typeof BreakpointFeedbackCommand.KIND;

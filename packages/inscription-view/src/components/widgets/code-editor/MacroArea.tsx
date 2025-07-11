@@ -1,15 +1,15 @@
-import './ScriptArea.css';
-import type { CodeEditorAreaProps } from './ResizableCodeEditor';
-import { ResizableCodeEditor } from './ResizableCodeEditor';
-import { monacoAutoFocus, useMonacoEditor } from './useCodeEditor';
+import { InputBadgeArea, useField } from '@axonivy/ui-components';
 import { useRef } from 'react';
 import { useOnFocus } from '../../../components/browser/useOnFocus';
-import { InputBadgeArea, useField } from '@axonivy/ui-components';
-import { badgePropsExpression } from '../../../utils/badgeproperties';
-import { MaximizedCodeEditorBrowser } from '../../browser/MaximizedCodeEditorBrowser';
-import Browser from '../../browser/Browser';
 import { usePath } from '../../../context/usePath';
 import { MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
+import { badgePropsExpression } from '../../../utils/badgeproperties';
+import Browser from '../../browser/Browser';
+import { MaximizedCodeEditorBrowser } from '../../browser/MaximizedCodeEditorBrowser';
+import type { CodeEditorAreaProps } from './ResizableCodeEditor';
+import { ResizableCodeEditor } from './ResizableCodeEditor';
+import './ScriptArea.css';
+import { monacoAutoFocus, useMonacoEditor } from './useCodeEditor';
 
 export const MacroArea = ({ value, onChange, minHeight, browsers, ...props }: CodeEditorAreaProps) => {
   const { isFocusWithin, focusWithinProps, focusValue, browser } = useOnFocus(value, onChange);

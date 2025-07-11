@@ -1,17 +1,17 @@
+import { Button, Input, InputBadge, useField, useReadonly } from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { useCombobox } from 'downshift';
 import type { ComponentPropsWithRef, ReactNode } from 'react';
 import { memo, useEffect, useState } from 'react';
-import './Combobox.css';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { Button, Input, InputBadge, useField, useReadonly } from '@axonivy/ui-components';
-import { useMonacoEditor } from '../code-editor/useCodeEditor';
 import { useOnFocus } from '../../../components/browser/useOnFocus';
-import type { BrowserValue } from '../../browser/Browser';
-import { badgePropsExpression } from '../../../utils/badgeproperties';
-import { type BrowserType } from '../../browser/useBrowser';
 import { usePath } from '../../../context/usePath';
-import { SingleLineCodeEditor } from '../code-editor/SingleLineCodeEditor';
+import { badgePropsExpression } from '../../../utils/badgeproperties';
+import type { BrowserValue } from '../../browser/Browser';
 import Browser from '../../browser/Browser';
+import { type BrowserType } from '../../browser/useBrowser';
+import { SingleLineCodeEditor } from '../code-editor/SingleLineCodeEditor';
+import { useMonacoEditor } from '../code-editor/useCodeEditor';
+import './Combobox.css';
 
 export interface ComboboxItem {
   value: string;

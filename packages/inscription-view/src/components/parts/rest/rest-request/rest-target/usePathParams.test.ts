@@ -1,8 +1,8 @@
+import type { RestRequestData } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
 import { customRenderHook, waitFor } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import { useFindPathParams, useTargetPathSplit } from './usePathParams';
-import type { RestRequestData } from '@axonivy/process-editor-inscription-protocol';
-import { describe, test, expect } from 'vitest';
 
 describe('useTargetPathSplit', () => {
   test('empty', () => {

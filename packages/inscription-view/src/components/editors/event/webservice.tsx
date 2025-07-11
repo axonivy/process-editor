@@ -1,15 +1,15 @@
-import { IvyIcons } from '@axonivy/ui-icons';
 import type { ElementType } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { memo } from 'react';
-import { type KnownEditor } from '../InscriptionEditor';
-import NameEditor from '../NameEditor';
-import Part from '../part/Part';
 import { useCasePart } from '../../parts/case/CasePart';
 import { useGeneralPart } from '../../parts/name/GeneralPart';
 import { useResultPart } from '../../parts/result/ResultPart';
 import { useStartPart } from '../../parts/start/StartPart';
 import { useTaskPart } from '../../parts/task/TaskPart';
 import { useWebServicePart } from '../../parts/web-service/WebServicePart';
+import { type KnownEditor } from '../InscriptionEditor';
+import NameEditor from '../NameEditor';
+import Part from '../part/Part';
 
 const WebserviceStartEditor = memo(() => {
   const name = useGeneralPart();

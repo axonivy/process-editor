@@ -1,7 +1,7 @@
 import type { WfTask } from '@axonivy/process-editor-inscription-protocol';
 import { customRender, screen, userEvent } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import RequestTask from './RequestTask';
-import { describe, test, expect } from 'vitest';
 
 describe('RequestTask', () => {
   function renderTask(data?: Partial<WfTask>) {

@@ -1,6 +1,3 @@
-import './diagram.css';
-import './marker/marker.css';
-
 import type { CustomFeatures } from '@eclipse-glsp/client';
 import {
   ConsoleLogger,
@@ -16,18 +13,22 @@ import {
   overrideModelElement,
   selectFeature
 } from '@eclipse-glsp/client';
-
 import { breakpointFeature } from '../breakpoint/model';
 import { jumpFeature } from '../jump/model';
+import { goToFormFeature } from '../open-form/model';
+import { goToSourceFeature } from '../open-source/model';
 import { IvyMovementRestrictor } from '../tools/movement-restrictor';
 import { multipleOutgoingEdgesFeature } from '../ui-tools/quick-action/edge/model';
 import { singleWrapFeature, unwrapFeature } from '../wrap/model';
 import { ActivityNodeView, SubActivityNodeView } from './activities/activity-views';
 import { errorBoundaryFeature, signalBoundaryFeature } from './boundary/model';
+import './diagram.css';
 import { EventNodeView, IntermediateEventNodeView } from './events/event-views';
 import { GatewayNodeView } from './gateways/gateway-views';
 import { IvyGraphView } from './grid/ivy-graph-view';
 import { LaneNodeView, PoolNodeView, RotateLabelView } from './lanes/lane-views';
+import { IvyIssueMarkerView } from './marker/issue-marker-view';
+import './marker/marker.css';
 import {
   ActivityLabel,
   ActivityNode,
@@ -54,9 +55,6 @@ import {
   LaneTypes
 } from './view-types';
 import { AssociationEdgeView, ForeignLabelView, WorkflowEdgeView } from './views';
-import { IvyIssueMarkerView } from './marker/issue-marker-view';
-import { goToFormFeature } from '../open-form/model';
-import { goToSourceFeature } from '../open-source/model';
 
 const ivyDiagramModule = new FeatureModule((bind, unbind, isBound, rebind) => {
   rebind(TYPES.ILogger).to(ConsoleLogger).inSingletonScope();

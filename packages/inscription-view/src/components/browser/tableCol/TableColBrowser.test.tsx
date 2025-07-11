@@ -1,6 +1,6 @@
 import { TableUtil, customRender, customRenderHook } from 'test-utils';
-import { useTableColBrowser } from './TableColBrowser';
 import { describe, test } from 'vitest';
+import { useTableColBrowser } from './TableColBrowser';
 
 describe('TableColBrowser', () => {
   test('select can be undefined', async () => {

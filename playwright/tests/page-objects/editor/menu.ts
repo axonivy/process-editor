@@ -3,7 +3,10 @@ import { expect, type Locator, type Page } from '@playwright/test';
 export class Menu {
   protected readonly page: Page;
 
-  constructor(page: Page, readonly menu: Locator) {
+  constructor(
+    page: Page,
+    readonly menu: Locator
+  ) {
     this.page = page;
   }
 

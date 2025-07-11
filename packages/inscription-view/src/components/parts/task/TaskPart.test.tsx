@@ -1,10 +1,10 @@
+import type { TaskData, WfTask } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
-import { customRenderHook, screen, customRender } from 'test-utils';
-import type { WfTask, TaskData } from '@axonivy/process-editor-inscription-protocol';
+import { customRender, customRenderHook, screen } from 'test-utils';
+import { describe, expect, test } from 'vitest';
+import type { PartStateFlag } from '../../editors/part/usePart';
 import type { TaskPartProps } from './TaskPart';
 import { useTaskPart } from './TaskPart';
-import type { PartStateFlag } from '../../editors/part/usePart';
-import { describe, test, expect } from 'vitest';
 
 const Part = () => {
   const part = useTaskPart();

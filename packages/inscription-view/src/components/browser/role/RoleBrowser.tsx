@@ -1,24 +1,24 @@
-import { useEffect, useMemo, useState } from 'react';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
-import { IvyIcons } from '@axonivy/ui-icons';
-import type { BrowserValue } from '../Browser';
-import {
-  useReactTable,
-  type ColumnDef,
-  type RowSelectionState,
-  getCoreRowModel,
-  getFilteredRowModel,
-  type ExpandedState,
-  getExpandedRowModel
-} from '@tanstack/react-table';
-import { useRoles } from '../../parts/common/role/useRoles';
 import type { RoleMeta } from '@axonivy/process-editor-inscription-protocol';
 import { Flex, TableBody, TableCell, TableRow, useTableKeyHandler } from '@axonivy/ui-components';
-import { AddRolePopover } from './AddRolePopover';
-import BrowserTableRow from '../BrowserTableRow';
+import { IvyIcons } from '@axonivy/ui-icons';
+import {
+  getCoreRowModel,
+  getExpandedRowModel,
+  getFilteredRowModel,
+  useReactTable,
+  type ColumnDef,
+  type ExpandedState,
+  type RowSelectionState
+} from '@tanstack/react-table';
+import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useRoles } from '../../parts/common/role/useRoles';
 import { ExpandableCell } from '../../widgets/table/cell/ExpandableCell';
 import { SearchTable } from '../../widgets/table/table/Table';
-import { useTranslation } from 'react-i18next';
+import type { BrowserValue } from '../Browser';
+import BrowserTableRow from '../BrowserTableRow';
+import type { UseBrowserImplReturnValue } from '../useBrowser';
+import { AddRolePopover } from './AddRolePopover';
 export const ROLE_BROWSER = 'role' as const;
 
 export type RoleOptions = {

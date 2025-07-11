@@ -1,28 +1,31 @@
 import type {
+  ElementData,
+  ElementType,
+  InscriptionActionArgs,
   InscriptionClient,
   InscriptionData,
-  InscriptionSaveData,
-  InscriptionType,
-  ValidationResult,
-  ElementType,
-  ElementData,
-  InscriptionActionArgs,
   InscriptionElementContext,
   InscriptionMetaRequestTypes,
+  InscriptionSaveData,
+  InscriptionType,
   ScriptingDataArgs,
+  ValidationResult,
   Variable
 } from '@axonivy/process-editor-inscription-protocol';
 import { DEFAULT_DATA } from '@axonivy/process-editor-inscription-protocol';
-import { Emitter } from 'vscode-jsonrpc';
 import { deepmerge } from 'deepmerge-ts';
-import { DataMock } from './data-mock';
-import { ValidationMock } from './validation-mock';
-import { MetaMock } from './meta-mock';
+import { Emitter } from 'vscode-jsonrpc';
 import { deepEqual } from '../../../../packages/inscription-view/src/utils/equals';
+import { DataMock } from './data-mock';
+import { MetaMock } from './meta-mock';
+import { ValidationMock } from './validation-mock';
 
 export class InscriptionClientMock implements InscriptionClient {
   private elementData = {} as ElementData;
-  constructor(readonly readonly = false, readonly type: ElementType = 'UserTask') {}
+  constructor(
+    readonly readonly = false,
+    readonly type: ElementType = 'UserTask'
+  ) {}
 
   protected onValidationEmitter = new Emitter<ValidationResult[]>();
   onValidation = this.onValidationEmitter.event;

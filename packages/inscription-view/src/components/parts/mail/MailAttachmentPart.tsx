@@ -1,18 +1,18 @@
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useMailData } from './useMailData';
 import type { MailData } from '@axonivy/process-editor-inscription-protocol';
+import { Table, TableBody, TableCell } from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
 import type { ColumnDef } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 import { useMemo } from 'react';
-import { useResizableEditableTable } from '../common/table/useResizableEditableTable';
-import { Table, TableBody, TableCell } from '@axonivy/ui-components';
-import { useValidations } from '../../../context/useValidation';
+import { useTranslation } from 'react-i18next';
 import { PathContext } from '../../../context/usePath';
+import { useValidations } from '../../../context/useValidation';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
 import { ScriptCell } from '../../widgets/table/cell/ScriptCell';
 import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
 import { ValidationRow } from '../common/path/validation/ValidationRow';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { useResizableEditableTable } from '../common/table/useResizableEditableTable';
+import { useMailData } from './useMailData';
 
 export function useMailAttachmentPart(): PartProps {
   const { t } = useTranslation();

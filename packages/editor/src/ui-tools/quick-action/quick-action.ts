@@ -1,9 +1,9 @@
-import { Action, DeleteElementOperation, isDeletable, GModelElement } from '@eclipse-glsp/client';
+import { AutoAlignOperation } from '@axonivy/process-editor-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { Action, DeleteElementOperation, GModelElement, isDeletable } from '@eclipse-glsp/client';
+import { t } from 'i18next';
 import { injectable } from 'inversify';
 import type { KeyCode } from 'sprotty/lib/utils/keyboard';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { AutoAlignOperation } from '@axonivy/process-editor-protocol';
-import { t } from 'i18next';
 
 export type QuickActionLocation = 'Left' | 'Middle' | 'Right' | 'Hidden';
 

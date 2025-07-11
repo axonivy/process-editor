@@ -1,16 +1,16 @@
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useProcessDataData } from './useProcessDataData';
 import type { ProcessDataData } from '@axonivy/process-editor-inscription-protocol';
-import type { DataClassItem } from './ClassSelectorPart';
-import DataClassSelector from './ClassSelectorPart';
 import { Message } from '@axonivy/ui-components';
-import { useValidations } from '../../../context/useValidation';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
+import { useValidations } from '../../../context/useValidation';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
 import { PathCollapsible } from '../common/path/PathCollapsible';
 import { ValidationFieldset } from '../common/path/validation/ValidationFieldset';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import type { DataClassItem } from './ClassSelectorPart';
+import DataClassSelector from './ClassSelectorPart';
+import { useProcessDataData } from './useProcessDataData';
 
 export function useProcessDataPart(): PartProps {
   const { t } = useTranslation();

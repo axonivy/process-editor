@@ -1,20 +1,20 @@
-import { useEffect } from 'react';
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useResultData } from './useResultData';
 import type { ResultData } from '@axonivy/process-editor-inscription-protocol';
+import { IvyIcons } from '@axonivy/ui-icons';
 import { useQueryClient } from '@tanstack/react-query';
-import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
-import { useValidations } from '../../../context/useValidation';
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
 import { PathContext } from '../../../context/usePath';
-import ParameterTable from '../common/parameter/ParameterTable';
+import { useValidations } from '../../../context/useValidation';
+import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
+import { ScriptArea } from '../../widgets/code-editor/ScriptArea';
 import MappingPart from '../common/mapping-tree/MappingPart';
+import ParameterTable from '../common/parameter/ParameterTable';
 import { PathCollapsible } from '../common/path/PathCollapsible';
 import { ValidationFieldset } from '../common/path/validation/ValidationFieldset';
-import { ScriptArea } from '../../widgets/code-editor/ScriptArea';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { useResultData } from './useResultData';
 
 export function useResultPart(props?: { hideParamDesc?: boolean }): PartProps {
   const { t } = useTranslation();

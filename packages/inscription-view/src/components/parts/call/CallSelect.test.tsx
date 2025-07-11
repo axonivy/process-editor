@@ -1,8 +1,8 @@
-import CallSelect from './CallSelect';
-import { customRender, screen, userEvent } from 'test-utils';
 import type { CallableStart } from '@axonivy/process-editor-inscription-protocol';
-import { describe, test, expect } from 'vitest';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { customRender, screen, userEvent } from 'test-utils';
+import { describe, expect, test } from 'vitest';
+import CallSelect from './CallSelect';
 
 describe('CallSelect', () => {
   const DEPRECATED_STYLE = 'text-decoration: line-through';

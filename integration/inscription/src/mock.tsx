@@ -1,12 +1,12 @@
-import { App, ClientContextProvider, MonacoEditorUtil, QueryProvider, initQueryClient } from '@axonivy/process-editor-inscription-view';
 import type { ElementType } from '@axonivy/process-editor-inscription-protocol';
+import { App, ClientContextProvider, MonacoEditorUtil, QueryProvider, initQueryClient } from '@axonivy/process-editor-inscription-view';
 import { ThemeProvider, Toaster } from '@axonivy/ui-components';
+import * as React from 'react';
 import { createRoot } from 'react-dom/client';
+import { initTranslation } from './i18n';
 import './index.css';
 import { InscriptionClientMock } from './mock/inscription-client-mock';
 import { URLParams } from './url-helper';
-import * as React from 'react';
-import { initTranslation } from './i18n';
 
 export async function start(): Promise<void> {
   const readonly = URLParams.parameter('readonly') ? true : false;

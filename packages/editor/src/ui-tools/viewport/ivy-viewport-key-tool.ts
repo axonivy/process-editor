@@ -1,4 +1,4 @@
-import { repeatOnMessagesUpdated, messages } from '@eclipse-glsp/client';
+import { messages, repeatOnMessagesUpdated } from '@eclipse-glsp/client';
 import { ViewportKeyTool } from '@eclipse-glsp/client/lib/features/viewport/viewport-tool';
 import { t } from 'i18next';
 import { injectable } from 'inversify';

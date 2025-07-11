@@ -1,9 +1,9 @@
-import { RestEntityTypeCombobox, useShowRestEntityTypeCombo } from './RestEntityTypeCombobox';
+import type { RestPayload } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
 import { ComboboxUtil, customRender, renderHook } from 'test-utils';
-import type { RestPayload } from '@axonivy/process-editor-inscription-protocol';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { OpenApiContextProvider } from '../../../context/useOpenApi';
+import { RestEntityTypeCombobox, useShowRestEntityTypeCombo } from './RestEntityTypeCombobox';
 
 describe('RestEntityTypeCombobox', () => {
   function renderCombo(value: string, restEntityTypes?: string[]) {

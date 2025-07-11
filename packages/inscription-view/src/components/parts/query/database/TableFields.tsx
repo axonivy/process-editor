@@ -1,16 +1,16 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useQueryData } from '../useQueryData';
-import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import type { DatabaseColumn } from '@axonivy/process-editor-inscription-protocol';
 import { SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
+import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
-import { ScriptCell } from '../../../widgets/table/cell/ScriptCell';
 import { PathContext } from '../../../../context/usePath';
+import { ScriptCell } from '../../../widgets/table/cell/ScriptCell';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
 import { ValidationRow } from '../../common/path/validation/ValidationRow';
-import { useTranslation } from 'react-i18next';
+import { useQueryData } from '../useQueryData';
 
 type Column = DatabaseColumn & {
   expression: string;

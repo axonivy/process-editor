@@ -1,9 +1,9 @@
-import type { DeepPartial } from 'test-utils';
-import { customRender, TableUtil, customRenderHook, screen, CollapsableUtil } from 'test-utils';
 import type { ConditionData, ConnectorRef } from '@axonivy/process-editor-inscription-protocol';
+import type { DeepPartial } from 'test-utils';
+import { CollapsableUtil, customRender, customRenderHook, screen, TableUtil } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
 import { useConditionPart } from './ConditionPart';
-import { describe, test, expect } from 'vitest';
 
 const Part = () => {
   const part = useConditionPart();

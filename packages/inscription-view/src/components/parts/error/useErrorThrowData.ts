@@ -1,7 +1,7 @@
 import type { ErrorThrowData } from '@axonivy/process-editor-inscription-protocol';
 import { produce } from 'immer';
-import type { DataUpdater } from '../../../types/lambda';
 import { useConfigDataContext, useDataContext, type ConfigDataContext } from '../../../context/useDataContext';
+import type { DataUpdater } from '../../../types/lambda';
 
 export function useErrorThrowData(): ConfigDataContext<ErrorThrowData> & {
   update: DataUpdater<ErrorThrowData>;

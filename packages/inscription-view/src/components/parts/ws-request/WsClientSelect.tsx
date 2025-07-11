@@ -1,3 +1,4 @@
+import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
 import { useAction } from '../../../context/useAction';
 import { useEditorContext } from '../../../context/useEditorContext';
@@ -6,7 +7,6 @@ import type { FieldsetControl } from '../../widgets/fieldset/fieldset-control';
 import Select, { type SelectItem } from '../../widgets/select/Select';
 import { PathFieldset } from '../common/path/PathFieldset';
 import { useWsRequestData } from './useWsRequestData';
-import { IvyIcons } from '@axonivy/ui-icons';
 
 export const WsClientSelect = () => {
   const { t } = useTranslation();

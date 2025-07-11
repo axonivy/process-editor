@@ -1,7 +1,7 @@
-import type { Part } from '../../page-objects/inscription/part';
-import { NewPartTest, PartObject } from './part-tester';
-import type { Section } from '../../page-objects/inscription/section';
 import type { Combobox } from '../../page-objects/inscription/combobox';
+import type { Part } from '../../page-objects/inscription/part';
+import type { Section } from '../../page-objects/inscription/section';
+import { NewPartTest, PartObject } from './part-tester';
 
 class RestError extends PartObject {
   errorSection: Section;

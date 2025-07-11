@@ -1,8 +1,8 @@
 import type { RestRequestData } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
 import { customRender, screen } from 'test-utils';
+import { describe, expect, test } from 'vitest';
 import { RestBodyRaw } from './RestBodyRaw';
-import { describe, test, expect } from 'vitest';
 
 describe('RestBodyRaw', () => {
   function renderPart(data?: DeepPartial<RestRequestData>) {

@@ -1,12 +1,12 @@
-import { useRestRequestData } from '../../useRestRequestData';
-import { deepEqual } from '../../../../../utils/equals';
-import { PropertyTable } from '../../../common/properties/PropertyTable';
-import { useRestResourceMeta } from '../../useRestResourceMeta';
-import { useMeta } from '../../../../../context/useMeta';
-import { PathCollapsible } from '../../../common/path/PathCollapsible';
-import Fieldset from '../../../../widgets/fieldset/Fieldset';
-import Combobox, { type ComboboxItem } from '../../../../widgets/combobox/Combobox';
 import { useTranslation } from 'react-i18next';
+import { useMeta } from '../../../../../context/useMeta';
+import { deepEqual } from '../../../../../utils/equals';
+import Combobox, { type ComboboxItem } from '../../../../widgets/combobox/Combobox';
+import Fieldset from '../../../../widgets/fieldset/Fieldset';
+import { PathCollapsible } from '../../../common/path/PathCollapsible';
+import { PropertyTable } from '../../../common/properties/PropertyTable';
+import { useRestRequestData } from '../../useRestRequestData';
+import { useRestResourceMeta } from '../../useRestResourceMeta';
 
 export const RestHeaders = () => {
   const { t } = useTranslation();

@@ -1,13 +1,13 @@
 import type { WsErrorData } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_EXCEPTIONS } from '@axonivy/process-editor-inscription-protocol';
-import { usePartState, type PartProps } from '../../editors/part/usePart';
-import { useWsErrorData } from './useWsErrorData';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { useTranslation } from 'react-i18next';
 import { useValidations } from '../../../context/useValidation';
+import { usePartState, type PartProps } from '../../editors/part/usePart';
+import ExceptionSelect from '../common/exception-handler/ExceptionSelect';
 import { PathCollapsible } from '../common/path/PathCollapsible';
 import { ValidationFieldset } from '../common/path/validation/ValidationFieldset';
-import ExceptionSelect from '../common/exception-handler/ExceptionSelect';
-import { useTranslation } from 'react-i18next';
-import { IvyIcons } from '@axonivy/ui-icons';
+import { useWsErrorData } from './useWsErrorData';
 
 export function useWsErrorPart(): PartProps {
   const { t } = useTranslation();
