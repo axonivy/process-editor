@@ -1,5 +1,6 @@
 import type { TriggerData } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
+import { PanelMessage } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
 import { PathContext } from '../../../context/usePath';
@@ -7,7 +8,6 @@ import { useValidations } from '../../../context/useValidation';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
 import Checkbox from '../../widgets/checkbox/Checkbox';
 import { ScriptInput } from '../../widgets/code-editor/ScriptInput';
-import EmptyWidget from '../../widgets/empty/EmptyWidget';
 import { PathFieldset } from '../common/path/PathFieldset';
 import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
 import { ResponsibleCollapsible } from '../common/responsible/ResponsiblePart';
@@ -71,7 +71,7 @@ const TriggerPart = () => {
           )}
         </>
       ) : (
-        <EmptyWidget message={t('part.task.noTaskMessage')} />
+        <PanelMessage icon={IvyIcons.Trigger} message={t('part.task.noTaskMessage')} />
       )}
     </>
   );

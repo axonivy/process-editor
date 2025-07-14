@@ -1,10 +1,10 @@
 import type { WfTask } from '@axonivy/process-editor-inscription-protocol';
+import { PanelMessage } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
 import { PathContext } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
-import EmptyWidget from '../../widgets/empty/EmptyWidget';
 import type { TaskPersistData } from './options/usePersistOptionsData';
 import { useTaskPersistData } from './options/usePersistOptionsData';
 import RequestTask from './task/RequestTask';
@@ -56,5 +56,5 @@ const TaskPart = ({ type }: TaskPartProps) => {
   if (defaultTask) {
     return <PathContext path='task'>{task(type)}</PathContext>;
   }
-  return <EmptyWidget message={t('part.task.noTaskMessage')} />;
+  return <PanelMessage icon={IvyIcons.UserTask} message={t('part.task.noTaskMessage')} />;
 };
