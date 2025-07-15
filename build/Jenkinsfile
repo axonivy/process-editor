@@ -10,10 +10,6 @@ pipeline {
     upstream(upstreamProjects: "inscription-client/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}", threshold: hudson.model.Result.UNSTABLE)
   }
 
-  parameters {
-    string(name: 'engineSource', defaultValue: 'https://product.ivyteam.io/', description: 'Engine page url')
-  }
-
   stages {
     stage('Build') {
       steps {
