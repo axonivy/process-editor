@@ -50,12 +50,12 @@ export class Toolbar {
     await this.expectActiveButton('default_tools');
   }
 
-  async triggerUndo() {
-    await this.toolbar.locator('#btn_undo_tools').click();
+  undoButton() {
+    return this.toolbar.locator('#btn_undo_tools');
   }
 
-  async triggerRedo() {
-    await this.toolbar.locator('#btn_redo_tools').click();
+  redoButton() {
+    return this.toolbar.locator('#btn_redo_tools');
   }
 
   async triggerOptions() {

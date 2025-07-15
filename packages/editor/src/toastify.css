@@ -5,7 +5,7 @@
   border-radius: 4px;
   transition: all 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   background: var(--glsp-tool-bg);
   box-shadow: var(--glsp-box-shadow);
 }

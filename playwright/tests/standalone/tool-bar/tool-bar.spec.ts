@@ -11,21 +11,33 @@ test('switch tool', async ({ page }) => {
 
 test('undo / redo', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
+  const undo = processEditor.toolbar().undoButton();
+  const redo = processEditor.toolbar().redoButton();
   const start = processEditor.startElement;
   await expect(start.locator()).toBeVisible();
+  await expect(undo).toBeDisabled();
+  await expect(redo).toBeDisabled();
 
   await start.delete();
   await expect(start.locator()).toBeHidden();
+  await expect(undo).toBeEnabled();
+  await expect(redo).toBeDisabled();
 
-  await processEditor.toolbar().triggerUndo();
+  await undo.click();
   await expect(start.locator()).toBeVisible();
+  await expect(undo).toBeDisabled();
+  await expect(redo).toBeEnabled();
 
-  await processEditor.toolbar().triggerRedo();
+  await redo.click();
   await expect(start.locator()).toBeHidden();
+  await expect(undo).toBeEnabled();
+  await expect(redo).toBeDisabled();
 });
 
 test('undo / redo with inscription', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
+  const undo = processEditor.toolbar().undoButton();
+  const redo = processEditor.toolbar().redoButton();
   const start = processEditor.startElement;
   const inscription = await start.inscribe();
   const accordion = inscription.accordion('General');
@@ -41,11 +53,11 @@ test('undo / redo with inscription', async ({ page }) => {
   await page.keyboard.press('ArrowDown');
   await start.expectLabel('Test');
 
-  await processEditor.toolbar().triggerUndo();
+  await undo.click();
   await start.expectLabel('start');
   await name.expectValue('start');
 
-  await processEditor.toolbar().triggerRedo();
+  await redo.click();
   await start.expectLabel('Test');
   await name.expectValue('Test');
 });

@@ -11,6 +11,7 @@ export * from './action/execution';
 export * from './action/form-editor';
 export * from './action/go-to-source';
 export * from './action/jump';
+export * from './action/message';
 export * from './action/model';
 export * from './action/outline';
 export * from './action/palette-items';
