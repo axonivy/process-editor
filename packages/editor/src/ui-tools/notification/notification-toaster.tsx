@@ -1,10 +1,11 @@
-import { ElementMessageAction, MoveIntoViewportAction } from '@axonivy/process-editor-protocol';
+import { ElementChangedAction, MoveIntoViewportAction } from '@axonivy/process-editor-protocol';
 import { toast, Toaster } from '@axonivy/ui-components';
 import {
   Action,
   EndProgressAction,
   type IActionDispatcher,
   type IActionHandler,
+  isWithEditableLabel,
   MessageAction,
   OpenAction,
   SelectAction,
@@ -64,8 +65,8 @@ export class NotificationToaster extends ReactUIExtension implements IActionHand
     if (EndProgressAction.is(action)) {
       return this.updateToast(this.progress(action), 'NONE');
     }
-    if (ElementMessageAction.is(action)) {
-      return this.updateToast(action.message, 'INFO', {
+    if (ElementChangedAction.is(action)) {
+      return this.updateToast(this.elementChangedMessage(action), 'INFO', {
         action: {
           label: t('message.elementOpen'),
           onClick: () =>
@@ -116,6 +117,20 @@ export class NotificationToaster extends ReactUIExtension implements IActionHand
         return toast.loading;
       default:
         return toast.success;
+    }
+  }
+
+  private elementChangedMessage(action: ElementChangedAction): string {
+    const element = this.editorContext.modelRoot.index.getById(action.elementId);
+    let elementName = action.elementId.substring(action.elementId.indexOf('-') + 1);
+    if (element && isWithEditableLabel(element) && element.editableLabel?.text) {
+      elementName = element.editableLabel.text;
+    }
+    switch (action.changeKind) {
+      case 'UNDO':
+        return t('message.elementUndo', { elementName });
+      case 'REDO':
+        return t('message.elementRedo', { elementName });
     }
   }
 }

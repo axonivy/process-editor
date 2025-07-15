@@ -172,6 +172,8 @@
     "connectionClosed": "Verbindung zum Server wurde geschlossen.",
     "connectionToServerError": "Verbindung zum Server fehlerhaft. Server wird heruntergefahren.",
     "elementOpen": "Element öffnen",
+    "elementRedo": "Konfiguration wiederhergestellt in: {{elementName}}",
+    "elementUndo": "Konfiguration rückgängig in: {{elementName}}",
     "globalError": "Ein Fehler ist aufgetreten: {{error}}",
     "noEditorForType": "Kein Editor für Typ gefunden: {{props.type}}",
     "noNativeClipboardAccess": "Kein Zugriff auf das native Clipboard, Kopieren funktioniert nur in diesem Editor.",
