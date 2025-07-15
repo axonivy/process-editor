@@ -1,4 +1,4 @@
-import { ElementMessageAction } from '@axonivy/process-editor-protocol';
+import { ElementChangedAction } from '@axonivy/process-editor-protocol';
 import {
   bindAsService,
   configureActionHandler,
@@ -20,7 +20,7 @@ export const ivyNotificationModule = new FeatureModule((bind, unbind, isBound, r
   configureActionHandler(context, StartProgressAction.KIND, NotificationToaster);
   configureActionHandler(context, UpdateProgressAction.KIND, NotificationToaster);
   configureActionHandler(context, EndProgressAction.KIND, NotificationToaster);
-  configureActionHandler(context, ElementMessageAction.KIND, NotificationToaster);
+  configureActionHandler(context, ElementChangedAction.KIND, NotificationToaster);
 });
 
 export const NotificationToasterId = NotificationToaster.ID;

@@ -172,6 +172,8 @@
     "connectionClosed": "Connection to server got closed.",
     "connectionToServerError": "Connection to server is erroring. Shutting down server.",
     "elementOpen": "Open Element",
+    "elementRedo": "Redo configuration in: {{elementName}}",
+    "elementUndo": "Undo configuration in: {{elementName}}",
     "globalError": "An error occurred: {{error}}",
     "noEditorForType": "No editor found for type: {{props.type}}",
     "noNativeClipboardAccess": "Could not access native clipboard, copy will only work in same editor.",
