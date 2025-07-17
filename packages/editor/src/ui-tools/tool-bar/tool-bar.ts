@@ -13,7 +13,8 @@ import {
   SetUIExtensionVisibilityAction,
   TYPES,
   isNotUndefined,
-  type IActionDispatcher
+  type IActionDispatcher,
+  GArgument
 } from '@eclipse-glsp/client';
 import { inject, injectable, multiInject, postConstruct } from 'inversify';
 
@@ -64,6 +65,13 @@ export class ToolBar extends GLSPAbstractUIExtension implements IActionHandler, 
   @postConstruct()
   protected init() {
     this.toDisposeOnDisable.push(this.editorContext.onEditModeChanged(() => this.editModeChanged()));
+    this.toDisposeOnDisable.push(
+      this.editorContext.onModelRootChanged(() => {
+        if (!this.lastMenuAction) {
+          this.createHeader();
+        }
+      })
+    );
   }
 
   containerClass() {
@@ -104,11 +112,21 @@ export class ToolBar extends GLSPAbstractUIExtension implements IActionHandler, 
 
     if (!this.editorContext.isReadonly) {
       const editPart = createElement('div', ['edit-buttons']);
-      editPart.appendChild(this.createToolButton(UndoToolButton));
-      editPart.appendChild(this.createToolButton(RedoToolButton));
+      const undoBtn = this.createToolButton(UndoToolButton);
+      this.disableEditButton(undoBtn, 'canUndo');
+      editPart.appendChild(undoBtn);
+      const redoBtn = this.createToolButton(RedoToolButton);
+      this.disableEditButton(redoBtn, 'canRedo');
+      editPart.appendChild(redoBtn);
       leftButtons.appendChild(editPart);
     }
     return leftButtons;
+  }
+
+  private disableEditButton(button: HTMLElement, argument: 'canUndo' | 'canRedo'): void {
+    if (button instanceof HTMLButtonElement) {
+      button.disabled = GArgument.getArgument(this.editorContext.modelRoot, argument) !== true;
+    }
   }
 
   private createMiddleButtons(): HTMLElement {
