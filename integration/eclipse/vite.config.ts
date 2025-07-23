@@ -1,9 +1,10 @@
-import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { monacoWorkaroundPlugin } from '../monaco-workaround-plugin';
 
 export default defineConfig(() => ({
-  plugins: [tsconfigPaths()],
+  plugins: [tsconfigPaths(), monacoWorkaroundPlugin()],
   build: {
     outDir: 'build',
     chunkSizeWarningLimit: 5000,
@@ -39,7 +40,6 @@ export default defineConfig(() => ({
   base: './',
   resolve: {
     alias: {
-      path: 'path-browserify',
       '@axonivy/process-editor': resolve(__dirname, '../../packages/editor/src'),
       '@axonivy/process-editor-inscription': resolve(__dirname, '../../packages/inscription/src'),
       '@axonivy/process-editor-inscription-view': resolve(__dirname, '../../packages/inscription-view/src'),

@@ -2,9 +2,10 @@ import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { monacoWorkaroundPlugin } from '../monaco-workaround-plugin';
 
 export default defineConfig(() => ({
-  plugins: [react(), tsconfigPaths()],
+  plugins: [react(), tsconfigPaths(), monacoWorkaroundPlugin()],
   build: {
     outDir: 'build',
     chunkSizeWarningLimit: 5000,
