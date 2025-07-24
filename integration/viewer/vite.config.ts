@@ -1,6 +1,6 @@
-import { defineConfig } from 'vitest/config';
 import { resolve } from 'path';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig(() => ({
   plugins: [tsconfigPaths()],
@@ -29,7 +29,6 @@ export default defineConfig(() => ({
   },
   resolve: {
     alias: {
-      path: 'path-browserify',
       '@axonivy/process-editor': resolve(__dirname, '../../packages/editor/src'),
       '@axonivy/process-editor-protocol': resolve(__dirname, '../../packages/protocol/src')
     }
