@@ -7,30 +7,30 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('process editor', async ({ page }) => {
-  await ProcessEditor.openProcess(page, { file: '/processes/quickstart.p.json' });
+  await ProcessEditor.openProcess(page, { file: 'processes/quickstart.p.json' });
   await screenshot(page, 'process-editor.png', { height: 350 });
 });
 
 test('outline', async ({ page }) => {
-  const editor = await ProcessEditor.openProcess(page, { file: '/processes/quickstart.p.json' });
+  const editor = await ProcessEditor.openProcess(page, { file: 'processes/quickstart.p.json' });
   const inscription = await editor.toggleInscription();
   await inscription.toggleOutline();
   await screenshot(page, 'process-outline.png', { width: 900, height: 350 });
 });
 
 test('warning', async ({ page }) => {
-  const editor = await ProcessEditor.openProcess(page, { file: '/processes/screenshot/warning.p.json' });
+  const editor = await ProcessEditor.openProcess(page, { file: 'processes/screenshot/warning.p.json' });
   await editor.element('dialogCall').expectHasWarning();
   await screenshot(page, 'process-editor-problem.png', { height: 250 });
 });
 
 test('swimlanes', async ({ page }) => {
-  await ProcessEditor.openProcess(page, { file: '/processes/screenshot/swimlanes.p.json', waitFor: '.pool' });
+  await ProcessEditor.openProcess(page, { file: 'processes/screenshot/swimlanes.p.json', waitFor: '.pool' });
   await screenshot(page, 'swimlanes.png');
 });
 
 test('extensions', async ({ page }) => {
-  const editor = await ProcessEditor.openProcess(page, { file: '/processes/quickstart.p.json', waitFor: '.sprotty-graph' });
+  const editor = await ProcessEditor.openProcess(page, { file: 'processes/quickstart.p.json', waitFor: '.sprotty-graph' });
   const menu = await editor.toolbar().openElementPalette('extensions');
   await menu.expectVisible();
   for (const img of await menu.locator().locator('img').all()) {
@@ -41,7 +41,7 @@ test('extensions', async ({ page }) => {
 });
 
 test('connector-process', async ({ page }) => {
-  const editor = await ProcessEditor.openProcess(page, { file: '/processes/market/erp.p.json', waitFor: '.sprotty-graph' });
+  const editor = await ProcessEditor.openProcess(page, { file: 'processes/market/erp.p.json', waitFor: '.sprotty-graph' });
   const subStart = editor.element('start:callSubStart');
   const inscription = await subStart.inscribe();
   await expect(subStart.locator().getByRole('img').first()).toHaveAttribute('src', /.+user.png/);
@@ -53,7 +53,7 @@ test('connector-process', async ({ page }) => {
 });
 
 test('connector-user', async ({ page }) => {
-  const editor = await ProcessEditor.openProcess(page, { file: '/processes/market/UserEnroll.p.json', waitFor: '.sprotty-graph' });
+  const editor = await ProcessEditor.openProcess(page, { file: 'processes/market/UserEnroll.p.json', waitFor: '.sprotty-graph' });
   const subCall = editor.element('subProcessCall');
   const inscription = await subCall.inscribe();
   const img = subCall.locator().getByRole('img').first();

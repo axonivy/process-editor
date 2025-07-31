@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 import { ProcessEditor } from '../../page-objects/editor/process-editor';
 
 test('outline', async ({ page }) => {
-  const { outline } = await openOutline(page, '/processes/quickstart.p.json');
+  const { outline } = await openOutline(page, 'processes/quickstart.p.json');
   await outline.view.getByRole('row').all();
   const rows = await outline.view.getByRole('row').all();
   await expect(rows[0]).toHaveText('quickstartBusiness Process');
@@ -24,7 +24,7 @@ test('select element', async ({ page }) => {
 });
 
 test('select node', async ({ page }) => {
-  const { processEditor, outline } = await openOutline(page, '/processes/jump.p.json');
+  const { processEditor, outline } = await openOutline(page, 'processes/jump.p.json');
   const embeddedScript = processEditor.elementByPid('183E4A356E771204-S10-f9');
   const call = processEditor.elementByPid('183E4A356E771204-f6');
   const trigger = processEditor.elementByPid('183E4A356E771204-f3');

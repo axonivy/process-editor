@@ -15,7 +15,7 @@ test.describe('url parameters', () => {
   });
 
   test('zoom and highlight', async ({ page }) => {
-    const processEditor = await ProcessEditor.openProcess(page, { file: '/processes/urlparam.p.json', urlQueryParam: '&zoom=321&highlight=183E49FD86C52941-f0' });
+    const processEditor = await ProcessEditor.openProcess(page, { file: 'processes/urlparam.p.json', urlQueryParam: '&zoom=321&highlight=183E49FD86C52941-f0' });
     const start = processEditor.startElement;
     const viewport = processEditor.viewport();
     await start.expectHighlighted();
@@ -25,7 +25,7 @@ test.describe('url parameters', () => {
 
   test('multiple highlight', async ({ page }) => {
     const processEditor = await ProcessEditor.openProcess(page, {
-      file: '/processes/urlparam.p.json',
+      file: 'processes/urlparam.p.json',
       urlQueryParam: '&zoom=321&highlight=183E49FD86C52941-f0%26183E49FD86C52941-f1'
     });
     const start = processEditor.startElement;
@@ -37,7 +37,7 @@ test.describe('url parameters', () => {
   });
 
   test('zoom and select', async ({ page }) => {
-    const processEditor = await ProcessEditor.openProcess(page, { file: '/processes/urlparam.p.json', urlQueryParam: '&zoom=123&select=183E49FD86C52941-f0' });
+    const processEditor = await ProcessEditor.openProcess(page, { file: 'processes/urlparam.p.json', urlQueryParam: '&zoom=123&select=183E49FD86C52941-f0' });
     const start = processEditor.startElement;
     const viewport = processEditor.viewport();
     await start.expectSelected();
@@ -47,7 +47,7 @@ test.describe('url parameters', () => {
 
   test('multiple select', async ({ page }) => {
     const processEditor = await ProcessEditor.openProcess(page, {
-      file: '/processes/urlparam.p.json',
+      file: 'processes/urlparam.p.json',
       urlQueryParam: '&zoom=123&select=183E49FD86C52941-f0%26183E49FD86C52941-f1'
     });
     const start = processEditor.startElement;
@@ -60,19 +60,19 @@ test.describe('url parameters', () => {
 
   test('theme light', async ({ page }) => {
     await page.emulateMedia({ colorScheme: 'dark' });
-    const processEditor = await ProcessEditor.openProcess(page, { file: '/processes/urlparam.p.json' });
+    const processEditor = await ProcessEditor.openProcess(page, { file: 'processes/urlparam.p.json' });
     await processEditor.expectDarkMode();
 
-    const processEditor2 = await ProcessEditor.openProcess(page, { file: '/processes/urlparam.p.json', urlQueryParam: '&theme=light' });
+    const processEditor2 = await ProcessEditor.openProcess(page, { file: 'processes/urlparam.p.json', urlQueryParam: '&theme=light' });
     await processEditor2.expectLightMode();
   });
 
   test('theme dark', async ({ page }) => {
     await page.emulateMedia({ colorScheme: 'light' });
-    const processEditor = await ProcessEditor.openProcess(page, { file: '/processes/urlparam.p.json' });
+    const processEditor = await ProcessEditor.openProcess(page, { file: 'processes/urlparam.p.json' });
     await processEditor.expectLightMode();
 
-    const processEditor2 = await ProcessEditor.openProcess(page, { file: '/processes/urlparam.p.json', urlQueryParam: '&theme=dark' });
+    const processEditor2 = await ProcessEditor.openProcess(page, { file: 'processes/urlparam.p.json', urlQueryParam: '&theme=dark' });
     await processEditor2.expectDarkMode();
   });
 });
