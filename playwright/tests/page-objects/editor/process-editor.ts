@@ -38,7 +38,7 @@ export class ProcessEditor {
 
   static async openProcess(page: Page, options?: { urlQueryParam?: string; file?: string; waitFor?: string }) {
     await page.goto(
-      ProcessEditor.processEditorUrl('process-test-project', options?.file ?? `/processes/test/${randomUUID()}.p.json`) +
+      ProcessEditor.processEditorUrl('process-test-project', options?.file ?? `processes/test/${randomUUID()}.p.json`) +
         (options?.urlQueryParam ?? '')
     );
     await page.addStyleTag({ content: '.palette-body {transition: none !important;}' });

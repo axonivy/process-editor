@@ -8,7 +8,7 @@ export async function jumpToExternalTargetAndAssert(
   expectedProcessPid: string,
   expectedElementPid: string
 ): Promise<void> {
-  const processEditor = await ProcessEditor.openProcess(page, { file: '/processes/jump.p.json' });
+  const processEditor = await ProcessEditor.openProcess(page, { file: 'processes/jump.p.json' });
   const element = processEditor.elementByPid(elementPid);
   await element.quickActionBar().trigger('Jump', 'startsWith');
   await expect(element.locator()).toBeHidden();

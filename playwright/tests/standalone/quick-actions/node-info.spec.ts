@@ -34,7 +34,7 @@ test('edge - in/out', async ({ page }) => {
 });
 
 test('embedded proc - outerElement', async ({ page }) => {
-  const processEditor = await ProcessEditor.openProcess(page, { file: '/processes/info.p.json' });
+  const processEditor = await ProcessEditor.openProcess(page, { file: 'processes/info.p.json' });
   const embedded = processEditor.elementByPid('1842D6FBB6A107AB-S10');
   const embeddedStart = processEditor.elementByPid('1842D6FBB6A107AB-S10-g0');
   await embedded.quickActionBar().trigger('Jump', 'startsWith');
@@ -62,7 +62,7 @@ async function assertAdditionalCodeInfo(menu: Menu, code: string): Promise<void>
 }
 
 async function openInfoMenu(page: Page, pid: string) {
-  const processEditor = await ProcessEditor.openProcess(page, { file: '/processes/info.p.json' });
+  const processEditor = await ProcessEditor.openProcess(page, { file: 'processes/info.p.json' });
   const element = processEditor.elementByPid(pid);
   await element.quickActionBar().trigger('Information (I)');
   await expect(element.quickActionBar().infoMenu().locator().locator('.simple-menu-text.simple-menu-small', { hasText: 'PID' })).toBeVisible();

@@ -12,7 +12,7 @@ test('sub process', async ({ page }) => {
 });
 
 test('embedded process', async ({ page }) => {
-  const processEditor = await ProcessEditor.openProcess(page, { file: '/processes/jump.p.json' });
+  const processEditor = await ProcessEditor.openProcess(page, { file: 'processes/jump.p.json' });
   const viewport = processEditor.viewport();
   const jumpOutBtn = processEditor.jumpOut();
   const embedded = processEditor.elementByPid('183E4A356E771204-S10');

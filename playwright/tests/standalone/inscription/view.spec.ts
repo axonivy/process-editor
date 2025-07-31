@@ -83,7 +83,7 @@ test('hold inscriptionTab state', async ({ page }) => {
 });
 
 test('web service auth link', async ({ page }) => {
-  const editor = await ProcessEditor.openProcess(page, { file: '/processes/screenshot/ws.p.json', waitFor: '.sprotty-graph' });
+  const editor = await ProcessEditor.openProcess(page, { file: 'processes/screenshot/ws.p.json', waitFor: '.sprotty-graph' });
   const wsStart = editor.element('start:webserviceStart');
   const view = await wsStart.inscribe();
   const wsPart = view.inscriptionTab('Web Service');
