@@ -7,14 +7,14 @@
   border-radius: 4px;
 }
 
-.tool-bar-options-content {
-  background-color: var(--glsp-bar-menu-header-bg) !important;
+.ui-popover-content.tool-bar-options-content {
+  background-color: var(--glsp-bar-menu-header-bg);
   padding: 0 !important;
   display: flex;
 }
 
-.tool-bar-options-content > span > svg {
-  fill: var(--glsp-bar-menu-header-bg) !important;
+.ui-popover-content.tool-bar-options-content > span > svg {
+  fill: var(--glsp-bar-menu-header-bg);
 }
 
 .bar-menu.tool-bar-menu {

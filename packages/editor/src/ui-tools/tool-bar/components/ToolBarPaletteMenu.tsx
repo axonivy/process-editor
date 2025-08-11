@@ -1,37 +1,46 @@
-import { BasicPalette, PopoverArrow, PopoverContent } from '@axonivy/ui-components';
-import { type IActionDispatcher, type PaletteItem } from '@eclipse-glsp/client';
+import { BasicPalette, PopoverArrow, PopoverContent, type PaletteConfig, type PaletteItemConfig } from '@axonivy/ui-components';
+import { PaletteItem, type IActionDispatcher } from '@eclipse-glsp/client';
 import React from 'react';
 import { MenuIcons } from '../../menu/icons';
 import { ShowToolBarMenuAction } from '../tool-bar-menu';
 
+interface ToolBarPaletteItem extends PaletteItem {
+  description?: string;
+  children?: ToolBarPaletteItem[];
+}
+
 interface ToolBarPaletteMenuProps {
-  paletteItems: PaletteItem[];
+  paletteItems: ToolBarPaletteItem[];
   menuAction: ShowToolBarMenuAction;
   actionDispatcher: IActionDispatcher;
 }
 
+type ToolBarSections = PaletteConfig['sections'];
+
+const paletteItemToConfig = (item: ToolBarPaletteItem, onSelected: (item: ToolBarPaletteItem) => void): PaletteItemConfig => ({
+  name: item.label,
+  description: item.description || item.label,
+  icon: item.icon ? MenuIcons.get(item.icon) : undefined,
+  onClick: async () => onSelected(item)
+});
+
 export const ToolBarPaletteMenu: React.FC<ToolBarPaletteMenuProps> = ({ paletteItems, menuAction, actionDispatcher }) => {
-  const transformPaletteItemsToSections = (items: PaletteItem[]): Record<string, any[]> => {
-    const sections: Record<string, any[]> = {};
+  const onItemSelected = React.useCallback(
+    async (item: ToolBarPaletteItem) => {
+      const actions = menuAction.actions(item);
+      actionDispatcher.dispatchAll(actions);
+    },
+    [actionDispatcher, menuAction]
+  );
 
-    items.forEach(item => {
-      if (item.children) {
-        sections[item.label] = item.children.map(child => ({
-          name: child.label,
-          description: (child as any).description || child.label,
-          icon: child.icon ? MenuIcons.get(child.icon) : undefined,
-          onClick: () => {
-            const actions = menuAction.actions(child);
-            actionDispatcher.dispatchAll(actions);
-          }
-        }));
-      }
-    });
-
-    return sections;
-  };
-
-  const sections = transformPaletteItemsToSections(paletteItems);
+  const sections = React.useMemo(() => {
+    return paletteItems.reduce((sections: ToolBarSections, item: ToolBarPaletteItem) => {
+      sections[item.label] ||= [];
+      const items = item.children ?? [item];
+      items.forEach(child => sections[item.label].push(paletteItemToConfig(child, onItemSelected)));
+      return sections;
+    }, {});
+  }, [paletteItems, onItemSelected]);
 
   return (
     <PopoverContent className={'tool-bar-menu-content'}>

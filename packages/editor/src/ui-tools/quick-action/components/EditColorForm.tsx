@@ -1,78 +1,50 @@
 import { ChangeColorOperation } from '@axonivy/process-editor-protocol';
-import { Label } from '@axonivy/ui-components';
-import type { IActionDispatcherProvider, PaletteItem } from '@eclipse-glsp/client';
+import { Button, Label } from '@axonivy/ui-components';
+import { type IActionDispatcherProvider, type PaletteItem } from '@eclipse-glsp/client';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { isNewColorPaletteItem } from './ColorPaletteItem';
 
 interface EditColorFormProps {
   actionDispatcher: IActionDispatcherProvider;
   elementIds: string[];
-  item?: PaletteItem;
-  onClose: () => void;
+  item: PaletteItem;
+  onSave: () => void;
+  onDelete: () => void;
 }
 
-export const EditColorForm: React.FC<EditColorFormProps> = ({ actionDispatcher, elementIds, item, onClose }) => {
+export const EditColorForm: React.FC<EditColorFormProps> = ({ actionDispatcher, elementIds, item, onSave, onDelete }) => {
   const { t } = useTranslation();
-  const [colorName, setColorName] = React.useState(item?.label ?? '');
-  const [color, setColor] = React.useState(item?.icon ?? '#000000');
-  const [nameError, setNameError] = React.useState(false);
-  const [colorError, setColorError] = React.useState(false);
+
+  const nameInputRef = React.useRef<HTMLInputElement>(null);
+  const colorInputRef = React.useRef<HTMLInputElement>(null);
+
+  const [colorName, setColorName] = React.useState(() => (isNewColorPaletteItem(item) ? '' : (item?.label ?? '')));
+  const [color, setColor] = React.useState(() => (isNewColorPaletteItem(item) ? '#000000' : (item?.icon ?? '#000000')));
 
   React.useEffect(() => {
-    setColorName(item?.label ?? '');
-    setColor(item?.icon ?? '#000000');
-    setNameError(false);
-    setColorError(false);
+    if (isNewColorPaletteItem(item)) {
+      nameInputRef.current?.select();
+    } else {
+      colorInputRef.current?.select();
+    }
   }, [item]);
 
-  const validateInputs = (): boolean => {
-    const isNameValid = colorName.trim() !== '';
-    const isColorValid = color.trim() !== '';
-
-    setNameError(!isNameValid);
-    setColorError(!isColorValid);
-
-    return isNameValid && isColorValid;
-  };
+  const isValid = () => colorName.trim().length > 0 && color.trim().length > 0;
 
   const handleSave = async () => {
-    if (validateInputs()) {
+    if (isValid()) {
       const dispatcher = await actionDispatcher();
-      dispatcher.dispatch(
-        ChangeColorOperation.create({
-          elementIds,
-          color: color,
-          colorName: colorName
-        })
-      );
-      onClose();
+      await dispatcher.dispatch(ChangeColorOperation.create({ elementIds, color, colorName }));
+      onSave();
     }
   };
 
   const handleDelete = async () => {
     if (item) {
       const dispatcher = await actionDispatcher();
-      dispatcher.dispatch(
-        ChangeColorOperation.deleteColor({
-          elementIds,
-          oldColor: item.label
-        })
-      );
-      onClose();
-    }
-  };
-
-  const handleColorInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setColor(e.target.value);
-    if (colorError && e.target.value.trim() !== '') {
-      setColorError(false);
-    }
-  };
-
-  const handleNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setColorName(e.target.value);
-    if (nameError && e.target.value.trim() !== '') {
-      setNameError(false);
+      await dispatcher.dispatch(ChangeColorOperation.deleteColor({ elementIds, oldColor: item.label }));
+      onDelete();
     }
   };
 
@@ -83,10 +55,11 @@ export const EditColorForm: React.FC<EditColorFormProps> = ({ actionDispatcher, 
           <Label htmlFor='color-name-input'>{t('common.label.name')}</Label>
           <input
             id='color-name-input'
+            ref={nameInputRef}
             value={colorName}
-            onChange={handleNameInputChange}
+            onChange={e => setColorName(e.target.value)}
             placeholder={t('common.label.name')}
-            className={nameError ? 'error' : ''}
+            required={true}
           />
         </div>
 
@@ -95,32 +68,31 @@ export const EditColorForm: React.FC<EditColorFormProps> = ({ actionDispatcher, 
           <div className='color-picker'>
             <span
               className='decorator'
-              style={{
-                backgroundColor: color
-              }}
+              style={{ backgroundColor: color }}
               onClick={() => document.getElementById('color-picker-input')?.click()}
             />
-            <input id='color-picker-input' type='color' value={color} onChange={handleColorInputChange} />
+            <input id='color-picker-input' type='color' value={color} onChange={e => setColor(e.target.value)} />
             <input
               id='color-input'
+              ref={colorInputRef}
               value={color}
-              onChange={handleColorInputChange}
-              placeholder='#000000'
-              className={colorError ? 'error' : ''}
+              onChange={e => setColor(e.target.value)}
+              placeholder={t('common.label.color')}
+              required={true}
             />
           </div>
         </div>
       </div>
 
       <footer className='edit-color-footer'>
-        {item && (
-          <button type='button' onClick={handleDelete} className='edit-color-delete' autoFocus={true}>
+        {!isNewColorPaletteItem(item) && (
+          <Button onClick={handleDelete} className='edit-color-delete'>
             {t('common.label.delete')}
-          </button>
+          </Button>
         )}
-        <button type='button' onClick={handleSave} className='edit-color-save'>
+        <Button onClick={handleSave} className='edit-color-save' disabled={!isValid()}>
           {t('common.label.save')}
-        </button>
+        </Button>
       </footer>
     </div>
   );

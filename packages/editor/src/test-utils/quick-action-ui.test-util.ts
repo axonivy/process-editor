@@ -1,5 +1,6 @@
-import type { Bounds, CustomFeatures, Dimension, GLabel, GModelFactory, Point } from '@eclipse-glsp/client';
+import type { Bounds, CustomFeatures, Dimension, GLabel, GModelFactory, GModelRoot, Point } from '@eclipse-glsp/client';
 import { DefaultTypes, GGraph, GGraphView, GNode, TYPES, configureModelElement, createFeatureSet } from '@eclipse-glsp/client';
+import { render, type RenderResult } from '@testing-library/react';
 import { expect } from 'chai';
 import type { Container } from 'inversify';
 import ivyConnectorModule from '../connector/di.config';
@@ -13,6 +14,7 @@ import type { IvyViewerOptions } from '../options';
 import { configureIvyViewerOptions } from '../options';
 import ivyQuickActionModule from '../ui-tools/quick-action/di.config';
 import { quickActionFeature } from '../ui-tools/quick-action/model';
+import type { QuickActionUI } from '../ui-tools/quick-action/quick-action-ui';
 import ivyToolBarModule from '../ui-tools/tool-bar/di.config';
 import { createTestDiagramContainer } from '../utils/test-utils';
 import ivyWrapModule from '../wrap/di.config';
@@ -132,19 +134,23 @@ export function getQuickActionDiv(): HTMLElement {
 export function assertMultiQuickActionUi(childCount: number, dimension: Dimension, position?: Point): void {
   const uiDiv = getQuickActionDiv();
   assertQuickActionUi(childCount, position);
-  const selectionBorder = uiDiv.querySelector('.multi-selection-box') as HTMLElement;
+  const selectionBorder = uiDiv.querySelector('.quick-action-selection-box') as HTMLElement;
   expect(selectionBorder.tagName).to.be.equals('DIV');
   expect(selectionBorder.style.height).to.be.equals(`${dimension.height}px`);
   expect(selectionBorder.style.width).to.be.equals(`${dimension.width}px`);
 }
 
-export function assertQuickActionUi(childCount: number, position?: Point): void {
+export function assertQuickActionUi(childCount: number, position?: Partial<Point>): void {
   const uiDiv = getQuickActionDiv();
   const children = uiDiv.querySelectorAll('.quick-actions-group > button');
   expect(children.length).to.be.equals(childCount);
   if (position) {
-    expect(uiDiv.style.top).to.be.equals(`${position.y}px`);
-    expect(uiDiv.style.left).to.be.equals(`${position.x}px`);
+    if (position.y) {
+      expect(uiDiv.style.top).to.be.equals(`${position.y}px`);
+    }
+    if (position.x) {
+      expect(uiDiv.style.left).to.be.equals(`${position.x}px`);
+    }
   }
 }
 
@@ -157,4 +163,14 @@ export function assertQuickAction(childIndex: number, title: string, icon?: stri
     const iconElement = quickAction.children[0];
     expect(iconElement.className).to.contains(`ivy ivy-${icon}`);
   }
+}
+
+export async function renderQuickActionUi(
+  ui: QuickActionUI,
+  root: Readonly<GModelRoot>,
+  ...contextElementIds: string[]
+): Promise<RenderResult> {
+  ui.show(root, ...contextElementIds);
+  const result = await render(ui['render'](root, ...contextElementIds));
+  return result;
 }

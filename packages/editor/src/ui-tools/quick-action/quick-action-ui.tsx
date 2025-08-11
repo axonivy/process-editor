@@ -3,6 +3,8 @@ import {
   Bounds,
   type BoundsAware,
   CursorCSS,
+  DOMHelper,
+  Deferred,
   GEdge,
   GLabel,
   GModelElement,
@@ -17,36 +19,34 @@ import {
   SelectionService,
   SetUIExtensionVisibilityAction,
   TYPES,
-  getAbsoluteBounds,
+  type ViewerOptions,
+  getAbsoluteClientBounds,
   isNotUndefined
 } from '@eclipse-glsp/client';
 import { inject, injectable, multiInject, postConstruct } from 'inversify';
-import React, { useRef } from 'react';
+import React from 'react';
 
 import { Edge, EdgeLabel } from '../../diagram/model';
 import { IVY_TYPES } from '../../types';
-import { getAbsoluteEdgeBounds } from '../../utils/diagram-utils';
 import { ReactUIExtension } from '../../utils/react-ui-extension';
+import { QuickActionUI as QuickActionUIComponent } from './components/QuickActionUI';
 import { isQuickActionAware } from './model';
-import type { QuickAction, QuickActionLocation, QuickActionProvider } from './quick-action';
+import type { QuickAction, QuickActionProvider } from './quick-action';
 import { ShowInfoQuickActionMenuAction, ShowQuickActionMenuAction } from './quick-action-menu-ui';
-import { calculateBarShift, calculateMenuShift } from './quick-action-util';
-
-import { Button, Flex } from '@axonivy/ui-components';
-import { QuickActionColorPalette } from './components/QuickActionColorPalette';
-import { QuickActionInfoPanel } from './components/QuickActionInfoPanel';
-import { QuickActionItemPalette } from './components/QuickActionItemPalette';
 
 @injectable()
 export class QuickActionUI extends ReactUIExtension implements IActionHandler, ISelectionListener {
   static readonly ID = 'quickActionsUi';
-  private activeQuickActions: QuickAction[] = [];
-  private activeQuickActionBtn?: string;
-  private activeMenuAction?: ShowQuickActionMenuAction | ShowInfoQuickActionMenuAction;
 
   @inject(TYPES.IActionDispatcherProvider) public actionDispatcherProvider: IActionDispatcherProvider;
+  @inject(TYPES.DOMHelper) protected domHelper: DOMHelper;
+  @inject(TYPES.ViewerOptions) protected viewerOptions: ViewerOptions;
   @inject(SelectionService) protected selectionService: SelectionService;
   @multiInject(IVY_TYPES.QuickActionProvider) protected quickActionProviders: QuickActionProvider[];
+
+  private activeQuickActions: QuickAction[] = [];
+  private activeQuickAction?: string;
+  private activeMenuAction?: ShowQuickActionMenuAction | ShowInfoQuickActionMenuAction;
 
   public id(): string {
     return QuickActionUI.ID;
@@ -101,13 +101,14 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
       this.activeMenuAction = action;
       this.update();
     } else {
-      this.setActiveQuickActionBtn();
+      this.setActiveQuickAction();
     }
   }
 
   public showUi(): void {
     this.activeQuickActions = [];
-    this.activeQuickActionBtn = undefined;
+    this.activeQuickAction = undefined;
+    this.activeMenuAction = undefined;
     this.actionDispatcherProvider().then(actionDispatcher =>
       actionDispatcher.dispatch(QuickActionUI.show([...this.selectionService.getSelectedElementIDs()]))
     );
@@ -115,138 +116,73 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
 
   public hideUi(): void {
     this.activeQuickActions = [];
-    this.activeQuickActionBtn = undefined;
+    this.activeQuickAction = undefined;
     this.activeMenuAction = undefined;
     this.actionDispatcherProvider().then(actionDispatcher => actionDispatcher.dispatch(QuickActionUI.hide()));
   }
 
-  protected render(root: Readonly<GModelRoot>, ...contextElementIds: string[]): React.ReactNode {
+  protected getQuickActionElements(root: Readonly<GModelRoot>, ...contextElementIds: string[]): GModelElement[] {
     const elements = getElements(contextElementIds, root);
     const elementsWithoutEdges = elements.filter(e => !(e instanceof GRoutableElement) || !(e instanceof Edge));
-
     if (elementsWithoutEdges.length > 1) {
-      return this.renderMultiQuickActionUi(elementsWithoutEdges);
-    } else if (elements.length === 1 && elements[0] instanceof GEdge && isQuickActionAware(elements[0])) {
-      return this.renderEdgeQuickActionUi(elements[0]);
-    } else {
-      const element = getFirstQuickActionElement(elementsWithoutEdges);
-      return this.renderSingleQuickActionUi(element);
+      // multiple nodes
+      return elementsWithoutEdges;
     }
+    if (elements.length === 1 && elements[0] instanceof GEdge && isQuickActionAware(elements[0])) {
+      const edge = elements[0] as GEdge & BoundsAware;
+      if (isNotUndefined(edge) && !edge.id.endsWith('_feedback_edge') && edge.source && edge.target) {
+        // single edge
+        return [edge];
+      }
+    }
+    const element = getFirstQuickActionElement(elementsWithoutEdges);
+    if (isNotUndefined(element)) {
+      // any quick action-aware element
+      return [element];
+    }
+    return [];
   }
 
-  private renderMultiQuickActionUi(elements: GModelElement[]): React.ReactNode {
-    this.activeQuickActions = this.loadMultiQuickActions(elements);
+  protected render(root: Readonly<GModelRoot>, ...contextElementIds: string[]): React.ReactNode {
+    if (!this.isContainerVisible()) {
+      return null;
+    }
+    const elements = this.getQuickActionElements(root, ...contextElementIds);
+    if (elements.length === 0) {
+      return null;
+    }
+
+    this.activeQuickActions = elements.length > 1 ? this.loadMultiQuickActions(elements) : this.loadSingleQuickActions(elements[0]);
     if (this.activeQuickActions.length === 0) {
       return null;
     }
 
-    // skip edge labels as they have bounds that do not actually match their rendering
-    const selectionBounds = elements
-      .filter(element => !(element instanceof EdgeLabel))
-      .map(getAbsoluteBounds)
-      .filter(Bounds.isValid)
-      .reduce(Bounds.combine);
+    // for some reason the bounds are slightly off when this UI is rendered so we need to do one more animation frame
+    const boundsPromise = new Deferred<Bounds>();
+    requestAnimationFrame(() => {
+      const bounds = elements
+        .filter(element => !(element instanceof EdgeLabel))
+        .map(element => getAbsoluteClientBounds(element, this.domHelper, this.viewerOptions))
+        .filter(Bounds.isValid)
+        .reduce(Bounds.combine, Bounds.EMPTY);
+      boundsPromise.resolve(bounds);
+    });
 
     return (
-      <QuickActionContainer bounds={selectionBounds} drawSelectionBox={true}>
-        {barRef => (
-          <>
-            <QuickActionBar
-              quickActions={this.activeQuickActions}
-              activeActionId={this.activeQuickActionBtn}
-              onQuickActionClick={this.handleQuickActionClick}
-              barRef={barRef}
-            />
-            {this.renderActiveMenu(barRef)}
-          </>
-        )}
-      </QuickActionContainer>
+      <QuickActionUIComponent
+        quickActions={this.activeQuickActions}
+        activeQuickAction={this.activeQuickAction}
+        onQuickActionClick={this.handleQuickActionClick}
+        selectionBounds={boundsPromise.promise}
+        drawSelectionBox={elements.length > 1}
+        showMenuAction={this.activeMenuAction}
+        actionDispatcher={this.actionDispatcherProvider}
+        onCloseMenu={() => this.closeMenu()}
+      />
     );
   }
 
-  private renderSingleQuickActionUi(element: GModelElement & BoundsAware): React.ReactNode {
-    if (isNotUndefined(element)) {
-      this.activeQuickActions = this.loadSingleQuickActions(element);
-      if (this.activeQuickActions.length === 0) {
-        return null;
-      }
-      const bounds = getAbsoluteBounds(element);
-      return (
-        <QuickActionContainer bounds={bounds}>
-          {barRef => (
-            <>
-              <QuickActionBar
-                quickActions={this.activeQuickActions}
-                activeActionId={this.activeQuickActionBtn}
-                onQuickActionClick={this.handleQuickActionClick}
-                barRef={barRef}
-              />
-              {this.renderActiveMenu(barRef)}
-            </>
-          )}
-        </QuickActionContainer>
-      );
-    }
-    return null;
-  }
-
-  private renderEdgeQuickActionUi(edge: GEdge): React.ReactNode {
-    if (isNotUndefined(edge) && !edge.id.endsWith('_feedback_edge') && edge.source && edge.target) {
-      this.activeQuickActions = this.loadSingleQuickActions(edge);
-      if (this.activeQuickActions.length === 0) {
-        return null;
-      }
-      const absoluteBounds = getAbsoluteEdgeBounds(edge);
-      return (
-        <QuickActionContainer bounds={absoluteBounds}>
-          {barRef => (
-            <>
-              <QuickActionBar
-                quickActions={this.activeQuickActions}
-                activeActionId={this.activeQuickActionBtn}
-                onQuickActionClick={this.handleQuickActionClick}
-                barRef={barRef}
-              />
-              {this.renderActiveMenu(barRef)}
-            </>
-          )}
-        </QuickActionContainer>
-      );
-    }
-    return null;
-  }
-
-  private renderActiveMenu(barRef?: React.RefObject<HTMLDivElement>): React.ReactNode {
-    if (!this.activeMenuAction) {
-      return null;
-    }
-
-    if (ShowQuickActionMenuAction.is(this.activeMenuAction)) {
-      return this.activeMenuAction.isEditable ? (
-        <QuickActionColorPalette
-          action={this.activeMenuAction}
-          actionDispatcher={this.actionDispatcherProvider}
-          anchor={barRef}
-          onClose={() => this.closeMenu()}
-        />
-      ) : (
-        <QuickActionItemPalette
-          action={this.activeMenuAction}
-          actionDispatcher={this.actionDispatcherProvider}
-          anchor={barRef}
-          onClose={() => this.closeMenu()}
-        />
-      );
-    }
-
-    if (ShowInfoQuickActionMenuAction.is(this.activeMenuAction) && barRef) {
-      return <QuickActionInfoPanel action={this.activeMenuAction} anchor={barRef} onClose={() => this.closeMenu()} />;
-    }
-
-    return null;
-  }
-
-  private handleQuickActionClick = (quickAction: QuickAction, buttonId: string): void => {
+  private handleQuickActionClick = (quickAction: QuickAction): void => {
     const actions = [quickAction.action];
     if (!quickAction.letQuickActionsOpen) {
       actions.push(QuickActionUI.hide());
@@ -255,11 +191,12 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
       actions.push(SelectAllAction.create(false));
     }
 
-    if (this.activeQuickActionBtn === buttonId && this.activeMenuAction) {
-      this.setActiveQuickActionBtn();
+    if (this.activeQuickAction === quickAction.title && this.activeMenuAction) {
+      this.setActiveQuickAction();
       this.closeMenu();
     } else {
-      this.setActiveQuickActionBtn(buttonId);
+      this.activeMenuAction = undefined;
+      this.setActiveQuickAction(quickAction.title);
       this.actionDispatcherProvider().then(dispatcher => dispatcher.dispatchAll(actions));
     }
   };
@@ -269,8 +206,8 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
     this.update();
   }
 
-  private setActiveQuickActionBtn(buttonId?: string): void {
-    this.activeQuickActionBtn = buttonId;
+  private setActiveQuickAction(buttonId?: string): void {
+    this.activeQuickAction = buttonId;
     this.update();
   }
 
@@ -297,122 +234,7 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
   static hide(contextElementsId?: string[]): SetUIExtensionVisibilityAction {
     return SetUIExtensionVisibilityAction.create({ extensionId: QuickActionUI.ID, visible: false, contextElementsId });
   }
-
-  // Static methods for positioning (preserved from original)
-  static shiftBar(bar: HTMLElement, diagramDiv: HTMLElement | null, distanceToWindow = 16): void {
-    if (diagramDiv === null) {
-      return;
-    }
-    const shift = calculateBarShift(
-      bar.getBoundingClientRect(),
-      { width: diagramDiv.offsetWidth, height: diagramDiv.offsetHeight },
-      distanceToWindow
-    );
-    bar.style.left = `${shift.left}px`;
-    bar.style.top = `${shift.top}px`;
-  }
-
-  static shiftMenu(menu: HTMLElement, bar?: HTMLElement): void {
-    if (!bar) {
-      return;
-    }
-    const shift = calculateMenuShift(
-      { height: menu.getBoundingClientRect().height, y: menu.offsetTop },
-      { height: bar?.getBoundingClientRect().height, y: bar.offsetTop }
-    );
-    if (shift) {
-      menu.style.top = `${shift.top}px`;
-    }
-  }
 }
-
-interface QuickActionContainerProps {
-  bounds: Bounds;
-  drawSelectionBox?: boolean;
-  children: React.ReactNode | ((barRef: React.RefObject<HTMLDivElement>) => React.ReactNode);
-}
-
-const QuickActionContainer: React.FC<QuickActionContainerProps> = ({ bounds, drawSelectionBox, children }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const barRef = useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.style.left = `${bounds.x + bounds.width / 2}px`;
-      containerRef.current.style.top = `${bounds.y + bounds.height}px`;
-    }
-  }, [bounds]);
-
-  return (
-    <div ref={containerRef} style={{ position: 'absolute' }}>
-      {drawSelectionBox && (
-        <div
-          className='multi-selection-box'
-          style={{
-            marginLeft: `-${bounds.width / 2}px`,
-            marginTop: `-${bounds.height}px`,
-            height: `${bounds.height + 10}px`,
-            width: `${bounds.width + 10}px`
-          }}
-        />
-      )}
-      {typeof children === 'function' ? children(barRef as React.RefObject<HTMLDivElement>) : children}
-    </div>
-  );
-};
-
-interface QuickActionBarProps {
-  quickActions: QuickAction[];
-  activeActionId?: string;
-  onQuickActionClick: (quickAction: QuickAction, buttonId: string) => void;
-  barRef?: React.RefObject<HTMLDivElement | null>;
-}
-
-const QuickActionBar: React.FC<QuickActionBarProps> = ({ quickActions, activeActionId, onQuickActionClick, barRef }) => {
-  const internalBarRef = useRef<HTMLDivElement>(null);
-  const actualBarRef = barRef || internalBarRef;
-
-  React.useEffect(() => {
-    if (actualBarRef?.current) {
-      const diagramDiv = document.querySelector('.sprotty') as HTMLElement;
-      QuickActionUI.shiftBar(actualBarRef.current, diagramDiv);
-    }
-  });
-
-  const renderQuickActionGroup = (location: QuickActionLocation) => {
-    const actionsForLocation = quickActions
-      .filter(quickAction => quickAction.location === location)
-      .sort((a, b) => a.sorting.localeCompare(b.sorting));
-
-    if (actionsForLocation.length === 0) {
-      return null;
-    }
-
-    return (
-      <Flex className='quick-actions-group' gap={1}>
-        {actionsForLocation.map(quickAction => (
-          <Button
-            key={quickAction.title}
-            icon={quickAction.icon}
-            size='large'
-            toggle={activeActionId === quickAction.title}
-            title={quickAction.title}
-            aria-label={quickAction.title}
-            onClick={() => onQuickActionClick(quickAction, quickAction.title)}
-          />
-        ))}
-      </Flex>
-    );
-  };
-
-  return (
-    <Flex ref={barRef} className='quick-actions-bar' gap={4}>
-      {renderQuickActionGroup('Left')}
-      {renderQuickActionGroup('Middle')}
-      {renderQuickActionGroup('Right')}
-    </Flex>
-  );
-};
 
 export class QuickActionUiMouseListener extends MouseListener {
   constructor(private quickActionUi: QuickActionUI) {
