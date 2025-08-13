@@ -8,7 +8,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "eslint.validate": ["javascript", "typescript"],
   "search.exclude": {
     "**/node_modules": true,
     "**/lib": true
