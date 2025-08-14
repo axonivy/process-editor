@@ -140,6 +140,7 @@ export class ProcessEditor {
     for (const data of expectedClipboardData) {
       expect(await message).toContain(data);
     }
+    await this.graph.click({ position: { x: 200, y: 200 } });
     await this.page.keyboard.press(`${cmdCtrl}+V`);
   }
 
@@ -153,13 +154,11 @@ export class ProcessEditor {
   }
 
   async resetSelection() {
-    const graph = this.page.locator('#sprotty');
-    await expect(graph).toBeVisible();
-    const bounds = await graph.boundingBox();
+    const bounds = await this.graph.boundingBox();
     if (!bounds) {
       throw new Error('Graph has no bounds');
     }
-    await graph.click({ position: { x: bounds.width - 20, y: bounds.height - 80 } });
+    await this.graph.click({ position: { x: bounds.width - 20, y: bounds.height - 80 } });
     await expect(this.page.locator('g.selected')).toHaveCount(0);
   }
 
