@@ -10,7 +10,7 @@
 
   <properties>
     <engine.page.url>https://product.ivyteam.io/</engine.page.url>
-    <project.build.plugin.version>12.0.8-SNAPSHOT</project.build.plugin.version>
+    <project.build.plugin.version>12.0.9-SNAPSHOT</project.build.plugin.version>
     <engine.test.app>process-test-project</engine.test.app>
     <webtest.cmd>webtest</webtest.cmd>
   </properties>
