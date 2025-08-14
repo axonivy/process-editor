@@ -2,10 +2,8 @@ import './edit-label.css';
 
 import {
   ApplyLabelEditCommand,
-  BalloonLabelValidationDecorator,
   EditLabelAction,
   FeatureModule,
-  ServerEditLabelValidator,
   TYPES,
   bindAsService,
   configureActionHandler,
@@ -22,8 +20,8 @@ export const ivyLabelEditModule = new FeatureModule(
   (bind, _unbind, isBound) => {
     // GLSP defaults
     configureCommand({ bind, isBound }, ApplyLabelEditCommand);
-    bind(TYPES.IEditLabelValidator).to(ServerEditLabelValidator);
-    bind(TYPES.IEditLabelValidationDecorator).to(BalloonLabelValidationDecorator);
+    // bind(TYPES.IEditLabelValidator).to(ServerEditLabelValidator);
+    // bind(TYPES.IEditLabelValidationDecorator).to(BalloonLabelValidationDecorator);
 
     // GLSP replacements
     bindAsService(bind, TYPES.IDefaultTool, IvyDirectLabelEditTool);
