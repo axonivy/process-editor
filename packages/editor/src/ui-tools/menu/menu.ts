@@ -18,24 +18,6 @@ export interface Menu {
   remove(): void;
 }
 
-export abstract class SimpleMenu implements Menu {
-  protected menuCssClass = ['bar-menu', 'simple-menu'];
-  bodyDiv?: HTMLElement;
-
-  public create(containerElement: HTMLElement): HTMLElement {
-    this.bodyDiv = createElement('div', this.menuCssClass);
-    containerElement.appendChild(this.bodyDiv);
-    this.createMenuBody(this.bodyDiv);
-    return this.bodyDiv;
-  }
-
-  abstract createMenuBody(bodyDiv: HTMLElement): void;
-
-  public remove(): void {
-    this.bodyDiv?.remove();
-  }
-}
-
 export abstract class ItemMenu implements Menu {
   static ACTIVE_ELEMENT = 'focus';
   static ITEM_GROUP = 'menu-group';

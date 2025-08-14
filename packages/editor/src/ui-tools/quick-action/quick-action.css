@@ -53,3 +53,121 @@
   background: none;
   pointer-events: none;
 }
+
+.ui-palette-section[data-section='Workflow Activities'] .ui-palette-item-icon {
+  background: var(--glsp-activity-workflow-bg);
+  color: var(--glsp-activity-workflow);
+}
+.ui-palette-section[data-section='Workflow Activities'] .ui-palette-item-icon:hover {
+  border: 1px solid var(--glsp-activity-workflow);
+}
+
+.ui-palette-section[data-section='Interface Activities'] .ui-palette-item-icon {
+  background: var(--glsp-activity-interface-bg);
+  color: var(--glsp-activity-interface);
+}
+.ui-palette-section[data-section='Interface Activities'] .ui-palette-item-icon:hover {
+  border: 1px solid var(--glsp-activity-interface);
+}
+
+.ui-palette-section[data-section='BPMN Activities'] .ui-palette-item-icon {
+  background: var(--glsp-activity-bpmn-bg);
+  color: var(--glsp-activity-bpmn);
+}
+.ui-palette-section[data-section='BPMN Activities'] .ui-palette-item-icon:hover {
+  border: 1px solid var(--glsp-activity-bpmn);
+}
+
+/* Color Dialog */
+.edit-color {
+  padding-top: 0.5rem;
+}
+.edit-color .edit-color-body {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+.edit-color .edit-color-input {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.edit-color .edit-color-input label {
+  font-size: 10px;
+  color: var(--glsp-bar-menu-label);
+}
+.edit-color .edit-color-input input {
+  height: 28px;
+  border: none;
+  background-color: var(--glsp-editor-background);
+  color: var(--glsp-editor-foreground);
+  border-radius: 4px;
+  width: calc(100% - 1rem);
+  padding-inline: 0.5rem;
+}
+.edit-color .edit-color-input input:focus {
+  outline: 1px solid var(--glsp-editor-selected);
+}
+.edit-color .edit-color-input input.error {
+  outline: 1px solid var(--glsp-error-foreground);
+}
+.edit-color .color-picker {
+  position: relative;
+}
+.edit-color .color-picker .decorator {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 1rem;
+  background-color: var(--glsp-foreground);
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  cursor: pointer;
+}
+.edit-color .edit-color-input input[type='color'] {
+  position: absolute;
+  visibility: hidden;
+  height: 28px;
+}
+.edit-color .color-picker input {
+  padding-left: 2rem;
+  width: calc(100% - 2.5rem);
+}
+.edit-color .edit-color-footer {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: end;
+  padding: 0.5rem 0;
+}
+.edit-color .edit-color-footer button {
+  height: 28px;
+  width: 60px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+.edit-color .edit-color-footer .edit-color-save {
+  background-color: var(--glsp-editor-selected);
+  color: white;
+  border: none;
+}
+.edit-color .edit-color-footer .edit-color-delete {
+  background-color: transparent;
+  color: var(--glsp-bar-menu-item);
+  border: 1px solid var(--glsp-bar-menu-item);
+}
+
+.ui-palette-color-item :where(.color-icon, .empty-icon, .new-color-icon) {
+  height: 1rem;
+  min-width: 1rem;
+  margin: 0.5rem;
+  border-radius: 1rem;
+}
+.ui-palette-color-item .empty-icon {
+  background-color: var(--glsp-foreground);
+}
+.ui-palette-color-item.new-color .new-color-icon {
+  border: 1px dashed var(--glsp-foreground);
+  font-size: 8px;
+  line-height: 16px;
+}

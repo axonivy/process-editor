@@ -1,15 +1,17 @@
 import { UpdatePaletteItems } from '@axonivy/process-editor-protocol';
-import { Button, Flex, PaletteButton, PaletteButtonLabel, Separator, Toolbar, ToolbarContainer } from '@axonivy/ui-components';
+import { Flex, Popover, PopoverAnchor, PopoverArrow, PopoverContent, Toolbar } from '@axonivy/ui-components';
 import {
   Action,
   DisposableCollection,
   EnableDefaultToolsAction,
   EnableToolPaletteAction,
+  GModelRoot,
   type IActionDispatcher,
   type IActionHandler,
   type IEditModeListener,
   ISelectionListener,
   MouseListener,
+  type PaletteItem,
   SelectionService,
   SetUIExtensionVisibilityAction,
   TYPES,
@@ -17,10 +19,8 @@ import {
 } from '@eclipse-glsp/client';
 import { inject, injectable, multiInject, postConstruct } from 'inversify';
 import React from 'react';
-import { SModelRootImpl } from 'sprotty';
 import { IVY_TYPES } from '../../types';
 import { ReactUIExtension } from '../../utils/react-ui-extension';
-import type { Menu } from '../menu/menu';
 import {
   DefaultSelectButton,
   MarqueeToolButton,
@@ -29,10 +29,12 @@ import {
   type ToolBarButtonProvider,
   compareButtons
 } from './button';
-import { EditButtons } from './edit-buttons';
+import { ToolBarButton as ToolBarButtonComponent } from './components/ToolBarButton';
+import { ToolBarOptionsMenu } from './components/ToolBarOptionsMenu';
+import { ToolBarPaletteMenu } from './components/ToolBarPaletteMenu';
+import { UndoRedoButtons } from './components/UndoRedoButtons';
 import { ShowToolBarOptionsMenuAction } from './options/action';
-import { ToolBarOptionsMenu } from './options/options-menu-ui';
-import { ShowToolBarMenuAction, ToolBarMenu } from './tool-bar-menu';
+import { ShowToolBarMenuAction } from './tool-bar-menu';
 
 export type ToolBarButtonClickEvent = {
   source: ToolBarButton;
@@ -48,8 +50,8 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
   @multiInject(IVY_TYPES.ToolBarButtonProvider) protected toolBarButtonProvider: ToolBarButtonProvider[];
 
   protected lastButtonClickEvent?: ToolBarButtonClickEvent;
-  protected lastMenuAction?: string;
-  protected toolBarMenu?: Menu;
+  protected activeMenuAction?: ShowToolBarMenuAction | ShowToolBarOptionsMenuAction;
+  protected loadedPaletteItems?: PaletteItem[];
 
   protected toDisposeOnDisable = new DisposableCollection();
   protected toDisposeOnHide = new DisposableCollection();
@@ -73,7 +75,7 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
     containerElement.onwheel = ev => (ev.ctrlKey ? ev.preventDefault() : true);
   }
 
-  protected onBeforeShow(containerElement: HTMLElement, root: Readonly<SModelRootImpl>, ...contextElementIds: string[]): void {
+  protected onBeforeShow(containerElement: HTMLElement, root: Readonly<GModelRoot>, ...contextElementIds: string[]): void {
     super.onBeforeShow(containerElement, root, ...contextElementIds);
     this.toDisposeOnHide.push(this.selectionService.onSelectionChanged(() => this.selectionChanged()));
   }
@@ -93,12 +95,7 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
         <Flex className='left-buttons'>
           <Flex gap={1}>{left.map(btn => this.renderToolbarButton(btn, activeButtonId))}</Flex>
           {!this.editorContext.isReadonly && (
-            <ToolbarContainer maxWidth={450}>
-              <Flex>
-                <Separator orientation='vertical' style={{ height: '26px' }} />
-                <EditButtons root={this.editorContext.modelRoot} dispatcher={this.actionDispatcher} />
-              </Flex>
-            </ToolbarContainer>
+            <UndoRedoButtons actionDispatcher={this.actionDispatcher} modelRoot={this.editorContext.modelRoot} />
           )}
         </Flex>
         <Flex className='middle-buttons' gap={3}>
@@ -107,8 +104,41 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
         <Flex className='right-buttons' gap={1}>
           {right.map(btn => this.renderToolbarButton(btn, activeButtonId))}
         </Flex>
+
+        {/* Dynamic popover for menu items and options */}
+        <Popover open={!!this.activeMenuAction}>
+          <PopoverAnchor virtualRef={{ current: this.lastButtonClickEvent?.reference! }} />
+          {this.renderActiveMenu()}
+        </Popover>
       </Toolbar>
     );
+  }
+
+  private renderActiveMenu(): React.ReactNode {
+    if (!this.activeMenuAction) {
+      return null;
+    }
+
+    if (ShowToolBarMenuAction.is(this.activeMenuAction)) {
+      return (
+        <ToolBarPaletteMenu
+          paletteItems={this.loadedPaletteItems || []}
+          menuAction={this.activeMenuAction}
+          actionDispatcher={this.actionDispatcher}
+        />
+      );
+    }
+
+    if (ShowToolBarOptionsMenuAction.is(this.activeMenuAction)) {
+      return (
+        <PopoverContent className={'tool-bar-options-content'} sideOffset={8} collisionPadding={4}>
+          <PopoverArrow />
+          <ToolBarOptionsMenu action={this.activeMenuAction} actionDispatcher={this.actionDispatcher} />
+        </PopoverContent>
+      );
+    }
+
+    return null;
   }
 
   protected getProvidedToolBarButtons(location: ToolBarButtonLocation): ToolBarButton[] {
@@ -121,30 +151,13 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
   }
 
   protected renderToolbarButton(button: ToolBarButton, activeButtonId: string): React.ReactNode {
-    if (!button.showTitle) {
-      return (
-        <Button
-          key={button.id}
-          id={button.id}
-          toggle={activeButtonId === button.id}
-          size='large'
-          title={button.title}
-          aria-label={button.title}
-          icon={button.icon}
-          onClick={evt => this.handleToolbarButtonClicked({ source: button, reference: evt.currentTarget })}
-        />
-      );
-    }
     return (
-      <PaletteButtonLabel key={button.id} label={button.title}>
-        <PaletteButton
-          id={button.id}
-          toggle={activeButtonId === button.id}
-          icon={button.icon}
-          label={button.title}
-          onClick={evt => this.handleToolbarButtonClicked({ source: button, reference: evt.currentTarget })}
-        />
-      </PaletteButtonLabel>
+      <ToolBarButtonComponent
+        key={button.id}
+        button={button}
+        isActive={activeButtonId === button.id}
+        onClick={evt => this.handleToolbarButtonClicked({ source: button, reference: evt.currentTarget })}
+      />
     );
   }
 
@@ -179,47 +192,38 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
 
   async toggleToolBarMenu(action: ShowToolBarMenuAction): Promise<void> {
     const items = await action.paletteItems();
-    if (items.length !== 0 && action.id !== this.lastMenuAction) {
-      this.toolBarMenu = new ToolBarMenu(this.actionDispatcher, action, items);
-      const menu = this.toolBarMenu.create(this.containerElement);
-      if (this.lastButtonClickEvent?.reference) {
-        const menuRight = menu.offsetLeft + menu.offsetWidth;
-        const buttonCenter = this.lastButtonClickEvent.reference.offsetLeft + this.lastButtonClickEvent.reference.offsetWidth / 2;
-        menu.style.setProperty('--menu-arrow-pos', `${menuRight - buttonCenter - 6}px`);
-      }
-      this.setLastMenuAction(action.id);
+    if (items.length !== 0 && action.id !== this.activeMenuAction?.id) {
+      this.activeMenuAction = action;
+      this.loadedPaletteItems = items;
     } else {
-      this.changeActiveButton();
-      this.setLastMenuAction(undefined);
+      this.closeMenu();
       // Reset focus to diagram
       document.getElementById(this.options.baseDiv)?.querySelector<HTMLDivElement>('div[tabindex]')?.focus();
     }
+    this.update();
   }
 
   toggleOptionsMenu(action: ShowToolBarOptionsMenuAction): void {
-    if (action.id !== this.lastMenuAction) {
-      this.toolBarMenu = new ToolBarOptionsMenu(this.actionDispatcher, action);
-      this.toolBarMenu.create(this.containerElement);
-      this.setLastMenuAction(action.id);
+    if (action.id !== this.activeMenuAction?.id) {
+      this.activeMenuAction = action;
+      this.loadedPaletteItems = undefined;
     } else {
-      this.changeActiveButton();
-      this.setLastMenuAction(undefined);
+      this.closeMenu();
     }
+    this.update();
   }
 
-  setLastMenuAction(id?: string): void {
-    this.lastMenuAction = id;
+  private closeMenu(): void {
+    this.activeMenuAction = undefined;
+    this.loadedPaletteItems = undefined;
   }
 
   changeActiveButton(evt?: ToolBarButtonClickEvent): void {
     this.lastButtonClickEvent = evt;
-    this.hideMenus();
+    if (this.lastButtonClickEvent === undefined || this.lastButtonClickEvent?.reference !== evt?.reference) {
+      this.closeMenu();
+    }
     this.update();
-  }
-
-  hideMenus(): void {
-    this.toolBarMenu?.remove();
-    this.toolBarMenu = undefined;
   }
 
   editModeChanged(): void {
@@ -245,7 +249,6 @@ export class ToolBarFocusMouseListener extends MouseListener {
 
   mouseDown(): Action[] {
     this.toolBar.changeActiveButton();
-    this.toolBar.setLastMenuAction();
     return [];
   }
 }
