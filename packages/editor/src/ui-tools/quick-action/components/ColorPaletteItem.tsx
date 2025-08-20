@@ -86,7 +86,7 @@ export const ColorPaletteItem: React.FC<ColorPaletteItemProps> = ({
   const canEdit = isEditable && !isDefaultColor && !isNewColor;
   return (
     <button
-      className={cn(classNames.paletteItem, 'ui-palette-color-item', isNewColor ? 'new-color' : '')}
+      className={cn(classNames.paletteItem, 'ui-palette-color-item', 'ui-palette-item', isNewColor ? 'new-color' : '')}
       onClick={onClick}
       title={description}
     >

@@ -79,15 +79,11 @@
   border-bottom: 1px solid var(--glsp-border);
 }
 .bar-menu-text .simple-menu-header,
-.bar-menu-text .simple-menu-text,
-.bar-menu-items .menu-group-header {
+.bar-menu-text .simple-menu-text {
   font-weight: 500;
   font-size: 12px;
   user-select: text;
   color: var(--body);
-}
-.bar-menu-items .menu-group-header {
-  display: flex;
 }
 .bar-menu-text .simple-menu-text {
   font-weight: 400;

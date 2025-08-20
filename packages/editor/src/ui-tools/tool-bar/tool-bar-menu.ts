@@ -1,7 +1,6 @@
-import type { IActionDispatcher, MaybePromise, PaletteItem } from '@eclipse-glsp/client';
+import type { MaybePromise, PaletteItem } from '@eclipse-glsp/client';
 import { Action } from '@eclipse-glsp/client';
 import type { ShowMenuAction } from '../menu/menu';
-import { ItemMenu } from '../menu/menu';
 
 export interface ShowToolBarMenuAction extends ShowMenuAction {
   kind: typeof ShowToolBarMenuAction.KIND;
@@ -27,21 +26,5 @@ export namespace ShowToolBarMenuAction {
 
   export function is(object: unknown): object is ShowToolBarMenuAction {
     return Action.hasKind(object, KIND);
-  }
-}
-
-export class ToolBarMenu extends ItemMenu {
-  protected menuCssClass = ['bar-menu', 'tool-bar-menu'];
-
-  constructor(
-    readonly actionDispatcher: IActionDispatcher,
-    readonly action: ShowToolBarMenuAction,
-    protected paletteItems: Array<PaletteItem>
-  ) {
-    super(actionDispatcher, action, paletteItems);
-  }
-
-  toolButtonOnClick(item: PaletteItem): Action[] {
-    return this.action.actions(item);
   }
 }

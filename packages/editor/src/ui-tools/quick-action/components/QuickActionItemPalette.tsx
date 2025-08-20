@@ -1,6 +1,7 @@
 import { BasicPalette, type PaletteConfig, type PaletteItemConfig } from '@axonivy/ui-components';
 import { PaletteItem, type IActionDispatcherProvider } from '@eclipse-glsp/client';
 import React from 'react';
+import { sortPaletteItems } from '../../../utils/menu-utils';
 import { MenuIcons } from '../../menu/icons';
 import type { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
 import { newColorPaletteItem } from './ColorPaletteItem';
@@ -33,6 +34,7 @@ export const QuickActionItemPalette: React.FC<QuickActionItemPaletteProps> = ({ 
 
   const sections = React.useMemo(() => {
     const paletteItems = action.isEditable ? [...action.paletteItems(), newColorPaletteItem()] : action.paletteItems();
+    paletteItems.sort(sortPaletteItems);
     return paletteItems.reduce((sections: PaletteSections, item: PaletteItem) => {
       sections[item.label] ||= [];
       const items = item.children ?? [item];

@@ -28,6 +28,28 @@ function createContainerReadonly(options?: Partial<IvyViewerOptions>): Container
   return container;
 }
 
+describe('QuickActionUi - Readonly (hide sensitive infos)', () => {
+  let quickActionUi: QuickActionUI;
+  let root: GModelRoot;
+
+  beforeAll(() => {
+    const container = createContainerReadonly({ hideSensitiveInfo: true });
+    quickActionUi = container.get<QuickActionUI>(QuickActionUIReadonly);
+    root = createRoot(container);
+  });
+
+  test('activity', async () => {
+    await renderQuickActionUi(quickActionUi, root, 'foo');
+    assertQuickActionUi(1);
+    assertQuickAction(0, 'Information (I)');
+  });
+
+  test('edge', async () => {
+    await renderQuickActionUi(quickActionUi, root, 'edge');
+    assertQuickActionUi(0);
+  });
+});
+
 describe('QuickActionUi - Readonly', () => {
   let quickActionUi: QuickActionUI;
   let root: GModelRoot;
@@ -55,27 +77,5 @@ describe('QuickActionUi - Readonly', () => {
     await renderQuickActionUi(quickActionUi, root, 'edge');
     assertQuickActionUi(1);
     assertQuickAction(0, 'Information (I)');
-  });
-});
-
-describe('QuickActionUi - Readonly (hide sensitive infos)', () => {
-  let quickActionUi: QuickActionUI;
-  let root: GModelRoot;
-
-  beforeAll(() => {
-    const container = createContainerReadonly({ hideSensitiveInfo: true });
-    quickActionUi = container.get<QuickActionUI>(QuickActionUIReadonly);
-    root = createRoot(container);
-  });
-
-  test('activity', async () => {
-    await renderQuickActionUi(quickActionUi, root, 'foo');
-    assertQuickActionUi(1);
-    assertQuickAction(0, 'Information (I)');
-  });
-
-  test('edge', async () => {
-    await renderQuickActionUi(quickActionUi, root, 'edge');
-    assertQuickActionUi(0);
   });
 });

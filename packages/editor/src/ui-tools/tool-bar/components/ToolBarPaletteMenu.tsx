@@ -1,6 +1,8 @@
 import { BasicPalette, PopoverArrow, PopoverContent, type PaletteConfig, type PaletteItemConfig } from '@axonivy/ui-components';
 import { PaletteItem, type IActionDispatcher } from '@eclipse-glsp/client';
+import { t } from 'i18next';
 import React from 'react';
+import { sortPaletteItems } from '../../../utils/menu-utils';
 import { MenuIcons } from '../../menu/icons';
 import { ShowToolBarMenuAction } from '../tool-bar-menu';
 
@@ -34,6 +36,7 @@ export const ToolBarPaletteMenu: React.FC<ToolBarPaletteMenuProps> = ({ paletteI
   );
 
   const sections = React.useMemo(() => {
+    paletteItems.sort(sortPaletteItems);
     return paletteItems.reduce((sections: ToolBarSections, item: ToolBarPaletteItem) => {
       sections[item.label] ||= [];
       const items = item.children ?? [item];
@@ -43,9 +46,9 @@ export const ToolBarPaletteMenu: React.FC<ToolBarPaletteMenuProps> = ({ paletteI
   }, [paletteItems, onItemSelected]);
 
   return (
-    <PopoverContent className={'tool-bar-menu-content'}>
+    <PopoverContent className={'tool-bar-menu'}>
       <PopoverArrow />
-      <BasicPalette sections={sections} options={{ searchPlaceholder: 'Search...', emptyMessage: 'No items found' }} />
+      <BasicPalette sections={sections} options={{ searchPlaceholder: t('a11y.search.placeholder'), emptyMessage: t('label.empty') }} />
     </PopoverContent>
   );
 };

@@ -1,6 +1,7 @@
 import { Palette, PaletteSection, type PaletteConfig } from '@axonivy/ui-components';
 import { type IActionDispatcherProvider } from '@eclipse-glsp/client';
 import React from 'react';
+import { sortPaletteItems } from '../../../utils/menu-utils';
 import type { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
 import {
   colorItemToConfig,
@@ -38,6 +39,7 @@ export const QuickActionColorPalette: React.FC<QuickActionColorPaletteProps> = (
 
   const sections = React.useMemo(() => {
     const paletteItems = action.isEditable ? [...action.paletteItems(), newColorPaletteItem()] : action.paletteItems();
+    paletteItems.sort(sortPaletteItems);
     return paletteItems.reduce((sections: ColorPaletteSections, item: ColorPaletteItem) => {
       sections[item.label] ||= [];
       const items = item.children ?? [item];

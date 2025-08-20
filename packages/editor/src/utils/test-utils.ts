@@ -25,6 +25,7 @@ import {
   contextMenuModule,
   createDiagramOptionsModule,
   defaultModule,
+  gridModule,
   initializeContainer,
   initializeDiagramContainer
 } from '@eclipse-glsp/client';
@@ -109,6 +110,7 @@ export function createTestDiagramContainer(...containerConfigurations: Container
   return initializeDiagramContainer(
     new Container(),
     createDiagramOptionsModule(createTestDiagramOptions()),
+    gridModule,
     baseViewModule,
     ivyDiagramModule,
     { remove: contextMenuModule },

@@ -22,7 +22,7 @@ function getIvyIconForSeverity(severity: GIssueSeverity): IvyIcons {
 
 export const QuickActionInfoPanel: React.FC<QuickActionInfoPanelProps> = ({ action }) => {
   return (
-    <div className='bar-menu quick-action-bar-menu bar-menu-text'>
+    <div className='bar-menu quick-action-bar-menu bar-menu-text simple-menu'>
       {action.title && <h3 className='simple-menu-header'>{action.title}</h3>}
       {action.markers.map((marker, index) => (
         <div key={index} className='menu-marker'>
@@ -44,7 +44,7 @@ export const QuickActionInfoPanel: React.FC<QuickActionInfoPanelProps> = ({ acti
         Object.entries(action.info).map(([label, info]) => (
           <div key={label} className='simple-menu-text simple-menu-small'>
             <strong>{label}: </strong>
-            {info.type === 'STRING' ? <pre>{info.value}</pre> : info.type === 'CODE' ? <code>{info.value}</code> : <></>}
+            {info.type === 'STRING' ? info.value : info.type === 'CODE' ? <pre>{info.value}</pre> : <></>}
           </div>
         ))}
       <p className='simple-menu-text simple-menu-small'>

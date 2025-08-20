@@ -107,7 +107,10 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
 
         {/* Dynamic popover for menu items and options */}
         <Popover open={!!this.activeMenuAction}>
-          <PopoverAnchor virtualRef={this.lastButtonClickEvent?.reference ? { current: this.lastButtonClickEvent.reference } : undefined} />
+          <PopoverAnchor
+            style={{ display: 'none' }}
+            virtualRef={this.lastButtonClickEvent?.reference ? { current: this.lastButtonClickEvent.reference } : undefined}
+          />
           {this.renderActiveMenu()}
         </Popover>
       </Toolbar>
@@ -214,6 +217,7 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
   }
 
   private closeMenu(): void {
+    this.lastButtonClickEvent = undefined;
     this.activeMenuAction = undefined;
     this.loadedPaletteItems = undefined;
   }

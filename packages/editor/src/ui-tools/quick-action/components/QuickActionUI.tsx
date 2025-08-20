@@ -1,6 +1,5 @@
-import { Flex } from '@axonivy/ui-components';
+import { Flex, Popover, PopoverAnchor, PopoverContent } from '@axonivy/ui-components';
 import { Bounds, type IActionDispatcherProvider } from '@eclipse-glsp/client';
-import * as PopoverPrimitive from '@radix-ui/react-popover';
 import React from 'react';
 import type { QuickAction } from '../quick-action';
 import { ShowInfoQuickActionMenuAction, ShowQuickActionMenuAction } from '../quick-action-menu-ui';
@@ -33,10 +32,13 @@ export const QuickActionUI: React.FC<QuickActionUIProps> = ({
   if (quickActions.length === 0) {
     return null;
   }
-  const bounds = React.use(selectionBounds);
+
+  // we do not use the React.use() hook as this does not work well with the testing library
+  const [bounds, setBounds] = React.useState(Bounds.EMPTY);
+  React.useEffect(() => void selectionBounds.then(bounds => setBounds(bounds)), [selectionBounds]);
 
   return (
-    <PopoverPrimitive.Popover open={true}>
+    <Popover open={true}>
       {drawSelectionBox && (
         <div
           className='quick-action-selection-box'
@@ -48,36 +50,38 @@ export const QuickActionUI: React.FC<QuickActionUIProps> = ({
           }}
         />
       )}
-      <PopoverPrimitive.PopoverAnchor virtualRef={{ current: { getBoundingClientRect: () => DOMRect.fromRect(bounds) } }} />
-      <PopoverPrimitive.PopoverPortal container={document.getElementById('sprotty_quickActionsUi')}>
-        <PopoverPrimitive.PopoverContent className='quick-action-ui ui-popover-content' side='bottom' align='center' sideOffset={10}>
-          <Flex direction='column' alignItems='center'>
-            <Flex className='quick-actions-bar' gap={4}>
-              <QuickActionGroup
-                quickActions={quickActions}
-                location='Left'
-                activeQuickAction={activeQuickAction}
-                onQuickActionClick={onQuickActionClick}
-              />
-              <QuickActionGroup
-                quickActions={quickActions}
-                location='Middle'
-                activeQuickAction={activeQuickAction}
-                onQuickActionClick={onQuickActionClick}
-              />
-              <QuickActionGroup
-                quickActions={quickActions}
-                location='Right'
-                activeQuickAction={activeQuickAction}
-                onQuickActionClick={onQuickActionClick}
-              />
-            </Flex>
-            {showMenuAction && (
-              <QuickActionMenu showMenuAction={showMenuAction} actionDispatcher={actionDispatcher} onClose={onCloseMenu} />
-            )}
+      <PopoverAnchor virtualRef={{ current: { getBoundingClientRect: () => DOMRect.fromRect(bounds) } }} />
+      <PopoverContent
+        className={'quick-action-ui ui-popover-content actions-' + quickActions.length}
+        side='bottom'
+        align='center'
+        sideOffset={10}
+        onOpenAutoFocus={e => e.preventDefault()}
+      >
+        <Flex direction='column' alignItems='center'>
+          <Flex className='quick-actions-bar' gap={4}>
+            <QuickActionGroup
+              quickActions={quickActions}
+              location='Left'
+              activeQuickAction={activeQuickAction}
+              onQuickActionClick={onQuickActionClick}
+            />
+            <QuickActionGroup
+              quickActions={quickActions}
+              location='Middle'
+              activeQuickAction={activeQuickAction}
+              onQuickActionClick={onQuickActionClick}
+            />
+            <QuickActionGroup
+              quickActions={quickActions}
+              location='Right'
+              activeQuickAction={activeQuickAction}
+              onQuickActionClick={onQuickActionClick}
+            />
           </Flex>
-        </PopoverPrimitive.PopoverContent>
-      </PopoverPrimitive.PopoverPortal>
-    </PopoverPrimitive.Popover>
+          {showMenuAction && <QuickActionMenu showMenuAction={showMenuAction} actionDispatcher={actionDispatcher} onClose={onCloseMenu} />}
+        </Flex>
+      </PopoverContent>
+    </Popover>
   );
 };

@@ -153,9 +153,6 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
     }
 
     this.activeQuickActions = elements.length > 1 ? this.loadMultiQuickActions(elements) : this.loadSingleQuickActions(elements[0]);
-    if (this.activeQuickActions.length === 0) {
-      return null;
-    }
 
     // for some reason the bounds are slightly off when this UI is rendered so we need to do one more animation frame
     const boundsPromise = new Deferred<Bounds>();

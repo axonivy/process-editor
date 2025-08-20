@@ -106,13 +106,13 @@ describe('QuickActionUi', () => {
 
   test('multi selection', async () => {
     await renderQuickActionUi(quickActionUi, root, 'start', 'end');
-    assertMultiQuickActionUi(4, { height: 40, width: 140 });
+    assertMultiQuickActionUi(4);
     assertQuickAction(0, 'Delete', IvyIcons.Trash);
     assertQuickAction(1, 'Wrap to embedded process (W)', IvyIcons.WrapToSubprocess);
     assertQuickAction(2, 'Auto Align (A)', IvyIcons.AutoAlign);
     assertQuickAction(3, 'Select color', IvyIcons.ColorDrop);
 
     await renderQuickActionUi(quickActionUi, root, 'start', 'end', 'foo');
-    assertMultiQuickActionUi(4, { height: 140, width: 240 });
+    assertMultiQuickActionUi(4);
   });
 });

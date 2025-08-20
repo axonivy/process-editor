@@ -21,7 +21,7 @@ export const ToolBarOptionsMenu: React.FC<ToolBarOptionsMenuProps> = ({ action, 
       <div className='tool-bar-options'>
         <Flex direction='column' gap={3}>
           {action.theme && (
-            <Field direction='row' alignItems='center' justifyContent='space-between' gap={4}>
+            <Field className='tool-bar-option' direction='row' alignItems='center' justifyContent='space-between' gap={4}>
               <Label>
                 <Flex alignItems='center' gap={1}>
                   <IvyIcon icon={IvyIcons.DarkMode} />
@@ -37,7 +37,7 @@ export const ToolBarOptionsMenu: React.FC<ToolBarOptionsMenuProps> = ({ action, 
               />
             </Field>
           )}
-          <Field direction='row' alignItems='center' justifyContent='space-between' gap={4}>
+          <Field className='tool-bar-option' direction='row' alignItems='center' justifyContent='space-between' gap={4}>
             <Label>
               <Flex alignItems='center' gap={1}>
                 <IvyIcon icon={IvyIcons.GridDots} />
@@ -52,7 +52,7 @@ export const ToolBarOptionsMenu: React.FC<ToolBarOptionsMenuProps> = ({ action, 
               size='small'
             />
           </Field>
-          <Field direction='row' alignItems='center' justifyContent='space-between' gap={4}>
+          <Field className='tool-bar-option' direction='row' alignItems='center' justifyContent='space-between' gap={4}>
             <Label>
               <Flex alignItems='center' gap={1}>
                 <IvyIcon icon={IvyIcons.CustomImage} />

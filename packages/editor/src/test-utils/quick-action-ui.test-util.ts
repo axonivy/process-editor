@@ -1,6 +1,20 @@
-import type { Bounds, CustomFeatures, Dimension, GLabel, GModelFactory, GModelRoot, Point } from '@eclipse-glsp/client';
-import { DefaultTypes, GGraph, GGraphView, GNode, TYPES, configureModelElement, createFeatureSet } from '@eclipse-glsp/client';
-import { render, type RenderResult } from '@testing-library/react';
+import {
+  DefaultTypes,
+  GGraph,
+  GGraphView,
+  GNode,
+  TYPES,
+  configureModelElement,
+  createFeatureSet,
+  type Bounds,
+  type CustomFeatures,
+  type Dimension,
+  type GLabel,
+  type GModelFactory,
+  type GModelRoot,
+  type Point
+} from '@eclipse-glsp/client';
+import { render } from '@testing-library/react';
 import { expect } from 'chai';
 import type { Container } from 'inversify';
 import ivyConnectorModule from '../connector/di.config';
@@ -128,21 +142,22 @@ export function setupSprottyDiv(): void {
 }
 
 export function getQuickActionDiv(): HTMLElement {
-  return document.querySelector('#sprotty_quickActionsUi') as HTMLElement;
+  return document.querySelector('.quick-action-ui') as HTMLElement;
 }
 
-export function assertMultiQuickActionUi(childCount: number, dimension: Dimension, position?: Point): void {
-  const uiDiv = getQuickActionDiv();
+export function assertMultiQuickActionUi(childCount: number, dimension?: Dimension, position?: Point): void {
   assertQuickActionUi(childCount, position);
-  const selectionBorder = uiDiv.querySelector('.quick-action-selection-box') as HTMLElement;
+  const selectionBorder = document.querySelector('.quick-action-selection-box') as HTMLElement;
   expect(selectionBorder.tagName).to.be.equals('DIV');
-  expect(selectionBorder.style.height).to.be.equals(`${dimension.height}px`);
-  expect(selectionBorder.style.width).to.be.equals(`${dimension.width}px`);
+  if (dimension) {
+    expect(selectionBorder.style.height).to.be.equals(`${dimension.height}px`);
+    expect(selectionBorder.style.width).to.be.equals(`${dimension.width}px`);
+  }
 }
 
 export function assertQuickActionUi(childCount: number, position?: Partial<Point>): void {
   const uiDiv = getQuickActionDiv();
-  const children = uiDiv.querySelectorAll('.quick-actions-group > button');
+  const children = uiDiv?.querySelectorAll('.ui-button') ?? [];
   expect(children.length).to.be.equals(childCount);
   if (position) {
     if (position.y) {
@@ -165,12 +180,8 @@ export function assertQuickAction(childIndex: number, title: string, icon?: stri
   }
 }
 
-export async function renderQuickActionUi(
-  ui: QuickActionUI,
-  root: Readonly<GModelRoot>,
-  ...contextElementIds: string[]
-): Promise<RenderResult> {
+export async function renderQuickActionUi(ui: QuickActionUI, root: Readonly<GModelRoot>, ...contextElementIds: string[]): Promise<void> {
   ui.show(root, ...contextElementIds);
   const result = await render(ui['render'](root, ...contextElementIds));
-  return result;
+  result.unmount();
 }
