@@ -84,6 +84,18 @@ blalbalba
     }
   };
 
+  export const PROGRAM = {
+    ...NAME,
+    config: {
+      javaClass: 'com.axonivy.utils.ai.tools.AgenticProcessCall',
+      userConfig: {
+        query: 'Help me, my computer is beeping with <%= in.error %> .',
+        system: 'You are a polite and helpful Support Agent trying to achieve <%= in.goal %> ',
+        returnType: 'com.axonivy.utils.ai.SupportTicket.class'
+      }
+    }
+  };
+
   export function mockForType(type: ElementType) {
     switch (type) {
       case 'UserTask':
@@ -95,6 +107,8 @@ blalbalba
         return DataMock.ALTERNATIVE;
       case 'Database':
         return DataMock.DATABASE;
+      case 'ProgramInterface':
+        return DataMock.PROGRAM;
       default:
         return DataMock.NAME;
     }

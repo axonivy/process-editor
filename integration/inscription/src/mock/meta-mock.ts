@@ -10,7 +10,8 @@ import type {
   NodeRef,
   OutlineNode,
   RoleMeta,
-  VariableInfo
+  VariableInfo,
+  Widget
 } from '@axonivy/process-editor-inscription-protocol';
 
 export namespace MetaMock {
@@ -345,6 +346,43 @@ export namespace MetaMock {
       name: '',
       source: NODE_OF,
       target: NODE_OF
+    }
+  ];
+
+  export const PROGRAM_EDITOR: Widget[] = [
+    {
+      text: 'User Prompt:',
+      widgetType: 'LABEL',
+      multiline: false
+    },
+    {
+      text: 'in.data',
+      widgetType: 'TEXT',
+      configKey: 'query',
+      multiline: true
+    },
+    {
+      text: 'System Prompt:',
+      widgetType: 'LABEL',
+      multiline: false
+    },
+    {
+      text: 'in.system',
+      widgetType: 'TEXT',
+      configKey: 'system',
+      multiline: false
+    },
+    {
+      text: 'Return type:',
+      widgetType: 'LABEL',
+      multiline: false
+    },
+    {
+      text: 'macronized',
+      widgetType: 'SCRIPT',
+      configKey: 'returnType',
+      requiredType: 'java.lang.Class',
+      multiline: false
     }
   ];
 

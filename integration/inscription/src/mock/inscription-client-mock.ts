@@ -116,6 +116,8 @@ export class InscriptionClientMock implements InscriptionClient {
         return Promise.resolve(MetaMock.DATABASE);
       case 'meta/process/outline':
         return Promise.resolve(MetaMock.OUTLINE);
+      case 'meta/program/editor':
+        return Promise.resolve(MetaMock.PROGRAM_EDITOR);
       default:
         throw Error('mock meta path not programmed');
     }
