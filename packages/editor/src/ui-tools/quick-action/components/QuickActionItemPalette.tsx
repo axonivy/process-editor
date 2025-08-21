@@ -9,18 +9,18 @@ import { newColorPaletteItem } from './ColorPaletteItem';
 interface QuickActionItemPaletteProps {
   action: ShowQuickActionMenuAction;
   actionDispatcher: IActionDispatcherProvider;
-  onClose: () => void;
+  closeUi: () => void;
 }
 
-export const QuickActionItemPalette: React.FC<QuickActionItemPaletteProps> = ({ action, actionDispatcher, onClose }) => {
+export const QuickActionItemPalette: React.FC<QuickActionItemPaletteProps> = ({ action, actionDispatcher, closeUi }) => {
   const onItemSelected = React.useCallback(
     async (item: PaletteItem) => {
       const dispatcher = await actionDispatcher();
       const actions = action.actions(item, action.elementIds);
       dispatcher.dispatchAll(actions);
-      onClose?.();
+      closeUi();
     },
-    [onClose, actionDispatcher, action]
+    [closeUi, actionDispatcher, action]
   );
 
   const sections = React.useMemo(() => {

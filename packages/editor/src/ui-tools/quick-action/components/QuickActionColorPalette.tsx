@@ -9,10 +9,10 @@ import { EditColorForm } from './EditColorForm';
 interface QuickActionColorPaletteProps {
   action: ShowQuickActionMenuAction<ColorPaletteItem>;
   actionDispatcher: IActionDispatcherProvider;
-  onClose: () => void;
+  closeUi: () => void;
 }
 
-export const QuickActionColorPalette: React.FC<QuickActionColorPaletteProps> = ({ action, actionDispatcher, onClose }) => {
+export const QuickActionColorPalette: React.FC<QuickActionColorPaletteProps> = ({ action, actionDispatcher, closeUi }) => {
   const [editingItem, setEditingItem] = React.useState<ColorPaletteItem | undefined>(undefined);
 
   const onItemSelected = React.useCallback(
@@ -23,10 +23,10 @@ export const QuickActionColorPalette: React.FC<QuickActionColorPaletteProps> = (
         const dispatcher = await actionDispatcher();
         const actions = action.actions(item, action.elementIds);
         dispatcher.dispatchAll(actions);
-        onClose?.();
+        closeUi();
       }
     },
-    [setEditingItem, onClose, actionDispatcher, action]
+    [setEditingItem, closeUi, actionDispatcher, action]
   );
 
   const sections = React.useMemo(() => {

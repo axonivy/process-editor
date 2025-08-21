@@ -8,19 +8,19 @@ import { QuickActionItemPalette } from './QuickActionItemPalette';
 type QuickActionMenuProps = {
   showMenuAction?: ShowQuickActionMenuAction | ShowInfoQuickActionMenuAction;
   actionDispatcher: IActionDispatcherProvider;
-  onClose: () => void;
+  closeUi: () => void;
 };
 
-export const QuickActionMenu: React.FC<QuickActionMenuProps> = ({ showMenuAction, actionDispatcher, onClose }) => {
+export const QuickActionMenu: React.FC<QuickActionMenuProps> = ({ showMenuAction, actionDispatcher, closeUi }) => {
   if (!showMenuAction) {
     return null;
   }
 
   if (ShowQuickActionMenuAction.is(showMenuAction)) {
     return showMenuAction.isEditable ? (
-      <QuickActionColorPalette action={showMenuAction} actionDispatcher={actionDispatcher} onClose={onClose} />
+      <QuickActionColorPalette action={showMenuAction} actionDispatcher={actionDispatcher} closeUi={closeUi} />
     ) : (
-      <QuickActionItemPalette action={showMenuAction} actionDispatcher={actionDispatcher} onClose={onClose} />
+      <QuickActionItemPalette action={showMenuAction} actionDispatcher={actionDispatcher} closeUi={closeUi} />
     );
   }
 

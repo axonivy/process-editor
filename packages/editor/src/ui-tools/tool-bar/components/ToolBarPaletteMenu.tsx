@@ -1,14 +1,4 @@
-import {
-  cn,
-  Flex,
-  IvyIcon,
-  Palette,
-  PaletteSection,
-  PopoverArrow,
-  PopoverContent,
-  type PaletteItemConfig,
-  type PaletteItemProps
-} from '@axonivy/ui-components';
+import { cn, Flex, IvyIcon, Palette, PaletteSection, type PaletteItemConfig, type PaletteItemProps } from '@axonivy/ui-components';
 import type { IvyIcons } from '@axonivy/ui-icons';
 import { type IActionDispatcher } from '@eclipse-glsp/client';
 import { t } from 'i18next';
@@ -52,16 +42,13 @@ export const ToolBarPaletteMenu: React.FC<ToolBarPaletteMenuProps> = ({ paletteI
   }, [paletteItems, onItemSelected]);
 
   return (
-    <PopoverContent className={'tool-bar-menu'} ref={ref => ref?.parentElement?.querySelector('input')?.focus()}>
-      <PopoverArrow />
-      <Palette sections={sections} options={{ searchPlaceholder: t('a11y.search.placeholder'), emptyMessage: t('label.empty') }}>
-        {(title, items) => (
-          <PaletteSection key={title} title={title} items={items}>
-            {item => <ToolPaletteItem key={item.name} {...item} />}
-          </PaletteSection>
-        )}
-      </Palette>
-    </PopoverContent>
+    <Palette sections={sections} options={{ searchPlaceholder: t('a11y.search.placeholder'), emptyMessage: t('label.empty') }}>
+      {(title, items) => (
+        <PaletteSection key={title} title={title} items={items}>
+          {item => <ToolPaletteItem key={item.name} {...item} />}
+        </PaletteSection>
+      )}
+    </Palette>
   );
 };
 

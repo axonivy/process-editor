@@ -174,7 +174,7 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
         drawSelectionBox={elements.length > 1}
         showMenuAction={this.activeMenuAction}
         actionDispatcher={this.actionDispatcherProvider}
-        onCloseMenu={() => this.closeMenu()}
+        closeUi={() => this.hide()}
       />
     );
   }

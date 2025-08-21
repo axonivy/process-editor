@@ -111,37 +111,34 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
             style={{ display: 'none' }}
             virtualRef={this.lastButtonClickEvent?.reference ? { current: this.lastButtonClickEvent.reference } : undefined}
           />
-          {this.renderActiveMenu()}
+          {this.activeMenuAction && ShowToolBarMenuAction.is(this.activeMenuAction) && (
+            <PopoverContent
+              className={'tool-bar-menu'}
+              ref={ref => ref?.parentElement?.querySelector('input')?.focus()}
+              onEscapeKeyDown={() => this.closeMenu()}
+            >
+              <PopoverArrow />
+              <ToolBarPaletteMenu
+                paletteItems={this.loadedPaletteItems || []}
+                menuAction={this.activeMenuAction}
+                actionDispatcher={this.actionDispatcher}
+              />
+            </PopoverContent>
+          )}
+          {this.activeMenuAction && ShowToolBarOptionsMenuAction.is(this.activeMenuAction) && (
+            <PopoverContent
+              className={'tool-bar-options-content'}
+              sideOffset={10}
+              collisionPadding={4}
+              onEscapeKeyDown={() => this.closeMenu()}
+            >
+              <PopoverArrow />
+              <ToolBarOptionsMenu action={this.activeMenuAction} actionDispatcher={this.actionDispatcher} />
+            </PopoverContent>
+          )}
         </Popover>
       </Toolbar>
     );
-  }
-
-  private renderActiveMenu(): React.ReactNode {
-    if (!this.activeMenuAction) {
-      return null;
-    }
-
-    if (ShowToolBarMenuAction.is(this.activeMenuAction)) {
-      return (
-        <ToolBarPaletteMenu
-          paletteItems={this.loadedPaletteItems || []}
-          menuAction={this.activeMenuAction}
-          actionDispatcher={this.actionDispatcher}
-        />
-      );
-    }
-
-    if (ShowToolBarOptionsMenuAction.is(this.activeMenuAction)) {
-      return (
-        <PopoverContent className={'tool-bar-options-content'} sideOffset={8} collisionPadding={4}>
-          <PopoverArrow />
-          <ToolBarOptionsMenu action={this.activeMenuAction} actionDispatcher={this.actionDispatcher} />
-        </PopoverContent>
-      );
-    }
-
-    return null;
   }
 
   protected getProvidedToolBarButtons(location: ToolBarButtonLocation): ToolBarButton[] {
@@ -198,28 +195,29 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
     if (items.length !== 0 && action.id !== this.activeMenuAction?.id) {
       this.activeMenuAction = action;
       this.loadedPaletteItems = items;
+      this.update();
     } else {
       this.closeMenu();
       // Reset focus to diagram
       document.getElementById(this.options.baseDiv)?.querySelector<HTMLDivElement>('div[tabindex]')?.focus();
     }
-    this.update();
   }
 
   toggleOptionsMenu(action: ShowToolBarOptionsMenuAction): void {
     if (action.id !== this.activeMenuAction?.id) {
       this.activeMenuAction = action;
       this.loadedPaletteItems = undefined;
+      this.update();
     } else {
       this.closeMenu();
     }
-    this.update();
   }
 
   private closeMenu(): void {
     this.lastButtonClickEvent = undefined;
     this.activeMenuAction = undefined;
     this.loadedPaletteItems = undefined;
+    this.update();
   }
 
   changeActiveButton(evt?: ToolBarButtonClickEvent): void {

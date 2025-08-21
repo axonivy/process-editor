@@ -1,14 +1,14 @@
 import {
+  Bounds,
   DefaultTypes,
+  Dimension,
   GGraph,
   GGraphView,
   GNode,
   TYPES,
   configureModelElement,
   createFeatureSet,
-  type Bounds,
   type CustomFeatures,
-  type Dimension,
   type GLabel,
   type GModelFactory,
   type GModelRoot,
@@ -16,7 +16,7 @@ import {
 } from '@eclipse-glsp/client';
 import { render } from '@testing-library/react';
 import { expect } from 'chai';
-import type { Container } from 'inversify';
+import { type Container } from 'inversify';
 import ivyConnectorModule from '../connector/di.config';
 import { ActivityNode, Edge, EndEventNode, EventNode, GatewayNode, LaneNode, MulitlineEditLabel } from '../diagram/model';
 import { ActivityTypes, EdgeTypes, EventEndTypes, EventStartTypes, GatewayTypes, LaneTypes } from '../diagram/view-types';
@@ -28,7 +28,7 @@ import type { IvyViewerOptions } from '../options';
 import { configureIvyViewerOptions } from '../options';
 import ivyQuickActionModule from '../ui-tools/quick-action/di.config';
 import { quickActionFeature } from '../ui-tools/quick-action/model';
-import type { QuickActionUI } from '../ui-tools/quick-action/quick-action-ui';
+import { QuickActionUI } from '../ui-tools/quick-action/quick-action-ui';
 import ivyToolBarModule from '../ui-tools/tool-bar/di.config';
 import { createTestDiagramContainer } from '../utils/test-utils';
 import ivyWrapModule from '../wrap/di.config';
@@ -183,5 +183,6 @@ export function assertQuickAction(childIndex: number, title: string, icon?: stri
 export async function renderQuickActionUi(ui: QuickActionUI, root: Readonly<GModelRoot>, ...contextElementIds: string[]): Promise<void> {
   ui.show(root, ...contextElementIds);
   const result = await render(ui['render'](root, ...contextElementIds));
+  await new Promise(resolve => requestAnimationFrame(() => resolve(undefined)));
   result.unmount();
 }

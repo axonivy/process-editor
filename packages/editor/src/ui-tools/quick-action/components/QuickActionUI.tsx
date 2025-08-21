@@ -16,7 +16,7 @@ type QuickActionUIProps = {
 
   showMenuAction?: ShowQuickActionMenuAction | ShowInfoQuickActionMenuAction;
   actionDispatcher: IActionDispatcherProvider;
-  onCloseMenu: () => void;
+  closeUi: () => void;
 };
 
 export const QuickActionUI: React.FC<QuickActionUIProps> = ({
@@ -27,10 +27,10 @@ export const QuickActionUI: React.FC<QuickActionUIProps> = ({
   drawSelectionBox,
   showMenuAction,
   actionDispatcher,
-  onCloseMenu
+  closeUi
 }) => {
   // we do not use the React.use() hook as this does not work well with the testing library
-  const [bounds, setBounds] = React.useState(Bounds.EMPTY);
+  const [bounds, setBounds] = React.useState(Bounds.EMPTY); // start off with invalid bounds
   React.useEffect(() => void selectionBounds.then(bounds => setBounds(bounds)), [selectionBounds]);
 
   if (quickActions.length === 0) {
@@ -38,7 +38,7 @@ export const QuickActionUI: React.FC<QuickActionUIProps> = ({
   }
 
   return (
-    <Popover open={true}>
+    <Popover open={Bounds.isValid(bounds)}>
       {drawSelectionBox && (
         <div
           className='quick-action-selection-box'
@@ -57,6 +57,7 @@ export const QuickActionUI: React.FC<QuickActionUIProps> = ({
         align='center'
         sideOffset={10}
         onOpenAutoFocus={e => e.preventDefault()}
+        onEscapeKeyDown={closeUi}
       >
         <Flex direction='column' alignItems='center'>
           <Flex className='quick-actions-bar' gap={4}>
@@ -79,7 +80,7 @@ export const QuickActionUI: React.FC<QuickActionUIProps> = ({
               onQuickActionClick={onQuickActionClick}
             />
           </Flex>
-          {showMenuAction && <QuickActionMenu showMenuAction={showMenuAction} actionDispatcher={actionDispatcher} onClose={onCloseMenu} />}
+          {showMenuAction && <QuickActionMenu showMenuAction={showMenuAction} actionDispatcher={actionDispatcher} closeUi={closeUi} />}
         </Flex>
       </PopoverContent>
     </Popover>
