@@ -1,11 +1,11 @@
 import { cn, Flex, IvyIcon, type PaletteItemConfig, type PaletteItemProps } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { PaletteItem } from '@eclipse-glsp/client';
 import { t } from 'i18next';
 import React from 'react';
+import type { MenuPaletteItem } from '../../../utils/menu-utils';
 import type { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
 
-export type ColorPaletteItem = PaletteItem;
+export type ColorPaletteItem = MenuPaletteItem;
 
 export function isNewColorPaletteItem(item: ColorPaletteItem): boolean {
   return item.id === 'new.color';

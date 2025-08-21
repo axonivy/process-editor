@@ -29,13 +29,13 @@ export const QuickActionUI: React.FC<QuickActionUIProps> = ({
   actionDispatcher,
   onCloseMenu
 }) => {
-  if (quickActions.length === 0) {
-    return null;
-  }
-
   // we do not use the React.use() hook as this does not work well with the testing library
   const [bounds, setBounds] = React.useState(Bounds.EMPTY);
   React.useEffect(() => void selectionBounds.then(bounds => setBounds(bounds)), [selectionBounds]);
+
+  if (quickActions.length === 0) {
+    return null;
+  }
 
   return (
     <Popover open={true}>

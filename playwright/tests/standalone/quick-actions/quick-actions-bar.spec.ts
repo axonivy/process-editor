@@ -23,3 +23,29 @@ test('visible bar when events is clicked', async ({ page }) => {
   await start.quickActionBar().trigger('Events', 'startsWith');
   await expect(page.locator(BAR)).toBeVisible();
 });
+
+test('create node', async ({ page }) => {
+  const processEditor = await ProcessEditor.openProcess(page);
+  const start = processEditor.startElement;
+
+  const quickActionBar = start.quickActionBar();
+  await quickActionBar.pressShortCut('A');
+  const items = quickActionBar.menu().locator().locator('.ui-palette-item');
+  // search has focus initially
+
+  await page.keyboard.press('Tab');
+  await expect(items.first()).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(items.nth(1)).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  await expect(items.first()).toBeFocused();
+  await page.keyboard.press('Enter');
+  await processEditor.element('intermediate:taskSwitchEvent').expectSelected();
+
+  await quickActionBar.pressShortCut('A');
+  await page.keyboard.type('mail');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Enter');
+  await processEditor.element('eMail').expectSelected();
+});

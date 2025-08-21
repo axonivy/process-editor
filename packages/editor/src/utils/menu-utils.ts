@@ -1,9 +1,26 @@
+import type { PaletteConfig, PaletteItemConfig } from '@axonivy/ui-components';
 import type { PaletteItem } from '@eclipse-glsp/client';
 
+export interface MenuPaletteItem extends PaletteItem {
+  description?: string;
+  info?: string;
+  children?: MenuPaletteItem[];
+}
+
 export function sortPaletteItems(left: PaletteItem, right: PaletteItem): number {
-  const result = left.sortString.localeCompare(right.sortString);
-  if (result !== 0) {
-    return result;
-  }
-  return left.label.localeCompare(right.label);
+  return left.sortString.localeCompare(right.sortString) || left.label.localeCompare(right.label);
+}
+
+export type PaletteSections<T extends PaletteItemConfig = PaletteItemConfig> = PaletteConfig<T>['sections'];
+
+export function paletteItemsToSections<ITEM extends PaletteItem = PaletteItem, CONFIG extends PaletteItemConfig = PaletteItemConfig>(
+  items: ITEM[],
+  converter: (item: ITEM) => CONFIG
+): PaletteSections<CONFIG> {
+  return items.sort(sortPaletteItems).reduce((sections, item) => {
+    sections[item.label] ||= [];
+    const children = item.children ?? [item];
+    children.sort(sortPaletteItems).forEach(child => sections[item.label].push(converter(child as ITEM)));
+    return sections;
+  }, {} as PaletteSections<CONFIG>);
 }

@@ -17,7 +17,7 @@
   "scripts": {
     "type": "tsc --noEmit",
     "build": "tsc --build",
-    "webtest": "playwright test --project=standalone-chrome --last-failed",
+    "webtest": "playwright test --project=standalone-chrome",
     "webtest:screenshots:process": "playwright test --project=screenshots-process",
     "webtest:screenshots:inscription": "playwright test --project=screenshots-inscription",
     "webtest:*": "playwright test --project=standalone-* --project=viewer-*",

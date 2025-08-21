@@ -1,7 +1,7 @@
-import { BasicPalette, type PaletteConfig, type PaletteItemConfig } from '@axonivy/ui-components';
+import { BasicPalette } from '@axonivy/ui-components';
 import { PaletteItem, type IActionDispatcherProvider } from '@eclipse-glsp/client';
 import React from 'react';
-import { sortPaletteItems } from '../../../utils/menu-utils';
+import { paletteItemsToSections } from '../../../utils/menu-utils';
 import { MenuIcons } from '../../menu/icons';
 import type { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
 import { newColorPaletteItem } from './ColorPaletteItem';
@@ -11,15 +11,6 @@ interface QuickActionItemPaletteProps {
   actionDispatcher: IActionDispatcherProvider;
   onClose: () => void;
 }
-
-const paletteItemToConfig = (item: PaletteItem, onSelected: (item: PaletteItem) => void): PaletteItemConfig => ({
-  name: item.label,
-  description: item.label,
-  icon: item.icon ? MenuIcons.get(item.icon) : undefined,
-  onClick: async () => onSelected(item)
-});
-
-type PaletteSections = PaletteConfig['sections'];
 
 export const QuickActionItemPalette: React.FC<QuickActionItemPaletteProps> = ({ action, actionDispatcher, onClose }) => {
   const onItemSelected = React.useCallback(
@@ -34,17 +25,16 @@ export const QuickActionItemPalette: React.FC<QuickActionItemPaletteProps> = ({ 
 
   const sections = React.useMemo(() => {
     const paletteItems = action.isEditable ? [...action.paletteItems(), newColorPaletteItem()] : action.paletteItems();
-    paletteItems.sort(sortPaletteItems);
-    return paletteItems.reduce((sections: PaletteSections, item: PaletteItem) => {
-      sections[item.label] ||= [];
-      const items = item.children ?? [item];
-      items.forEach(child => sections[item.label].push(paletteItemToConfig(child, onItemSelected)));
-      return sections;
-    }, {});
+    return paletteItemsToSections(paletteItems, item => ({
+      name: item.label,
+      description: item.label,
+      icon: item.icon ? MenuIcons.get(item.icon) : undefined,
+      onClick: async () => onItemSelected(item)
+    }));
   }, [action, onItemSelected]);
 
   return (
-    <div className='bar-menu quick-action-bar-menu'>
+    <div className='bar-menu quick-action-bar-menu' ref={ref => ref?.querySelector('input')?.focus()}>
       <BasicPalette
         options={{
           searchPlaceholder: 'Search actions...',
