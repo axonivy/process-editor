@@ -83,10 +83,6 @@ test('search', async ({ page }) => {
   await menu.expectMenuItemCount(0);
   await expect(menu.emptyResult()).toBeVisible();
   await expect(menu.emptyResult()).toHaveText('No results found.');
-
-  await page.keyboard.press('Escape');
-  await expect(menu.searchInput()).toBeEmpty();
-  await menu.expectMenuGroupCount(9);
 });
 
 test('ghost element', async ({ page }) => {

@@ -8,7 +8,7 @@ test('extensions with entries', async ({ page }) => {
 
   await menu.expectMenuGroups(['Rest Clients', 'Callable Sub Processes']);
   await menu.expectMenuItemCount(5);
-  const items = menu.locator().locator('.menu-item');
+  const items = menu.locator().locator('.ui-palette-item');
   await expect(items.nth(0)).toContainText('genderizehttp://localhost/');
   await expect(items.nth(0).locator('img')).toHaveAttribute('src', /javax.faces.resource\/icons\/genderize.png/);
   await expect(items.nth(1)).toContainText('testhttp://localhost/');

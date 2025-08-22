@@ -17,8 +17,8 @@ export class Toolbar {
   constructor(page: Page) {
     this.page = page;
     this.toolbar = this.page.locator('#ivy-tool-bar');
-    this.toolbarMenu = new Menu(page, this.toolbar.locator('.tool-bar-menu'));
-    this.optionsMenu = new OptionsMenu(page, this.toolbar.locator('.tool-bar-options-menu'));
+    this.toolbarMenu = new Menu(page, this.page.locator('.tool-bar-menu'));
+    this.optionsMenu = new OptionsMenu(page, this.page.locator('.tool-bar-options-menu'));
     this.defaultTool = this.toolbar.locator('#btn_default_tools');
     this.marqueeTool = this.toolbar.locator('#btn_marquee_tools');
     this.optionsBtn = this.toolbar.locator('#btn_options_menu');

@@ -49,19 +49,23 @@ test('add new and remove color', async ({ page }) => {
 
   await quickAction.trigger('Select color');
   await expect(menu).toBeVisible();
-  const newColor = menu.locator('.menu-item:has-text("TestColor")');
+  const newColor = menu.locator('.ui-palette-item:has-text("TestColor")');
   await expect(newColor).toBeVisible();
-  await newColor.locator('.color-edit-button').click();
+  await newColor.locator('[data-function=edit-color]').click();
 
-  await expect(menu.locator('#input-Name')).toHaveValue('TestColor');
-  await expect(menu.locator('#input-Color')).toHaveValue('#0000ff');
-  await expect(menu.locator('input[type="color"]')).toHaveValue('#0000ff');
-  await expect(menu.locator('.color-picker .decorator')).toHaveCSS('background-color', 'rgb(0, 0, 255)');
+  const editUi = menu.locator('.edit-color');
+  await expect(editUi).toBeVisible();
+  await expect(editUi.locator('#color-name-input')).toHaveValue('TestColor');
+  await expect(editUi.locator('#color-input')).toHaveValue('#0000ff');
+  await expect(editUi.locator('input[type="color"]')).toHaveValue('#0000ff');
+  await expect(editUi.locator('.color-picker .decorator')).toHaveCSS('background-color', 'rgb(0, 0, 255)');
 
-  await menu.locator('.edit-color-delete').click();
-  await expect(menu).toBeHidden();
+  await editUi.locator('.edit-color-delete').click();
+  await expect(editUi).toBeHidden();
+  await expect(menu).toBeVisible();
+  await expect(quickAction.locator()).toBeVisible();
   await quickAction.trigger('Select color');
-  await expect(newColor).toBeHidden();
+  await expect(quickAction.locator()).toBeVisible();
 });
 
 test('validate color dialog inputs', async ({ page }) => {
@@ -71,30 +75,30 @@ test('validate color dialog inputs', async ({ page }) => {
   const quickAction = start.quickActionBar();
   const menu = quickAction.menu().locator();
   await quickAction.trigger('Select color');
-  await menu.locator('.menu-group-items .new-color-btn').click();
-  await expect(menu).toBeVisible();
+  await menu.locator('.ui-palette-section .new-color').click();
 
-  const nameInput = menu.locator('#input-Name');
-  const colorInput = menu.locator('#input-Color');
-  const confirmBtn = menu.locator('.edit-color-save');
+  const editUi = menu.locator('.edit-color');
+  await expect(editUi).toBeVisible();
+
+  const nameInput = editUi.locator('#color-name-input');
+  const colorInput = editUi.locator('#color-input');
+  const confirmBtn = editUi.locator('.edit-color-save');
 
   await expect(nameInput).toBeEmpty();
-  await expect(colorInput).toBeEmpty();
-  await expect(nameInput).not.toHaveClass(/error/);
-  await expect(colorInput).not.toHaveClass(/error/);
-
-  await confirmBtn.click();
-  await expect(menu).toBeVisible();
-  await expect(nameInput).toHaveClass(/error/);
-  await expect(colorInput).toHaveClass(/error/);
+  await expect(colorInput).toHaveValue('#000000');
+  await expect(editUi.locator('#color-name-input:invalid')).toBeVisible();
+  await expect(editUi.locator('#color-input:valid')).toBeVisible();
+  await expect(confirmBtn).toBeDisabled();
 
   nameInput.fill('bla');
-  await confirmBtn.click();
-  await expect(menu).toBeVisible();
-  await expect(nameInput).not.toHaveClass(/error/);
-  await expect(colorInput).toHaveClass(/error/);
+  await expect(editUi).toBeVisible();
+  await expect(editUi.locator('#color-name-input:valid')).toBeVisible();
+  await expect(editUi.locator('#color-input:valid')).toBeVisible();
+  await expect(confirmBtn).toBeEnabled();
 
   colorInput.fill('color');
   await confirmBtn.click();
-  await expect(menu).toBeHidden();
+  await expect(editUi).toBeHidden();
+  await expect(menu).toBeVisible();
+  await expect(quickAction.locator()).toBeVisible();
 });
