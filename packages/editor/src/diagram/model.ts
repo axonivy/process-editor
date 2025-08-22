@@ -60,7 +60,6 @@ export class LaneNode extends RectangularNode implements WithEditableLabel, Args
     selectFeature,
     quickActionFeature,
     deletableFeature,
-    moveFeature,
     resizeFeature
   ];
 
