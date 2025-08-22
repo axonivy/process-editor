@@ -16,6 +16,7 @@ type QuickActionUIProps = {
 
   showMenuAction?: ShowQuickActionMenuAction | ShowInfoQuickActionMenuAction;
   actionDispatcher: IActionDispatcherProvider;
+  closeMenu: () => void;
   closeUi: () => void;
 };
 
@@ -27,6 +28,7 @@ export const QuickActionUI: React.FC<QuickActionUIProps> = ({
   drawSelectionBox,
   showMenuAction,
   actionDispatcher,
+  closeMenu,
   closeUi
 }) => {
   // we do not use the React.use() hook as this does not work well with the testing library
@@ -57,7 +59,7 @@ export const QuickActionUI: React.FC<QuickActionUIProps> = ({
         align='center'
         sideOffset={10}
         onOpenAutoFocus={e => e.preventDefault()}
-        onEscapeKeyDown={closeUi}
+        onEscapeKeyDown={closeMenu}
       >
         <Flex direction='column' alignItems='center'>
           <Flex className='quick-actions-bar' gap={4}>

@@ -56,19 +56,20 @@ export class IvyGraphView extends GLSPProjectionView {
 
   protected renderNegativeArea(model: Readonly<GViewportRootElement>): VNode {
     if (isViewport(model.root)) {
-      const modelBounds = getModelBounds(model.root) ?? Bounds.EMPTY;
+      const modelBounds = getModelBounds(model.root);
+      const rectBounds = Bounds.isValid(modelBounds) ? modelBounds : Bounds.EMPTY;
       return h('g', { class: { 'negative-area-group': true } }, [
         h('rect', {
           attrs: {
-            x: modelBounds.x,
-            y: modelBounds.y,
-            width: modelBounds.width,
-            height: -modelBounds.y
+            x: rectBounds.x,
+            y: rectBounds.y,
+            width: rectBounds.width,
+            height: -rectBounds.y
           },
           class: { 'negative-area': true }
         }),
         h('rect', {
-          attrs: { x: modelBounds.x, y: 0, width: -modelBounds.x, height: modelBounds.height },
+          attrs: { x: rectBounds.x, y: 0, width: -rectBounds.x, height: rectBounds.height },
           class: { 'negative-area': true }
         })
       ]);
