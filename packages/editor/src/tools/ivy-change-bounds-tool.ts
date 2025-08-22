@@ -14,6 +14,7 @@ import {
 import { MoveElementKeyListener } from '@eclipse-glsp/client/lib/features/change-bounds/move-element-key-listener';
 import { injectable } from 'inversify';
 import { LaneNode } from '../diagram/model';
+import { isLaneResizable } from '../lanes/model';
 import { QuickActionUI } from '../ui-tools/quick-action/quick-action-ui';
 
 @injectable()
@@ -68,6 +69,9 @@ export class IvyMoveElementKeyListener extends MoveElementKeyListener {
     if (elementIds.length === 0) {
       return [];
     }
+    if (this.isInvalidLaneMove(direction)) {
+      return [];
+    }
 
     const snap = this.changeBoundsManager.usePositionSnap(event);
     const offsetX = snap ? this.grid.x : 1;
@@ -102,8 +106,15 @@ export class IvyMoveElementKeyListener extends MoveElementKeyListener {
 
   protected getMovableElementIds(): string[] {
     // Check for sizeable and only move top-level elements
-    const selectedElements = this.selectionService.getSelectedElements().filter(element => isMoveable(element) && isSizeable(element));
+    const selectedElements = this.selectionService
+      .getSelectedElements()
+      .filter(element => (isMoveable(element) && isSizeable(element)) || isLaneResizable(element));
     return selectedElements.filter(element => !this.isChildOfSelected(selectedElements, element)).map(element => element.id);
+  }
+
+  protected isInvalidLaneMove(direction: Direction) {
+    const hasLanesInSelection = this.selectionService.getSelectedElements().find(element => isLaneResizable(element));
+    return hasLanesInSelection !== undefined && (direction === Direction.Left || direction === Direction.Right);
   }
 
   protected isChildOfSelected(selectedElements: GModelElement[], element: GModelElement): boolean {
