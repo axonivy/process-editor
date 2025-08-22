@@ -7,8 +7,9 @@ import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
 import { useValidations } from '../../../../context/useValidation';
 import { usePartState, type PartProps } from '../../../editors/part/usePart';
+import { MacroArea } from '../../../widgets/code-editor/MacroArea';
+import { MacroInput } from '../../../widgets/code-editor/MacroInput';
 import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
-import { Input } from '../../../widgets/input/Input';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
 import './Configuration.css';
 import { useConfigurationData } from './useConfigurationData';
@@ -43,7 +44,7 @@ const ConfigurationPart = () => {
   }
 
   function isText(object: Widget): object is Text {
-    return !isLabel(object) && !isScript(object);
+    return object.widgetType == 'TEXT';
   }
 
   const renderWidgetComponent = (widget: Widget) => {
@@ -65,7 +66,6 @@ const ConfigurationPart = () => {
     }
     if (isScript(widget)) {
       const typeToUse = widget.requiredType || IVY_SCRIPT_TYPES.STRING;
-
       return (
         <ScriptInput
           type={typeToUse}
@@ -77,11 +77,23 @@ const ConfigurationPart = () => {
       );
     }
     if (isText(widget)) {
+      if (widget.multiline) {
+        return (
+          <MacroArea
+            value={config.userConfig[widget.configKey] ?? ''}
+            aria-label={widget.configKey}
+            minHeight={50}
+            onChange={change => updateUserConfig(widget.configKey, change)}
+            browsers={['attr', 'func', 'cms']}
+          />
+        );
+      }
       return (
-        <Input
-          value={config.userConfig[widget.configKey]}
+        <MacroInput
+          value={config.userConfig[widget.configKey] ?? ''}
           aria-label={widget.configKey}
           onChange={change => updateUserConfig(widget.configKey, change)}
+          browsers={['attr', 'func', 'cms']}
         />
       );
     }

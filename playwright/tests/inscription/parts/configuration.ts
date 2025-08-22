@@ -1,7 +1,6 @@
-import type { ScriptArea } from '../../page-objects/inscription/code-editor';
+import type { MacroEditor, ScriptArea } from '../../page-objects/inscription/code-editor';
 import type { Part } from '../../page-objects/inscription/part';
 import type { Section } from '../../page-objects/inscription/section';
-import type { TextArea } from '../../page-objects/inscription/text-area';
 import { NewPartTest, PartObject } from './part-tester';
 
 abstract class Configuration extends PartObject {
@@ -14,13 +13,13 @@ abstract class Configuration extends PartObject {
 }
 
 class FilePickupStartEventBean extends Configuration {
-  path: TextArea;
-  processAttribut: TextArea;
+  path: MacroEditor;
+  processAttribut: MacroEditor;
 
   constructor(part: Part) {
     super(part);
-    this.path = this.section.textArea({ nth: 0 });
-    this.processAttribut = this.section.textArea({ nth: 1 });
+    this.path = this.section.macroInput('directory');
+    this.processAttribut = this.section.macroInput('processAttribute');
   }
 
   async fill() {
@@ -70,13 +69,13 @@ class TimerBean extends Configuration {
 }
 
 class FileIntermediateEventBean extends Configuration {
-  path: TextArea;
-  eventId: TextArea;
+  path: MacroEditor;
+  eventId: MacroEditor;
 
   constructor(part: Part) {
     super(part);
-    this.path = this.section.textArea({ nth: 0 });
-    this.eventId = this.section.textArea({ nth: 1 });
+    this.path = this.section.macroInput('directory');
+    this.eventId = this.section.macroInput('eventId');
   }
 
   override async fill() {
