@@ -105,6 +105,14 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
     }
   }
 
+  public updateUI(): void {
+    if (this.selectionService.getSelectedElementIDs().length === 0) {
+      this.hideUi();
+    } else {
+      this.showUi();
+    }
+  }
+
   public showUi(): void {
     this.activeQuickActions = [];
     this.activeQuickAction = undefined;
@@ -175,7 +183,7 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
         showMenuAction={this.activeMenuAction}
         actionDispatcher={this.actionDispatcherProvider}
         closeMenu={() => this.closeMenu()}
-        closeUi={() => this.hide()}
+        closeUi={() => this.updateUI()}
       />
     );
   }

@@ -17,7 +17,7 @@ export const QuickActionItemPalette: React.FC<QuickActionItemPaletteProps> = ({ 
     async (item: PaletteItem) => {
       const dispatcher = await actionDispatcher();
       const actions = action.actions(item, action.elementIds);
-      dispatcher.dispatchAll(actions);
+      await dispatcher.dispatchAll(actions);
       closeUi();
     },
     [closeUi, actionDispatcher, action]
