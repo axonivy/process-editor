@@ -14,8 +14,8 @@
     "src"
   ],
   "dependencies": {
-    "@axonivy/process-editor-inscription-core": "12.0.9-next",
-    "@axonivy/process-editor-inscription-protocol": "12.0.9-next",
+    "@axonivy/process-editor-inscription-core": "~12.0.9-next",
+    "@axonivy/process-editor-inscription-protocol": "~12.0.9-next",
     "@monaco-editor/react": "^4.6.0",
     "@tanstack/react-virtual": "^3.11.1",
     "@types/node": "^22.13.4",
@@ -24,8 +24,8 @@
     "react-error-boundary": "^4.1.2"
   },
   "peerDependencies": {
-    "@axonivy/ui-components": "~12.0.8-next",
-    "@axonivy/ui-icons": "~12.0.8-next",
+    "@axonivy/ui-components": "~12.0.9-next",
+    "@axonivy/ui-icons": "~12.0.9-next",
     "@radix-ui/react-dialog": "^1.1",
     "@radix-ui/react-tabs": "^1.1",
     "@tanstack/react-query": "^5.32",
