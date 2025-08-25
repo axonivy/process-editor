@@ -101,16 +101,22 @@ const ConfigurationPart = () => {
   };
 
   return (
-    <PathCollapsible label={t('part.program.configuration.title')} defaultOpen={true} path={'userConfig'}>
+    <>
       {editorItems.length === 0 ? (
-        <Message message='No configuration needed' variant='info' />
+        <PathCollapsible label={t('part.program.configuration.title')} defaultOpen={true} path={'userConfig'}>
+          <Message message='No configuration needed' variant='info' />
+        </PathCollapsible>
       ) : (
-        editorItems.map((widget, index) => (
-          <Flex direction='column' className='configuration-widget' key={index}>
-            {renderWidgetComponent(widget)}
-          </Flex>
+        editorItems.map((group, index) => (
+          <PathCollapsible label={group.name} defaultOpen={index === 0} path={'userConfig'} key={index}>
+            {group.widgets.map((widget, wIndex) => (
+              <Flex direction='column' className='configuration-widget' key={wIndex}>
+                {renderWidgetComponent(widget)}
+              </Flex>
+            ))}
+          </PathCollapsible>
         ))
       )}
-    </PathCollapsible>
+    </>
   );
 };

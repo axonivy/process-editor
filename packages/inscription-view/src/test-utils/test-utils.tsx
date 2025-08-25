@@ -9,6 +9,7 @@ import type {
   ElementData,
   ErrorStartMeta,
   EventCodeMeta,
+  Group,
   InscriptionMetaRequestTypes,
   JavaType,
   ProgramInterface,
@@ -20,8 +21,7 @@ import type {
   ValidationResult,
   VariableInfo,
   WebServiceClient,
-  WebServiceOperation,
-  Widget
+  WebServiceOperation
 } from '@axonivy/process-editor-inscription-protocol';
 import { DEFAULT_DATA, EMPTY_ROLE, EMPTY_VAR_INFO } from '@axonivy/process-editor-inscription-protocol';
 import { ReadonlyProvider } from '@axonivy/ui-components';
@@ -72,7 +72,7 @@ type ContextHelperProps = {
     restEntityTypes?: string[];
     restEntityInfo?: VariableInfo;
     javaClasses?: ProgramInterface[];
-    widgets?: Widget[];
+    groups?: Group[];
     contentObject?: ContentObject[];
     datatypes?: JavaType[];
     ivyTypes?: JavaType[];
@@ -187,7 +187,7 @@ const ContextHelper = (
           case 'meta/program/types':
             return Promise.resolve(props.meta?.javaClasses ?? []);
           case 'meta/program/editor':
-            return Promise.resolve(props.meta?.widgets ?? []);
+            return Promise.resolve(props.meta?.groups ?? []);
           case 'meta/cms/tree':
             return Promise.resolve(props.meta?.contentObject ?? []);
           case 'meta/scripting/ivyTypes':

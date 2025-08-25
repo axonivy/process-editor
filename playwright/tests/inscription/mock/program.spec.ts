@@ -13,6 +13,7 @@ test.describe('ProgramInterface', () => {
     const system = configs.macroInput('system');
     await system.expectValue('You are a polite and helpful Support Agent trying to achieve in.goal ');
 
+    await configs.section('Output').open();
     const returnType = configs.scriptInput('returnType');
     await returnType.expectValue('com.axonivy.utils.ai.SupportTicket.class');
   });

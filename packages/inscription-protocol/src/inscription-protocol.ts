@@ -16,6 +16,7 @@ import type {
   ErrorStartMeta,
   EventCodeMeta,
   Function,
+  Group,
   InscriptionActionArgs,
   InscriptionContext,
   InscriptionElementContext,
@@ -42,7 +43,6 @@ import type {
   WebServiceOperation,
   WebServicePortRequest,
   WfCustomField,
-  Widget,
   WorkflowTypeRequest
 } from './data/inscription';
 import type { InscriptionData, InscriptionSaveData } from './data/inscription-data';
@@ -95,7 +95,7 @@ export interface InscriptionMetaRequestTypes {
   'meta/scripting/apiDoc': [ApiDocRequest, string];
 
   'meta/program/types': [ProgramInterfacesRequest, ProgramInterface[]];
-  'meta/program/editor': [ProgramEditorRequest, Widget[]];
+  'meta/program/editor': [ProgramEditorRequest, Group[]];
 
   'meta/cms/tree': [CmsMetaRequest, ContentObject[]];
   'meta/cms/newCmsString': [NewCmsStringRequest, void];
