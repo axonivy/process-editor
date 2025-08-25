@@ -7,28 +7,23 @@
  */
 
 export type PID = string
-export type ContentObjectType = "STRING" | "FILE" | "FOLDER";
-export type WfFieldType = "STRING" | "TEXT" | "NUMBER" | "TIMESTAMP";
-export type WorkflowType = "START" | "TASK" | "CASE";
-export type WfLevel = "EXCEPTION" | "HIGH" | "NORMAL" | "LOW" | "SCRIPT";
-export type WfResponsibleType =
-  | "ROLES"
-  | "ROLE_FROM_ATTRIBUTE"
-  | "USER_FROM_ATTRIBUTE"
-  | "MEMBERS_FROM_ATTRIBUTE"
-  | "DELETE_TASK";
-export type CacheInvalidation = "NONE" | "FIXED_TIME" | "LIFETIME";
-export type CacheMode = "DO_NOT_CACHE" | "CACHE" | "INVALIDATE_CACHE";
-export type CacheScope = "SESSION" | "APPLICATION";
-export type QueryKind = "READ" | "WRITE" | "UPDATE" | "DELETE" | "ANY";
-export type IntermediateEventTimeoutAction = "NOTHING" | "DESTROY_TASK" | "CONTINUE_WITHOUT_EVENT";
-export type HttpMethod = "GET" | "POST" | "PUT" | "HEAD" | "DELETE" | "PATCH" | "OPTIONS" | "JAX_RS";
-export type InputType = "ENTITY" | "FORM" | "RAW";
-export type WsAuth = "NONE" | "WS_SECURITY" | "HTTP_BASIC";
-export type Type = "START" | "INTERMEDIATE" | "ACTIVITY";
-export type Severity = "INFO" | "WARNING" | "ERROR";
+export type ContentObjectType = 'STRING' | 'FILE' | 'FOLDER';
+export type WfFieldType = 'STRING' | 'TEXT' | 'NUMBER' | 'TIMESTAMP';
 export type Widget = Script | Label | Text;
-export type WidgetType = "TEXT" | "LABEL" | "SCRIPT";
+export type WidgetType = 'TEXT' | 'LABEL' | 'SCRIPT' | 'GROUP';
+export type WorkflowType = 'START' | 'TASK' | 'CASE';
+export type WfLevel = 'EXCEPTION' | 'HIGH' | 'NORMAL' | 'LOW' | 'SCRIPT';
+export type WfResponsibleType = 'ROLES' | 'ROLE_FROM_ATTRIBUTE' | 'USER_FROM_ATTRIBUTE' | 'MEMBERS_FROM_ATTRIBUTE' | 'DELETE_TASK';
+export type CacheInvalidation = 'NONE' | 'FIXED_TIME' | 'LIFETIME';
+export type CacheMode = 'DO_NOT_CACHE' | 'CACHE' | 'INVALIDATE_CACHE';
+export type CacheScope = 'SESSION' | 'APPLICATION';
+export type QueryKind = 'READ' | 'WRITE' | 'UPDATE' | 'DELETE' | 'ANY';
+export type IntermediateEventTimeoutAction = 'NOTHING' | 'DESTROY_TASK' | 'CONTINUE_WITHOUT_EVENT';
+export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'HEAD' | 'DELETE' | 'PATCH' | 'OPTIONS' | 'JAX_RS';
+export type InputType = 'ENTITY' | 'FORM' | 'RAW';
+export type WsAuth = 'NONE' | 'WS_SECURITY' | 'HTTP_BASIC';
+export type Type = 'START' | 'INTERMEDIATE' | 'ACTIVITY';
+export type Severity = 'INFO' | 'WARNING' | 'ERROR';
 
 export interface Inscription {
   addRoleRequest: AddRoleRequest;
@@ -49,6 +44,7 @@ export interface Inscription {
   errorStartMeta: ErrorStartMeta[];
   eventCodeMeta: EventCodeMeta[];
   function: Function[];
+  group: Group[];
   inscriptionActionArgs: InscriptionActionArgs;
   inscriptionContext: InscriptionContext;
   inscriptionElementContext: InscriptionElementContext;
@@ -79,7 +75,6 @@ export interface Inscription {
   webServiceClientRequest: WebServiceClientRequest;
   webServiceOperation: WebServiceOperation[];
   webServicePortRequest: WebServicePortRequest;
-  widget: Widget[];
   workflowTypeRequest: WorkflowTypeRequest;
   [k: string]: unknown;
 }
@@ -154,60 +149,60 @@ export interface InscriptionType {
   helpUrl: string;
   iconId: string;
   id:
-    | "Alternative"
-    | "CallSubEnd"
-    | "CallSubStart"
-    | "CallableSubProcess"
-    | "Database"
-    | "DialogCall"
-    | "EMail"
-    | "EmbeddedEnd"
-    | "EmbeddedProcessElement"
-    | "EmbeddedStart"
-    | "ErrorBoundaryEvent"
-    | "ErrorEnd"
-    | "ErrorStartEvent"
-    | "GenericActivity"
-    | "GenericBpmnElement"
-    | "HtmlDialogEnd"
-    | "HtmlDialogEventStart"
-    | "HtmlDialogExit"
-    | "HtmlDialogMethodStart"
-    | "HtmlDialogProcess"
-    | "HtmlDialogStart"
-    | "Join"
-    | "ManualBpmnElement"
-    | "Process"
-    | "ProcessAnnotation"
-    | "ProgramInterface"
-    | "ProgramStart"
-    | "ReceiveBpmnElement"
-    | "RequestStart"
-    | "RestClientCall"
-    | "RuleBpmnElement"
-    | "Script"
-    | "ScriptBpmnElement"
-    | "SendBpmnElement"
-    | "ServiceBpmnElement"
-    | "SignalBoundaryEvent"
-    | "SignalStartEvent"
-    | "Split"
-    | "SubProcessCall"
-    | "TaskEnd"
-    | "TaskEndPage"
-    | "TaskSwitchEvent"
-    | "TaskSwitchGateway"
-    | "ThirdPartyProgramInterface"
-    | "ThirdPartyProgramStart"
-    | "ThirdPartyWaitEvent"
-    | "TriggerCall"
-    | "UserBpmnElement"
-    | "UserTask"
-    | "WaitEvent"
-    | "WebServiceCall"
-    | "WebserviceEnd"
-    | "WebserviceProcess"
-    | "WebserviceStart";
+    | 'Alternative'
+    | 'CallSubEnd'
+    | 'CallSubStart'
+    | 'CallableSubProcess'
+    | 'Database'
+    | 'DialogCall'
+    | 'EMail'
+    | 'EmbeddedEnd'
+    | 'EmbeddedProcess'
+    | 'EmbeddedStart'
+    | 'ErrorBoundaryEvent'
+    | 'ErrorEnd'
+    | 'ErrorStartEvent'
+    | 'GenericActivity'
+    | 'GenericBpmnElement'
+    | 'HtmlDialogEnd'
+    | 'HtmlDialogEventStart'
+    | 'HtmlDialogExit'
+    | 'HtmlDialogMethodStart'
+    | 'HtmlDialogProcess'
+    | 'HtmlDialogStart'
+    | 'Join'
+    | 'ManualBpmnElement'
+    | 'Process'
+    | 'ProcessAnnotation'
+    | 'ProgramInterface'
+    | 'ProgramStart'
+    | 'ReceiveBpmnElement'
+    | 'RequestStart'
+    | 'RestClientCall'
+    | 'RuleBpmnElement'
+    | 'Script'
+    | 'ScriptBpmnElement'
+    | 'SendBpmnElement'
+    | 'ServiceBpmnElement'
+    | 'SignalBoundaryEvent'
+    | 'SignalStartEvent'
+    | 'Split'
+    | 'SubProcessCall'
+    | 'TaskEnd'
+    | 'TaskEndPage'
+    | 'TaskSwitchEvent'
+    | 'TaskSwitchGateway'
+    | 'ThirdPartyProgramInterface'
+    | 'ThirdPartyProgramStart'
+    | 'ThirdPartyWaitEvent'
+    | 'TriggerCall'
+    | 'UserBpmnElement'
+    | 'UserTask'
+    | 'WaitEvent'
+    | 'WebServiceCall'
+    | 'WebserviceEnd'
+    | 'WebserviceProcess'
+    | 'WebserviceStart';
   impl?: string;
   label: string;
   shortLabel: string;
@@ -281,20 +276,41 @@ export interface PublicType {
   packageName: string;
   simpleName: string;
 }
+export interface Script {
+  configKey: string;
+  multiline: boolean;
+  requiredType: string;
+  widgetType: WidgetType;
+}
+export interface Label {
+  multiline: boolean;
+  text: string;
+  widgetType: WidgetType;
+}
+export interface Text {
+  configKey: string;
+  multiline: boolean;
+  widgetType: WidgetType;
+}
+export interface Group {
+  name: string;
+  widgets: Widget[];
+  widgetType: WidgetType;
+}
 export interface InscriptionActionArgs {
   actionId:
-    | "newHtmlDialog"
-    | "newProcess"
-    | "newProgram"
-    | "newRestClient"
-    | "newWebServiceClient"
-    | "openConfig"
-    | "openCustomField"
-    | "openEndPage"
-    | "openOrCreateCmsCategory"
-    | "openPage"
-    | "openProgram"
-    | "openUrl";
+    | 'newHtmlDialog'
+    | 'newProcess'
+    | 'newProgram'
+    | 'newRestClient'
+    | 'newWebServiceClient'
+    | 'openConfig'
+    | 'openCustomField'
+    | 'openEndPage'
+    | 'openOrCreateCmsCategory'
+    | 'openPage'
+    | 'openProgram'
+    | 'openUrl';
   context: InscriptionElementContext;
   payload: string | OpenCustomField;
 }
@@ -808,26 +824,26 @@ export interface RoleMeta {
   label: string;
 }
 export interface SchemaKey {
-  Common: "output" | "exceptionHandler" | "code" | "map";
-  Alternative: "conditions";
-  Cachable: "cache";
-  Callable: "signature" | "input" | "result" | "guid" | "params";
-  Caller: "dialog" | "processCall" | "call";
-  Database: "query";
-  Error: "errorCode" | "throws";
-  Mail: "headers" | "message" | "attachments" | "failIfMissingAttachments";
-  Process: "data" | "permissions";
-  Programmed: "javaClass" | "userConfig" | "link" | "timeout" | "eventId";
+  Common: 'output' | 'exceptionHandler' | 'code' | 'map';
+  Alternative: 'conditions';
+  Cachable: 'cache';
+  Callable: 'signature' | 'input' | 'result' | 'guid' | 'params';
+  Caller: 'dialog' | 'processCall' | 'call';
+  Database: 'query';
+  Error: 'errorCode' | 'throws';
+  Mail: 'headers' | 'message' | 'attachments' | 'failIfMissingAttachments';
+  Process: 'data' | 'permissions';
+  Programmed: 'javaClass' | 'userConfig' | 'link' | 'timeout' | 'eventId';
   RestClient: {
-    Common: "method" | "target" | "body" | "response";
-    Body: "form" | "entity" | "raw";
+    Common: 'method' | 'target' | 'body' | 'response';
+    Body: 'form' | 'entity' | 'raw';
   };
-  Script: "sudo";
-  Signal: "signalCode" | "attachToBusinessCase";
-  Start: "request" | "permission" | "triggerable" | "persistOnStart";
-  WebService: "clientId" | "operation" | "properties";
-  Workflow: "task" | "tasks" | "case" | "page" | "customFields";
-  WsProcess: "wsAuth" | "wsTypeName" | "exception";
+  Script: 'sudo';
+  Signal: 'signalCode' | 'attachToBusinessCase';
+  Start: 'request' | 'permission' | 'triggerable' | 'persistOnStart';
+  WebService: 'clientId' | 'operation' | 'properties';
+  Workflow: 'task' | 'tasks' | 'case' | 'page' | 'customFields';
+  WsProcess: 'wsAuth' | 'wsTypeName' | 'exception';
 }
 export interface ScriptingDataArgs {
   context: InscriptionElementContext;
@@ -864,22 +880,6 @@ export interface WebServicePortRequest {
   clientId: string;
   context: InscriptionContext;
   port: string;
-}
-export interface Script {
-  configKey: string;
-  multiline: boolean;
-  requiredType: string;
-  widgetType: WidgetType;
-}
-export interface Label {
-  multiline: boolean;
-  text: string;
-  widgetType: WidgetType;
-}
-export interface Text {
-  configKey: string;
-  multiline: boolean;
-  widgetType: WidgetType;
 }
 export interface WorkflowTypeRequest {
   context: InscriptionContext;
