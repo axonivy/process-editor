@@ -6,12 +6,12 @@ import type {
   DatabaseColumn,
   DataclassType,
   ErrorStartMeta,
+  Group,
   JavaType,
   NodeRef,
   OutlineNode,
   RoleMeta,
-  VariableInfo,
-  Widget
+  VariableInfo
 } from '@axonivy/process-editor-inscription-protocol';
 
 export namespace MetaMock {
@@ -349,40 +349,52 @@ export namespace MetaMock {
     }
   ];
 
-  export const PROGRAM_EDITOR: Widget[] = [
+  export const PROGRAM_EDITOR: Group[] = [
     {
-      text: 'User Prompt:',
-      widgetType: 'LABEL',
-      multiline: false
+      name: 'Prompt',
+      widgetType: 'GROUP',
+      widgets: [
+        {
+          text: 'User:',
+          widgetType: 'LABEL',
+          multiline: false
+        },
+        {
+          text: 'in.data',
+          widgetType: 'TEXT',
+          configKey: 'query',
+          multiline: true
+        },
+        {
+          text: 'System:',
+          widgetType: 'LABEL',
+          multiline: false
+        },
+        {
+          text: 'in.system',
+          widgetType: 'TEXT',
+          configKey: 'system',
+          multiline: false
+        }
+      ]
     },
     {
-      text: 'in.data',
-      widgetType: 'TEXT',
-      configKey: 'query',
-      multiline: true
-    },
-    {
-      text: 'System Prompt:',
-      widgetType: 'LABEL',
-      multiline: false
-    },
-    {
-      text: 'in.system',
-      widgetType: 'TEXT',
-      configKey: 'system',
-      multiline: false
-    },
-    {
-      text: 'Return type:',
-      widgetType: 'LABEL',
-      multiline: false
-    },
-    {
-      text: 'macronized',
-      widgetType: 'SCRIPT',
-      configKey: 'returnType',
-      requiredType: 'java.lang.Class',
-      multiline: false
+      name: 'Output',
+      widgetType: 'GROUP',
+      widgets: [
+        {
+          text: 'Return type:',
+          widgetType: 'LABEL',
+          multiline: false
+        },
+        {
+          text: 'macronized',
+          widgetType: 'SCRIPT',
+          configKey: 'returnType',
+          requiredType: 'java.lang.Class',
+          multiline: false
+        }
+      ]
     }
   ];
 
