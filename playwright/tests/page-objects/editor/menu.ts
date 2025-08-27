@@ -15,29 +15,29 @@ export class Menu {
   }
 
   emptyResult() {
-    return this.menu.locator('.no-result');
+    return this.menu.locator('.ui-palette');
   }
 
   searchInput() {
-    return this.menu.locator('.menu-search-input');
+    return this.menu.locator('.ui-input');
   }
 
   async click(entry: string) {
-    await this.menu.locator(`.menu-item:has-text("${entry}")`).click();
+    await this.menu.locator(`.ui-palette-item:has-text("${entry}")`).click();
   }
 
   async expectMenuItemCount(count: number) {
-    await expect(this.menu.locator('.menu-item')).toHaveCount(count);
+    await expect(this.menu.locator('.ui-palette-item')).toHaveCount(count);
   }
 
   async expectMenuGroupCount(count: number) {
-    const headers = this.menu.locator('.menu-group-header');
+    const headers = this.menu.locator('.ui-palette-section-title');
     await expect(headers).toHaveCount(count);
   }
 
   async expectMenuGroups(headerGroups: string[]) {
     await this.expectMenuGroupCount(headerGroups.length);
-    const headers = this.menu.locator('.menu-group-header');
+    const headers = this.menu.locator('.ui-palette-section-title');
     for (const [index, group] of headerGroups.entries()) {
       await expect(headers.nth(index)).toHaveText(group);
     }
@@ -60,12 +60,11 @@ export class Menu {
 
 export class OptionsMenu extends Menu {
   async toggleOption(option: string, initalValue: boolean) {
-    const toggle = this.menu.locator(`.tool-bar-option label:has-text("${option}") ~ .switch`);
-    const toggleInput = toggle.locator('> input');
+    const toggle = this.menu.locator(`.tool-bar-option label:has-text("${option}") ~ [role=switch]`);
     if (initalValue) {
-      await expect(toggleInput).toBeChecked();
+      await expect(toggle).toHaveAttribute('data-state', 'checked');
     } else {
-      await expect(toggleInput).not.toBeChecked();
+      await expect(toggle).toHaveAttribute('data-state', 'unchecked');
     }
     await toggle.click();
   }

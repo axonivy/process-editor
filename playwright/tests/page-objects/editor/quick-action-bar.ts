@@ -70,17 +70,17 @@ export class QuickActionBar {
     await expect(editUi).toBeVisible();
     await expect(editUi.locator('.edit-color-delete')).toBeHidden();
 
-    const nameInput = editUi.locator('#input-Name');
+    const nameInput = editUi.locator('#color-name-input');
     await expect(nameInput).toBeEmpty();
     await nameInput.fill(name);
 
-    const colorInput = editUi.locator('#input-Color');
-    await expect(colorInput).toBeEmpty();
+    const colorInput = editUi.locator('#color-input');
+    await expect(colorInput).toHaveValue('#000000');
     await colorInput.fill(color);
 
     await editUi.locator('.edit-color-save').click();
     await expect(editUi).toBeHidden();
-    await this.quickActionMenu.expectHidden();
+    await this.quickActionMenu.expectVisible();
   }
 
   async count(count: number) {

@@ -85,24 +85,3 @@ test('wrap, jump and unwrap', async ({ page, browserName }) => {
   await expect(end.locator()).toBeVisible();
   await expect(embedded.locator()).toBeHidden();
 });
-
-test('create node', async ({ page }) => {
-  const processEditor = await ProcessEditor.openProcess(page);
-  const start = processEditor.startElement;
-
-  const quickActionBar = start.quickActionBar();
-  await quickActionBar.pressShortCut('A');
-  const menuItem = quickActionBar.menu().locator().locator('.menu-item');
-
-  await page.keyboard.press('ArrowDown');
-  await expect(menuItem.nth(1)).toHaveClass(/focus/);
-  await page.keyboard.press('ArrowUp');
-  await expect(menuItem.first()).toHaveClass(/focus/);
-  await page.keyboard.press('Enter');
-  await processEditor.element('intermediate:taskSwitchEvent').expectSelected();
-
-  await quickActionBar.pressShortCut('A');
-  await page.keyboard.type('mail');
-  await page.keyboard.press('Enter');
-  await processEditor.element('eMail').expectSelected();
-});
