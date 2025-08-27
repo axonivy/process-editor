@@ -1,484 +1,484 @@
 {
-    "a11y": {
-        "autocomplete": {
-            "noSuggestions": ""
-        },
-        "diagram": {
-            "label": ""
-        },
-        "hotkeyDesc": {
-            "center": "",
-            "fitToScreen": "",
-            "focusGraph": "",
-            "focusInscription": "",
-            "focusToolbar": "",
-            "move": "",
-            "navigationActivate": "",
-            "navigationActivatePosition": "",
-            "origin": "",
-            "resizeActivate": "",
-            "resizeDeactivate": "",
-            "resizeDecrease": "",
-            "resizeDefault": "",
-            "resizeIncrease": "",
-            "searchPalette": "",
-            "zoom": ""
-        },
-        "hotkeyGroup": {
-            "graph": "",
-            "inscription": "",
-            "move": "",
-            "navigation": "",
-            "resize": "",
-            "search": "",
-            "toolbar": "",
-            "viewport": ""
-        },
-        "navigation": {
-            "off": "",
-            "offPosition": "",
-            "on": "",
-            "onPosition": ""
-        },
-        "resize": {
-            "off": "",
-            "on": ""
-        },
-        "search": {
-            "label": "",
-            "placeholder": ""
-        },
-        "ui": {
-            "command": "",
-            "keybinding": "",
-            "menuTitle": "",
-            "title": ""
-        }
+  "a11y": {
+    "autocomplete": {
+      "noSuggestions": ""
     },
-    "browser": {
-        "attribute": {
-            "title": ""
-        },
-        "cms": {
-            "add": "",
-            "addFailed": "",
-            "addSuccess": "",
-            "requiredProjects": "",
-            "title": ""
-        },
-        "code": {
-            "button": "",
-            "title": ""
-        },
-        "condition": {
-            "info": "",
-            "title": ""
-        },
-        "empty": "",
-        "emptyInfo": "",
-        "function": {
-            "loadMore": "",
-            "noType": "",
-            "title": ""
-        },
-        "role": {
-            "add": "",
-            "addFailed": "",
-            "addSuccess": "",
-            "message": {
-                "newRoleAlreadyExists": ""
-            },
-            "newRole": "",
-            "title": ""
-        },
-        "tableCol": {
-            "title": ""
-        },
-        "type": {
-            "asList": "",
-            "empty": "",
-            "loadingTypes": "",
-            "searchAllTypes": "",
-            "title": ""
-        }
+    "diagram": {
+      "label": ""
     },
-    "common": {
-        "hotkey": {
-            "help": ""
-        },
-        "label": {
-            "apply": "",
-            "attribute": "",
-            "browser": "",
-            "cancel": "",
-            "category": "",
-            "color": "",
-            "delete": "",
-            "description": "",
-            "mapping": "",
-            "name": "",
-            "roles": "",
-            "save": "",
-            "search": "",
-            "settings": "",
-            "theme": "",
-            "type": "",
-            "value": ""
-        }
+    "hotkeyDesc": {
+      "center": "",
+      "fitToScreen": "",
+      "focusGraph": "",
+      "focusInscription": "",
+      "focusToolbar": "",
+      "move": "",
+      "navigationActivate": "",
+      "navigationActivatePosition": "",
+      "origin": "",
+      "resizeActivate": "",
+      "resizeDeactivate": "",
+      "resizeDecrease": "",
+      "resizeDefault": "",
+      "resizeIncrease": "",
+      "searchPalette": "",
+      "zoom": ""
+    },
+    "hotkeyGroup": {
+      "graph": "",
+      "inscription": "",
+      "move": "",
+      "navigation": "",
+      "resize": "",
+      "search": "",
+      "toolbar": "",
+      "viewport": ""
+    },
+    "navigation": {
+      "off": "",
+      "offPosition": "",
+      "on": "",
+      "onPosition": ""
+    },
+    "resize": {
+      "off": "",
+      "on": ""
+    },
+    "search": {
+      "label": "",
+      "placeholder": ""
+    },
+    "ui": {
+      "command": "",
+      "keybinding": "",
+      "menuTitle": "",
+      "title": ""
+    }
+  },
+  "browser": {
+    "attribute": {
+      "title": ""
+    },
+    "cms": {
+      "add": "",
+      "addFailed": "",
+      "addSuccess": "",
+      "requiredProjects": "",
+      "title": ""
+    },
+    "code": {
+      "button": "",
+      "title": ""
+    },
+    "condition": {
+      "info": "",
+      "title": ""
+    },
+    "empty": "",
+    "emptyInfo": "",
+    "function": {
+      "loadMore": "",
+      "noType": "",
+      "title": ""
+    },
+    "role": {
+      "add": "",
+      "addFailed": "",
+      "addSuccess": "",
+      "message": {
+        "newRoleAlreadyExists": ""
+      },
+      "newRole": "",
+      "title": ""
+    },
+    "tableCol": {
+      "title": ""
+    },
+    "type": {
+      "asList": "",
+      "empty": "",
+      "loadingTypes": "",
+      "searchAllTypes": "",
+      "title": ""
+    }
+  },
+  "common": {
+    "hotkey": {
+      "help": "オープンヘルプ({{hotkey}})"
     },
     "label": {
-        "action": "",
-        "allowAnonymous": "",
-        "code": "",
-        "colorEdit": "",
-        "colorNew": "",
-        "column": "",
-        "condition": "",
-        "customFields": "",
-        "database": "",
-        "duration": "",
-        "editorLoading": "",
-        "editorPlaceholder": "",
-        "empty": "",
-        "enterDesc": "",
-        "enterExpression": "",
-        "enterName": "",
-        "enterUrl": "",
-        "error": "",
-        "expiry": "",
-        "expression": "",
-        "mapped": "",
-        "message": "",
-        "openCMS": "",
-        "openCustomField": "",
-        "openFile": "",
-        "openUrl": "",
-        "output": "",
-        "permission": "",
-        "process": "",
-        "removeRow": "",
-        "request": "",
-        "reset": "",
-        "responsible": "",
-        "timeout": "",
-        "URL": "",
-        "validationError": "",
-        "warning": ""
-    },
-    "message": {
-        "boundaryData": "",
-        "boundaryTitle": "",
-        "clickToReload": "",
-        "connectionClosed": "",
-        "connectionToServerError": "",
-        "elementOpen": "",
-        "elementRedo": "",
-        "elementUndo": "",
-        "globalError": "",
-        "noEditorForType": "",
-        "noNativeClipboardAccess": "",
-        "selectElement": ""
-    },
-    "part": {
-        "cache": {
-            "entry": "",
-            "entryDesc": "",
-            "group": "",
-            "groupDesc": "",
-            "lifetime": "",
-            "lifetimeMode": {
-                "duration": "",
-                "fixed": "",
-                "forever": ""
-            },
-            "mode": {
-                "cache": "",
-                "cacheDesc": "",
-                "invalidate": "",
-                "invalidateMode": "",
-                "noCache": "",
-                "noCacheMode": "",
-                "title": ""
-            },
-            "scope": "",
-            "scopeMode": {
-                "application": "",
-                "applicationDesc": "",
-                "session": "",
-                "sessionDesc": ""
-            },
-            "title": ""
-        },
-        "call": {
-            "dialog": {
-                "create": "",
-                "title": ""
-            },
-            "processStart": "",
-            "sub": {
-                "create": ""
-            },
-            "title": "",
-            "trigger": {
-                "create": ""
-            }
-        },
-        "case": {
-            "title": ""
-        },
-        "category": {
-            "empty": "",
-            "emptyDesc": ""
-        },
-        "condition": {
-            "title": ""
-        },
-        "db": {
-            "definition": "",
-            "direction": "",
-            "fields": "",
-            "limit": "",
-            "lotSize": "",
-            "queryKind": "",
-            "quoteIvyScript": "",
-            "read": "",
-            "selectAllFields": "",
-            "sort": "",
-            "sqlQuery": "",
-            "startIndex": "",
-            "table": "",
-            "title": ""
-        },
-        "endPage": {
-            "title": ""
-        },
-        "error": {
-            "cause": "",
-            "code": "",
-            "codeToThrow": "",
-            "empty": "",
-            "emptyDesc": "",
-            "title": ""
-        },
-        "general": {
-            "displayName": "",
-            "meansAndDocuments": "",
-            "nameAndDescription": "",
-            "tags": "",
-            "title": ""
-        },
-        "mail": {
-            "attachments": {
-                "error": "",
-                "title": ""
-            },
-            "content": {
-                "message": "",
-                "title": "",
-                "type": ""
-            },
-            "header": {
-                "bcc": "",
-                "cc": "",
-                "from": "",
-                "replyTo": "",
-                "subject": "",
-                "title": "",
-                "to": ""
-            }
-        },
-        "output": {
-            "disablePermission": "",
-            "title": ""
-        },
-        "permission": {
-            "allowProcessViewer": "",
-            "title": ""
-        },
-        "processData": {
-            "dataClass": "",
-            "dataClassMessage": "",
-            "title": ""
-        },
-        "program": {
-            "configuration": {
-                "title": ""
-            },
-            "error": {
-                "seconds": "",
-                "timout": "",
-                "title": ""
-            },
-            "event": {
-                "id": "",
-                "title": "",
-                "type": {
-                    "continueWithoutEvent": "",
-                    "destroyTask": "",
-                    "nothing": ""
-                }
-            },
-            "javaClass": "",
-            "javaClassCreate": "",
-            "javaClassOpen": "",
-            "start": {
-                "title": ""
-            }
-        },
-        "request": {
-            "showOnStartList": "",
-            "startPerHttp": "",
-            "title": ""
-        },
-        "rest": {
-            "accept": "",
-            "acceptProperties": "",
-            "body": "",
-            "client": "",
-            "contentType": "",
-            "entityType": "",
-            "headers": "",
-            "jaxRs": "",
-            "kind": "",
-            "onError": "",
-            "onNotSuccess": "",
-            "openApi": "",
-            "parameters": "",
-            "properties": "",
-            "readBodyType": "",
-            "resource": "",
-            "restConfigCreate": "",
-            "restConfigOpen": "",
-            "resultType": "",
-            "service": ""
-        },
-        "result": {
-            "paramter": "",
-            "title": ""
-        },
-        "signal": {
-            "attachBusinessCase": "",
-            "code": "",
-            "empty": "",
-            "emptyDesc": "",
-            "title": ""
-        },
-        "start": {
-            "inputParamters": "",
-            "signature": "",
-            "title": ""
-        },
-        "task": {
-            "delay": "",
-            "noTaskMessage": "",
-            "notification": "",
-            "options": "",
-            "persist": "",
-            "persistDisabled": "",
-            "priority": "",
-            "skipTasklist": "",
-            "suppress": "",
-            "task": "",
-            "tasks": "",
-            "template": ""
-        },
-        "trigger": {
-            "attachBusinessCase": "",
-            "startTriggerable": "",
-            "title": ""
-        },
-        "ws": {
-            "authMessage": "",
-            "client": "",
-            "clientCreate": "",
-            "clientOpen": "",
-            "exception": "",
-            "exceptionHandling": "",
-            "operation": "",
-            "port": "",
-            "properties": "",
-            "request": "",
-            "title": ""
-        },
-        "wsprocess": {
-            "auth": {
-                "httpBasic": "",
-                "none": "",
-                "wsSecurity": ""
-            },
-            "authentication": "",
-            "qualifiedName": "",
-            "title": ""
-        }
-    },
-    "priority": {
-        "exception": "",
-        "high": "",
-        "low": "",
-        "normal": "",
-        "script": ""
-    },
-    "quickAction": {
-        "autoAlign": "",
-        "bend": "",
-        "color": "",
-        "connect": "",
-        "createLane": "",
-        "customIcon": "",
-        "delete": "",
-        "editLabel": "",
-        "goToSource": "",
-        "information": "",
-        "jump": "",
-        "openForm": "",
-        "reconnect": "",
-        "searchCallers": "",
-        "selectType": "",
-        "startProcess": "",
-        "straighten": "",
-        "toggleBreakpoint": "",
-        "unwrap": "",
-        "wrap": ""
-    },
-    "responsible": {
-        "delete": "",
-        "memberFromAttr": "",
-        "roleFromAttr": "",
-        "roles": "",
-        "userFromAttr": ""
-    },
-    "tags": {
-        "addNew": "",
-        "new": "",
-        "newTag": "",
-        "removeTag": ""
-    },
-    "title": {
-        "inscription": ""
-    },
-    "tool": {
-        "jumpOut": ""
-    },
-    "toolbar": {
-        "activities": "",
-        "allElements": "",
-        "artifacts": "",
-        "customIcon": "",
-        "details": "",
-        "events": "",
-        "extensions": "",
-        "gateways": "",
-        "grid": "",
-        "marquee": "",
-        "openDataClass": "",
-        "openFormEditor": "",
-        "redo": "",
-        "selection": "",
-        "undo": ""
-    },
-    "viewport": {
-        "center": "",
-        "fitToScreen": "",
-        "origin": ""
+      "apply": "",
+      "attribute": "",
+      "browser": "",
+      "cancel": "キャンセル",
+      "category": "",
+      "color": "",
+      "delete": "",
+      "description": "",
+      "mapping": "",
+      "name": "",
+      "roles": "",
+      "save": "",
+      "search": "",
+      "settings": "",
+      "theme": "",
+      "type": "",
+      "value": ""
     }
+  },
+  "label": {
+    "action": "",
+    "allowAnonymous": "",
+    "code": "",
+    "colorEdit": "",
+    "colorNew": "",
+    "column": "",
+    "condition": "",
+    "customFields": "",
+    "database": "",
+    "duration": "",
+    "editorLoading": "",
+    "editorPlaceholder": "",
+    "empty": "",
+    "enterDesc": "",
+    "enterExpression": "",
+    "enterName": "",
+    "enterUrl": "",
+    "error": "",
+    "expiry": "",
+    "expression": "",
+    "mapped": "",
+    "message": "",
+    "openCMS": "",
+    "openCustomField": "",
+    "openFile": "",
+    "openUrl": "",
+    "output": "",
+    "permission": "",
+    "process": "",
+    "removeRow": "",
+    "request": "",
+    "reset": "",
+    "responsible": "",
+    "timeout": "",
+    "URL": "",
+    "validationError": "",
+    "warning": ""
+  },
+  "message": {
+    "boundaryData": "",
+    "boundaryTitle": "",
+    "clickToReload": "",
+    "connectionClosed": "",
+    "connectionToServerError": "",
+    "elementOpen": "",
+    "elementRedo": "",
+    "elementUndo": "",
+    "globalError": "",
+    "noEditorForType": "",
+    "noNativeClipboardAccess": "",
+    "selectElement": ""
+  },
+  "part": {
+    "cache": {
+      "entry": "",
+      "entryDesc": "",
+      "group": "",
+      "groupDesc": "",
+      "lifetime": "",
+      "lifetimeMode": {
+        "duration": "",
+        "fixed": "",
+        "forever": ""
+      },
+      "mode": {
+        "cache": "",
+        "cacheDesc": "",
+        "invalidate": "",
+        "invalidateMode": "",
+        "noCache": "",
+        "noCacheMode": "",
+        "title": ""
+      },
+      "scope": "",
+      "scopeMode": {
+        "application": "",
+        "applicationDesc": "",
+        "session": "",
+        "sessionDesc": ""
+      },
+      "title": ""
+    },
+    "call": {
+      "dialog": {
+        "create": "",
+        "title": ""
+      },
+      "processStart": "",
+      "sub": {
+        "create": ""
+      },
+      "title": "",
+      "trigger": {
+        "create": ""
+      }
+    },
+    "case": {
+      "title": ""
+    },
+    "category": {
+      "empty": "",
+      "emptyDesc": ""
+    },
+    "condition": {
+      "title": ""
+    },
+    "db": {
+      "definition": "",
+      "direction": "",
+      "fields": "",
+      "limit": "",
+      "lotSize": "",
+      "queryKind": "",
+      "quoteIvyScript": "",
+      "read": "",
+      "selectAllFields": "",
+      "sort": "",
+      "sqlQuery": "",
+      "startIndex": "",
+      "table": "",
+      "title": ""
+    },
+    "endPage": {
+      "title": ""
+    },
+    "error": {
+      "cause": "",
+      "code": "",
+      "codeToThrow": "",
+      "empty": "",
+      "emptyDesc": "",
+      "title": ""
+    },
+    "general": {
+      "displayName": "",
+      "meansAndDocuments": "",
+      "nameAndDescription": "",
+      "tags": "",
+      "title": ""
+    },
+    "mail": {
+      "attachments": {
+        "error": "",
+        "title": ""
+      },
+      "content": {
+        "message": "",
+        "title": "",
+        "type": ""
+      },
+      "header": {
+        "bcc": "",
+        "cc": "",
+        "from": "",
+        "replyTo": "",
+        "subject": "",
+        "title": "",
+        "to": ""
+      }
+    },
+    "output": {
+      "disablePermission": "",
+      "title": ""
+    },
+    "permission": {
+      "allowProcessViewer": "",
+      "title": ""
+    },
+    "processData": {
+      "dataClass": "",
+      "dataClassMessage": "",
+      "title": ""
+    },
+    "program": {
+      "configuration": {
+        "title": ""
+      },
+      "error": {
+        "seconds": "",
+        "timout": "",
+        "title": ""
+      },
+      "event": {
+        "id": "",
+        "title": "",
+        "type": {
+          "continueWithoutEvent": "",
+          "destroyTask": "",
+          "nothing": ""
+        }
+      },
+      "javaClass": "",
+      "javaClassCreate": "",
+      "javaClassOpen": "",
+      "start": {
+        "title": ""
+      }
+    },
+    "request": {
+      "showOnStartList": "",
+      "startPerHttp": "",
+      "title": ""
+    },
+    "rest": {
+      "accept": "",
+      "acceptProperties": "",
+      "body": "",
+      "client": "",
+      "contentType": "",
+      "entityType": "",
+      "headers": "",
+      "jaxRs": "",
+      "kind": "",
+      "onError": "",
+      "onNotSuccess": "",
+      "openApi": "",
+      "parameters": "",
+      "properties": "",
+      "readBodyType": "",
+      "resource": "",
+      "restConfigCreate": "",
+      "restConfigOpen": "",
+      "resultType": "",
+      "service": ""
+    },
+    "result": {
+      "paramter": "",
+      "title": ""
+    },
+    "signal": {
+      "attachBusinessCase": "",
+      "code": "",
+      "empty": "",
+      "emptyDesc": "",
+      "title": ""
+    },
+    "start": {
+      "inputParamters": "",
+      "signature": "",
+      "title": ""
+    },
+    "task": {
+      "delay": "",
+      "noTaskMessage": "",
+      "notification": "",
+      "options": "",
+      "persist": "",
+      "persistDisabled": "",
+      "priority": "",
+      "skipTasklist": "",
+      "suppress": "",
+      "task": "",
+      "tasks": "",
+      "template": ""
+    },
+    "trigger": {
+      "attachBusinessCase": "",
+      "startTriggerable": "",
+      "title": ""
+    },
+    "ws": {
+      "authMessage": "",
+      "client": "",
+      "clientCreate": "",
+      "clientOpen": "",
+      "exception": "",
+      "exceptionHandling": "",
+      "operation": "",
+      "port": "",
+      "properties": "",
+      "request": "",
+      "title": ""
+    },
+    "wsprocess": {
+      "auth": {
+        "httpBasic": "",
+        "none": "",
+        "wsSecurity": ""
+      },
+      "authentication": "",
+      "qualifiedName": "",
+      "title": ""
+    }
+  },
+  "priority": {
+    "exception": "",
+    "high": "",
+    "low": "",
+    "normal": "",
+    "script": ""
+  },
+  "quickAction": {
+    "autoAlign": "",
+    "bend": "",
+    "color": "",
+    "connect": "",
+    "createLane": "",
+    "customIcon": "",
+    "delete": "",
+    "editLabel": "",
+    "goToSource": "",
+    "information": "",
+    "jump": "",
+    "openForm": "",
+    "reconnect": "",
+    "searchCallers": "",
+    "selectType": "",
+    "startProcess": "",
+    "straighten": "",
+    "toggleBreakpoint": "",
+    "unwrap": "",
+    "wrap": ""
+  },
+  "responsible": {
+    "delete": "",
+    "memberFromAttr": "",
+    "roleFromAttr": "",
+    "roles": "",
+    "userFromAttr": ""
+  },
+  "tags": {
+    "addNew": "",
+    "new": "",
+    "newTag": "",
+    "removeTag": ""
+  },
+  "title": {
+    "inscription": ""
+  },
+  "tool": {
+    "jumpOut": ""
+  },
+  "toolbar": {
+    "activities": "",
+    "allElements": "",
+    "artifacts": "",
+    "customIcon": "",
+    "details": "",
+    "events": "",
+    "extensions": "",
+    "gateways": "",
+    "grid": "",
+    "marquee": "",
+    "openDataClass": "",
+    "openFormEditor": "",
+    "redo": "",
+    "selection": "",
+    "undo": ""
+  },
+  "viewport": {
+    "center": "",
+    "fitToScreen": "",
+    "origin": ""
+  }
 }
