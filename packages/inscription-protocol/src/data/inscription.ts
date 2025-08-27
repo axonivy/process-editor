@@ -9,6 +9,8 @@
 export type PID = string
 export type ContentObjectType = "STRING" | "FILE" | "FOLDER";
 export type WfFieldType = "STRING" | "TEXT" | "NUMBER" | "TIMESTAMP";
+export type Widget = Script | Label | Text;
+export type WidgetType = "TEXT" | "LABEL" | "SCRIPT";
 export type WorkflowType = "START" | "TASK" | "CASE";
 export type WfLevel = "EXCEPTION" | "HIGH" | "NORMAL" | "LOW" | "SCRIPT";
 export type WfResponsibleType =
@@ -27,8 +29,6 @@ export type InputType = "ENTITY" | "FORM" | "RAW";
 export type WsAuth = "NONE" | "WS_SECURITY" | "HTTP_BASIC";
 export type Type = "START" | "INTERMEDIATE" | "ACTIVITY";
 export type Severity = "INFO" | "WARNING" | "ERROR";
-export type Widget = Script | Label | Text;
-export type WidgetType = "TEXT" | "LABEL" | "SCRIPT";
 
 export interface Inscription {
   addRoleRequest: AddRoleRequest;
@@ -49,6 +49,7 @@ export interface Inscription {
   errorStartMeta: ErrorStartMeta[];
   eventCodeMeta: EventCodeMeta[];
   function: Function[];
+  group: Group[];
   inscriptionActionArgs: InscriptionActionArgs;
   inscriptionContext: InscriptionContext;
   inscriptionElementContext: InscriptionElementContext;
@@ -79,7 +80,6 @@ export interface Inscription {
   webServiceClientRequest: WebServiceClientRequest;
   webServiceOperation: WebServiceOperation[];
   webServicePortRequest: WebServicePortRequest;
-  widget: Widget[];
   workflowTypeRequest: WorkflowTypeRequest;
   [k: string]: unknown;
 }
@@ -280,6 +280,26 @@ export interface PublicType {
   functions: Function[];
   packageName: string;
   simpleName: string;
+}
+export interface Group {
+  name: string;
+  widgets: Widget[];
+}
+export interface Script {
+  configKey: string;
+  multiline: boolean;
+  requiredType: string;
+  widgetType: WidgetType;
+}
+export interface Label {
+  multiline: boolean;
+  text: string;
+  widgetType: WidgetType;
+}
+export interface Text {
+  configKey: string;
+  multiline: boolean;
+  widgetType: WidgetType;
 }
 export interface InscriptionActionArgs {
   actionId:
@@ -864,22 +884,6 @@ export interface WebServicePortRequest {
   clientId: string;
   context: InscriptionContext;
   port: string;
-}
-export interface Script {
-  configKey: string;
-  multiline: boolean;
-  requiredType: string;
-  widgetType: WidgetType;
-}
-export interface Label {
-  multiline: boolean;
-  text: string;
-  widgetType: WidgetType;
-}
-export interface Text {
-  configKey: string;
-  multiline: boolean;
-  widgetType: WidgetType;
 }
 export interface WorkflowTypeRequest {
   context: InscriptionContext;

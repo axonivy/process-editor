@@ -16,10 +16,15 @@ describe('ConfigurationPart', () => {
       wrapperProps: {
         data: data && { config: data },
         meta: {
-          widgets: [
-            { text: 'Path of directory to scan', multiline: false, widgetType: 'LABEL' },
-            { configKey: 'directory', multiline: false, widgetType: 'TEXT' },
-            { text: 'Multiline-Text', multiline: true, widgetType: 'LABEL' }
+          groups: [
+            {
+              name: 'Configuration',
+              widgets: [
+                { text: 'Path of directory to scan', multiline: false, widgetType: 'LABEL' },
+                { configKey: 'directory', multiline: false, widgetType: 'TEXT' },
+                { text: 'Multiline-Text', multiline: true, widgetType: 'LABEL' }
+              ]
+            }
           ]
         }
       }
