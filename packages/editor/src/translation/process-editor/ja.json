@@ -1,484 +1,484 @@
 {
   "a11y": {
     "autocomplete": {
-      "noSuggestions": ""
+      "noSuggestions": "利用可能な提案がありません"
     },
     "diagram": {
-      "label": ""
+      "label": "図"
     },
     "hotkeyDesc": {
-      "center": "",
-      "fitToScreen": "",
-      "focusGraph": "",
-      "focusInscription": "",
-      "focusToolbar": "",
-      "move": "",
-      "navigationActivate": "",
-      "navigationActivatePosition": "",
-      "origin": "",
-      "resizeActivate": "",
-      "resizeDeactivate": "",
-      "resizeDecrease": "",
-      "resizeDefault": "",
-      "resizeIncrease": "",
-      "searchPalette": "",
-      "zoom": ""
+      "center": "中央",
+      "fitToScreen": "画面に合わせて表示する",
+      "focusGraph": "グラフにフォーカスする",
+      "focusInscription": "インスクリプションにフォーカスする",
+      "focusToolbar": "ツールパレットにフォーカスする",
+      "move": "要素またはビューポートを移動する",
+      "navigationActivate": "デフォルトのナビゲーションを有効にする",
+      "navigationActivatePosition": "位置ベースのナビゲーションを有効にする",
+      "origin": "元の画面",
+      "resizeActivate": "選択した要素のリサイズモードを有効にする",
+      "resizeDeactivate": "選択した要素のリサイズモードを無効にする",
+      "resizeDecrease": "要素のサイズを縮小する",
+      "resizeDefault": "要素サイズをデフォルトに設定する",
+      "resizeIncrease": "要素のサイズを拡大する",
+      "searchPalette": "要素の検索を有効にする",
+      "zoom": "要素またはビューポートにズームイン"
     },
     "hotkeyGroup": {
-      "graph": "",
-      "inscription": "",
-      "move": "",
-      "navigation": "",
-      "resize": "",
-      "search": "",
-      "toolbar": "",
-      "viewport": ""
+      "graph": "グラフ",
+      "inscription": "インスクリプション",
+      "move": "移動",
+      "navigation": "ナビゲーション",
+      "resize": "リサイズ",
+      "search": "検索",
+      "toolbar": "ツールバー",
+      "viewport": "ビューポート"
     },
     "navigation": {
-      "off": "",
-      "offPosition": "",
-      "on": "",
-      "onPosition": ""
+      "off": "ナビゲーションオフ: 'N' を押すとデフォルトナビゲーション、 'ALT+N' を押すと位置ベースのナビゲーションに切り替わります。",
+      "offPosition": "位置ベースのナビゲーション オフ: 'N' を押すとデフォルトナビゲーション、'ALT+N' を押すと位置ベースのナビゲーションに切り替わります。",
+      "on": "ナビゲーションオン: 矢印キーを使用して、前 (←) または次 (→) の要素を選択します。 上 (↑) および 下(↓) 矢印を使用して、パスを移動します。 'ESC' キーを押すと終了します。",
+      "onPosition": "位置ベースのナビゲーションオン: 矢印キーを使って最も近い要素に移動します: (↑) は上、(↓) は下、(←) は前、(→) は次の要素。 'ESC' キーを押すと終了します。"
     },
     "resize": {
-      "off": "",
-      "on": ""
+      "off": "リサイズオフ: 'ALT'+'A' を押すとリサイズモードに切り替わります。",
+      "on": "リサイズオン: プラス (+) とマイナス (-) を使用してサイズを変更し、'CTRL'+'0' を押すとデフォルトサイズに戻ります。 'ESC' キーを押すと終了します。"
     },
     "search": {
-      "label": "",
-      "placeholder": ""
+      "label": "検索フィールド",
+      "placeholder": "要素を検索する"
     },
     "ui": {
-      "command": "",
-      "keybinding": "",
-      "menuTitle": "",
-      "title": ""
+      "command": "コマンド",
+      "keybinding": "キーバインド",
+      "menuTitle": "ショートカットメニュー",
+      "title": "キーボードショートカット"
     }
   },
   "browser": {
     "attribute": {
-      "title": ""
+      "title": "属性"
     },
     "cms": {
-      "add": "",
-      "addFailed": "",
-      "addSuccess": "",
-      "requiredProjects": "",
-      "title": ""
+      "add": "新しい CMS エントリを追加する",
+      "addFailed": "CMS に追加できませんでした",
+      "addSuccess": "エントリが正常に CMS に追加されました",
+      "requiredProjects": "必要なプロジェクトを有効にする",
+      "title": "CMS"
     },
     "code": {
-      "button": "",
-      "title": ""
+      "button": "フルサイズコードエディター",
+      "title": "コード"
     },
     "condition": {
-      "info": "",
-      "title": ""
+      "info": "生成された条件",
+      "title": "条件"
     },
-    "empty": "",
-    "emptyInfo": "",
+    "empty": "データが見つかりません",
+    "emptyInfo": "要素は選択されていません。",
     "function": {
-      "loadMore": "",
-      "noType": "",
-      "title": ""
+      "loadMore": "{{rowNumber}}／{{rowCount}} を表示",
+      "noType": "戻りタイプの定義なし",
+      "title": "関数"
     },
     "role": {
-      "add": "",
-      "addFailed": "",
-      "addSuccess": "",
+      "add": "ロールを {{role}} に追加する",
+      "addFailed": "新しいロールの追加に失敗しました",
+      "addSuccess": "ロールを正常に追加しました",
       "message": {
-        "newRoleAlreadyExists": ""
+        "newRoleAlreadyExists": "その名前のロールはすでに存在します"
       },
-      "newRole": "",
-      "title": ""
+      "newRole": "新しいロール名",
+      "title": "ロール"
     },
     "tableCol": {
-      "title": ""
+      "title": "テーブル列"
     },
     "type": {
-      "asList": "",
-      "empty": "",
-      "loadingTypes": "",
-      "searchAllTypes": "",
-      "title": ""
+      "asList": "タイプをリストとして使用",
+      "empty": "タイプが見つかりません。適合する検索語を入力してください",
+      "loadingTypes": "その他のタイプを読み込んでいます...",
+      "searchAllTypes": "すべてのタイプを検索",
+      "title": "タイプ"
     }
   },
   "common": {
     "hotkey": {
-      "help": "オープンヘルプ({{hotkey}})"
+      "help": "ヘルプを開く ({{hotkey}})"
     },
     "label": {
-      "apply": "",
-      "attribute": "",
-      "browser": "",
+      "apply": "適用",
+      "attribute": "属性",
+      "browser": "ブラウザ",
       "cancel": "キャンセル",
-      "category": "",
-      "color": "",
-      "delete": "",
-      "description": "",
-      "mapping": "",
-      "name": "",
-      "roles": "",
-      "save": "",
-      "search": "",
-      "settings": "",
-      "theme": "",
-      "type": "",
-      "value": ""
+      "category": "カテゴリー",
+      "color": "カラー",
+      "delete": "削除",
+      "description": "説明",
+      "mapping": "マッピング",
+      "name": "名前",
+      "roles": "ロール",
+      "save": "保存",
+      "search": "検索",
+      "settings": "設定",
+      "theme": "テーマ",
+      "type": "タイプ",
+      "value": "値"
     }
   },
   "label": {
-    "action": "",
-    "allowAnonymous": "",
-    "code": "",
-    "colorEdit": "",
-    "colorNew": "",
-    "column": "",
-    "condition": "",
-    "customFields": "",
-    "database": "",
-    "duration": "",
-    "editorLoading": "",
-    "editorPlaceholder": "",
-    "empty": "",
-    "enterDesc": "",
-    "enterExpression": "",
-    "enterName": "",
-    "enterUrl": "",
-    "error": "",
-    "expiry": "",
-    "expression": "",
-    "mapped": "",
-    "message": "",
-    "openCMS": "",
-    "openCustomField": "",
-    "openFile": "",
-    "openUrl": "",
-    "output": "",
-    "permission": "",
-    "process": "",
-    "removeRow": "",
-    "request": "",
-    "reset": "",
-    "responsible": "",
-    "timeout": "",
-    "URL": "",
-    "validationError": "",
-    "warning": ""
+    "action": "アクション",
+    "allowAnonymous": "匿名を許可する",
+    "code": "コード",
+    "colorEdit": "色を編集",
+    "colorNew": "新しい色",
+    "column": "列",
+    "condition": "条件",
+    "customFields": "カスタムフィールド",
+    "database": "データベース",
+    "duration": "期間",
+    "editorLoading": "エディターを読み込み中...",
+    "editorPlaceholder": "CTRL + スペースキーを押すとオートコンプリートが有効化",
+    "empty": "結果が見つかりません。",
+    "enterDesc": "説明を入力してください",
+    "enterExpression": "式を入力してください",
+    "enterName": "名前を入力してください",
+    "enterUrl": "URL を入力してください",
+    "error": "エラー",
+    "expiry": "有効期限",
+    "expression": "式",
+    "mapped": "マッピング済み",
+    "message": "メッセージ",
+    "openCMS": "CMS エディターを開く",
+    "openCustomField": "カスタムフィールド構成を開く",
+    "openFile": "ファイルを開く",
+    "openUrl": "URL を開く",
+    "output": "出力",
+    "permission": "権限",
+    "process": "プロセス",
+    "removeRow": "行を削除する",
+    "request": "リクエスト",
+    "reset": "{{name}} をリセットする",
+    "responsible": "責任者",
+    "timeout": "タイムアウト",
+    "URL": "URL",
+    "validationError": "違反エラー",
+    "warning": "警告"
   },
   "message": {
-    "boundaryData": "",
-    "boundaryTitle": "",
-    "clickToReload": "",
-    "connectionClosed": "",
-    "connectionToServerError": "",
-    "elementOpen": "",
-    "elementRedo": "",
-    "elementUndo": "",
-    "globalError": "",
-    "noEditorForType": "",
-    "noNativeClipboardAccess": "",
-    "selectElement": ""
+    "boundaryData": "データ:",
+    "boundaryTitle": "何らかのエラーが発生しました:",
+    "clickToReload": "{{message}} (クリックして再読み込み)",
+    "connectionClosed": "サーバーへの接続は終了しました。",
+    "connectionToServerError": "サーバーへの接続がエラーになります。 サーバーをシャットダウンしています。",
+    "elementOpen": "要素を開く",
+    "elementRedo": "次の要素の構成をやり直す: {{elementName}}",
+    "elementUndo": "次の要素の構成をやり直す: {{elementName}}",
+    "globalError": "エラーが発生しました: {{error}}",
+    "noEditorForType": "次のタイプのエディターが見つからない: {{props.type}}",
+    "noNativeClipboardAccess": "ネイティブクリップボードにアクセスできませんでした。コピーは同じエディターでのみ機能します。",
+    "selectElement": "プロセス要素を選択する"
   },
   "part": {
     "cache": {
-      "entry": "",
-      "entryDesc": "",
-      "group": "",
-      "groupDesc": "",
-      "lifetime": "",
+      "entry": "エントリ",
+      "entryDesc": "結果データセット (クエリ) を表す名前をエントリに付けてください。",
+      "group": "グループ",
+      "groupDesc": "結果データのエンティティを表す名前をグループに付けてください。",
+      "lifetime": "ライフタイム",
       "lifetimeMode": {
-        "duration": "",
-        "fixed": "",
-        "forever": ""
+        "duration": "期間",
+        "fixed": "固定時間",
+        "forever": "永久"
       },
       "mode": {
-        "cache": "",
-        "cacheDesc": "",
-        "invalidate": "",
-        "invalidateMode": "",
-        "noCache": "",
-        "noCacheMode": "",
-        "title": ""
+        "cache": "キャッシュ",
+        "cacheDesc": "データの読み取りのみを実行する処理を呼び出す場合に使用します。",
+        "invalidate": "キャッシュを無効化",
+        "invalidateMode": "データを変更する処理を呼び出す場合に使用します",
+        "noCache": "キャッシュしない",
+        "noCacheMode": "キャッシュはまったく使用しません。",
+        "title": "モード"
       },
-      "scope": "",
+      "scope": "スコープ",
       "scopeMode": {
-        "application": "",
-        "applicationDesc": "",
-        "session": "",
-        "sessionDesc": ""
+        "application": "アプリケーション",
+        "applicationDesc": "このオプションを使用して、グローバルデータをキャッシュします。",
+        "session": "セッション",
+        "sessionDesc": "このオプションを使用して、ユーザー固有のデータをキャッシュします。"
       },
-      "title": ""
+      "title": "キャッシュ"
     },
     "call": {
       "dialog": {
-        "create": "",
-        "title": ""
+        "create": "新しい Html Dialog を作成する",
+        "title": "ダイアログ"
       },
-      "processStart": "",
+      "processStart": "プロセス開始",
       "sub": {
-        "create": ""
+        "create": "新しいサブプロセスを作成"
       },
-      "title": "",
+      "title": "プロセス",
       "trigger": {
-        "create": ""
+        "create": "新しいトリガープロセスを作成"
       }
     },
     "case": {
-      "title": ""
+      "title": "ケース"
     },
     "category": {
-      "empty": "",
-      "emptyDesc": ""
+      "empty": "<< 空白 >>",
+      "emptyDesc": "カテゴリーなしを選択"
     },
     "condition": {
-      "title": ""
+      "title": "条件"
     },
     "db": {
-      "definition": "",
-      "direction": "",
-      "fields": "",
-      "limit": "",
-      "lotSize": "",
-      "queryKind": "",
-      "quoteIvyScript": "",
-      "read": "",
-      "selectAllFields": "",
-      "sort": "",
-      "sqlQuery": "",
-      "startIndex": "",
-      "table": "",
-      "title": ""
+      "definition": "定義",
+      "direction": "指示",
+      "fields": "フィールド",
+      "limit": "制限",
+      "lotSize": "ロットサイズ",
+      "queryKind": "クエリの種類",
+      "quoteIvyScript": "ivyScript 変数を引用する",
+      "read": "読み取る",
+      "selectAllFields": "すべてのフィールドを選択する",
+      "sort": "並び替え",
+      "sqlQuery": "SQL クエリ",
+      "startIndex": "開始インデックス",
+      "table": "テーブル",
+      "title": "クエリ"
     },
     "endPage": {
-      "title": ""
+      "title": "終了ページ"
     },
     "error": {
-      "cause": "",
-      "code": "",
-      "codeToThrow": "",
-      "empty": "",
-      "emptyDesc": "",
-      "title": ""
+      "cause": "エラー原因",
+      "code": "エラーコード",
+      "codeToThrow": "スローするエラーコード",
+      "empty": "<< 空白 >>",
+      "emptyDesc": "すべてのエラーをキャッチします",
+      "title": "エラー"
     },
     "general": {
-      "displayName": "",
-      "meansAndDocuments": "",
-      "nameAndDescription": "",
-      "tags": "",
-      "title": ""
+      "displayName": "表示名",
+      "meansAndDocuments": "手段／ドキュメント",
+      "nameAndDescription": "名前／説明",
+      "tags": "タグ",
+      "title": "一般"
     },
     "mail": {
       "attachments": {
-        "error": "",
-        "title": ""
+        "error": "添付ファイルがない場合にエラーをスローする",
+        "title": "添付ファイル"
       },
       "content": {
-        "message": "",
-        "title": "",
-        "type": ""
+        "message": "メッセージ",
+        "title": "コンテンツ",
+        "type": "タイプ"
       },
       "header": {
-        "bcc": "",
-        "cc": "",
-        "from": "",
-        "replyTo": "",
-        "subject": "",
-        "title": "",
-        "to": ""
+        "bcc": "BCC",
+        "cc": "CC",
+        "from": "差出人",
+        "replyTo": "返信先",
+        "subject": "件名",
+        "title": "ヘッダー",
+        "to": "宛先"
       }
     },
     "output": {
-      "disablePermission": "",
-      "title": ""
+      "disablePermission": "権限チェックを無効化 (このスクリプトステップをシステムとして実行)",
+      "title": "出力"
     },
     "permission": {
-      "allowProcessViewer": "",
-      "title": ""
+      "allowProcessViewer": "すべてのワークフローユーザーがエンジンでプロセスを表示できるようにする",
+      "title": "権限"
     },
     "processData": {
-      "dataClass": "",
-      "dataClassMessage": "",
-      "title": ""
+      "dataClass": "データクラス",
+      "dataClassMessage": "プロセスデータクラスが変更された場合、すでに使用しているフィールドはすべて新しいデータクラスに存在しなければなりません。 存在しない場合、既存のマッピングとスクリプトは削除されます。",
+      "title": "プロセスデータ"
     },
     "program": {
       "configuration": {
-        "title": ""
+        "title": "構成"
       },
       "error": {
-        "seconds": "",
-        "timout": "",
-        "title": ""
+        "seconds": "秒",
+        "timout": "タイムアウト",
+        "title": "エラー"
       },
       "event": {
-        "id": "",
-        "title": "",
+        "id": "イベント ID",
+        "title": "イベント",
         "type": {
-          "continueWithoutEvent": "",
-          "destroyTask": "",
-          "nothing": ""
+          "continueWithoutEvent": "待たずに続ける",
+          "destroyTask": "タスクを削除",
+          "nothing": "何もしない"
         }
       },
-      "javaClass": "",
-      "javaClassCreate": "",
-      "javaClassOpen": "",
+      "javaClass": "Java クラス",
+      "javaClassCreate": "Java クラスを新規作成",
+      "javaClassOpen": "Java クラスコンフィグを開く",
       "start": {
-        "title": ""
+        "title": "Java Bean"
       }
     },
     "request": {
-      "showOnStartList": "",
-      "startPerHttp": "",
-      "title": ""
+      "showOnStartList": "スタートリストに表示する",
+      "startPerHttp": "はい、これは HTTP-Request / -Link で起動できます",
+      "title": "リクエスト"
     },
     "rest": {
-      "accept": "",
-      "acceptProperties": "",
-      "body": "",
-      "client": "",
-      "contentType": "",
-      "entityType": "",
-      "headers": "",
-      "jaxRs": "",
-      "kind": "",
-      "onError": "",
-      "onNotSuccess": "",
-      "openApi": "",
-      "parameters": "",
-      "properties": "",
-      "readBodyType": "",
-      "resource": "",
-      "restConfigCreate": "",
-      "restConfigOpen": "",
-      "resultType": "",
-      "service": ""
+      "accept": "承認",
+      "acceptProperties": "プロパティを承認",
+      "body": "本文",
+      "client": "クライアント",
+      "contentType": "コンテンツタイプ",
+      "entityType": "エンティティタイプ",
+      "headers": "ヘッダー",
+      "jaxRs": "JAX-RS",
+      "kind": "種類",
+      "onError": "エラー発生時 (接続、タイムアウトなど)",
+      "onNotSuccess": "ステータスコード失敗時 (2xx)",
+      "openApi": "OpenAPI",
+      "parameters": "パラメーター",
+      "properties": "プロパティ",
+      "readBodyType": "本文をタイプとして読み取る (結果変数)",
+      "resource": "リソース",
+      "restConfigCreate": "REST クライアントを新規作成",
+      "restConfigOpen": "REST コンフィグを開く",
+      "resultType": "結果タイプ",
+      "service": "REST サービス"
     },
     "result": {
-      "paramter": "",
-      "title": ""
+      "paramter": "結果パラメーター",
+      "title": "結果"
     },
     "signal": {
-      "attachBusinessCase": "",
-      "code": "",
-      "empty": "",
-      "emptyDesc": "",
-      "title": ""
+      "attachBusinessCase": "このプロセスをシグナル伝達したビジネスケースに添付する",
+      "code": "シグナルコード",
+      "empty": "<< 空白 >>",
+      "emptyDesc": "すべてのシグナルを受信します",
+      "title": "シグナル"
     },
     "start": {
-      "inputParamters": "",
-      "signature": "",
-      "title": ""
+      "inputParamters": "入力パラメーター",
+      "signature": "シグネチャ",
+      "title": "開始"
     },
     "task": {
-      "delay": "",
-      "noTaskMessage": "",
-      "notification": "",
-      "options": "",
-      "persist": "",
-      "persistDisabled": "",
-      "priority": "",
-      "skipTasklist": "",
-      "suppress": "",
-      "task": "",
-      "tasks": "",
-      "template": ""
+      "delay": "遅延",
+      "noTaskMessage": "(タスク) 出力フローが接続されていません。",
+      "notification": "通知",
+      "options": "オプション",
+      "persist": "作成時にタスクを持続する",
+      "persistDisabled": "作成時にタスクを持続する (匿名ユーザーが許可されていない場合にのみ機能します)",
+      "priority": "優先度",
+      "skipTasklist": "タスクリストをスキップ",
+      "suppress": "抑制",
+      "task": "タスク",
+      "tasks": "タスク",
+      "template": "テンプレート"
     },
     "trigger": {
-      "attachBusinessCase": "",
-      "startTriggerable": "",
-      "title": ""
+      "attachBusinessCase": "このプロセスをトリガーしたビジネスケースに添付する",
+      "startTriggerable": "はい、これはトリガーアクティビティから始めることができます",
+      "title": "トリガー"
     },
     "ws": {
-      "authMessage": "",
-      "client": "",
-      "clientCreate": "",
-      "clientOpen": "",
-      "exception": "",
-      "exceptionHandling": "",
-      "operation": "",
-      "port": "",
-      "properties": "",
-      "request": "",
-      "title": ""
+      "authMessage": "<a>プロセス</a>に関する Web サービス認証",
+      "client": "クライアント",
+      "clientCreate": "WebService クライアントを新規作成",
+      "clientOpen": "WebService コンフィグを開く",
+      "exception": "例外",
+      "exceptionHandling": "例外処理を使用する",
+      "operation": "オペレーション",
+      "port": "ポート",
+      "properties": "プロパティ",
+      "request": "リクエスト",
+      "title": "Web サービス"
     },
     "wsprocess": {
       "auth": {
-        "httpBasic": "",
-        "none": "",
-        "wsSecurity": ""
+        "httpBasic": "HTTP Basic",
+        "none": "なし／コンテナ",
+        "wsSecurity": "WS Security"
       },
-      "authentication": "",
-      "qualifiedName": "",
-      "title": ""
+      "authentication": "認証",
+      "qualifiedName": "認定名",
+      "title": "Web サービスプロセス"
     }
   },
   "priority": {
-    "exception": "",
-    "high": "",
-    "low": "",
-    "normal": "",
-    "script": ""
+    "exception": "例外",
+    "high": "高",
+    "low": "低",
+    "normal": "ノーマル",
+    "script": "スクリプト"
   },
   "quickAction": {
-    "autoAlign": "",
-    "bend": "",
-    "color": "",
-    "connect": "",
-    "createLane": "",
-    "customIcon": "",
-    "delete": "",
-    "editLabel": "",
-    "goToSource": "",
-    "information": "",
-    "jump": "",
-    "openForm": "",
-    "reconnect": "",
-    "searchCallers": "",
-    "selectType": "",
-    "startProcess": "",
-    "straighten": "",
-    "toggleBreakpoint": "",
-    "unwrap": "",
-    "wrap": ""
+    "autoAlign": "自動位置合わせ ({{hotkey}})",
+    "bend": "折れ線にする ({{hotkey}})",
+    "color": "色を選択する",
+    "connect": "接続",
+    "createLane": "レーンを作成",
+    "customIcon": "カスタムアイコン",
+    "delete": "削除",
+    "editLabel": "ラベルを編集 ({{hotkey}})",
+    "goToSource": "ソースに移動 ({{hotkey}})",
+    "information": "情報 ({{hotkey}})",
+    "jump": "ジャンプ ({{hotkey}})",
+    "openForm": "フォームを開く({{hotkey}})",
+    "reconnect": "再接続 ({{hotkey}})",
+    "searchCallers": "このプロセスの呼び出し元を検索する ({{hotkey}})",
+    "selectType": "アクティビティタイプを選択",
+    "startProcess": "開始プロセス ({{hotkey}})",
+    "straighten": "直線にする ({{hotkey}})",
+    "toggleBreakpoint": "ブレークポイントを切り替える ({{hotkey}})",
+    "unwrap": "埋め込みサブプロセスのラップを解除する ({{hotkey}})",
+    "wrap": "埋め込みプロセスにラップする ({{hotkey}})"
   },
   "responsible": {
-    "delete": "",
-    "memberFromAttr": "",
-    "roleFromAttr": "",
-    "roles": "",
-    "userFromAttr": ""
+    "delete": "誰もいないので削除",
+    "memberFromAttr": "属性からのメンバー",
+    "roleFromAttr": "属性からのロール",
+    "roles": "ロール",
+    "userFromAttr": "属性からのユーザー"
   },
   "tags": {
-    "addNew": "",
-    "new": "",
-    "newTag": "",
-    "removeTag": ""
+    "addNew": "新しいタグを追加する",
+    "new": "追加",
+    "newTag": "新しいタグ",
+    "removeTag": "タグ {{tag}} を削除する"
   },
   "title": {
-    "inscription": ""
+    "inscription": "インスクリプション"
   },
   "tool": {
-    "jumpOut": ""
+    "jumpOut": "ジャンプアウト ({{hotkey}})"
   },
   "toolbar": {
-    "activities": "",
-    "allElements": "",
-    "artifacts": "",
-    "customIcon": "",
-    "details": "",
-    "events": "",
-    "extensions": "",
-    "gateways": "",
-    "grid": "",
-    "marquee": "",
-    "openDataClass": "",
-    "openFormEditor": "",
-    "redo": "",
-    "selection": "",
-    "undo": ""
+    "activities": "アクティビティ",
+    "allElements": "すべての要素",
+    "artifacts": "アーティファクト",
+    "customIcon": "カスタムアイコン",
+    "details": "インスクリプション",
+    "events": "イベント",
+    "extensions": "拡張子",
+    "gateways": "ゲートウェイ",
+    "grid": "グリッド",
+    "marquee": "'マーキーツール ({{hotkey}})'",
+    "openDataClass": "データクラスを開く ({{hotkey}})",
+    "openFormEditor": "フォームエディターを開く ({{hotkey}})",
+    "redo": "やり直す",
+    "selection": "選択ツール",
+    "undo": "元に戻す"
   },
   "viewport": {
-    "center": "",
-    "fitToScreen": "",
-    "origin": ""
+    "center": "センター ({{hotkey}})",
+    "fitToScreen": "画面に合わせて表示する ({{hotkey}})",
+    "origin": "元の画面 ({{hotkey}})"
   }
 }
