@@ -1,4 +1,4 @@
-import { PaletteButton, PaletteButtonLabel } from '@axonivy/ui-components';
+import { Button, PaletteButton, PaletteButtonLabel } from '@axonivy/ui-components';
 import React from 'react';
 import { type ToolBarButton as ToolBarButtonType } from '../button';
 
@@ -9,23 +9,22 @@ interface ToolBarButtonProps {
 }
 
 export const ToolBarButton: React.FC<ToolBarButtonProps> = ({ button, isActive, onClick }) => {
-  const paletteButton = (
-    <PaletteButton
-      id={button.id}
-      toggle={isActive}
-      icon={button.icon}
-      label={button.title}
-      onClick={onClick}
-      withoutChevron={!button.showTitle}
-      style={{ fontSize: '16px' }}
-    />
-  );
-
-  return button.showTitle ? (
+  if (!button.showTitle) {
+    return (
+      <Button
+        id={button.id}
+        toggle={isActive}
+        icon={button.icon}
+        size='large'
+        title={button.title}
+        aria-label={button.title}
+        onClick={onClick}
+      />
+    );
+  }
+  return (
     <PaletteButtonLabel key={button.id} label={button.title}>
-      {paletteButton}
+      <PaletteButton id={button.id} toggle={isActive} icon={button.icon} label={button.title} onClick={onClick} />
     </PaletteButtonLabel>
-  ) : (
-    paletteButton
   );
 };
