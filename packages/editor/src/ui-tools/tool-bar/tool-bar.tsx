@@ -114,6 +114,8 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
           {this.activeMenuAction && ShowToolBarMenuAction.is(this.activeMenuAction) && (
             <PopoverContent
               className={'tool-bar-menu'}
+              sideOffset={8}
+              collisionPadding={4}
               ref={ref => ref?.parentElement?.querySelector('input')?.focus()}
               onEscapeKeyDown={() => this.closeMenu()}
             >
@@ -128,7 +130,7 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
           {this.activeMenuAction && ShowToolBarOptionsMenuAction.is(this.activeMenuAction) && (
             <PopoverContent
               className={'tool-bar-options-content'}
-              sideOffset={10}
+              sideOffset={12}
               collisionPadding={4}
               onEscapeKeyDown={() => this.closeMenu()}
             >
@@ -221,10 +223,10 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
   }
 
   changeActiveButton(evt?: ToolBarButtonClickEvent): void {
-    this.lastButtonClickEvent = evt;
     if (this.lastButtonClickEvent === undefined || this.lastButtonClickEvent?.reference !== evt?.reference) {
       this.closeMenu();
     }
+    this.lastButtonClickEvent = evt;
     this.update();
   }
 
