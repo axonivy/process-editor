@@ -3,7 +3,13 @@ import { TYPES } from '@eclipse-glsp/client';
 import type { Container } from 'inversify';
 import { beforeAll, describe, test } from 'vitest';
 import type { IvyViewerOptions } from '../../options';
-import { assertQuickAction, assertQuickActionUi, createContainer, createRoot } from '../../test-utils/quick-action-ui.test-util';
+import {
+  assertQuickAction,
+  assertQuickActionUi,
+  createContainer,
+  createRoot,
+  renderQuickActionUi
+} from '../../test-utils/quick-action-ui.test-util';
 import ivyQuickActionModule, { configureQuickActionProviders } from './di.config';
 import { QuickActionUI } from './quick-action-ui';
 
@@ -22,36 +28,6 @@ function createContainerReadonly(options?: Partial<IvyViewerOptions>): Container
   return container;
 }
 
-describe('QuickActionUi - Readonly', () => {
-  let quickActionUi: QuickActionUI;
-  let root: GModelRoot;
-
-  beforeAll(() => {
-    const container = createContainerReadonly();
-    quickActionUi = container.get<QuickActionUI>(QuickActionUIReadonly);
-    root = createRoot(container);
-  });
-
-  test('activity', () => {
-    quickActionUi.show(root, 'foo');
-    assertQuickActionUi(1);
-    assertQuickAction(0, 'Information (I)');
-  });
-
-  test('embedded activity', () => {
-    quickActionUi.show(root, 'sub');
-    assertQuickActionUi(2, { x: 400, y: 150 });
-    assertQuickAction(0, 'Information (I)');
-    assertQuickAction(1, 'Jump (J)');
-  });
-
-  test('edge', () => {
-    quickActionUi.show(root, 'edge');
-    assertQuickActionUi(1);
-    assertQuickAction(0, 'Information (I)');
-  });
-});
-
 describe('QuickActionUi - Readonly (hide sensitive infos)', () => {
   let quickActionUi: QuickActionUI;
   let root: GModelRoot;
@@ -62,14 +38,44 @@ describe('QuickActionUi - Readonly (hide sensitive infos)', () => {
     root = createRoot(container);
   });
 
-  test('activity', () => {
-    quickActionUi.show(root, 'foo');
+  test('activity', async () => {
+    await renderQuickActionUi(quickActionUi, root, 'foo');
     assertQuickActionUi(1);
     assertQuickAction(0, 'Information (I)');
   });
 
-  test('edge', () => {
-    quickActionUi.show(root, 'edge');
+  test('edge', async () => {
+    await renderQuickActionUi(quickActionUi, root, 'edge');
     assertQuickActionUi(0);
+  });
+});
+
+describe('QuickActionUi - Readonly', () => {
+  let quickActionUi: QuickActionUI;
+  let root: GModelRoot;
+
+  beforeAll(() => {
+    const container = createContainerReadonly();
+    quickActionUi = container.get<QuickActionUI>(QuickActionUIReadonly);
+    root = createRoot(container);
+  });
+
+  test('activity', async () => {
+    await renderQuickActionUi(quickActionUi, root, 'foo');
+    assertQuickActionUi(1);
+    assertQuickAction(0, 'Information (I)');
+  });
+
+  test('embedded activity', async () => {
+    await renderQuickActionUi(quickActionUi, root, 'sub');
+    assertQuickActionUi(2);
+    assertQuickAction(0, 'Information (I)');
+    assertQuickAction(1, 'Jump (J)');
+  });
+
+  test('edge', async () => {
+    await renderQuickActionUi(quickActionUi, root, 'edge');
+    assertQuickActionUi(1);
+    assertQuickAction(0, 'Information (I)');
   });
 });

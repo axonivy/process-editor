@@ -1,0 +1,90 @@
+import { Flex, Popover, PopoverAnchor, PopoverContent } from '@axonivy/ui-components';
+import { Bounds, type IActionDispatcherProvider } from '@eclipse-glsp/client';
+import React from 'react';
+import type { QuickAction } from '../quick-action';
+import { ShowInfoQuickActionMenuAction, ShowQuickActionMenuAction } from '../quick-action-menu-ui';
+import { QuickActionGroup } from './QuickActionGroup';
+import { QuickActionMenu } from './QuickActionMenu';
+
+type QuickActionUIProps = {
+  quickActions: QuickAction[];
+  activeQuickAction?: string;
+  onQuickActionClick: (quickAction: QuickAction) => void;
+
+  selectionBounds: Promise<Bounds>;
+  drawSelectionBox: boolean;
+
+  showMenuAction?: ShowQuickActionMenuAction | ShowInfoQuickActionMenuAction;
+  actionDispatcher: IActionDispatcherProvider;
+  closeMenu: () => void;
+  closeUi: () => void;
+};
+
+export const QuickActionUI: React.FC<QuickActionUIProps> = ({
+  quickActions,
+  activeQuickAction,
+  onQuickActionClick,
+  selectionBounds,
+  drawSelectionBox,
+  showMenuAction,
+  actionDispatcher,
+  closeMenu,
+  closeUi
+}) => {
+  // we do not use the React.use() hook as this does not work well with the testing library
+  const [bounds, setBounds] = React.useState(Bounds.EMPTY); // start off with invalid bounds
+  React.useEffect(() => void selectionBounds.then(bounds => setBounds(bounds)), [selectionBounds]);
+
+  if (quickActions.length === 0) {
+    return null;
+  }
+
+  return (
+    <Popover open={Bounds.isValid(bounds)}>
+      {drawSelectionBox && (
+        <div
+          className='quick-action-selection-box'
+          style={{
+            top: `${bounds.y}px`,
+            left: `${bounds.x}px`,
+            height: `${bounds.height}px`,
+            width: `${bounds.width}px`
+          }}
+        />
+      )}
+      <PopoverAnchor virtualRef={{ current: { getBoundingClientRect: () => DOMRect.fromRect(bounds) } }} />
+      <PopoverContent
+        className={'quick-action-ui ui-popover-content actions-' + quickActions.length}
+        side='bottom'
+        align='center'
+        sideOffset={10}
+        onOpenAutoFocus={e => e.preventDefault()}
+        onEscapeKeyDown={closeMenu}
+      >
+        <Flex direction='column' alignItems='center'>
+          <Flex className='quick-actions-bar' gap={4}>
+            <QuickActionGroup
+              quickActions={quickActions}
+              location='Left'
+              activeQuickAction={activeQuickAction}
+              onQuickActionClick={onQuickActionClick}
+            />
+            <QuickActionGroup
+              quickActions={quickActions}
+              location='Middle'
+              activeQuickAction={activeQuickAction}
+              onQuickActionClick={onQuickActionClick}
+            />
+            <QuickActionGroup
+              quickActions={quickActions}
+              location='Right'
+              activeQuickAction={activeQuickAction}
+              onQuickActionClick={onQuickActionClick}
+            />
+          </Flex>
+          {showMenuAction && <QuickActionMenu showMenuAction={showMenuAction} actionDispatcher={actionDispatcher} closeUi={closeUi} />}
+        </Flex>
+      </PopoverContent>
+    </Popover>
+  );
+};

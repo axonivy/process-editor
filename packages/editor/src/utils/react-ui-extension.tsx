@@ -26,6 +26,11 @@ export abstract class ReactUIExtension extends GLSPAbstractUIExtension {
     this.update();
   }
 
+  protected setContainerVisible(visible: boolean): void {
+    super.setContainerVisible(visible);
+    this.update();
+  }
+
   protected update(): void {
     const root = this.currentRoot ?? this.editorContext.modelRoot;
     const contextElementIds = this.currentContextElementIds ?? [];
