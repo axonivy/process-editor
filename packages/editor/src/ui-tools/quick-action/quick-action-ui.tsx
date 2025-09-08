@@ -3,8 +3,6 @@ import {
   Bounds,
   type BoundsAware,
   CursorCSS,
-  DOMHelper,
-  Deferred,
   GEdge,
   GLabel,
   GModelElement,
@@ -19,8 +17,7 @@ import {
   SelectionService,
   SetUIExtensionVisibilityAction,
   TYPES,
-  type ViewerOptions,
-  getAbsoluteClientBounds,
+  getAbsoluteBounds,
   isNotUndefined
 } from '@eclipse-glsp/client';
 import { inject, injectable, multiInject, postConstruct } from 'inversify';
@@ -28,6 +25,7 @@ import React from 'react';
 
 import { Edge, EdgeLabel } from '../../diagram/model';
 import { IVY_TYPES } from '../../types';
+import { getAbsoluteEdgeBounds } from '../../utils/diagram-utils';
 import { ReactUIExtension } from '../../utils/react-ui-extension';
 import { QuickActionUI as QuickActionUIComponent } from './components/QuickActionUI';
 import { isQuickActionAware } from './model';
@@ -39,8 +37,6 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
   static readonly ID = 'quickActionsUi';
 
   @inject(TYPES.IActionDispatcherProvider) public actionDispatcherProvider: IActionDispatcherProvider;
-  @inject(TYPES.DOMHelper) protected domHelper: DOMHelper;
-  @inject(TYPES.ViewerOptions) protected viewerOptions: ViewerOptions;
   @inject(SelectionService) protected selectionService: SelectionService;
   @multiInject(IVY_TYPES.QuickActionProvider) protected quickActionProviders: QuickActionProvider[];
 
@@ -162,28 +158,27 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
 
     this.activeQuickActions = elements.length > 1 ? this.loadMultiQuickActions(elements) : this.loadSingleQuickActions(elements[0]);
 
-    // for some reason the bounds are slightly off when this UI is rendered so we need to do one more animation frame
-    const boundsPromise = new Deferred<Bounds>();
-    requestAnimationFrame(() => {
-      const bounds = elements
-        .filter(element => !(element instanceof EdgeLabel))
-        .map(element => getAbsoluteClientBounds(element, this.domHelper, this.viewerOptions))
-        .filter(Bounds.isValid)
-        .reduce(Bounds.combine, Bounds.EMPTY);
-      boundsPromise.resolve(bounds);
-    });
+    let bounds = elements
+      .filter(element => !(element instanceof EdgeLabel))
+      .map(element => getAbsoluteBounds(element))
+      .filter(Bounds.isValid)
+      .reduce(Bounds.combine, Bounds.EMPTY);
+    if (elements.length === 1 && elements[0] instanceof GEdge && isQuickActionAware(elements[0])) {
+      bounds = getAbsoluteEdgeBounds(elements[0]);
+    }
 
     return (
       <QuickActionUIComponent
         quickActions={this.activeQuickActions}
         activeQuickAction={this.activeQuickAction}
         onQuickActionClick={this.handleQuickActionClick}
-        selectionBounds={boundsPromise.promise}
+        bounds={bounds}
         drawSelectionBox={elements.length > 1}
         showMenuAction={this.activeMenuAction}
         actionDispatcher={this.actionDispatcherProvider}
         closeMenu={() => this.closeMenu()}
         closeUi={() => this.updateUI()}
+        container={this.containerElement}
       />
     );
   }

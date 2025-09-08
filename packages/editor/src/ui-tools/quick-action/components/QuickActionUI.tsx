@@ -11,55 +11,57 @@ type QuickActionUIProps = {
   activeQuickAction?: string;
   onQuickActionClick: (quickAction: QuickAction) => void;
 
-  selectionBounds: Promise<Bounds>;
+  bounds: Bounds;
   drawSelectionBox: boolean;
 
   showMenuAction?: ShowQuickActionMenuAction | ShowInfoQuickActionMenuAction;
   actionDispatcher: IActionDispatcherProvider;
   closeMenu: () => void;
   closeUi: () => void;
+
+  container?: HTMLElement | null;
 };
 
 export const QuickActionUI: React.FC<QuickActionUIProps> = ({
   quickActions,
   activeQuickAction,
   onQuickActionClick,
-  selectionBounds,
+  bounds,
   drawSelectionBox,
   showMenuAction,
   actionDispatcher,
   closeMenu,
-  closeUi
+  closeUi,
+  container
 }) => {
-  // we do not use the React.use() hook as this does not work well with the testing library
-  const [bounds, setBounds] = React.useState(Bounds.EMPTY); // start off with invalid bounds
-  React.useEffect(() => void selectionBounds.then(bounds => setBounds(bounds)), [selectionBounds]);
-
   if (quickActions.length === 0) {
     return null;
   }
 
   return (
     <Popover open={Bounds.isValid(bounds)}>
-      {drawSelectionBox && (
+      <PopoverAnchor asChild>
         <div
           className='quick-action-selection-box'
           style={{
             top: `${bounds.y}px`,
             left: `${bounds.x}px`,
             height: `${bounds.height}px`,
-            width: `${bounds.width}px`
+            width: `${bounds.width}px`,
+            visibility: drawSelectionBox ? 'visible' : 'hidden'
           }}
         />
-      )}
-      <PopoverAnchor virtualRef={{ current: { getBoundingClientRect: () => DOMRect.fromRect(bounds) } }} />
+      </PopoverAnchor>
       <PopoverContent
         className={'quick-action-ui ui-popover-content actions-' + quickActions.length}
         side='bottom'
         align='center'
         sideOffset={10}
+        collisionPadding={8}
         onOpenAutoFocus={e => e.preventDefault()}
         onEscapeKeyDown={closeMenu}
+        container={container}
+        collisionBoundary={container}
       >
         <Flex direction='column' alignItems='center'>
           <Flex className='quick-actions-bar' gap={4}>
