@@ -86,34 +86,14 @@
 .edit-color {
   padding-top: 0.5rem;
 }
-.edit-color .edit-color-body {
-  display: flex;
-  gap: 1rem;
-  padding: 0.5rem 0;
-}
 .edit-color .edit-color-input {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  flex: 1 1 50%;
 }
 .edit-color .edit-color-input label {
-  font-size: 10px;
   color: var(--glsp-bar-menu-label);
 }
-.edit-color .edit-color-input input {
-  height: 28px;
-  border: none;
-  background-color: var(--glsp-editor-background);
-  color: var(--glsp-editor-foreground);
-  border-radius: 4px;
-  width: calc(100% - 1rem);
-  padding-inline: 0.5rem;
-}
-.edit-color .edit-color-input input:focus {
-  outline: 1px solid var(--glsp-editor-selected);
-}
 .edit-color .edit-color-input input:invalid {
-  outline: 1px solid var(--glsp-error-foreground);
+  --input-border: 1px solid var(--glsp-error-foreground);
 }
 .edit-color .color-picker {
   position: relative;
@@ -124,41 +104,17 @@
   border-radius: 1rem;
   background-color: var(--glsp-foreground);
   position: absolute;
-  top: 6px;
-  left: 8px;
+  top: var(--input-padding, 10px);
+  left: var(--input-padding, 10px);
   cursor: pointer;
 }
 .edit-color .edit-color-input input[type='color'] {
   position: absolute;
   visibility: hidden;
-  height: 28px;
 }
 .edit-color .color-picker input {
   padding-left: 2rem;
-  width: calc(100% - 2.5rem);
-}
-.edit-color .edit-color-footer {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: end;
-  padding: 0.5rem 0;
-}
-.edit-color .edit-color-footer button {
-  height: 28px;
-  width: 60px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-}
-.edit-color .edit-color-footer .edit-color-save {
-  background-color: var(--glsp-editor-selected);
-  color: white;
-  border: none;
-}
-.edit-color .edit-color-footer .edit-color-delete {
-  background-color: transparent;
-  color: var(--glsp-bar-menu-item);
-  border: 1px solid var(--glsp-bar-menu-item);
+  width: calc(100% - var(--input-padding, 10px) - 2rem - 2px);
 }
 
 .ui-palette-color-item :where(.color-icon, .empty-icon, .new-color-icon) {

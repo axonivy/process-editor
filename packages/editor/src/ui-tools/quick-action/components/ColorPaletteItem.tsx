@@ -107,7 +107,7 @@ export const ColorPaletteItem: React.FC<ColorPaletteItemProps> = ({
           {canEdit ? (
             <>
               <IvyIcon icon={IvyIcons.Edit} />
-              <span title={t('label.colorEdit')} style={{ fontSize: '10px', height: '10px' }}>
+              <span title={t('label.colorEdit')} style={{ fontSize: '10px', height: '12px' }}>
                 {name}
               </span>
             </>

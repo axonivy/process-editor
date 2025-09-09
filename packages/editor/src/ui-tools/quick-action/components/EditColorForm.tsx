@@ -1,5 +1,5 @@
 import { ChangeColorOperation } from '@axonivy/process-editor-protocol';
-import { Button, Label } from '@axonivy/ui-components';
+import { BasicInput, Button, Field, Flex, Label } from '@axonivy/ui-components';
 import { type IActionDispatcherProvider, type PaletteItem } from '@eclipse-glsp/client';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -49,21 +49,20 @@ export const EditColorForm: React.FC<EditColorFormProps> = ({ actionDispatcher, 
   };
 
   return (
-    <div className='edit-color'>
-      <div className='edit-color-body'>
-        <div className='edit-color-input'>
+    <Flex className='edit-color' gap={2} direction='column'>
+      <Flex className='edit-color-body' gap={2} direction='row'>
+        <Field className='edit-color-input'>
           <Label htmlFor='color-name-input'>{t('common.label.name')}</Label>
-          <input
+          <BasicInput
             id='color-name-input'
             ref={nameInputRef}
             value={colorName}
             onChange={e => setColorName(e.target.value)}
-            placeholder={t('common.label.name')}
             required={true}
           />
-        </div>
+        </Field>
 
-        <div className='edit-color-input'>
+        <Field className='edit-color-input'>
           <Label htmlFor='color-input'>{t('common.label.color')}</Label>
           <div className='color-picker'>
             <span
@@ -72,7 +71,7 @@ export const EditColorForm: React.FC<EditColorFormProps> = ({ actionDispatcher, 
               onClick={() => document.getElementById('color-picker-input')?.click()}
             />
             <input id='color-picker-input' type='color' value={color} onChange={e => setColor(e.target.value)} />
-            <input
+            <BasicInput
               id='color-input'
               ref={colorInputRef}
               value={color}
@@ -81,19 +80,19 @@ export const EditColorForm: React.FC<EditColorFormProps> = ({ actionDispatcher, 
               required={true}
             />
           </div>
-        </div>
-      </div>
+        </Field>
+      </Flex>
 
-      <footer className='edit-color-footer'>
+      <Flex className='edit-color-footer' justifyContent='flex-end' gap={2}>
         {!isNewColorPaletteItem(item) && (
-          <Button onClick={handleDelete} className='edit-color-delete'>
+          <Button onClick={handleDelete} className='edit-color-delete' variant='outline'>
             {t('common.label.delete')}
           </Button>
         )}
-        <Button onClick={handleSave} className='edit-color-save' disabled={!isValid()}>
+        <Button onClick={handleSave} className='edit-color-save' disabled={!isValid()} variant='primary'>
           {t('common.label.save')}
         </Button>
-      </footer>
-    </div>
+      </Flex>
+    </Flex>
   );
 };
