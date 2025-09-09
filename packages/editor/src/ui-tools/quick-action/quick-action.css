@@ -1,10 +1,16 @@
+.quick-actions-container {
+  visibility: hidden;
+  height: 100%;
+  width: 100%;
+}
 .quick-action-ui.ui-popover-content {
+  visibility: visible;
   padding: 0;
   background-color: transparent;
   box-shadow: none;
 }
 .quick-action-selection-box {
-  position: fixed;
+  position: absolute;
   --selection-padding: 6px;
   padding: calc(var(--selection-padding));
   margin-left: calc(-1 * var(--selection-padding));
