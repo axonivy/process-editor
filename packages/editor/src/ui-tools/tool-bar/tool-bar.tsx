@@ -45,16 +45,16 @@ export type ToolBarButtonClickEvent = {
 export class ToolBar extends ReactUIExtension implements IActionHandler, IEditModeListener, ISelectionListener {
   static readonly ID = 'ivy-tool-bar';
 
-  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
-  @inject(SelectionService) protected readonly selectionService: SelectionService;
-  @multiInject(IVY_TYPES.ToolBarButtonProvider) protected toolBarButtonProvider: ToolBarButtonProvider[];
+  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
+  @inject(SelectionService) protected readonly selectionService!: SelectionService;
+  @multiInject(IVY_TYPES.ToolBarButtonProvider) protected toolBarButtonProvider!: ToolBarButtonProvider[];
 
   protected lastButtonClickEvent?: ToolBarButtonClickEvent;
   protected activeMenuAction?: ShowToolBarMenuAction | ShowToolBarOptionsMenuAction;
   protected loadedPaletteItems?: PaletteItem[];
 
   protected toDisposeOnDisable = new DisposableCollection();
-  protected toDisposeOnHide = new DisposableCollection();
+  protected override toDisposeOnHide = new DisposableCollection();
 
   id(): string {
     return ToolBar.ID;
@@ -70,17 +70,17 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
     return ToolBar.ID;
   }
 
-  protected initializeContents(containerElement: HTMLElement) {
+  protected override initializeContents(containerElement: HTMLElement) {
     super.initializeContents(containerElement);
     containerElement.onwheel = ev => (ev.ctrlKey ? ev.preventDefault() : true);
   }
 
-  protected onBeforeShow(containerElement: HTMLElement, root: Readonly<GModelRoot>, ...contextElementIds: string[]): void {
+  protected override onBeforeShow(containerElement: HTMLElement, root: Readonly<GModelRoot>, ...contextElementIds: string[]): void {
     super.onBeforeShow(containerElement, root, ...contextElementIds);
     this.toDisposeOnHide.push(this.selectionService.onSelectionChanged(() => this.selectionChanged()));
   }
 
-  hide() {
+  override hide() {
     super.hide();
     this.toDisposeOnHide.dispose();
   }
@@ -251,7 +251,7 @@ export class ToolBarFocusMouseListener extends MouseListener {
     super();
   }
 
-  mouseDown(): Action[] {
+  override mouseDown(): Action[] {
     this.toolBar.changeActiveButton();
     return [];
   }

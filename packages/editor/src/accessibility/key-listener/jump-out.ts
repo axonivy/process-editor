@@ -6,10 +6,10 @@ import { QuickActionUI } from '../../ui-tools/quick-action/quick-action-ui';
 
 @injectable()
 export class JumpOutKeyListener extends KeyListener {
-  @inject(SelectionService) protected selectionService: SelectionService;
-  @inject(QuickActionUI) protected quickActionUi: QuickActionUI;
+  @inject(SelectionService) protected selectionService!: SelectionService;
+  @inject(QuickActionUI) protected quickActionUi!: QuickActionUI;
 
-  keyDown(element: GModelElement, event: KeyboardEvent): Action[] {
+  override keyDown(element: GModelElement, event: KeyboardEvent): Action[] {
     if (matchesKeystroke(event, 'KeyJ') && this.isJumpOutActive()) {
       return [JumpAction.create({ elementId: '' })];
     } else {

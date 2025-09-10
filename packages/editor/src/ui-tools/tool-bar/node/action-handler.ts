@@ -13,10 +13,10 @@ import { ToolBar } from '../tool-bar';
 
 @injectable()
 export class ElementsPaletteHandler implements IActionHandler {
-  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
+  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
 
   protected paletteItems: Array<PaletteItem> = [];
-  protected extensionItems: Promise<Array<PaletteItem>>;
+  protected extensionItems?: Promise<Array<PaletteItem>>;
 
   getPaletteItems(): PaletteItem[] {
     return this.paletteItems;

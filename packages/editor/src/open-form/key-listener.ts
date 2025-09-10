@@ -4,7 +4,7 @@ import { KeyListener } from '@eclipse-glsp/client';
 import { matchesKeystroke } from 'sprotty/lib/utils/keyboard';
 
 export class OpenDataClassKeyListener extends KeyListener {
-  keyDown(element: GModelElement, event: KeyboardEvent): Action[] {
+  override keyDown(element: GModelElement, event: KeyboardEvent): Action[] {
     if (matchesKeystroke(event, 'KeyF')) {
       return [OpenFormEditorAction.create()];
     }

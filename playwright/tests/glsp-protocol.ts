@@ -184,7 +184,7 @@ export class GlspProtocol {
     let elementId = '';
     this.client.onNotification(data => {
       if (this.isSelectAction(data.params)) {
-        elementId = data.params.action.selectedElementsIDs[0];
+        elementId = data.params.action.selectedElementsIDs[0]!;
       }
     });
     await this.sendAction({ kind: 'createNode', isOperation: true, elementTypeId: type, location, containerId: processId });
@@ -196,7 +196,7 @@ export class GlspProtocol {
     let elementId = '';
     this.client.onNotification(data => {
       if (this.isSelectAction(data.params)) {
-        elementId = data.params.action.selectedElementsIDs[0];
+        elementId = data.params.action.selectedElementsIDs[0]!;
       }
     });
     await this.sendAction({ kind: 'attachBoundary', isOperation: true, elementId: targetElementId, eventKind });

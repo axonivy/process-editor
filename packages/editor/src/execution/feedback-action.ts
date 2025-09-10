@@ -112,7 +112,7 @@ export class StoppedFeedbackCommand extends Command {
   static readonly KIND = 'stoppedFeedbackCommand';
   static readonly STOPPED_CSS_CLASS = 'stopped';
 
-  protected stoppedElement: GChildElement;
+  protected stoppedElement?: GChildElement;
 
   constructor(@inject(TYPES.Action) protected readonly action: StoppedFeedbackAction) {
     super();
@@ -132,12 +132,16 @@ export class StoppedFeedbackCommand extends Command {
   }
 
   undo(context: CommandExecutionContext): GModelRoot {
-    removeCssClasses(this.stoppedElement, StoppedFeedbackCommand.STOPPED_CSS_CLASS);
+    if (this.stoppedElement) {
+      removeCssClasses(this.stoppedElement, StoppedFeedbackCommand.STOPPED_CSS_CLASS);
+    }
     return context.root;
   }
 
   redo(context: CommandExecutionContext): GModelRoot {
-    addCssClasses(this.stoppedElement, StoppedFeedbackCommand.STOPPED_CSS_CLASS);
+    if (this.stoppedElement) {
+      addCssClasses(this.stoppedElement, StoppedFeedbackCommand.STOPPED_CSS_CLASS);
+    }
     return context.root;
   }
 }

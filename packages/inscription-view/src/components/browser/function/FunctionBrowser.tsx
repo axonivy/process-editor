@@ -63,9 +63,9 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
         functions: returnType.functions.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }))
       }));
 
-    return tree.map((entry, index) => ({
+    return tree.map<Function>((entry, index) => ({
       ...entry,
-      returnType: sortedReturnTypes[index]
+      returnType: sortedReturnTypes[index] ?? entry.returnType
     }));
   }, [tree]);
 
@@ -133,12 +133,12 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
   });
 
   useEffect(() => {
-    if (Object.keys(rowSelection).length !== 1) {
+    const selectedRow = table.getSelectedRowModel().flatRows[0];
+    if (selectedRow === undefined) {
       setShowHelper(false);
       onChange({ cursorValue: '' });
       return;
     }
-    const selectedRow = table.getRowModel().rowsById[Object.keys(rowSelection)[0]];
     //setup correct functionName for the accept-method
     const parentNames = getParentNames(selectedRow);
     const selectedName = parentNames.reverse().join('.');
@@ -177,6 +177,9 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
           {rows.some(row => row.depth === 1 && row.getIsExpanded())
             ? virtualizer.getVirtualItems().map(virtualRow => {
                 const row = rows[virtualRow.index];
+                if (row === undefined) {
+                  return null;
+                }
                 return <BrowserTableRow key={row.id} row={row} onDoubleClick={onDoubleClick} />;
               })
             : table.getRowModel().rows.map(row => <BrowserTableRow key={row.id} row={row} onDoubleClick={onDoubleClick} />)}

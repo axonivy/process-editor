@@ -59,7 +59,7 @@ export function useTaskDataContext(): TaskDataContext & {
     update =>
       setConfig(
         produce(draft => {
-          if (taskNumber !== undefined) {
+          if (taskNumber !== undefined && draft.tasks[taskNumber]) {
             draft.tasks[taskNumber] = update(draft.tasks[taskNumber]);
           } else {
             draft.task = update(draft.task);
@@ -69,8 +69,17 @@ export function useTaskDataContext(): TaskDataContext & {
     [setConfig, taskNumber]
   );
 
-  const task = taskNumber !== undefined ? config.tasks[taskNumber] : config.task;
-  const defaultTask = taskNumber !== undefined ? defaultConfig.tasks[taskNumber] : defaultConfig.task;
-  const initTask = taskNumber !== undefined ? initConfig.tasks[taskNumber] : initConfig.task;
+  let task = config.task;
+  if (taskNumber !== undefined && config.tasks[taskNumber]) {
+    task = config.tasks[taskNumber];
+  }
+  let defaultTask = defaultConfig.task;
+  if (taskNumber !== undefined && defaultConfig.tasks[taskNumber]) {
+    defaultTask = defaultConfig.tasks[taskNumber];
+  }
+  let initTask = initConfig.task;
+  if (taskNumber !== undefined && initConfig.tasks[taskNumber]) {
+    initTask = initConfig.tasks[taskNumber];
+  }
   return { task, defaultTask, initTask, setTask };
 }

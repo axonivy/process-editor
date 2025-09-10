@@ -35,7 +35,7 @@ describe('Combobox', () => {
       const items = screen.getAllByRole('option');
       expect(items).toHaveLength(expectedItems.length);
       items.forEach((item, index) => {
-        expect(item).toHaveTextContent(expectedItems[index]);
+        expect(item).toHaveTextContent(expectedItems[index]!);
       });
     } else {
       expect(menu).toBeEmptyDOMElement();

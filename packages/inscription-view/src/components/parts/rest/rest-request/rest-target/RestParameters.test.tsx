@@ -39,7 +39,7 @@ describe('RestParameters', () => {
     expect(SelectUtil.select({ index: 0 })).toBeDisabled();
     expect(screen.getAllByRole('textbox')[0]).toHaveValue('pathParam');
     expect(screen.getAllByRole('textbox')[0]).toBeDisabled();
-    await userEvent.click(screen.getAllByRole('textbox')[0]);
+    await userEvent.click(screen.getAllByRole('textbox')[0]!);
     expect(screen.queryAllByRole('button', { name: 'Remove row' })).toHaveLength(0);
   });
 });

@@ -7,7 +7,7 @@ import { BreakpointFeedbackAction } from './feedback-action';
 export class ShowBreakpointActionHandler implements IActionHandler {
   private oldBreakpoints: ElementBreakpoint[] = [];
 
-  @inject(TYPES.IFeedbackActionDispatcher) protected feedbackDispatcher: IFeedbackActionDispatcher;
+  @inject(TYPES.IFeedbackActionDispatcher) protected feedbackDispatcher!: IFeedbackActionDispatcher;
 
   handle(action: Action) {
     if (ShowBreakpointAction.is(action)) {

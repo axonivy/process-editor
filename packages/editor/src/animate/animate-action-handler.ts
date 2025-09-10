@@ -7,8 +7,8 @@ import { AnimateFeedbackAction } from './animate-feedback-action';
 export class AnimateActionHandler implements IActionHandler {
   private animateElementIDs: Set<string> = new Set();
 
-  @inject(TYPES.IFeedbackActionDispatcher) protected feedbackDispatcher: IFeedbackActionDispatcher;
-  @inject(TYPES.IActionDispatcher) protected actionDispatcher: IActionDispatcher;
+  @inject(TYPES.IFeedbackActionDispatcher) protected feedbackDispatcher!: IFeedbackActionDispatcher;
+  @inject(TYPES.IActionDispatcher) protected actionDispatcher!: IActionDispatcher;
 
   handle(action: Action) {
     if (AnimateAction.is(action)) {

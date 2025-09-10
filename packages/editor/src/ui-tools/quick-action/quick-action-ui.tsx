@@ -36,9 +36,9 @@ import { ShowInfoQuickActionMenuAction, ShowQuickActionMenuAction } from './quic
 export class QuickActionUI extends ReactUIExtension implements IActionHandler, ISelectionListener {
   static readonly ID = 'quickActionsUi';
 
-  @inject(TYPES.IActionDispatcherProvider) public actionDispatcherProvider: IActionDispatcherProvider;
-  @inject(SelectionService) protected selectionService: SelectionService;
-  @multiInject(IVY_TYPES.QuickActionProvider) protected quickActionProviders: QuickActionProvider[];
+  @inject(TYPES.IActionDispatcherProvider) public actionDispatcherProvider!: IActionDispatcherProvider;
+  @inject(SelectionService) protected selectionService!: SelectionService;
+  @multiInject(IVY_TYPES.QuickActionProvider) protected quickActionProviders!: QuickActionProvider[];
 
   private activeQuickActions: QuickAction[] = [];
   private activeQuickAction?: string;
@@ -61,7 +61,7 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
     return this.activeQuickActions;
   }
 
-  protected initializeContents(containerElement: HTMLElement): void {
+  protected override initializeContents(containerElement: HTMLElement): void {
     super.initializeContents(containerElement);
     containerElement.style.position = 'absolute';
     containerElement.onwheel = ev => (ev.ctrlKey ? ev.preventDefault() : true);
@@ -125,7 +125,7 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
     this.actionDispatcherProvider().then(actionDispatcher => actionDispatcher.dispatch(QuickActionUI.hide()));
   }
 
-  protected getQuickActionElements(root: Readonly<GModelRoot>, ...contextElementIds: string[]): GModelElement[] {
+  protected getQuickActionElements(root: Readonly<GModelRoot>, ...contextElementIds: string[]) {
     const elements = getElements(contextElementIds, root);
     const elementsWithoutEdges = elements.filter(e => !(e instanceof GRoutableElement) || !(e instanceof Edge));
     if (elementsWithoutEdges.length > 1) {
@@ -152,11 +152,13 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
       return null;
     }
     const elements = this.getQuickActionElements(root, ...contextElementIds);
-    if (elements.length === 0) {
+    if (elements.length > 1) {
+      this.activeQuickActions = this.loadMultiQuickActions(elements);
+    } else if (elements[0]) {
+      this.activeQuickActions = this.loadSingleQuickActions(elements[0]);
+    } else {
       return null;
     }
-
-    this.activeQuickActions = elements.length > 1 ? this.loadMultiQuickActions(elements) : this.loadSingleQuickActions(elements[0]);
 
     let bounds = elements
       .filter(element => !(element instanceof EdgeLabel))
@@ -183,7 +185,7 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
     );
   }
 
-  private handleQuickActionClick = (quickAction: QuickAction): void => {
+  private handleQuickActionClick = (quickAction: QuickAction) => {
     const actions = [quickAction.action];
     if (!quickAction.letQuickActionsOpen) {
       actions.push(QuickActionUI.hide());
@@ -202,25 +204,25 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
     }
   };
 
-  private closeMenu(): void {
+  private closeMenu() {
     this.activeMenuAction = undefined;
     this.update();
   }
 
-  private setActiveQuickAction(buttonId?: string): void {
+  private setActiveQuickAction(buttonId?: string) {
     this.activeQuickAction = buttonId;
     this.update();
   }
 
-  private loadSingleQuickActions(element: GModelElement): QuickAction[] {
+  private loadSingleQuickActions(element: GModelElement) {
     return this.filterQuickActions(this.quickActionProviders.map(provider => provider.singleQuickAction(element)));
   }
 
-  private loadMultiQuickActions(elements: GModelElement[]): QuickAction[] {
+  private loadMultiQuickActions(elements: GModelElement[]) {
     return this.filterQuickActions(this.quickActionProviders.map(provider => provider.multiQuickAction(elements)));
   }
 
-  private filterQuickActions(quickActions: (QuickAction | undefined)[]): QuickAction[] {
+  private filterQuickActions(quickActions: (QuickAction | undefined)[]) {
     return quickActions.filter(isNotUndefined).filter(quickAction => !this.isReadonly() || quickAction.readonlySupport);
   }
 
@@ -228,11 +230,11 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
     return this.editorContext.isReadonly;
   }
 
-  static show(contextElementsId?: string[]): SetUIExtensionVisibilityAction {
+  static show(contextElementsId?: string[]) {
     return SetUIExtensionVisibilityAction.create({ extensionId: QuickActionUI.ID, visible: true, contextElementsId });
   }
 
-  static hide(contextElementsId?: string[]): SetUIExtensionVisibilityAction {
+  static hide(contextElementsId?: string[]) {
     return SetUIExtensionVisibilityAction.create({ extensionId: QuickActionUI.ID, visible: false, contextElementsId });
   }
 }
@@ -248,13 +250,13 @@ export class QuickActionUiMouseListener extends MouseListener {
   }
 }
 
-function getElements(contextElementIds: string[], root: Readonly<GModelRoot>): GModelElement[] {
+function getElements(contextElementIds: string[], root: Readonly<GModelRoot>) {
   return contextElementIds
     .map(id => root.index.getById(id))
     .filter(isNotUndefined)
     .filter(e => !(e instanceof GLabel));
 }
 
-function getFirstQuickActionElement(elements: GModelElement[]): GModelElement & BoundsAware {
+function getFirstQuickActionElement(elements: GModelElement[]) {
   return elements.filter(isQuickActionAware)[0];
 }

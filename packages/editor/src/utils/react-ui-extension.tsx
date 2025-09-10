@@ -5,11 +5,11 @@ import { createRoot, type Root } from 'react-dom/client';
 
 @injectable()
 export abstract class ReactUIExtension extends GLSPAbstractUIExtension {
-  @inject(EditorContextService) protected editorContext: EditorContextService;
+  @inject(EditorContextService) protected editorContext!: EditorContextService;
 
-  protected nodeRoot: Root;
-  protected currentRoot: Readonly<GModelRoot>;
-  protected currentContextElementIds: string[];
+  protected nodeRoot?: Root;
+  protected currentRoot?: Readonly<GModelRoot>;
+  protected currentContextElementIds?: string[];
 
   protected initializeContents(containerElement: HTMLElement): void {
     this.nodeRoot = createRoot(containerElement);
@@ -19,14 +19,14 @@ export abstract class ReactUIExtension extends GLSPAbstractUIExtension {
 
   protected abstract render(root: Readonly<GModelRoot>, ...contextElementIds: string[]): React.ReactNode;
 
-  protected onBeforeShow(containerElement: HTMLElement, root: Readonly<GModelRoot>, ...contextElementIds: string[]): void {
+  protected override onBeforeShow(containerElement: HTMLElement, root: Readonly<GModelRoot>, ...contextElementIds: string[]): void {
     this.currentRoot = root;
     this.currentContextElementIds = contextElementIds;
     super.onBeforeShow(containerElement, root, ...contextElementIds);
     this.update();
   }
 
-  protected setContainerVisible(visible: boolean): void {
+  protected override setContainerVisible(visible: boolean): void {
     super.setContainerVisible(visible);
     this.update();
   }

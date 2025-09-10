@@ -10,7 +10,7 @@ import ivyExecutionModule from './di.config';
 import type { ExecutedFeedbackAction, StoppedFeedbackAction } from './feedback-action';
 
 class ModelInitializedConstraint extends ModelInitializationConstraint {
-  protected _isCompleted = true;
+  protected override _isCompleted = true;
 
   isInitializedAfter(): boolean {
     return true;
@@ -48,7 +48,7 @@ describe('ExecutionActionHandler', () => {
     function getAndAssertFeedbackAction(): ExecutedFeedbackAction {
       const feedbacks = feedbackDispatcher.getRegisteredFeedback();
       expect(feedbacks).to.have.lengthOf(1);
-      expect(feedbacks[0].kind).to.be.equals('executedFeedbackCommand');
+      expect(feedbacks[0]!.kind).to.be.equals('executedFeedbackCommand');
       return feedbacks[0] as ExecutedFeedbackAction;
     }
   });
@@ -68,7 +68,7 @@ describe('StoppedActionHandler', () => {
   test('register StoppedFeedbackAction', async () => {
     await actionDispatcher.dispatch(StoppedAction.create({ elementId: 'foo' }));
     const firstAction = getAndAssertFeedbackAction();
-    expect(firstAction.oldStoppedElement).toBeUndefined();
+    expect(firstAction.oldStoppedElement).toEqual('');
     expect(firstAction.stoppedElement).to.be.equals('foo');
 
     await actionDispatcher.dispatch(StoppedAction.create({ elementId: 'bar' }));
@@ -82,7 +82,7 @@ describe('StoppedActionHandler', () => {
     function getAndAssertFeedbackAction(): StoppedFeedbackAction {
       const feedbacks = feedbackDispatcher.getRegisteredFeedback();
       expect(feedbacks).to.have.lengthOf(1);
-      expect(feedbacks[0].kind).to.be.equals('stoppedFeedbackCommand');
+      expect(feedbacks[0]!.kind).to.be.equals('stoppedFeedbackCommand');
       return feedbacks[0] as StoppedFeedbackAction;
     }
   });

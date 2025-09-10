@@ -13,11 +13,11 @@ import { ExecutedFeedbackAction, StoppedFeedbackAction } from './feedback-action
 
 @injectable()
 export class SetExecutedElementsActionHandler implements IActionHandler {
-  @inject(TYPES.IFeedbackActionDispatcher) protected feedbackDispatcher: IFeedbackActionDispatcher;
-  @inject(TYPES.IActionDispatcher) protected actionDispatcher: IActionDispatcher;
-  @inject(ModelInitializationConstraint) protected modelInitializationConstraint: ModelInitializationConstraint;
+  @inject(TYPES.IFeedbackActionDispatcher) protected feedbackDispatcher!: IFeedbackActionDispatcher;
+  @inject(TYPES.IActionDispatcher) protected actionDispatcher!: IActionDispatcher;
+  @inject(ModelInitializationConstraint) protected modelInitializationConstraint!: ModelInitializationConstraint;
 
-  protected oldExecutions: ElementExecution[];
+  protected oldExecutions?: ElementExecution[];
 
   handle(action: Action) {
     if (SetExecutedElementsAction.is(action)) {
@@ -42,10 +42,10 @@ export class SetExecutedElementsActionHandler implements IActionHandler {
 
 @injectable()
 export class StoppedActionHandler implements IActionHandler {
-  @inject(TYPES.IFeedbackActionDispatcher) protected feedbackDispatcher: IFeedbackActionDispatcher;
-  @inject(TYPES.IActionDispatcher) protected actionDispatcher: IActionDispatcher;
+  @inject(TYPES.IFeedbackActionDispatcher) protected feedbackDispatcher!: IFeedbackActionDispatcher;
+  @inject(TYPES.IActionDispatcher) protected actionDispatcher!: IActionDispatcher;
 
-  protected oldStoppedElement: string;
+  protected oldStoppedElement = '';
 
   handle(action: Action) {
     if (StoppedAction.is(action)) {

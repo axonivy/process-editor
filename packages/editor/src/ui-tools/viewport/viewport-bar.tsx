@@ -26,9 +26,9 @@ import { QuickActionUI } from '../quick-action/quick-action-ui';
 export class ViewportBar extends ReactUIExtension implements IActionHandler {
   static readonly ID = 'ivy-viewport-bar';
 
-  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
-  @inject(TYPES.IToolManager) protected readonly toolManager: IToolManager;
-  @inject(SelectionService) protected selectionService: SelectionService;
+  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
+  @inject(TYPES.IToolManager) protected readonly toolManager!: IToolManager;
+  @inject(SelectionService) protected selectionService!: SelectionService;
 
   protected zoomLevel = '100%';
 
@@ -40,7 +40,7 @@ export class ViewportBar extends ReactUIExtension implements IActionHandler {
     return ViewportBar.ID;
   }
 
-  protected initializeContainer(container: HTMLElement): void {
+  protected override initializeContainer(container: HTMLElement): void {
     super.initializeContainer(container);
     container.onwheel = ev => (ev.ctrlKey ? ev.preventDefault() : true);
   }

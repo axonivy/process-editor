@@ -43,7 +43,7 @@ export function useRestRequestData(): ConfigDataContext<RestRequestData> & {
       produce((draft: RestRequestData) => {
         const [method, path] = value.split(':');
         draft.method = method as HttpMethod;
-        draft.target.path = path;
+        draft.target.path = path ?? '';
       })
     );
   };

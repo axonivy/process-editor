@@ -58,7 +58,7 @@ describe('Parameters', () => {
 
   test('update', () => {
     const expected = structuredClone(params);
-    expected[1].expression = 'test';
+    expected[1]!.expression = 'test';
     expect(Parameter.update(structuredClone(params), 1, 'expression', 'test')).toEqual(expected);
   });
 

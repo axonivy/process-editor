@@ -22,7 +22,7 @@ let stoppedRoot: GModelRoot;
 
 @injectable()
 class ExecutedFeedbackCommandMock extends ExecutedFeedbackCommand {
-  execute(context: CommandExecutionContext): GModelRoot {
+  override execute(context: CommandExecutionContext): GModelRoot {
     context.root = executedRoot;
     return super.execute(context);
   }
@@ -30,14 +30,14 @@ class ExecutedFeedbackCommandMock extends ExecutedFeedbackCommand {
 
 @injectable()
 class StoppedFeedbackCommandMock extends StoppedFeedbackCommand {
-  execute(context: CommandExecutionContext): GModelRoot {
+  override execute(context: CommandExecutionContext): GModelRoot {
     context.root = stoppedRoot;
     return super.execute(context);
   }
 }
 
 class Node extends GChildElement {
-  features = createFeatureSet([executionFeature]);
+  override features = createFeatureSet([executionFeature]);
 }
 
 function createContainer(): Container {

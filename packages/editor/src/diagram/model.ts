@@ -51,7 +51,7 @@ import type { WithCustomIcon } from './icon/model';
 import { ActivityTypes, EdgeTypes, LabelType, LaneTypes } from './view-types';
 
 export class LaneNode extends RectangularNode implements WithEditableLabel, ArgsAware, ResizableModelElement {
-  static readonly DEFAULT_FEATURES = [
+  static override readonly DEFAULT_FEATURES = [
     boundsFeature,
     layoutContainerFeature,
     fadeFeature,
@@ -63,7 +63,7 @@ export class LaneNode extends RectangularNode implements WithEditableLabel, Args
     resizeFeature
   ];
 
-  args: Args;
+  args?: Args;
   get resizeLocations(): ResizeHandleLocation[] {
     // ideally the server already sets these
     return [ResizeHandleLocation.Top, ResizeHandleLocation.Bottom];
@@ -103,7 +103,7 @@ export class LaneNode extends RectangularNode implements WithEditableLabel, Args
 }
 
 export class ActivityNode extends RectangularNode implements Nameable, WithEditableLabel, WithCustomIcon, ArgsAware, Executable {
-  static readonly DEFAULT_FEATURES = [
+  static override readonly DEFAULT_FEATURES = [
     connectableFeature,
     deletableFeature,
     selectFeature,
@@ -131,7 +131,7 @@ export class ActivityNode extends RectangularNode implements Nameable, WithEdita
   taskType?: string;
   reference?: string;
   executionCount?: number;
-  args: Args;
+  args?: Args;
 
   get editableLabel(): (GChildElement & EditableLabel) | undefined {
     return findEditableLabel(this, ActivityTypes.LABEL);
@@ -151,13 +151,13 @@ export class ActivityNode extends RectangularNode implements Nameable, WithEdita
 }
 
 export class CommentNode extends ActivityNode {
-  get labelBounds(): Bounds {
+  override get labelBounds(): Bounds {
     return { ...super.labelBounds, y: 0, height: this.bounds.height };
   }
 }
 
 export class EventNode extends CircularNode implements WithCustomIcon, ArgsAware, WithEditableLabel, Executable {
-  static readonly DEFAULT_FEATURES = [
+  static override readonly DEFAULT_FEATURES = [
     connectableFeature,
     deletableFeature,
     selectFeature,
@@ -176,7 +176,7 @@ export class EventNode extends CircularNode implements WithCustomIcon, ArgsAware
     wrapFeature
   ];
 
-  args: Args;
+  args?: Args;
   executionCount?: number;
 
   get customIcon(): string {
@@ -193,13 +193,13 @@ export class EventNode extends CircularNode implements WithCustomIcon, ArgsAware
 }
 
 export class EndEventNode extends EventNode {
-  canConnect(routable: GRoutableElement, role: string): boolean {
+  override canConnect(routable: GRoutableElement, role: string): boolean {
     return super.canConnect(routable, role) && role === 'target';
   }
 }
 
 export class StartEventNode extends EventNode {
-  canConnect(routable: GRoutableElement, role: string): boolean {
+  override canConnect(routable: GRoutableElement, role: string): boolean {
     return super.canConnect(routable, role) && (role === 'source' || this.typeOf(routable.sourceId) === ActivityTypes.COMMENT);
   }
 
@@ -212,7 +212,7 @@ export class StartEventNode extends EventNode {
 }
 
 export class GatewayNode extends DiamondNode implements WithCustomIcon, ArgsAware, WithEditableLabel, Executable {
-  static readonly DEFAULT_FEATURES = [
+  static override readonly DEFAULT_FEATURES = [
     connectableFeature,
     deletableFeature,
     selectFeature,
@@ -232,9 +232,9 @@ export class GatewayNode extends DiamondNode implements WithCustomIcon, ArgsAwar
     multipleOutgoingEdgesFeature
   ];
 
-  args: Args;
+  args?: Args;
   executionCount?: number;
-  size = {
+  override size = {
     width: 32,
     height: 32
   };
@@ -253,7 +253,7 @@ export class GatewayNode extends DiamondNode implements WithCustomIcon, ArgsAwar
 }
 
 export class Edge extends GEdge implements WithEditableLabel, Executable {
-  static readonly DEFAULT_FEATURES = [
+  static override readonly DEFAULT_FEATURES = [
     editFeature,
     reconnectFeature,
     deletableFeature,
@@ -272,7 +272,7 @@ export class Edge extends GEdge implements WithEditableLabel, Executable {
     return this.args?.color as string;
   }
 
-  get bounds(): Bounds {
+  override get bounds(): Bounds {
     // this should also work for splines, which have the convex hull property
     return this.routingPoints.reduce<Bounds>(
       (bounds, routingPoint) =>
@@ -298,7 +298,7 @@ export class Edge extends GEdge implements WithEditableLabel, Executable {
 }
 
 export class MulitlineEditLabel extends GLabel implements EditableLabel {
-  static readonly DEFAULT_FEATURES = [fadeFeature, editLabelFeature];
+  static override readonly DEFAULT_FEATURES = [fadeFeature, editLabelFeature];
   readonly isMultiLine = true;
 
   get editControlDimension(): Dimension {
@@ -343,32 +343,32 @@ export class MulitlineEditLabel extends GLabel implements EditableLabel {
 }
 
 export class EdgeLabel extends MulitlineEditLabel {
-  get labelBounds(): Bounds {
+  override get labelBounds(): Bounds {
     return { ...super.labelBounds, y: -super.labelBounds.height / 2 };
   }
 }
 
 export class RotateLabel extends MulitlineEditLabel {
-  get editControlDimension(): Dimension {
+  override get editControlDimension(): Dimension {
     return { width: Math.min(this.bounds.height + 25, 144), height: Math.max(this.bounds.width, 44) };
   }
 }
 
 export class ActivityLabel extends MulitlineEditLabel {
-  readonly isMultiLine = true;
+  override readonly isMultiLine = true;
 
-  get editControlDimension(): Dimension {
+  override get editControlDimension(): Dimension {
     if (isBoundsAware(this.parent)) {
       return { width: this.parent.bounds.width, height: this.parent.bounds.height };
     }
     return { width: this.bounds.width, height: this.bounds.height };
   }
 
-  get editControlPositionCorrection(): Point {
+  override get editControlPositionCorrection(): Point {
     return Point.ORIGIN;
   }
 
-  get labelBounds(): Bounds {
+  override get labelBounds(): Bounds {
     if (this.parent instanceof ActivityNode) {
       return this.parent.labelBounds;
     }

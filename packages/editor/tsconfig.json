@@ -1,9 +1,12 @@
 {
-  "extends": "../../configs/tsconfig.package.json",
+  "extends": "@axonivy/ts-config/package",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib",
-    "types": ["node", "reflect-metadata"]
+    "types": ["node", "reflect-metadata"],
+    "jsx": "react",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   "include": ["src", "src/translation/**/*.json"],
   "references": [{ "path": "../protocol/tsconfig.json" }]

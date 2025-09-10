@@ -43,12 +43,12 @@ const PROCESS_DATA_FORMAT = 'text/plain';
 
 @injectable()
 export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
-  @inject(TYPES.IActionDispatcher) protected actionDispatcher: IActionDispatcher;
-  @inject(TYPES.ViewerOptions) protected viewerOptions: ViewerOptions;
-  @inject(TYPES.IAsyncClipboardService) protected clipboardService: IAsyncClipboardService;
-  @inject(EditorContextService) protected editorContext: EditorContextService;
-  @inject(SelectionService) protected selectionService: SelectionService;
-  @inject(TYPES.SvgExporter) protected svgExporter: IvySvgExporter;
+  @inject(TYPES.IActionDispatcher) protected actionDispatcher!: IActionDispatcher;
+  @inject(TYPES.ViewerOptions) protected viewerOptions!: ViewerOptions;
+  @inject(TYPES.IAsyncClipboardService) protected clipboardService!: IAsyncClipboardService;
+  @inject(EditorContextService) protected editorContext!: EditorContextService;
+  @inject(SelectionService) protected selectionService!: SelectionService;
+  @inject(TYPES.SvgExporter) protected svgExporter!: IvySvgExporter;
 
   handleCopy(event: ClipboardEvent): void {
     if (event.clipboardData && this.shouldCopy()) {
@@ -85,11 +85,16 @@ export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
   }
 
   async setClipboardData(action: SetClipboardDataAction, clipboardId: string, selection: Array<GModelElement>) {
-    console.debug('Added data to clipboard: ', action.clipboardData[PROCESS_DATA_FORMAT]);
+    const clipboardData = action.clipboardData[PROCESS_DATA_FORMAT];
+    if (!clipboardData) {
+      console.debug('No process data to copy to clipboard.');
+      return;
+    }
+    console.debug('Added data to clipboard: ', clipboardData);
     this.clipboardService.put(action.clipboardData, clipboardId);
     if (navigator.clipboard?.write) {
       const clipboardItemData: Record<string, string | Blob | PromiseLike<string | Blob>> = {
-        'text/plain': action.clipboardData[PROCESS_DATA_FORMAT]
+        'text/plain': clipboardData
       };
       const response = await this.actionDispatcher.request(RequestExportSvgAction.create());
       if (response.svg) {
@@ -103,7 +108,7 @@ export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
       }
       navigator.clipboard.write([new ClipboardItem(clipboardItemData)]);
     } else if (navigator.clipboard) {
-      navigator.clipboard.writeText(action.clipboardData[PROCESS_DATA_FORMAT]);
+      navigator.clipboard.writeText(clipboardData);
     } else {
       this.actionDispatcher.dispatch(MessageAction.create(t('message.noNativeClipboardAccess'), { severity: 'INFO' }));
     }

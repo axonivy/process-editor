@@ -47,7 +47,7 @@ describe('StartCustomFieldTable', () => {
 
   test('table can add/remove rows by keyboard', async () => {
     const view = renderTable();
-    await userEvent.click(screen.getAllByRole('row')[2]);
+    await userEvent.click(screen.getAllByRole('row')[2]!);
     await TableUtil.assertAddRowWithKeyboard(view, 'number', '1');
     // data does not contain empty object
     expect(view.data()).toEqual([
@@ -58,8 +58,8 @@ describe('StartCustomFieldTable', () => {
 
   test('table can edit cells', async () => {
     const view = renderTable();
-    await userEvent.click(screen.getAllByRole('row')[1]);
-    const field1 = screen.getAllByRole('combobox')[0];
+    await userEvent.click(screen.getAllByRole('row')[1]!);
+    const field1 = screen.getAllByRole('combobox')[0]!;
     await userEvent.dblClick(field1);
     await userEvent.keyboard('Hello');
     await userEvent.tab();

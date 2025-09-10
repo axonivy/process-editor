@@ -17,8 +17,8 @@
 // from https://github.com/eclipse-theia/theia/blob/4d7f225e8c87c51152ed605b3f47460f0163a408/packages/core/src/common/promise-util.ts#L4
 export class Deferred<T = void> {
   state: 'resolved' | 'rejected' | 'unresolved' = 'unresolved';
-  resolve: (value: T | PromiseLike<T>) => void;
-  reject: (err?: unknown) => void;
+  resolve: (value: T | PromiseLike<T>) => void = () => {};
+  reject: (err?: unknown) => void = () => {};
 
   promise = new Promise<T>((resolve, reject) => {
     this.resolve = resolve;

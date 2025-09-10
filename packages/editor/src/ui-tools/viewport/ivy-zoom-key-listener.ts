@@ -15,7 +15,7 @@ import { QuickActionUI } from '../quick-action/quick-action-ui';
 
 @injectable()
 export class IvyZoomKeyListener extends ZoomKeyListener {
-  @inject(EditorContextService) protected editorContext: EditorContextService;
+  @inject(EditorContextService) protected editorContext!: EditorContextService;
 
   override keyDown(element: GModelElement, event: KeyboardEvent): Action[] {
     const actions = super.keyDown(element, event);

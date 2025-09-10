@@ -69,7 +69,7 @@ const ConfigurationPart = () => {
       return (
         <ScriptInput
           type={typeToUse}
-          value={config.userConfig[widget.configKey]}
+          value={config.userConfig[widget.configKey] ?? ''}
           aria-label={widget.configKey}
           onChange={change => updateUserConfig(widget.configKey, change)}
           browsers={['attr', 'func', 'type', 'cms']}

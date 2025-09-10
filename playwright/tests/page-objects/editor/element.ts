@@ -6,9 +6,9 @@ import type { Point } from './types';
 
 export class BaseElement {
   protected readonly page: Page;
-  protected element: Locator;
-  protected colorLocator: Locator;
-  protected labelLocator: Locator;
+  protected element!: Locator;
+  protected colorLocator!: Locator;
+  protected labelLocator!: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -118,8 +118,8 @@ export class Element extends BaseElement {
       throw new Error('Element has no transform');
     }
     const position = transform.substring(transform.indexOf('(') + 1, transform.indexOf(')'));
-    const x = parseInt(position.split(',')[0].trim(), 10);
-    const y = parseInt(position.split(',')[1].trim(), 10);
+    const x = parseInt(position.split(',')[0]!.trim(), 10);
+    const y = parseInt(position.split(',')[1]!.trim(), 10);
     return { x: x, y: y };
   }
 
@@ -153,7 +153,7 @@ export class Lane extends Element {
     this.labelLocator = this.element.locator('text tspan');
   }
 
-  async select() {
+  override async select() {
     await super.select({ x: 5, y: 100 });
   }
 
@@ -161,7 +161,7 @@ export class Lane extends Element {
     await expect(this.element.locator('.lane-resize-handle')).toHaveCount(handles);
   }
 
-  async expectColor(color?: string) {
+  override async expectColor(color?: string) {
     if (color) {
       await expect(this.colorLocator).toHaveAttribute('style', `--lane-color: ${color};`);
     } else {

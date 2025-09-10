@@ -77,7 +77,7 @@ describe('MappingPart', () => {
     const headers = screen.getAllByRole('columnheader');
     expect(headers).toHaveLength(expectedHeaders.length);
     headers.forEach((header, index) => {
-      expect(header).toHaveTextContent(expectedHeaders[index]);
+      expect(header).toHaveTextContent(expectedHeaders[index]!);
     });
   }
 
@@ -85,7 +85,7 @@ describe('MappingPart', () => {
     const rows = screen.getAllByRole('row');
     expect(rows).toHaveLength(expectedRows.length);
     rows.forEach((row, index) => {
-      expect(row).toHaveTextContent(expectedRows[index]);
+      expect(row).toHaveTextContent(expectedRows[index]!);
     });
   }
 

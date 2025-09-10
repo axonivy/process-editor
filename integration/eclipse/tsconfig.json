@@ -1,8 +1,10 @@
 {
-  "extends": "../../configs/tsconfig.integration.json",
+  "extends": "@axonivy/ts-config/integration",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "lib"
+    "outDir": "lib",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   "include": ["src"],
   "references": [

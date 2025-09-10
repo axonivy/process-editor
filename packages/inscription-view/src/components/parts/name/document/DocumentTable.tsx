@@ -30,7 +30,7 @@ const DocumentTable = ({ data, onChange }: { data: Document[]; onChange: (change
     [t]
   );
 
-  const { table, rowSelection, setRowSelection, removeRowAction, showAddButton } = useResizableEditableTable({
+  const { table, setRowSelection, selectedRowActions, showAddButton } = useResizableEditableTable({
     data,
     columns,
     onChange,
@@ -39,17 +39,13 @@ const DocumentTable = ({ data, onChange }: { data: Document[]; onChange: (change
 
   const action = useAction('openPage');
 
-  const tableActions =
-    table.getSelectedRowModel().rows.length > 0
-      ? [
-          {
-            label: t('label.openUrl'),
-            icon: IvyIcons.GoToSource,
-            action: () => action(table.getRowModel().rowsById[Object.keys(rowSelection)[0]].original.url)
-          },
-          removeRowAction
-        ]
-      : [];
+  const tableActions = selectedRowActions(row => [
+    {
+      label: t('label.openUrl'),
+      icon: IvyIcons.GoToSource,
+      action: () => action(row.original.url)
+    }
+  ]);
 
   return (
     <Collapsible label={t('part.general.meansAndDocuments')} controls={tableActions} defaultOpen={data !== undefined && data.length > 0}>

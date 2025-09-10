@@ -63,17 +63,15 @@ const MailAttachmentTable = () => {
     update('attachments', mappedData);
   };
 
-  const { table, removeRowAction, showAddButton } = useResizableEditableTable({
+  const { table, selectedRowActions, showAddButton } = useResizableEditableTable({
     data,
     columns,
     onChange,
     emptyDataObject: EMPTY_ATTACHMENT
   });
 
-  const tableActions = table.getSelectedRowModel().rows.length > 0 ? [removeRowAction] : [];
-
   return (
-    <ValidationCollapsible label={t('part.mail.attachments.title')} controls={tableActions} defaultOpen={true}>
+    <ValidationCollapsible label={t('part.mail.attachments.title')} controls={selectedRowActions()} defaultOpen={true}>
       <div>
         {table.getRowModel().rows.length > 0 && (
           <Table>

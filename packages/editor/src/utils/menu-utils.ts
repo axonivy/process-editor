@@ -18,9 +18,10 @@ export function paletteItemsToSections<ITEM extends PaletteItem = PaletteItem, C
   converter: (item: ITEM) => CONFIG
 ): PaletteSections<CONFIG> {
   return items.sort(sortPaletteItems).reduce((sections, item) => {
-    sections[item.label] ||= [];
+    const section = sections[item.label] ?? [];
     const children = item.children ?? [item];
-    children.sort(sortPaletteItems).forEach(child => sections[item.label].push(converter(child as ITEM)));
+    children.sort(sortPaletteItems).forEach(child => section.push(converter(child as ITEM)));
+    sections[item.label] = section;
     return sections;
   }, {} as PaletteSections<CONFIG>);
 }

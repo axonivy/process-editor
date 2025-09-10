@@ -30,7 +30,7 @@ export const TableFields = () => {
     });
     Object.keys(fields)
       .filter(field => !columnData.find(column => column.name === field))
-      .forEach(unknown => columnData.push({ name: unknown, expression: fields[unknown], type: '', ivyType: '' }));
+      .forEach(unknown => columnData.push({ name: unknown, expression: fields[unknown] ?? '', type: '', ivyType: '' }));
     setData(columnData);
   }, [columnMetas, config.query.sql.fields]);
 
@@ -77,7 +77,7 @@ export const TableFields = () => {
         const fields: Record<string, string> = {};
         data
           .map((row, index) => {
-            if (index === rowIndex) {
+            if (index === rowIndex && data[rowIndex]) {
               return {
                 ...data[rowIndex],
                 [columnId]: value

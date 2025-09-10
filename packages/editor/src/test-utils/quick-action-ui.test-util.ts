@@ -176,7 +176,7 @@ export function assertQuickAction(childIndex: number, title: string, icon?: stri
   expect(quickAction.title).to.be.equals(title);
   if (icon) {
     const iconElement = quickAction.children[0];
-    expect(iconElement.className).to.contains(`ivy ivy-${icon}`);
+    expect(iconElement?.className).to.contains(`ivy ivy-${icon}`);
   }
 }
 

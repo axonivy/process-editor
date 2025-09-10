@@ -6,7 +6,7 @@ import { ActivityNode } from '../diagram/model';
 export class IvyDecorationPlacer extends DecorationPlacer {
   protected static readonly DECORATOR_RADIUS: number = 6;
 
-  getPosition(element: GModelElement & Decoration): Point {
+  override getPosition(element: GModelElement & Decoration): Point {
     if (element instanceof GChildElement && isSizeable(element.parent)) {
       const xPos = -IvyDecorationPlacer.DECORATOR_RADIUS * 2;
       const yPos = element.parent.bounds.height - IvyDecorationPlacer.DECORATOR_RADIUS * 2;

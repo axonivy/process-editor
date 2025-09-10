@@ -12,7 +12,7 @@ import { EventNode } from '../model';
 export class EventNodeView extends CircularNodeView {
   @inject(CustomIconToggleActionHandler) @optional() protected customIconHandler?: CustomIconToggleActionHandler;
 
-  render(node: EventNode, context: RenderingContext): VNode {
+  override render(node: EventNode, context: RenderingContext): VNode {
     const radius = this.getRadius(node);
     return (
       <g>
@@ -42,7 +42,7 @@ export class EventNodeView extends CircularNodeView {
 
 @injectable()
 export class IntermediateEventNodeView extends EventNodeView {
-  protected getEventDecorator(radius: number): VNode {
+  protected override getEventDecorator(radius: number): VNode {
     return <circle class-sprotty-node class-sprotty-task-node r={radius - 3} cx={radius} cy={radius}></circle>;
   }
 }

@@ -20,8 +20,8 @@ import { ReactUIExtension } from '../utils/react-ui-extension';
 export class JumpOutUi extends ReactUIExtension implements IActionHandler {
   static readonly ID = 'ivy-jump-out-bar';
 
-  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
-  @inject(SelectionService) protected selectionService: SelectionService;
+  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
+  @inject(SelectionService) protected selectionService!: SelectionService;
 
   id(): string {
     return JumpOutUi.ID;
@@ -31,7 +31,7 @@ export class JumpOutUi extends ReactUIExtension implements IActionHandler {
     return 'jump-out-container';
   }
 
-  protected initializeContainer(container: HTMLElement): void {
+  protected override initializeContainer(container: HTMLElement): void {
     super.initializeContainer(container);
     container.style.position = 'absolute';
   }

@@ -43,7 +43,7 @@ describe('AnimateActionHandler', () => {
     function getAndAssertFeedbackAction(): AnimateFeedbackAction {
       const feedbacks = feedbackDispatcher.getRegisteredFeedback();
       expect(feedbacks).to.have.lengthOf(1);
-      expect(feedbacks[0].kind).to.be.equals('elementAnimateFeedback');
+      expect(feedbacks[0]!.kind).to.be.equals('elementAnimateFeedback');
       return feedbacks[0] as AnimateFeedbackAction;
     }
   });
