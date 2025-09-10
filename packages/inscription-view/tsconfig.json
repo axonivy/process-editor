@@ -1,12 +1,11 @@
 {
-  "extends": "../../configs/tsconfig.package.json",
+  "extends": "@axonivy/ts-config/package",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib",
     "paths": {
       "test-utils": ["./src/test-utils/test-utils"]
-    },
-    "jsx": "react-jsx"
+    }
   },
   "include": ["src"],
   "references": [{ "path": "../inscription-protocol/tsconfig.json" }]

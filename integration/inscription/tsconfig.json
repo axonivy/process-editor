@@ -1,5 +1,5 @@
 {
-  "extends": "../../configs/tsconfig.integration.json",
+  "extends": "@axonivy/ts-config/integration",
   "compilerOptions": {
     "types": ["vite/client", "node"],
     "jsx": "preserve",
@@ -8,7 +8,6 @@
     "outDir": "lib"
   },
   "include": ["src"],
-  "exclude": ["**/playwright.config.ts"],
   "references": [
     { "path": "../../packages/inscription-protocol/tsconfig.json" },
     { "path": "../../packages/inscription-core/tsconfig.json" },
