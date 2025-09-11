@@ -138,6 +138,7 @@ export const RestParameters = () => {
       ];
     }
   }
+  
   return (
     <PathCollapsible label={t('part.rest.parameters')} path='parameters' defaultOpen={data.length > 0} controls={tableActions}>
       <Table>

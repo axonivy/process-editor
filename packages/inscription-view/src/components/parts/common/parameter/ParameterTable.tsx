@@ -43,17 +43,15 @@ const ParameterTable = ({ data, onChange, hideDesc, label }: ParameterTableProps
     return colDef;
   }, [hideDesc, t]);
 
-  const { table, setRowSelection, removeRowAction, showAddButton } = useResizableEditableTable({
+  const { table, setRowSelection, selectedRowActions, showAddButton } = useResizableEditableTable({
     data,
     columns,
     onChange,
     emptyDataObject: EMPTY_SCRIPT_VARIABLE
   });
 
-  const tableActions = table.getSelectedRowModel().rows.length > 0 ? [removeRowAction] : [];
-
   return (
-    <PathCollapsible path='params' label={label} controls={tableActions}>
+    <PathCollapsible path='params' label={label} controls={selectedRowActions()}>
       <div>
         <Table>
           <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
