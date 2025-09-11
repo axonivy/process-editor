@@ -36,7 +36,7 @@ describe('ConditionTable', () => {
 
   test('can remove unknown conditions', async () => {
     const view = renderTable();
-    const firstRow = screen.getAllByRole('row')[1];
+    const firstRow = screen.getAllByRole('row')[1]!;
     await userEvent.click(firstRow);
     const removeButton = await screen.findByRole('button', { name: 'Remove row' });
 

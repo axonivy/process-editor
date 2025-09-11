@@ -37,7 +37,7 @@ describe('Condition', () => {
       target: { name: 'end', pid: 'f7', type: altType }
     };
     const expected = structuredClone(conditions);
-    expected[1].target = ref.target;
+    expected[1]!.target = ref.target;
     expect(Condition.replace(structuredClone(conditions), ref)).toEqual(expected);
   });
 
@@ -75,7 +75,7 @@ describe('Condition', () => {
 
   test('update', () => {
     const expected = structuredClone(conditions);
-    expected[1].expression = 'test';
+    expected[1]!.expression = 'test';
     expect(Condition.update(structuredClone(conditions), 1, 'expression', 'test')).toEqual(expected);
   });
 
@@ -96,7 +96,7 @@ describe('Condition', () => {
       target: { name: 'end', pid: 'f7', type: altType }
     };
     const expected = structuredClone(embeddedConditions);
-    expected[1].target = ref.target;
+    expected[1]!.target = ref.target;
     expect(Condition.replace(structuredClone(embeddedConditions), ref)).toEqual(expected);
   });
 });
