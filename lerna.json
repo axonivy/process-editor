@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
-  "version": "12.0.9-next",
+  "version": "12.0.10-next",
   "npmClient": "npm",
   "useWorkspaces": true,
   "command": {
