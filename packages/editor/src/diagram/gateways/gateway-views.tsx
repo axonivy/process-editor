@@ -11,7 +11,7 @@ import { GatewayNode } from '../model';
 export class GatewayNodeView extends DiamondNodeView {
   @inject(CustomIconToggleActionHandler) @optional() protected customIconHandler?: CustomIconToggleActionHandler;
 
-  render(node: GatewayNode, context: RenderingContext): VNode {
+  override render(node: GatewayNode, context: RenderingContext): VNode {
     const diamond = new Diamond({ height: Math.max(node.size.height, 0), width: Math.max(node.size.width, 0), x: 0, y: 0 });
     const points = `${this.svgStr(diamond.topPoint)} ${this.svgStr(diamond.rightPoint)} ${this.svgStr(diamond.bottomPoint)} ${this.svgStr(
       diamond.leftPoint

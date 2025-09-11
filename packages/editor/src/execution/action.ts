@@ -13,11 +13,11 @@ import { ExecutedFeedbackAction, StoppedFeedbackAction } from './feedback-action
 
 @injectable()
 export class SetExecutedElementsActionHandler implements IActionHandler {
-  @inject(TYPES.IFeedbackActionDispatcher) protected feedbackDispatcher: IFeedbackActionDispatcher;
-  @inject(TYPES.IActionDispatcher) protected actionDispatcher: IActionDispatcher;
-  @inject(ModelInitializationConstraint) protected modelInitializationConstraint: ModelInitializationConstraint;
+  @inject(TYPES.IFeedbackActionDispatcher) protected feedbackDispatcher!: IFeedbackActionDispatcher;
+  @inject(TYPES.IActionDispatcher) protected actionDispatcher!: IActionDispatcher;
+  @inject(ModelInitializationConstraint) protected modelInitializationConstraint!: ModelInitializationConstraint;
 
-  protected oldExecutions: ElementExecution[];
+  protected oldExecutions?: ElementExecution[];
 
   handle(action: Action) {
     if (SetExecutedElementsAction.is(action)) {
@@ -42,13 +42,13 @@ export class SetExecutedElementsActionHandler implements IActionHandler {
 
 @injectable()
 export class StoppedActionHandler implements IActionHandler {
-  @inject(TYPES.IFeedbackActionDispatcher) protected feedbackDispatcher: IFeedbackActionDispatcher;
-  @inject(TYPES.IActionDispatcher) protected actionDispatcher: IActionDispatcher;
+  @inject(TYPES.IFeedbackActionDispatcher) protected feedbackDispatcher!: IFeedbackActionDispatcher;
+  @inject(TYPES.IActionDispatcher) protected actionDispatcher!: IActionDispatcher;
 
-  protected oldStoppedElement: string;
+  protected oldStoppedElement?: string;
 
   handle(action: Action) {
-    if (StoppedAction.is(action)) {
+    if (StoppedAction.is(action) && this.oldStoppedElement) {
       const feedbackAction = StoppedFeedbackAction.create({ oldStoppedElement: this.oldStoppedElement, stoppedElement: action.elementId });
       if (action.elementId && action.elementId.length > 0) {
         this.feedbackDispatcher.registerFeedback(this, [feedbackAction]);

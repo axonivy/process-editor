@@ -33,8 +33,8 @@ import { EnableInscriptionAction, ToggleInscriptionAction } from './action';
 export class InscriptionUi extends ReactUIExtension implements IActionHandler, ISelectionListener {
   static readonly ID = 'inscription-ui';
 
-  @inject(SelectionService) protected readonly selectionService: SelectionService;
-  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
+  @inject(SelectionService) protected readonly selectionService!: SelectionService;
+  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
 
   private inscriptionElement?: string;
   private action?: EnableInscriptionAction;

@@ -22,8 +22,8 @@ import { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
 import { QuickActionUI } from '../quick-action-ui';
 
 export abstract class CreateElementQuickActionProvider extends SingleQuickActionProvider {
-  @inject(ElementsPaletteHandler) protected paletteHandler: ElementsPaletteHandler;
-  protected element: GModelElement;
+  @inject(ElementsPaletteHandler) protected paletteHandler!: ElementsPaletteHandler;
+  protected element?: GModelElement;
 
   singleQuickAction(element: GModelElement): QuickAction | undefined {
     this.element = element;
@@ -78,7 +78,7 @@ export abstract class CreateElementQuickActionProvider extends SingleQuickAction
 
 @injectable()
 export class CreateEventQuickActionProvider extends CreateElementQuickActionProvider {
-  paletteItems(): () => PaletteItem[] {
+  override paletteItems(): () => PaletteItem[] {
     return () => {
       const items = this.paletteHandler.getPaletteItems().filter(item => this.filterPaletteGroups().includes(item.id));
       const boundaries = boundaryEventGroup(this.element);
@@ -89,7 +89,7 @@ export class CreateEventQuickActionProvider extends CreateElementQuickActionProv
     };
   }
 
-  protected filterPaletteGroups(): string[] {
+  protected override filterPaletteGroups(): string[] {
     const paletteGroups = ['event-intermediate-group'];
     if (!this.hasOutgoingEdges()) {
       paletteGroups.push('event-end-group');
@@ -97,39 +97,39 @@ export class CreateEventQuickActionProvider extends CreateElementQuickActionProv
     return paletteGroups;
   }
 
-  quickActionItem(): PaletteItem {
+  override quickActionItem(): PaletteItem {
     return { label: t('toolbar.events'), icon: IvyIcons.Start, sortString: 'A', id: '', actions: [] };
   }
 }
 
 @injectable()
 export class CreateGatewayQuickActionProvider extends CreateElementQuickActionProvider {
-  paletteItems(): () => PaletteItem[] {
+  override paletteItems(): () => PaletteItem[] {
     return () => this.paletteHandler.getPaletteItems().filter(item => item.id === 'gateway-group');
   }
 
-  quickActionItem(): PaletteItem {
+  override quickActionItem(): PaletteItem {
     return { label: t('toolbar.gateways'), icon: IvyIcons.GatewaysGroup, sortString: 'B', id: '', actions: [] };
   }
 }
 
 @injectable()
 export class CreateActivityQuickActionProvider extends CreateElementQuickActionProvider {
-  paletteItems(): () => PaletteItem[] {
+  override paletteItems(): () => PaletteItem[] {
     return () =>
       this.paletteHandler
         .getPaletteItems()
         .filter(item => item.id === 'activity-group' || item.id === 'interface-activity-group' || item.id === 'bpmn-activity-group');
   }
 
-  quickActionItem(): PaletteItem {
+  override quickActionItem(): PaletteItem {
     return { label: t('toolbar.activities'), icon: IvyIcons.ActivitiesGroup, sortString: 'C', id: '', actions: [] };
   }
 }
 
 @injectable()
 export class CreateAllElementsQuickActionProvider extends CreateElementQuickActionProvider {
-  quickAction(): QuickAction {
+  override quickAction(): QuickAction {
     return {
       icon: IvyIcons.Task,
       title: 'Create Node',

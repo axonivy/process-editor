@@ -19,7 +19,7 @@ export class IvyIssueMarkerView extends GIssueMarkerView {
     setClass(group, 'sprotty-' + maxSeverity, true);
     return group;
   }
-  protected getGlspIssueMarkerBackground(severity: GIssueSeverity): VNode {
+  protected override getGlspIssueMarkerBackground(severity: GIssueSeverity): VNode {
     switch (severity) {
       case 'warning':
         return <polygon class-sprotty-issue-background points='8 0, 12 12, 0 12' />;
@@ -29,11 +29,11 @@ export class IvyIssueMarkerView extends GIssueMarkerView {
     }
   }
 
-  protected get radius(): number {
+  protected override get radius(): number {
     return 6;
   }
 
-  protected getGlspIssueMarkerPath(severity: GIssueSeverity): string {
+  protected override getGlspIssueMarkerPath(severity: GIssueSeverity): string {
     switch (severity) {
       // paths used here are svg versions of codicons, resized to 12px
       case 'error': // 'codicon-error'

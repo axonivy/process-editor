@@ -27,7 +27,7 @@ type ToasterType = SeverityLevel | 'LOADING';
 export class NotificationToaster extends ReactUIExtension implements IActionHandler {
   static readonly ID = 'ivy-notification-toaster';
 
-  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
+  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
 
   private messageToast?: string | number;
   private progressMessages = new Map<string, string>();
@@ -40,7 +40,7 @@ export class NotificationToaster extends ReactUIExtension implements IActionHand
     return NotificationToaster.ID;
   }
 
-  protected initializeContainer(container: HTMLElement): void {
+  protected override initializeContainer(container: HTMLElement): void {
     super.initializeContainer(container);
     container.onwheel = ev => (ev.ctrlKey ? ev.preventDefault() : true);
   }

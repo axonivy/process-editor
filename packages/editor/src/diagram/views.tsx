@@ -57,7 +57,7 @@ export class ForeignLabelView implements IView {
 
 @injectable()
 export class WorkflowEdgeView extends PolylineEdgeViewWithGapsOnIntersections {
-  protected renderLine(edge: Edge, segments: Point[], context: RenderingContext): VNode {
+  protected override renderLine(edge: Edge, segments: Point[], context: RenderingContext): VNode {
     const line = super.renderLine(edge, segments, context, undefined);
     if (line.data) {
       line.data.style = { stroke: edge.color };
@@ -65,7 +65,7 @@ export class WorkflowEdgeView extends PolylineEdgeViewWithGapsOnIntersections {
     return line;
   }
 
-  protected renderAdditionals(edge: Edge, segments: Point[], context: RenderingContext): VNode[] {
+  protected override renderAdditionals(edge: Edge, segments: Point[], context: RenderingContext): VNode[] {
     const additionals = super.renderAdditionals(edge, segments, context);
     const edgePadding = this.edgePadding(edge);
     const edgePaddingNode = edgePadding ? [this.renderMouseHandle(segments, edgePadding)] : [];
@@ -112,7 +112,12 @@ export class WorkflowEdgeView extends PolylineEdgeViewWithGapsOnIntersections {
     return path;
   }
 
-  protected intersectionPath(edge: SEdgeImpl, segments: Point[], intersectingPoint: IntersectingRoutedPoint, args?: IViewArgs): string {
+  protected override intersectionPath(
+    edge: SEdgeImpl,
+    segments: Point[],
+    intersectingPoint: IntersectingRoutedPoint,
+    args?: IViewArgs
+  ): string {
     try {
       return super.intersectionPath(edge, segments, intersectingPoint, args);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -125,7 +130,7 @@ export class WorkflowEdgeView extends PolylineEdgeViewWithGapsOnIntersections {
 
 @injectable()
 export class AssociationEdgeView extends GEdgeView {
-  protected renderLine(edge: Edge, segments: Point[], context: RenderingContext): VNode {
+  protected override renderLine(edge: Edge, segments: Point[], context: RenderingContext): VNode {
     const line = super.renderLine(edge, segments, context);
     if (line.data) {
       line.data.style = { stroke: edge.color };
@@ -145,7 +150,7 @@ export class AssociationEdgeView extends GEdgeView {
 
 @injectable()
 export class IvyResizeHandleView extends GResizeHandleView {
-  render(handle: GResizeHandle, context: RenderingContext): VNode | undefined {
+  override render(handle: GResizeHandle, context: RenderingContext): VNode | undefined {
     if (context.targetKind === 'hidden') {
       return undefined;
     }

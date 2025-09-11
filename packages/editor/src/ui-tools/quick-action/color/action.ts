@@ -11,8 +11,8 @@ import { ColorPaletteHandler } from './action-handler';
 
 @injectable()
 export class SelectColorQuickActionProvider implements QuickActionProvider {
-  @inject(IVY_TYPES.ColorPalette) protected readonly colors: ColorPaletteHandler;
-  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
+  @inject(IVY_TYPES.ColorPalette) protected readonly colors!: ColorPaletteHandler;
+  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
 
   singleQuickAction(element: GModelElement): QuickAction | undefined {
     if (element.type === LaneTypes.POOL) {

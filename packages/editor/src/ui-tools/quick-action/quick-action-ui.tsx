@@ -36,9 +36,9 @@ import { ShowInfoQuickActionMenuAction, ShowQuickActionMenuAction } from './quic
 export class QuickActionUI extends ReactUIExtension implements IActionHandler, ISelectionListener {
   static readonly ID = 'quickActionsUi';
 
-  @inject(TYPES.IActionDispatcherProvider) public actionDispatcherProvider: IActionDispatcherProvider;
-  @inject(SelectionService) protected selectionService: SelectionService;
-  @multiInject(IVY_TYPES.QuickActionProvider) protected quickActionProviders: QuickActionProvider[];
+  @inject(TYPES.IActionDispatcherProvider) public actionDispatcherProvider!: IActionDispatcherProvider;
+  @inject(SelectionService) protected selectionService!: SelectionService;
+  @multiInject(IVY_TYPES.QuickActionProvider) protected quickActionProviders!: QuickActionProvider[];
 
   private activeQuickActions: QuickAction[] = [];
   private activeQuickAction?: string;
@@ -61,7 +61,7 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
     return this.activeQuickActions;
   }
 
-  protected initializeContents(containerElement: HTMLElement): void {
+  protected override initializeContents(containerElement: HTMLElement): void {
     super.initializeContents(containerElement);
     containerElement.style.position = 'absolute';
     containerElement.onwheel = ev => (ev.ctrlKey ? ev.preventDefault() : true);
