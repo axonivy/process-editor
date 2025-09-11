@@ -45,10 +45,10 @@ export class StoppedActionHandler implements IActionHandler {
   @inject(TYPES.IFeedbackActionDispatcher) protected feedbackDispatcher!: IFeedbackActionDispatcher;
   @inject(TYPES.IActionDispatcher) protected actionDispatcher!: IActionDispatcher;
 
-  protected oldStoppedElement?: string;
+  protected oldStoppedElement = '';
 
   handle(action: Action) {
-    if (StoppedAction.is(action) && this.oldStoppedElement) {
+    if (StoppedAction.is(action)) {
       const feedbackAction = StoppedFeedbackAction.create({ oldStoppedElement: this.oldStoppedElement, stoppedElement: action.elementId });
       if (action.elementId && action.elementId.length > 0) {
         this.feedbackDispatcher.registerFeedback(this, [feedbackAction]);
