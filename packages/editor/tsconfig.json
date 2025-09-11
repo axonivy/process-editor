@@ -4,7 +4,9 @@
     "rootDir": "src",
     "outDir": "lib",
     "types": ["node", "reflect-metadata"],
-    "jsx": "react"
+    "jsx": "react",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   "include": ["src", "src/translation/**/*.json"],
   "references": [{ "path": "../protocol/tsconfig.json" }]

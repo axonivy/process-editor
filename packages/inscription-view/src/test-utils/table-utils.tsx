@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { screen, userEvent, waitFor, within } from 'test-utils';
 import { expect } from 'vitest';
 
@@ -6,12 +7,12 @@ export namespace TableUtil {
     const headers = screen.getAllByRole('columnheader');
     expect(headers).toHaveLength(expectedHeaders.length);
     headers.forEach((header, index) => {
-      expect(header).toHaveTextContent(expectedHeaders[index]);
+      expect(header).toHaveTextContent(expectedHeaders[index]!);
     });
   }
 
   export function assertRows(expectedRows: (RegExp | string)[], index?: number) {
-    const tBody = screen.getAllByRole('rowgroup')[index ?? 1];
+    const tBody = screen.getAllByRole('rowgroup')[index ?? 1]!;
     if (expectedRows.length === 0) {
       expect(within(tBody).queryAllByRole('row')).toHaveLength(0);
     } else {
@@ -57,7 +58,7 @@ export namespace TableUtil {
 
   export async function assertRemoveRow(view: { data: () => unknown[]; rerender: () => void }, expectedRows: number): Promise<void> {
     await assertRowCount(expectedRows + 2);
-    const firstRow = screen.getAllByRole('row')[1];
+    const firstRow = screen.getAllByRole('row')[1]!;
     await userEvent.click(firstRow);
     const removeButton = await screen.findByRole('button', { name: 'Remove row' });
     await userEvent.click(removeButton);

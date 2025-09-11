@@ -28,7 +28,7 @@ export const Tabs = (props: TabsProps) => (
 );
 
 export const TabRoot = ({ tabs, value, onChange, children }: TabsProps & { children: ReactNode }) => {
-  const defaultTab = tabs.length > 0 ? tabs[0].id : '';
+  const defaultTab = tabs[0]?.id ?? '';
   return (
     <TabsRoot className='tabs-root' defaultValue={defaultTab} value={value} onValueChange={onChange}>
       {children}

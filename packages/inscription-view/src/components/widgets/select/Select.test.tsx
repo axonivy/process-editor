@@ -13,7 +13,7 @@ describe('Select', () => {
     data: () => SelectItem;
     rerender: () => void;
   } {
-    let value = items[0];
+    let value = items[0]!;
     userEvent.setup();
     const view = customRender(<Select items={items} value={items[0]} onChange={(change: SelectItem) => (value = change)} />);
     return {

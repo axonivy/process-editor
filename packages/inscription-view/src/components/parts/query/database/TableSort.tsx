@@ -1,5 +1,7 @@
 import { QUERY_ORDER } from '@axonivy/process-editor-inscription-protocol';
 import {
+  arraymove,
+  indexOf,
   ReorderHandleWrapper,
   ReorderRow,
   SelectCell,
@@ -16,7 +18,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
-import { arraymove, indexOf } from '../../../../utils/array';
 import type { SelectItem } from '../../../widgets/select/Select';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
 import { focusNewCell } from '../../common/table/cellFocus-utils';
