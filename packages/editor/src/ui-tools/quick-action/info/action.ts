@@ -21,8 +21,8 @@ import { ShowInfoQuickActionMenuAction } from '../quick-action-menu-ui';
 
 @injectable()
 export class InfoQuickActionProvider extends SingleQuickActionProvider {
-  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
-  @inject(IVY_TYPES.IvyViewerOptions) protected readonly options: IvyViewerOptions;
+  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
+  @inject(IVY_TYPES.IvyViewerOptions) protected readonly options!: IvyViewerOptions;
 
   singleQuickAction(element: GModelElement): QuickAction | undefined {
     if (element instanceof LaneNode || (this.options.hideSensitiveInfo && element instanceof GEdge)) {

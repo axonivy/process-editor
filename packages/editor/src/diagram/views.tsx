@@ -69,19 +69,22 @@ export class WorkflowEdgeView extends PolylineEdgeViewWithGapsOnIntersections {
     const additionals = super.renderAdditionals(edge, segments, context);
     const edgePadding = this.edgePadding(edge);
     const edgePaddingNode = edgePadding ? [this.renderMouseHandle(segments, edgePadding)] : [];
+    additionals.push(...edgePaddingNode);
 
-    const p1 = segments[segments.length - 2];
-    const p2 = segments[segments.length - 1];
-    const arrow = (
-      <path
-        class-sprotty-edge
-        class-arrow
-        d='M 0,0.3 L 6,-3.5 M 0,-0.3 L 6,3.5'
-        transform={`rotate(${toDegrees(angleOfPoint({ x: p1.x - p2.x, y: p1.y - p2.y }))} ${p2.x} ${p2.y}) translate(${p2.x} ${p2.y})`}
-        style={{ stroke: edge.color, fill: edge.color }}
-      />
-    );
-    additionals.push(...edgePaddingNode, arrow);
+    const p1 = segments.at(-2);
+    const p2 = segments.at(-1);
+    if (p1 && p2) {
+      const arrow = (
+        <path
+          class-sprotty-edge
+          class-arrow
+          d='M 0,0.3 L 6,-3.5 M 0,-0.3 L 6,3.5'
+          transform={`rotate(${toDegrees(angleOfPoint({ x: p1.x - p2.x, y: p1.y - p2.y }))} ${p2.x} ${p2.y}) translate(${p2.x} ${p2.y})`}
+          style={{ stroke: edge.color, fill: edge.color }}
+        />
+      );
+      additionals.push(arrow);
+    }
     return additionals;
   }
 
@@ -96,17 +99,19 @@ export class WorkflowEdgeView extends PolylineEdgeViewWithGapsOnIntersections {
     return (
       <path
         class-mouse-handle
-        d={this.createPathForSegments(segments)}
+        d={this.createPathForSegments([...segments])}
         style={{ strokeWidth: `${padding * 2}px`, stroke: 'transparent', strokeDasharray: 'none', strokeDashoffset: '0' }}
       />
     );
   }
 
-  protected createPathForSegments(segments: Point[]): string {
-    const firstPoint = segments[0];
+  protected createPathForSegments(segments: Point[]) {
+    const firstPoint = segments.shift();
+    if (!firstPoint) {
+      return '';
+    }
     let path = `M ${firstPoint.x},${firstPoint.y}`;
-    for (let i = 1; i < segments.length; i++) {
-      const p = segments[i];
+    for (const p of segments) {
       path += ` L ${p.x},${p.y}`;
     }
     return path;

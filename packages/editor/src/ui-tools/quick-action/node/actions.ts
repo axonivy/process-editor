@@ -25,7 +25,7 @@ export abstract class CreateElementQuickActionProvider extends SingleQuickAction
   @inject(ElementsPaletteHandler) protected paletteHandler!: ElementsPaletteHandler;
   protected element?: GModelElement;
 
-  singleQuickAction(element: GModelElement): QuickAction | undefined {
+  singleQuickAction(element: GModelElement) {
     this.element = element;
     if (!isConnectable(element) || !element.canConnect(new GEdge(), 'source') || element.type === ActivityTypes.COMMENT) {
       return;
@@ -33,15 +33,15 @@ export abstract class CreateElementQuickActionProvider extends SingleQuickAction
     return this.quickAction();
   }
 
-  protected hasOutgoingEdges(): boolean {
+  protected hasOutgoingEdges() {
     return this.element instanceof GConnectableElement && Array.from(this.element.outgoingEdges).length > 0;
   }
 
-  protected paletteItems(): () => PaletteItem[] {
+  protected paletteItems() {
     return () => this.paletteHandler.getPaletteItems().filter(item => !this.filterPaletteGroups().includes(item.id));
   }
 
-  protected filterPaletteGroups(): string[] {
+  protected filterPaletteGroups() {
     const filterGroup = ['event-start-group', 'swimlane-group'];
     if (this.hasOutgoingEdges()) {
       filterGroup.push('event-end-group');
@@ -51,15 +51,18 @@ export abstract class CreateElementQuickActionProvider extends SingleQuickAction
 
   protected actions = (paletteItem: PaletteItem, elementIds: string[]): Action[] => [
     QuickActionUI.hide(),
-    ...paletteItem.actions.map(itemAction => convertToCreateNodeOperation(itemAction, elementIds[0])).filter(isNotUndefined)
+    ...paletteItem.actions.map(itemAction => convertToCreateNodeOperation(itemAction, elementIds[0] ?? '')).filter(isNotUndefined)
   ];
 
   protected quickActionItem(): PaletteItem {
     return { id: '', actions: [], label: '', sortString: '' };
   }
 
-  quickAction(): QuickAction {
+  quickAction(): QuickAction | undefined {
     const item = this.quickActionItem();
+    if (!this.element) {
+      return undefined;
+    }
     return {
       icon: item.icon as IvyIcons,
       title: `${item.label} (A)`,
@@ -78,12 +81,14 @@ export abstract class CreateElementQuickActionProvider extends SingleQuickAction
 
 @injectable()
 export class CreateEventQuickActionProvider extends CreateElementQuickActionProvider {
-  override paletteItems(): () => PaletteItem[] {
+  override paletteItems() {
     return () => {
       const items = this.paletteHandler.getPaletteItems().filter(item => this.filterPaletteGroups().includes(item.id));
-      const boundaries = boundaryEventGroup(this.element);
-      if (boundaries) {
-        items.push(boundaries);
+      if (this.element) {
+        const boundaries = boundaryEventGroup(this.element);
+        if (boundaries) {
+          items.push(boundaries);
+        }
       }
       return items;
     };
@@ -129,7 +134,10 @@ export class CreateActivityQuickActionProvider extends CreateElementQuickActionP
 
 @injectable()
 export class CreateAllElementsQuickActionProvider extends CreateElementQuickActionProvider {
-  override quickAction(): QuickAction {
+  override quickAction(): QuickAction | undefined {
+    if (!this.element) {
+      return undefined;
+    }
     return {
       icon: IvyIcons.Task,
       title: 'Create Node',

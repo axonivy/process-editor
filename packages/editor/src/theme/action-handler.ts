@@ -5,7 +5,7 @@ import { NotificationToasterId } from '../ui-tools/notification/di.config';
 
 @injectable()
 export class SwitchThemeActionHandler implements IActionHandler {
-  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
+  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
 
   handle(action: Action) {
     if (SwitchThemeAction.is(action)) {
