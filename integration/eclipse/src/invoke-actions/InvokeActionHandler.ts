@@ -9,9 +9,9 @@ import {
 import { inject } from 'inversify';
 
 export abstract class InvokeActionHandler implements IActionHandler {
-  @inject(TYPES.IActionDispatcher) protected actionDispatcher: IActionDispatcher;
-  @inject(EditorContextService) protected editorContext: EditorContextService;
-  @inject(TYPES.ViewerOptions) protected viewerOptions: ViewerOptions;
+  @inject(TYPES.IActionDispatcher) protected actionDispatcher!: IActionDispatcher;
+  @inject(EditorContextService) protected editorContext!: EditorContextService;
+  @inject(TYPES.ViewerOptions) protected viewerOptions!: ViewerOptions;
 
   abstract handle(action: Action): void;
 
