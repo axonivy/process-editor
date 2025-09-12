@@ -62,7 +62,7 @@ describe('CustomFieldTable', () => {
     await userEvent.type(field1, 'Hello[Tab]');
     view.rerender();
 
-    const type = screen.getAllByRole('combobox')[1];
+    const type = screen.getAllByRole('combobox')[1]!;
     await userEvent.click(type);
     await userEvent.keyboard('[ArrowDown][Enter]');
 
