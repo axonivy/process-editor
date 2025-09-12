@@ -182,13 +182,13 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
   });
   const { handleKeyDown } = useTableKeyHandler({ table: tableDynamic, data: types });
   useEffect(() => {
-    if (Object.keys(rowSelection).length !== 1) {
+    const selectedRow = tableDynamic.getSelectedRowModel().flatRows[0];
+    if (selectedRow === undefined) {
       onChange({ cursorValue: '' });
       setShowHelper(false);
       return;
     }
 
-    const selectedRow = tableDynamic.getRowModel().rowsById[Object.keys(rowSelection)[0]];
     setShowHelper(true);
     const isIvyType = ivyTypes.some(javaClass => javaClass.fullQualifiedName === selectedRow.original.fullQualifiedName);
 

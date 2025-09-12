@@ -20,7 +20,7 @@ let root: GModelRoot;
 
 @injectable()
 class BreakpointFeedbackCommandMock extends BreakpointFeedbackCommand {
-  execute(context: CommandExecutionContext): GModelRoot {
+  override execute(context: CommandExecutionContext): GModelRoot {
     context.root = root;
     return super.execute(context);
   }
@@ -61,7 +61,7 @@ describe('BreakpointFeedbackAction', () => {
     const elementBreakpoint = { elementId: 'foo', condition: '', disabled: false };
     await actionDispatcher.dispatch(BreakpointFeedbackAction.create({ breakpoints: [elementBreakpoint] }));
     expect(node.children).to.have.lengthOf(1);
-    assertBreakpoint(node.children[0], '', false, false);
+    assertBreakpoint(node.children[0]!, '', false, false);
     expect(node.children[0]).to.be.an.instanceOf(SBreakpointHandle);
 
     await actionDispatcher.dispatch(BreakpointFeedbackAction.create({ breakpoints: [], oldBreakpoints: [elementBreakpoint] }));
@@ -79,7 +79,7 @@ describe('BreakpointFeedbackAction', () => {
       BreakpointFeedbackAction.create({ breakpoints: [elementBreakpoint], oldBreakpoints: [], globalDisabled: true })
     );
     expect(node.children).to.have.lengthOf(1);
-    assertBreakpoint(node.children[0], 'test condition', true, true);
+    assertBreakpoint(node.children[0]!, 'test condition', true, true);
     expect(node.children[0]).to.be.an.instanceOf(SBreakpointHandle);
   });
 

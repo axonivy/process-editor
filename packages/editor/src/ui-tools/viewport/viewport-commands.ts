@@ -40,7 +40,7 @@ export class OriginViewportCommand extends BoundsAwareViewportCommand {
     return [];
   }
 
-  protected initialize(model: GModelRoot): void {
+  protected override initialize(model: GModelRoot): void {
     if (!isViewport(model)) {
       return;
     }
@@ -67,13 +67,13 @@ function isSelectedBoundsRelevantElement(element?: GModelElement): element is Bo
 
 @injectable()
 export class IvyFitToScreenCommand extends FitToScreenCommand {
-  static readonly KIND = FitToScreenAction.KIND;
+  static override readonly KIND = FitToScreenAction.KIND;
 
-  constructor(@inject(TYPES.Action) protected readonly action: FitToScreenAction) {
+  constructor(@inject(TYPES.Action) protected override readonly action: FitToScreenAction) {
     super(action);
   }
 
-  getNewViewport(bounds: Bounds, model: GModelRoot): Viewport | undefined {
+  override getNewViewport(bounds: Bounds, model: GModelRoot): Viewport | undefined {
     if (!Dimension.isValid(model.canvasBounds)) {
       return undefined;
     }
@@ -104,7 +104,7 @@ export class IvyFitToScreenCommand extends FitToScreenCommand {
     return toolBar ? toolBar.getBoundingClientRect().height : 0;
   }
 
-  protected initialize(model: GModelRoot): void {
+  protected override initialize(model: GModelRoot): void {
     if (isViewport(model)) {
       this.oldViewport = {
         scroll: model.scroll,
@@ -146,16 +146,16 @@ export class IvyFitToScreenCommand extends FitToScreenCommand {
 
 @injectable()
 export class IvyCenterCommand extends CenterCommand {
-  @inject(SelectionService) protected selectionService: SelectionService;
+  @inject(SelectionService) protected selectionService!: SelectionService;
 
-  getNewViewport(bounds: Writable<Bounds>, model: GModelRoot): Viewport | undefined {
+  override getNewViewport(bounds: Writable<Bounds>, model: GModelRoot): Viewport | undefined {
     if (!Dimension.isValid(model.canvasBounds)) {
       return undefined;
     }
     return super.getNewViewport(bounds, model);
   }
 
-  protected initialize(model: GModelRoot): void {
+  protected override initialize(model: GModelRoot): void {
     if (!isViewport(model)) {
       return;
     }

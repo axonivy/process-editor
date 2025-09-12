@@ -13,15 +13,13 @@ import { StartEventNode } from '../../diagram/model';
 
 @injectable()
 export class IvyGlobalKeyListenerTool extends BaseEditTool {
-  @inject(SelectionService) protected selectionService: SelectionService;
+  @inject(SelectionService) protected selectionService!: SelectionService;
+  @inject(TYPES.IShortcutManager) protected readonly shortcutManager!: IShortcutManager;
 
   static ID = 'ivy.global-key-listener';
   static TOKEN = Symbol.for(IvyGlobalKeyListenerTool.name);
 
   protected alreadyRegistered = false;
-
-  @inject(TYPES.IShortcutManager)
-  protected readonly shortcutManager: IShortcutManager;
 
   get id(): string {
     return IvyGlobalKeyListenerTool.ID;

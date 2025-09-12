@@ -12,7 +12,7 @@ import { inject, injectable } from 'inversify';
 
 @injectable()
 export class TypesPaletteHandler implements IActionHandler {
-  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
+  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
 
   protected paletteItems: PaletteItem[] = [];
 

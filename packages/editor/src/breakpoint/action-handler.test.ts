@@ -51,7 +51,7 @@ describe('ShowBreakpointActionHandler', () => {
     function getAndAssertBreakpointFeedbackAction(): BreakpointFeedbackAction {
       const feedbacks = feedbackDispatcher.getRegisteredFeedback();
       expect(feedbacks).to.have.lengthOf(1);
-      expect(feedbacks[0].kind).to.be.equals('elementBreakpointFeedback');
+      expect(feedbacks[0]!.kind).to.be.equals('elementBreakpointFeedback');
       return feedbacks[0] as BreakpointFeedbackAction;
     }
   });

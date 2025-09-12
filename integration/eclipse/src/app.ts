@@ -13,14 +13,14 @@ import { initTranslation } from './i18n';
 import './index.css';
 
 const urlParameters = getParameters();
-const filePath = urlParameters.path;
+const filePath = urlParameters.path ?? '';
 // Java's URLEncoder.encode encodes spaces as plus sign but decodeURI expects spaces to be encoded as %20.
 // See also https://en.wikipedia.org/wiki/Query_string#URL_encoding for URL encoding in forms vs generic URL encoding.
 const sourceUri = 'file://' + decodeURI(filePath.replace(/\+/g, '%20'));
 
 // In the Eclipse Integration, port is dynamic, as multiple editors
 // and/or Eclipse Servers may be running in parallel (e.g. 1/Eclipse IDE)
-const port = parseInt(urlParameters.port, 10);
+const port = parseInt(urlParameters.port ?? '', 10);
 const applicationId = urlParameters.application;
 const id = 'ivy-glsp-eclipse-process-editor';
 const diagramType = 'ivy-glsp-process';

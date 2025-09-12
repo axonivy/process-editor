@@ -82,8 +82,8 @@ export class TestJsonRpcClient extends BaseJsonrpcGLSPClient {
     onLastListenerRemove: () => (this.lastListenerRemoved = true)
   });
 
-  firstListenerAdded: boolean;
-  lastListenerRemoved: boolean;
+  firstListenerAdded = false;
+  lastListenerRemoved = false;
 }
 
 export function createTestDiagramOptions(options?: IDiagramOptions): IDiagramOptions {

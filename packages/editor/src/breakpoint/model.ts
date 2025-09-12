@@ -20,13 +20,13 @@ export class SBreakpointHandle extends GChildElement implements Hoverable {
     public readonly condition: string = '',
     public readonly disabled: boolean = false,
     public readonly globalDisabled: boolean = false,
-    public readonly type: string = SBreakpointHandle.TYPE,
+    public override readonly type: string = SBreakpointHandle.TYPE,
     public readonly hoverFeedback: boolean = false
   ) {
     super();
   }
 
-  hasFeature(feature: symbol): boolean {
+  override hasFeature(feature: symbol): boolean {
     return feature === hoverFeedbackFeature || feature === selectFeature;
   }
 

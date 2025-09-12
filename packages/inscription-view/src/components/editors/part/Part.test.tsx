@@ -45,7 +45,7 @@ describe('Part', () => {
     const part = partProps;
     const view = customRender(<Part parts={part} />);
     return {
-      data: () => part[0],
+      data: () => part[0]!,
       rerender: () => view.rerender(<Part parts={part} />)
     };
   }

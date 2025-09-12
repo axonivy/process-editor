@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { PathContext } from '../../../../../context/usePath';
 import { deepEqual } from '../../../../../utils/equals';
 import Fieldset from '../../../../widgets/fieldset/Fieldset';
+import type { FieldsetControl } from '../../../../widgets/fieldset/fieldset-control';
 import { ScriptCell } from '../../../../widgets/table/cell/ScriptCell';
 import { ValidationRow } from '../../../common/path/validation/ValidationRow';
 import { focusNewCell } from '../../../common/table/cellFocus-utils';
@@ -105,23 +106,25 @@ export const RestForm = () => {
     }
   });
 
-  const showTableActions =
-    table.getSelectedRowModel().rows.length > 0 && !table.getRowModel().rowsById[Object.keys(rowSelection)[0]].original.known;
-
-  const tableActions = showTableActions
-    ? [
+  const firstSelectionId = Object.keys(rowSelection)[0];
+  let tableActions: FieldsetControl[] = [];
+  if (firstSelectionId) {
+    const firstSelectionRow = table.getRowModel().rowsById[firstSelectionId];
+    if (firstSelectionRow && !firstSelectionRow?.original.known) {
+      tableActions = [
         {
           label: t('label.removeRow'),
           icon: IvyIcons.Trash,
-          action: () => removeRow(table.getRowModel().rowsById[Object.keys(rowSelection)[0]].index)
+          action: () => removeRow(firstSelectionRow.index)
         }
-      ]
-    : [];
+      ];
+    }
+  }
 
   return (
     <PathContext path='form'>
       <div>
-        {showTableActions && <Fieldset label=' ' controls={tableActions} />}
+        {tableActions.length > 0 && <Fieldset label=' ' controls={tableActions} />}
         <Table>
           <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
           <TableBody>

@@ -3,7 +3,7 @@ import { findParentByFeature, isOpenable, isSelectable, KeyListener, matchesKeys
 import { OpenAction } from 'sprotty-protocol';
 
 export class OpenInscriptionMouseListener extends MouseListener {
-  doubleClick(target: GModelElement) {
+  override doubleClick(target: GModelElement) {
     const element = findParentByFeature(target, isOpenable);
     if (element) {
       return [OpenAction.create(element.id)];
@@ -13,11 +13,12 @@ export class OpenInscriptionMouseListener extends MouseListener {
 }
 
 export class OpenInscriptionKeyListener extends KeyListener {
-  keyDown(element: GModelElement, event: KeyboardEvent) {
+  override keyDown(element: GModelElement, event: KeyboardEvent) {
     if (matchesKeystroke(event, 'Enter')) {
       const openableElements = this.getOpenableElements(element);
-      if (openableElements.length === 1) {
-        return [OpenAction.create(openableElements[0].id)];
+      const firstElement = openableElements[0];
+      if (firstElement) {
+        return [OpenAction.create(firstElement.id)];
       }
     }
     return [];

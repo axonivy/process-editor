@@ -8,11 +8,8 @@ import './index.css';
 
 @injectable()
 export class StandaloneDiagramStartup implements IDiagramStartup {
-  @inject(TYPES.IActionDispatcher)
-  protected actionDispatcher: IActionDispatcher;
-
-  @inject(TYPES.IDiagramOptions)
-  protected options: IvyDiagramOptions;
+  @inject(TYPES.IActionDispatcher) protected actionDispatcher!: IActionDispatcher;
+  @inject(TYPES.IDiagramOptions) protected options!: IvyDiagramOptions;
 
   async preRequestModel(): Promise<void> {
     this.actionDispatcher.dispatch(EnableToolPaletteAction.create());

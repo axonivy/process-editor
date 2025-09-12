@@ -13,7 +13,7 @@ import { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
 
 @injectable()
 export class ColorPaletteHandler implements IActionHandler {
-  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
+  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
 
   protected paletteItems: PaletteItem[] = [];
 

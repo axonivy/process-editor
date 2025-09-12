@@ -1,6 +1,6 @@
 import { TableAddRow } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
+import type { ColumnDef, Row, RowSelectionState, SortingState } from '@tanstack/react-table';
 import { getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -36,7 +36,7 @@ const useResizableEditableTable = <TData,>({
   const updateData = (rowId: string, columnId: string, value: string) => {
     const rowIndex = parseInt(rowId);
     const updatedData = tableData.map((row, index) => {
-      if (index === rowIndex) {
+      if (index === rowIndex && tableData[rowIndex]) {
         return {
           ...tableData[rowIndex],
           [columnId]: value
@@ -100,13 +100,23 @@ const useResizableEditableTable = <TData,>({
     }
   };
 
-  const removeRowAction: FieldsetControl = {
-    label: t('label.removeRow'),
-    icon: IvyIcons.Trash,
-    action: () => removeRow(table.getRowModel().rowsById[Object.keys(rowSelection)[0]].index)
+  const selectedRowActions = (additionalActionsSupplier?: (row: Row<TData>, rowIndex: number) => FieldsetControl[]) => {
+    if (table.getSelectedRowModel().rows.length === 0) {
+      return [];
+    }
+    const firstSelectedRow = table.getSelectedRowModel().rows[0];
+    if (firstSelectedRow === undefined) {
+      return [];
+    }
+    const firstSelectedRowIndex = table.getRowModel().rowsById[firstSelectedRow.id]?.index;
+    if (firstSelectedRowIndex === undefined) {
+      return [];
+    }
+    const additionalActions = additionalActionsSupplier?.(firstSelectedRow, firstSelectedRowIndex) ?? [];
+    return [{ label: t('label.removeRow'), icon: IvyIcons.Trash, action: () => removeRow(firstSelectedRowIndex) }, ...additionalActions];
   };
 
-  return { table, rowSelection, removeRowAction, setRowSelection, showAddButton };
+  return { table, rowSelection, selectedRowActions, setRowSelection, showAddButton };
 };
 
 export { useResizableEditableTable };

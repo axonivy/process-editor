@@ -19,7 +19,7 @@ describe('Properties', () => {
 
   test('update', () => {
     const expected = structuredClone(properties);
-    expected[1].expression = 'test';
+    expected[1]!.expression = 'test';
     expect(Property.update(structuredClone(properties), 1, 'expression', 'test')).toEqual(expected);
   });
 

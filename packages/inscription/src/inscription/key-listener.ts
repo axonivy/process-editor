@@ -6,13 +6,13 @@ import { ToggleInscriptionAction } from './action';
 
 @injectable()
 export class IvyInscriptionGlobalKeyListenerTool extends IvyGlobalKeyListenerTool {
-  static TOKEN = Symbol.for(IvyInscriptionGlobalKeyListenerTool.name);
+  static override TOKEN = Symbol.for(IvyInscriptionGlobalKeyListenerTool.name);
 
-  get id(): string {
+  override get id(): string {
     return 'glsp.global-inscription-key-listener';
   }
 
-  protected shortcutRegistrationsToken(): symbol {
+  protected override shortcutRegistrationsToken(): symbol {
     return IvyInscriptionGlobalKeyListenerTool.TOKEN;
   }
 

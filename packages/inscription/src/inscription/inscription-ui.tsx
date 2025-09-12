@@ -33,16 +33,16 @@ import { EnableInscriptionAction, ToggleInscriptionAction } from './action';
 export class InscriptionUi extends ReactUIExtension implements IActionHandler, ISelectionListener {
   static readonly ID = 'inscription-ui';
 
-  @inject(SelectionService) protected readonly selectionService: SelectionService;
-  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
+  @inject(SelectionService) protected readonly selectionService!: SelectionService;
+  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
 
   private inscriptionElement?: string;
   private action?: EnableInscriptionAction;
-  private inscriptionContext: InscriptionContext;
+  private inscriptionContext?: InscriptionContext;
   private inscriptionClient?: Promise<InscriptionClientJsonRpc>;
   private resolvedInscriptionClient?: InscriptionClientJsonRpc;
-  private queryClient: QueryClient;
-  private invalidateAfterNextUpdate: boolean;
+  private queryClient?: QueryClient;
+  private invalidateAfterNextUpdate = false;
 
   public id(): string {
     return InscriptionUi.ID;
@@ -62,7 +62,7 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
     return client;
   }
 
-  protected initializeContents(containerElement: HTMLElement) {
+  protected override initializeContents(containerElement: HTMLElement) {
     super.initializeContents(containerElement);
     this.changeUiVisiblitiy(false);
     this.inscriptionContext = this.initInscriptionContext();
@@ -71,7 +71,7 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
   }
 
   protected render(): React.ReactNode {
-    if (!this.inscriptionElement) {
+    if (!this.inscriptionElement || !this.queryClient || !this.inscriptionContext) {
       return;
     }
     if (!this.resolvedInscriptionClient) {
@@ -171,7 +171,7 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
     }
     if (Action.hasKind(action, UpdateModelAction.KIND) && this.invalidateAfterNextUpdate) {
       this.invalidateAfterNextUpdate = false;
-      this.queryClient.invalidateQueries({ queryKey: ['data'] });
+      this.queryClient?.invalidateQueries({ queryKey: ['data'] });
     }
     return;
   }

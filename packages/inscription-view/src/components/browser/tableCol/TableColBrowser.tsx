@@ -90,13 +90,13 @@ const TableColumnBrowser = ({ value, onChange, onDoubleClick }: TableColumnBrows
   });
   const { handleKeyDown } = useTableKeyHandler({ table, data });
   useEffect(() => {
-    if (Object.keys(rowSelection).length !== 1) {
+    const selectedRow = table.getSelectedRowModel().flatRows[0];
+    if (selectedRow === undefined) {
       onChange({ cursorValue: '' });
       setShowHelper(false);
       return;
     }
 
-    const selectedRow = table.getRowModel().rowsById[Object.keys(rowSelection)[0]];
     setShowHelper(true);
     onChange({ cursorValue: selectedRow.original.name });
   }, [onChange, rowSelection, table]);
@@ -125,7 +125,7 @@ const TableColumnBrowser = ({ value, onChange, onDoubleClick }: TableColumnBrows
       {showHelper && (
         <pre className='browser-helptext'>
           <b>{value}</b>
-          <>{table.getRowModel().rowsById[Object.keys(rowSelection)[0]].original.type}</>
+          <>{table.getSelectedRowModel().rows[0]?.original.type}</>
         </pre>
       )}
     </>

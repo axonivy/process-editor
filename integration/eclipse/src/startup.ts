@@ -11,14 +11,9 @@ import './index.css';
 
 @injectable()
 export class EclipseDiagramStartup implements IDiagramStartup {
-  @inject(TYPES.IActionDispatcher)
-  protected actionDispatcher: IActionDispatcher;
-
-  @inject(IVY_TYPES.ToolBar)
-  protected toolBar: ToolBar;
-
-  @inject(TYPES.IDiagramOptions)
-  protected options: IvyDiagramOptions;
+  @inject(TYPES.IActionDispatcher) protected actionDispatcher!: IActionDispatcher;
+  @inject(IVY_TYPES.ToolBar) protected toolBar!: ToolBar;
+  @inject(TYPES.IDiagramOptions) protected options!: IvyDiagramOptions;
 
   async preRequestModel(): Promise<void> {
     this.actionDispatcher.dispatch(EnableToolPaletteAction.create());

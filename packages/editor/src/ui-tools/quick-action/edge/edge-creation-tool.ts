@@ -34,12 +34,12 @@ import { isMultipleOutgoingEdgesFeature } from './model';
 export class QuickActionEdgeCreationTool extends BaseCreationTool<QuickActionTriggerEdgeCreationAction> {
   static ID = 'quick-action-edge-creation-tool';
 
-  @inject(AnchorComputerRegistry) protected anchorRegistry: AnchorComputerRegistry;
+  @inject(AnchorComputerRegistry) protected anchorRegistry!: AnchorComputerRegistry;
 
   protected isTriggerAction = QuickActionTriggerEdgeCreationAction.is;
 
-  protected creationToolMouseListener: QuickActionEdgeCreationToolMouseListener;
-  protected feedbackEndMovingMouseListener: FeedbackEdgeEndMovingMouseListener;
+  protected creationToolMouseListener?: QuickActionEdgeCreationToolMouseListener;
+  protected feedbackEndMovingMouseListener?: FeedbackEdgeEndMovingMouseListener;
 
   get id(): string {
     return QuickActionEdgeCreationTool.ID;
@@ -86,7 +86,7 @@ export class QuickActionEdgeCreationToolMouseListener extends DragAwareMouseList
     this.tool.registerFeedback([RemoveFeedbackEdgeAction.create()]);
   }
 
-  nonDraggingMouseUp(_element: GModelElement, event: MouseEvent): Action[] {
+  override nonDraggingMouseUp(_element: GModelElement, event: MouseEvent): Action[] {
     const result: Action[] = [];
     if (event.button === 0) {
       if (this.currentTarget /* && this.allowedTarget*/) {

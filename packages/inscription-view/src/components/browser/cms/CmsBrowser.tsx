@@ -175,27 +175,19 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
       return `ivy.cms.co("${value}")`;
     };
 
-    if (Object.keys(rowSelection).length !== 1) {
+    const selectedRow = table.getSelectedRowModel().flatRows[0];
+    if (selectedRow === undefined) {
       setSelectedContentObject({ name: '', children: [], fullPath: '', type: 'STRING', values: {} });
       setShowHelper(false);
       onChange({ cursorValue: '' });
       return;
     }
-    const selectedRow = table.getRowModel().rowsById[Object.keys(rowSelection)[0]];
     setSelectedContentObject(selectedRow.original);
     setShowHelper(true);
     onChange({ cursorValue: addIvyPathToValue(selectedRow.original.fullPath, selectedRow.original.type, noApiCall) });
   }, [onChange, rowSelection, noApiCall, table, location]);
 
-  const folderSelected = (): boolean => {
-    if (table.getSelectedRowModel().flatRows.length === 0) {
-      return false;
-    }
-    if (table.getSelectedRowModel().flatRows[0].original.type === 'FOLDER') {
-      return true;
-    }
-    return false;
-  };
+  const folderSelected = () => table.getSelectedRowModel().flatRows[0]?.original.type === 'FOLDER';
 
   return (
     <>
@@ -204,13 +196,13 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
         {context.app === 'designer' && (
           <Button
             icon={IvyIcons.Plus}
-            onClick={() => addNewCmsString.mutate({ context, parentUri: table.getSelectedRowModel().flatRows[0].original.fullPath })}
+            onClick={() => addNewCmsString.mutate({ context, parentUri: table.getSelectedRowModel().flatRows[0]?.original.fullPath ?? '' })}
             aria-label={t('browser.cms.add')}
             title={t('browser.cms.add')}
             disabled={
               table.getSelectedRowModel().flatRows.length === 0 ||
               requiredProject ||
-              table.getSelectedRowModel().flatRows[0].original.type !== 'FOLDER'
+              table.getSelectedRowModel().flatRows[0]?.original.type !== 'FOLDER'
             }
           />
         )}

@@ -7,7 +7,7 @@ import { ToolBarButtonLocation, type ToolBarButtonProvider } from '../ui-tools/t
 
 @injectable()
 export class OpenFormEditorButtonProvider implements ToolBarButtonProvider {
-  @inject(EditorContextService) protected readonly editorContext: EditorContextService;
+  @inject(EditorContextService) protected readonly editorContext!: EditorContextService;
 
   button() {
     try {

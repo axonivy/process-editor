@@ -61,8 +61,8 @@ export const MarqueeToolButton = (): ToolBarButton => ({
 
 @injectable()
 export class OptionsButtonProvider implements ToolBarButtonProvider {
-  @inject(CustomIconToggleActionHandler) protected customIconHandler: CustomIconToggleActionHandler;
-  @inject(TYPES.IGridManager) protected gridManager: IGridManager;
+  @inject(CustomIconToggleActionHandler) protected customIconHandler!: CustomIconToggleActionHandler;
+  @inject(TYPES.IGridManager) protected gridManager!: IGridManager;
 
   button() {
     const customIconState = () => this.customIconHandler.isShowCustomIcons;

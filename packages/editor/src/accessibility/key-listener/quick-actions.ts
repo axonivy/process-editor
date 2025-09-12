@@ -5,14 +5,15 @@ import { QuickActionUI } from '../../ui-tools/quick-action/quick-action-ui';
 
 @injectable()
 export class QuickActionKeyListener extends KeyListener {
-  @inject(QuickActionUI) protected quickActionUi: QuickActionUI;
+  @inject(QuickActionUI) protected quickActionUi!: QuickActionUI;
 
-  keyDown(element: GModelElement, event: KeyboardEvent): Action[] {
+  override keyDown(element: GModelElement, event: KeyboardEvent): Action[] {
     const quickActions = this.quickActionUi
       .getActiveQuickActions()
       .filter(quickAction => quickAction.shortcut && matchesKeystroke(event, quickAction.shortcut));
-    if (quickActions.length === 1 && !quickActions[0].letQuickActionsOpen) {
-      return [quickActions[0].action, QuickActionUI.hide()];
+    const firstQuickAction = quickActions[0];
+    if (firstQuickAction && !firstQuickAction.letQuickActionsOpen) {
+      return [firstQuickAction.action, QuickActionUI.hide()];
     }
     return quickActions.map(quickAction => quickAction.action);
   }

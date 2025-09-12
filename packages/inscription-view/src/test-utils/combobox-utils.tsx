@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { screen, userEvent, waitFor } from 'test-utils';
 import { expect } from 'vitest';
 
@@ -26,7 +27,7 @@ export namespace ComboboxUtil {
   }
 
   export async function assertOptionsCount(count: number, options?: ComboboxUtilOptions) {
-    await userEvent.click(select(options));
+    await userEvent.click(select(options)!);
     expect(screen.getAllByRole('option')).toHaveLength(count);
   }
 }

@@ -11,15 +11,15 @@ import { QuickActionUI } from '../ui-tools/quick-action/quick-action-ui';
 
 @injectable()
 export class IvyChangeBoundsManager extends ChangeBoundsManager {
-  @inject(SelectionService) protected selectionService: SelectionService;
+  @inject(SelectionService) protected selectionService!: SelectionService;
 
-  addMoveFeedback(feedback: FeedbackEmitter, trackedMove: TrackedMove, ctx?: GModelElement, event?: MouseEvent): FeedbackEmitter {
+  override addMoveFeedback(feedback: FeedbackEmitter, trackedMove: TrackedMove, ctx?: GModelElement, event?: MouseEvent): FeedbackEmitter {
     super.addMoveFeedback(feedback, trackedMove, ctx, event);
     this.hideQuickUIFeedback(feedback);
     return feedback;
   }
 
-  addResizeFeedback(feedback: FeedbackEmitter, resize: TrackedResize, ctx?: GModelElement, event?: MouseEvent): FeedbackEmitter {
+  override addResizeFeedback(feedback: FeedbackEmitter, resize: TrackedResize, ctx?: GModelElement, event?: MouseEvent): FeedbackEmitter {
     super.addResizeFeedback(feedback, resize, ctx, event);
     this.hideQuickUIFeedback(feedback);
     return feedback;

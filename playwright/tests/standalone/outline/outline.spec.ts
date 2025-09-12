@@ -6,12 +6,12 @@ test('outline', async ({ page }) => {
   const { outline } = await openOutline(page, 'processes/quickstart.p.json');
   await outline.view.getByRole('row').all();
   const rows = await outline.view.getByRole('row').all();
-  await expect(rows[0]).toHaveText('quickstartBusiness Process');
-  await expect(rows[1]).toHaveText('User DialogEnter Product');
-  await expect(rows[2]).toHaveText('End148655DDB7BB6588-f1');
-  await expect(rows[3]).toHaveText('End148655DDB7BB6588-f7');
-  await expect(rows[4]).toHaveText('Startstart.ivp');
-  await expect(rows[5]).toHaveText('AlternativePrice higher than 100?');
+  await expect(rows[0]!).toHaveText('quickstartBusiness Process');
+  await expect(rows[1]!).toHaveText('User DialogEnter Product');
+  await expect(rows[2]!).toHaveText('End148655DDB7BB6588-f1');
+  await expect(rows[3]!).toHaveText('End148655DDB7BB6588-f7');
+  await expect(rows[4]!).toHaveText('Startstart.ivp');
+  await expect(rows[5]!).toHaveText('AlternativePrice higher than 100?');
 });
 
 test('select element', async ({ page }) => {

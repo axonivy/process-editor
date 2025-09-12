@@ -12,7 +12,7 @@ import { ActivityNode } from '../model';
 export class ActivityNodeView extends RectangularNodeView {
   @inject(CustomIconToggleActionHandler) @optional() protected customIconHandler?: CustomIconToggleActionHandler;
 
-  render(node: ActivityNode, context: RenderingContext): VNode | undefined {
+  override render(node: ActivityNode, context: RenderingContext): VNode | undefined {
     if (!this.isVisible(node, context)) {
       return undefined;
     }
@@ -53,7 +53,7 @@ export class ActivityNodeView extends RectangularNodeView {
 
 @injectable()
 export class SubActivityNodeView extends ActivityNodeView {
-  protected getNodeDecorator(node: ActivityNode): VNode {
+  protected override getNodeDecorator(node: ActivityNode): VNode {
     const diameter = 12;
     const radius = diameter / 2;
     const padding = 2;

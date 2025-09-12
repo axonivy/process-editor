@@ -26,7 +26,7 @@ type BrowserProps = UseBrowserReturnValue & {
 
 const Browser = ({ open, onOpenChange, types, accept, location, cmsOptions, roleOptions, initSearchFilter }: BrowserProps) => {
   const { t } = useTranslation();
-  const [active, setActive] = useState<BrowserType>(types[0]);
+  const [active, setActive] = useState<BrowserType>(types[0] ?? 'attr');
   const [disableApply, setDisableApply] = useState(false);
 
   const acceptBrowser = () => {
