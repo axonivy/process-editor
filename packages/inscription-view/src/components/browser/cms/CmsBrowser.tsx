@@ -175,7 +175,7 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
       return `ivy.cms.co("${value}")`;
     };
 
-    const selectedRow = table.getSelectedRowModel().rows[0];
+    const selectedRow = table.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
       setSelectedContentObject({ name: '', children: [], fullPath: '', type: 'STRING', values: {} });
       setShowHelper(false);

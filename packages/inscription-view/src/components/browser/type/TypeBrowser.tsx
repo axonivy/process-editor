@@ -182,7 +182,7 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
   });
   const { handleKeyDown } = useTableKeyHandler({ table: tableDynamic, data: types });
   useEffect(() => {
-    const selectedRow = tableDynamic.getSelectedRowModel().rows[0];
+    const selectedRow = tableDynamic.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
       onChange({ cursorValue: '' });
       setShowHelper(false);

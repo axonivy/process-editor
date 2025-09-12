@@ -90,7 +90,7 @@ const TableColumnBrowser = ({ value, onChange, onDoubleClick }: TableColumnBrows
   });
   const { handleKeyDown } = useTableKeyHandler({ table, data });
   useEffect(() => {
-    const selectedRow = table.getSelectedRowModel().rows[0];
+    const selectedRow = table.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
       onChange({ cursorValue: '' });
       setShowHelper(false);

@@ -122,7 +122,7 @@ const AttributeBrowser = ({
   });
 
   useEffect(() => {
-    const selectedRow = table.getSelectedRowModel().rows[0];
+    const selectedRow = table.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
       return;
     }

@@ -133,7 +133,7 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
   });
 
   useEffect(() => {
-    const selectedRow = table.getSelectedRowModel().rows[0];
+    const selectedRow = table.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
       setShowHelper(false);
       onChange({ cursorValue: '' });

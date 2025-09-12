@@ -105,11 +105,11 @@ const useResizableEditableTable = <TData,>({
       return [];
     }
     const firstSelectedRow = table.getSelectedRowModel().rows[0];
-    if (!firstSelectedRow) {
+    if (firstSelectedRow === undefined) {
       return [];
     }
     const firstSelectedRowIndex = table.getRowModel().rowsById[firstSelectedRow.id]?.index;
-    if (!firstSelectedRowIndex) {
+    if (firstSelectedRowIndex === undefined) {
       return [];
     }
     const additionalActions = additionalActionsSupplier?.(firstSelectedRow, firstSelectedRowIndex) ?? [];

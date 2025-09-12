@@ -33,7 +33,7 @@ export function restParamBuilder() {
               const index = params.indexOf(foundParam);
               const newParam = structuredClone(foundParam);
               newParam.expression = value;
-              params.splice(index, 0, newParam);
+              params.splice(index + 1, 0, newParam);
             }
           } else {
             params.push({ name: key, expression: value, known: false });
