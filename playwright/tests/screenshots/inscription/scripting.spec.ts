@@ -49,7 +49,7 @@ test.describe('Scripting', () => {
   });
 });
 
-async function openInscriptionTab(page: Page, pid: string, inscriptionTabName): Promise<InscriptionTab> {
+async function openInscriptionTab(page: Page, pid: string, inscriptionTabName: string): Promise<InscriptionTab> {
   const view = await openElementInscription(page, pid, 'inscription-test-project');
   await page.addStyleTag({ content: 'body { overflow: hidden; }' });
   const tab = view.inscriptionTab(inscriptionTabName);
