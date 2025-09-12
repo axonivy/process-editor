@@ -4,7 +4,8 @@
     "rootDir": ".",
     "rootDirs": ["tests"],
     "outDir": "lib",
-    "types": ["node"]
+    "types": ["node"],
+    "noImplicitAny": false
   },
   "include": ["tests"]
 }
