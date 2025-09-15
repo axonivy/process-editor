@@ -1,5 +1,7 @@
 import { QUERY_ORDER } from '@axonivy/process-editor-inscription-protocol';
 import {
+  arraymove,
+  indexOf,
   ReorderHandleWrapper,
   ReorderRow,
   SelectCell,
@@ -16,7 +18,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
-import { arraymove, indexOf } from '../../../../utils/array';
+import type { FieldsetControl } from '../../../widgets/fieldset/fieldset-control';
 import type { SelectItem } from '../../../widgets/select/Select';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
 import { focusNewCell } from '../../common/table/cellFocus-utils';
@@ -42,13 +44,12 @@ export const TableSort = () => {
 
   useEffect(() => {
     const data = config.query.sql.orderBy?.map<Column>(order => {
-      const parts = order.split(' ');
-      const name = parts[0];
+      const [name, ...parts] = order.split(' ');
       let sorting: OrderDirection = 'ASCENDING';
-      if (parts.length > 1 && parts[1] === 'DESC') {
+      if (parts.length > 0 && parts[0] === 'DESC') {
         sorting = 'DESCENDING';
       }
-      return { name, sorting };
+      return { name: name ?? '', sorting };
     });
     setData(data ?? []);
   }, [config.query.sql.orderBy]);
@@ -104,7 +105,7 @@ export const TableSort = () => {
       updateData: (rowId: string, columnId: string, value: string) => {
         const rowIndex = parseInt(rowId);
         const newData = data.map((row, index) => {
-          if (index === rowIndex) {
+          if (index === rowIndex && data[rowIndex]) {
             return {
               ...data[rowIndex],
               [columnId]: value
@@ -145,16 +146,20 @@ export const TableSort = () => {
     updateOrderBy(data);
   };
 
-  const tableActions =
-    table.getSelectedRowModel().rows.length > 0
-      ? [
-          {
-            label: t('label.removeRow'),
-            icon: IvyIcons.Trash,
-            action: () => removeRow(table.getRowModel().rowsById[Object.keys(rowSelection)[0]].index)
-          }
-        ]
-      : [];
+  const firstSelectionId = Object.keys(rowSelection)[0];
+  let tableActions: FieldsetControl[] = [];
+  if (firstSelectionId) {
+    const firstSelectionRow = table.getRowModel().rowsById[firstSelectionId];
+    if (firstSelectionRow) {
+      tableActions = [
+        {
+          label: t('label.removeRow'),
+          icon: IvyIcons.Trash,
+          action: () => removeRow(firstSelectionRow?.index)
+        }
+      ];
+    }
+  }
 
   return (
     <PathCollapsible label={t('part.db.sort')} path='orderBy' defaultOpen={config.query.sql.orderBy?.length > 0} controls={tableActions}>

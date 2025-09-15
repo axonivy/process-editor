@@ -20,14 +20,14 @@ let root: GModelRoot;
 
 @injectable()
 class AnimateFeedbackCommandMock extends AnimateFeedbackCommand {
-  execute(context: CommandExecutionContext): GModelRoot {
+  override execute(context: CommandExecutionContext): GModelRoot {
     context.root = root;
     return super.execute(context);
   }
 }
 
 class AnimationNode extends GChildElement {
-  features = createFeatureSet([animateFeature]);
+  override features = createFeatureSet([animateFeature]);
 }
 
 function createContainer(): Container {

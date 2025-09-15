@@ -12,7 +12,7 @@ export class Tags {
       const newTagBtn = this.locator.getByRole('button', { name: 'Add new tag' });
       await newTagBtn.click();
       const input = newTagBtn.locator('input');
-      await input.fill(tags[i]);
+      await input.fill(tags[i]!);
       await input.press('Enter');
     }
   }
@@ -34,7 +34,7 @@ export class Tags {
 
   async expectTags(tags: string[]) {
     for (let i = 0; i < tags.length; i++) {
-      await expect(this.locator.getByRole('gridcell').nth(i)).toHaveText(tags[i]);
+      await expect(this.locator.getByRole('gridcell').nth(i)).toHaveText(tags[i]!);
     }
   }
 

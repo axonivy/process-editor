@@ -48,7 +48,7 @@ const StartCustomFieldTable = ({ data, onChange }: StartCustomFieldTableProps) =
     [data, predefinedCustomField, t]
   );
 
-  const { table, rowSelection, setRowSelection, removeRowAction, showAddButton } = useResizableEditableTable({
+  const { table, setRowSelection, selectedRowActions, showAddButton } = useResizableEditableTable({
     data,
     columns,
     onChange,
@@ -57,17 +57,13 @@ const StartCustomFieldTable = ({ data, onChange }: StartCustomFieldTableProps) =
 
   const action = useAction('openCustomField');
 
-  const tableActions =
-    table.getSelectedRowModel().rows.length > 0
-      ? [
-          {
-            label: t('label.openCustomField'),
-            icon: IvyIcons.GoToSource,
-            action: () => action({ name: table.getRowModel().rowsById[Object.keys(rowSelection)[0]].original.name, type: 'START' })
-          },
-          removeRowAction
-        ]
-      : [];
+  const tableActions = selectedRowActions(row => [
+    {
+      label: t('label.openCustomField'),
+      icon: IvyIcons.GoToSource,
+      action: () => action({ name: row.original.name, type: 'START' })
+    }
+  ]);
 
   return (
     <PathCollapsible path='customFields' controls={tableActions} label={t('label.customFields')} defaultOpen={data.length > 0}>

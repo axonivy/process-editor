@@ -9,14 +9,9 @@ const ContainerSymbol = Symbol('ContainerSymbol');
 
 @injectable()
 export class ViewerDiagramStartup implements IDiagramStartup {
-  @inject(TYPES.IActionDispatcher)
-  protected actionDispatcher: IActionDispatcher;
-
-  @inject(TYPES.IDiagramOptions)
-  protected options: IvyDiagramOptions;
-
-  @inject(ContainerSymbol)
-  protected container: interfaces.Container;
+  @inject(TYPES.IActionDispatcher) protected actionDispatcher!: IActionDispatcher;
+  @inject(TYPES.IDiagramOptions) protected options!: IvyDiagramOptions;
+  @inject(ContainerSymbol) protected container!: interfaces.Container;
 
   async preRequestModel() {
     this.actionDispatcher.dispatch(SwitchThemeAction.create({ theme: this.options.theme }));

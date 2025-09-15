@@ -15,15 +15,15 @@ import { QuickActionUI } from '../quick-action/quick-action-ui';
 
 @injectable()
 export class IvyScrollMouseListener extends GLSPScrollMouseListener {
-  @inject(QuickActionUI) quickActionUi: QuickActionUI;
-  @inject(GLSPMouseTool) mouseTool: GLSPMouseTool;
+  @inject(QuickActionUI) quickActionUi!: QuickActionUI;
+  @inject(GLSPMouseTool) mouseTool!: GLSPMouseTool;
 
   @postConstruct()
   protected init(): void {
     this.mouseTool.registerListener(this);
   }
 
-  mouseDown(target: GModelElement, event: MouseEvent): (Action | Promise<Action>)[] {
+  override mouseDown(target: GModelElement, event: MouseEvent): (Action | Promise<Action>)[] {
     const handle = findParentByFeature(target, toTypeGuard(GResizeHandle));
     if (handle) {
       return [];
@@ -31,7 +31,7 @@ export class IvyScrollMouseListener extends GLSPScrollMouseListener {
     return super.mouseDown(target, event);
   }
 
-  mouseMove(target: GModelElement, event: MouseEvent): Action[] {
+  override mouseMove(target: GModelElement, event: MouseEvent): Action[] {
     const actions = super.mouseMove(target, event);
     if (this.lastScrollPosition) {
       this.quickActionUi.hideUi();
@@ -39,14 +39,14 @@ export class IvyScrollMouseListener extends GLSPScrollMouseListener {
     return actions;
   }
 
-  mouseUp(target: GModelElement, event: MouseEvent): Action[] {
+  override mouseUp(target: GModelElement, event: MouseEvent): Action[] {
     if (this.lastScrollPosition) {
       this.quickActionUi.showUi();
     }
     return super.mouseUp(target, event);
   }
 
-  wheel(target: GModelElement, event: WheelEvent): (Action | Promise<Action>)[] {
+  override wheel(target: GModelElement, event: WheelEvent): (Action | Promise<Action>)[] {
     if (isCtrlOrCmd(event)) {
       return [];
     }

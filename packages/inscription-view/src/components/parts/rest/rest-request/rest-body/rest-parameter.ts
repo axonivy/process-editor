@@ -31,8 +31,9 @@ export function restParamBuilder() {
               foundParam.expression = value;
             } else {
               const index = params.indexOf(foundParam);
-              params.splice(index, 0, structuredClone(foundParam));
-              params[index + 1].expression = value;
+              const newParam = structuredClone(foundParam);
+              newParam.expression = value;
+              params.splice(index + 1, 0, newParam);
             }
           } else {
             params.push({ name: key, expression: value, known: false });

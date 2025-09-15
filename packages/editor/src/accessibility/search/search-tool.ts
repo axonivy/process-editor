@@ -11,9 +11,9 @@ import { injectable } from 'inversify';
 @injectable()
 export class IvySearchAutocompletePaletteTool extends SearchAutocompletePaletteTool {
   // customization: listener with changed activate keystroke
-  protected readonly keyListener: SearchAutocompletePaletteKeyListener = new IvySearchAutocompletePaletteKeyListener(this);
+  protected override readonly keyListener: SearchAutocompletePaletteKeyListener = new IvySearchAutocompletePaletteKeyListener(this);
 
-  enable(): void {
+  override enable(): void {
     this.toDisposeOnDisable.push(
       this.keyTool.registerListener(this.keyListener),
       repeatOnMessagesUpdated(() =>
@@ -31,7 +31,7 @@ export class IvySearchAutocompletePaletteTool extends SearchAutocompletePaletteT
 }
 
 export class IvySearchAutocompletePaletteKeyListener extends SearchAutocompletePaletteKeyListener {
-  protected matchesSearchActivateKeystroke(event: KeyboardEvent): boolean {
+  protected override matchesSearchActivateKeystroke(event: KeyboardEvent): boolean {
     return matchesKeystroke(event, 'KeyF', 'ctrlCmd'); // customization: use 'ctrlCmd' instead of 'ctrl'
   }
 }

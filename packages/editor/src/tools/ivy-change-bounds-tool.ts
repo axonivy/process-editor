@@ -23,7 +23,7 @@ export class IvyChangeBoundsTool extends ChangeBoundsTool {
     return new IvyChangeBoundsListener(this);
   }
 
-  createMoveKeyListener(): KeyListener {
+  override createMoveKeyListener(): KeyListener {
     return new IvyMoveElementKeyListener(this.selectionService, this.changeBoundsManager, this.grid);
   }
 }
@@ -38,20 +38,17 @@ export class IvyChangeBoundsListener extends ChangeBoundsListener {
     return super.mouseDown(target, event);
   }
 
-  protected resizeBoundsAction(resize: TrackedResize) {
+  protected override resizeBoundsAction(resize: TrackedResize) {
     const elementResizes = resize.elementResizes.filter(elementResize => elementResize.valid.size);
-    if (this.isLaneMove(resize, elementResizes)) {
-      this.changeLaneResizeToMove(elementResizes[0]);
+    const firstElementResize = elementResizes[0];
+    if (firstElementResize && this.isLaneMove(resize, firstElementResize)) {
+      this.changeLaneResizeToMove(firstElementResize);
     }
     return SetBoundsFeedbackAction.create(elementResizes.map(elementResize => this.toElementAndBounds(elementResize)));
   }
 
-  private isLaneMove(resize: TrackedResize, elementResizes: Array<TrackedElementResize>) {
-    return (
-      elementResizes.length === 1 &&
-      elementResizes[0].element instanceof LaneNode &&
-      resize.handleMove.element.location === ResizeHandleLocation.Top
-    );
+  private isLaneMove(resize: TrackedResize, elementResize: TrackedElementResize) {
+    return elementResize.element instanceof LaneNode && resize.handleMove.element.location === ResizeHandleLocation.Top;
   }
 
   private changeLaneResizeToMove(elementResize: TrackedElementResize) {
@@ -60,7 +57,7 @@ export class IvyChangeBoundsListener extends ChangeBoundsListener {
 }
 
 export class IvyMoveElementKeyListener extends MoveElementKeyListener {
-  keyDown(element: GModelElement, event: KeyboardEvent): Action[] {
+  override keyDown(element: GModelElement, event: KeyboardEvent): Action[] {
     const direction = this.getDirection(event);
     if (!direction) {
       return [];

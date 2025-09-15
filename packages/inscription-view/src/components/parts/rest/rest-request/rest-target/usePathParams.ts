@@ -1,3 +1,4 @@
+import { isNotUndefined } from '@axonivy/ui-components';
 import { useEffect, useMemo, useState } from 'react';
 import { useEditorContext } from '../../../../../context/useEditorContext';
 import { useMeta } from '../../../../../context/useMeta';
@@ -15,5 +16,5 @@ export const useFindPathParams = () => {
   useEffect(() => {
     setPath(`${clientUri}${config.target.path}`);
   }, [clientUri, config.target.path]);
-  return useMemo(() => [...path.matchAll(/\{([^}]*)\}/gm)].map(match => match[1]), [path]);
+  return useMemo(() => [...path.matchAll(/\{([^}]*)\}/gm)].map(match => match[1]).filter(isNotUndefined), [path]);
 };

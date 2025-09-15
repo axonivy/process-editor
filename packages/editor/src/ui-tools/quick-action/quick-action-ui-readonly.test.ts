@@ -14,7 +14,7 @@ import ivyQuickActionModule, { configureQuickActionProviders } from './di.config
 import { QuickActionUI } from './quick-action-ui';
 
 class QuickActionUIReadonly extends QuickActionUI {
-  protected isReadonly(): boolean {
+  protected override isReadonly(): boolean {
     return true;
   }
 }

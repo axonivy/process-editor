@@ -37,7 +37,7 @@ const PrioritySelect = ({ priority, updatePriority }: PrioritySelectProps) => {
   return (
     <Flex direction='row' gap={2} className='priority-select'>
       <Select value={selectedLevel} onChange={item => updatePriority('level', item.value as WfLevel)} items={priorityItems} />
-      {(selectedLevel.value as WfLevel) === 'SCRIPT' && (
+      {(selectedLevel?.value as WfLevel) === 'SCRIPT' && (
         <Field>
           <ScriptInput
             type={IVY_SCRIPT_TYPES.INT}

@@ -122,10 +122,10 @@ const AttributeBrowser = ({
   });
 
   useEffect(() => {
-    if (Object.keys(rowSelection).length !== 1) {
+    const selectedRow = table.getSelectedRowModel().flatRows[0];
+    if (selectedRow === undefined) {
       return;
     }
-    const selectedRow = table.getRowModel().rowsById[Object.keys(rowSelection)[0]];
     setShowHelper(true);
     onChange({ cursorValue: calcFullPathId(selectedRow) });
   }, [onChange, rowSelection, table]);

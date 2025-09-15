@@ -15,6 +15,7 @@ import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { deepEqual } from '../../../../../utils/equals';
+import type { FieldsetControl } from '../../../../widgets/fieldset/fieldset-control';
 import type { SelectItem } from '../../../../widgets/select/Select';
 import { ScriptCell } from '../../../../widgets/table/cell/ScriptCell';
 import { PathCollapsible } from '../../../common/path/PathCollapsible';
@@ -123,17 +124,21 @@ export const RestParameters = () => {
     }
   });
 
-  const tableActions =
-    table.getSelectedRowModel().rows.length > 0 && !table.getRowModel().rowsById[Object.keys(rowSelection)[0]].original.known
-      ? [
-          {
-            label: t('label.removeRow'),
-            icon: IvyIcons.Trash,
-            action: () => removeRow(table.getRowModel().rowsById[Object.keys(rowSelection)[0]].index)
-          }
-        ]
-      : [];
-
+  const firstSelectionId = Object.keys(rowSelection)[0];
+  let tableActions: FieldsetControl[] = [];
+  if (firstSelectionId) {
+    const firstSelectionRow = table.getRowModel().rowsById[firstSelectionId];
+    if (firstSelectionRow && !firstSelectionRow?.original.known) {
+      tableActions = [
+        {
+          label: t('label.removeRow'),
+          icon: IvyIcons.Trash,
+          action: () => removeRow(firstSelectionRow?.index)
+        }
+      ];
+    }
+  }
+  
   return (
     <PathCollapsible label={t('part.rest.parameters')} path='parameters' defaultOpen={data.length > 0} controls={tableActions}>
       <Table>

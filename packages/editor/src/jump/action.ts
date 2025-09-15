@@ -20,8 +20,8 @@ import { isJumpable } from './model';
 
 @injectable()
 export class JumpActionHandler implements IActionHandler {
-  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
-  @inject(EditorContextService) protected readonly editorContext: EditorContextService;
+  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
+  @inject(EditorContextService) protected readonly editorContext!: EditorContextService;
   private jumpStack: Map<string, Viewport> = new Map();
 
   handle(action: Action) {

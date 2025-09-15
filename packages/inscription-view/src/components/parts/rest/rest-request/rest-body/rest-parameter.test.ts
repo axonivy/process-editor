@@ -10,8 +10,8 @@ describe('RestParam', () => {
   ];
 
   const expressionParams = structuredClone(params);
-  expressionParams[0].expression = '123';
-  expressionParams[1].expression = '4';
+  expressionParams[0]!.expression = '123';
+  expressionParams[1]!.expression = '4';
 
   const restParam: RestParameter = {
     name: 'para',
@@ -55,7 +55,7 @@ describe('RestParam', () => {
 
   test('of - mixed', () => {
     const expectedParams = structuredClone(params);
-    expectedParams[1].expression = '4';
+    expectedParams[1]!.expression = '4';
     expectedParams.push({ name: 'test', known: false, expression: '123' });
     expect(
       restParamBuilder()
@@ -67,7 +67,7 @@ describe('RestParam', () => {
 
   test('update', () => {
     const expected = structuredClone(params);
-    expected[1].expression = 'test';
+    expected[1]!.expression = 'test';
     expect(updateRestParams(structuredClone(params), 1, 'expression', 'test')).toEqual(expected);
   });
 
@@ -78,8 +78,8 @@ describe('RestParam', () => {
   //Rest forms support multiple values for the same key
   test('to - multiple same attributes', () => {
     const sameParams = structuredClone(expressionParams);
-    sameParams.push(params[0]);
-    sameParams[2].expression = 'blabla';
+    sameParams.push(params[0]!);
+    sameParams[2]!.expression = 'blabla';
     expect(toRestMap(sameParams)).toEqual({ file: ['123', 'blabla'], ownerId: ['4'] });
   });
 });

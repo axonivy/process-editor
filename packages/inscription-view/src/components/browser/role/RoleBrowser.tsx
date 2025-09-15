@@ -88,13 +88,13 @@ const RoleBrowser = ({ value, showtaskRoles, onChange, onDoubleClick }: RoleBrow
   const { handleKeyDown } = useTableKeyHandler({ table, data: roleItems });
 
   useEffect(() => {
-    if (Object.keys(rowSelection).length !== 1) {
+    const selectedRow = table.getSelectedRowModel().flatRows[0];
+    if (selectedRow === undefined) {
       onChange({ cursorValue: '' });
       setShowHelper(false);
       return;
     }
 
-    const selectedRow = table.getRowModel().rowsById[Object.keys(rowSelection)[0]];
     setShowHelper(true);
     onChange({ cursorValue: selectedRow.original.id });
   }, [onChange, rowSelection, table]);

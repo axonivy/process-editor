@@ -13,7 +13,7 @@ export function useUpdateRestResource(): {
       produce((draft: RestRequestData & RestResponseData) => {
         const [method, path] = value.split(':');
         draft.method = method as HttpMethod;
-        draft.target.path = path;
+        draft.target.path = path ?? '';
 
         if (resource) {
           const payload = resource.method.inBody;

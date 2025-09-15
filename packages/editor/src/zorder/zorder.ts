@@ -5,11 +5,11 @@ import { LaneNode } from '../diagram/model';
 
 @injectable()
 export class IvyBringToFrontCommand extends BringToFrontCommand {
-  constructor(@inject(TYPES.Action) public action: BringToFrontAction) {
+  constructor(@inject(TYPES.Action) public override action: BringToFrontAction) {
     super(action);
   }
 
-  protected addToSelection(element: GChildElement): void {
+  protected override addToSelection(element: GChildElement): void {
     if (element instanceof LaneNode) {
       return;
     }

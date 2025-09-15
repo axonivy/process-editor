@@ -93,7 +93,7 @@ export namespace MappingTreeData {
     return data.map((row, index) => {
       const subRows = [...rows];
       const rowIndex = subRows.shift();
-      if (index === rowIndex) {
+      if (index === rowIndex && data[rowIndex]) {
         const rowData = data[rowIndex];
         if (subRows.length === 0) {
           return {

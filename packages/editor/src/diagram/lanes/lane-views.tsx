@@ -16,7 +16,7 @@ import { LaneNode } from '../model';
 
 @injectable()
 export class LaneNodeView extends RectangularNodeView {
-  render(node: LaneNode, context: RenderingContext): VNode {
+  override render(node: LaneNode, context: RenderingContext): VNode {
     if (this.isEmbeddedLane(node)) {
       const topRightRadius = node.isFirstChild() ? 4 : 0;
       const bottomRightRadius = node.isLastChild() ? 4 : 0;
@@ -76,7 +76,7 @@ export class LaneNodeView extends RectangularNodeView {
 
 @injectable()
 export class PoolNodeView extends LaneNodeView {
-  protected getDecoratorLine(node: LaneNode): VNode {
+  protected override getDecoratorLine(node: LaneNode): VNode {
     const poolLaneSpace = this.getPoolLaneSpace(node);
     const nodeHeight = node.size.height;
     const path = `M${poolLaneSpace},0 v${nodeHeight} h-${poolLaneSpace - 4} q-4,0 -4,-4 v-${nodeHeight - 8} q0,-4 4,-4 z`;
@@ -99,7 +99,7 @@ export class PoolNodeView extends LaneNodeView {
 
 @injectable()
 export class RotateLabelView extends GLabelView {
-  render(label: Readonly<GLabel>): VNode | undefined {
+  override render(label: Readonly<GLabel>): VNode | undefined {
     let height = label.bounds.height;
     if (isBoundsAware(label.parent)) {
       height = label.parent.bounds.height;

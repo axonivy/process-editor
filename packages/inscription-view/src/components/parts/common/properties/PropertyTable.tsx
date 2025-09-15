@@ -8,6 +8,7 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { deepEqual } from '../../../../utils/equals';
 import type { ComboboxItem } from '../../../widgets/combobox/Combobox';
+import type { FieldsetControl } from '../../../widgets/fieldset/fieldset-control';
 import { ScriptCell } from '../../../widgets/table/cell/ScriptCell';
 import { ValidationCollapsible } from '../path/validation/ValidationCollapsible';
 import { ValidationRow } from '../path/validation/ValidationRow';
@@ -101,16 +102,20 @@ export const PropertyTable = ({ properties, update, knownProperties, hidePropert
     }
   });
 
-  const tableActions =
-    table.getSelectedRowModel().rows.length > 0
-      ? [
-          {
-            label: t('label.removeRow'),
-            icon: IvyIcons.Trash,
-            action: () => removeRow(table.getRowModel().rowsById[Object.keys(rowSelection)[0]].index)
-          }
-        ]
-      : [];
+  const firstSelectionId = Object.keys(rowSelection)[0];
+  let tableActions: FieldsetControl[] = [];
+  if (firstSelectionId) {
+    const firstSelectionRow = table.getRowModel().rowsById[firstSelectionId];
+    if (firstSelectionRow) {
+      tableActions = [
+        {
+          label: t('label.removeRow'),
+          icon: IvyIcons.Trash,
+          action: () => removeRow(firstSelectionRow?.index)
+        }
+      ];
+    }
+  }
 
   return (
     <ValidationCollapsible label={label} defaultOpen={defaultOpen} controls={tableActions}>

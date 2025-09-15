@@ -18,11 +18,11 @@ import './search-palette.css';
 
 @injectable()
 export class IvySearchAutocompletePalette extends SearchAutocompletePalette {
-  protected getSuggestionProviders() {
+  protected override getSuggestionProviders() {
     return [new RevealNodeAutocompleteSuggestionProvider(), new RevealEdgeElementAutocompleteSuggestionProvider()];
   }
 
-  show(root: Readonly<GModelRoot>, ...contextElementIds: string[]): void {
+  override show(root: Readonly<GModelRoot>, ...contextElementIds: string[]): void {
     // customization: Skip deselecting all elements
     this.activeElement = document.activeElement;
     if (!this.containerElement) {

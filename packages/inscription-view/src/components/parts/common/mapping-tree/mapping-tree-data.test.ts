@@ -144,18 +144,18 @@ describe('MappingTreeData', () => {
     expect(treeData).toEqual(expectTree);
 
     MappingTreeData.loadChildrenFor(endlessParamInfo, 'demo.Endless', treeData);
-    expectTree[0].children[0].isLoaded = true;
-    expectTree[0].children[0].children = [{ ...endlessNode }];
+    expectTree[0]!.children[0]!.isLoaded = true;
+    expectTree[0]!.children[0]!.children = [{ ...endlessNode }];
     expect(treeData).toEqual(expectTree);
 
     MappingTreeData.loadChildrenFor(endlessParamInfo, 'demo.Endless', treeData);
-    expectTree[0].children[0].children[0].isLoaded = true;
-    expectTree[0].children[0].children[0].children = [{ ...endlessNode }];
+    expectTree[0]!.children[0]!.children[0]!.isLoaded = true;
+    expectTree[0]!.children[0]!.children[0]!.children = [{ ...endlessNode }];
     expect(treeData).toEqual(expectTree);
 
     MappingTreeData.loadChildrenFor(endlessParamInfo, 'demo.Endless', treeData);
-    expectTree[0].children[0].children[0].children[0].isLoaded = true;
-    expectTree[0].children[0].children[0].children[0].children = [{ ...endlessNode }];
+    expectTree[0]!.children[0]!.children[0]!.children[0]!.isLoaded = true;
+    expectTree[0]!.children[0]!.children[0]!.children[0]!.children = [{ ...endlessNode }];
     expect(treeData).toEqual(expectTree);
   });
 
@@ -167,9 +167,9 @@ describe('MappingTreeData', () => {
     MappingTreeData.update(variableInfo, tree, ['dummy'], 'dummy');
 
     expect(tree).not.toEqual(resultTree);
-    resultTree[0].value = 'in';
-    resultTree[0].children[1].value = '12';
-    resultTree[1].value = 'dummy';
+    resultTree[0]!.value = 'in';
+    resultTree[0]!.children[1]!.value = '12';
+    resultTree[1]!.value = 'dummy';
     expect(tree).toEqual(resultTree);
   });
 
@@ -178,8 +178,8 @@ describe('MappingTreeData', () => {
     MappingTreeData.update(variableInfo, treeData, ['param', 'procurementRequest', 'requester', 'email'], 'luke@skywalker.com');
 
     const expectTree = structuredClone(tree);
-    expectTree[0].children[2].isLoaded = true;
-    expectTree[0].children[2].children = [{ ...email_node, value: 'luke@skywalker.com' }];
+    expectTree[0]!.children[2]!.isLoaded = true;
+    expectTree[0]!.children[2]!.children = [{ ...email_node, value: 'luke@skywalker.com' }];
 
     expect(treeData).toEqual(expectTree);
   });
@@ -231,7 +231,7 @@ describe('MappingTreeData', () => {
     const tree = MappingTreeData.of(variableInfoParam);
     MappingTreeData.update(variableInfo, tree, ['param', 'name'], 'Hans');
     const expectedTree = structuredClone(tree);
-    expectedTree[0].children[0].value = 'Hans';
+    expectedTree[0]!.children[0]!.value = 'Hans';
     expect(tree).toHaveLength(1);
     expect(tree).toEqual(expectedTree);
   });
@@ -244,9 +244,9 @@ describe('MappingTreeData', () => {
     tree = MappingTreeData.updateDeep(tree, [1], 'value', 'dummy');
 
     expect(tree).not.toEqual(resultTree);
-    resultTree[0].value = 'root';
-    resultTree[0].children[1].value = '12';
-    resultTree[1].value = 'dummy';
+    resultTree[0]!.value = 'root';
+    resultTree[0]!.children[1]!.value = '12';
+    resultTree[1]!.value = 'dummy';
     expect(tree).toEqual(resultTree);
   });
 
@@ -254,9 +254,9 @@ describe('MappingTreeData', () => {
     const tree = mappingTreeMultiRootData();
     expect(MappingTreeData.to(tree)).toEqual({});
 
-    tree[0].value = 'root';
-    tree[0].children[1].value = '12';
-    tree[1].value = 'dummy';
+    tree[0]!.value = 'root';
+    tree[0]!.children[1]!.value = '12';
+    tree[1]!.value = 'dummy';
     const mapping = MappingTreeData.to(tree);
     expect(mapping).toEqual({ 'param.procurementRequest': 'root', 'param.procurementRequest.amount': '12', dummy: 'dummy' });
   });

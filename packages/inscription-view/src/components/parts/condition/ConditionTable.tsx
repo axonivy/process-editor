@@ -5,6 +5,7 @@ import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react
 import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import type { FieldsetControl } from '../../widgets/fieldset/fieldset-control';
 import { ScriptCell } from '../../widgets/table/cell/ScriptCell';
 import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
 import { ValidationSelectableReorderRow } from '../common/path/validation/ValidationRow';
@@ -85,18 +86,20 @@ const ConditionTable = ({ data, onChange }: { data: Condition[]; onChange: (chan
     }
   });
 
-  const showDeleteAction =
-    table.getSelectedRowModel().rows.length > 0 && !table.getRowModel().rowsById[Object.keys(rowSelection)[0]].original.target;
-
-  const tableActions = showDeleteAction
-    ? [
+  const firstSelectionId = Object.keys(rowSelection)[0];
+  let tableActions: FieldsetControl[] = [];
+  if (firstSelectionId) {
+    const firstSelectionRow = table.getRowModel().rowsById[firstSelectionId];
+    if (firstSelectionRow && !firstSelectionRow?.original.target) {
+      tableActions = [
         {
           label: t('label.removeRow'),
           icon: IvyIcons.Trash,
-          action: () => removeRow(table.getRowModel().rowsById[Object.keys(rowSelection)[0]].index)
+          action: () => removeRow(firstSelectionRow.index)
         }
-      ]
-    : [];
+      ];
+    }
+  }
 
   return (
     <ValidationCollapsible label={t('part.condition.title')} controls={tableActions} defaultOpen={true}>

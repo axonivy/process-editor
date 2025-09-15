@@ -8,7 +8,7 @@ import { ElementsPaletteHandler } from './action-handler';
 
 @injectable()
 export abstract class CreateElementsButtonProvider implements ToolBarButtonProvider {
-  @inject(ElementsPaletteHandler) protected paletteHandler: ElementsPaletteHandler;
+  @inject(ElementsPaletteHandler) protected paletteHandler!: ElementsPaletteHandler;
 
   button() {
     return this.createToolBarButton(this.paletteItems());
@@ -45,7 +45,7 @@ export class AllElementsButtonProvider extends CreateElementsButtonProvider {
 
 @injectable()
 export class EventsButtonProvider extends CreateElementsButtonProvider {
-  paletteItems(): () => PaletteItem[] {
+  override paletteItems(): () => PaletteItem[] {
     return () => this.paletteHandler.getPaletteItems().filter(item => item.id.match(/event-[a-z]+-group/));
   }
 
@@ -66,7 +66,7 @@ export class EventsButtonProvider extends CreateElementsButtonProvider {
 
 @injectable()
 export class GatewaysButtonProvider extends CreateElementsButtonProvider {
-  paletteItems(): () => PaletteItem[] {
+  override paletteItems(): () => PaletteItem[] {
     return () => this.paletteHandler.getPaletteItems().filter(item => item.id === 'gateway-group');
   }
 
@@ -87,7 +87,7 @@ export class GatewaysButtonProvider extends CreateElementsButtonProvider {
 
 @injectable()
 export class ActivitiesButtonProvider extends CreateElementsButtonProvider {
-  paletteItems(): () => PaletteItem[] {
+  override paletteItems(): () => PaletteItem[] {
     return () =>
       this.paletteHandler
         .getPaletteItems()
@@ -111,7 +111,7 @@ export class ActivitiesButtonProvider extends CreateElementsButtonProvider {
 
 @injectable()
 export class ArtifactsButtonProvider extends CreateElementsButtonProvider {
-  paletteItems(): () => PaletteItem[] {
+  override paletteItems(): () => PaletteItem[] {
     return () => this.paletteHandler.getPaletteItems().filter(item => item.id === 'swimlane-group' || item.id === 'annotation-group');
   }
 

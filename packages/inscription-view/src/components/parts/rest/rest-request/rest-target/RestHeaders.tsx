@@ -23,7 +23,7 @@ export const RestHeaders = () => {
       defaultOpen={!deepEqual(config.target.headers, defaultConfig.target.headers)}
     >
       <Fieldset label={t('part.rest.accept')}>
-        <Combobox value={config.target.headers['Accept']} onChange={updateAcceptHeader} items={knownContentTypes} />
+        <Combobox value={config.target.headers['Accept'] ?? ''} onChange={updateAcceptHeader} items={knownContentTypes} />
       </Fieldset>
       <PropertyTable
         properties={config.target.headers}

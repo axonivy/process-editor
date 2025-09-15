@@ -13,9 +13,9 @@ describe('Radio', () => {
     data: () => string;
     rerender: () => void;
   } {
-    let value = items[0].value;
+    let value = items[0]!.value;
     userEvent.setup();
-    const view = customRender(<Radio items={items} value={items[0].value} onChange={change => (value = change)} />);
+    const view = customRender(<Radio items={items} value={items[0]!.value} onChange={change => (value = change)} />);
     return {
       data: () => value,
       rerender: () => view.rerender(<Radio items={items} value={value} onChange={change => (value = change)} />)
@@ -41,7 +41,7 @@ describe('Radio', () => {
   });
 
   test('readonly mode', () => {
-    customRender(<Radio items={items} value={items[0].value} onChange={() => {}} />, {
+    customRender(<Radio items={items} value={items[0]!.value} onChange={() => {}} />, {
       wrapperProps: { editor: { readonly: true } }
     });
     expect(screen.getByRole('radiogroup')).toHaveAttribute('data-disabled');

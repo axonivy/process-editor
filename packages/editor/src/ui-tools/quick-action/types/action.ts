@@ -11,8 +11,8 @@ import { TypesPaletteHandler } from './action-handler';
 
 @injectable()
 export class SelectActivityTypeQuickActionProvider extends SingleQuickActionProvider {
-  @inject(IVY_TYPES.ActivityTypesPalette) protected readonly types: TypesPaletteHandler;
-  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher: IActionDispatcher;
+  @inject(IVY_TYPES.ActivityTypesPalette) protected readonly types!: TypesPaletteHandler;
+  @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
 
   singleQuickAction(element: GModelElement): QuickAction | undefined {
     if (isUnwrapable(element)) {
@@ -35,7 +35,7 @@ export class SelectActivityTypeQuickActionProvider extends SingleQuickActionProv
   }
 
   actions = (item: PaletteItem, elementIds: string[]): Action[] => [
-    ChangeActivityTypeOperation.create({ elementId: elementIds[0], typeId: item.id }),
+    ChangeActivityTypeOperation.create({ elementId: elementIds[0] ?? '', typeId: item.id }),
     ShowQuickActionMenuAction.empty()
   ];
 }
