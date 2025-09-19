@@ -42,7 +42,7 @@
     },
     "resize": {
       "off": "リサイズオフ: 'ALT'+'A' を押すとリサイズモードに切り替わります。",
-      "on": "リサイズオン: プラス (+) とマイナス (-) を使用してサイズを変更し、'CTRL'+'0' を押すとデフォルトサイズに戻ります。 'ESC' キーを押すと終了します。"
+      "on": "リサイズオン: プラス (+) とマイナス (-) を使用してサイズを変更します。'CTRL'+'0' を押すとデフォルトサイズに戻ります。 'ESC' キーを押すと終了します。"
     },
     "search": {
       "label": "検索フィールド",
@@ -75,15 +75,15 @@
       "title": "条件"
     },
     "empty": "データが見つかりません",
-    "emptyInfo": "要素は選択されていません。",
+    "emptyInfo": "要素が選択されていません。",
     "function": {
       "loadMore": "{{rowNumber}}／{{rowCount}} を表示",
-      "noType": "戻りタイプの定義なし",
-      "title": "関数"
+      "noType": "戻り型の定義なし",
+      "title": "機能"
     },
     "role": {
       "add": "ロールを {{role}} に追加する",
-      "addFailed": "新しいロールの追加に失敗しました",
+      "addFailed": "新しいロールを追加できませんでした",
       "addSuccess": "ロールを正常に追加しました",
       "message": {
         "newRoleAlreadyExists": "その名前のロールはすでに存在します"
@@ -92,13 +92,13 @@
       "title": "ロール"
     },
     "tableCol": {
-      "title": "テーブル列"
+      "title": "表の列"
     },
     "type": {
-      "asList": "タイプをリストとして使用",
-      "empty": "タイプが見つかりません。適合する検索語を入力してください",
+      "asList": "リストとして型を使用",
+      "empty": "該当するタイプが見つかりません。適切な検索語を入力してください",
       "loadingTypes": "その他のタイプを読み込んでいます...",
-      "searchAllTypes": "すべてのタイプを検索",
+      "searchAllTypes": "すべての型を検索",
       "title": "タイプ"
     }
   },
@@ -159,7 +159,7 @@
     "removeRow": "行を削除する",
     "request": "リクエスト",
     "reset": "{{name}} をリセットする",
-    "responsible": "責任者",
+    "responsible": "担当",
     "timeout": "タイムアウト",
     "URL": "URL",
     "validationError": "違反エラー",
@@ -175,20 +175,20 @@
     "elementRedo": "次の要素の構成をやり直す: {{elementName}}",
     "elementUndo": "次の要素の構成をやり直す: {{elementName}}",
     "globalError": "エラーが発生しました: {{error}}",
-    "noEditorForType": "次のタイプのエディターが見つからない: {{props.type}}",
+    "noEditorForType": "次のタイプのエディターが見つかりません: {{props.type}}",
     "noNativeClipboardAccess": "ネイティブクリップボードにアクセスできませんでした。コピーは同じエディターでのみ機能します。",
     "selectElement": "プロセス要素を選択する"
   },
   "part": {
     "cache": {
       "entry": "エントリ",
-      "entryDesc": "結果データセット (クエリ) を表す名前をエントリに付けてください。",
+      "entryDesc": "結果データセット（クエリ）を表す名前をエントリに付けてください。",
       "group": "グループ",
       "groupDesc": "結果データのエンティティを表す名前をグループに付けてください。",
       "lifetime": "ライフタイム",
       "lifetimeMode": {
         "duration": "期間",
-        "fixed": "固定時間",
+        "fixed": "一定時間",
         "forever": "永久"
       },
       "mode": {
@@ -211,7 +211,7 @@
     },
     "call": {
       "dialog": {
-        "create": "新しい Html Dialog を作成する",
+        "create": "新しい HTML ダイアログを作成する",
         "title": "ダイアログ"
       },
       "processStart": "プロセス開始",
@@ -246,7 +246,7 @@
       "sort": "並び替え",
       "sqlQuery": "SQL クエリ",
       "startIndex": "開始インデックス",
-      "table": "テーブル",
+      "table": "表",
       "title": "クエリ"
     },
     "endPage": {
@@ -288,7 +288,7 @@
       }
     },
     "output": {
-      "disablePermission": "権限チェックを無効化 (このスクリプトステップをシステムとして実行)",
+      "disablePermission": "権限チェックを無効化（このスクリプトステップをシステムとして実行）",
       "title": "出力"
     },
     "permission": {
@@ -320,35 +320,35 @@
       },
       "javaClass": "Java クラス",
       "javaClassCreate": "Java クラスを新規作成",
-      "javaClassOpen": "Java クラスコンフィグを開く",
+      "javaClassOpen": "Java クラス構成を開く",
       "start": {
         "title": "Java Bean"
       }
     },
     "request": {
-      "showOnStartList": "スタートリストに表示する",
+      "showOnStartList": "開始リストに表示する",
       "startPerHttp": "はい、これは HTTP-Request / -Link で起動できます",
       "title": "リクエスト"
     },
     "rest": {
       "accept": "承認",
       "acceptProperties": "プロパティを承認",
-      "body": "本文",
+      "body": "ボディ",
       "client": "クライアント",
       "contentType": "コンテンツタイプ",
       "entityType": "エンティティタイプ",
       "headers": "ヘッダー",
       "jaxRs": "JAX-RS",
       "kind": "種類",
-      "onError": "エラー発生時 (接続、タイムアウトなど)",
+      "onError": "エラー発生時（接続、タイムアウトなど）",
       "onNotSuccess": "ステータスコード失敗時 (2xx)",
       "openApi": "OpenAPI",
       "parameters": "パラメーター",
       "properties": "プロパティ",
-      "readBodyType": "本文をタイプとして読み取る (結果変数)",
+      "readBodyType": "ボディをタイプとして読み取る（結果変数）",
       "resource": "リソース",
       "restConfigCreate": "REST クライアントを新規作成",
-      "restConfigOpen": "REST コンフィグを開く",
+      "restConfigOpen": "REST 構成を開く",
       "resultType": "結果タイプ",
       "service": "REST サービス"
     },
@@ -357,7 +357,7 @@
       "title": "結果"
     },
     "signal": {
-      "attachBusinessCase": "このプロセスをシグナル伝達したビジネスケースに添付する",
+      "attachBusinessCase": "このプロセスを通知したビジネスケースに添付する",
       "code": "シグナルコード",
       "empty": "<< 空白 >>",
       "emptyDesc": "すべてのシグナルを受信します",
@@ -370,11 +370,11 @@
     },
     "task": {
       "delay": "遅延",
-      "noTaskMessage": "(タスク) 出力フローが接続されていません。",
+      "noTaskMessage": "（タスク）出力フローが接続されていません。",
       "notification": "通知",
       "options": "オプション",
-      "persist": "作成時にタスクを持続する",
-      "persistDisabled": "作成時にタスクを持続する (匿名ユーザーが許可されていない場合にのみ機能します)",
+      "persist": "作成時にタスクを継続する",
+      "persistDisabled": "作成時にタスクを継続する（匿名ユーザーが許可されていない場合にのみ機能します）",
       "priority": "優先度",
       "skipTasklist": "タスクリストをスキップ",
       "suppress": "抑制",
@@ -384,14 +384,14 @@
     },
     "trigger": {
       "attachBusinessCase": "このプロセスをトリガーしたビジネスケースに添付する",
-      "startTriggerable": "はい、これはトリガーアクティビティから始めることができます",
+      "startTriggerable": "はい、これはトリガーアクティビティで開始できます",
       "title": "トリガー"
     },
     "ws": {
       "authMessage": "<a>プロセス</a>に関する Web サービス認証",
       "client": "クライアント",
       "clientCreate": "WebService クライアントを新規作成",
-      "clientOpen": "WebService コンフィグを開く",
+      "clientOpen": "WebService 構成を開く",
       "exception": "例外",
       "exceptionHandling": "例外処理を使用する",
       "operation": "オペレーション",
@@ -407,7 +407,7 @@
         "wsSecurity": "WS Security"
       },
       "authentication": "認証",
-      "qualifiedName": "認定名",
+      "qualifiedName": "修飾名",
       "title": "Web サービスプロセス"
     }
   },
