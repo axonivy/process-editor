@@ -31,7 +31,7 @@ describe('RestEntity', () => {
     renderPart({ body: { entity: { code: 'hi', type: 'String', map: { 'param.bla': '123', param: 'test' } } } });
     await screen.findByText('param');
     await ComboboxUtil.assertValue('String');
-    TableUtil.assertRows(['param test', '⛔ bla 123']);
+    TableUtil.assertRows(['param test', '⛔bla 123']);
     expect(screen.getByLabelText('Code')).toHaveValue('hi');
   });
 });

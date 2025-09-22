@@ -27,6 +27,6 @@ describe('TableReadFields', () => {
     expect(screen.getByRole('checkbox')).not.toBeChecked();
     TableUtil.assertHeaders(['Column', 'Read']);
     await screen.findByText(': VarChar(10)');
-    TableUtil.assertRows(['test : VarChar(10) ✅', 'hi : bool']);
+    TableUtil.assertRows(['test: VarChar(10) ✅', 'hi: bool']);
   });
 });
