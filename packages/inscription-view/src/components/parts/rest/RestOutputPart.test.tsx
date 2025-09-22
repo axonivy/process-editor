@@ -24,7 +24,7 @@ describe('RestOutputPart', () => {
 
   test('data', async () => {
     renderPart({ response: { entity: { map: { bla: '123' }, code: 'code' } } });
-    TableUtil.assertRows(['⛔ bla 123']);
+    TableUtil.assertRows(['⛔bla 123']);
     expect(screen.getByTestId('code-editor')).toHaveValue('code');
   });
 

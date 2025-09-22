@@ -26,6 +26,6 @@ describe('WsMapping', () => {
 
   test('data', async () => {
     renderPart({ operation: { parameters: { name: 'value' } } });
-    TableUtil.assertRows(['⛔ name value']);
+    TableUtil.assertRows(['⛔name value']);
   });
 });

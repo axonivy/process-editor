@@ -23,7 +23,7 @@ describe('TableFields', () => {
     TableUtil.assertHeaders(['Column', 'Value']);
     await screen.findByText('hi');
     await TableUtil.assertRowCount(3);
-    TableUtil.assertRows(['test : VarChar(10) bla', 'hi : bool']);
+    TableUtil.assertRows(['test: VarChar(10) bla', 'hi: bool']);
   });
 
   test('unknown columns', async () => {
@@ -33,6 +33,6 @@ describe('TableFields', () => {
     await screen.findByText('hi');
     await screen.findByDisplayValue('1234');
     await TableUtil.assertRowCount(4);
-    TableUtil.assertRows(['test : VarChar(10)', 'hi : bool', 'unknown : 1234']);
+    TableUtil.assertRows(['test: VarChar(10)', 'hi: bool', 'unknown: 1234']);
   });
 });
