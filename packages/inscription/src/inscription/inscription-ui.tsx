@@ -156,7 +156,8 @@ export class InscriptionUi extends GLSPAbstractUIExtension implements IActionHan
       }
       this.changeUiVisiblitiy(action.force);
     }
-    if (Action.is(action) && action.kind === OpenAction.KIND) {
+    if (OpenAction.is(action)) {
+      this.inscriptionElement = action.elementId;
       this.changeUiVisiblitiy(true);
     }
     if (SwitchThemeAction.is(action)) {
