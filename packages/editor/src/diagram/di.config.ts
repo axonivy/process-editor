@@ -13,6 +13,7 @@ import {
   TYPES,
   configureModelElement,
   moveFeature,
+  openFeature,
   overrideModelElement,
   selectFeature
 } from '@eclipse-glsp/client';
@@ -65,7 +66,7 @@ const ivyDiagramModule = new FeatureModule((bind, unbind, isBound, rebind) => {
   bind(TYPES.IMovementRestrictor).to(IvyMovementRestrictor);
 
   const context = { bind, unbind, isBound, rebind };
-  overrideModelElement(context, DefaultTypes.GRAPH, GGraph, IvyGraphView);
+  overrideModelElement(context, DefaultTypes.GRAPH, GGraph, IvyGraphView, { enable: [openFeature] });
   overrideModelElement(context, DefaultTypes.ISSUE_MARKER, GIssueMarker, IvyIssueMarkerView);
 
   configureStartEvent(EventStartTypes.START);

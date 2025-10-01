@@ -54,6 +54,13 @@ test('process', async ({ page }) => {
 
   await processEditor.toggleInscription();
   await view.expectClosed();
+
+  await processEditor.graph.dblclick();
+  await view.expectOpen();
+  await view.expectHeaderText(/Business Process/);
+
+  await processEditor.toggleInscription();
+  await view.expectClosed();
 });
 
 test('hold accordion state', async ({ page }) => {
