@@ -13,12 +13,12 @@ import { useOpenApi } from '../../../../../context/useOpenApi';
 import { PathFieldset } from '../../../common/path/PathFieldset';
 import Combobox from '../../../../widgets/combobox/Combobox';
 import Select from '../../../../widgets/select/Select';
-import { ScriptInput } from '../../../../widgets/code-editor/ScriptInput';
+import InputWithBrowser from '../../../../widgets/input/InputWithBrowser';
 
 type RestMethodItem = ComboboxItem & RestResource;
 
 export const RestMethodSelect = () => {
-  const { config, update, updateTarget } = useRestRequestData();
+  const { config, update, updateTarget, updateParameters } = useRestRequestData();
   const { updateResource } = useUpdateRestResource();
 
   const { context } = useEditorContext();
@@ -63,11 +63,17 @@ export const RestMethodSelect = () => {
             items={methodItems}
           />
           <Field>
-            <ScriptInput
+            <InputWithBrowser
               value={config.target.path}
               onChange={change => updateTarget('path', change)}
               type={IVY_SCRIPT_TYPES.STRING}
-              modifyAction={value => `{${value}}`}
+              modifyAction={value => {
+                updateParameters({
+                  queryParams: config.target.queryParams,
+                  templateParams: { ...config.target.templateParams, [value]: value }
+                });
+                return `${config.target.path}{${value}}`;
+              }}
               browsers={['attr']}
             />
           </Field>

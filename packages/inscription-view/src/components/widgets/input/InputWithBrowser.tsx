@@ -9,9 +9,10 @@ import Browser from '../../browser/Browser';
 type InputWithBrowserProps = InputProps & {
   browsers: BrowserType[];
   typeFilter?: CmsTypeFilter;
+  modifyAction?: (value: string) => string;
 };
 
-const InputWithBrowser = ({ onChange, browsers, typeFilter, ...props }: InputWithBrowserProps) => {
+const InputWithBrowser = ({ onChange, browsers, typeFilter, modifyAction, ...props }: InputWithBrowserProps) => {
   const browser = useBrowser();
   const path = usePath();
 
@@ -22,7 +23,7 @@ const InputWithBrowser = ({ onChange, browsers, typeFilter, ...props }: InputWit
         {...browser}
         types={browsers}
         cmsOptions={{ noApiCall: true, typeFilter: typeFilter }}
-        accept={(change: BrowserValue) => onChange(change.cursorValue)}
+        accept={(change: BrowserValue) => onChange(modifyAction ? modifyAction(change.cursorValue) : change.cursorValue)}
         location={path}
       />
     </InputGroup>
