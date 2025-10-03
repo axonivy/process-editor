@@ -74,6 +74,7 @@
       "info": "Generated Condition",
       "title": "Condition"
     },
+    "dataClasses": "Data Classes",
     "empty": "No data found",
     "emptyInfo": "No element selected.",
     "function": {
@@ -81,6 +82,8 @@
       "noType": "no return type defined",
       "title": "Function"
     },
+    "ivyScriptTypes": "Ivy Script Data Types",
+    "ownTypes": "Own Types",
     "role": {
       "add": "Add Role to {{role}}",
       "addFailed": "Failed to add new role",

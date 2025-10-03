@@ -74,6 +74,7 @@
       "info": "Generierte Bedingung",
       "title": "Bedingung"
     },
+    "dataClasses": "Datenklassen",
     "empty": "Keine Daten gefunden",
     "emptyInfo": "Kein Element ausgewählt.",
     "function": {
@@ -81,6 +82,8 @@
       "noType": "Kein Rückgabetyp definiert",
       "title": "Funktion"
     },
+    "ivyScriptTypes": "Ivy Script Datentypen",
+    "ownTypes": "Eigene Typen",
     "role": {
       "add": "Rolle zu {{role}} hinzufügen",
       "addFailed": "Hinzufügen der neuen Rolle fehlgeschlagen",

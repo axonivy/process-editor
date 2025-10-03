@@ -33,7 +33,7 @@ test('browser add type', async ({ page }) => {
   await timeout.focus();
   await assertCodeVisible(page);
 
-  await applyTypeBrowser(page, 0, 'ch.ivyteam.test.Person');
+  await applyTypeBrowser(page, 2, 'ch.ivyteam.test.Person');
   await expect(code(page).getByRole('textbox')).toHaveValue('ch.ivyteam.test.Person');
 });
 
@@ -48,7 +48,7 @@ test('browser add type as list', async ({ page }) => {
   await timeout.focus();
   await assertCodeVisible(page);
 
-  await applyTypeBrowser(page, 0, 'ch.ivyteam.test.Person', true);
+  await applyTypeBrowser(page, 2, 'ch.ivyteam.test.Person', true);
   await expect(code(page).getByRole('textbox')).toHaveValue('List<ch.ivyteam.test.Person>');
 });
 
@@ -63,7 +63,7 @@ test('browser add type doubleclick', async ({ page }) => {
   await timeout.focus();
   await assertCodeVisible(page);
 
-  await applyTypeBrowser(page, 0, undefined, undefined, true);
+  await applyTypeBrowser(page, 2, undefined, undefined, true);
   await expect(code(page).getByRole('textbox')).toHaveValue('ch.ivyteam.test.Person');
 });
 

@@ -1,5 +1,5 @@
-import type { JavaType } from '@axonivy/process-editor-inscription-protocol';
-import { TableBody, TableCell, useTableKeyHandler } from '@axonivy/ui-components';
+import type { DataclassType } from '@axonivy/process-editor-inscription-protocol';
+import { TableBody, TableCell, useTableKeyHandler, type BrowserNode } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { ColumnDef, ExpandedState, FilterFn, RowSelectionState } from '@tanstack/react-table';
 import { getCoreRowModel, getExpandedRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table';
@@ -14,9 +14,8 @@ import type { BrowserValue } from '../Browser';
 import BrowserTableRow from '../BrowserTableRow';
 import type { UseBrowserImplReturnValue } from '../useBrowser';
 import { getCursorValue } from './cursor-value';
+import { useTypeData } from './type-data';
 export const TYPE_BROWSER_ID = 'type' as const;
-
-export type TypeBrowserObject = JavaType & { icon: IvyIcons };
 
 export const useTypeBrowser = (onDoubleClick: () => void, initSearchFilter: () => string, location: string): UseBrowserImplReturnValue => {
   const { t } = useTranslation();
@@ -49,16 +48,18 @@ interface TypeBrowserProps {
 const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, location }: TypeBrowserProps) => {
   const { t } = useTranslation();
   const { context } = useEditorContext();
-
-  const [allSearchActive, setAllSearchActive] = useState(false);
-
+  const [allTypesSearchActive, setAllTypesSearchActive] = useState(false);
   const [mainFilter, setMainFilter] = useState('');
-  const { data: allDatatypes, isFetching } = useMeta('meta/scripting/allTypes', { context, limit: 150, type: mainFilter }, []);
+
   const dataClasses = useMeta('meta/scripting/dataClasses', context, []).data;
   const ivyTypes = useMeta('meta/scripting/ivyTypes', undefined, []).data;
-  const ownTypes = useMeta('meta/scripting/ownTypes', { context, limit: 100, type: '' }, []).data;
 
-  const [types, setTypes] = useState<TypeBrowserObject[]>([]);
+  const ownTypes = useMeta('meta/scripting/ownTypes', { context, limit: 100, type: '' }, [], { disable: allTypesSearchActive }).data;
+  const { data: allDatatypes, isFetching } = useMeta('meta/scripting/allTypes', { context, limit: 150, type: mainFilter }, [], {
+    disable: !allTypesSearchActive
+  });
+
+  const types = useTypeData(dataClasses, ivyTypes, ownTypes, allDatatypes, allTypesSearchActive);
 
   const [typeAsList, setTypeAsList] = useState(false);
 
@@ -67,83 +68,18 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
   const [type, setType] = useState('');
   const { data: doc } = useMeta('meta/scripting/apiDoc', { context, method: '', paramTypes: [], type }, '');
 
-  useEffect(() => {
-    const typeComparator = (a: TypeBrowserObject, b: TypeBrowserObject) => {
-      const fqCompare = a.fullQualifiedName.localeCompare(b.fullQualifiedName);
-      if (fqCompare !== 0) {
-        return fqCompare;
-      }
-      return a.simpleName.localeCompare(b.simpleName);
-    };
-
-    const ivyTypeComparator = (a: TypeBrowserObject, b: TypeBrowserObject) => {
-      const aHasJava = a.fullQualifiedName.startsWith('java.lang');
-      const bHasJava = b.fullQualifiedName.startsWith('java.lang');
-      if (aHasJava && !bHasJava) {
-        return -1;
-      }
-      if (!aHasJava && bHasJava) {
-        return 1;
-      }
-      return typeComparator(a, b);
-    };
-
-    if (allSearchActive) {
-      if (mainFilter.length > 0) {
-        allDatatypes.sort((a, b) => a.simpleName.localeCompare(b.simpleName));
-      }
-      const mappedAllTypes: TypeBrowserObject[] = allDatatypes.map<TypeBrowserObject>(type => ({
-        icon: dataClasses.find(dc => dc.fullQualifiedName === type.fullQualifiedName)
-          ? IvyIcons.LetterD
-          : type.fullQualifiedName.includes('ivy')
-            ? IvyIcons.Ivy
-            : IvyIcons.DataClass,
-        ...type
-      }));
-      setTypes(mainFilter.length > 0 ? mappedAllTypes : []);
-    } else {
-      const mappedDataClasses: TypeBrowserObject[] = dataClasses.map<TypeBrowserObject>(dataClass => ({
-        simpleName: dataClass.name,
-        icon: IvyIcons.LetterD,
-        ...dataClass
-      }));
-      const mappedIvyTypes: TypeBrowserObject[] = ivyTypes.map<TypeBrowserObject>(ivyType => ({
-        icon: ivyType.fullQualifiedName.includes('ivy') ? IvyIcons.Ivy : IvyIcons.DataClass,
-        ...ivyType
-      }));
-      const ownTypesWithoutDataClasses = ownTypes.filter(
-        ownType => !mappedDataClasses.find(dataClass => dataClass.fullQualifiedName === ownType.fullQualifiedName)
-      );
-      const sortedIvyTypes = mappedIvyTypes.sort(ivyTypeComparator);
-      const sortedMappedDataClasses = mappedDataClasses.sort(typeComparator);
-      if (location.includes('code')) {
-        const mappedOwnTypes: TypeBrowserObject[] = ownTypesWithoutDataClasses.map<TypeBrowserObject>(ownType => ({
-          icon: IvyIcons.DataClass,
-          ...ownType
-        }));
-        const sortedMappedOwnTypes = mappedOwnTypes.sort(typeComparator);
-        setTypes(sortedMappedOwnTypes.concat(sortedMappedDataClasses).concat(sortedIvyTypes));
-      } else {
-        setTypes(sortedMappedDataClasses.concat(sortedIvyTypes));
-      }
-    }
-  }, [allDatatypes, allSearchActive, dataClasses, ivyTypes, location, mainFilter, ownTypes]);
-
-  const columns = useMemo<ColumnDef<TypeBrowserObject, string>[]>(
+  const columns = useMemo<ColumnDef<BrowserNode<DataclassType>, string>[]>(
     () => [
       {
-        accessorFn: row => row.simpleName,
-        id: 'simpleName',
-        cell: cell => {
-          return (
-            <ExpandableCell
-              cell={cell}
-              title={cell.row.original.simpleName}
-              additionalInfo={cell.row.original.packageName}
-              icon={cell.row.original.icon}
-            />
-          );
-        }
+        accessorKey: 'value',
+        cell: cell => (
+          <ExpandableCell
+            cell={cell}
+            title={cell.row.original.value}
+            additionalInfo={cell.row.original.info}
+            icon={cell.row.original.icon}
+          />
+        )
       }
     ],
     []
@@ -153,8 +89,8 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
   const [globalFilter, setGlobalFilter] = useState(initSearchFilter);
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
-  const regexFilter: FilterFn<TypeBrowserObject> = (row, columnId, filterValue) => {
-    const cellValue = row.original.simpleName || '';
+  const regexFilter: FilterFn<BrowserNode<DataclassType>> = (row, columnId, filterValue) => {
+    const cellValue = row.original.value || '';
     const regexPattern = new RegExp(filterValue.replace(/\*/g, '.*'), 'i');
     return regexPattern.test(cellValue);
   };
@@ -174,13 +110,16 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
     enableSubRowSelection: false,
     enableFilters: true,
     onExpandedChange: setExpanded,
+    getSubRows: row => row.children,
     onGlobalFilterChange: setGlobalFilter,
     onRowSelectionChange: setRowSelection,
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
     getFilteredRowModel: getFilteredRowModel()
   });
+
   const { handleKeyDown } = useTableKeyHandler({ table: tableDynamic, data: types });
+
   useEffect(() => {
     const selectedRow = tableDynamic.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
@@ -190,14 +129,14 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
     }
 
     setShowHelper(true);
-    const isIvyType = ivyTypes.some(javaClass => javaClass.fullQualifiedName === selectedRow.original.fullQualifiedName);
+    const isIvyType = ivyTypes.some(javaClass => javaClass.fullQualifiedName === selectedRow.original.data?.fullQualifiedName);
 
-    setType(selectedRow.original.fullQualifiedName);
+    setType(selectedRow.original.data?.fullQualifiedName ?? '');
 
     if (location.includes('code')) {
       onChange({
         cursorValue: getCursorValue(selectedRow.original, isIvyType, typeAsList, true),
-        firstLineValue: isIvyType ? undefined : 'import ' + selectedRow.original.fullQualifiedName + ';\n'
+        firstLineValue: isIvyType ? undefined : 'import ' + selectedRow.original.data?.fullQualifiedName + ';\n'
       });
     } else {
       onChange({
@@ -229,18 +168,16 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
 
   return (
     <>
-      {!context.app.startsWith('ivy-dev-') && (
-        <div className='browser-table-header'>
-          <Checkbox
-            label={t('browser.type.searchAllTypes')}
-            value={allSearchActive}
-            onChange={() => {
-              setAllSearchActive(!allSearchActive);
-              setRowSelection({});
-            }}
-          />
-        </div>
-      )}
+      <div className='browser-table-header'>
+        <Checkbox
+          label={t('browser.type.searchAllTypes')}
+          value={allTypesSearchActive}
+          onChange={() => {
+            setAllTypesSearchActive(!allTypesSearchActive);
+            setRowSelection({});
+          }}
+        />
+      </div>
       <SearchTable
         search={{
           value: globalFilter,

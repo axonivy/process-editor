@@ -11,6 +11,7 @@ import { SearchTable } from '../../widgets/table/table/Table';
 import type { BrowserValue } from '../Browser';
 import BrowserTableRow from '../BrowserTableRow';
 import type { UseBrowserImplReturnValue } from '../useBrowser';
+
 export const TABLE_COL_BROWSER_ID = 'tablecol' as const;
 
 export const useTableColBrowser = (onDoubleClick: () => void): UseBrowserImplReturnValue => {
