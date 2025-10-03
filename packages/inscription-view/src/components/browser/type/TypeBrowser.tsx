@@ -229,18 +229,16 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
 
   return (
     <>
-      {!context.app.startsWith('ivy-dev-') && (
-        <div className='browser-table-header'>
-          <Checkbox
-            label={t('browser.type.searchAllTypes')}
-            value={allSearchActive}
-            onChange={() => {
-              setAllSearchActive(!allSearchActive);
-              setRowSelection({});
-            }}
-          />
-        </div>
-      )}
+      <div className='browser-table-header'>
+        <Checkbox
+          label={t('browser.type.searchAllTypes')}
+          value={allSearchActive}
+          onChange={() => {
+            setAllSearchActive(!allSearchActive);
+            setRowSelection({});
+          }}
+        />
+      </div>
       <SearchTable
         search={{
           value: globalFilter,
