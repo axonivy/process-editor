@@ -18,7 +18,7 @@ export abstract class Composite {
     this.locator = locator;
   }
 
-  textArea(options: { label?: string; nth?: number }) {
+  textArea(options?: { label?: string; nth?: number }) {
     return new TextArea(this.locator, options);
   }
 

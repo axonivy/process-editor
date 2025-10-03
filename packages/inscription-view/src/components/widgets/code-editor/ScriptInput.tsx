@@ -20,7 +20,7 @@ export const ScriptInput = ({
   ...props
 }: CodeEditorInputProps & { type: string }) => {
   const { isFocusWithin, focusWithinProps, focusValue, browser } = useOnFocus(value, onChange);
-  const { setEditor, modifyEditor } = useMonacoEditor({ modifyAction: modifyAction });
+  const { setEditor, modifyEditor } = useMonacoEditor({ modifyAction });
   const path = usePath();
   const { inputProps } = useField();
 

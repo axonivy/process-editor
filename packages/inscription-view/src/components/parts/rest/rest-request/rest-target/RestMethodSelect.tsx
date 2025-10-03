@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../../context/useEditorContext';
 import { useMeta } from '../../../../../context/useMeta';
 import { useOpenApi } from '../../../../../context/useOpenApi';
-import { ScriptInput } from '../../../../widgets/code-editor/ScriptInput';
 import type { ComboboxItem } from '../../../../widgets/combobox/Combobox';
 import Combobox from '../../../../widgets/combobox/Combobox';
+import InputWithBrowser from '../../../../widgets/input/InputWithBrowser';
 import type { SelectItem } from '../../../../widgets/select/Select';
 import Select from '../../../../widgets/select/Select';
 import { PathFieldset } from '../../../common/path/PathFieldset';
@@ -20,7 +20,7 @@ type RestMethodItem = ComboboxItem & RestResource;
 
 export const RestMethodSelect = () => {
   const { t } = useTranslation();
-  const { config, update, updateTarget } = useRestRequestData();
+  const { config, update, updateTarget, updateParameters } = useRestRequestData();
   const { updateResource } = useUpdateRestResource();
 
   const { context } = useEditorContext();
@@ -65,11 +65,17 @@ export const RestMethodSelect = () => {
             items={methodItems}
           />
           <Field>
-            <ScriptInput
+            <InputWithBrowser
               value={config.target.path}
               onChange={change => updateTarget('path', change)}
               type={IVY_SCRIPT_TYPES.STRING}
-              modifyAction={value => `{${value}}`}
+              modifyAction={value => {
+                updateParameters({
+                  queryParams: config.target.queryParams,
+                  templateParams: { ...config.target.templateParams, [value]: value }
+                });
+                return `${config.target.path}{${value}}`;
+              }}
               browsers={['attr']}
             />
           </Field>
