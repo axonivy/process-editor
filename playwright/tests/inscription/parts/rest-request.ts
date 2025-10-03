@@ -52,7 +52,7 @@ class RestRequest extends PartObject {
     await this.serviceSection.currentLocator().getByRole('button', { name: 'Browser' }).click();
     await expect(this.part.page.locator('.browser-content')).toBeVisible();
     const browser = new Browser(this.part.page);
-    await browser.table.getByRole('row', { name: 'in' }).click();
+    await browser.table.getByRole('row', { name: 'in' }).first().click();
     await browser.dialog.getByRole('button', { name: 'Apply' }).click();
 
     await this.parameters.expectRowCount(5);
