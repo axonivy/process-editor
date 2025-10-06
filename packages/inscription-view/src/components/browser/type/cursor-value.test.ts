@@ -1,13 +1,20 @@
+import type { DataclassType } from '@axonivy/process-editor-inscription-protocol';
+import type { BrowserNode } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { expect, test } from 'vitest';
 import { getCursorValue } from './cursor-value';
-import type { TypeBrowserObject } from './TypeBrowser';
 
-const value: TypeBrowserObject = {
-  simpleName: 'SampleType',
-  fullQualifiedName: 'com.example.SampleType',
+const value: BrowserNode<DataclassType> = {
+  value: 'SampleType',
   icon: IvyIcons.ActivitiesGroup,
-  packageName: 'com.example'
+  info: 'com.example',
+  children: [],
+  data: {
+    fullQualifiedName: 'com.example.SampleType',
+    name: 'SampleType',
+    packageName: 'com.example',
+    path: ''
+  }
 };
 
 test('getCursorValue handles IvyType and typeAsList and inCodeBlock', () => {

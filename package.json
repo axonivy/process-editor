@@ -18,7 +18,7 @@
     "lint:ci": "eslint -o eslint.xml -f checkstyle",
     "lint:fix": "eslint --fix",
     "lint:inspect": "eslint --inspect-config",
-    "i18n:extract": "i18next",
+    "i18n": "i18next",
     "i18n:ci": "i18next --fail-on-update",
     "protocol:inscription": "npm run -w @axonivy/process-editor-inscription-protocol",
     "dev": "npm run -w @axonivy/process-editor-standalone dev",
