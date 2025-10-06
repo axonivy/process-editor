@@ -33,7 +33,7 @@
     "downshift": "^9.0",
     "i18next": "^24.2.3 || ^25.0.0",
     "react": "^19.0",
-    "react-i18next": "^15.4.1"
+    "react-i18next": "^15.4.1 || ^16.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
