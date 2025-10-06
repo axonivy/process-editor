@@ -3,10 +3,11 @@ import { NewPartTest, PartObject } from './part-tester';
 import type { Section } from '../../page-objects/inscription/section';
 import type { Select } from '../../page-objects/inscription/select';
 import type { Table } from '../../page-objects/inscription/table';
-import type { ScriptInput } from '../../page-objects/inscription/code-editor';
+import { Browser } from '../../page-objects/inscription/code-editor';
 import type { Combobox } from '../../page-objects/inscription/combobox';
 import type { Locator } from '@playwright/test';
 import { expect } from '@playwright/test';
+import type { TextArea } from '../../page-objects/inscription/text-area';
 
 class RestRequest extends PartObject {
   openapiSwitch: Locator;
@@ -15,7 +16,7 @@ class RestRequest extends PartObject {
   client: Select;
   resource: Combobox;
   method: Select;
-  path: ScriptInput;
+  path: TextArea;
   parametersSection: Section;
   parameters: Table;
   headersSection: Section;
@@ -32,7 +33,7 @@ class RestRequest extends PartObject {
     this.client = this.serviceSection.select({ label: 'Client' });
     this.resource = this.serviceSection.combobox('Resource');
     this.method = this.serviceSection.select({ nth: 1 });
-    this.path = this.serviceSection.scriptInput();
+    this.path = this.serviceSection.textArea();
     this.parametersSection = part.section('Parameters');
     this.parameters = this.parametersSection.table(['select', 'text', 'expression']);
     this.headersSection = part.section('Headers');
@@ -47,9 +48,14 @@ class RestRequest extends PartObject {
     await expect(this.targetUrl).toBeHidden();
     await this.client.choose('stock');
     await this.method.choose('POST');
-    await this.path.fill('/{myParam}');
+    await this.path.fill('/{myParam}/');
+    await this.serviceSection.currentLocator().getByRole('button', { name: 'Browser' }).click();
+    await expect(this.part.page.locator('.browser-content')).toBeVisible();
+    const browser = new Browser(this.part.page);
+    await browser.table.getByRole('row', { name: 'in' }).first().click();
+    await browser.dialog.getByRole('button', { name: 'Apply' }).click();
 
-    await this.parameters.expectRowCount(4);
+    await this.parameters.expectRowCount(5);
     await this.parameters.row(3).column(2).fill('123');
     const paramRow = await this.parameters.addRow();
     await paramRow.fill(['Query', 'query', 'bla']);
@@ -66,15 +72,16 @@ class RestRequest extends PartObject {
 
   async assertFill() {
     await expect(this.targetUrl).toHaveText(
-      'http://acme.stock/api/{request.kind}/{product.number}:{product.quantity}/update/{myParam}?query=bla'
+      'http://acme.stock/api/{request.kind}/{product.number}:{product.quantity}/update/{myParam}/{in}?query=bla'
     );
     await this.client.expectValue('stock');
     await this.method.expectValue('POST');
-    await this.path.expectValue('/{myParam}');
+    await this.path.expectValue('/{myParam}/{in}');
 
     await this.parametersSection.expectIsOpen();
     await this.parameters.row(3).column(2).expectValue('123');
-    await this.parameters.row(4).expectValues(['Query', 'query', 'bla']);
+    await this.parameters.row(4).column(2).expectValue('in');
+    await this.parameters.row(5).expectValues(['Query', 'query', 'bla']);
 
     await this.headersSection.expectIsOpen();
     await this.acceptHeader.expectValue('application/json');
@@ -88,6 +95,7 @@ class RestRequest extends PartObject {
     await this.method.choose('GET');
     await this.path.clear();
 
+    await this.parameters.row(5).remove();
     await this.parameters.row(4).remove();
     await this.parameters.row(3).remove();
 
