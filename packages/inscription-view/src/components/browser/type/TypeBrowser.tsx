@@ -1,18 +1,18 @@
-import { useMemo, useState, useEffect } from 'react';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { JavaType } from '@axonivy/process-editor-inscription-protocol';
+import { TableBody, TableCell, useTableKeyHandler } from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
 import type { ColumnDef, ExpandedState, FilterFn, RowSelectionState } from '@tanstack/react-table';
 import { getCoreRowModel, getExpandedRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table';
-import type { JavaType } from '@axonivy/process-editor-inscription-protocol';
-import { IvyIcons } from '@axonivy/ui-icons';
-import type { BrowserValue } from '../Browser';
-import { getCursorValue } from './cursor-value';
-import { TableBody, TableCell, useTableKeyHandler } from '@axonivy/ui-components';
-import BrowserTableRow from '../BrowserTableRow';
+import { useEffect, useMemo, useState } from 'react';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
-import { ExpandableCell } from '../../widgets/table/cell/ExpandableCell';
 import Checkbox from '../../widgets/checkbox/Checkbox';
+import { ExpandableCell } from '../../widgets/table/cell/ExpandableCell';
 import { SearchTable } from '../../widgets/table/table/Table';
+import type { BrowserValue } from '../Browser';
+import BrowserTableRow from '../BrowserTableRow';
+import type { UseBrowserImplReturnValue } from '../useBrowser';
+import { getCursorValue } from './cursor-value';
 export const TYPE_BROWSER_ID = 'type' as const;
 
 export type TypeBrowserObject = JavaType & { icon: IvyIcons };
@@ -93,8 +93,8 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
         icon: dataClasses.find(dc => dc.fullQualifiedName === type.fullQualifiedName)
           ? IvyIcons.LetterD
           : type.fullQualifiedName.includes('ivy')
-          ? IvyIcons.Ivy
-          : IvyIcons.DataClass,
+            ? IvyIcons.Ivy
+            : IvyIcons.DataClass,
         ...type
       }));
       setTypes(mainFilter.length > 0 ? mappedAllTypes : []);
@@ -226,18 +226,16 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
 
   return (
     <>
-      {!context.app.startsWith('ivy-dev-') && (
-        <div className='browser-table-header'>
-          <Checkbox
-            label='Search over all types'
-            value={allSearchActive}
-            onChange={() => {
-              setAllSearchActive(!allSearchActive);
-              setRowSelection({});
-            }}
-          />
-        </div>
-      )}
+      <div className='browser-table-header'>
+        <Checkbox
+          label='Search over all types'
+          value={allSearchActive}
+          onChange={() => {
+            setAllSearchActive(!allSearchActive);
+            setRowSelection({});
+          }}
+        />
+      </div>
       <SearchTable
         search={{
           value: globalFilter,
