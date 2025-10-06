@@ -2,7 +2,7 @@ import type { Locator } from '@playwright/test';
 import { expect } from '@playwright/test';
 
 export class TextArea {
-  private readonly locator: Locator;
+  readonly locator: Locator;
 
   constructor(parentLocator: Locator, options?: { label?: string; nth?: number }) {
     if (options?.label) {
