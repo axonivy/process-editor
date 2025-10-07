@@ -126,6 +126,10 @@ export class Element extends BaseElement {
   async expectSize(width: number, height: number) {
     await expect(this.element.locator(`rect[width="${width}"][height="${height}"]`)).toBeVisible();
   }
+
+  get icon() {
+    return this.element.locator('.sprotty-icon');
+  }
 }
 
 export class Activity extends Element {
