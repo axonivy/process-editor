@@ -30,7 +30,7 @@ test('swimlanes', async ({ page }) => {
 });
 
 test('extensions', async ({ page }) => {
-  const editor = await ProcessEditor.openProcess(page, { file: 'processes/quickstart.p.json', waitFor: '.sprotty-graph' });
+  const editor = await ProcessEditor.openProcess(page, { file: 'processes/quickstart.p.json' });
   const menu = await editor.toolbar().openElementPalette('extensions');
   await menu.expectVisible();
   for (const img of await menu.locator().locator('img').all()) {
@@ -41,7 +41,7 @@ test('extensions', async ({ page }) => {
 });
 
 test('connector-process', async ({ page }) => {
-  const editor = await ProcessEditor.openProcess(page, { file: 'processes/market/erp.p.json', waitFor: '.sprotty-graph' });
+  const editor = await ProcessEditor.openProcess(page, { file: 'processes/market/erp.p.json', waitFor: '.start\\:callSubStart' });
   const subStart = editor.element('start:callSubStart');
   const inscription = await subStart.inscribe();
   await expect(subStart.locator().getByRole('img').first()).toHaveAttribute('src', /.+user.png/);
@@ -53,7 +53,7 @@ test('connector-process', async ({ page }) => {
 });
 
 test('connector-user', async ({ page }) => {
-  const editor = await ProcessEditor.openProcess(page, { file: 'processes/market/UserEnroll.p.json', waitFor: '.sprotty-graph' });
+  const editor = await ProcessEditor.openProcess(page, { file: 'processes/market/UserEnroll.p.json' });
   const subCall = editor.element('subProcessCall');
   const inscription = await subCall.inscribe();
   const img = subCall.locator().getByRole('img').first();

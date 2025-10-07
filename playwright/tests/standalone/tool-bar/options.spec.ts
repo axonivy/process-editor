@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { ProcessEditor } from '../../page-objects/editor/process-editor';
 
 test('toggle theme', async ({ page }) => {
@@ -26,8 +26,14 @@ test('toggle grid', async ({ page }) => {
 });
 
 test('toggle custom icons', async ({ page }) => {
-  const processEditor = await ProcessEditor.openProcess(page);
-  await processEditor.toolbar().openOptionsMenu();
-  await processEditor.toolbar().options().toggleOption('Custom Icon', true);
-  await processEditor.toolbar().options().toggleOption('Custom Icon', false);
+  const editor = await ProcessEditor.openProcess(page, { file: 'processes/market/UserEnroll.p.json' });
+  await expect(editor.element('subProcessCall').icon).toBeVisible();
+  await expect(editor.element('subProcessCall').icon.locator('img')).toHaveAttribute('src', /user.png/);
+
+  await editor.toolbar().openOptionsMenu();
+  await editor.toolbar().options().toggleOption('Custom Icon', true);
+  await expect(editor.element('subProcessCall').icon).toBeHidden();
+
+  await editor.toolbar().options().toggleOption('Custom Icon', false);
+  await expect(editor.element('subProcessCall').icon).toBeVisible();
 });

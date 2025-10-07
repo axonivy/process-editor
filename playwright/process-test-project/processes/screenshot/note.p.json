@@ -9,11 +9,7 @@
       "type" : "ProcessAnnotation",
       "name" : "Note",
       "visual" : {
-        "at" : { "x" : 136, "y" : 72 },
-        "size" : { "width" : 140, "height" : 60 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "at" : { "x" : 136, "y" : 72 }
       }
     } ]
 }
