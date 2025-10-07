@@ -17,6 +17,7 @@ import type { ThemeMode } from '@axonivy/process-editor-protocol';
 import type { IDiagramOptions } from '@eclipse-glsp/client';
 import { createDiagramOptionsModule, deletionToolModule, edgeEditToolModule, nodeCreationToolModule } from '@eclipse-glsp/client';
 import type { Container } from 'inversify';
+import { ivyCustomIconModule } from './custom-icon/di.config';
 import ivyNavigationModule from './navigate/di.config';
 import ivyViewerQuickActionModule from './quick-action/di.config';
 import { ivyStartupDiagramModule } from './startup';
@@ -38,6 +39,7 @@ export default function createContainer(options: IvyDiagramOptions): Container {
     ivyNavigationModule,
     ivyStartupDiagramModule,
     ivyKeyListenerModule,
+    ivyCustomIconModule,
     {
       remove: [
         ivyLabelEditModule,
