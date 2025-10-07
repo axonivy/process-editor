@@ -49,11 +49,7 @@
         "- Finds users by ID"
       ],
       "visual" : {
-        "at" : { "x" : 240, "y" : 160 },
-        "size" : { "width" : 140, "height" : 60 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "at" : { "x" : 240, "y" : 160 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f3" }
