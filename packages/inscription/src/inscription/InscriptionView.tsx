@@ -1,14 +1,14 @@
 import { App } from '@axonivy/process-editor-inscription-view';
 import type { ComponentProps } from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useMove } from 'react-aria';
 import { inscriptionWidthStorage } from './inscription-width-storage';
 
 const InscriptionView = ({ pid, ...props }: ComponentProps<typeof App>) => {
   const [element, setElement] = useState(pid);
-  useEffect(() => {
+  if (pid !== element) {
     setElement(pid);
-  }, [pid]);
+  }
 
   const [width, setWidth] = useState(inscriptionWidthStorage().getWidth());
   const [resizeActive, setResizeActive] = useState(false);
