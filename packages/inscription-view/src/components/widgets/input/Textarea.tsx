@@ -10,6 +10,7 @@ export type TextareaProps = Omit<TextareaPrimitiveProps, 'value' | 'onChange'> &
 const Textarea = ({ value, onChange, ...props }: TextareaProps) => {
   const [currentValue, setCurrentValue] = useState(value ?? '');
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCurrentValue(value ?? '');
   }, [value]);
   const updateValue = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
