@@ -1,6 +1,6 @@
 import type { TextareaProps as TextareaPrimitiveProps } from '@axonivy/ui-components';
 import { Textarea as TextareaPrimitive } from '@axonivy/ui-components';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export type TextareaProps = Omit<TextareaPrimitiveProps, 'value' | 'onChange'> & {
   value?: string;
@@ -9,10 +9,9 @@ export type TextareaProps = Omit<TextareaPrimitiveProps, 'value' | 'onChange'> &
 
 const Textarea = ({ value, onChange, ...props }: TextareaProps) => {
   const [currentValue, setCurrentValue] = useState(value ?? '');
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setCurrentValue(value ?? '');
-  }, [value]);
+  if (value && value !== currentValue) {
+    setCurrentValue(value);
+  }
   const updateValue = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const update = event.target.value;
     setCurrentValue(update);

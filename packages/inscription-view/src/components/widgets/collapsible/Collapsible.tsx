@@ -8,7 +8,7 @@ import {
   Flex
 } from '@axonivy/ui-components';
 import type { ReactNode } from 'react';
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 import type { FieldsetControl } from '../fieldset/fieldset-control';
 import { type ValidationMessage, toMessageDataArray } from '../message/Message';
 
@@ -47,12 +47,11 @@ const State = ({ validations }: Pick<CollapsibleProps, 'validations'>) => {
 
 const Collapsible = ({ label, defaultOpen, validations, children, controls }: CollapsibleProps) => {
   const [open, setOpen] = useState(defaultOpen || (validations?.length ?? 0) > 0);
-  useEffect(() => {
-    if (defaultOpen) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setOpen(defaultOpen);
-    }
-  }, [defaultOpen]);
+  const [prevDefaultOpen, setPrevDefaultOpen] = useState(defaultOpen);
+  if (defaultOpen && prevDefaultOpen && prevDefaultOpen !== defaultOpen) {
+    setPrevDefaultOpen(defaultOpen);
+    setOpen(defaultOpen);
+  }
   return (
     <CollapsibleRoot open={open} onOpenChange={setOpen}>
       <CollapsibleTrigger control={props => <Controls {...props} controls={controls} />} state={<State validations={validations} />}>

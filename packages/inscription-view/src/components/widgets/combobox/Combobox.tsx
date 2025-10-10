@@ -49,6 +49,11 @@ const Combobox = <T extends ComboboxItem>({
   const option = comboboxItem ? comboboxItem : (item: ComboboxItem) => <span>{item.value}</span>;
 
   const [filteredItems, setFilteredItems] = useState(items);
+  const [prevItems, setPrevItems] = useState(items);
+  if (items !== prevItems) {
+    setPrevItems(items);
+    setFilteredItems(items);
+  }
 
   const { isOpen, getToggleButtonProps, getMenuProps, getInputProps, highlightedIndex, getItemProps, selectedItem, selectItem } =
     useCombobox({
@@ -77,10 +82,6 @@ const Combobox = <T extends ComboboxItem>({
       },
       initialSelectedItem: { value }
     });
-
-  useEffect(() => {
-    setFilteredItems(items);
-  }, [items]);
 
   useEffect(() => {
     selectItem({ value });

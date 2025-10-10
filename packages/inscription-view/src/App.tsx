@@ -50,13 +50,6 @@ function App({ outline, ...context }: InscriptionElementContext & InscriptionOut
     structuralSharing: false
   });
 
-  useEffect(() => {
-    if (isSuccess && (initData === undefined || initData?.pid !== context.pid)) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setInitData({ pid: context.pid, data: data.data });
-    }
-  }, [isSuccess, data, initData, context.pid]);
-
   const { data: validations } = useQuery({
     queryKey: queryKeys.validation(context),
     queryFn: () => client.validate(context),
@@ -95,6 +88,10 @@ function App({ outline, ...context }: InscriptionElementContext & InscriptionOut
         <PanelMessage icon={IvyIcons.ErrorXMark} message={t('message.globalError', { error })} />
       </AppStateView>
     );
+  }
+
+  if (initData === undefined || initData?.pid !== context.pid) {
+    setInitData({ pid: context.pid, data: data.data });
   }
 
   return (
