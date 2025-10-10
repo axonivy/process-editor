@@ -1,6 +1,6 @@
 import type { ConditionData } from '@axonivy/process-editor-inscription-protocol';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
@@ -28,13 +28,12 @@ export function useConditionPart(): PartProps {
 
 const ConditionPart = () => {
   const { config, update } = useConditionData();
-  const [conditions, setConditions] = useState<Condition[]>([]);
-
   const { elementContext } = useEditorContext();
   const { data: outConnectors } = useMeta('meta/connector/out', elementContext, []);
-  useEffect(() => {
-    setConditions(Condition.of(config.conditions));
-    outConnectors.forEach(connector => setConditions(conditions => Condition.replace(conditions, connector)));
+  const conditions = useMemo(() => {
+    const conds = Condition.of(config.conditions);
+    outConnectors.forEach(connector => Condition.replace(conds, connector));
+    return conds;
   }, [config.conditions, outConnectors]);
 
   return (

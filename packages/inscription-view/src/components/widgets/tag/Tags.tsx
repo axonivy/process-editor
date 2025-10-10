@@ -89,6 +89,7 @@ const Tags = (props: {
   });
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDropDownTags(props.availableTags.filter(tag => !props.tags.includes(tag)));
   }, [props.availableTags, props.tags]);
 
