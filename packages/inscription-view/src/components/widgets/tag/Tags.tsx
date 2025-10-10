@@ -1,13 +1,15 @@
 import { useReadonly } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useCombobox } from 'downshift';
-import { memo, useEffect, useRef, useState } from 'react';
+import { memo, useRef, useState } from 'react';
 import { useKeyboard } from 'react-aria';
 import IvyIcon from '../IvyIcon';
 import './Tags.css';
 
 import { Flex, Popover, PopoverAnchor, PopoverContent } from '@axonivy/ui-components';
 import { useTranslation } from 'react-i18next';
+
+const ddTags = (availableTags: string[], tags: string[]) => availableTags.filter(tag => !tags.includes(tag));
 
 const Tags = (props: {
   tags: string[];
@@ -19,7 +21,15 @@ const Tags = (props: {
   const { t } = useTranslation();
   const newTag = t('tags.new');
 
-  const [dropDownTags, setDropDownTags] = useState<string[]>([]);
+  const [prevAvailableTags, setPrevAvailableTags] = useState(props.availableTags);
+  const [prevTags, setPrevTags] = useState(props.tags);
+  const [dropDownTags, setDropDownTags] = useState<string[]>(ddTags(props.availableTags, props.tags));
+  if (props.availableTags !== prevAvailableTags || props.tags !== prevTags) {
+    setPrevAvailableTags(props.availableTags);
+    setPrevTags(props.tags);
+    setDropDownTags(ddTags(props.availableTags, props.tags));
+  }
+
   const [addValue, setAddValue] = useState(newTag);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -77,7 +87,7 @@ const Tags = (props: {
     },
     onInputValueChange(change) {
       if (change.type !== useCombobox.stateChangeTypes.FunctionSelectItem) {
-        setDropDownTags(props.availableTags.filter(tag => !props.tags.includes(tag)).filter(item => filter(item, change.inputValue)));
+        setDropDownTags(ddTags(props.availableTags, props.tags).filter(item => filter(item, change.inputValue)));
         setAddValue(change.inputValue ?? '');
       }
     },
@@ -87,10 +97,6 @@ const Tags = (props: {
     },
     initialSelectedItem: ''
   });
-
-  useEffect(() => {
-    setDropDownTags(props.availableTags.filter(tag => !props.tags.includes(tag)));
-  }, [props.availableTags, props.tags]);
 
   const { keyboardProps } = useKeyboard({
     onKeyDown: e => {
