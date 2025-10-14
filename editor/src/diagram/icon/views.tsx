@@ -4,7 +4,6 @@ import virtualize from 'sprotty/lib/lib/virtualize';
 
 import { IconStyle, resolveIcon } from './icons';
 
- 
 const JSX = { createElement: svg };
 
 export function getActivityIconDecorator(iconUri: string, color: string): VNode {
@@ -21,7 +20,15 @@ function iconDecorator(iconUri: string, bounds: Bounds, smallIcon: boolean, colo
   const icon = resolveIcon(iconUri);
   if (icon.style === IconStyle.SI) {
     return (
-      <svg class-sprotty-icon-svg viewBox='0 0 20 20' height={bounds.height} width={bounds.width} x={bounds.x} y={bounds.y}>
+      <svg
+        class-sprotty-icon-svg
+        viewBox='0 0 20 20'
+        height={bounds.height}
+        width={bounds.width}
+        style={{ height: `${bounds.height}px`, width: `${bounds.width}px` }}
+        x={bounds.x}
+        y={bounds.y}
+      >
         <path style={{ fill: color }} d={icon.res} />
       </svg>
     );
@@ -34,6 +41,7 @@ function iconDecorator(iconUri: string, bounds: Bounds, smallIcon: boolean, colo
           requiredFeatures='http://www.w3.org/TR/SVG11/feature#Extensibility'
           height={bounds.height}
           width={bounds.width}
+          style={{ height: `${bounds.height}px`, width: `${bounds.width}px` }}
           x={bounds.x}
           y={bounds.y}
           class-sprotty-icon
