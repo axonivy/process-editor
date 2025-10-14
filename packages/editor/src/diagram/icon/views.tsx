@@ -50,7 +50,15 @@ function iconDecorator(iconUri: string, bounds: Bounds, smallIcon: boolean, colo
   const icon = resolveIcon(iconUri);
   if (icon.style === IconStyle.SI) {
     return (
-      <svg class-sprotty-icon-svg viewBox='0 0 20 20' height={bounds.height} width={bounds.width} x={bounds.x} y={bounds.y}>
+      <svg
+        class-sprotty-icon-svg
+        viewBox='0 0 20 20'
+        height={bounds.height}
+        width={bounds.width}
+        style={{ width: `${bounds.width}px`, height: `${bounds.height}px` }}
+        x={bounds.x}
+        y={bounds.y}
+      >
         <path style={{ fill: color }} d={icon.res} />
       </svg>
     );
@@ -62,6 +70,7 @@ function iconDecorator(iconUri: string, bounds: Bounds, smallIcon: boolean, colo
         requiredFeatures='http://www.w3.org/TR/SVG11/feature#Extensibility'
         height={bounds.height}
         width={bounds.width}
+        style={{ width: `${bounds.width}px`, height: `${bounds.height}px` }}
         x={bounds.x}
         y={bounds.y}
         class-sprotty-icon
