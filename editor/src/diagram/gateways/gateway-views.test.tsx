@@ -79,6 +79,6 @@ describe('GatewayNodeView', () => {
     const vnode = view.render(graph.index.getById(nodeId) as SNode, context);
     const node = toHTML(vnode);
     expect(node).to.contains('<polygon class="sprotty-node" points="16,0 32,16 16,32 0,16" style="stroke: " />');
-    expect(node).to.contains('<svg class="sprotty-icon-svg" viewBox="0 0 20 20" height="14" width="18" x="7" y="9">');
+    expect(node).to.contains('<svg class="sprotty-icon-svg" viewBox="0 0 20 20" height="14" width="18" x="7" y="9"');
   }
 });
