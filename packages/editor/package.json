@@ -34,7 +34,7 @@
   "devDependencies": {
     "@testing-library/react": "^16.2.0",
     "@vanilla-extract/recipes": "^0.5.5",
-    "happy-dom": "^19.0.0",
+    "happy-dom": "^20.0.0",
     "inversify": "^6.2.1",
     "reflect-metadata": "~0.2.2",
     "snabbdom-to-html": "^7.1.0"
