@@ -12,7 +12,7 @@ import {
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
 import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { deepEqual } from '../../../../../utils/equals';
 import type { FieldsetControl } from '../../../../widgets/fieldset/fieldset-control';
@@ -32,15 +32,14 @@ export const RestParameters = () => {
   const { t } = useTranslation();
   const { config, updateParameters } = useRestRequestData();
 
-  const [data, setData] = useState<Parameter[]>([]);
   const foundPathParams = useFindPathParams();
   const restResource = useRestResourceMeta();
-  useEffect(() => {
+  const data = useMemo(() => {
     const restResourceQueryParams = restResource.queryParams ?? [];
     const restResourcePathParams = restResource.pathParams ?? [];
     const queryParams = Parameter.of(restResourceQueryParams, [], config.target.queryParams, 'Query');
     const pathParams = Parameter.of(restResourcePathParams, foundPathParams, config.target.templateParams, 'Path');
-    setData([...pathParams, ...queryParams]);
+    return [...pathParams, ...queryParams];
   }, [foundPathParams, restResource.queryParams, restResource.pathParams, config.target.queryParams, config.target.templateParams]);
 
   const onChange = (props: Parameter[]) =>
@@ -138,7 +137,7 @@ export const RestParameters = () => {
       ];
     }
   }
-  
+
   return (
     <PathCollapsible label={t('part.rest.parameters')} path='parameters' defaultOpen={data.length > 0} controls={tableActions}>
       <Table>

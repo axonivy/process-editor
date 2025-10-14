@@ -10,12 +10,12 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "dependencies": {
-    "@axonivy/jsonrpc": "~13.2.0-next.862.aac5b6c",
+    "@axonivy/jsonrpc": "~13.2.0-next.892.aac8a65",
     "@axonivy/process-editor": "~13.2.0-next",
     "@axonivy/process-editor-inscription": "~13.2.0-next",
     "@axonivy/process-editor-inscription-view": "~13.2.0-next",
-    "@axonivy/ui-components": "~13.2.0-next.862.aac5b6c",
-    "@axonivy/ui-icons": "~13.2.0-next.862.aac5b6c",
+    "@axonivy/ui-components": "~13.2.0-next.892.aac8a65",
+    "@axonivy/ui-icons": "~13.2.0-next.892.aac8a65",
     "@eclipse-glsp/client": "2.5.0",
     "@tanstack/react-query": "^5.64",
     "@tanstack/react-query-devtools": "^5.64",

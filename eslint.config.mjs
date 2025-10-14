@@ -14,6 +14,8 @@ export default tseslint.config(
       }
     }
   },
+  // Latest react-hook rules
+  ...config.reactHooksLatest,
   // Project specific configs
   {
     name: 'ingored-files',

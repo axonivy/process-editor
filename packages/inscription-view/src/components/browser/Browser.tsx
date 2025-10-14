@@ -30,6 +30,7 @@ const Browser = ({ open, onOpenChange, types, accept, location, cmsOptions, role
   const [disableApply, setDisableApply] = useState(false);
 
   const acceptBrowser = () => {
+    // eslint-disable-next-line react-hooks/immutability
     accept(allBrowsers.find(browser => browser.id === active)?.accept() ?? { cursorValue: '' }, active);
   };
 

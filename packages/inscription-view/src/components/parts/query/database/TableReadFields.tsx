@@ -2,7 +2,7 @@ import type { DatabaseColumn } from '@axonivy/process-editor-inscription-protoco
 import { SortableHeader, Table, TableBody, TableCell, TableResizableHeader, TableRow } from '@axonivy/ui-components';
 import type { ColumnDef, Row, SortingState } from '@tanstack/react-table';
 import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
@@ -20,14 +20,10 @@ export const TableReadFields = () => {
   const selectAll = !config.query.sql.select || (config.query.sql.select?.length === 1 && config.query.sql.select[0] === '*');
   const { elementContext: context } = useEditorContext();
   const columnMetas = useMeta('meta/database/columns', { context, database: config.query.dbName, table: config.query.sql.table }, []).data;
-  const [data, setData] = useState<Column[]>([]);
 
-  useEffect(() => {
+  const data = useMemo(() => {
     const select = config.query.sql.select;
-    const columnData = columnMetas.map<Column>(c => {
-      return { ...c, selected: select.includes(c.name) };
-    });
-    setData(columnData);
+    return columnMetas.map<Column>(c => ({ ...c, selected: select.includes(c.name) }));
   }, [columnMetas, config.query.sql.select]);
 
   const columns = useMemo<ColumnDef<Column>[]>(

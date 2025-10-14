@@ -1,6 +1,6 @@
 import { Button, selectNextPreviousCell } from '@axonivy/ui-components';
 import type { CellContext } from '@tanstack/react-table';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { usePath } from '../../../../context/usePath';
 import { focusAdjacentTabIndexMonaco } from '../../../../utils/focus';
 import Browser from '../../../browser/Browser';
@@ -24,10 +24,15 @@ type CodeEditorCellProps<TData> = {
 export function CodeEditorCell<TData>({ cell, macro, type, browsers, placeholder }: CodeEditorCellProps<TData>) {
   const initialValue = cell.getValue() as string;
   const [value, setValue] = useState(initialValue);
-
-  useEffect(() => {
+  const [prevValue, setPrevValue] = useState(initialValue);
+  if (prevValue !== initialValue) {
     setValue(initialValue);
-  }, [initialValue]);
+    setPrevValue(initialValue);
+  }
+
+  // useEffect(() => {
+  //   setValue(initialValue);
+  // }, [initialValue]);
 
   const { setEditor, modifyEditor, getSelectionRange } = useMonacoEditor(macro ? { modifyAction: value => `<%=${value}%>` } : undefined);
   const path = usePath();
@@ -43,11 +48,14 @@ export function CodeEditorCell<TData>({ cell, macro, type, browsers, placeholder
 
   const { isFocusWithin, focusWithinProps, focusValue, browser } = useOnFocus(value, updateValue);
 
-  useEffect(() => {
-    if (isFocusWithin && !cell.row.getIsSelected()) {
-      cell.row.toggleSelected();
-    }
-  }, [cell.row, isFocusWithin]);
+  if (isFocusWithin && !cell.row.getIsSelected()) {
+    cell.row.toggleSelected();
+  }
+  // useEffect(() => {
+  //   if (isFocusWithin && !cell.row.getIsSelected()) {
+  //     cell.row.toggleSelected();
+  //   }
+  // }, [cell.row, isFocusWithin]);
 
   return (
     <div className='script-input' {...focusWithinProps} tabIndex={1}>

@@ -3,7 +3,7 @@ import { InputCell, SortableHeader, Table, TableAddRow, TableBody, TableCell, Ta
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
 import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PathContext } from '../../../../../context/usePath';
 import { deepEqual } from '../../../../../utils/equals';
@@ -22,14 +22,12 @@ const EMPTY_PARAMETER: RestParam = { name: '', expression: '', known: false };
 export const RestForm = () => {
   const { t } = useTranslation();
   const { config, updateBody } = useRestRequestData();
-
-  const [data, setData] = useState<RestParam[]>([]);
   const restResource = useRestResourceMeta();
 
-  useEffect(() => {
+  const data = useMemo(() => {
     const restResourceParam = restResource.method?.inBody.type;
     const params = restParamBuilder().openApiParam(restResourceParam).restMap(config.body.form).build();
-    setData(params);
+    return params;
   }, [restResource.method?.inBody.type, config.body.form]);
 
   const onChange = (params: RestParam[]) => updateBody('form', toRestMap(params));

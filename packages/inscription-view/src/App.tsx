@@ -18,20 +18,10 @@ import { DataContextInstance } from './context/useDataContext';
 import { DEFAULT_EDITOR_CONTEXT, EditorContextInstance } from './context/useEditorContext';
 import type { Unary } from './types/lambda';
 
-function App({ outline, app, pmv, pid }: InscriptionElementContext & InscriptionOutlineProps) {
+function App({ outline, ...context }: InscriptionElementContext & InscriptionOutlineProps) {
   const { t } = useTranslation();
-  const [context, setContext] = useState({ app, pmv, pid });
-  const [initData, setInitData] = useState<ElementData | undefined>();
+  const [initData, setInitData] = useState<{ pid: string; data: ElementData } | undefined>();
   const [showOutline, setShowOutline] = useState(false);
-
-  useEffect(() => {
-    setContext(old => {
-      if (old.pid !== pid) {
-        setInitData(undefined);
-      }
-      return { app, pmv, pid };
-    });
-  }, [app, pmv, pid]);
 
   const client = useClient();
   const queryClient = useQueryClient();
@@ -60,12 +50,6 @@ function App({ outline, app, pmv, pid }: InscriptionElementContext & Inscription
     structuralSharing: false
   });
 
-  useEffect(() => {
-    if (isSuccess && initData === undefined) {
-      setInitData(data.data);
-    }
-  }, [isSuccess, data, initData]);
-
   const { data: validations } = useQuery({
     queryKey: queryKeys.validation(context),
     queryFn: () => client.validate(context),
@@ -90,7 +74,7 @@ function App({ outline, app, pmv, pid }: InscriptionElementContext & Inscription
     onSuccess: (data: ValidationResult[]) => queryClient.setQueryData(queryKeys.validation(context), data)
   });
 
-  if (isPending || data?.context.pid !== pid) {
+  if (isPending || data?.context.pid !== context.pid) {
     return (
       <AppStateView>
         <Spinner size='large' />
@@ -104,6 +88,10 @@ function App({ outline, app, pmv, pid }: InscriptionElementContext & Inscription
         <PanelMessage icon={IvyIcons.ErrorXMark} message={t('message.globalError', { error })} />
       </AppStateView>
     );
+  }
+
+  if (initData === undefined || initData?.pid !== context.pid) {
+    setInitData({ pid: context.pid, data: data.data });
   }
 
   return (
@@ -123,7 +111,7 @@ function App({ outline, app, pmv, pid }: InscriptionElementContext & Inscription
               data: data.data,
               setData: mutation.mutate,
               defaultData: data.defaults,
-              initData: initData ?? data.data,
+              initData: initData?.data ?? data.data,
               validations
             }}
           >

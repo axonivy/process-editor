@@ -14,7 +14,7 @@ import {
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
 import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
@@ -33,26 +33,36 @@ type Column = {
 
 const EMPTY_COLUMN: Column = { name: '', sorting: 'ASCENDING' };
 
+const orderByToColumns = (orderBy: Array<string>) => {
+  return orderBy.map<Column>(order => {
+    const [name, ...parts] = order.split(' ');
+    let sorting: OrderDirection = 'ASCENDING';
+    if (parts.length > 0 && parts[0] === 'DESC') {
+      sorting = 'DESCENDING';
+    }
+    return { name: name ?? '', sorting };
+  });
+};
+
+const columnsToOrderBy = (data: Column[]) => {
+  const orderBy = data.map(d => {
+    let sorting = '';
+    if (d.sorting === 'DESCENDING') {
+      sorting = ' DESC';
+    }
+    return `${d.name}${sorting}`;
+  });
+  return orderBy;
+};
+
 export const TableSort = () => {
   const { t } = useTranslation();
   const { config, updateSql } = useQueryData();
-  const [data, setData] = useState<Column[]>([]);
+  const [data, setData] = useState<Column[]>(orderByToColumns(config.query.sql.orderBy ?? []));
 
   const { elementContext: context } = useEditorContext();
   const columnItems = useMeta('meta/database/columns', { context, database: config.query.dbName, table: config.query.sql.table }, []).data;
   const orderItems = useMemo<SelectItem[]>(() => Object.entries(QUERY_ORDER).map(([label, value]) => ({ label, value })), []);
-
-  useEffect(() => {
-    const data = config.query.sql.orderBy?.map<Column>(order => {
-      const [name, ...parts] = order.split(' ');
-      let sorting: OrderDirection = 'ASCENDING';
-      if (parts.length > 0 && parts[0] === 'DESC') {
-        sorting = 'DESCENDING';
-      }
-      return { name: name ?? '', sorting };
-    });
-    setData(data ?? []);
-  }, [config.query.sql.orderBy]);
 
   const columns = useMemo<ColumnDef<Column, string>[]>(
     () => [
@@ -75,14 +85,8 @@ export const TableSort = () => {
   );
 
   const updateOrderBy = (data: Column[]) => {
-    const orderBy = data.map(d => {
-      let sorting = '';
-      if (d.sorting === 'DESCENDING') {
-        sorting = ' DESC';
-      }
-      return `${d.name}${sorting}`;
-    });
-    updateSql('orderBy', orderBy);
+    setData(data);
+    updateSql('orderBy', columnsToOrderBy(data));
   };
 
   const [sorting, setSorting] = useState<SortingState>([]);

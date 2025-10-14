@@ -8,14 +8,13 @@ import {
   Flex
 } from '@axonivy/ui-components';
 import type { ReactNode } from 'react';
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 import type { FieldsetControl } from '../fieldset/fieldset-control';
 import { type ValidationMessage, toMessageDataArray } from '../message/Message';
 
 export type CollapsibleProps = {
   label: string;
   defaultOpen?: boolean;
-  autoClosable?: boolean;
   children: ReactNode;
   controls?: Array<FieldsetControl>;
   validations?: Array<ValidationMessage>;
@@ -46,17 +45,13 @@ const State = ({ validations }: Pick<CollapsibleProps, 'validations'>) => {
   return null;
 };
 
-const Collapsible = ({ label, defaultOpen, validations, children, autoClosable, controls }: CollapsibleProps) => {
+const Collapsible = ({ label, defaultOpen, validations, children, controls }: CollapsibleProps) => {
   const [open, setOpen] = useState(defaultOpen || (validations?.length ?? 0) > 0);
-  useEffect(() => {
-    if (autoClosable) {
-      setOpen(!!defaultOpen);
-    } else {
-      if (defaultOpen) {
-        setOpen(defaultOpen);
-      }
-    }
-  }, [autoClosable, defaultOpen]);
+  const [prevDefaultOpen, setPrevDefaultOpen] = useState(defaultOpen);
+  if (defaultOpen && prevDefaultOpen !== defaultOpen) {
+    setPrevDefaultOpen(defaultOpen);
+    setOpen(defaultOpen);
+  }
   return (
     <CollapsibleRoot open={open} onOpenChange={setOpen}>
       <CollapsibleTrigger control={props => <Controls {...props} controls={controls} />} state={<State validations={validations} />}>

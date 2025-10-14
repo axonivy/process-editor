@@ -8,9 +8,11 @@ export const ValidationCollapsible = ({ paths, children, ...props }: Collapsible
   const validations = useValidations();
   const pathValidations = useMemo(() => {
     if (paths) {
+      const filteredValidations = [];
       for (const path of paths) {
-        return validations.filter(val => val.path.includes(path));
+        filteredValidations.push(...validations.filter(val => val.path.includes(path)));
       }
+      return filteredValidations;
     }
     return validations;
   }, [paths, validations]);
