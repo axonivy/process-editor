@@ -58,12 +58,20 @@ export const RestTargetUrl = () => {
   const { config } = useRestRequestData();
   const { context } = useEditorContext();
   const clientUri = useMeta('meta/rest/clientUri', { context, clientId: config.target.clientId }, '').data;
+  let baseUri = clientUri;
+  if (baseUri.endsWith('/')) {
+    baseUri = baseUri.slice(0, -1);
+  }
+  let path = config.target.path;
+  if (path && !path.startsWith('/')) {
+    path = `/${path}`;
+  }
   return (
     <>
       {config.target.clientId?.length > 0 && (
         <div className='rest-target'>
           <div className='rest-target-url'>
-            <RestTargetPath path={`${clientUri}${config.target.path}`} />
+            <RestTargetPath path={`${baseUri}${path}`} />
             <RestTargetQueryParams queryParams={Object.entries(config.target.queryParams)} />
           </div>
         </div>
