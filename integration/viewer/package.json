@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@axonivy/process-editor-viewer",
-  "version": "12.0.10-next",
+  "version": "12.0.11-next",
   "description": "Viewer browser-app for the Axon Ivy process editor",
   "author": "Axon Ivy AG",
   "homepage": "https://developer.axonivy.com",
@@ -10,7 +10,7 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "dependencies": {
-    "@axonivy/process-editor": "~12.0.10-next",
+    "@axonivy/process-editor": "12.0.11-next",
     "@axonivy/ui-components": "~12.0.10-next.645.c46f5e5",
     "@axonivy/ui-icons": "~12.0.10-next.645.c46f5e5",
     "@eclipse-glsp/client": "2.3.0"

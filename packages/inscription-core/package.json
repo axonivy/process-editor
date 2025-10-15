@@ -1,6 +1,6 @@
 {
   "name": "@axonivy/process-editor-inscription-core",
-  "version": "12.0.10-next",
+  "version": "12.0.11-next",
   "private": false,
   "license": "(EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0)",
   "author": "Axon Ivy AG",
@@ -14,7 +14,7 @@
     "src"
   ],
   "dependencies": {
-    "@axonivy/process-editor-inscription-protocol": "~12.0.10-next",
+    "@axonivy/process-editor-inscription-protocol": "12.0.11-next",
     "monaco-editor": "^0.44.0",
     "monaco-editor-workers": "^0.44.0",
     "monaco-languageclient": "^6.6.1",
