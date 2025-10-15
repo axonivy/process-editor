@@ -1,6 +1,6 @@
 {
   "name": "@axonivy/process-editor-inscription-view",
-  "version": "12.0.10-next",
+  "version": "12.0.11-next",
   "private": false,
   "license": "(EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0)",
   "author": "Axon Ivy AG",
@@ -14,8 +14,8 @@
     "src"
   ],
   "dependencies": {
-    "@axonivy/process-editor-inscription-core": "~12.0.10-next",
-    "@axonivy/process-editor-inscription-protocol": "~12.0.10-next",
+    "@axonivy/process-editor-inscription-core": "12.0.11-next",
+    "@axonivy/process-editor-inscription-protocol": "12.0.11-next",
     "@monaco-editor/react": "^4.6.0",
     "@tanstack/react-virtual": "^3.11.1",
     "@types/node": "^22.13.4",
