@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@axonivy/process-editor": "~13.2.0-next",
-    "@axonivy/ui-components": "~13.2.0-next.892.aac8a65",
-    "@axonivy/ui-icons": "~13.2.0-next.892.aac8a65",
+    "@axonivy/ui-components": "~13.2.0-next.901.ab8559f",
+    "@axonivy/ui-icons": "~13.2.0-next.901.ab8559f",
     "@eclipse-glsp/client": "2.5.0"
   },
   "devDependencies": {
