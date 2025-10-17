@@ -1,0 +1,199 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "id" : "199F160F9AD8F2F0",
+  "config" : {
+    "data" : "process.test.project.Data"
+  },
+  "elements" : [ {
+      "id" : "f27",
+      "type" : "TaskEnd",
+      "name" : "None",
+      "visual" : {
+        "at" : { "x" : 104, "y" : 168 }
+      }
+    }, {
+      "id" : "f28",
+      "type" : "TaskEnd",
+      "name" : "Cancel",
+      "visual" : {
+        "at" : { "x" : 184, "y" : 168 },
+        "icon" : "std:CancelThrow?small"
+      }
+    }, {
+      "id" : "f29",
+      "type" : "TaskEnd",
+      "name" : "Link",
+      "visual" : {
+        "at" : { "x" : 264, "y" : 168 },
+        "icon" : "std:LinkThrow?small"
+      }
+    }, {
+      "id" : "f30",
+      "type" : "TaskEnd",
+      "name" : "Message",
+      "visual" : {
+        "at" : { "x" : 344, "y" : 168 },
+        "icon" : "std:MessageThrow?small"
+      }
+    }, {
+      "id" : "f31",
+      "type" : "TaskEnd",
+      "name" : "Signal",
+      "visual" : {
+        "at" : { "x" : 424, "y" : 168 },
+        "icon" : "std:SignalThrow?small"
+      }
+    }, {
+      "id" : "f32",
+      "type" : "TaskEnd",
+      "name" : "Error",
+      "visual" : {
+        "at" : { "x" : 504, "y" : 168 },
+        "icon" : "std:ErrorThrow?small"
+      }
+    }, {
+      "id" : "f33",
+      "type" : "RequestStart",
+      "name" : "None",
+      "config" : {
+        "signature" : "start64"
+      },
+      "visual" : {
+        "at" : { "x" : 104, "y" : 88 }
+      }
+    }, {
+      "id" : "f34",
+      "type" : "RequestStart",
+      "name" : "Message",
+      "config" : {
+        "signature" : "start22"
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 88 },
+        "icon" : "std:Message?small"
+      }
+    }, {
+      "id" : "f35",
+      "type" : "RequestStart",
+      "name" : "Signal",
+      "config" : {
+        "signature" : "start53"
+      },
+      "visual" : {
+        "at" : { "x" : 424, "y" : 88 },
+        "icon" : "std:Signal?small"
+      }
+    }, {
+      "id" : "f36",
+      "type" : "RequestStart",
+      "name" : "Cancel",
+      "config" : {
+        "signature" : "start65"
+      },
+      "visual" : {
+        "at" : { "x" : 184, "y" : 88 },
+        "icon" : "std:Cancel?small"
+      }
+    }, {
+      "id" : "f37",
+      "type" : "RequestStart",
+      "name" : "Link",
+      "config" : {
+        "signature" : "start632"
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 88 },
+        "icon" : "std:Link?small"
+      }
+    }, {
+      "id" : "f38",
+      "type" : "RequestStart",
+      "name" : "Error",
+      "config" : {
+        "signature" : "start522"
+      },
+      "visual" : {
+        "at" : { "x" : 504, "y" : 88 },
+        "icon" : "std:Error?small"
+      }
+    }, {
+      "id" : "f39",
+      "type" : "TaskEnd",
+      "name" : "Escalation",
+      "visual" : {
+        "at" : { "x" : 584, "y" : 168 },
+        "icon" : "std:EscalationThrow?small"
+      }
+    }, {
+      "id" : "f40",
+      "type" : "RequestStart",
+      "name" : "Escalation",
+      "config" : {
+        "signature" : "start322"
+      },
+      "visual" : {
+        "at" : { "x" : 584, "y" : 88 },
+        "icon" : "std:Escalation?small"
+      }
+    }, {
+      "id" : "f41",
+      "type" : "RequestStart",
+      "name" : "Timer",
+      "config" : {
+        "signature" : "start323"
+      },
+      "visual" : {
+        "at" : { "x" : 664, "y" : 88 },
+        "icon" : "std:Timer?small"
+      }
+    }, {
+      "id" : "f42",
+      "type" : "TaskEnd",
+      "name" : "Compensate",
+      "visual" : {
+        "at" : { "x" : 664, "y" : 168 },
+        "icon" : "std:Compensate?small"
+      }
+    }, {
+      "id" : "f43",
+      "type" : "RequestStart",
+      "name" : "Condition",
+      "config" : {
+        "signature" : "start43"
+      },
+      "visual" : {
+        "at" : { "x" : 744, "y" : 88 },
+        "icon" : "std:Condition?small"
+      }
+    }, {
+      "id" : "f44",
+      "type" : "TaskEnd",
+      "name" : "Terminate",
+      "visual" : {
+        "at" : { "x" : 744, "y" : 168 },
+        "icon" : "std:Terminate?small"
+      }
+    }, {
+      "id" : "f45",
+      "type" : "RequestStart",
+      "name" : "Complex",
+      "config" : {
+        "signature" : "start622"
+      },
+      "visual" : {
+        "at" : { "x" : 824, "y" : 168 },
+        "icon" : "std:Complex?small"
+      }
+    }, {
+      "id" : "f46",
+      "type" : "RequestStart",
+      "name" : "Event",
+      "config" : {
+        "signature" : "start422"
+      },
+      "visual" : {
+        "at" : { "x" : 824, "y" : 88 },
+        "icon" : "std:EventBased?small"
+      }
+    } ]
+}

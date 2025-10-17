@@ -41,7 +41,7 @@ const activityColorType = (type: string): 'workflow' | 'interface' | 'bpmn' => {
 };
 
 export function getIconDecorator(iconUri: string, radius: number, color: string): VNode | undefined {
-  const bounds = { height: 14, width: 18, x: radius - 9, y: radius - 7 };
+  const bounds = { height: 18, width: 18, x: radius - 9, y: radius - 9 };
   return iconDecorator(iconUri, bounds, true, color);
 }
 
