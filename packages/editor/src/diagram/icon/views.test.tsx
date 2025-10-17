@@ -17,16 +17,16 @@ describe('Event and Gateway Icons', () => {
 
   test('icon', () => {
     let node = getIconDecorator(GatewayTypes.ALTERNATIVE, 25, '');
-    assertIcon(node!, { height: 14, width: 18, x: 16, y: 18 }, SvgIcons.ALTERNATIVE, '');
+    assertIcon(node!, { height: 18, width: 18, x: 16, y: 16 }, SvgIcons.ALTERNATIVE, '');
     node = getIconDecorator(EventStartTypes.START_ERROR, 25, 'red');
-    assertIcon(node!, { height: 14, width: 18, x: 16, y: 18 }, SvgIcons.ERROR_EVENT, 'red');
+    assertIcon(node!, { height: 18, width: 18, x: 16, y: 16 }, SvgIcons.BPMN_ERROR, 'red');
   });
 
   test('img icon', () => {
     let node = getIconDecorator('/faces/javax.faces.resource/url', 30, '');
-    assertImgIcon(node!, { height: 14, width: 18, x: 21, y: 23 }, '/faces/javax.faces.resource/url');
+    assertImgIcon(node!, { height: 18, width: 18, x: 21, y: 21 }, '/faces/javax.faces.resource/url');
     node = getIconDecorator('/faces/javax.faces.resource/url', 30, 'red');
-    assertImgIcon(node!, { height: 14, width: 18, x: 21, y: 23 }, '/faces/javax.faces.resource/url');
+    assertImgIcon(node!, { height: 18, width: 18, x: 21, y: 21 }, '/faces/javax.faces.resource/url');
   });
 });
 
