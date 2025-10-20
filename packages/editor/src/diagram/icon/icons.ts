@@ -72,7 +72,7 @@ export enum SvgIcons {
   BPMN_INCLUSIVE = 'M 10 18.125 C 7.832031 18.125 5.792969 17.285156 4.257812 15.742188 C 2.726562 14.207031 1.875 12.167969 1.875 10 C 1.875 7.832031 2.714844 5.792969 4.257812 4.257812 C 5.792969 2.726562 7.832031 1.875 10 1.875 C 12.167969 1.875 14.207031 2.714844 15.742188 4.257812 C 17.273438 5.792969 18.125 7.832031 18.125 10 C 18.125 12.167969 17.285156 14.207031 15.742188 15.742188 C 14.207031 17.273438 12.167969 18.125 10 18.125 Z M 10 3.125 C 8.167969 3.125 6.433594 3.839844 5.140625 5.140625 C 3.851562 6.441406 3.125 8.167969 3.125 10 C 3.125 11.832031 3.839844 13.566406 5.140625 14.859375 C 6.441406 16.148438 8.167969 16.875 10 16.875 C 11.832031 16.875 13.566406 16.160156 14.859375 14.859375 C 16.148438 13.558594 16.875 11.832031 16.875 10 C 16.875 8.167969 16.160156 6.433594 14.859375 5.140625 C 13.558594 3.839844 11.832031 3.125 10 3.125 Z M 10 3.125 '
 }
 
-export const ElementIcons = new Map<string, string>([
+const ElementIcons = new Map<string, string>([
   // Start Events
   [EventStartTypes.START_SIGNAL, SvgIcons.BPMN_SIGNAL],
   [EventStartTypes.START_PROGRAM, SvgIcons.PROGRAM],
@@ -124,7 +124,7 @@ export const ElementIcons = new Map<string, string>([
   [ActivityTypes.BPMN_RECEIVE, SvgIcons.RECEIVE]
 ]);
 
-export const CustomBoundaryIcons = new Map<string, string>([
+const StandardIcons = new Map<string, string>([
   ['std:Cancel', SvgIcons.BPMN_CANCEL],
   ['std:CancelThrow', SvgIcons.BPMN_CANCEL_THROW],
   ['std:Link', SvgIcons.BPMN_LINK],
@@ -166,7 +166,7 @@ export const resolveIcon = (iconUri: string): NodeIcon => {
   if (elementIcon) {
     return { res: elementIcon, style: IconStyle.SI };
   }
-  const customBoundaryIcon = CustomBoundaryIcons.get(iconUri);
+  const customBoundaryIcon = StandardIcons.get(iconUri);
   if (customBoundaryIcon) {
     return { res: customBoundaryIcon, style: IconStyle.SI };
   }
