@@ -112,77 +112,49 @@
 .bar-menu-text .menu-issue-message {
   margin: 0.5rem 0 1rem 0;
 }
-.bar-menu-items .menu-group-items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--size-4);
+
+.ui-palette-section:where([data-section='Workflow Activities'], [data-section='Callable Sub Processes']) .ui-palette-item-icon {
+  background: var(--glsp-activity-workflow-bg);
+  color: var(--glsp-activity-workflow);
+  &:hover {
+    border: 1px solid var(--glsp-activity-workflow);
+  }
 }
-.bar-menu-items .menu-group-items .menu-item {
-  flex-grow: 0;
+.ui-palette-section:where([data-section='Interface Activities'], [data-section='Rest Clients']) .ui-palette-item-icon {
+  background: var(--glsp-activity-interface-bg);
+  color: var(--glsp-activity-interface);
+  &:hover {
+    border: 1px solid var(--glsp-activity-interface);
+  }
 }
-.bar-menu-items .menu-item {
-  width: 72px;
-  max-width: 80px;
-  flex-grow: 1;
-  font-weight: 400;
-  font-size: 11px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--size-1);
-  cursor: pointer;
-  word-break: break-word;
-  overflow: hidden;
+.ui-palette-section[data-section='BPMN Activities'] .ui-palette-item-icon {
+  background: var(--glsp-activity-bpmn-bg);
+  color: var(--glsp-activity-bpmn);
+  &:hover {
+    border: 1px solid var(--glsp-activity-bpmn);
+  }
 }
-.bar-menu-items .menu-item .menu-item-info {
-  font-style: italic;
-}
-.bar-menu-items .menu-item .menu-item-icon {
-  width: calc(100% - 2px);
-  height: 30px;
-  background: var(--N75);
-  border-radius: var(--border-r2);
-  border: 1px solid var(--N75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.bar-menu-items .menu-item.focus .menu-item-icon {
-  border: 1px solid var(--glsp-bar-menu-item);
-}
-.bar-menu-items .menu-item i {
-  width: 2rem;
-  font-size: 14px;
-  line-height: 2rem;
-  flex: none;
-}
-.bar-menu-items .menu-item .ivy {
-  text-align: center;
-  font-size: 24px;
-}
-.bar-menu-items .menu-item img {
-  width: 16px;
-  height: 16px;
-  padding: 8px;
-}
-.bar-menu-items .menu-item svg {
-  margin: 0.8em;
-  width: 14px;
-  height: 14px;
-  fill: none;
-  stroke: var(--glsp-bar-menu-item);
-  flex: none;
-}
-.bar-menu-items .menu-item-text {
-  display: flex;
-  align-items: center;
-  gap: 2px;
+.ui-palette-item[data-style='horizontal'] {
   width: 100%;
-}
-.bar-menu-items .menu-item-text .menu-item-label {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 100%;
-  text-align: center;
+  .ui-palette-item-content {
+    flex-direction: row;
+    .ui-palette-item-icon {
+      width: 32px;
+    }
+    .ui-palette-item-text {
+      align-items: flex-start;
+
+      flex-direction: column;
+      .ui-palette-item-label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        text-align: start;
+      }
+      .ui-palette-item-info {
+        font-style: italic;
+      }
+    }
+  }
 }

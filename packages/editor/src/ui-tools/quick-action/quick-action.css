@@ -58,29 +58,6 @@
   padding: var(--size-2);
   border-radius: 4px;
 }
-.ui-palette-section[data-section='Workflow Activities'] .ui-palette-item-icon {
-  background: var(--glsp-activity-workflow-bg);
-  color: var(--glsp-activity-workflow);
-}
-.ui-palette-section[data-section='Workflow Activities'] .ui-palette-item-icon:hover {
-  border: 1px solid var(--glsp-activity-workflow);
-}
-
-.ui-palette-section[data-section='Interface Activities'] .ui-palette-item-icon {
-  background: var(--glsp-activity-interface-bg);
-  color: var(--glsp-activity-interface);
-}
-.ui-palette-section[data-section='Interface Activities'] .ui-palette-item-icon:hover {
-  border: 1px solid var(--glsp-activity-interface);
-}
-
-.ui-palette-section[data-section='BPMN Activities'] .ui-palette-item-icon {
-  background: var(--glsp-activity-bpmn-bg);
-  color: var(--glsp-activity-bpmn);
-}
-.ui-palette-section[data-section='BPMN Activities'] .ui-palette-item-icon:hover {
-  border: 1px solid var(--glsp-activity-bpmn);
-}
 
 /* Color Dialog */
 .edit-color {
