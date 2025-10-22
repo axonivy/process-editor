@@ -22,21 +22,28 @@ export class Menu {
     return this.menu.locator('.ui-input');
   }
 
+  group(groupName: string) {
+    return this.menu.locator(`.ui-palette-section[data-section="${groupName}"]`);
+  }
+
+  items(group?: Locator) {
+    if (group) {
+      return group.locator('.ui-palette-item');
+    }
+    return this.menu.locator('.ui-palette-item');
+  }
+
   async click(entry: string) {
     await this.menu.locator(`.ui-palette-item:has-text("${entry}")`).click();
   }
 
-  async expectMenuItemCount(count: number) {
-    await expect(this.menu.locator('.ui-palette-item')).toHaveCount(count);
-  }
-
-  async expectMenuGroupCount(count: number) {
+  async expectGroupCount(count: number) {
     const headers = this.menu.locator('.ui-palette-section-title');
     await expect(headers).toHaveCount(count);
   }
 
-  async expectMenuGroups(headerGroups: string[]) {
-    await this.expectMenuGroupCount(headerGroups.length);
+  async expectGroups(headerGroups: string[]) {
+    await this.expectGroupCount(headerGroups.length);
     const headers = this.menu.locator('.ui-palette-section-title');
     for (const [index, group] of headerGroups.entries()) {
       await expect(headers.nth(index)).toHaveText(group);

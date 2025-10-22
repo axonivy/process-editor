@@ -72,15 +72,15 @@ test('undo / redo with inscription', async ({ page }) => {
 test('search', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
   const menu = await processEditor.toolbar().openElementPalette('all_elements');
-  await menu.expectMenuGroupCount(9);
+  await menu.expectGroupCount(9);
 
   await menu.search('ta');
-  await menu.expectMenuGroupCount(5);
-  await menu.expectMenuItemCount(8);
+  await menu.expectGroupCount(5);
+  await expect(menu.items()).toHaveCount(8);
 
   await menu.search('bla');
-  await menu.expectMenuGroupCount(0);
-  await menu.expectMenuItemCount(0);
+  await menu.expectGroupCount(0);
+  await expect(menu.items()).toHaveCount(0);
   await expect(menu.emptyResult()).toBeVisible();
   await expect(menu.emptyResult()).toHaveText('No results found.');
 });

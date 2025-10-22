@@ -13,7 +13,7 @@ test('switch categories', async ({ page }) => {
 
 async function switchAndAssertGroup(element: Element, quickAction: string, groups: string[]) {
   await element.quickActionBar().trigger(quickAction, 'startsWith');
-  await element.quickActionBar().menu().expectMenuGroups(groups);
+  await element.quickActionBar().menu().expectGroups(groups);
 }
 
 test('not all elements are listed', async ({ page }) => {
@@ -22,10 +22,10 @@ test('not all elements are listed', async ({ page }) => {
   const end = processEditor.endElement;
   const quickAction = start.quickActionBar();
   await quickAction.trigger('Events', 'startsWith');
-  await quickAction.menu().expectMenuItemCount(2);
+  await expect(quickAction.menu().items()).toHaveCount(2);
   await end.delete();
   await quickAction.trigger('Events', 'startsWith');
-  await quickAction.menu().expectMenuItemCount(5);
+  await expect(quickAction.menu().items()).toHaveCount(5);
 });
 
 test('add element', async ({ page }) => {
