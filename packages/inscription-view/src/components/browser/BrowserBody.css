@@ -25,20 +25,10 @@
   animation-fill-mode: forwards;
 }
 
-.browser-content .tabs-content {
-  gap: var(--size-1);
+.browser-content .ui-table-root {
+  max-height: unset;
 }
-.browser-content .table-root {
-  overflow: hidden;
-}
-.browser-content .table-root .table-container {
-  max-height: calc(100vh - 300px);
-  overflow: auto;
-}
-.browser-content .table-root .table-container .table {
-  overflow: auto;
-  max-height: 100%;
-}
+
 .browser-content .browser-helptext {
   font-size: 12px;
   background-color: var(--background);

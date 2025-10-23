@@ -10,7 +10,7 @@ type TableProps = ComponentProps<typeof Table> & {
 export const SearchTable = ({ search, ...props }: TableProps) => {
   const { t } = useTranslation();
   return (
-    <Flex direction='column' gap={1}>
+    <Flex direction='column' gap={1} style={{ overflow: 'auto' }}>
       {search && <SearchInput placeholder={t('common.label.search')} {...search} />}
       <Table {...props} />
     </Flex>
