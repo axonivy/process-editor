@@ -1,6 +1,7 @@
 .tabs-root {
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 .tabs-list {
   display: flex;
@@ -53,6 +54,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--size-3);
+  overflow: auto;
 }
 
 .tabs-trigger i {
