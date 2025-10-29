@@ -94,7 +94,7 @@ const ToolPaletteItem = ({ name, description, paletteIcon, info, onClick, classN
     title={description}
     data-style={horizontal ? 'horizontal' : 'vertical'}
   >
-    <Flex gap={1} alignItems='center' className='ui-palette-item-content'>
+    <Flex gap={1} alignItems='center' direction='column' className='ui-palette-item-content'>
       <Flex className={cn(classNames.paletteItemIcon, 'ui-palette-item-icon')} justifyContent='center' alignItems='center'>
         {paletteIcon}
       </Flex>
