@@ -12,6 +12,12 @@ export type WfFieldType = "STRING" | "TEXT" | "NUMBER" | "TIMESTAMP";
 export type Widget = Script | Label | Text;
 export type WidgetType = "TEXT" | "LABEL" | "SCRIPT";
 export type WorkflowType = "START" | "TASK" | "CASE";
+/**
+ * Supports macros for dynamic content.
+ * Macros are IvyScript expressions enclosed in '<%=' and '%>', enabling the embedding of dynamic values such as data class attributes.
+ * For example, to interpolate an attribute of a data class use '<%=in.attribute%>'.
+ */
+export type ScriptMacro = string;
 export type WfLevel = "EXCEPTION" | "HIGH" | "NORMAL" | "LOW" | "SCRIPT";
 export type WfResponsibleType =
   | "ROLES"
@@ -390,18 +396,18 @@ export interface WfCase {
   attachToBusinessCase: boolean;
   category: string;
   customFields: WfCustomField[];
-  description: string;
-  name: string;
+  description: ScriptMacro;
+  name: ScriptMacro;
 }
 export interface WfTask {
   category: string;
   code: string;
   customFields: WfCustomField[];
   delay: string;
-  description: string;
+  description: ScriptMacro;
   expiry: WfExpiry;
   id: string;
-  name: string;
+  name: ScriptMacro;
   notification: WfNotification;
   priority: WfPriority;
   responsible: WfResponsible;
@@ -455,13 +461,13 @@ export interface DbQuery {
   sql: DbSqlStatement;
 }
 export interface DbSqlStatement {
-  condition: string;
+  condition: ScriptMacro;
   fields: ScriptMappings;
   kind: QueryKind;
   orderBy: string[];
   quote: boolean;
   select: string[];
-  stmt: string;
+  stmt: ScriptMacro;
   table: string;
 }
 export interface ElementCallSubStart {
@@ -578,15 +584,15 @@ export interface ElementRequestStart {
 export interface StartRequest {
   category: string;
   customFields: StartCustomStartField[];
-  description: string;
+  description: ScriptMacro;
   isHttpRequestable: boolean;
   isVisibleOnStartList: boolean;
   linkName: string;
-  name: string;
+  name: ScriptMacro;
 }
 export interface StartCustomStartField {
   name: string;
-  value: string;
+  value: ScriptMacro;
 }
 export interface ElementWebserviceStart {
   result: ScriptParameterizedMapCode;
@@ -637,15 +643,15 @@ export interface ElementEMail {
   exceptionHandler: string;
 }
 export interface MailHeaders {
-  bcc: string;
-  cc: string;
-  from: string;
-  replyTo: string;
-  subject: string;
-  to: string;
+  bcc: ScriptMacro;
+  cc: ScriptMacro;
+  from: ScriptMacro;
+  replyTo: ScriptMacro;
+  subject: ScriptMacro;
+  to: ScriptMacro;
 }
 export interface MailMessage {
-  body: string;
+  body: ScriptMacro;
   contentType: string;
 }
 export interface ElementTaskSwitchEvent {
@@ -695,7 +701,7 @@ export interface RestBody {
   entity: RestPayloadMapping;
   form: RestMultiValuedMap;
   mediaType: string;
-  raw: string;
+  raw: ScriptMacro;
   type: InputType;
 }
 export interface RestMultiValuedMap {
