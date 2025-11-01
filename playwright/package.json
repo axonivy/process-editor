@@ -10,7 +10,7 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "devDependencies": {
-    "@open-rpc/client-js": "1.8.1",
+    "@open-rpc/client-js": "2.0.0",
     "@playwright/test": "1.56.1"
   },
   "type": "module",
