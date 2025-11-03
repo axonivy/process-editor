@@ -39,7 +39,7 @@
     "@lerna-lite/publish": "^4.0.0",
     "@lerna-lite/run": "^4.0.0",
     "@lerna-lite/version": "^4.0.0",
-    "@types/node": "^22.10.7",
+    "@types/node": "^24.0.0",
     "i18next-parser": "^9.3.0",
     "prettier": "^3.5.3",
     "rimraf": "^6.0.1",
