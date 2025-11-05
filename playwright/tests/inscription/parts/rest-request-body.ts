@@ -41,6 +41,7 @@ class EntityPart extends PartObject {
   }
   async clear() {
     await this.entityType.choose('');
+    await this.code.loaded();
     await this.mapping.row(1).fill(['']);
     await this.code.clear();
   }

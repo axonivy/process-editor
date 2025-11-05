@@ -1,5 +1,6 @@
 import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
+import { expectCodeInEditor } from '../../../page-objects/inscription/code-editor';
 import { openMockInscription } from '../../../page-objects/inscription/inscription-view';
 import { assertCodeHidden, assertCodeVisible, browserBtn, code } from './browser-mock-utils';
 
@@ -30,11 +31,11 @@ test('browser add type', async ({ page }) => {
   await task.section('Expiry').open();
   const timeout = task.macroArea('Timeout');
   await assertCodeHidden(page);
-  await timeout.focus();
+  await timeout.activate();
   await assertCodeVisible(page);
 
   await applyTypeBrowser(page, 2, 'ch.ivyteam.test.Person');
-  await expect(code(page).getByRole('textbox')).toHaveValue('ch.ivyteam.test.Person');
+  await expectCodeInEditor(code(page), 'ch.ivyteam.test.Person');
 });
 
 test('browser add type as list', async ({ page }) => {
@@ -45,11 +46,11 @@ test('browser add type as list', async ({ page }) => {
   await task.section('Expiry').open();
   const timeout = task.macroArea('Timeout');
   await assertCodeHidden(page);
-  await timeout.focus();
+  await timeout.activate();
   await assertCodeVisible(page);
 
   await applyTypeBrowser(page, 2, 'ch.ivyteam.test.Person', true);
-  await expect(code(page).getByRole('textbox')).toHaveValue('List<ch.ivyteam.test.Person>');
+  await expectCodeInEditor(code(page), 'List<ch.ivyteam.test.Person>');
 });
 
 test('browser add type doubleclick', async ({ page }) => {
@@ -60,11 +61,11 @@ test('browser add type doubleclick', async ({ page }) => {
   await task.section('Expiry').open();
   const timeout = task.macroArea('Timeout');
   await assertCodeHidden(page);
-  await timeout.focus();
+  await timeout.activate();
   await assertCodeVisible(page);
 
   await applyTypeBrowser(page, 2, undefined, undefined, true);
-  await expect(code(page).getByRole('textbox')).toHaveValue('ch.ivyteam.test.Person');
+  await expectCodeInEditor(code(page), 'ch.ivyteam.test.Person');
 });
 
 async function applyTypeBrowser(page: Page, rowToCheck: number, expectedSelection: string = '', checkListGeneric?: boolean, dblClick?: boolean) {

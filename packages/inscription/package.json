@@ -14,9 +14,6 @@
     "@axonivy/process-editor-inscription-core": "~13.2.0-next",
     "@axonivy/process-editor-inscription-protocol": "~13.2.0-next",
     "@axonivy/process-editor-inscription-view": "~13.2.0-next",
-    "@codingame/monaco-vscode-editor-service-override": "1.83.3",
-    "@codingame/monaco-vscode-languages-service-override": "1.83.3",
-    "@codingame/monaco-vscode-model-service-override": "1.83.3",
     "@eclipse-glsp/client": "2.5.0"
   },
   "peerDependencies": {

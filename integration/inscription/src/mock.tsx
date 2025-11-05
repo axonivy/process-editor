@@ -1,5 +1,12 @@
 import type { ElementType } from '@axonivy/process-editor-inscription-protocol';
-import { App, ClientContextProvider, MonacoEditorUtil, QueryProvider, initQueryClient } from '@axonivy/process-editor-inscription-view';
+import {
+  App,
+  ClientContextProvider,
+  LogLevel,
+  MonacoEditorUtil,
+  QueryProvider,
+  initQueryClient
+} from '@axonivy/process-editor-inscription-view';
 import { ThemeProvider, Toaster } from '@axonivy/ui-components';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
@@ -19,7 +26,7 @@ export async function start(): Promise<void> {
   const root = createRoot(rootElement);
   const queryClient = initQueryClient();
   const client = new InscriptionClientMock(readonly, type);
-  await MonacoEditorUtil.configureInstance({ theme, debug: true });
+  await MonacoEditorUtil.configureMonaco({ theme, logLevel: LogLevel.Debug });
   initTranslation();
 
   root.render(
