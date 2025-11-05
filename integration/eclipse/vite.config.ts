@@ -1,22 +1,14 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { monacoConfigPlugin } from '../monaco-config-plugin';
 import { monacoWorkaroundPlugin } from '../monaco-workaround-plugin';
 
 export default defineConfig(() => ({
-  plugins: [tsconfigPaths(), monacoWorkaroundPlugin()],
+  plugins: [tsconfigPaths(), monacoWorkaroundPlugin(), monacoConfigPlugin()],
   build: {
     outDir: 'build',
-    chunkSizeWarningLimit: 5000,
-    rollupOptions: {
-      output: {
-        manualChunks: id => {
-          if (id.includes('monaco-languageclient') || id.includes('vscode')) {
-            return 'monaco-chunk';
-          }
-        }
-      }
-    }
+    chunkSizeWarningLimit: 5000
   },
   esbuild: {
     target: 'esnext',
@@ -47,5 +39,8 @@ export default defineConfig(() => ({
       '@axonivy/process-editor-inscription-protocol': resolve(__dirname, '../../packages/inscription-protocol/src'),
       '@axonivy/process-editor-protocol': resolve(__dirname, '../../packages/protocol/src')
     }
+  },
+  worker: {
+    format: 'es'
   }
 }));

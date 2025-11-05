@@ -15,8 +15,8 @@ export default config.defineConfig(
   },
   // Project specific configs
   {
-    name: 'ingored-files',
-    ignores: ['./integration/monaco-workaround-plugin.ts']
+    name: 'ignored-files',
+    ignores: ['./integration/monaco-workaround-plugin.ts', './integration/monaco-config-plugin.ts']
   },
   {
     name: 'general',

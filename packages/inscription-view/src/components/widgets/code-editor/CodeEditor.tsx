@@ -1,16 +1,10 @@
 import { useReadonly } from '@axonivy/ui-components';
-import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-import { Suspense, lazy, useRef } from 'react';
+import React, { Suspense, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
-import { MONACO_OPTIONS, MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
+import { MONACO_OPTIONS, MonacoEditor } from '../../../monaco/monaco-editor-util';
+import type { monaco } from '../../../monaco/monaco-modules';
 import './CodeEditor.css';
-
-const Editor = lazy(async () => {
-  const editor = await import('@monaco-editor/react');
-  await MonacoEditorUtil.getInstance();
-  return editor;
-});
 
 export type CodeEditorProps = {
   value: string;
@@ -27,43 +21,52 @@ export const CodeEditor = ({ value, onChange, context, macro, onMountFuncs, opti
   const { elementContext } = useEditorContext();
   const readonly = useReadonly();
   const placeholderElement = useRef<HTMLDivElement>(null);
-  const handlePlaceholder = (showPlaceholder: boolean) => {
+
+  const monacoOptions = useMemo(() => ({ ...(options ?? MONACO_OPTIONS), readOnly: readonly }), [options, readonly]);
+  const contextPath = `${elementContext.app}/${elementContext.pmv}/${elementContext.pid}`;
+  const language = macro ? 'ivyMacro' : 'ivyScript';
+
+  const updatePlaceholder = (showPlaceholder: boolean) => {
     if (placeholderElement.current) {
-      if (showPlaceholder) {
-        placeholderElement.current.style.display = 'block';
-      } else {
-        placeholderElement.current.style.display = 'none';
-      }
+      placeholderElement.current.style.display = showPlaceholder ? 'block' : 'none';
     }
   };
 
-  const handleEditorDidMount = (editor: monaco.editor.IStandaloneCodeEditor) => {
-    onMountFuncs?.forEach(func => func(editor));
-    handlePlaceholder(editor.getValue() === '');
-  };
+  const onIsEditorReady = React.useCallback(
+    (editor: monaco.editor.IStandaloneCodeEditor) => {
+      onMountFuncs?.forEach(func => func(editor));
+      updatePlaceholder(editor.getValue() === '');
+    },
+    [onMountFuncs]
+  );
 
-  const monacoOptions = { ...(options ?? MONACO_OPTIONS) };
-  monacoOptions.readOnly = readonly;
-  const language = macro ? 'ivyMacro' : 'ivyScript';
-
-  const contextPath = `${elementContext.app}/${elementContext.pmv}/${elementContext.pid}`;
+  const onDidContentChange = React.useCallback(
+    (content: string) => {
+      updatePlaceholder(content.length === 0);
+      onChange(content);
+    },
+    [onChange]
+  );
 
   return (
-    <div className='code-editor'>
-      <Suspense fallback={<div className='code-input'>{t('label.editorLoading')}</div>}>
-        <Editor
+    <div className='code-editor' key={contextPath}>
+      <Suspense
+        fallback={
+          <div className='code-input loading' tabIndex={0}>
+            {t('label.editorLoading')}
+          </div>
+        }
+      >
+        <MonacoEditor
+          key={contextPath}
+          uri={`${language}/${contextPath}/${context.location}/${context.type ? context.type : ''}`}
+          language={language}
+          content={value}
           className='code-input'
-          defaultValue={value}
-          value={value}
-          defaultLanguage={language}
-          defaultPath={`${language}/${contextPath}/${context.location}/${context.type ? context.type : ''}`}
           options={monacoOptions}
-          theme={MonacoEditorUtil.DEFAULT_THEME_NAME}
-          onChange={code => {
-            handlePlaceholder(!code);
-            onChange(code ?? '');
-          }}
-          onMount={handleEditorDidMount}
+          onDidContentChange={onDidContentChange}
+          onIsEditorReady={onIsEditorReady}
+          style={{ height: props.height, maxHeight: props.height }}
           {...props}
         />
       </Suspense>

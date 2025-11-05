@@ -1,5 +1,5 @@
 import { IvyBaseJsonrpcGLSPClient, prefsColorScheme } from '@axonivy/process-editor';
-import { MonacoEditorUtil } from '@axonivy/process-editor-inscription-view';
+import { LogLevel, MonacoEditorUtil } from '@axonivy/process-editor-inscription-view';
 import type { ThemeMode } from '@axonivy/process-editor-protocol';
 import type { IActionDispatcher } from '@eclipse-glsp/client';
 import { DiagramLoader, EditMode, GLSPWebSocketProvider, MessageAction, StatusAction, TYPES } from '@eclipse-glsp/client';
@@ -36,7 +36,7 @@ let glspClient: GLSPClient;
 let container: Container;
 const wsProvider = new GLSPWebSocketProvider(webSocketUrl);
 wsProvider.listen({ onConnection: initialize, onReconnect: reconnect, logger: console });
-initMonaco();
+MonacoEditorUtil.configureMonaco({ theme, logLevel: debug ? LogLevel.Debug : LogLevel.Warning });
 initTranslation();
 
 async function initialize(connectionProvider: MessageConnection, isReconnecting = false): Promise<void> {
@@ -78,11 +78,4 @@ async function initialize(connectionProvider: MessageConnection, isReconnecting 
 async function reconnect(connectionProvider: MessageConnection): Promise<void> {
   glspClient.stop();
   initialize(connectionProvider, true /* isReconnecting */);
-}
-
-async function initMonaco(): Promise<void> {
-  // packaging with vite has it's own handling of workers so it can be properly accessed
-  // we therefore import the worker here and use that instead of the default mechanism
-  const worker = await import('monaco-editor/esm/vs/editor/editor.worker?worker');
-  MonacoEditorUtil.configureInstance({ theme, debug, worker: { workerConstructor: worker.default } });
 }

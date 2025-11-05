@@ -1,4 +1,28 @@
-import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import { MonacoLanguageUtil } from './monaco-language-util';
+import type { MonacoApi, monaco } from './monaco-modules';
+import { MonacoUtil } from './monaco-util';
+
+export namespace IvyScriptLanguage {
+  export const Language: monaco.languages.ILanguageExtensionPoint = {
+    id: 'ivyScript',
+    extensions: ['.ivyScript', '.ivyScript'],
+    aliases: ['IvyScript', 'ivyScript']
+  };
+
+  export async function isInstalled(monaco?: MonacoApi): Promise<boolean> {
+    return MonacoLanguageUtil.isInstalled(Language.id, monaco);
+  }
+
+  export async function install(monacoApi?: MonacoApi): Promise<void> {
+    const monaco = await MonacoUtil.resolve(monacoApi);
+    if (await isInstalled(monaco)) {
+      return;
+    }
+    monaco.languages.register(Language);
+    monaco.languages.setLanguageConfiguration(Language.id, ivyScriptConf);
+    monaco.languages.setMonarchTokensProvider(Language.id, ivyScriptLang);
+  }
+}
 
 export const ivyScriptLang: monaco.languages.IMonarchLanguage = {
   defaultToken: '',

@@ -1,6 +1,6 @@
 import { useField } from '@axonivy/ui-components';
-import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import { usePath } from '../../../context/usePath';
+import type { monaco } from '../../../monaco';
 import { MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
 import Browser from '../../browser/Browser';
 import { MaximizedCodeEditorBrowser } from '../../browser/MaximizedCodeEditorBrowser';
@@ -17,13 +17,13 @@ type ScriptAreaProps = CodeEditorAreaProps & {
   };
 };
 
-export const ScriptArea = (props: ScriptAreaProps) => {
+export const ScriptArea = ({ maximizeState, ...props }: ScriptAreaProps) => {
   const browser = useBrowser();
   const { setEditor, modifyEditor, getMonacoSelection, getSelectionRange } = useMonacoEditor();
   const path = usePath();
   const keyActionMountFunc = (editor: monaco.editor.IStandaloneCodeEditor) => {
     editor.addCommand(MonacoEditorUtil.KeyCode.F2, () => {
-      props.maximizeState.setIsMaximizedCodeEditorOpen(true);
+      maximizeState.setIsMaximizedCodeEditorOpen(true);
     });
   };
   const setScrollPosition = (editor: monaco.editor.IStandaloneCodeEditor) => {
@@ -39,15 +39,15 @@ export const ScriptArea = (props: ScriptAreaProps) => {
   return (
     <>
       <MaximizedCodeEditorBrowser
-        open={props.maximizeState.isMaximizedCodeEditorOpen}
-        onOpenChange={props.maximizeState.setIsMaximizedCodeEditorOpen}
+        open={maximizeState.isMaximizedCodeEditorOpen}
+        onOpenChange={maximizeState.setIsMaximizedCodeEditorOpen}
         browsers={props.browsers}
         editorValue={props.value}
         location={path}
         applyEditor={props.onChange}
         selectionRange={getSelectionRange()}
       />
-      {!props.maximizeState.isMaximizedCodeEditorOpen && (
+      {!maximizeState.isMaximizedCodeEditorOpen && (
         <div className='script-area'>
           <ResizableCodeEditor
             {...inputProps}

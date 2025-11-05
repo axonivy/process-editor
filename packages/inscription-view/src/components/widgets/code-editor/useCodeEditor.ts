@@ -1,6 +1,6 @@
 import type { DatabaseColumn } from '@axonivy/process-editor-inscription-protocol';
-import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import { useState } from 'react';
+import type { monaco } from '../../../monaco';
 import type { BrowserType, BrowserValue } from '../../browser/useBrowser';
 
 export const monacoAutoFocus = (editor: monaco.editor.IStandaloneCodeEditor) => {

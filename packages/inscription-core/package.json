@@ -14,11 +14,7 @@
     "src"
   ],
   "dependencies": {
-    "@axonivy/process-editor-inscription-protocol": "~13.2.0-next",
-    "monaco-editor": "^0.44.0",
-    "monaco-editor-workers": "^0.44.0",
-    "monaco-languageclient": "^6.6.1",
-    "vscode-languageserver-protocol": "^3.17.5"
+    "@axonivy/process-editor-inscription-protocol": "~13.2.0-next"
   },
   "peerDependencies": {
     "@axonivy/jsonrpc": "~13.2.0-next"

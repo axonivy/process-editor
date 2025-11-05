@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { expectCodeInEditor } from '../../../page-objects/inscription/code-editor';
 import { openMockInscription } from '../../../page-objects/inscription/inscription-view';
 import { assertCodeVisible, code } from './browser-mock-utils';
 
@@ -9,7 +10,7 @@ test('maximized code editor', async ({ page }) => {
 
   await page.getByText('Code').click();
   const codeField = task.scriptArea();
-  await codeField.focus();
+  await codeField.activate();
   await assertCodeVisible(page);
   //check if value is transfered to maximized code editor
   await codeField.fill('test');
@@ -17,21 +18,21 @@ test('maximized code editor', async ({ page }) => {
   await maximizedButton.click();
   await expect(page.getByRole('dialog')).toBeVisible();
   const maximizedCodeEditor = code(page);
-  await expect(maximizedCodeEditor.getByRole('textbox')).toHaveValue('test');
+  await expectCodeInEditor(maximizedCodeEditor, 'test');
   //check if value is transfered to minimized code editor
   await maximizedCodeEditor.click();
   await page.keyboard.type('hello');
   await page.getByRole('button', { name: 'Apply' }).click();
   await expect(page.getByRole('dialog')).toBeHidden();
-  await expect(code(page).getByRole('textbox')).toHaveValue('testhello');
+  await expectCodeInEditor(maximizedCodeEditor, 'testhello');
 
   await codeField.fill('test123');
   await maximizedButton.click();
-  await expect(maximizedCodeEditor.getByRole('textbox')).toHaveValue('test123');
+  await expectCodeInEditor(maximizedCodeEditor, 'test123');
   await maximizedCodeEditor.click();
   await page.keyboard.type('hello');
   await page.getByRole('button', { name: 'Cancel' }).click();
-  await expect(code(page).getByRole('textbox')).toHaveValue('test123');
+  await expectCodeInEditor(maximizedCodeEditor, 'test123');
 });
 
 test('maximized code editor in table cell', async ({ page }) => {
@@ -46,7 +47,7 @@ test('maximized code editor in table cell', async ({ page }) => {
   await conditionCell.fill('test');
   const fullScreen = await conditionCell.openFullScreen();
   const maximizedCodeEditor = code(fullScreen.dialog);
-  await expect(maximizedCodeEditor.getByRole('textbox')).toHaveValue('test');
+  await expectCodeInEditor(maximizedCodeEditor, 'test');
   //check if value is transfered to minimized code editor
   await maximizedCodeEditor.click();
   await page.keyboard.type('hello');

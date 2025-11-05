@@ -1,5 +1,5 @@
 import type { IvyIcons } from '@axonivy/ui-icons';
-import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import type { monaco } from '../../../monaco';
 import { MAXIMIZED_MONACO_OPTIONS, MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
 import { CodeEditor } from '../../widgets/code-editor/CodeEditor';
 import { monacoAutoFocus, useMonacoEditor } from '../../widgets/code-editor/useCodeEditor';

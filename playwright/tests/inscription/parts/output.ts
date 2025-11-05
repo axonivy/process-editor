@@ -15,8 +15,12 @@ class Output extends PartObject {
     this.mapping = this.mappingSection.table(['text', 'expression']);
   }
 
-  async fill() {
+  async open() {
     await this.mappingSection.open();
+  }
+
+  async fill() {
+    await this.open();
     await this.mapping.row(1).column(1).fill('"bla"');
   }
 
@@ -49,6 +53,10 @@ class OutputCode extends Output {
   }
 
   override async fill() {
+    await this.open();
+    if (await this.codeSection.isOpen()) {
+      await this.code.expectLoaded();
+    }
     await super.fill();
     await this.codeSection.open();
     await this.code.fill('code');
@@ -58,6 +66,7 @@ class OutputCode extends Output {
   }
 
   override async assertFill() {
+    await this.code.loaded();
     await super.assertFill();
     await this.code.expectValue('code');
     if (this.hasSudo) {
@@ -66,6 +75,7 @@ class OutputCode extends Output {
   }
 
   override async clear() {
+    await this.code.loaded();
     await super.clear();
     await this.code.clear();
     if (this.hasSudo) {

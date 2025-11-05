@@ -15,7 +15,7 @@ export const ScriptCell = <TData,>({
   placeholder?: string;
 }) => {
   if (type && type.length === 0) {
-    return <InputCell cell={cell} placeholder={placeholder} />;
+    return <InputCell className='script-cell' cell={cell} placeholder={placeholder} />;
   }
   return <CodeEditorCell cell={cell} macro={false} type={type} browsers={browsers} placeholder={placeholder} />;
 };
