@@ -9,7 +9,12 @@ export class Table {
   private readonly header: Locator;
   private readonly locator: Locator;
 
-  constructor(readonly page: Page, parentLocator: Locator, readonly columns: ColumnType[], label?: string) {
+  constructor(
+    readonly page: Page,
+    parentLocator: Locator,
+    readonly columns: ColumnType[],
+    label?: string
+  ) {
     if (label === undefined) {
       this.locator = parentLocator;
     } else {
@@ -57,7 +62,13 @@ export class Row {
   public readonly locator: Locator;
   public readonly header: Locator;
 
-  constructor(readonly page: Page, rowsLocator: Locator, headerLocator: Locator, row: number, readonly columns: ColumnType[]) {
+  constructor(
+    readonly page: Page,
+    rowsLocator: Locator,
+    headerLocator: Locator,
+    row: number,
+    readonly columns: ColumnType[]
+  ) {
     this.locator = rowsLocator.nth(row);
     this.header = headerLocator.nth(0);
   }
@@ -108,7 +119,12 @@ export class Cell {
   private readonly select: Select;
   private readonly combobox: Combobox;
 
-  constructor(readonly page: Page, rowLocator: Locator, column: number, readonly columnType: ColumnType) {
+  constructor(
+    readonly page: Page,
+    rowLocator: Locator,
+    column: number,
+    readonly columnType: ColumnType
+  ) {
     this.locator = rowLocator.getByRole('cell').nth(column);
     this.textbox = this.locator.getByRole('textbox');
     this.select = new Select(page, this.locator);
@@ -157,18 +173,19 @@ export class Cell {
     await input.blur();
   }
 
+  get scriptCell() {
+    return new ScriptCell(this.page, this.textbox, this.locator);
+  }
+
   private async fillExpression(value: string) {
-    const code = new ScriptCell(this.page, this.textbox, this.locator);
-    await code.fill(value);
+    await this.scriptCell.fill(value);
   }
 
   async focusScriptCell() {
-    const code = new ScriptCell(this.page, this.textbox, this.locator);
-    await code.focus();
+    await this.scriptCell.focus();
   }
 
   async clearExpression() {
-    const code = new ScriptCell(this.page, this.textbox, this.locator);
-    await code.clear();
+    await this.scriptCell.clear();
   }
 }
