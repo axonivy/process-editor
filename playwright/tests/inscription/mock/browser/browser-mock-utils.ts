@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import { expect, type Locator, type Page } from '@playwright/test';
 
 export async function assertCodeHidden(page: Page) {
   await expect(code(page)).toBeHidden();
@@ -10,8 +10,8 @@ export async function assertCodeVisible(page: Page) {
   await expect(browserBtn(page)).toHaveCount(1);
 }
 
-export function code(page: Page) {
-  return page.getByRole('code');
+export function code(locator: Page | Locator) {
+  return locator.getByRole('code');
 }
 
 export function browserBtn(page: Page) {

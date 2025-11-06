@@ -30,10 +30,6 @@ export function CodeEditorCell<TData>({ cell, macro, type, browsers, placeholder
     setPrevValue(initialValue);
   }
 
-  // useEffect(() => {
-  //   setValue(initialValue);
-  // }, [initialValue]);
-
   const { setEditor, modifyEditor, getSelectionRange } = useMonacoEditor(macro ? { modifyAction: value => `<%=${value}%>` } : undefined);
   const path = usePath();
 
@@ -51,11 +47,6 @@ export function CodeEditorCell<TData>({ cell, macro, type, browsers, placeholder
   if (isFocusWithin && !cell.row.getIsSelected()) {
     cell.row.toggleSelected();
   }
-  // useEffect(() => {
-  //   if (isFocusWithin && !cell.row.getIsSelected()) {
-  //     cell.row.toggleSelected();
-  //   }
-  // }, [cell.row, isFocusWithin]);
 
   return (
     <div className='script-input' {...focusWithinProps} tabIndex={1}>
@@ -67,7 +58,7 @@ export function CodeEditorCell<TData>({ cell, macro, type, browsers, placeholder
             browsers={browsers}
             editorValue={value}
             location={path}
-            applyEditor={focusValue.onChange}
+            applyEditor={updateValue}
             selectionRange={getSelectionRange()}
             macro={macro}
             type={type}
@@ -102,6 +93,7 @@ export function CodeEditorCell<TData>({ cell, macro, type, browsers, placeholder
             className='maximize-code-button'
             onClick={maximizeCode.action}
             title={maximizeCode.label}
+            aria-label={maximizeCode.label}
             toggle={maximizeCode.active}
             icon={maximizeCode.icon}
           />
