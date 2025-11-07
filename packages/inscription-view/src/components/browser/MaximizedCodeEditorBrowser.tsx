@@ -1,5 +1,6 @@
 import { IvyIcons } from '@axonivy/ui-icons';
 import { Dialog } from '@radix-ui/react-dialog';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Tab } from '../widgets/tab/Tab';
 import BrowserBody from './BrowserBody';
@@ -21,13 +22,17 @@ export const MaximizedCodeEditorBrowser = ({
   type
 }: MaximaziedCodeEditorBrowserProps) => {
   const { t } = useTranslation();
+  const [value, setValue] = useState(editorValue);
+  if (editorValue !== value && !open) {
+    setValue(editorValue);
+  }
   const tabs: Tab[] = [
     {
       content: (
         <MaximizedCodeEditor
-          applyEditor={applyEditor}
+          applyEditor={setValue}
           browsers={browsers}
-          editorValue={editorValue}
+          editorValue={value}
           location={location}
           selectionRange={selectionRange}
           open={open}
@@ -49,7 +54,7 @@ export const MaximizedCodeEditorBrowser = ({
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <BrowserBody activeTab='maxCode' open={open} tabs={tabs} />
+        <BrowserBody activeTab='maxCode' open={open} tabs={tabs} onApply={() => applyEditor(value)} />
       </Dialog>
     </>
   );

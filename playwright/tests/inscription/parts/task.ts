@@ -14,8 +14,8 @@ export class TasksTester implements PartTest {
   private tasks: { tab: string; test: PartTest }[];
   constructor(private readonly error: RegExp = /EventAndGateway/) {
     this.tasks = [
-      { tab: 'TaskA', test: new TaskTester({ name: 'task1', error: this.error }) },
-      { tab: 'TaskB', test: new TaskTester({ name: 'task2', error: this.error }) }
+      { tab: 'TaskA', test: new LightTaskTester({ name: 'task1', error: this.error }) },
+      { tab: 'TaskB', test: new LightTaskTester({ name: 'task2', error: this.error }) }
     ];
   }
   partName() {
@@ -53,8 +53,35 @@ export class TasksTester implements PartTest {
 
 type TaskTestOptions = { responsible: boolean; priority: boolean; expiry: boolean; options: 'persist' | 'list' | undefined };
 
-class Task extends PartObject {
+class LightTask extends PartObject {
   info: InfoComponent;
+
+  constructor(
+    part: Part,
+    private readonly nameValue = 'test name'
+  ) {
+    super(part);
+    this.info = part.infoComponent();
+  }
+
+  async fill() {
+    await this.info.fill(this.nameValue);
+  }
+
+  async assertFill() {
+    await this.info.expectFill(this.nameValue);
+  }
+
+  async clear() {
+    await this.info.clear();
+  }
+
+  async assertClear() {
+    await this.info.expectEmpty();
+  }
+}
+
+class Task extends LightTask {
   responsible: ResponsibleComponent;
   prioritySection: Section;
   priority: Select;
@@ -77,12 +104,11 @@ class Task extends PartObject {
 
   constructor(
     part: Part,
-    private readonly nameValue = 'test name',
+    nameValue = 'test name',
     private readonly errorValue = /f8/,
     private readonly options: TaskTestOptions = { responsible: true, priority: true, expiry: true, options: 'list' }
   ) {
-    super(part);
-    this.info = part.infoComponent();
+    super(part, nameValue);
     this.responsible = part.responsibleSection();
     this.prioritySection = part.section('Priority');
     this.priority = this.prioritySection.select({});
@@ -104,8 +130,8 @@ class Task extends PartObject {
     this.code = this.codeSection.scriptArea();
   }
 
-  async fill() {
-    await this.info.fill(this.nameValue);
+  override async fill() {
+    await super.fill();
 
     if (this.options.responsible) {
       await this.responsible.fill('Role from Attribute', '"Teamleader"');
@@ -148,8 +174,8 @@ class Task extends PartObject {
     await this.code.fill('code');
   }
 
-  async assertFill() {
-    await this.info.expectFill(this.nameValue);
+  override async assertFill() {
+    await super.assertFill();
 
     if (this.options.responsible) {
       await this.responsible.expectFill('Role from Attribute', '"Teamleader"');
@@ -188,8 +214,8 @@ class Task extends PartObject {
     await this.code.expectValue('code');
   }
 
-  async clear() {
-    await this.info.clear();
+  override async clear() {
+    await super.clear();
 
     if (this.options.responsible) {
       await this.responsible.clear();
@@ -221,8 +247,8 @@ class Task extends PartObject {
     await this.code.clear();
   }
 
-  async assertClear() {
-    await this.info.expectEmpty();
+  override async assertClear() {
+    await super.assertClear();
 
     if (this.options.responsible) {
       await this.responsible.expectEmpty();
@@ -251,6 +277,12 @@ class Task extends PartObject {
 export class TaskTester extends NewPartTest {
   constructor(options?: { name?: string; error?: RegExp; testOptions?: TaskTestOptions }) {
     super('Task', (part: Part) => new Task(part, options?.name, options?.error, options?.testOptions));
+  }
+}
+
+export class LightTaskTester extends NewPartTest {
+  constructor(options?: { name?: string; error?: RegExp; testOptions?: TaskTestOptions }) {
+    super('Task', (part: Part) => new LightTask(part, options?.name));
   }
 }
 
