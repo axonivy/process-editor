@@ -24,6 +24,14 @@ test('maximized code editor', async ({ page }) => {
   await page.getByRole('button', { name: 'Apply' }).click();
   await expect(page.getByRole('dialog')).toBeHidden();
   await expect(code(page).getByRole('textbox')).toHaveValue('testhello');
+
+  await codeField.fill('test123');
+  await maximizedButton.click();
+  await expect(maximizedCodeEditor.getByRole('textbox')).toHaveValue('test123');
+  await maximizedCodeEditor.click();
+  await page.keyboard.type('hello');
+  await page.getByRole('button', { name: 'Cancel' }).click();
+  await expect(code(page).getByRole('textbox')).toHaveValue('test123');
 });
 
 test('maximized code editor in table cell', async ({ page }) => {
@@ -44,5 +52,9 @@ test('maximized code editor in table cell', async ({ page }) => {
   await page.keyboard.type('hello');
   await page.getByRole('button', { name: 'Apply' }).click();
   await expect(page.getByRole('dialog')).toBeHidden();
+  await conditionCell.expectValue('testhello');
+  //check is saved
+  await conditionSection.close();
+  await conditionSection.open();
   await conditionCell.expectValue('testhello');
 });
