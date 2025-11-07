@@ -14,7 +14,7 @@
     "@axonivy/process-editor": "^10.0.1"
   },
   "devDependencies": {
-    "@playwright/test": "1.50.1",
+    "@playwright/test": "1.56.1",
     "reflect-metadata": "^0.2.0"
   },
   "type": "module",
