@@ -94,8 +94,8 @@ function assertActivityImgIcon(node: VNode, expectedBounds: Bounds, exprectedUrl
   expect(foreignObject.sel).toEqual('foreignObject');
   assertBounds(foreignObject.data!, expectedBounds);
 
-  const icon = ((foreignObject.children![0] as VNode).children![1] as VNode).children![0] as VNode;
-  expect(icon.sel).toEqual('IMG');
+  const icon = foreignObject.children![0] as VNode;
+  expect(icon.sel).toEqual('img');
   expect(icon.data!.attrs!.src).toEqual(exprectedUrl);
 }
 
@@ -103,8 +103,8 @@ function assertImgIcon(node: VNode, expectedBounds: Bounds, exprectedUrl: string
   expect(node.sel).toEqual('foreignObject');
   assertBounds(node.data!, expectedBounds);
 
-  const icon = ((node.children![0] as VNode).children![1] as VNode).children![0] as VNode;
-  expect(icon.sel).toEqual('IMG');
+  const icon = node.children![0] as VNode;
+  expect(icon.sel).toEqual('img');
   expect(icon.data!.attrs!.src).toEqual(exprectedUrl);
 }
 

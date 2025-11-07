@@ -36,7 +36,7 @@ export function CodeEditorCell<TData>({ cell, macro, type, browsers, placeholder
 
   const updateValue = (newValue: string) => {
     setValue(newValue);
-    if (newValue !== cell.getValue() && !maximizeState.isMaximizedCodeEditorOpen) {
+    if (newValue !== cell.getValue()) {
       cell.table.options.meta?.updateData(cell.row.id, cell.column.id, newValue);
     }
   };

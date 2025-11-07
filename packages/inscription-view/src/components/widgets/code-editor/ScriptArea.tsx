@@ -9,6 +9,7 @@ import { useField } from '@axonivy/ui-components';
 import { useBrowser } from '../../browser/useBrowser';
 import { usePath } from '../../../context/usePath';
 import Browser from '../../browser/Browser';
+import { useState } from 'react';
 
 type ScriptAreaProps = CodeEditorAreaProps & {
   maximizeState: {
@@ -17,7 +18,8 @@ type ScriptAreaProps = CodeEditorAreaProps & {
   };
 };
 
-export const ScriptArea = (props: ScriptAreaProps) => {
+export const ScriptArea = ({ value, onChange, ...props }: ScriptAreaProps) => {
+  const [editorValue, setEditorValue] = useState(value);
   const browser = useBrowser();
   const { setEditor, modifyEditor, getMonacoSelection, getSelectionRange } = useMonacoEditor();
   const path = usePath();
@@ -34,6 +36,11 @@ export const ScriptArea = (props: ScriptAreaProps) => {
     editor.revealLine(importAmount + 1);
   };
 
+  const updateEditorValue = (newValue: string) => {
+    setEditorValue(newValue);
+    onChange(newValue);
+  };
+
   const { inputProps } = useField();
 
   return (
@@ -42,9 +49,9 @@ export const ScriptArea = (props: ScriptAreaProps) => {
         open={props.maximizeState.isMaximizedCodeEditorOpen}
         onOpenChange={props.maximizeState.setIsMaximizedCodeEditorOpen}
         browsers={props.browsers}
-        editorValue={props.value}
+        editorValue={editorValue}
         location={path}
-        applyEditor={props.onChange}
+        applyEditor={updateEditorValue}
         selectionRange={getSelectionRange()}
       />
       {!props.maximizeState.isMaximizedCodeEditorOpen && (
@@ -52,7 +59,9 @@ export const ScriptArea = (props: ScriptAreaProps) => {
           <ResizableCodeEditor
             {...inputProps}
             {...props}
-            initHeight={props.value.length > 0 ? () => 250 : undefined}
+            value={editorValue}
+            onChange={updateEditorValue}
+            initHeight={editorValue.length > 0 ? () => 250 : undefined}
             location={path}
             onMountFuncs={[setEditor, keyActionMountFunc, MonacoEditorUtil.keyActionEscShiftTab, setScrollPosition]}
           />
