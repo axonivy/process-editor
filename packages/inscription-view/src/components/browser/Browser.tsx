@@ -63,7 +63,7 @@ const Browser = ({ open, onOpenChange, types, accept, location, cmsOptions, role
     <>
       <Dialog open={open} onOpenChange={onOpenChange} modal={false}>
         <DialogTrigger asChild>
-          <Button icon={IvyIcons.ListSearch} aria-label={t('common.label.browser')} />
+          <Button icon={IvyIcons.ListSearch} aria-label={t('common.label.browser')} title={t('common.label.browser')} />
         </DialogTrigger>
         <BrowserBody
           activeTab={active}

@@ -173,18 +173,19 @@ export class Cell {
     await input.blur();
   }
 
+  get scriptCell() {
+    return new ScriptCell(this.page, this.textbox, this.locator);
+  }
+
   private async fillExpression(value: string) {
-    const code = new ScriptCell(this.page, this.textbox, this.locator);
-    await code.fill(value);
+    await this.scriptCell.fill(value);
   }
 
   async focusScriptCell() {
-    const code = new ScriptCell(this.page, this.textbox, this.locator);
-    await code.focus();
+    await this.scriptCell.focus();
   }
 
   async clearExpression() {
-    const code = new ScriptCell(this.page, this.textbox, this.locator);
-    await code.clear();
+    await this.scriptCell.clear();
   }
 }
