@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/toastify-js": "^1.12.3",
-    "happy-dom": "^15.10.2",
+    "happy-dom": "^20.0.10",
     "inversify": "^6.2.1",
     "reflect-metadata": "~0.2.2",
     "snabbdom-to-html": "^7.1.0"
