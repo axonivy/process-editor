@@ -3,19 +3,18 @@ import { IvyIcons } from '@axonivy/ui-icons';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import InputWithBrowser from '../../widgets/input/InputWithBrowser';
-import type { BrowserValue } from '../Browser';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 import { generateConditionString, logicOperators, operators } from './conditionBuilderData';
 
 export const CONDITION_BUILDER_ID = 'condition' as const;
 
 export const useConditionBuilder = (): UseBrowserImplReturnValue => {
   const { t } = useTranslation();
-  const [value, setValue] = useState<BrowserValue>({ cursorValue: '' });
+  const [value, setValue] = useState<BrowserValue>({ value: '' });
   return {
     id: CONDITION_BUILDER_ID,
     name: t('browser.condition.title'),
-    content: <ConditionBrowser value={value.cursorValue} onChange={setValue} />,
+    content: <ConditionBrowser value={value.value} onChange={setValue} />,
     accept: () => value,
     icon: IvyIcons.Process
   };
@@ -31,7 +30,7 @@ const ConditionBrowser = ({ value, onChange }: ConditionBrowserProps) => {
   return (
     <>
       <ConditionBuilder
-        onChange={change => onChange({ cursorValue: change })}
+        onChange={change => onChange({ value: change })}
         generateConditionString={generateConditionString}
         logicOperators={logicOperators}
         operators={operators}

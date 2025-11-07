@@ -36,7 +36,7 @@ export const MaximizedCodeEditor = ({
   type,
   open
 }: MaximizedCodeEditorProps) => {
-  const { setEditor, modifyEditor, getMonacoSelection } = useMonacoEditor(macro ? { modifyAction: value => `<%=${value}%>` } : undefined);
+  const { setEditor, modifyEditor, getMonacoSelection } = useMonacoEditor({ macro });
   const browser = useBrowser();
 
   const setSelection = (editor: monaco.editor.IStandaloneCodeEditor) => {

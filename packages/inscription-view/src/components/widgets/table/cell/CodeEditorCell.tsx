@@ -30,7 +30,7 @@ export function CodeEditorCell<TData>({ cell, macro, type, browsers, placeholder
     setPrevValue(initialValue);
   }
 
-  const { setEditor, modifyEditor, getSelectionRange } = useMonacoEditor(macro ? { modifyAction: value => `<%=${value}%>` } : undefined);
+  const { setEditor, modifyEditor, getSelectionRange } = useMonacoEditor({ macro });
   const path = usePath();
 
   const { maximizeState, maximizeCode } = useMaximizedCodeEditor();

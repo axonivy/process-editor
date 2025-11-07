@@ -1,8 +1,7 @@
 import { Flex } from '@axonivy/ui-components';
 import { usePath } from '../../../../context/usePath';
-import type { BrowserValue } from '../../../browser/Browser';
 import Browser from '../../../browser/Browser';
-import { useBrowser } from '../../../browser/useBrowser';
+import { useBrowser, type BrowserValue } from '../../../browser/useBrowser';
 import Tags from '../../../widgets/tag/Tags';
 import './MultipleRoleSelect.css';
 import { useRoles } from './useRoles';
@@ -28,8 +27,8 @@ const MultipleRoleSelect = ({ value, defaultRoles, onChange, showTaskRoles }: Mu
         types={['role']}
         location={path}
         accept={(change: BrowserValue) => {
-          if (change.cursorValue) {
-            const uniqueValues = [...new Set([...value, change.cursorValue])];
+          if (change.value) {
+            const uniqueValues = [...new Set([...value, change.value])];
             onChange(uniqueValues);
           }
         }}

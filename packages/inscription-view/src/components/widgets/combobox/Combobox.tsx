@@ -6,9 +6,8 @@ import { memo, useEffect, useState } from 'react';
 import { useOnFocus } from '../../../components/browser/useOnFocus';
 import { usePath } from '../../../context/usePath';
 import { badgePropsExpression } from '../../../utils/badgeproperties';
-import type { BrowserValue } from '../../browser/Browser';
 import Browser from '../../browser/Browser';
-import { type BrowserType } from '../../browser/useBrowser';
+import { type BrowserType, type BrowserValue } from '../../browser/useBrowser';
 import { SingleLineCodeEditor } from '../code-editor/SingleLineCodeEditor';
 import { useMonacoEditor } from '../code-editor/useCodeEditor';
 import './Combobox.css';
@@ -88,7 +87,7 @@ const Combobox = <T extends ComboboxItem>({
   }, [selectItem, value]);
 
   const readonly = useReadonly();
-  const { setEditor, modifyEditor } = useMonacoEditor({ modifyAction: value => `<%=${value}%>` });
+  const { setEditor, modifyEditor } = useMonacoEditor({ macro: true });
   const path = usePath();
   const { isFocusWithin, focusValue, focusWithinProps, browser } = useOnFocus(value, onChange);
 
@@ -113,7 +112,7 @@ const Combobox = <T extends ComboboxItem>({
                 <Browser
                   {...browser}
                   types={browserTypes ? browserTypes : ['attr']}
-                  accept={macro ? modifyEditor : (change: BrowserValue) => onChange(change.cursorValue)}
+                  accept={macro ? modifyEditor : (change: BrowserValue) => onChange(change.value)}
                   location={path}
                 />
               ) : null}

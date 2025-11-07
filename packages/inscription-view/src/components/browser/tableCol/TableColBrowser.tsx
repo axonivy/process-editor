@@ -8,19 +8,18 @@ import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
 import { useQueryData } from '../../parts/query/useQueryData';
 import { SearchTable } from '../../widgets/table/table/Table';
-import type { BrowserValue } from '../Browser';
 import BrowserTableRow from '../BrowserTableRow';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 
 export const TABLE_COL_BROWSER_ID = 'tablecol' as const;
 
 export const useTableColBrowser = (onDoubleClick: () => void): UseBrowserImplReturnValue => {
   const { t } = useTranslation();
-  const [value, setValue] = useState<BrowserValue>({ cursorValue: '' });
+  const [value, setValue] = useState<BrowserValue>({ value: '' });
   return {
     id: TABLE_COL_BROWSER_ID,
     name: t('browser.tableCol.title'),
-    content: <TableColumnBrowser value={value.cursorValue} onChange={setValue} onDoubleClick={onDoubleClick} />,
+    content: <TableColumnBrowser value={value.value} onChange={setValue} onDoubleClick={onDoubleClick} />,
     accept: () => value,
     icon: IvyIcons.Rule
   };
@@ -93,13 +92,13 @@ const TableColumnBrowser = ({ value, onChange, onDoubleClick }: TableColumnBrows
   useEffect(() => {
     const selectedRow = table.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
-      onChange({ cursorValue: '' });
+      onChange({ value: '' });
       setShowHelper(false);
       return;
     }
 
     setShowHelper(true);
-    onChange({ cursorValue: selectedRow.original.name });
+    onChange({ value: selectedRow.original.name, data: selectedRow.original });
   }, [onChange, rowSelection, table]);
 
   return (

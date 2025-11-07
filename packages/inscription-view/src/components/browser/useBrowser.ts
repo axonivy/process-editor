@@ -18,7 +18,7 @@ export type BrowserType =
   | typeof ROLE_BROWSER
   | typeof CONDITION_BUILDER_ID;
 
-type BrowserValue = { cursorValue: string; firstLineValue?: string };
+export type BrowserValue<TData = unknown> = { value: string; firstLine?: string; data?: TData };
 
 export type UseBrowserImplReturnValue = Omit<Tab, 'id'> & {
   id: BrowserType;

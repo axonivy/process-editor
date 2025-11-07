@@ -11,9 +11,7 @@ import { useFuncBrowser } from './function/FunctionBrowser';
 import { useRoleBrowser, type RoleOptions } from './role/RoleBrowser';
 import { useTableColBrowser } from './tableCol/TableColBrowser';
 import { useTypeBrowser } from './type/TypeBrowser';
-import type { BrowserType, UseBrowserReturnValue } from './useBrowser';
-
-export type BrowserValue = { cursorValue: string; firstLineValue?: string };
+import type { BrowserType, BrowserValue, UseBrowserReturnValue } from './useBrowser';
 
 type BrowserProps = UseBrowserReturnValue & {
   types: BrowserType[];
@@ -31,7 +29,7 @@ const Browser = ({ open, onOpenChange, types, accept, location, cmsOptions, role
 
   const acceptBrowser = () => {
     // eslint-disable-next-line react-hooks/immutability
-    accept(allBrowsers.find(browser => browser.id === active)?.accept() ?? { cursorValue: '' }, active);
+    accept(allBrowsers.find(browser => browser.id === active)?.accept() ?? { value: '' }, active);
   };
 
   const onRowDoubleClick = () => {

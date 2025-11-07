@@ -12,8 +12,7 @@ import { useMeta } from '../../../context/useMeta';
 import Checkbox from '../../widgets/checkbox/Checkbox';
 import { ExpandableCell } from '../../widgets/table/cell/ExpandableCell';
 import { SearchTable } from '../../widgets/table/table/Table';
-import type { BrowserValue } from '../Browser';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 
 export const CMS_BROWSER_ID = 'cms' as const;
 
@@ -31,14 +30,14 @@ export const useCmsBrowser = (
   options?: CmsOptions
 ): UseBrowserImplReturnValue => {
   const { t } = useTranslation();
-  const [value, setValue] = useState<BrowserValue>({ cursorValue: '' });
+  const [value, setValue] = useState<BrowserValue>({ value: '' });
 
   return {
     id: CMS_BROWSER_ID,
     name: t('browser.cms.title'),
     content: (
       <CmsBrowser
-        value={value.cursorValue}
+        value={value.value}
         onChange={setValue}
         noApiCall={options?.noApiCall}
         typeFilter={options?.typeFilter}
@@ -179,12 +178,12 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
     if (selectedRow === undefined) {
       setSelectedContentObject({ name: '', children: [], fullPath: '', type: 'STRING', values: {} });
       setShowHelper(false);
-      onChange({ cursorValue: '' });
+      onChange({ value: '' });
       return;
     }
     setSelectedContentObject(selectedRow.original);
     setShowHelper(true);
-    onChange({ cursorValue: addIvyPathToValue(selectedRow.original.fullPath, selectedRow.original.type, noApiCall) });
+    onChange({ value: addIvyPathToValue(selectedRow.original.fullPath, selectedRow.original.type, noApiCall) });
   }, [onChange, rowSelection, noApiCall, table, location]);
 
   const folderSelected = () => table.getSelectedRowModel().flatRows[0]?.original.type === 'FOLDER';

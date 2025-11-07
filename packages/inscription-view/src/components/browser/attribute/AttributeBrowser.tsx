@@ -11,20 +11,19 @@ import { MappingTreeData } from '../../parts/common/mapping-tree/mapping-tree-da
 import { calcFullPathId } from '../../parts/common/mapping-tree/useMappingTree';
 import { ExpandableCell } from '../../widgets/table/cell/ExpandableCell';
 import { SearchTable } from '../../widgets/table/table/Table';
-import type { BrowserValue } from '../Browser';
 import BrowserTableRow from '../BrowserTableRow';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 
 export const ATTRIBUTE_BROWSER_ID = 'attr' as const;
 
 export const useAttributeBrowser = (onDoubleClick: () => void, location: string): UseBrowserImplReturnValue => {
   const { t } = useTranslation();
-  const [value, setValue] = useState<BrowserValue>({ cursorValue: '' });
+  const [value, setValue] = useState<BrowserValue>({ value: '' });
   return {
     id: ATTRIBUTE_BROWSER_ID,
     icon: IvyIcons.Attribute,
     name: t('browser.attribute.title'),
-    content: <AttributeBrowser value={value.cursorValue} onChange={setValue} location={location} onDoubleClick={onDoubleClick} />,
+    content: <AttributeBrowser value={value.value} onChange={setValue} location={location} onDoubleClick={onDoubleClick} />,
     accept: () => value
   };
 };
@@ -127,7 +126,7 @@ const AttributeBrowser = ({
       return;
     }
     setShowHelper(true);
-    onChange({ cursorValue: calcFullPathId(selectedRow) });
+    onChange({ value: calcFullPathId(selectedRow) });
   }, [onChange, rowSelection, table]);
 
   return (

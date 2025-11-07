@@ -13,7 +13,7 @@ import { monacoAutoFocus, useMonacoEditor } from './useCodeEditor';
 
 export const MacroArea = ({ value, onChange, minHeight, browsers, ...props }: CodeEditorAreaProps) => {
   const { isFocusWithin, focusWithinProps, focusValue, browser } = useOnFocus(value, onChange);
-  const { setEditor, modifyEditor, getSelectionRange } = useMonacoEditor({ modifyAction: value => `<%=${value}%>` });
+  const { setEditor, modifyEditor, getSelectionRange } = useMonacoEditor({ macro: true });
   const path = usePath();
   const areaRef = useRef<HTMLOutputElement>(null);
   const { inputProps } = useField();
