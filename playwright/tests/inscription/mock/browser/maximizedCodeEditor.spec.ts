@@ -25,3 +25,24 @@ test('maximized code editor', async ({ page }) => {
   await expect(page.getByRole('dialog')).toBeHidden();
   await expect(code(page).getByRole('textbox')).toHaveValue('testhello');
 });
+
+test('maximized code editor in table cell', async ({ page }) => {
+  const inscriptionView = await openMockInscription(page, { type: 'Alternative' });
+  const condition = inscriptionView.accordion('Condition');
+  await condition.open();
+  const conditionSection = condition.section('Condition');
+  await conditionSection.expectIsOpen();
+  const conditionTable = conditionSection.table(['label', 'expression']);
+  const conditionCell = conditionTable.row(1).column(1).scriptCell;
+  //check if value is transfered to maximized code editor
+  await conditionCell.fill('test');
+  const fullScreen = await conditionCell.openFullScreen();
+  const maximizedCodeEditor = code(fullScreen.dialog);
+  await expect(maximizedCodeEditor.getByRole('textbox')).toHaveValue('test');
+  //check if value is transfered to minimized code editor
+  await maximizedCodeEditor.click();
+  await page.keyboard.type('hello');
+  await page.getByRole('button', { name: 'Apply' }).click();
+  await expect(page.getByRole('dialog')).toBeHidden();
+  await conditionCell.expectValue('testhello');
+});

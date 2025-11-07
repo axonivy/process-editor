@@ -59,7 +59,7 @@ export function CodeEditorCell<TData>({ cell, macro, type, browsers, placeholder
             browsers={browsers}
             editorValue={value}
             location={path}
-            applyEditor={focusValue.onChange}
+            applyEditor={updateValue}
             selectionRange={getSelectionRange()}
             macro={macro}
             type={type}
@@ -86,7 +86,6 @@ export function CodeEditorCell<TData>({ cell, macro, type, browsers, placeholder
                 onMountFuncs={[setEditor]}
                 macro={macro}
               />
-
               <Browser {...browser} types={browsers} accept={modifyEditor} location={path} />
             </>
           )}
@@ -94,6 +93,7 @@ export function CodeEditorCell<TData>({ cell, macro, type, browsers, placeholder
             className='maximize-code-button'
             onClick={maximizeCode.action}
             title={maximizeCode.label}
+            aria-label={maximizeCode.label}
             toggle={maximizeCode.active}
             icon={maximizeCode.icon}
           />
