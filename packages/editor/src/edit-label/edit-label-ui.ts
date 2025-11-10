@@ -26,5 +26,6 @@ export class IvyEditLabelUI extends EditLabelUI {
   protected override configureAndAdd(element: HTMLInputElement | HTMLTextAreaElement, containerElement: HTMLElement): void {
     super.configureAndAdd(element, containerElement);
     element.style.top = '3px';
+    element.style.zIndex = '10000';
   }
 }

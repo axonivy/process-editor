@@ -306,7 +306,8 @@ export class MulitlineEditLabel extends GLabel implements EditableLabel {
   }
 
   get editControlPositionCorrection(): Point {
-    return { x: -2, y: -3 };
+    const editControlDimension = this.editControlDimension;
+    return { x: 0, y: -editControlDimension.height * 2 };
   }
 
   get labelBounds(): Bounds {
@@ -365,7 +366,8 @@ export class ActivityLabel extends MulitlineEditLabel {
   }
 
   override get editControlPositionCorrection(): Point {
-    return Point.ORIGIN;
+    const editControlDimension = this.editControlDimension;
+    return { x: 0, y: -editControlDimension.height };
   }
 
   override get labelBounds(): Bounds {
