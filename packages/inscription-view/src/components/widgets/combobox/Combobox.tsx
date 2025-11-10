@@ -6,9 +6,8 @@ import { IvyIcons } from '@axonivy/ui-icons';
 import { Button, Input, InputBadge, useField, useReadonly } from '@axonivy/ui-components';
 import { useMonacoEditor } from '../code-editor/useCodeEditor';
 import { useOnFocus } from '../../../components/browser/useOnFocus';
-import type { BrowserValue } from '../../browser/Browser';
 import { badgePropsExpression } from '../../../utils/badgeproperties';
-import { type BrowserType } from '../../browser/useBrowser';
+import { type BrowserType, type BrowserValue } from '../../browser/useBrowser';
 import { usePath } from '../../../context/usePath';
 import { SingleLineCodeEditor } from '../code-editor/SingleLineCodeEditor';
 import Browser from '../../browser/Browser';
@@ -92,7 +91,7 @@ const Combobox = <T extends ComboboxItem>({
   }, [updateOnInputChange, items, selectItem, value]);
 
   const readonly = useReadonly();
-  const { setEditor, modifyEditor } = useMonacoEditor({ modifyAction: value => `<%=${value}%>` });
+  const { setEditor, modifyEditor } = useMonacoEditor({ macro: true });
   const path = usePath();
   const { isFocusWithin, focusValue, focusWithinProps, browser } = useOnFocus(value, onChange);
 
@@ -117,7 +116,7 @@ const Combobox = <T extends ComboboxItem>({
                 <Browser
                   {...browser}
                   types={browserTypes ? browserTypes : ['attr']}
-                  accept={macro ? modifyEditor : (change: BrowserValue) => onChange(change.cursorValue)}
+                  accept={macro ? modifyEditor : (change: BrowserValue) => onChange(change.value)}
                   location={path}
                 />
               ) : null}

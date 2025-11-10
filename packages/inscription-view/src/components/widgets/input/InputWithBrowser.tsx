@@ -1,8 +1,7 @@
 import Input, { type InputProps } from './Input';
-import type { BrowserValue } from '../../browser/Browser';
 import type { CmsTypeFilter } from '../../browser/cms/CmsBrowser';
 import { InputGroup } from '@axonivy/ui-components';
-import { useBrowser, type BrowserType } from '../../browser/useBrowser';
+import { useBrowser, type BrowserType, type BrowserValue } from '../../browser/useBrowser';
 import { usePath } from '../../../context/usePath';
 import Browser from '../../browser/Browser';
 
@@ -23,7 +22,7 @@ const InputWithBrowser = ({ onChange, browsers, typeFilter, modifyAction, ...pro
         {...browser}
         types={browsers}
         cmsOptions={{ noApiCall: true, typeFilter: typeFilter }}
-        accept={(change: BrowserValue) => onChange(modifyAction ? modifyAction(change.cursorValue) : change.cursorValue)}
+        accept={(change: BrowserValue) => onChange(modifyAction ? modifyAction(change.value) : change.value)}
         location={path}
       />
     </InputGroup>

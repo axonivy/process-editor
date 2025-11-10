@@ -1,7 +1,7 @@
 import { Dialog, DialogTrigger } from '@radix-ui/react-dialog';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useState } from 'react';
-import type { BrowserType, UseBrowserReturnValue } from './useBrowser';
+import type { BrowserType, UseBrowserReturnValue, BrowserValue } from './useBrowser';
 import { useAttributeBrowser } from './attribute/AttributeBrowser';
 import { useCmsBrowser, type CmsOptions } from './cms/CmsBrowser';
 import { useFuncBrowser } from './function/FunctionBrowser';
@@ -11,8 +11,6 @@ import BrowserBody from './BrowserBody';
 import { useRoleBrowser, type RoleOptions } from './role/RoleBrowser';
 import { useConditionBuilder } from './conditionBuilder/useConditionBuilder';
 import { Button } from '@axonivy/ui-components';
-
-export type BrowserValue = { cursorValue: string; firstLineValue?: string };
 
 type BrowserProps = UseBrowserReturnValue & {
   types: BrowserType[];
@@ -28,7 +26,7 @@ const Browser = ({ open, onOpenChange, types, accept, location, cmsOptions, role
   const [disableApply, setDisableApply] = useState(false);
 
   const acceptBrowser = () => {
-    accept(allBrowsers.find(browser => browser.id === active)?.accept() ?? { cursorValue: '' }, active);
+    accept(allBrowsers.find(browser => browser.id === active)?.accept() ?? { value: '' }, active);
   };
 
   const onRowDoubleClick = () => {

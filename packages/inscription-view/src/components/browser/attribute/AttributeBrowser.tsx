@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 import type { ColumnDef, ExpandedState, Row, RowSelectionState } from '@tanstack/react-table';
 import { flexRender, getCoreRowModel, getExpandedRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table';
 import { MappingTreeData } from '../../parts/common/mapping-tree/mapping-tree-data';
 import type { VariableInfo } from '@axonivy/process-editor-inscription-protocol';
 import { calcFullPathId } from '../../parts/common/mapping-tree/useMappingTree';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { BrowserValue } from '../Browser';
 import { ExpandableHeader, TableBody, TableHead, TableHeader, TableRow, useTableKeyHandler } from '@axonivy/ui-components';
 import BrowserTableRow from '../BrowserTableRow';
 import { useEditorContext } from '../../../context/useEditorContext';
@@ -17,12 +16,12 @@ import { SearchTable } from '../../widgets/table/table/Table';
 export const ATTRIBUTE_BROWSER_ID = 'attr' as const;
 
 export const useAttributeBrowser = (onDoubleClick: () => void, location: string): UseBrowserImplReturnValue => {
-  const [value, setValue] = useState<BrowserValue>({ cursorValue: '' });
+  const [value, setValue] = useState<BrowserValue>({ value: '' });
   return {
     id: ATTRIBUTE_BROWSER_ID,
     icon: IvyIcons.Attribute,
     name: 'Attribute',
-    content: <AttributeBrowser value={value.cursorValue} onChange={setValue} location={location} onDoubleClick={onDoubleClick} />,
+    content: <AttributeBrowser value={value.value} onChange={setValue} location={location} onDoubleClick={onDoubleClick} />,
     accept: () => value
   };
 };
@@ -124,7 +123,7 @@ const AttributeBrowser = ({
     }
     const selectedRow = table.getRowModel().rowsById[Object.keys(rowSelection)[0]];
     setShowHelper(true);
-    onChange({ cursorValue: calcFullPathId(selectedRow) });
+    onChange({ value: calcFullPathId(selectedRow) });
   }, [onChange, rowSelection, table]);
 
   return (

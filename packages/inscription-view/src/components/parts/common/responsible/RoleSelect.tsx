@@ -1,9 +1,8 @@
 import { useMemo } from 'react';
 import { useRoles } from './useRoles';
-import type { BrowserValue } from '../../../browser/Browser';
 import { Flex } from '@axonivy/ui-components';
 import type { SelectItem } from '../../../widgets/select/Select';
-import { useBrowser } from '../../../browser/useBrowser';
+import { useBrowser, type BrowserValue } from '../../../browser/useBrowser';
 import { usePath } from '../../../../context/usePath';
 import Select from '../../../widgets/select/Select';
 import Browser from '../../../browser/Browser';
@@ -34,7 +33,7 @@ const RoleSelect = ({ value, onChange, showTaskRoles }: RoleSelectProps) => {
         {...browser}
         types={['role']}
         location={path}
-        accept={(change: BrowserValue) => onChange(change.cursorValue)}
+        accept={(change: BrowserValue) => onChange(change.value)}
         roleOptions={{ showTaskRoles }}
       />
     </Flex>

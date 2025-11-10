@@ -18,7 +18,6 @@ type EditorOptions = {
     arrowDown?: () => void;
     arrowUp?: () => void;
   };
-  modifyAction?: (value: string) => string;
 };
 
 export type CodeEditorInputProps = Omit<CodeEditorProps, 'macro' | 'options' | 'onMount' | 'height' | 'onMountFuncs' | 'context'> &
