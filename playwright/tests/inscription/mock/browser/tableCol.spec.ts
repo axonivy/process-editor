@@ -1,15 +1,11 @@
 import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
-import { openMockInscription } from '../../../page-objects/inscription/inscription-view';
+import { openMockInscription, type Inscription } from '../../../page-objects/inscription/inscription-view';
 import { browserBtn, code } from './browser-mock-utils';
 
 test('browser add table column with all fields', async ({ page }) => {
   const inscriptionView = await openMockInscription(page, { type: 'Database' });
-  const query = inscriptionView.accordion('Query');
-  await query.open();
-  const allFieldsCheckbox = query.checkbox('Select all fields');
-  await allFieldsCheckbox.expectUnchecked();
-  await allFieldsCheckbox.click();
+  const query = await selectAllFields(inscriptionView);
 
   const condition = query.section('Condition');
   await condition.expectIsClosed();
@@ -39,11 +35,7 @@ test('browser add table column with one field', async ({ page }) => {
 
 test('browser add table column doubleclick', async ({ page }) => {
   const inscriptionView = await openMockInscription(page, { type: 'Database' });
-  const query = inscriptionView.accordion('Query');
-  await query.open();
-  const allFieldsCheckbox = query.checkbox('Select all fields');
-  await allFieldsCheckbox.expectUnchecked();
-  await allFieldsCheckbox.click();
+  const query = await selectAllFields(inscriptionView);
 
   const condition = query.section('Condition');
   await condition.expectIsClosed();
@@ -53,6 +45,28 @@ test('browser add table column doubleclick', async ({ page }) => {
   await applyTableColBrowser(page, 'Table Column', 0, undefined, true);
   await expect(code(page).getByRole('textbox')).toHaveValue('Test Column');
 });
+
+test('output', async ({ page }) => {
+  const inscriptionView = await openMockInscription(page, { type: 'Database' });
+  await selectAllFields(inscriptionView);
+  const output = inscriptionView.accordion('Output');
+  await output.open();
+
+  const code = output.section('Code');
+  await code.open();
+  const codeBlock = code.scriptArea();
+  await applyTableColBrowser(page, 'Table Column', 0, undefined, true);
+  await codeBlock.expectValue('record.getField("Test Column") as TestIvyType');
+});
+
+async function selectAllFields(inscriptionView: Inscription) {
+  const query = inscriptionView.accordion('Query');
+  await query.open();
+  const allFieldsCheckbox = query.checkbox('Select all fields');
+  await allFieldsCheckbox.expectUnchecked();
+  await allFieldsCheckbox.click();
+  return query;
+}
 
 async function applyTableColBrowser(page: Page, expectedSelection: string = '', rowToCheck: number, numberOfRows?: number, dblClick?: boolean) {
   await browserBtn(page).nth(0).click();

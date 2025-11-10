@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { BrowserValue } from '../Browser';
 import { useReactTable, type ColumnDef, type RowSelectionState, getCoreRowModel, getFilteredRowModel } from '@tanstack/react-table';
 import { useQueryData } from '../../parts/query/useQueryData';
 import type { DatabaseColumn } from '@axonivy/process-editor-inscription-protocol';
@@ -13,11 +12,11 @@ import { SearchTable } from '../../widgets/table/table/Table';
 export const TABLE_COL_BROWSER_ID = 'tablecol' as const;
 
 export const useTableColBrowser = (onDoubleClick: () => void): UseBrowserImplReturnValue => {
-  const [value, setValue] = useState<BrowserValue>({ cursorValue: '' });
+  const [value, setValue] = useState<BrowserValue>({ value: '' });
   return {
     id: TABLE_COL_BROWSER_ID,
     name: 'Table Column',
-    content: <TableColumnBrowser value={value.cursorValue} onChange={setValue} onDoubleClick={onDoubleClick} />,
+    content: <TableColumnBrowser value={value.value} onChange={setValue} onDoubleClick={onDoubleClick} />,
     accept: () => value,
     icon: IvyIcons.Rule
   };
@@ -82,14 +81,14 @@ const TableColumnBrowser = (props: { value: string; onChange: (value: BrowserVal
   const { handleKeyDown } = useTableKeyHandler({ table, data });
   useEffect(() => {
     if (Object.keys(rowSelection).length !== 1) {
-      props.onChange({ cursorValue: '' });
+      props.onChange({ value: '' });
       setShowHelper(false);
       return;
     }
 
     const selectedRow = table.getRowModel().rowsById[Object.keys(rowSelection)[0]];
     setShowHelper(true);
-    props.onChange({ cursorValue: selectedRow.original.name });
+    props.onChange({ value: selectedRow.original.name, data: selectedRow.original });
   }, [props, rowSelection, table]);
 
   return (

@@ -12,7 +12,7 @@ type MacroInputProps = Omit<CodeEditorInputProps, 'context'>;
 
 export const MacroInput = ({ value, onChange, browsers, ...props }: MacroInputProps) => {
   const { isFocusWithin, focusWithinProps, focusValue, browser } = useOnFocus(value, onChange);
-  const { setEditor, modifyEditor } = useMonacoEditor({ modifyAction: value => `<%=${value}%>` });
+  const { setEditor, modifyEditor } = useMonacoEditor({ macro: true });
   const path = usePath();
   const { inputProps } = useField();
 

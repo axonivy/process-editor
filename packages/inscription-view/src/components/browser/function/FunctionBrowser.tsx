@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 import type { Function } from '@axonivy/process-editor-inscription-protocol';
 import {
   useReactTable,
@@ -12,7 +12,6 @@ import {
 } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { BrowserValue } from '../Browser';
 import { getParentNames } from './parent-name';
 import { TableBody, TableFooter, useTableKeyHandler } from '@axonivy/ui-components';
 import BrowserTableRow from '../BrowserTableRow';
@@ -24,11 +23,11 @@ import { TableShowMore } from '../../widgets/table/footer/TableFooter';
 export const FUNCTION_BROWSER_ID = 'func' as const;
 
 export const useFuncBrowser = (onDoubleClick: () => void): UseBrowserImplReturnValue => {
-  const [value, setValue] = useState<BrowserValue>({ cursorValue: '' });
+  const [value, setValue] = useState<BrowserValue>({ value: '' });
   return {
     id: FUNCTION_BROWSER_ID,
     name: 'Function',
-    content: <FunctionBrowser value={value.cursorValue} onChange={setValue} onDoubleClick={onDoubleClick} />,
+    content: <FunctionBrowser value={value.value} onChange={setValue} onDoubleClick={onDoubleClick} />,
     accept: () => value,
     icon: IvyIcons.Function
   };
@@ -126,14 +125,14 @@ const FunctionBrowser = (props: { value: string; onChange: (value: BrowserValue)
   useEffect(() => {
     if (Object.keys(rowSelection).length !== 1) {
       setShowHelper(false);
-      props.onChange({ cursorValue: '' });
+      props.onChange({ value: '' });
       return;
     }
     const selectedRow = table.getRowModel().rowsById[Object.keys(rowSelection)[0]];
     //setup correct functionName for the accept-method
     const parentNames = getParentNames(selectedRow);
     const selectedName = parentNames.reverse().join('.');
-    props.onChange({ cursorValue: selectedName });
+    props.onChange({ value: selectedName });
 
     //setup Meta-Call for docApi
     const parentRow = selectedRow.getParentRow();

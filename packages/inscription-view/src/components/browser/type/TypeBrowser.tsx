@@ -9,22 +9,21 @@ import { useMeta } from '../../../context/useMeta';
 import Checkbox from '../../widgets/checkbox/Checkbox';
 import { ExpandableCell } from '../../widgets/table/cell/ExpandableCell';
 import { SearchTable } from '../../widgets/table/table/Table';
-import type { BrowserValue } from '../Browser';
 import BrowserTableRow from '../BrowserTableRow';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 import { getCursorValue } from './cursor-value';
 export const TYPE_BROWSER_ID = 'type' as const;
 
 export type TypeBrowserObject = JavaType & { icon: IvyIcons };
 
 export const useTypeBrowser = (onDoubleClick: () => void, initSearchFilter: () => string, location: string): UseBrowserImplReturnValue => {
-  const [value, setValue] = useState<BrowserValue>({ cursorValue: '' });
+  const [value, setValue] = useState<BrowserValue>({ value: '' });
   return {
     id: TYPE_BROWSER_ID,
     name: 'Type',
     content: (
       <TypeBrowser
-        value={value.cursorValue}
+        value={value.value}
         onChange={setValue}
         onDoubleClick={onDoubleClick}
         location={location}
@@ -180,7 +179,7 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
   const { handleKeyDown } = useTableKeyHandler({ table: tableDynamic, data: types });
   useEffect(() => {
     if (Object.keys(rowSelection).length !== 1) {
-      onChange({ cursorValue: '' });
+      onChange({ value: '' });
       setShowHelper(false);
       return;
     }
@@ -193,12 +192,12 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
 
     if (location.includes('code')) {
       onChange({
-        cursorValue: getCursorValue(selectedRow.original, isIvyType, typeAsList, true),
-        firstLineValue: isIvyType ? undefined : 'import ' + selectedRow.original.fullQualifiedName + ';\n'
+        value: getCursorValue(selectedRow.original, isIvyType, typeAsList, true),
+        firstLine: isIvyType ? undefined : 'import ' + selectedRow.original.fullQualifiedName + ';\n'
       });
     } else {
       onChange({
-        cursorValue: getCursorValue(selectedRow.original, isIvyType, typeAsList, false)
+        value: getCursorValue(selectedRow.original, isIvyType, typeAsList, false)
       });
     }
   }, [ivyTypes, location, onChange, rowSelection, tableDynamic, typeAsList]);

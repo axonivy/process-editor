@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { BrowserValue } from '../Browser';
 import {
   useReactTable,
   type ColumnDef,
@@ -25,13 +24,11 @@ export type RoleOptions = {
 };
 
 export const useRoleBrowser = (onDoubleClick: () => void, options?: RoleOptions): UseBrowserImplReturnValue => {
-  const [value, setValue] = useState<BrowserValue>({ cursorValue: '' });
+  const [value, setValue] = useState<BrowserValue>({ value: '' });
   return {
     id: ROLE_BROWSER,
     name: 'Role',
-    content: (
-      <RoleBrowser value={value.cursorValue} onChange={setValue} onDoubleClick={onDoubleClick} showtaskRoles={options?.showTaskRoles} />
-    ),
+    content: <RoleBrowser value={value.value} onChange={setValue} onDoubleClick={onDoubleClick} showtaskRoles={options?.showTaskRoles} />,
     accept: () => value,
     icon: IvyIcons.Users
   };
@@ -84,14 +81,14 @@ const RoleBrowser = (props: {
 
   useEffect(() => {
     if (Object.keys(rowSelection).length !== 1) {
-      props.onChange({ cursorValue: '' });
+      props.onChange({ value: '' });
       setShowHelper(false);
       return;
     }
 
     const selectedRow = table.getRowModel().rowsById[Object.keys(rowSelection)[0]];
     setShowHelper(true);
-    props.onChange({ cursorValue: selectedRow.original.id });
+    props.onChange({ value: selectedRow.original.id });
   }, [props, rowSelection, table]);
 
   const [addedRole, setAddedRoleName] = useState('');

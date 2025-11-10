@@ -1,10 +1,9 @@
 import { useMemo, useEffect, useState } from 'react';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 import type { ColumnDef, ColumnFiltersState, ExpandedState, RowSelectionState, VisibilityState } from '@tanstack/react-table';
 import { flexRender, getCoreRowModel, getExpandedRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table';
 import type { ContentObject, ContentObjectType } from '@axonivy/process-editor-inscription-protocol';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { BrowserValue } from '../Browser';
 import { Button, Flex, Message, SelectRow, TableBody, TableCell, toast, useTableKeyHandler } from '@axonivy/ui-components';
 import { useFunction } from '../../../context/useFunction';
 import { useQueryClient } from '@tanstack/react-query';
@@ -29,14 +28,14 @@ export const useCmsBrowser = (
   setDisableApply: (value: boolean) => void,
   options?: CmsOptions
 ): UseBrowserImplReturnValue => {
-  const [value, setValue] = useState<BrowserValue>({ cursorValue: '' });
+  const [value, setValue] = useState<BrowserValue>({ value: '' });
 
   return {
     id: CMS_BROWSER_ID,
     name: 'CMS',
     content: (
       <CmsBrowser
-        value={value.cursorValue}
+        value={value.value}
         onChange={setValue}
         noApiCall={options?.noApiCall}
         typeFilter={options?.typeFilter}
@@ -101,8 +100,8 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
                 cell.row.original.type === 'FOLDER'
                   ? IvyIcons.FolderOpen
                   : cell.row.original.type === 'FILE'
-                  ? IvyIcons.File
-                  : IvyIcons.ChangeType
+                    ? IvyIcons.File
+                    : IvyIcons.ChangeType
               }
               additionalInfo={cell.row.original.type}
             />
@@ -175,13 +174,13 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
     if (Object.keys(rowSelection).length !== 1) {
       setSelectedContentObject({ name: '', children: [], fullPath: '', type: 'STRING', values: {} });
       setShowHelper(false);
-      onChange({ cursorValue: '' });
+      onChange({ value: '' });
       return;
     }
     const selectedRow = table.getRowModel().rowsById[Object.keys(rowSelection)[0]];
     setSelectedContentObject(selectedRow.original);
     setShowHelper(true);
-    onChange({ cursorValue: addIvyPathToValue(selectedRow.original.fullPath, selectedRow.original.type, noApiCall) });
+    onChange({ value: addIvyPathToValue(selectedRow.original.fullPath, selectedRow.original.type, noApiCall) });
   }, [onChange, rowSelection, noApiCall, table, location]);
 
   const folderSelected = (): boolean => {
