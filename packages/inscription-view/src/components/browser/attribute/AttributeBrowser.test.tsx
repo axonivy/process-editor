@@ -1,7 +1,7 @@
 import type { VariableInfo } from '@axonivy/process-editor-inscription-protocol';
 import { TableUtil, customRender, screen, userEvent } from 'test-utils';
 import { describe, expect, test } from 'vitest';
-import type { BrowserValue } from '../Browser';
+import type { BrowserValue } from '../useBrowser';
 import { useAttributeBrowser } from './AttributeBrowser';
 
 const TYPES = {
@@ -96,7 +96,7 @@ describe('AttributeBrowser', () => {
 
   test('accept', async () => {
     let data = '';
-    renderBrowser({ accept: value => (data = value.cursorValue) });
+    renderBrowser({ accept: value => (data = value.value) });
     await userEvent.click(await screen.findByText('user', { selector: 'span.row-expand-label' }));
     await userEvent.click(screen.getByTestId('accept'));
     expect(data).toEqual('in.user');

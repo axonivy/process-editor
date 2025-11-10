@@ -10,22 +10,21 @@ import { useMeta } from '../../../context/useMeta';
 import Checkbox from '../../widgets/checkbox/Checkbox';
 import { ExpandableCell } from '../../widgets/table/cell/ExpandableCell';
 import { SearchTable } from '../../widgets/table/table/Table';
-import type { BrowserValue } from '../Browser';
 import BrowserTableRow from '../BrowserTableRow';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 import { getCursorValue } from './cursor-value';
 import { useTypeData } from './type-data';
 export const TYPE_BROWSER_ID = 'type' as const;
 
 export const useTypeBrowser = (onDoubleClick: () => void, initSearchFilter: () => string, location: string): UseBrowserImplReturnValue => {
   const { t } = useTranslation();
-  const [value, setValue] = useState<BrowserValue>({ cursorValue: '' });
+  const [value, setValue] = useState<BrowserValue>({ value: '' });
   return {
     id: TYPE_BROWSER_ID,
     name: t('browser.type.title'),
     content: (
       <TypeBrowser
-        value={value.cursorValue}
+        value={value.value}
         onChange={setValue}
         onDoubleClick={onDoubleClick}
         location={location}
@@ -123,7 +122,7 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
   useEffect(() => {
     const selectedRow = tableDynamic.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
-      onChange({ cursorValue: '' });
+      onChange({ value: '' });
       setShowHelper(false);
       return;
     }
@@ -135,12 +134,12 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
 
     if (location.includes('code')) {
       onChange({
-        cursorValue: getCursorValue(selectedRow.original, isIvyType, typeAsList, true),
-        firstLineValue: isIvyType ? undefined : 'import ' + selectedRow.original.data?.fullQualifiedName + ';\n'
+        value: getCursorValue(selectedRow.original, isIvyType, typeAsList, true),
+        firstLine: isIvyType ? undefined : 'import ' + selectedRow.original.data?.fullQualifiedName + ';\n'
       });
     } else {
       onChange({
-        cursorValue: getCursorValue(selectedRow.original, isIvyType, typeAsList, false)
+        value: getCursorValue(selectedRow.original, isIvyType, typeAsList, false)
       });
     }
   }, [ivyTypes, location, onChange, rowSelection, tableDynamic, typeAsList]);

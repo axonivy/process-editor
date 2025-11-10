@@ -18,19 +18,18 @@ import { useMeta } from '../../../context/useMeta';
 import { ExpandableCell } from '../../widgets/table/cell/ExpandableCell';
 import { TableShowMore } from '../../widgets/table/footer/TableFooter';
 import { SearchTable } from '../../widgets/table/table/Table';
-import type { BrowserValue } from '../Browser';
 import BrowserTableRow from '../BrowserTableRow';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 import { getParentNames } from './parent-name';
 export const FUNCTION_BROWSER_ID = 'func' as const;
 
 export const useFuncBrowser = (onDoubleClick: () => void): UseBrowserImplReturnValue => {
   const { t } = useTranslation();
-  const [value, setValue] = useState<BrowserValue>({ cursorValue: '' });
+  const [value, setValue] = useState<BrowserValue>({ value: '' });
   return {
     id: FUNCTION_BROWSER_ID,
     name: t('browser.function.title'),
-    content: <FunctionBrowser value={value.cursorValue} onChange={setValue} onDoubleClick={onDoubleClick} />,
+    content: <FunctionBrowser value={value.value} onChange={setValue} onDoubleClick={onDoubleClick} />,
     accept: () => value,
     icon: IvyIcons.Function
   };
@@ -136,13 +135,13 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
     const selectedRow = table.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
       setShowHelper(false);
-      onChange({ cursorValue: '' });
+      onChange({ value: '' });
       return;
     }
     //setup correct functionName for the accept-method
     const parentNames = getParentNames(selectedRow);
     const selectedName = parentNames.reverse().join('.');
-    onChange({ cursorValue: selectedName });
+    onChange({ value: selectedName });
 
     //setup Meta-Call for docApi
     const parentRow = selectedRow.getParentRow();

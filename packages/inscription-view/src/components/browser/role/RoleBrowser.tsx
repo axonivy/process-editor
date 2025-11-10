@@ -15,9 +15,8 @@ import { useTranslation } from 'react-i18next';
 import { useRoles } from '../../parts/common/role/useRoles';
 import { ExpandableCell } from '../../widgets/table/cell/ExpandableCell';
 import { SearchTable } from '../../widgets/table/table/Table';
-import type { BrowserValue } from '../Browser';
 import BrowserTableRow from '../BrowserTableRow';
-import type { UseBrowserImplReturnValue } from '../useBrowser';
+import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 import { AddRolePopover } from './AddRolePopover';
 export const ROLE_BROWSER = 'role' as const;
 
@@ -27,13 +26,11 @@ export type RoleOptions = {
 
 export const useRoleBrowser = (onDoubleClick: () => void, options?: RoleOptions): UseBrowserImplReturnValue => {
   const { t } = useTranslation();
-  const [value, setValue] = useState<BrowserValue>({ cursorValue: '' });
+  const [value, setValue] = useState<BrowserValue>({ value: '' });
   return {
     id: ROLE_BROWSER,
     name: t('browser.role.title'),
-    content: (
-      <RoleBrowser value={value.cursorValue} onChange={setValue} onDoubleClick={onDoubleClick} showtaskRoles={options?.showTaskRoles} />
-    ),
+    content: <RoleBrowser value={value.value} onChange={setValue} onDoubleClick={onDoubleClick} showtaskRoles={options?.showTaskRoles} />,
     accept: () => value,
     icon: IvyIcons.Users
   };
@@ -90,13 +87,13 @@ const RoleBrowser = ({ value, showtaskRoles, onChange, onDoubleClick }: RoleBrow
   useEffect(() => {
     const selectedRow = table.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
-      onChange({ cursorValue: '' });
+      onChange({ value: '' });
       setShowHelper(false);
       return;
     }
 
     setShowHelper(true);
-    onChange({ cursorValue: selectedRow.original.id });
+    onChange({ value: selectedRow.original.id });
   }, [onChange, rowSelection, table]);
 
   const [addedRole, setAddedRoleName] = useState('');

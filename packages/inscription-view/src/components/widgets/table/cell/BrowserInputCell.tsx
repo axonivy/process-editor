@@ -17,9 +17,7 @@ export function BrowserInputCell<TData>({ cell }: BrowserInputCellProps<TData>) 
   return (
     <Flex direction='row' justifyContent='space-between' alignItems='center'>
       <Input value={value} onChange={change => setValue(change)} onBlur={onBlur} title={value} className={editCell} />
-      {cell.row.getIsSelected() && (
-        <Browser {...browser} types={['type']} accept={change => updateValue(change.cursorValue)} location={path} />
-      )}
+      {cell.row.getIsSelected() && <Browser {...browser} types={['type']} accept={change => updateValue(change.value)} location={path} />}
     </Flex>
   );
 }
