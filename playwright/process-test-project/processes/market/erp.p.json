@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "193E3AEFF2379C85",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -33,7 +33,7 @@
       ],
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "icon" : "res:/webContent/icons/user.png?small"
+        "icon" : "res:/webContent/icons/user.png"
       },
       "connect" : [
         { "id" : "f2", "to" : "f3" }
