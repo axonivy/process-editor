@@ -12,11 +12,13 @@ class ProgramStart extends PartObject {
   anonymousAllow: Checkbox;
   role: Select;
   error: Select;
+  timerBean: string;
 
   constructor(part: Part) {
     super(part);
     this.javaSection = part.section('Java Class');
     this.javaClass = this.javaSection.combobox();
+    this.timerBean = 'ch.ivyteam.ivy.process.eventstart.beans.TimerBean';
 
     this.permissionSection = part.section('Permission');
     this.anonymousAllow = this.permissionSection.checkbox('Allow anonymous');
@@ -26,7 +28,7 @@ class ProgramStart extends PartObject {
 
   async fill() {
     await this.javaSection.open();
-    await this.javaClass.choose('ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean');
+    await this.javaClass.choose(this.timerBean);
 
     await this.permissionSection.toggle();
 
@@ -36,7 +38,7 @@ class ProgramStart extends PartObject {
   }
 
   async assertFill() {
-    await this.javaClass.expectValue('ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean');
+    await this.javaClass.expectValue(this.timerBean);
 
     await this.permissionSection.expectIsOpen();
     await this.anonymousAllow.expectUnchecked();
@@ -51,8 +53,7 @@ class ProgramStart extends PartObject {
   }
 
   async assertClear() {
-    await this.javaClass.expectValue('ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean');
-
+    await this.javaClass.expectValue(this.timerBean);
     await this.permissionSection.expectIsClosed();
   }
 }
