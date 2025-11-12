@@ -18,8 +18,11 @@ class Event extends PartObject {
   errorTimeout: Select;
   action: RadioGroup;
 
+  bean: string;
+
   constructor(part: Part) {
     super(part);
+    this.bean = 'ch.ivyteam.ivy.process.intermediateevent.beans.FileIntermediateEventBean';
     this.javaSection = part.section('Java Class');
     this.javaClass = this.javaSection.combobox();
 
@@ -34,7 +37,7 @@ class Event extends PartObject {
 
   async fill() {
     await this.javaSection.expectIsOpen();
-    await this.javaClass.choose('ch.ivyteam.ivy.process.intermediateevent.AbstractProcessIntermediateEventBean');
+    await this.javaClass.choose(this.bean);
     await this.eventSection.expectIsOpen();
     await this.eventId.fill('123');
 
@@ -45,7 +48,7 @@ class Event extends PartObject {
   }
 
   async assertFill() {
-    await this.javaClass.expectValue('ch.ivyteam.ivy.process.intermediateevent.AbstractProcessIntermediateEventBean');
+    await this.javaClass.expectValue(this.bean);
     await this.eventId.expectValue('123');
 
     await this.expirySection.expectIsOpen();
@@ -63,7 +66,7 @@ class Event extends PartObject {
   }
 
   async assertClear() {
-    await this.javaClass.expectValue('ch.ivyteam.ivy.process.intermediateevent.AbstractProcessIntermediateEventBean');
+    await this.javaClass.expectValue(this.bean);
     await this.eventSection.expectIsOpen();
     await this.eventId.expectEmpty();
     await this.expirySection.expectIsClosed();
