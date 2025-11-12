@@ -17,11 +17,18 @@ type JavaClassSelectorProps = {
   type: Type;
 };
 
+type JavaClassItem = ComboboxItem & {
+  label: string;
+  package: string;
+};
+
 const JavaClassSelector = ({ javaClass, onChange, type }: JavaClassSelectorProps) => {
   const { t } = useTranslation();
   const { context } = useEditorContext();
-  const javaClassItems = useMeta('meta/program/types', { type: type, context }, []).data.map<ComboboxItem>(javaClass => ({
-    value: javaClass.fullQualifiedName
+  const javaClassItems = useMeta('meta/program/types', { type: type, context }, []).data.map<JavaClassItem>(javaClass => ({
+    value: javaClass.fullQualifiedName,
+    label: javaClass.name,
+    package: javaClass.packageName
   }));
 
   const newAction = useAction('newProgram');
@@ -33,6 +40,18 @@ const JavaClassSelector = ({ javaClass, onChange, type }: JavaClassSelectorProps
   };
   const createJavaClass: FieldsetControl = { label: t('part.program.javaClassCreate'), icon: IvyIcons.Plus, action: () => newAction() };
 
+  const comboboxItem = (item: JavaClassItem) => {
+    const tooltip = `${item.value}`;
+    return (
+      <>
+        <div title={tooltip} aria-label={tooltip}>
+          <span>{item.label}</span>
+          <span className='combobox-menu-entry-additional'>{` - ${item.package}`}</span>
+        </div>
+      </>
+    );
+  };
+
   return (
     <PathCollapsible
       label={t('part.program.javaClass')}
@@ -41,7 +60,7 @@ const JavaClassSelector = ({ javaClass, onChange, type }: JavaClassSelectorProps
       defaultOpen={true}
     >
       <ValidationFieldset>
-        <Combobox value={javaClass} onChange={item => onChange(item)} items={javaClassItems} />
+        <Combobox value={javaClass} onChange={item => onChange(item)} items={javaClassItems} comboboxItem={comboboxItem} />
       </ValidationFieldset>
     </PathCollapsible>
   );
