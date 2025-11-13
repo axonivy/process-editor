@@ -35,7 +35,7 @@ test.describe('Program Start', () => {
     const start = view.inscriptionTab('Java Bean');
     await start.open();
     await start.section('Java Class').open();
-    await start.combobox().choose('ch.ivyteam.ivy.process.eventstart.beans.FilePickupStartEventBean');
+    await start.combobox().choose('FilePickupStartEventBean');
 
     await runTest(view, ConfigFilePickupStartEventBeanTest);
   });
@@ -44,7 +44,7 @@ test.describe('Program Start', () => {
     const start = view.inscriptionTab('Java Bean');
     await start.open();
     await start.section('Java Class').open();
-    await start.combobox().choose('ch.ivyteam.ivy.process.eventstart.beans.TimerBean');
+    await start.combobox().choose('TimerBean');
     await runTest(view, ConfigTimerBeanTest);
   });
 });
