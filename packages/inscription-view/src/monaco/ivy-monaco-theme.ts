@@ -33,7 +33,7 @@ export namespace IvyMonacoTheme {
 
   class ThemeChangeEvent extends CustomEvent<IvyMonacoTheme> {
     constructor(theme: IvyMonacoTheme) {
-      super('theme', { detail: theme });
+      super('monaco-theme', { detail: theme });
     }
   }
 

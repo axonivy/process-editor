@@ -1,9 +1,11 @@
+import { ConsoleTimer } from '@axonivy/process-editor-inscription-core';
+import React from 'react';
 import { focusAdjacentTabIndexMonaco } from '../utils/focus';
 import { IvyMacroLanguage } from './ivy-macro-language';
 import { IvyMonacoTheme } from './ivy-monaco-theme';
 import { IvyScriptLanguage } from './ivy-script-language';
 import { MonacoEditorReactComp } from './monaco-editor-react';
-import { type MonacoApi, type monaco } from './monaco-modules';
+import type { MonacoApi, monaco } from './monaco-modules';
 import { MonacoUtil, type MonacoInitParams } from './monaco-util';
 
 export const MONACO_OPTIONS: monaco.editor.IStandaloneEditorConstructionOptions = {
@@ -106,14 +108,14 @@ export namespace MonacoEditorUtil {
 // - Typing very fast may lead to reset of editor position and wrong inserts, cf. https://github.com/TypeFox/monaco-languageclient/pull/986#issuecomment-3529886336
 // - There are also some issues when using the Typefox React editor with Strict Mode, cf. https://github.com/TypeFox/monaco-languageclient/issues/994
 //
-// export const MonacoEditor = React.lazy(async () => {
-//   const timer = new ConsoleTimer(true, 'Initialize Monaco Editor Component (only necessary once)').start();
-//   timer.step('Wait for Monaco API...');
-//   await MonacoUtil.monaco();
-//   timer.step('Load Editor Component...');
-//   const module = await Typefox.MonacoEditorReact.load();
-//   timer.end();
-//   return { default: module.MonacoEditorReactComp };
-// });
-
-export const MonacoEditor = MonacoEditorReactComp;
+export const MonacoEditor = React.lazy(async () => {
+  const timer = new ConsoleTimer(true, 'Initialize Monaco Editor Component (only necessary once)').start();
+  timer.step('Wait for Monaco API...');
+  await MonacoUtil.monaco();
+  timer.step('Load Editor Component...');
+  //   const module = await Typefox.MonacoEditorReact.load();
+  //   timer.end();
+  //   return { default: module.MonacoEditorReactComp };
+  timer.end();
+  return { default: MonacoEditorReactComp };
+});

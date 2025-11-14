@@ -13,11 +13,6 @@ export default config.defineConfig(
       }
     }
   },
-  // Project specific configs
-  {
-    name: 'ignored-files',
-    ignores: ['./integration/monaco-config-plugin.ts']
-  },
   {
     name: 'general',
     rules: {

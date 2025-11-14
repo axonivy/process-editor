@@ -1,7 +1,15 @@
 import { ConsoleTimer, Deferred } from '@axonivy/process-editor-inscription-core';
 
 import type { WorkerLoader } from 'monaco-languageclient/workerFactory';
-import { CodinGame, LogLevel, MonacoLanguageClient, type MonacoApi, type VscodeApi, type monaco } from './monaco-modules';
+import {
+  CodinGame,
+  LogLevel,
+  MonacoLanguageClient,
+  MonacoLanguagePack,
+  type MonacoApi,
+  type VscodeApi,
+  type monaco
+} from './monaco-modules';
 
 export type LazyIEditorOverrideServices = () => Promise<monaco.editor.IEditorOverrideServices>;
 
@@ -15,6 +23,7 @@ export type WorkerLabel =
   | (string & {});
 
 export interface MonacoInitParams {
+  locale?: string;
   logLevel?: LogLevel;
   serviceOverrides?: LazyIEditorOverrideServices[];
   workerLoaders?: Partial<Record<WorkerLabel, WorkerLoader>>;
@@ -36,6 +45,7 @@ export namespace MonacoUtil {
   }
 
   export async function initialize({
+    locale,
     logLevel = LogLevel.Warning,
     serviceOverrides = [],
     workerLoaders = {}
@@ -46,6 +56,10 @@ export namespace MonacoUtil {
     _initialized = true;
 
     const timer = new ConsoleTimer(logLevel === LogLevel.Debug, 'Setup Monaco API').start();
+    if (locale) {
+      timer.step(`Load language '${locale}'...`);
+      await MonacoLanguagePack.loadLocale(locale);
+    }
 
     timer.step('Load necessary modules...');
     const lcMonacoVscode = await MonacoLanguageClient.Vscode.load();

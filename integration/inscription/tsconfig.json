@@ -11,6 +11,7 @@
   "references": [
     { "path": "../../packages/inscription-protocol/tsconfig.json" },
     { "path": "../../packages/inscription-core/tsconfig.json" },
-    { "path": "../../packages/inscription-view/tsconfig.production.json" }
+    { "path": "../../packages/inscription-view/tsconfig.production.json" },
+    { "path": "../monaco-vite-plugin/tsconfig.json" }
   ]
 }

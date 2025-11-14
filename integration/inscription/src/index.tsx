@@ -12,7 +12,7 @@ import {
 import { Flex, Spinner, ThemeProvider, Toaster } from '@axonivy/ui-components';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import { initTranslation } from './i18n';
+import { getCurrentLanguage, initTranslation } from './i18n';
 import './index.css';
 import { URLParams } from './url-helper';
 
@@ -69,7 +69,7 @@ export async function start(): Promise<void> {
   });
 
   // trigger initialization but no need to wait for anything here
-  MonacoEditorUtil.configureMonaco({ theme, logLevel: LogLevel.Debug });
+  MonacoEditorUtil.configureMonaco({ locale: getCurrentLanguage(), theme, logLevel: LogLevel.Debug });
   IvyLanguageClient.connect({ server, logLevel: LogLevel.Debug });
 }
 
