@@ -1,7 +1,7 @@
+import monacoConfigPlugin from '@axonivy/monaco-vite-plugin';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { monacoConfigPlugin } from '../monaco-config-plugin';
 
 export default defineConfig(() => ({
   plugins: [tsconfigPaths(), monacoConfigPlugin()],

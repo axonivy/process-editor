@@ -1,6 +1,6 @@
 import { urlBuilder, type Connection } from '@axonivy/jsonrpc';
 import { ConsoleTimer, Deferred } from '@axonivy/process-editor-inscription-core';
-import { type LanguageClientWrapper } from 'monaco-languageclient/lcwrapper';
+import type { LanguageClientWrapper } from 'monaco-languageclient/lcwrapper';
 import { IvyMacroLanguage } from './ivy-macro-language';
 import { IvyScriptLanguage } from './ivy-script-language';
 import { MonacoLanguageUtil } from './monaco-language-util';
@@ -32,11 +32,11 @@ export namespace IvyLanguageClient {
 
     const timer = new ConsoleTimer(logLevel === LogLevel.Debug, 'Setup Ivy Language Client').start();
 
-    timer.step('Wait for VSCode Services to be ready...');
-    await MonacoUtil.vscodeServicesReady();
-
     timer.step('Wait for Monaco API...');
     await MonacoUtil.monaco();
+
+    timer.step('Wait for VSCode Services to be ready...');
+    await MonacoUtil.vscodeServicesReady();
 
     timer.step('Initialize language client...');
     const client = await MonacoLanguageUtil.setLanguageClient({

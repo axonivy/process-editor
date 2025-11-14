@@ -22,7 +22,6 @@ export namespace MonacoLanguageClient {
 
 export namespace CodinGame {
   export const MonacoVscodeApi = new LazyLoader(() => import('@codingame/monaco-vscode-api'));
-  export const MonacoVscodeLifecycle = new LazyLoader(() => import('@codingame/monaco-vscode-api/lifecycle'));
   export const MonacoVscodeExtensionsApi = new LazyLoader(() => import('@codingame/monaco-vscode-extension-api'));
   export const MonacoVscodeEditorApi = new LazyLoader(() => import('@codingame/monaco-vscode-editor-api'));
 
@@ -55,28 +54,40 @@ export namespace CodinGame {
     return module.default();
   }
 
-  export const EnvironmentService = new LazyLoader(() => import('@codingame/monaco-vscode-environment-service-override'));
-  export async function environmentOverride(): Promise<monaco.editor.IEditorOverrideServices> {
-    const module = await EnvironmentService.load();
-    return module.default();
-  }
-
-  export const ExtensionsService = new LazyLoader(() => import('@codingame/monaco-vscode-extensions-service-override'));
-  type ExtensionsType = (typeof import('@codingame/monaco-vscode-extensions-service-override'))['default'];
-  export async function extensionsOverride(
-    workerConfig?: Parameters<ExtensionsType>[0],
-    _iframeAlternateDomain?: Parameters<ExtensionsType>[1]
-  ): Promise<monaco.editor.IEditorOverrideServices> {
-    const module = await ExtensionsService.load();
-    return module.default(workerConfig, _iframeAlternateDomain);
-  }
-
   export const LocalizationService = new LazyLoader(() => import('@codingame/monaco-vscode-localization-service-override'));
   type LocalizationType = (typeof import('@codingame/monaco-vscode-localization-service-override'))['default'];
   export async function localizationOverride(options?: Parameters<LocalizationType>[0]): Promise<monaco.editor.IEditorOverrideServices> {
     const module = await LocalizationService.load();
     const actualOptions = options ?? (await MonacoLanguageClient.Locale.load()).createDefaultLocaleConfiguration();
     return module.default(actualOptions);
+  }
+}
+
+export namespace MonacoLanguagePack {
+  export const German = new LazyLoader(() => import('@codingame/monaco-vscode-language-pack-de'));
+  export const French = new LazyLoader(() => import('@codingame/monaco-vscode-language-pack-fr'));
+  export const Japanese = new LazyLoader(() => import('@codingame/monaco-vscode-language-pack-ja'));
+
+  export async function loadLocale(locale: string = 'en'): Promise<void> {
+    if (locale === 'en') {
+      // English is the default language, no need to load anything
+      return;
+    }
+    switch (locale) {
+      case 'de':
+        await MonacoLanguagePack.German.load();
+        break;
+      case 'fr':
+        await MonacoLanguagePack.French.load();
+        break;
+      case 'ja':
+        await MonacoLanguagePack.Japanese.load();
+        break;
+      default:
+        console.error(`No locale available for language '${locale}'.`);
+        // no locale available
+        break;
+    }
   }
 }
 

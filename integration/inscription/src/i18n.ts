@@ -24,3 +24,7 @@ export const initTranslation = () => {
       }
     });
 };
+
+export function getCurrentLanguage(): string {
+  return i18n.resolvedLanguage ?? i18n.languages[0] ?? i18n.language ?? 'en';
+}

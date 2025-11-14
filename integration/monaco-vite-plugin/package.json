@@ -1,0 +1,29 @@
+{
+  "name": "@axonivy/monaco-vite-plugin",
+  "version": "13.2.0-next",
+  "private": false,
+  "author": "Axon Ivy AG",
+  "homepage": "https://developer.axonivy.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/axonivy/process-editor"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "source": "src/index",
+  "exports": "./dist/index.js",
+  "dependencies": {},
+  "peerDependencies": {
+    "vite": "^7.0.0"
+  },
+  "type": "module",
+  "scripts": {
+    "clean": "rimraf dist tsconfig.tsbuildinfo",
+    "build": "tsc --build",
+    "package": "tsc && tscp",
+    "type": "tsc --noEmit",
+    "watch": "tsc --watch"
+  }
+}

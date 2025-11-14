@@ -45,6 +45,10 @@
       "path": "./integration/inscription"
     },
     {
+      "name": "integration/monaco-vite-plugin",
+      "path": "./integration/monaco-vite-plugin"
+    },
+    {
       "name": "playwright",
       "path": "./playwright"
     }
