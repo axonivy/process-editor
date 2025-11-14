@@ -152,6 +152,9 @@ export class Cell {
 
   async expectValue(value: string) {
     switch (this.columnType) {
+      case 'expression':
+        await this.scriptCell.expectValue(value);
+        break;
       case 'select':
         await this.select.expectValue(value);
         break;
@@ -182,7 +185,7 @@ export class Cell {
   }
 
   async focusScriptCell() {
-    await this.scriptCell.focus();
+    await this.scriptCell.activate();
   }
 
   async clearExpression() {

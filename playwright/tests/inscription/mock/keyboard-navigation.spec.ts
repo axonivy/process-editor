@@ -12,21 +12,21 @@ test.describe('Keyboard Navigation', () => {
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
-    await detailsSection.macroInput('Name').expectCodeFocused();
+    await detailsSection.macroInput('Name').loaded();
 
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
-    await detailsSection.macroArea('Description').expectCodeFocused();
+    await detailsSection.macroArea('Description').loaded();
 
     await page.keyboard.press('Tab');
-    await detailsSection.macroArea('Description').expectCodeFocused();
+    await detailsSection.macroArea('Description').loaded();
     await page.keyboard.press('Escape');
     await detailsSection.macroArea('Description').expectBrowserButtonFocused();
 
     await page.keyboard.press('Shift+Tab');
     await page.keyboard.press('Shift+Tab');
     await page.keyboard.press('Shift+Tab');
-    await detailsSection.macroInput('Name').expectCodeFocused();
+    await detailsSection.macroInput('Name').loaded();
   });
 
   test('navigate through code-block', async ({ page }) => {
@@ -35,10 +35,10 @@ test.describe('Keyboard Navigation', () => {
     await taskPart.open();
     const codeSection = taskPart.section('Code');
     await codeSection.toggle();
-    await codeSection.scriptArea().focus();
-    await expect(page.locator('textarea.inputarea.monaco-mouse-cursor-text')).toBeFocused();
+    await codeSection.scriptArea().activate();
+    await codeSection.scriptArea().expectCodeFocused();
     await page.keyboard.press('Tab');
-    await expect(page.locator('textarea.inputarea.monaco-mouse-cursor-text')).toBeFocused();
+    await codeSection.scriptArea().expectCodeFocused();
 
     await page.keyboard.press('Escape');
     await codeSection.scriptArea().expectBrowserButtonFocused();

@@ -1,16 +1,12 @@
-import type { MonacoEditorApi, MonacoLanguageClientConfig, MonacoWorkerConfig } from '@axonivy/process-editor-inscription-core';
-import { ConsoleTimer, Deferred, MonacoUtil } from '@axonivy/process-editor-inscription-core';
-import type { editor } from 'monaco-editor/esm/vs/editor/editor.api';
-import { ivyMacroConf, ivyMacroLang } from './ivy-macro-language';
-import { ivyScriptConf, ivyScriptLang } from './ivy-script-language';
-
-import type * as monacoEditorReact from '@monaco-editor/react';
 import { focusAdjacentTabIndexMonaco } from '../utils/focus';
-export type MonacoEditorReactApi = typeof monacoEditorReact;
+import { IvyMacroLanguage } from './ivy-macro-language';
+import { IvyMonacoTheme } from './ivy-monaco-theme';
+import { IvyScriptLanguage } from './ivy-script-language';
+import { MonacoEditorReactComp } from './monaco-editor-react';
+import { type MonacoApi, type monaco } from './monaco-modules';
+import { MonacoUtil, type MonacoInitParams } from './monaco-util';
 
-type ThemeMode = 'light' | 'dark';
-
-export const MONACO_OPTIONS: editor.IStandaloneEditorConstructionOptions = {
+export const MONACO_OPTIONS: monaco.editor.IStandaloneEditorConstructionOptions = {
   glyphMargin: false,
   lineNumbers: 'off',
   minimap: { enabled: false },
@@ -31,14 +27,14 @@ export const MONACO_OPTIONS: editor.IStandaloneEditorConstructionOptions = {
   }
 };
 
-export const MAXIMIZED_MONACO_OPTIONS: editor.IStandaloneEditorConstructionOptions = {
+export const MAXIMIZED_MONACO_OPTIONS: monaco.editor.IStandaloneEditorConstructionOptions = {
   ...MONACO_OPTIONS,
   lineNumbers: 'on',
   folding: true,
   showFoldingControls: 'always'
 };
 
-export const SINGLE_LINE_MONACO_OPTIONS: editor.IStandaloneEditorConstructionOptions = {
+export const SINGLE_LINE_MONACO_OPTIONS: monaco.editor.IStandaloneEditorConstructionOptions = {
   ...MONACO_OPTIONS,
   overviewRulerLanes: 0,
   overviewRulerBorder: false,
@@ -59,35 +55,10 @@ export const SINGLE_LINE_MONACO_OPTIONS: editor.IStandaloneEditorConstructionOpt
   contextmenu: false
 };
 
+export type MonacoEditorConfiguration = MonacoInitParams & { theme?: IvyMonacoTheme };
+
 export namespace MonacoEditorUtil {
-  export const DEFAULT_THEME_NAME = 'axon-input';
-
-  export function themeData(theme?: ThemeMode): editor.IStandaloneThemeData {
-    if (theme === 'dark') {
-      return {
-        base: 'vs-dark',
-        colors: {
-          'editor.foreground': '#FFFFFF',
-          'editorCursor.foreground': '#FFFFFF',
-          'editor.background': '#333333'
-        },
-        inherit: true,
-        rules: []
-      };
-    }
-    return {
-      base: 'vs',
-      colors: {
-        'editor.foreground': '#202020',
-        'editorCursor.foreground': '#202020',
-        'editor.background': '#fafafa'
-      },
-      inherit: true,
-      rules: []
-    };
-  }
-
-  export const keyActionEscShiftTab = (editor: editor.IStandaloneCodeEditor) => {
+  export const keyActionEscShiftTab = (editor: monaco.editor.IStandaloneCodeEditor) => {
     editor.addCommand(KeyCode.Escape, () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if ((editor as any)._contentWidgets['editor.widget.suggestWidget']?.widget._widget._state === 3) {
@@ -103,26 +74,23 @@ export namespace MonacoEditorUtil {
     });
   };
 
-  const instance: Deferred<monacoEditorReact.Monaco> = new Deferred<monacoEditorReact.Monaco>();
-  export async function getInstance(): Promise<monacoEditorReact.Monaco> {
-    return instance.promise;
-  }
-
-  let configureCalled = false;
-  export async function configureInstance(configuration?: MonacoConfiguration): Promise<monacoEditorReact.Monaco> {
-    if (configureCalled) {
-      console.warn(
-        'MonacoEditorUtil.configureInstance should only be called once. The caller will receive the first, configured instance. If you want to configure additional instances, call "configureMonacoReactEditor" instead.'
-      );
-    } else {
-      configureCalled = true;
-      configureMonacoReactEditor(configuration).then(instance.resolve).catch(instance.reject);
+  export async function configureMonaco({ theme = 'light', ...initConfig }: MonacoEditorConfiguration): Promise<MonacoApi> {
+    if (MonacoUtil.initialized()) {
+      console.warn('Monaco already initialized, skipping configuration');
+      return MonacoUtil.monaco();
     }
-    return instance.promise;
+    const monaco = await MonacoUtil.initialize(initConfig);
+    await Promise.all([IvyScriptLanguage.install(monaco), IvyMacroLanguage.install(monaco), IvyMonacoTheme.setTheme(theme, monaco)]);
+    return monaco;
   }
 
-  // We want to avoid an import to import { KeyCode } from 'monaco-editor/esm/vs/editor/editor.api'.
-  // So we replicate the necessary Key codes here since they are very stable.
+  export async function setTheme(theme: IvyMonacoTheme): Promise<void> {
+    return IvyMonacoTheme.setTheme(theme);
+  }
+
+  export const onDidSetTheme = IvyMonacoTheme.onDidSetTheme;
+
+  // Avoid loading Monaco, so we replicate the necessary Key codes here since they are very stable.
   export enum KeyCode {
     Tab = 2,
     Enter = 3,
@@ -132,77 +100,20 @@ export namespace MonacoEditorUtil {
     DownArrow = 18,
     Shift = 1024
   }
-
-  let monacoEditorReactApiPromise: Promise<MonacoEditorReactApi>;
-  export async function monacoEditorReactApi(): Promise<MonacoEditorReactApi> {
-    if (!monacoEditorReactApiPromise) {
-      monacoEditorReactApiPromise = import('@monaco-editor/react');
-    }
-    return monacoEditorReactApiPromise;
-  }
-
-  export async function setTheme(theme?: ThemeMode): Promise<void> {
-    const monacoApi = await getInstance();
-    monacoApi.editor.defineTheme(MonacoEditorUtil.DEFAULT_THEME_NAME, MonacoEditorUtil.themeData(theme));
-  }
 }
 
-// from @monaco-editor/loader
-export interface MonacoLoaderConfig {
-  paths?: {
-    vs?: string;
-  };
-  'vs/nls'?: {
-    availableLanguages?: object;
-  };
-  monaco?: MonacoEditorApi;
-}
+// We currently have two problems with the Typefox React editor:
+// - Typing very fast may lead to reset of editor position and wrong inserts, cf. https://github.com/TypeFox/monaco-languageclient/pull/986#issuecomment-3529886336
+// - There are also some issues when using the Typefox React editor with Strict Mode, cf. https://github.com/TypeFox/monaco-languageclient/issues/994
+//
+// export const MonacoEditor = React.lazy(async () => {
+//   const timer = new ConsoleTimer(true, 'Initialize Monaco Editor Component (only necessary once)').start();
+//   timer.step('Wait for Monaco API...');
+//   await MonacoUtil.monaco();
+//   timer.step('Load Editor Component...');
+//   const module = await Typefox.MonacoEditorReact.load();
+//   timer.end();
+//   return { default: module.MonacoEditorReactComp };
+// });
 
-export interface MonacoConfiguration {
-  loader?: MonacoLoaderConfig;
-  worker?: MonacoWorkerConfig;
-  languageClient?: MonacoLanguageClientConfig;
-  theme?: ThemeMode;
-  debug?: boolean;
-}
-
-export async function configureMonacoReactEditor(configuration?: MonacoConfiguration): Promise<MonacoEditorApi> {
-  const timer = new ConsoleTimer(configuration?.debug, 'Configure Monaco React Editor');
-  timer.start();
-
-  timer.step('Start loading Monaco Editor React API...');
-  const reactEditorApi = await MonacoEditorUtil.monacoEditorReactApi();
-
-  timer.step('Start loading Monaco Editor API...');
-  const monaco = configuration?.loader?.monaco ?? (await MonacoUtil.monacoEditorApi());
-  const reactEditorLoader = reactEditorApi.loader;
-  reactEditorLoader.config({ ...configuration?.loader, monaco });
-
-  // configure Monaco environment, must be called after configuring monaco
-  timer.step('Start configuring Monaco Environment...');
-  await MonacoUtil.configureEnvironment({
-    languageClient: configuration?.languageClient,
-    worker: configuration?.worker,
-    debug: configuration?.debug
-  });
-
-  timer.step('Initialize Monaco React Editor...');
-  const monacoApi = await reactEditorLoader.init();
-  monacoApi.languages.register({
-    id: 'ivyScript',
-    extensions: ['.ivyScript', '.ivyScript'],
-    aliases: ['IvyScript', 'ivyScript']
-  });
-  monacoApi.languages.register({
-    id: 'ivyMacro',
-    extensions: ['.ivyMacro', '.ivyMacro'],
-    aliases: []
-  });
-  monacoApi.languages.setLanguageConfiguration('ivyScript', ivyScriptConf);
-  monacoApi.languages.setMonarchTokensProvider('ivyScript', ivyScriptLang);
-  monacoApi.languages.setLanguageConfiguration('ivyMacro', ivyMacroConf);
-  monacoApi.languages.setMonarchTokensProvider('ivyMacro', ivyMacroLang);
-  monacoApi.editor.defineTheme(MonacoEditorUtil.DEFAULT_THEME_NAME, MonacoEditorUtil.themeData(configuration?.theme));
-  timer.end();
-  return monacoApi;
-}
+export const MonacoEditor = MonacoEditorReactComp;

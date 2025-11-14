@@ -1,5 +1,6 @@
 import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
+import { expectCodeInEditor } from '../../../page-objects/inscription/code-editor';
 import { openMockInscription, type Inscription } from '../../../page-objects/inscription/inscription-view';
 import { browserBtn, code } from './browser-mock-utils';
 
@@ -11,9 +12,9 @@ test('browser add table column with all fields', async ({ page }) => {
   await condition.expectIsClosed();
   await condition.open();
   const conditionField = condition.macroArea();
-  await conditionField.focus();
+  await conditionField.activate();
   await applyTableColBrowser(page, 'Test ColumnString', 0, 2);
-  await expect(code(page).getByRole('textbox')).toHaveValue('Test Column');
+  await expectCodeInEditor(code(page), 'Test Column');
 });
 
 test('browser add table column with one field', async ({ page }) => {
@@ -28,9 +29,9 @@ test('browser add table column with one field', async ({ page }) => {
   await condition.expectIsClosed();
   await condition.open();
   const conditionField = condition.macroArea();
-  await conditionField.focus();
+  await conditionField.activate();
   await applyTableColBrowser(page, 'Test ColumnString', 0, 1);
-  await expect(code(page).getByRole('textbox')).toHaveValue('Test Column');
+  await expectCodeInEditor(code(page), 'Test Column');
 });
 
 test('browser add table column doubleclick', async ({ page }) => {
@@ -41,9 +42,9 @@ test('browser add table column doubleclick', async ({ page }) => {
   await condition.expectIsClosed();
   await condition.open();
   const conditionField = condition.macroArea();
-  await conditionField.focus();
+  await conditionField.activate();
   await applyTableColBrowser(page, 'Table Column', 0, undefined, true);
-  await expect(code(page).getByRole('textbox')).toHaveValue('Test Column');
+  await expectCodeInEditor(code(page), 'Test Column');
 });
 
 test('output', async ({ page }) => {

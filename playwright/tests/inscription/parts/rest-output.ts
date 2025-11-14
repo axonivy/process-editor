@@ -40,6 +40,7 @@ class RestOutput extends PartObject {
 
   async clear() {
     await this.type.fill('');
+    await this.code.loaded();
     await this.mapping.row(1).column(1).clearExpression();
     await this.code.clear();
   }

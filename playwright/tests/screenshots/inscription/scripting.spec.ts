@@ -40,8 +40,8 @@ test.describe('Scripting', () => {
     await section.open();
     const script = section.macroArea('Name');
 
-    await script.fill('Verify User <%= ');
-    await script.focus();
+    await script.fill('Verify User <%= ', 'Verify User <%= %>'); // auto-complete closing tag
+    await script.activate();
     await page.keyboard.press('ArrowLeft+ArrowLeft+ArrowLeft');
     await page.keyboard.type('in.');
 
