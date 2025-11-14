@@ -1,7 +1,7 @@
 import { useField } from '@axonivy/ui-components';
 import { usePath } from '../../../context/usePath';
-import type { monaco } from '../../../monaco';
 import { MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
+import type { monaco } from '../../../monaco/monaco-modules';
 import Browser from '../../browser/Browser';
 import { MaximizedCodeEditorBrowser } from '../../browser/MaximizedCodeEditorBrowser';
 import { useBrowser } from '../../browser/useBrowser';

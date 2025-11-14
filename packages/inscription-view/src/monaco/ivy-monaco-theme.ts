@@ -40,7 +40,7 @@ export namespace IvyMonacoTheme {
   const _emitter = new EventTarget();
   export type ThemeChangeListener = (theme: IvyMonacoTheme) => void;
   export const onDidSetTheme: (listener: ThemeChangeListener) => void = listener =>
-    _emitter.addEventListener('theme', evt => listener((evt as ThemeChangeEvent).detail));
+    _emitter.addEventListener('monaco-theme', evt => listener((evt as ThemeChangeEvent).detail));
   export async function setTheme(theme: IvyMonacoTheme, monacoApi?: MonacoApi): Promise<void> {
     const monaco = await MonacoUtil.resolve(monacoApi);
     // defineTheme is only available on the standalone theme service but not the workbench theme service you get when using 'extended' editor setup

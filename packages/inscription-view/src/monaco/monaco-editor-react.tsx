@@ -1,5 +1,4 @@
 /* Inspired by https://github.com/suren-atoyan/monaco-react */
-/* eslint-disable react-hooks/exhaustive-deps */
 
 import { type ITextFileEditorModel } from '@codingame/monaco-vscode-api/monaco';
 import type { IReference } from '@codingame/monaco-vscode-editor-service-override';
@@ -76,6 +75,7 @@ export const useMonacoModelReference = (
       modelReferenceRef.current?.dispose();
       modelReferenceRef.current = null;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [monaco, uri]);
 
   useEffect(() => {
@@ -98,6 +98,7 @@ export const useMonacoModelReference = (
         isExternalUpdateRef.current = false;
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modelReference, content]);
 
   return modelReference;
@@ -172,6 +173,7 @@ const InternalMonacoEditorReactComp: React.FC<MonacoEditorProps> = ({
       editorRef.current?.dispose();
       editorRef.current = null;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [monaco, container, modelReference]);
 
   useEffect(() => {

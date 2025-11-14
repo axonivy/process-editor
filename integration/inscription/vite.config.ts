@@ -3,13 +3,11 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { monacoConfigPlugin } from '../monaco-config-plugin';
-import { monacoWorkaroundPlugin } from '../monaco-workaround-plugin';
 
 export default defineConfig(() => ({
-  plugins: [react(), tsconfigPaths(), monacoWorkaroundPlugin(), monacoConfigPlugin()],
+  plugins: [react(), tsconfigPaths(), monacoConfigPlugin()],
   build: {
     outDir: 'build',
-    minify: false,
     chunkSizeWarningLimit: 5000,
     rollupOptions: {
       input: {
@@ -18,7 +16,12 @@ export default defineConfig(() => ({
       }
     }
   },
-  server: { port: 3003 },
+  server: {
+    port: 3003,
+    sourcemapIgnoreList(sourcePath, sourcemapPath) {
+      return sourcePath.includes('node_modules') && !sourcePath.includes('@eclipse-glsp') && !sourcePath.includes('@axonivy');
+    }
+  },
   preview: { port: 4003 },
   resolve: {
     alias: {
@@ -29,6 +32,6 @@ export default defineConfig(() => ({
   },
   base: './',
   worker: {
-    format: 'es' as 'es' | 'iife'
+    format: 'es'
   }
 }));
