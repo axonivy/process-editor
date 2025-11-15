@@ -20,7 +20,7 @@
   "dependencies": {
     "@axonivy/process-editor-protocol": "~13.2.0-next",
     "@eclipse-glsp/client": "2.5.0",
-    "marked": "^16.0.0",
+    "marked": "^17.0.0",
     "uuid": "^13.0.0"
   },
   "peerDependencies": {
