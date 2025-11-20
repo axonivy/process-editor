@@ -1,6 +1,6 @@
 import type { MaybePromise, PaletteItem } from '@eclipse-glsp/client';
 import { Action } from '@eclipse-glsp/client';
-import type { ShowMenuAction } from '../menu/menu';
+import type { ShowMenuAction } from '../palette/menu';
 
 export interface ShowToolBarMenuAction extends ShowMenuAction {
   kind: typeof ShowToolBarMenuAction.KIND;

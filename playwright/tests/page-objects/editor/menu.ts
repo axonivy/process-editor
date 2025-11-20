@@ -33,8 +33,12 @@ export class Menu {
     return this.menu.locator('.ui-palette-item');
   }
 
+  item(entry: string) {
+    return this.menu.locator(`.ui-palette-item:has-text("${entry}")`);
+  }
+
   async click(entry: string) {
-    await this.menu.locator(`.ui-palette-item:has-text("${entry}")`).click();
+    await this.item(entry).click();
   }
 
   async expectGroupCount(count: number) {

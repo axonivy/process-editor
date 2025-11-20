@@ -1,5 +1,3 @@
-import './menu.css';
-import './toggle-switch.css';
 import './tool-bar.css';
 
 import {

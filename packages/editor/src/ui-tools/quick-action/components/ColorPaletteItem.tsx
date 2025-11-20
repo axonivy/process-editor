@@ -2,10 +2,11 @@ import { cn, Flex, IvyIcon, type PaletteItemConfig, type PaletteItemProps } from
 import { IvyIcons } from '@axonivy/ui-icons';
 import { t } from 'i18next';
 import React from 'react';
-import type { MenuPaletteItem } from '../../../utils/menu-utils';
+import type { ExtendedPaletteItem } from '../../palette/palette-utils';
 import type { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
+import './ColorPaletteItem.css';
 
-export type ColorPaletteItem = MenuPaletteItem;
+export type ColorPaletteItem = ExtendedPaletteItem;
 
 export function isNewColorPaletteItem(item: ColorPaletteItem): boolean {
   return item.id === 'new.color';

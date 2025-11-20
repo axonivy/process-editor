@@ -4,6 +4,7 @@ import { t } from 'i18next';
 import { marked } from 'marked';
 import React from 'react';
 import type { ShowInfoQuickActionMenuAction } from '../quick-action-menu-ui';
+import './QuickActionInfoPanel.css';
 
 interface QuickActionInfoPanelProps {
   action: ShowInfoQuickActionMenuAction;

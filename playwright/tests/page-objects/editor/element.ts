@@ -128,7 +128,7 @@ export class Element extends BaseElement {
   }
 
   get icon() {
-    return this.element.locator('.sprotty-icon');
+    return this.element.locator('.sprotty-icon').first();
   }
 }
 

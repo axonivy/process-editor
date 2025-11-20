@@ -3,11 +3,13 @@ import './quick-action.css';
 import { FeatureModule, RemoveMarqueeAction, TYPES, bindAsService, configureActionHandler } from '@eclipse-glsp/client';
 import type { interfaces } from 'inversify';
 
-import { UpdateColorPaletteAction, UpdatePaletteItems } from '@axonivy/process-editor-protocol';
+import { UpdateColorPaletteAction, UpdateIconPaletteAction, UpdatePaletteItems } from '@axonivy/process-editor-protocol';
 import { IVY_TYPES } from '../../types';
 import { SelectColorQuickActionProvider } from './color/action';
 import { ColorPaletteHandler } from './color/action-handler';
 import { ConnectQuickActionProvider, QuickActionEdgeCreationTool, QuickActionTriggerEdgeCreationAction } from './edge/edge-creation-tool';
+import { SelectIconQuickActionProvider } from './icon/action';
+import { IconPaletteHandler } from './icon/action-handler';
 import { InfoQuickActionProvider } from './info/action';
 import {
   CreateActivityQuickActionProvider,
@@ -32,6 +34,7 @@ const ivyQuickActionModule = new FeatureModule((bind, _unbind, isBound) => {
   configureQuickActionProviders({ bind });
   configureColorQuickActionProviders({ bind, isBound });
   configureTypeQuickActionProviders({ bind, isBound });
+  configureIconQuickActionProviders({ bind, isBound });
 });
 
 export function configureQuickActionEdgeTool(context: { bind: interfaces.Bind; isBound: interfaces.IsBound }): void {
@@ -58,6 +61,14 @@ export function configureColorQuickActionProviders(context: { bind: interfaces.B
   configureActionHandler(context, UpdatePaletteItems.KIND, ColorPaletteHandler);
   configureActionHandler(context, UpdateColorPaletteAction.KIND, ColorPaletteHandler);
   context.bind(IVY_TYPES.QuickActionProvider).to(SelectColorQuickActionProvider);
+}
+
+export function configureIconQuickActionProviders(context: { bind: interfaces.Bind; isBound: interfaces.IsBound }): void {
+  context.bind(IconPaletteHandler).toSelf().inSingletonScope();
+  context.bind(IVY_TYPES.IconPalette).toService(IconPaletteHandler);
+  configureActionHandler(context, UpdatePaletteItems.KIND, IconPaletteHandler);
+  configureActionHandler(context, UpdateIconPaletteAction.KIND, IconPaletteHandler);
+  context.bind(IVY_TYPES.QuickActionProvider).to(SelectIconQuickActionProvider);
 }
 
 export function configureTypeQuickActionProviders(context: { bind: interfaces.Bind; isBound: interfaces.IsBound }): void {

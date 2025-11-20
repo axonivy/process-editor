@@ -1,0 +1,19 @@
+.ui-palette-color-item :where(.color-icon, .empty-icon, .new-color-icon) {
+  height: 1rem;
+  min-width: 1rem;
+  margin: 0.5rem;
+  border-radius: 1rem;
+}
+.ui-palette-color-item .empty-icon {
+  background-color: var(--glsp-foreground);
+}
+.ui-palette-color-item.new-color .new-color-icon {
+  border: 1px dashed var(--glsp-foreground);
+  font-size: 8px;
+  line-height: 16px;
+}
+.ui-palette-color-item [data-function='edit-color']:hover {
+  background-color: var(--glsp-bar-menu-label);
+  border-radius: 5px;
+  padding: 0 4px;
+}

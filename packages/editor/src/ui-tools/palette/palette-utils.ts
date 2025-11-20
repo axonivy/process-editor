@@ -1,10 +1,10 @@
 import type { PaletteConfig, PaletteItemConfig } from '@axonivy/ui-components';
 import type { PaletteItem } from '@eclipse-glsp/client';
 
-export interface MenuPaletteItem extends PaletteItem {
+export interface ExtendedPaletteItem extends PaletteItem {
   description?: string;
   info?: string;
-  children?: MenuPaletteItem[];
+  children?: ExtendedPaletteItem[];
 }
 
 export function sortPaletteItems(left: PaletteItem, right: PaletteItem): number {

@@ -1,16 +1,18 @@
-.label-edit input,
-.label-edit textarea {
-  background: var(--glsp-inline-label-background);
-  color: var(--glsp-foreground);
-  border-radius: 4px;
-  width: 99%;
-  height: 99%;
-  box-shadow: var(--glsp-box-shadow);
-  z-index: 100;
-}
-
-.label-edit input:focus,
-.label-edit textarea:focus {
-  outline: none;
-  outline-offset: 0px;
+.label-edit {
+  margin-top: 5em;
+  input,
+  textarea {
+    background: var(--glsp-inline-label-background);
+    color: var(--glsp-foreground);
+    border-radius: 4px;
+    width: 99%;
+    height: 99%;
+    box-shadow: var(--glsp-box-shadow);
+    z-index: 100;
+  }
+  input:focus,
+  textarea:focus {
+    outline: none;
+    outline-offset: 0px;
+  }
 }

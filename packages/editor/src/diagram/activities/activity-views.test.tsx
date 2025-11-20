@@ -3,7 +3,7 @@ import toHTML from 'snabbdom-to-html';
 import type { VNode } from 'snabbdom-to-html-common';
 import { beforeEach, describe, expect, test } from 'vitest';
 import { setupViewTestContainer } from '../../test-utils/view-container.test-util';
-import { SvgIcons } from '../icon/icons';
+import { standardIcons } from '../icon/icons';
 import type { ActivityNode } from '../model';
 import { ActivityTypes, LabelType } from '../view-types';
 
@@ -60,31 +60,31 @@ describe('ActivityNodeView', () => {
   });
 
   test('render script node', () => {
-    assertNode(ActivityTypes.SCRIPT, 'script', { icon: SvgIcons.SCRIPT });
+    assertNode(ActivityTypes.SCRIPT, 'script', { icon: standardIcons['std:Script'] });
   });
 
   test('render hd node', () => {
-    assertNode(ActivityTypes.HD, 'hd', { icon: SvgIcons.USER_DIALOG });
+    assertNode(ActivityTypes.HD, 'hd', { icon: standardIcons['std:UserDialog'] });
   });
 
   test('render user node', () => {
-    assertNode(ActivityTypes.USER, 'user', { icon: SvgIcons.USER_TASK });
+    assertNode(ActivityTypes.USER, 'user', { icon: standardIcons['std:UserTask'] });
   });
 
   test('render soap node', () => {
-    assertNode(ActivityTypes.SOAP, 'soap', { icon: SvgIcons.WEB_SERVICE });
+    assertNode(ActivityTypes.SOAP, 'soap', { icon: standardIcons['std:WebService'] });
   });
 
   test('render rest node', () => {
-    assertNode(ActivityTypes.REST, 'rest', { icon: SvgIcons.REST_CLIENT });
+    assertNode(ActivityTypes.REST, 'rest', { icon: standardIcons['std:RestClient'] });
   });
 
   test('render db node', () => {
-    assertNode(ActivityTypes.DB, 'db', { icon: SvgIcons.DATABASE });
+    assertNode(ActivityTypes.DB, 'db', { icon: standardIcons['std:Database'] });
   });
 
   test('render email node', () => {
-    assertNode(ActivityTypes.EMAIL, 'email', { icon: SvgIcons.EMAIL });
+    assertNode(ActivityTypes.EMAIL, 'email', { icon: standardIcons['std:Mail'] });
   });
 
   test('render sub process node', () => {
@@ -96,19 +96,19 @@ describe('ActivityNodeView', () => {
   });
 
   test('render trigger node', () => {
-    assertNode(ActivityTypes.TRIGGER, 'trigger', { icon: SvgIcons.TRIGGER });
+    assertNode(ActivityTypes.TRIGGER, 'trigger', { icon: standardIcons['std:Trigger'] });
   });
 
   test('render program node', () => {
-    assertNode(ActivityTypes.PROGRAM, 'program', { icon: SvgIcons.PROGRAM });
+    assertNode(ActivityTypes.PROGRAM, 'program', { icon: standardIcons['std:Program'] });
   });
 
   test('render third party node', () => {
-    assertNode(ActivityTypes.THIRD_PARTY, 'thirdParty', { icon: SvgIcons.PUZZLE });
+    assertNode(ActivityTypes.THIRD_PARTY, 'thirdParty', { icon: standardIcons['other:Puzzle'] });
   });
 
   test('render third party rule node', () => {
-    assertNode(ActivityTypes.THIRD_PARTY_RULE, 'thirdPartyRule', { icon: SvgIcons.RULE });
+    assertNode(ActivityTypes.THIRD_PARTY_RULE, 'thirdPartyRule', { icon: standardIcons['std:Rule'] });
   });
 
   test('render unknown node', () => {
@@ -146,7 +146,7 @@ describe('ActivityNodeView', () => {
       expect(node).to.not.contain('class="sprotty-label node-child-label"');
     }
     if (options.icon) {
-      expect(node).to.contain('class="sprotty-icon-svg"');
+      expect(node).to.contain('class="sprotty-icon sprotty-icon-svg"');
       expect(node).to.contain(options.icon);
     } else {
       expect(node).to.not.contain('class="sprotty-icon-svg"');
