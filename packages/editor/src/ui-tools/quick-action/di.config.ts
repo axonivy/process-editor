@@ -34,6 +34,7 @@ const ivyQuickActionModule = new FeatureModule((bind, _unbind, isBound) => {
   configureQuickActionProviders({ bind });
   configureColorQuickActionProviders({ bind, isBound });
   configureTypeQuickActionProviders({ bind, isBound });
+  configureIconQuickActionProviders({ bind, isBound });
 });
 
 export function configureQuickActionEdgeTool(context: { bind: interfaces.Bind; isBound: interfaces.IsBound }): void {

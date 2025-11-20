@@ -45,7 +45,7 @@ export const ToolBarPaletteMenu: React.FC<ToolBarPaletteMenuProps> = ({ paletteI
   );
 
   return (
-    <Palette sections={sections} options={{ searchPlaceholder: t('a11y.search.placeholder'), emptyMessage: t('label.empty') }}>
+    <Palette sections={sections} options={{ searchPlaceholder: t('common.label.search'), emptyMessage: t('label.empty') }}>
       {(title, items) => (
         <PaletteSection key={title} title={title} items={items}>
           {item => <ToolPaletteItem key={item.name} {...item} horizontal={horizontal} />}

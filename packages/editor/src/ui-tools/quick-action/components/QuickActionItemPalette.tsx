@@ -1,6 +1,7 @@
 import { BasicPalette } from '@axonivy/ui-components';
 import { PaletteItem, type IActionDispatcherProvider } from '@eclipse-glsp/client';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { paletteItemsToSections } from '../../../utils/menu-utils';
 import { MenuIcons } from '../../menu/icons';
 import type { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
@@ -13,6 +14,7 @@ interface QuickActionItemPaletteProps {
 }
 
 export const QuickActionItemPalette: React.FC<QuickActionItemPaletteProps> = ({ action, actionDispatcher, closeUi }) => {
+  const { t } = useTranslation();
   const onItemSelected = React.useCallback(
     async (item: PaletteItem) => {
       const dispatcher = await actionDispatcher();
@@ -37,8 +39,8 @@ export const QuickActionItemPalette: React.FC<QuickActionItemPaletteProps> = ({ 
     <div className='bar-menu quick-action-bar-menu' ref={ref => ref?.querySelector('input')?.focus()}>
       <BasicPalette
         options={{
-          searchPlaceholder: 'Search actions...',
-          emptyMessage: 'No actions available',
+          searchPlaceholder: t('common.label.search'),
+          emptyMessage: t('label.empty'),
           searchFilter: (item, term) => item.description.toLocaleLowerCase().includes(term.toLocaleLowerCase())
         }}
         sections={sections}

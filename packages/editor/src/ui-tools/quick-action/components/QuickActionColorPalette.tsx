@@ -1,6 +1,7 @@
 import { Palette, PaletteSection } from '@axonivy/ui-components';
 import { type IActionDispatcherProvider } from '@eclipse-glsp/client';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { paletteItemsToSections } from '../../../utils/menu-utils';
 import type { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
 import { colorItemToConfig, ColorPaletteItem, isNewColorPaletteItem, newColorPaletteItem } from './ColorPaletteItem';
@@ -13,6 +14,7 @@ interface QuickActionColorPaletteProps {
 }
 
 export const QuickActionColorPalette: React.FC<QuickActionColorPaletteProps> = ({ action, actionDispatcher, closeUi }) => {
+  const { t } = useTranslation();
   const [editingItem, setEditingItem] = React.useState<ColorPaletteItem | undefined>(undefined);
 
   const onItemSelected = React.useCallback(
@@ -38,7 +40,7 @@ export const QuickActionColorPalette: React.FC<QuickActionColorPaletteProps> = (
 
   return (
     <div className='bar-menu quick-action-bar-menu' ref={ref => ref?.querySelector('input')?.focus()}>
-      <Palette options={{ searchPlaceholder: 'Search colors...', emptyMessage: 'No colors available' }} sections={sections}>
+      <Palette options={{ searchPlaceholder: t('common.label.search'), emptyMessage: t('label.empty') }} sections={sections}>
         {(title, items) => (
           <PaletteSection key={title} title={title} items={items}>
             {item => <ColorPaletteItem key={item.source.id} {...item} />}
