@@ -91,10 +91,6 @@ export namespace MonacoLanguagePack {
   }
 }
 
-export namespace Typefox {
-  export const MonacoEditorReact = new LazyLoader(() => import('@typefox/monaco-editor-react'));
-}
-
 // copied from monaco-vscode-api so we can use it without loading the module
 export enum LogLevel {
   Off = 0,

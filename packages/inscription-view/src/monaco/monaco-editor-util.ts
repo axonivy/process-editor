@@ -108,14 +108,15 @@ export namespace MonacoEditorUtil {
 // - Typing very fast may lead to reset of editor position and wrong inserts, cf. https://github.com/TypeFox/monaco-languageclient/pull/986#issuecomment-3529886336
 // - There are also some issues when using the Typefox React editor with Strict Mode, cf. https://github.com/TypeFox/monaco-languageclient/issues/994
 //
+// export const TypefoxMonacoEditorReact = new LazyLoader(() => import('@typefox/monaco-editor-react'));
 export const MonacoEditor = React.lazy(async () => {
   const timer = new ConsoleTimer(true, 'Initialize Monaco Editor Component (only necessary once)').start();
   timer.step('Wait for Monaco API...');
   await MonacoUtil.monaco();
   timer.step('Load Editor Component...');
-  //   const module = await Typefox.MonacoEditorReact.load();
-  //   timer.end();
-  //   return { default: module.MonacoEditorReactComp };
+  // const module = await TypefoxMonacoEditorReact.load();
+  // timer.end();
+  // return { default: module.MonacoEditorReactComp };
   timer.end();
   return { default: MonacoEditorReactComp };
 });
