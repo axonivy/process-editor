@@ -3,6 +3,7 @@ export const IVY_TYPES = {
   ToolBarButtonProvider: Symbol.for('ToolBarButtonProvider'),
   ToolBar: Symbol.for('ToolBar'),
   ColorPalette: Symbol.for('ColorPalette'),
+  IconPalette: Symbol.for('IconPalette'),
   ActivityTypesPalette: Symbol.for('ActivityTypesPalette'),
   IvyViewerOptions: Symbol.for('IvyViewerOptions')
 };

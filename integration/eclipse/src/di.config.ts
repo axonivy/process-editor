@@ -4,7 +4,6 @@ import {
   ivyBreakpointModule,
   ivyGoToSourceModule,
   ivyOpenDataClassModule,
-  ivyOpenDecoratorBrowserModule,
   ivyOpenFormModule,
   ivyStartActionModule,
   ivyThemeModule
@@ -33,7 +32,6 @@ export default function createContainer(widgetId: string, options: IvyDiagramOpt
     ivyEclipseCopyPasteModule,
     ivyEclipseDeleteModule,
     ivyEclipseSelectAllModule,
-    ivyOpenDecoratorBrowserModule,
     ivyOpenQuickOutlineModule,
     ivyGoToSourceModule,
     ivyBreakpointModule,

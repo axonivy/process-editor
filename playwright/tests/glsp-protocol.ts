@@ -69,7 +69,6 @@ export class GlspProtocol {
           'enableToolPalette',
           'showToolBarMenu',
           'showToolBarOptionsMenu',
-          'toggleCustomIcons',
           'EditLabel',
           'triggerNodeCreation',
           'showGridAction',
