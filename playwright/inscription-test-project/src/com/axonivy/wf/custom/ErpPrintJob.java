@@ -18,6 +18,7 @@ import ch.ivyteam.ivy.process.extension.ui.IUiFieldEditor;
 import ch.ivyteam.ivy.process.extension.ui.UiEditorExtension;
 import ch.ivyteam.ivy.process.intermediateevent.AbstractProcessIntermediateEventBean;
 
+@SuppressWarnings("removal")
 public class ErpPrintJob extends AbstractProcessIntermediateEventBean {
 
   public ErpPrintJob() {
