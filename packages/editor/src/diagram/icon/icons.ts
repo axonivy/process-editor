@@ -124,7 +124,7 @@ const ElementIcons = new Map<string, string>([
   [ActivityTypes.BPMN_RECEIVE, SvgIcons.RECEIVE]
 ]);
 
-const StandardIcons = new Map<string, string>([
+export const StandardIcons = new Map<string, string>([
   ['std:Cancel', SvgIcons.BPMN_CANCEL],
   ['std:CancelThrow', SvgIcons.BPMN_CANCEL_THROW],
   ['std:Link', SvgIcons.BPMN_LINK],
@@ -166,9 +166,9 @@ export const resolveIcon = (iconUri: string): NodeIcon => {
   if (elementIcon) {
     return { res: elementIcon, style: IconStyle.SI };
   }
-  const customBoundaryIcon = StandardIcons.get(iconUri);
-  if (customBoundaryIcon) {
-    return { res: customBoundaryIcon, style: IconStyle.SI };
+  const standardIcon = StandardIcons.get(iconUri);
+  if (standardIcon) {
+    return { res: standardIcon, style: IconStyle.SI };
   }
   return NoIcon;
 };

@@ -18,7 +18,7 @@ export class IconPaletteHandler implements IActionHandler {
   protected paletteItems: PaletteItem[] = [];
 
   getPaletteItems(): PaletteItem[] {
-    return this.paletteItems;
+    return [{ id: 'default', label: 'Default', sortString: 'A', actions: [] }, ...this.paletteItems];
   }
 
   handle(action: Action) {

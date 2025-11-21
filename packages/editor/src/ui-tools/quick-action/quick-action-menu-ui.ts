@@ -1,7 +1,7 @@
 import type { GIssueMarker, JsonAny, PaletteItem } from '@eclipse-glsp/client';
 import { Action } from '@eclipse-glsp/client';
-import type { MenuPaletteItem } from '../../utils/menu-utils';
 import type { ShowMenuAction } from '../menu/menu';
+import type { MenuPaletteItem } from '../menu/menu-utils';
 
 export interface ShowQuickActionMenuAction<T extends PaletteItem = MenuPaletteItem> extends ShowMenuAction {
   kind: typeof ShowQuickActionMenuAction.KIND;

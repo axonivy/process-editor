@@ -1,9 +1,11 @@
-import { BasicPalette } from '@axonivy/ui-components';
+import { Palette, PaletteSection } from '@axonivy/ui-components';
 import { PaletteItem, type IActionDispatcherProvider } from '@eclipse-glsp/client';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { paletteItemsToSections } from '../../../utils/menu-utils';
-import { MenuIcons } from '../../menu/icons';
+import { paletteItemsToSections, type ExtendedPaletteItem } from '../../menu/menu-utils';
+import { MenuPaletteIcon } from '../../menu/MenuPaletteIcon';
+import { MenuPaletteItem } from '../../menu/MenuPaletteItem';
+import type { ToolPaletteItemConfig } from '../../tool-bar/components/ToolBarPaletteMenu';
 import type { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
 import { newColorPaletteItem } from './ColorPaletteItem';
 
@@ -27,24 +29,23 @@ export const QuickActionItemPalette: React.FC<QuickActionItemPaletteProps> = ({ 
 
   const sections = React.useMemo(() => {
     const paletteItems = action.isEditable ? [...action.paletteItems(), newColorPaletteItem()] : action.paletteItems();
-    return paletteItemsToSections(paletteItems, item => ({
+    return paletteItemsToSections<ExtendedPaletteItem, ToolPaletteItemConfig>(paletteItems, item => ({
       name: item.label,
       description: item.label,
-      icon: item.icon ? MenuIcons.get(item.icon) : undefined,
+      paletteIcon: <MenuPaletteIcon item={item} />,
       onClick: async () => onItemSelected(item)
     }));
   }, [action, onItemSelected]);
 
   return (
     <div className='bar-menu quick-action-bar-menu' ref={ref => ref?.querySelector('input')?.focus()}>
-      <BasicPalette
-        options={{
-          searchPlaceholder: t('common.label.search'),
-          emptyMessage: t('label.empty'),
-          searchFilter: (item, term) => item.description.toLocaleLowerCase().includes(term.toLocaleLowerCase())
-        }}
-        sections={sections}
-      />
+      <Palette options={{ searchPlaceholder: t('common.label.search'), emptyMessage: t('label.empty') }} sections={sections}>
+        {(title, items) => (
+          <PaletteSection key={title} title={title} items={items}>
+            {item => <MenuPaletteItem key={item.name} {...item} />}
+          </PaletteSection>
+        )}
+      </Palette>
     </div>
   );
 };

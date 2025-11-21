@@ -2,7 +2,7 @@ import { Palette, PaletteSection } from '@axonivy/ui-components';
 import { type IActionDispatcherProvider } from '@eclipse-glsp/client';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { paletteItemsToSections } from '../../../utils/menu-utils';
+import { paletteItemsToSections } from '../../menu/menu-utils';
 import type { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
 import { colorItemToConfig, ColorPaletteItem, isNewColorPaletteItem, newColorPaletteItem } from './ColorPaletteItem';
 import { EditColorForm } from './EditColorForm';

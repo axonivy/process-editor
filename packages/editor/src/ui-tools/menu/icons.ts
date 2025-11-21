@@ -1,4 +1,5 @@
 import { IvyIcons } from '@axonivy/ui-icons';
+import { StandardIcons } from '../../diagram/icon/icons';
 import {
   ActivityTypes,
   EventBoundaryTypes,
@@ -8,6 +9,19 @@ import {
   GatewayTypes,
   LaneTypes
 } from '../../diagram/view-types';
+
+export enum IconStyle {
+  SI,
+  SVG,
+  IMG,
+  NO
+}
+
+export interface NodeIcon {
+  res: string;
+  style: IconStyle;
+}
+export const NoIcon = { res: '', style: IconStyle.NO };
 
 export const MenuIcons = new Map<string, IvyIcons>([
   // Start Events
@@ -70,3 +84,18 @@ export const MenuIcons = new Map<string, IvyIcons>([
   [LaneTypes.POOL, IvyIcons.PoolSwimlanes],
   [LaneTypes.LANE, IvyIcons.LaneSwimlanes]
 ]);
+
+export const resolveIcon = (iconUri: string): NodeIcon => {
+  if (iconUri.includes('/faces/javax.faces.resource')) {
+    return { res: iconUri, style: IconStyle.IMG };
+  }
+  const elementIcon = MenuIcons.get(iconUri);
+  if (elementIcon) {
+    return { res: elementIcon, style: IconStyle.SI };
+  }
+  const standardIcon = StandardIcons.get(iconUri);
+  if (standardIcon) {
+    return { res: standardIcon, style: IconStyle.SVG };
+  }
+  return NoIcon;
+};
