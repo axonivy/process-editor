@@ -125,34 +125,56 @@ const ElementIcons = new Map<string, string>([
 ]);
 
 export const StandardIcons = new Map<string, string>([
-  ['std:Cancel', SvgIcons.BPMN_CANCEL],
-  ['std:CancelThrow', SvgIcons.BPMN_CANCEL_THROW],
-  ['std:Link', SvgIcons.BPMN_LINK],
-  ['std:LinkThrow', SvgIcons.BPMN_LINK_THROW],
-  ['std:Message', SvgIcons.BPMN_MESSAGE],
-  ['std:MessageThrow', SvgIcons.BPMN_MESSAGE_THROW],
-  ['std:Signal', SvgIcons.BPMN_SIGNAL],
-  ['std:SignalThrow', SvgIcons.BPMN_SIGNAL_THROW],
+  // BPMN
   ['std:Error', SvgIcons.BPMN_ERROR],
-  ['std:ErrorThrow', SvgIcons.BPMN_ERROR_THROW],
-  ['std:Escalation', SvgIcons.BPMN_ESCALATION],
-  ['std:EscalationThrow', SvgIcons.BPMN_ESCALATION_THROW],
+  ['std:Signal', SvgIcons.BPMN_SIGNAL],
+  ['std:Message', SvgIcons.BPMN_MESSAGE],
   ['std:Timer', SvgIcons.BPMN_TIMER],
   ['std:Condition', SvgIcons.BPMN_CONDITION],
+  ['std:Escalation', SvgIcons.BPMN_ESCALATION],
   ['std:Compensate', SvgIcons.BPMN_COMPENSATE],
-  ['std:Complex', SvgIcons.BPMN_COMPLEX],
-  ['std:EventBased', SvgIcons.BPMN_EVENT_BASED],
-  ['std:Terminate', SvgIcons.BPMN_TERMINATE],
-  ['std:Inclusive', SvgIcons.BPMN_INCLUSIVE],
-
+  ['std:Cancel', SvgIcons.BPMN_CANCEL],
   ['std:User', SvgIcons.USER],
-  ['std:Service', SvgIcons.SERVICE],
-  ['std:Send', SvgIcons.SEND],
+  ['std:Manual', SvgIcons.MANUAL],
   ['std:Script', SvgIcons.SCRIPT],
   ['std:Receive', SvgIcons.RECEIVE],
-  ['std:Manual', SvgIcons.MANUAL],
+  ['std:Send', SvgIcons.SEND],
   ['std:Rule', SvgIcons.RULE],
-  ['std:Alternative', SvgIcons.ALTERNATIVE]
+  ['std:Service', SvgIcons.SERVICE],
+  ['std:Alternative', SvgIcons.ALTERNATIVE],
+  ['std:ErrorThrow', SvgIcons.BPMN_ERROR_THROW],
+  ['std:EscalationThrow', SvgIcons.BPMN_ESCALATION_THROW],
+  ['std:MessageThrow', SvgIcons.BPMN_MESSAGE_THROW],
+  ['std:SignalThrow', SvgIcons.BPMN_SIGNAL_THROW],
+  ['std:Terminate', SvgIcons.BPMN_TERMINATE],
+  ['std:Link', SvgIcons.BPMN_LINK],
+  ['std:LinkThrow', SvgIcons.BPMN_LINK_THROW],
+  ['std:CancelThrow', SvgIcons.BPMN_CANCEL_THROW],
+  ['std:EventBased', SvgIcons.BPMN_EVENT_BASED],
+  ['std:Inclusive', SvgIcons.BPMN_INCLUSIVE],
+  ['std:Complex', SvgIcons.BPMN_COMPLEX],
+
+  // Ivy
+  ['std:Page', SvgIcons.END_PAGE],
+  ['std:UserDialog', SvgIcons.USER_DIALOG],
+  ['std:Step', SvgIcons.SCRIPT],
+  ['std:Database', SvgIcons.DATABASE],
+  ['std:WebService', SvgIcons.WEB_SERVICE],
+  ['std:RestClient', SvgIcons.REST_CLIENT],
+  ['std:Mail', SvgIcons.EMAIL],
+  ['std:Trigger', SvgIcons.TRIGGER],
+  ['std:Program', SvgIcons.PROGRAM],
+  ['std:SubStart', SvgIcons.SUB_START],
+  ['std:SubEnd', SvgIcons.SUB_END],
+  ['std:Split', SvgIcons.SPLIT],
+  ['std:Join', SvgIcons.JOIN],
+  ['std:Tasks', SvgIcons.TASKS],
+
+  // Dialog
+  ['std:Method', SvgIcons.METHOD_START],
+  ['std:Init', SvgIcons.INIT_START],
+  ['std:Event', SvgIcons.EVENT_START],
+  ['std:Exit', SvgIcons.EXIT_END]
 ]);
 
 export const resolveIcon = (iconUri: string): NodeIcon => {
