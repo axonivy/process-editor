@@ -23,12 +23,14 @@ export class InfoComponent {
   }
 
   async expectFill(name = 'info name') {
+    await this.detailSection.expectIsOpen();
     await this.name.expectValue(name);
     await this.description.expectValue('info desc');
     await this.category.expectValue('info cat');
   }
 
   async clear() {
+    await this.detailSection.expectIsOpen();
     await this.name.clear();
     await this.description.clear();
     await this.category.clear();

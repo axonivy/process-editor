@@ -11,7 +11,7 @@ import { ResizableCodeEditor } from './ResizableCodeEditor';
 import './ScriptArea.css';
 import { monacoAutoFocus, useMonacoEditor } from './useCodeEditor';
 
-export const MacroArea = ({ value, onChange, minHeight, browsers, ...props }: CodeEditorAreaProps) => {
+export const MacroArea = ({ value, onChange, minHeight, browsers, maximizeState, maximizedHeader, ...props }: CodeEditorAreaProps) => {
   const { isFocusWithin, focusWithinProps, focusValue, browser } = useOnFocus(value, onChange);
   const { setEditor, modifyEditor, getSelectionRange } = useMonacoEditor({ macro: true });
   const path = usePath();
@@ -21,22 +21,22 @@ export const MacroArea = ({ value, onChange, minHeight, browsers, ...props }: Co
   return (
     // tabIndex is needed for safari to catch the focus when click on browser button
     <div className='script-area' {...focusWithinProps} tabIndex={1}>
-      {isFocusWithin || props.maximizeState?.isMaximizedCodeEditorOpen ? (
+      {isFocusWithin || maximizeState?.isMaximizedCodeEditorOpen ? (
         <>
-          {props.maximizeState && (
+          {maximizeState && (
             <MaximizedCodeEditorBrowser
-              open={props.maximizeState.isMaximizedCodeEditorOpen}
-              onOpenChange={props.maximizeState.setIsMaximizedCodeEditorOpen}
+              open={maximizeState.isMaximizedCodeEditorOpen}
+              onOpenChange={maximizeState.setIsMaximizedCodeEditorOpen}
               browsers={browsers}
               editorValue={value}
               location={path}
               applyEditor={onChange}
               selectionRange={getSelectionRange()}
-              header={props.maximizedHeader}
+              header={maximizedHeader}
               macro={true}
             />
           )}
-          {!props.maximizeState?.isMaximizedCodeEditorOpen && (
+          {!maximizeState?.isMaximizedCodeEditorOpen && (
             <>
               <ResizableCodeEditor
                 {...focusValue}

@@ -23,6 +23,7 @@ However, it's of course also possible to use another text editor.
 - `integration/eclipse`: Eclipse IDE integrations of the process editor
 - `integration/standalone`: Standalone integration of the process editor
 - `integration/viewer`: Standalone integration of the process viewer (read-only with less tooling)
+- `integration/monaco-vite-plugin`: A vite plugin to work with the monaco integration
 
 ---
 
@@ -50,7 +51,7 @@ This will launch the latest prebuild **process editor within the eclipse integra
 - **Standalone**: To start the Standalone integration you can start the Launch
   Standalone config directly inside the VS Code. If it can not open the browser you can
   manually open the browser and modify the URL accordingly:
-  http://localhost:3000/?server=localhost:8081&app=designer&pmv=base&file=/processes/testRequestStart.p.json
+  <http://localhost:3000/?server=localhost:8081&app=designer&pmv=base&file=/processes/testRequestStart.p.json>
 
 ---
 

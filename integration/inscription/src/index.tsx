@@ -1,11 +1,18 @@
 import { webSocketConnection, type Connection } from '@axonivy/jsonrpc';
-import { InscriptionClientJsonRpc, IvyScriptLanguage } from '@axonivy/process-editor-inscription-core';
-import { App, ClientContextProvider, initQueryClient, MonacoEditorUtil, QueryProvider } from '@axonivy/process-editor-inscription-view';
+import { InscriptionClientJsonRpc } from '@axonivy/process-editor-inscription-core';
+import {
+  App,
+  ClientContextProvider,
+  IvyLanguageClient,
+  LogLevel,
+  MonacoEditorUtil,
+  QueryProvider,
+  initQueryClient
+} from '@axonivy/process-editor-inscription-view';
 import { Flex, Spinner, ThemeProvider, Toaster } from '@axonivy/ui-components';
-import type { MonacoLanguageClient } from 'monaco-languageclient';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import { initTranslation } from './i18n';
+import { getCurrentLanguage, initTranslation } from './i18n';
 import './index.css';
 import { URLParams } from './url-helper';
 
@@ -61,26 +68,9 @@ export async function start(): Promise<void> {
     logger: console
   });
 
-  const instance = MonacoEditorUtil.configureInstance({ theme, debug: true });
-
-  const initializeScript = async (connection: Connection) => {
-    return await IvyScriptLanguage.startClient(connection, instance);
-  };
-
-  const reconnectScript = async (connection: Connection, oldClient: MonacoLanguageClient) => {
-    try {
-      await oldClient.stop(0);
-    } catch (error) {
-      console.warn(error);
-    }
-    return initializeScript(connection);
-  };
-
-  webSocketConnection<MonacoLanguageClient>(IvyScriptLanguage.webSocketUrl(server)).listen({
-    onConnection: initializeScript,
-    onReconnect: reconnectScript,
-    logger: console
-  });
+  // trigger initialization but no need to wait for anything here
+  MonacoEditorUtil.configureMonaco({ locale: getCurrentLanguage(), theme, logLevel: LogLevel.Debug });
+  IvyLanguageClient.connect({ server, logLevel: LogLevel.Debug });
 }
 
 start();

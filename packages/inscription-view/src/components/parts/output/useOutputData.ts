@@ -1,5 +1,6 @@
 import type { OutputData } from '@axonivy/process-editor-inscription-protocol';
 import { produce } from 'immer';
+import React from 'react';
 import { useConfigDataContext, type ConfigDataContext } from '../../../context/useDataContext';
 import type { Consumer, DataUpdater } from '../../../types/lambda';
 
@@ -9,20 +10,26 @@ export function useOutputData(): ConfigDataContext<OutputData> & {
 } {
   const { setConfig, ...config } = useConfigDataContext();
 
-  const update: DataUpdater<OutputData['output']> = (field, value) => {
-    setConfig(
-      produce(draft => {
-        draft.output[field] = value;
-      })
-    );
-  };
+  const update: DataUpdater<OutputData['output']> = React.useCallback(
+    (field, value) => {
+      setConfig(
+        produce(draft => {
+          draft.output[field] = value;
+        })
+      );
+    },
+    [setConfig]
+  );
 
-  const updateSudo = (sudo: boolean) =>
-    setConfig(
-      produce(draft => {
-        draft.sudo = sudo;
-      })
-    );
+  const updateSudo = React.useCallback(
+    (sudo: boolean) =>
+      setConfig(
+        produce(draft => {
+          draft.sudo = sudo;
+        })
+      ),
+    [setConfig]
+  );
 
   return {
     ...config,

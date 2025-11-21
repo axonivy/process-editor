@@ -17,78 +17,98 @@ class CodeEditor {
     this.scriptArea = parentLocator.locator('div.script-area');
   }
 
-  async triggerContentAssist() {
-    await this.focus();
-    await expect(this.contentAssist).toBeHidden();
-    await this.page.keyboard.press('Control+Space');
-    await expect(this.contentAssist).toBeVisible();
+  async activate() {
+    if (await this.locator.isVisible()) {
+      // we may need to click before the editor is actually triggered to load
+      // or we simply want to click into the editor to have it properly focussed
+      await this.locator.click();
+    }
+    await this.loaded();
   }
 
-  async fill(value: string) {
-    await this.focus();
-    await this.clearContent();
+  async loaded() {
+    await this.expectLoaded();
+    await expect(this.code).toBeVisible();
+    await this.code.click();
+  }
+
+  async expectLoaded() {
+    // code-input might already be in the DOM but not yet fully loaded
+    await expect(this.code.locator('.view-lines')).toBeVisible();
+    await expect(this.code).not.toHaveText('Loading Editor...');
+  }
+
+  async expectCodeFocused() {
+    await expect(this.code.locator('.focused').first()).toBeVisible();
+  }
+
+  async fill(value: string, expectedValue = value) {
+    if (!value) {
+      return this.clear();
+    }
+    await this.activate();
+    await this.selectAll();
     await this.page.keyboard.type(value);
+    await this.expectCode(expectedValue);
     await this.blur();
   }
 
   async clear() {
-    await this.focus();
-    await this.clearContent();
+    await this.activate();
+    await this.selectAll();
+    await this.page.keyboard.press('Delete');
+    await this.expectCode('');
     await this.blur();
   }
 
-  async expectCodeFocused() {
-    await this.waitLazyLoading();
-    await expect(this.code).toBeVisible();
+  protected async selectAll() {
+    const selectAll = this.page.context().browser()?.browserType().name() === 'webkit' ? 'Meta+KeyA' : 'Control+KeyA';
+    await this.page.keyboard.press(selectAll);
+  }
+
+  async expectValue(value: string) {
+    if (await this.value.evaluate(element => element.tagName.toLowerCase() === 'input')) {
+      await expect(this.value).toHaveValue(value);
+    } else {
+      await this.expectCode(value);
+    }
+  }
+
+  protected async expectCode(value: string) {
+    await expectCodeInEditor(this.code, value);
+  }
+
+  async expectEmpty() {
+    await this.expectValue('');
   }
 
   async expectBrowserButtonFocused() {
     await expect(this.scriptArea.getByRole('button', { name: 'Browser' })).toBeFocused();
   }
 
-  async focus() {
-    await this.locator.click();
-    await this.expectCodeFocused();
-  }
-
   async openBrowsers() {
-    await this.focus();
+    await this.activate();
     await this.scriptArea.getByRole('button', { name: 'Browser' }).click();
     await expect(this.page.locator('.browser-content')).toBeVisible();
     return new Browser(this.page);
   }
 
   async openFullScreen() {
-    await this.focus();
+    await this.activate();
     await this.page.getByRole('button', { name: 'Fullsize Code Editor' }).click();
     await expect(this.page.locator('.browser-content')).toBeVisible();
     return new Browser(this.page);
-  }
-
-  async waitLazyLoading() {
-    await expect(this.code).not.toHaveText('Loading Editor...');
   }
 
   private async blur() {
     await this.page.locator('*:focus').blur();
   }
 
-  protected async clearContent() {
-    if (this.page.context().browser()?.browserType().name() === 'webkit') {
-      await this.page.keyboard.press('Meta+KeyA');
-    } else {
-      await this.page.keyboard.press('Control+KeyA');
-    }
-    await this.page.keyboard.press('Delete');
-    await expect(this.code).toHaveText('');
-  }
-
-  async expectValue(value: string) {
-    await expect(this.value).toHaveValue(value);
-  }
-
-  async expectEmpty() {
-    await expect(this.value).toBeEmpty();
+  async triggerContentAssist() {
+    await this.activate();
+    await expect(this.contentAssist).toBeHidden();
+    await this.page.keyboard.press('Control+Space');
+    await expect(this.contentAssist).toBeVisible();
   }
 
   async expectContentAssistContains(contentAssist: string) {
@@ -124,6 +144,11 @@ export class Browser {
   get help() {
     return this.dialog.locator('.browser-helptext');
   }
+}
+
+export function expectCodeInEditor(locator: Locator, value: string) {
+  const code = locator.locator('.view-lines');
+  return expect(code).toHaveText(value.replace('\n', ''));
 }
 
 export class ScriptArea extends CodeEditor {

@@ -13,11 +13,6 @@ export default config.defineConfig(
       }
     }
   },
-  // Project specific configs
-  {
-    name: 'ingored-files',
-    ignores: ['./integration/monaco-workaround-plugin.ts']
-  },
   {
     name: 'general',
     rules: {
