@@ -24,7 +24,7 @@
     "react-i18next": "^16.0.0"
   },
   "devDependencies": {
-    "@vscode/codicons": "^0.0.42",
+    "@vscode/codicons": "^0.0.43",
     "reflect-metadata": "~0.2.2",
     "vite": "^7.0.0",
     "vite-tsconfig-paths": "^5.1.4"
