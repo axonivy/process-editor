@@ -9,9 +9,10 @@
     "node": "24.11.0"
   },
   "scripts": {
-    "ci": "npm install && npm run build && npm run type && npm run package && (npm run lint:ci || true) && npm run test:ci",
+    "ci": "npm install && npm run monaco-postinstall && npm run build && npm run type && npm run package && (npm run lint:ci || true) && npm run test:ci",
     "clean": "lerna run clean",
     "build": "tsc --build && tscp --build",
+    "monaco-postinstall": "npm explore monaco-languageclient -- npm run postinstall",
     "package": "lerna run package",
     "type": "lerna run type",
     "lint": "eslint",

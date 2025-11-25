@@ -19,7 +19,7 @@ pipeline {
       steps {
         script {
           docker.build('node-webtest', '-f build/Dockerfile.playwright .').inside {
-            sh 'npm run update:axonivy:next && npm install'
+            sh 'npm run update:axonivy:next && npm install && npm run monaco-postinstall'
             sh 'npm run package'
             dir ('playwright/process-test-project') {
               maven cmd: "-ntp verify -Dengine.page.url=${params.engineSource} -Dwebtest.cmd=webtest:screenshots:process"
