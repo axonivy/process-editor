@@ -5,6 +5,7 @@ import type { InscriptionContext } from '@axonivy/process-editor-inscription-pro
 import {
   ClientContextProvider,
   IvyLanguageClient,
+  LogLevel,
   MonacoEditorUtil,
   QueryProvider,
   initQueryClient
@@ -104,7 +105,7 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
   async startInscriptionClient(): Promise<InscriptionClientJsonRpc> {
     const model = this.selectionService.getModelRoot();
     const webSocketAddress = this.action?.connection?.server ?? GArgument.getString(model, 'webSocket') ?? 'ws://localhost:8081/';
-    IvyLanguageClient.connect({ server: webSocketAddress, connection: this.action?.connection?.ivyScript });
+    IvyLanguageClient.connect({ server: webSocketAddress, logLevel: LogLevel.Debug, connection: this.action?.connection?.ivyScript });
     if (this.action?.connection?.inscription) {
       return InscriptionClientJsonRpc.startClient(this.action.connection.inscription);
     }

@@ -98,6 +98,9 @@ const monacoConfigPlugin = (options: MonacoConfigOptions = {}): Plugin => {
           }
         },
         modulePreload: false
+      },
+      worker: {
+        format: 'es'
       }
     }),
     generateBundle: (_, bundle) => {

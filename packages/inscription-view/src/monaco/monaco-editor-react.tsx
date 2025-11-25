@@ -97,7 +97,7 @@ export const useMonacoModelReference = (
       return;
     }
 
-    if (content !== undefined && modelReference) {
+    if (content !== undefined && modelReference && modelReference.object.textEditorModel) {
       const currentValue = modelReference.object.textEditorModel.getValue();
       if (currentValue !== content) {
         // Mark as programmatic to suppress event propagation

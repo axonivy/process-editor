@@ -1,6 +1,6 @@
 import { urlBuilder, type Connection } from '@axonivy/jsonrpc';
 import { ConsoleTimer, Deferred } from '@axonivy/process-editor-inscription-core';
-import type { LanguageClientWrapper } from 'monaco-languageclient/lcwrapper';
+import type { LanguageClientConfig, LanguageClientWrapper } from 'monaco-languageclient/lcwrapper';
 import { IvyMacroLanguage } from './ivy-macro-language';
 import { IvyScriptLanguage } from './ivy-script-language';
 import { MonacoLanguageUtil } from './monaco-language-util';
@@ -12,6 +12,19 @@ export interface IvyLangaugeClientConnection {
   connection?: Connection;
   logLevel?: LogLevel;
 }
+
+const DummyWorker: Worker = {
+  postMessage() {},
+  terminate() {},
+  addEventListener() {},
+  removeEventListener() {},
+  dispatchEvent(): boolean {
+    return false;
+  },
+  onmessage: null,
+  onmessageerror: null,
+  onerror: null
+};
 
 export namespace IvyLanguageClient {
   export function webSocketUrl(url: string | URL): string {
@@ -38,24 +51,27 @@ export namespace IvyLanguageClient {
     timer.step('Wait for VSCode Services to be ready...');
     await MonacoUtil.vscodeServicesReady();
 
-    timer.step('Initialize language client...');
-    const client = await MonacoLanguageUtil.setLanguageClient({
+    timer.step('Configure Language Client...');
+    const config: LanguageClientConfig = {
+      logLevel,
       languageId: IvyScriptLanguage.Language.id,
       clientOptions: {
         outputChannelName: 'IvyScript Language Client',
         documentSelector: [{ language: IvyScriptLanguage.Language.id }, { language: IvyMacroLanguage.Language.id }]
       },
       connection: {
-        options: { $type: 'WebSocketUrl', url: webSocketUrl(server) },
+        // if we already have a connection, we use a dummy worker as the message transport layer is already established
+        options: connection ? { $type: 'WorkerDirect', worker: DummyWorker } : { $type: 'WebSocketUrl', url: webSocketUrl(server) },
         messageTransports: connection
       },
       restartOptions: {
         retries: 20,
         timeout: 500
       }
-    });
+    };
+    const client = await MonacoLanguageUtil.setLanguageClient(config);
 
-    timer.step('Start language client...');
+    timer.step('Start Language Client...');
     await client.start();
 
     timer.end();

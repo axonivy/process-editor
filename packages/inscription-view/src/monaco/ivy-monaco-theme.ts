@@ -31,7 +31,8 @@ export namespace IvyMonacoTheme {
     };
   }
 
-  class ThemeChangeEvent extends CustomEvent<IvyMonacoTheme> {
+  export type ThemeChangeEvent = CustomEvent<IvyMonacoTheme>;
+  class ThemeChangeEventImpl extends CustomEvent<IvyMonacoTheme> {
     constructor(theme: IvyMonacoTheme) {
       super('monaco-theme', { detail: theme });
     }
@@ -46,6 +47,6 @@ export namespace IvyMonacoTheme {
     // defineTheme is only available on the standalone theme service but not the workbench theme service you get when using 'extended' editor setup
     monaco.editor.defineTheme?.(DEFAULT_THEME_NAME, themeData(theme));
     monaco.editor.setTheme(DEFAULT_THEME_NAME);
-    _emitter.dispatchEvent(new ThemeChangeEvent(theme));
+    _emitter.dispatchEvent(new ThemeChangeEventImpl(theme));
   }
 }
