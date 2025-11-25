@@ -100,7 +100,10 @@
       "loadingTypes": "その他のタイプを読み込んでいます...",
       "searchAllTypes": "すべての型を検索",
       "title": "タイプ"
-    }
+    },
+    "dataClasses": "データクラス",
+    "ivyScriptTypes": "Ivy Script のデータ型",
+    "ownTypes": "独自のタイプ"
   },
   "common": {
     "hotkey": {

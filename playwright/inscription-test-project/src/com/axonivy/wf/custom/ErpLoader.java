@@ -11,6 +11,7 @@ import ch.ivyteam.ivy.scripting.language.IIvyScriptContext;
 import ch.ivyteam.ivy.scripting.objects.CompositeObject;
 import ch.ivyteam.ivy.scripting.objects.File;
 
+@SuppressWarnings("removal")
 public class ErpLoader extends AbstractUserProcessExtension {
 
   @Override
@@ -21,7 +22,7 @@ public class ErpLoader extends AbstractUserProcessExtension {
     if (statistics.exists()) {
       ErpFileService.instance().reportStats(statistics);
     } else {
-      getLog(context).warn("Failed to resolve statistics file from "+pathScript);
+      getLog(context).warn("Failed to resolve statistics file from " + pathScript);
     }
 
     return in;

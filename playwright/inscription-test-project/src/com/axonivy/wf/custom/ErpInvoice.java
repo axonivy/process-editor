@@ -18,6 +18,7 @@ import ch.ivyteam.ivy.process.extension.ui.IUiFieldEditor;
 import ch.ivyteam.ivy.process.extension.ui.UiEditorExtension;
 import ch.ivyteam.ivy.request.RequestException;
 
+@SuppressWarnings("removal")
 public class ErpInvoice extends AbstractProcessStartEventBean {
 
   public ErpInvoice() {
