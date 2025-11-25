@@ -104,19 +104,24 @@ export namespace MonacoEditorUtil {
   }
 }
 
-// We currently have two problems with the Typefox React editor:
-// - Typing very fast may lead to reset of editor position and wrong inserts, cf. https://github.com/TypeFox/monaco-languageclient/pull/986#issuecomment-3529886336
-// - There are also some issues when using the Typefox React editor with Strict Mode, cf. https://github.com/TypeFox/monaco-languageclient/issues/994
+// We currently have an issue with the Typefox React editor where our in-line editors get disposed automatically in Strict Mode
+// https://github.com/TypeFox/monaco-languageclient/issues/994
 //
 // export const TypefoxMonacoEditorReact = new LazyLoader(() => import('@typefox/monaco-editor-react'));
+// export const MonacoEditor = React.lazy(async () => {
+//   const timer = new ConsoleTimer(true, 'Initialize Monaco Editor Component (only necessary once)').start();
+//   timer.step('Wait for Monaco API...');
+//   await MonacoUtil.monaco();
+//   timer.step('Load Editor Component...');
+//   const module = await TypefoxMonacoEditorReact.load();
+//   timer.end();
+//   return { default: module.MonacoEditorReactComp };
+// });
+
 export const MonacoEditor = React.lazy(async () => {
   const timer = new ConsoleTimer(true, 'Initialize Monaco Editor Component (only necessary once)').start();
   timer.step('Wait for Monaco API...');
   await MonacoUtil.monaco();
-  timer.step('Load Editor Component...');
-  // const module = await TypefoxMonacoEditorReact.load();
-  // timer.end();
-  // return { default: module.MonacoEditorReactComp };
   timer.end();
   return { default: MonacoEditorReactComp };
 });
