@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@axonivy/process-editor-standalone",
-  "version": "12.0.11-next",
+  "version": "12.0.12-next",
   "description": "Standalone browser-app for the Axon Ivy process editor",
   "author": "Axon Ivy AG",
   "homepage": "https://developer.axonivy.com",
@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@axonivy/jsonrpc": "~12.0.11-next.657.ff40a34",
-    "@axonivy/process-editor": "~12.0.11-next",
-    "@axonivy/process-editor-inscription": "~12.0.11-next",
-    "@axonivy/process-editor-inscription-view": "~12.0.11-next",
+    "@axonivy/process-editor": "12.0.12-next",
+    "@axonivy/process-editor-inscription": "12.0.12-next",
+    "@axonivy/process-editor-inscription-view": "12.0.12-next",
     "@axonivy/ui-components": "~12.0.11-next.657.ff40a34",
     "@axonivy/ui-icons": "~12.0.11-next.657.ff40a34",
     "@eclipse-glsp/client": "2.3.0",
