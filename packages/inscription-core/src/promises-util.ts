@@ -34,3 +34,23 @@ export class Deferred<T = void> {
     }
   }
 }
+
+export class LazyLoader<M> {
+  private promise?: Promise<M>;
+
+  constructor(private readonly loader: () => Promise<M>) {}
+
+  load(): Promise<M> {
+    if (!this.promise) {
+      this.promise = this.loader().catch(err => {
+        this.reset(); // allow retry if load fails
+        throw err;
+      });
+    }
+    return this.promise;
+  }
+
+  reset(): void {
+    this.promise = undefined;
+  }
+}

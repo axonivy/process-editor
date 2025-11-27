@@ -1,6 +1,6 @@
-import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import { useCallback } from 'react';
 import { MonacoEditorUtil, SINGLE_LINE_MONACO_OPTIONS } from '../../../monaco/monaco-editor-util';
+import type { monaco } from '../../../monaco/monaco-modules';
 import { focusAdjacentTabIndexMonaco } from '../../../utils/focus';
 import type { BrowserType } from '../../browser/useBrowser';
 import type { CodeEditorProps } from './CodeEditor';

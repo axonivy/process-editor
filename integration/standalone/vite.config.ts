@@ -1,10 +1,10 @@
+import monacoConfigPlugin from '@axonivy/monaco-vite-plugin';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { monacoWorkaroundPlugin } from '../monaco-workaround-plugin';
 
 export default defineConfig(() => ({
-  plugins: [tsconfigPaths(), monacoWorkaroundPlugin()],
+  plugins: [tsconfigPaths(), monacoConfigPlugin()],
   esbuild: {
     target: 'esnext',
     tsconfigRaw: {
@@ -16,16 +16,7 @@ export default defineConfig(() => ({
   },
   build: {
     outDir: 'build',
-    chunkSizeWarningLimit: 5000,
-    rollupOptions: {
-      output: {
-        manualChunks: id => {
-          if (id.includes('monaco-languageclient') || id.includes('vscode')) {
-            return 'monaco-chunk';
-          }
-        }
-      }
-    }
+    chunkSizeWarningLimit: 5000
   },
   server: {
     port: 3000,
@@ -52,11 +43,7 @@ export default defineConfig(() => ({
     }
   },
   base: './',
-  optimizeDeps: {
-    needsInterop: [
-      'monaco-editor/esm/vs/editor/standalone/browser/accessibilityHelp/accessibilityHelp.js',
-      'monaco-editor/esm/vs/editor/standalone/browser/inspectTokens/inspectTokens.js'
-    ],
-    exclude: ['vscode']
+  worker: {
+    format: 'es'
   }
 }));

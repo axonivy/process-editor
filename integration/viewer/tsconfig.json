@@ -9,6 +9,7 @@
   "include": ["src"],
   "references": [
     { "path": "../../packages/inscription/tsconfig.json" },
-    { "path": "../../packages/editor/tsconfig.build.json" }
+    { "path": "../../packages/editor/tsconfig.build.json" },
+    { "path": "../monaco-vite-plugin/tsconfig.json" }
   ]
 }

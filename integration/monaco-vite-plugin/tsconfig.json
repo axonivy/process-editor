@@ -1,0 +1,8 @@
+{
+  "extends": "@axonivy/ts-config/package",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src"]
+}

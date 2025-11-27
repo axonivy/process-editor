@@ -1,11 +1,11 @@
+import monacoConfigPlugin from '@axonivy/monaco-vite-plugin';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { monacoWorkaroundPlugin } from '../monaco-workaround-plugin';
 
 export default defineConfig(() => ({
-  plugins: [react(), tsconfigPaths(), monacoWorkaroundPlugin()],
+  plugins: [react(), tsconfigPaths(), monacoConfigPlugin()],
   build: {
     outDir: 'build',
     chunkSizeWarningLimit: 5000,
@@ -13,17 +13,15 @@ export default defineConfig(() => ({
       input: {
         index: './index.html',
         mock: './mock.html'
-      },
-      output: {
-        manualChunks(id: string) {
-          if (id.includes('monaco-languageclient') || id.includes('vscode')) {
-            return 'monaco-chunk';
-          }
-        }
       }
     }
   },
-  server: { port: 3003 },
+  server: {
+    port: 3003,
+    sourcemapIgnoreList(sourcePath, sourcemapPath) {
+      return sourcePath.includes('node_modules') && !sourcePath.includes('@eclipse-glsp') && !sourcePath.includes('@axonivy');
+    }
+  },
   preview: { port: 4003 },
   resolve: {
     alias: {
@@ -33,10 +31,7 @@ export default defineConfig(() => ({
     }
   },
   base: './',
-  optimizeDeps: {
-    needsInterop: [
-      'monaco-editor/esm/vs/editor/standalone/browser/accessibilityHelp/accessibilityHelp.js',
-      'monaco-editor/esm/vs/editor/standalone/browser/inspectTokens/inspectTokens.js'
-    ]
+  worker: {
+    format: 'es'
   }
 }));
