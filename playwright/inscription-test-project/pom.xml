@@ -23,11 +23,6 @@
       <artifactId>ivy-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.axonivy.ivy.api</groupId>
-      <artifactId>ivy-runtime</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
       <scope>provided</scope>
