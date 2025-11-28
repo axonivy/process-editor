@@ -1,10 +1,9 @@
 import type { Bounds } from '@eclipse-glsp/client';
 import type { VNode, VNodeData } from 'snabbdom';
 import { describe, expect, test } from 'vitest';
-
 import type { ActivityNode } from '../model';
 import { ActivityTypes, EventStartTypes, GatewayTypes } from '../view-types';
-import { SvgIcons } from './icons';
+import { standardIcons } from './icons';
 import { getActivityIconDecorator, getIconDecorator } from './views';
 
 describe('Event and Gateway Icons', () => {
@@ -17,9 +16,9 @@ describe('Event and Gateway Icons', () => {
 
   test('icon', () => {
     let node = getIconDecorator(GatewayTypes.ALTERNATIVE, 25, '');
-    assertIcon(node!, { height: 18, width: 18, x: 16, y: 16 }, SvgIcons.ALTERNATIVE, '');
+    assertIcon(node!, { height: 18, width: 18, x: 16, y: 16 }, standardIcons['std:Alternative'], '');
     node = getIconDecorator(EventStartTypes.START_ERROR, 25, 'red');
-    assertIcon(node!, { height: 18, width: 18, x: 16, y: 16 }, SvgIcons.BPMN_ERROR, 'red');
+    assertIcon(node!, { height: 18, width: 18, x: 16, y: 16 }, standardIcons['std:Error'], 'red');
   });
 
   test('img icon', () => {
@@ -40,9 +39,9 @@ describe('Activity Icons', () => {
   test('icon', () => {
     const activity = { type: ActivityTypes.SCRIPT, bounds: { height: 60, width: 120, x: 0, y: 0 } } as ActivityNode;
     let node = getActivityIconDecorator(activity, ActivityTypes.SCRIPT);
-    assertActivityIcon(node!, { height: 20, width: 20, x: 10, y: 60 / 2 - 10 }, SvgIcons.SCRIPT);
+    assertActivityIcon(node!, { height: 20, width: 20, x: 10, y: 60 / 2 - 10 }, standardIcons['std:Script']);
     node = getActivityIconDecorator(activity, ActivityTypes.SCRIPT);
-    assertActivityIcon(node!, { height: 20, width: 20, x: 10, y: 60 / 2 - 10 }, SvgIcons.SCRIPT);
+    assertActivityIcon(node!, { height: 20, width: 20, x: 10, y: 60 / 2 - 10 }, standardIcons['std:Script']);
   });
 
   test('img icon', () => {

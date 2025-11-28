@@ -1,0 +1,21 @@
+.ui-popover-content.tool-bar-options-content {
+  background-color: var(--glsp-bar-menu-header-bg);
+  padding: 0;
+  > span > svg {
+    fill: var(--glsp-bar-menu-header-bg);
+  }
+}
+
+.tool-bar-options-menu {
+  width: 170px;
+  background: var(--glsp-bar-menu-bg);
+  border-radius: 4px;
+  .tool-bar-options-header {
+    background: var(--glsp-bar-menu-header-bg);
+    height: 2rem;
+    padding-inline: 1rem;
+  }
+  .tool-bar-options {
+    margin: 1rem;
+  }
+}

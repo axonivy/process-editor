@@ -60,6 +60,13 @@ export class QuickActionBar {
     return new LabelEdit(this.page);
   }
 
+  async changeIcon() {
+    await this.quickActionMenu.expectHidden();
+    await this.trigger('Custom Icon');
+    await this.quickActionMenu.expectVisible();
+    return this.quickActionMenu;
+  }
+
   async addColor(name = 'TestColor', color = '#0000ff') {
     await this.quickActionMenu.expectHidden();
     await this.trigger('Select color');

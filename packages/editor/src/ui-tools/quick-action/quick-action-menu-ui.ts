@@ -1,9 +1,9 @@
 import type { GIssueMarker, JsonAny, PaletteItem } from '@eclipse-glsp/client';
 import { Action } from '@eclipse-glsp/client';
-import type { MenuPaletteItem } from '../../utils/menu-utils';
-import type { ShowMenuAction } from '../menu/menu';
+import type { ShowMenuAction } from '../palette/menu';
+import type { ExtendedPaletteItem } from '../palette/palette-utils';
 
-export interface ShowQuickActionMenuAction<T extends PaletteItem = MenuPaletteItem> extends ShowMenuAction {
+export interface ShowQuickActionMenuAction<T extends PaletteItem = ExtendedPaletteItem> extends ShowMenuAction {
   kind: typeof ShowQuickActionMenuAction.KIND;
   elementIds: string[];
   paletteItems: () => Array<T>;
@@ -14,7 +14,7 @@ export interface ShowQuickActionMenuAction<T extends PaletteItem = MenuPaletteIt
 export namespace ShowQuickActionMenuAction {
   export const KIND = 'showQuickActionMenu';
 
-  export function create<T extends PaletteItem = MenuPaletteItem>(options: {
+  export function create<T extends PaletteItem = ExtendedPaletteItem>(options: {
     elementIds: string[];
     paletteItems: () => T[];
     actions: (item: T, elementIds: string[]) => Action[];
@@ -28,7 +28,7 @@ export namespace ShowQuickActionMenuAction {
     };
   }
 
-  export function empty<T extends PaletteItem = MenuPaletteItem>(): ShowQuickActionMenuAction<T> {
+  export function empty<T extends PaletteItem = ExtendedPaletteItem>(): ShowQuickActionMenuAction<T> {
     return create<T>({
       elementIds: [],
       paletteItems: () => [],

@@ -46,48 +46,48 @@ describe('QuickActionUi', () => {
 
   test('activity', async () => {
     await renderQuickActionUi(quickActionUi, root, 'foo');
+    assertQuickActionUi(9);
+    assertQuickAction(0, 'Delete', IvyIcons.Trash);
+    assertQuickAction(1, 'Information (I)', IvyIcons.InfoCircle);
+    assertQuickAction(4, 'Select color', IvyIcons.ColorDrop);
+    assertQuickAction(8, 'Connect', IvyIcons.Connector);
+  });
+
+  test('embedded activity', async () => {
+    await renderQuickActionUi(quickActionUi, root, 'sub');
+    assertQuickActionUi(10);
+    assertQuickAction(0, 'Delete', IvyIcons.Trash);
+    assertQuickAction(1, 'Information (I)', IvyIcons.InfoCircle);
+
+    assertQuickAction(2, 'Jump (J)', IvyIcons.SubStart);
+    assertQuickAction(5, 'Select color', IvyIcons.ColorDrop);
+    assertQuickAction(9, 'Connect', IvyIcons.Connector);
+  });
+
+  test('event', async () => {
+    await renderQuickActionUi(quickActionUi, root, 'start');
     assertQuickActionUi(8);
     assertQuickAction(0, 'Delete', IvyIcons.Trash);
     assertQuickAction(1, 'Information (I)', IvyIcons.InfoCircle);
     assertQuickAction(3, 'Select color', IvyIcons.ColorDrop);
     assertQuickAction(7, 'Connect', IvyIcons.Connector);
-  });
-
-  test('embedded activity', async () => {
-    await renderQuickActionUi(quickActionUi, root, 'sub');
-    assertQuickActionUi(9);
-    assertQuickAction(0, 'Delete', IvyIcons.Trash);
-    assertQuickAction(1, 'Information (I)', IvyIcons.InfoCircle);
-
-    assertQuickAction(2, 'Jump (J)', IvyIcons.SubStart);
-    assertQuickAction(4, 'Select color', IvyIcons.ColorDrop);
-    assertQuickAction(8, 'Connect', IvyIcons.Connector);
-  });
-
-  test('event', async () => {
-    await renderQuickActionUi(quickActionUi, root, 'start');
-    assertQuickActionUi(7);
-    assertQuickAction(0, 'Delete', IvyIcons.Trash);
-    assertQuickAction(1, 'Information (I)', IvyIcons.InfoCircle);
-    assertQuickAction(2, 'Select color', IvyIcons.ColorDrop);
-    assertQuickAction(6, 'Connect', IvyIcons.Connector);
 
     // no connection quick action if outgoing edge exists
     await renderQuickActionUi(quickActionUi, root, 'startWithConnection');
-    assertQuickActionUi(6);
+    assertQuickActionUi(7);
   });
 
   test('gateway', async () => {
     await renderQuickActionUi(quickActionUi, root, 'alternative');
-    assertQuickActionUi(7);
+    assertQuickActionUi(8);
     assertQuickAction(0, 'Delete', IvyIcons.Trash);
     assertQuickAction(1, 'Information (I)', IvyIcons.InfoCircle);
-    assertQuickAction(2, 'Select color', IvyIcons.ColorDrop);
-    assertQuickAction(6, 'Connect', IvyIcons.Connector);
+    assertQuickAction(3, 'Select color', IvyIcons.ColorDrop);
+    assertQuickAction(7, 'Connect', IvyIcons.Connector);
 
     // connection quick action even if outoging edge exists
     quickActionUi.show(root, 'alternativeWithConnection');
-    assertQuickActionUi(7);
+    assertQuickActionUi(8);
   });
 
   test('pool', async () => {

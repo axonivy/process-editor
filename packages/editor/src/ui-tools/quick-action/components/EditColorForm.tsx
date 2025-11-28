@@ -4,6 +4,7 @@ import { type IActionDispatcherProvider, type PaletteItem } from '@eclipse-glsp/
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { isNewColorPaletteItem } from './ColorPaletteItem';
+import './EditColorForm.css';
 
 interface EditColorFormProps {
   actionDispatcher: IActionDispatcherProvider;

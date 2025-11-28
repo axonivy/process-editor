@@ -27,9 +27,6 @@
   --glsp-bar-menu-triangle: #ffffff;
   --glsp-bar-menu-item: #565656;
   --glsp-bar-menu-item-hover: #f5f5f5;
-  --glsp-bar-menu-switch: #8d8d8d;
-  --glsp-bar-menu-switch-checked: #1dca5a;
-  --glsp-bar-menu-switch-bg: #f5f5f5;
   --glsp-bar-menu-label: #7a7a7a;
 
   --glsp-multiselect-box-border: var(--glsp-editor-selected);
@@ -84,8 +81,6 @@ html[data-theme='dark'] body {
   --glsp-bar-menu-triangle: #2c2c2c;
   --glsp-bar-menu-item: #bababa;
   --glsp-bar-menu-item-hover: #202020;
-  --glsp-bar-menu-switch: #2c2c2c;
-  --glsp-bar-menu-switch-bg: #202020;
 
   --glsp-issue-background: var(--glsp-editor-background);
 

@@ -30,7 +30,7 @@ import {
   compareButtons
 } from './button';
 import { ToolBarButton as ToolBarButtonComponent } from './components/ToolBarButton';
-import { ToolBarOptionsMenu } from './components/ToolBarOptionsMenu';
+import { ToolBarOptions } from './components/ToolBarOptionsMenu';
 import { ToolBarPaletteMenu } from './components/ToolBarPaletteMenu';
 import { UndoRedoButtons } from './components/UndoRedoButtons';
 import { ShowToolBarOptionsMenuAction } from './options/action';
@@ -128,15 +128,7 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
             </PopoverContent>
           )}
           {this.activeMenuAction && ShowToolBarOptionsMenuAction.is(this.activeMenuAction) && (
-            <PopoverContent
-              className={'tool-bar-options-content'}
-              sideOffset={12}
-              collisionPadding={4}
-              onEscapeKeyDown={() => this.closeMenu()}
-            >
-              <PopoverArrow />
-              <ToolBarOptionsMenu action={this.activeMenuAction} actionDispatcher={this.actionDispatcher} />
-            </PopoverContent>
+            <ToolBarOptions action={this.activeMenuAction} actionDispatcher={this.actionDispatcher} closeMenu={() => this.closeMenu()} />
           )}
         </Popover>
       </Toolbar>

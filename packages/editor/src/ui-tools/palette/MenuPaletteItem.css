@@ -1,0 +1,51 @@
+.ui-palette-section:where([data-section='Workflow Activities'], [data-section='Callable Sub Processes']) .ui-palette-item {
+  .ui-palette-item-icon {
+    background: var(--glsp-activity-workflow-bg);
+    color: var(--glsp-activity-workflow);
+  }
+  &:hover .ui-palette-item-icon {
+    border: 1px solid var(--glsp-activity-workflow);
+  }
+}
+.ui-palette-section:where([data-section='Interface Activities'], [data-section='Rest Clients']) .ui-palette-item {
+  .ui-palette-item-icon {
+    background: var(--glsp-activity-interface-bg);
+    color: var(--glsp-activity-interface);
+  }
+  &:hover .ui-palette-item-icon {
+    border: 1px solid var(--glsp-activity-interface);
+  }
+}
+.ui-palette-section[data-section='BPMN Activities'] .ui-palette-item {
+  .ui-palette-item-icon {
+    background: var(--glsp-activity-bpmn-bg);
+    color: var(--glsp-activity-bpmn);
+  }
+  &:hover .ui-palette-item-icon {
+    border: 1px solid var(--glsp-activity-bpmn);
+  }
+}
+.ui-palette-item[data-style='horizontal'] {
+  width: 100%;
+  .ui-palette-item-content {
+    flex-direction: row;
+    .ui-palette-item-icon {
+      width: 32px;
+    }
+    .ui-palette-item-text {
+      align-items: flex-start;
+
+      flex-direction: column;
+      .ui-palette-item-label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        text-align: start;
+      }
+      .ui-palette-item-info {
+        font-style: italic;
+      }
+    }
+  }
+}

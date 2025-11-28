@@ -6,7 +6,6 @@ export { default as createIvyDiagramContainer } from './di.config';
 export { ivyLabelEditModule, ivyLabelEditUiModule } from './edit-label/di.config';
 export { default as ivyLaneModule } from './lanes/di.config';
 export { default as ivyOpenDataClassModule } from './open-dataclass/di.config';
-export { default as ivyOpenDecoratorBrowserModule } from './open-decorator-browser/di.config';
 export { default as ivyOpenFormModule } from './open-form/di.config';
 export { default as ivyGoToSourceModule } from './open-source/di.config';
 export { default as ivyStartActionModule } from './start-action/di.config';

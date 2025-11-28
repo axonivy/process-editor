@@ -33,15 +33,16 @@ describe('QuickActionUi - Create Nodes', () => {
 
   test('activity', async () => {
     await renderQuickActionUi(quickActionUi, root, 'foo');
-    assertQuickActionUi(8);
+    assertQuickActionUi(9);
     assertQuickAction(0, 'Delete', IvyIcons.Trash);
     assertQuickAction(1, 'Information (I)', IvyIcons.InfoCircle);
     assertQuickAction(2, 'Wrap to embedded process (W)', IvyIcons.WrapToSubprocess);
-    assertQuickAction(3, 'Select color', IvyIcons.ColorDrop);
-    assertQuickAction(4, 'Events (A)', IvyIcons.Start);
-    assertQuickAction(5, 'Gateways (A)', IvyIcons.GatewaysGroup);
-    assertQuickAction(6, 'Activities (A)', IvyIcons.ActivitiesGroup);
-    assertQuickAction(7, 'Connect', IvyIcons.Connector);
+    assertQuickAction(3, 'Custom Icon', IvyIcons.CustomImage);
+    assertQuickAction(4, 'Select color', IvyIcons.ColorDrop);
+    assertQuickAction(5, 'Events (A)', IvyIcons.Start);
+    assertQuickAction(6, 'Gateways (A)', IvyIcons.GatewaysGroup);
+    assertQuickAction(7, 'Activities (A)', IvyIcons.ActivitiesGroup);
+    assertQuickAction(8, 'Connect', IvyIcons.Connector);
   });
 
   test('hidden for comment', async () => {
@@ -55,8 +56,8 @@ describe('QuickActionUi - Create Nodes', () => {
 
   test('hidden for end event', async () => {
     await renderQuickActionUi(quickActionUi, root, 'end');
-    assertQuickActionUi(3);
+    assertQuickActionUi(4);
     assertQuickAction(0, 'Delete');
-    assertQuickAction(2, 'Select color');
+    assertQuickAction(3, 'Select color');
   });
 });

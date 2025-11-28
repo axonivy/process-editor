@@ -6,7 +6,7 @@ import virtualize from 'sprotty/lib/lib/virtualize';
 
 import type { ActivityNode } from '../model';
 import { ActivityTypes } from '../view-types';
-import { IconStyle, resolveIcon } from './icons';
+import { resolveIcon } from './icons';
 
 const WORKFLOW_ACTIVITY_TYPES = [
   ActivityTypes.USER,
@@ -21,7 +21,7 @@ export function getActivityIconDecorator(node: ActivityNode, iconUri: string): V
   const icon = iconDecorator(iconUri, bounds, false, '');
   if (icon) {
     return (
-      <g class-activity-icon data-actitiy-type={activityColorType(node.type)}>
+      <g class-sprotty-icon class-activity-icon data-actitiy-type={activityColorType(node.type)}>
         <rect height={30} width={30} x={5} y={node.bounds.height / 2 - 15} />
         {icon}
       </g>
@@ -47,9 +47,10 @@ export function getIconDecorator(iconUri: string, radius: number, color: string)
 
 function iconDecorator(iconUri: string, bounds: Bounds, smallIcon: boolean, color: string): VNode | undefined {
   const icon = resolveIcon(iconUri);
-  if (icon.style === IconStyle.SI) {
+  if (icon.style === 'svg') {
     return (
       <svg
+        class-sprotty-icon
         class-sprotty-icon-svg
         viewBox='0 0 20 20'
         height={bounds.height}
@@ -58,12 +59,12 @@ function iconDecorator(iconUri: string, bounds: Bounds, smallIcon: boolean, colo
         x={bounds.x}
         y={bounds.y}
       >
-        <path style={{ fill: color }} d={icon.res} />
+        <path style={{ fill: color }} d={icon.path} />
       </svg>
     );
   }
-  if (icon.style === IconStyle.IMG) {
-    const foreignObjectContents = virtualize(`<img src="${icon.res}"></img>`);
+  if (icon.style === 'img') {
+    const foreignObjectContents = virtualize(`<img src="${icon.src}"></img>`);
     return (
       <foreignObject
         requiredFeatures='http://www.w3.org/TR/SVG11/feature#Extensibility'

@@ -1,0 +1,48 @@
+.bar-menu-text {
+  color: var(--glsp-bar-menu-item);
+  max-height: 200px;
+  overflow: auto;
+
+  .simple-menu-header,
+  .menu-marker,
+  .simple-menu-text:not(.simple-menu-small) {
+    border-bottom: 1px solid var(--glsp-border);
+  }
+  .simple-menu-header,
+  .simple-menu-text {
+    font-weight: 500;
+    font-size: 12px;
+    user-select: text;
+    color: var(--body);
+  }
+  .simple-menu-text {
+    font-weight: 400;
+  }
+  .simple-menu-small {
+    font-weight: 400;
+    font-size: 10px;
+    word-break: break-all;
+  }
+  .menu-issue {
+    padding: 6px;
+    font-size: 12px;
+  }
+  .menu-issue-title {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-weight: 700;
+    i {
+      font-size: 14px;
+    }
+    .ivy-error-x-mark {
+      color: var(--glsp-error-foreground);
+    }
+    .ivy-caution {
+      color: var(--glsp-warning-foreground);
+    }
+  }
+  .menu-issue-message {
+    margin: 0.5rem 0 1rem 0;
+  }
+}
