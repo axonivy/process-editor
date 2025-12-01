@@ -102,7 +102,7 @@
       "title": "タイプ"
     },
     "dataClasses": "データクラス",
-    "ivyScriptTypes": "Ivy Script のデータ型",
+    "ivyScriptTypes": "Ivy Scriptのデータ型",
     "ownTypes": "独自のタイプ"
   },
   "common": {
