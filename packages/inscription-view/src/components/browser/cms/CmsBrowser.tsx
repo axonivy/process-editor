@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useFunction } from '../../../context/useFunction';
 import { useMeta } from '../../../context/useMeta';
+import { genQueryKey } from '../../../query/query-client';
 import Checkbox from '../../widgets/checkbox/Checkbox';
 import { ExpandableCell } from '../../widgets/table/cell/ExpandableCell';
 import { SearchTable } from '../../widgets/table/table/Table';
@@ -81,7 +82,7 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
     {
       onSuccess: () => {
         toast.info(t('browser.cms.addSuccess'));
-        queryClient.invalidateQueries({ queryKey: ['meta/cms/tree', { context, requiredProjects: requiredProject }] });
+        queryClient.invalidateQueries({ queryKey: genQueryKey('meta/cms/tree', { context, requiredProjects: requiredProject }) });
       },
       onError: error => {
         toast.error(t('browser.cms.addFailed'), { description: error.message });

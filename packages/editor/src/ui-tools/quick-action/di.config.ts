@@ -1,9 +1,6 @@
-import './quick-action.css';
-
 import { FeatureModule, RemoveMarqueeAction, TYPES, bindAsService, configureActionHandler } from '@eclipse-glsp/client';
 import type { interfaces } from 'inversify';
 
-import { UpdateColorPaletteAction, UpdateIconPaletteAction, UpdatePaletteItems } from '@axonivy/process-editor-protocol';
 import { IVY_TYPES } from '../../types';
 import { SelectColorQuickActionProvider } from './color/action';
 import { ColorPaletteHandler } from './color/action-handler';
@@ -58,23 +55,18 @@ export function configureQuickActionProviders(context: { bind: interfaces.Bind }
 export function configureColorQuickActionProviders(context: { bind: interfaces.Bind; isBound: interfaces.IsBound }): void {
   context.bind(ColorPaletteHandler).toSelf().inSingletonScope();
   context.bind(IVY_TYPES.ColorPalette).toService(ColorPaletteHandler);
-  configureActionHandler(context, UpdatePaletteItems.KIND, ColorPaletteHandler);
-  configureActionHandler(context, UpdateColorPaletteAction.KIND, ColorPaletteHandler);
   context.bind(IVY_TYPES.QuickActionProvider).to(SelectColorQuickActionProvider);
 }
 
 export function configureIconQuickActionProviders(context: { bind: interfaces.Bind; isBound: interfaces.IsBound }): void {
   context.bind(IconPaletteHandler).toSelf().inSingletonScope();
   context.bind(IVY_TYPES.IconPalette).toService(IconPaletteHandler);
-  configureActionHandler(context, UpdatePaletteItems.KIND, IconPaletteHandler);
-  configureActionHandler(context, UpdateIconPaletteAction.KIND, IconPaletteHandler);
   context.bind(IVY_TYPES.QuickActionProvider).to(SelectIconQuickActionProvider);
 }
 
 export function configureTypeQuickActionProviders(context: { bind: interfaces.Bind; isBound: interfaces.IsBound }): void {
   context.bind(TypesPaletteHandler).toSelf().inSingletonScope();
   context.bind(IVY_TYPES.ActivityTypesPalette).toService(TypesPaletteHandler);
-  configureActionHandler(context, UpdatePaletteItems.KIND, TypesPaletteHandler);
   context.bind(IVY_TYPES.QuickActionProvider).to(SelectActivityTypeQuickActionProvider);
 }
 

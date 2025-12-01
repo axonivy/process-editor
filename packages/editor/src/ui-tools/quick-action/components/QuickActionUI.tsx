@@ -5,6 +5,7 @@ import type { QuickAction } from '../quick-action';
 import { ShowInfoQuickActionMenuAction, ShowQuickActionMenuAction } from '../quick-action-menu-ui';
 import { QuickActionGroup } from './QuickActionGroup';
 import { QuickActionMenu } from './QuickActionMenu';
+import './QuickActionUI.css';
 
 type QuickActionUIProps = {
   quickActions: QuickAction[];

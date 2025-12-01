@@ -5,5 +5,6 @@ export const IVY_TYPES = {
   ColorPalette: Symbol.for('ColorPalette'),
   IconPalette: Symbol.for('IconPalette'),
   ActivityTypesPalette: Symbol.for('ActivityTypesPalette'),
-  IvyViewerOptions: Symbol.for('IvyViewerOptions')
+  IvyViewerOptions: Symbol.for('IvyViewerOptions'),
+  QueryClient: Symbol.for('QueryClient')
 };

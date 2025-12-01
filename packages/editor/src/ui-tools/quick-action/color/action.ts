@@ -1,6 +1,6 @@
 import { ChangeColorOperation } from '@axonivy/process-editor-protocol';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { Action, GModelElement, PaletteItem, TYPES, type IActionDispatcher } from '@eclipse-glsp/client';
+import { Action, GModelElement, PaletteItem, TYPES, type IActionDispatcher, type MaybePromise } from '@eclipse-glsp/client';
 import { t } from 'i18next';
 import { inject, injectable } from 'inversify';
 import { LaneTypes } from '../../../diagram/view-types';
@@ -18,25 +18,25 @@ export class SelectColorQuickActionProvider implements QuickActionProvider {
     if (element.type === LaneTypes.POOL) {
       return;
     }
-    return this.quickAction([element.id], () => this.colors.getPaletteItems());
+    return this.quickAction([element.id], this.colors.getPaletteItems());
   }
 
   multiQuickAction(elements: GModelElement[]): QuickAction | undefined {
     return this.quickAction(
       elements.map(element => element.id),
-      () => this.colors.getPaletteItems()
+      this.colors.getPaletteItems()
     );
   }
 
-  quickAction(elementIds: string[], paletteItems: () => PaletteItem[]): QuickAction {
+  quickAction(elementIds: string[], paletteItems: () => MaybePromise<PaletteItem[]>): QuickAction {
     return {
       icon: IvyIcons.ColorDrop,
       title: t('quickAction.color'),
       location: 'Middle',
       sorting: 'Z',
       action: ShowQuickActionMenuAction.create({
-        elementIds: elementIds,
-        paletteItems: paletteItems,
+        elementIds,
+        paletteItems,
         actions: this.actions,
         customCssClass: 'colors-menu',
         isEditable: true

@@ -1,4 +1,4 @@
-import type { GIssueMarker, JsonAny, PaletteItem } from '@eclipse-glsp/client';
+import type { GIssueMarker, JsonAny, MaybePromise, PaletteItem } from '@eclipse-glsp/client';
 import { Action } from '@eclipse-glsp/client';
 import type { ShowMenuAction } from '../palette/menu';
 import type { ExtendedPaletteItem } from '../palette/palette-utils';
@@ -6,7 +6,7 @@ import type { ExtendedPaletteItem } from '../palette/palette-utils';
 export interface ShowQuickActionMenuAction<T extends PaletteItem = ExtendedPaletteItem> extends ShowMenuAction {
   kind: typeof ShowQuickActionMenuAction.KIND;
   elementIds: string[];
-  paletteItems: () => Array<T>;
+  paletteItems: () => MaybePromise<Array<T>>;
   actions: (item: T, elementIds: string[]) => Action[];
   isEditable?: boolean;
 }
@@ -16,7 +16,7 @@ export namespace ShowQuickActionMenuAction {
 
   export function create<T extends PaletteItem = ExtendedPaletteItem>(options: {
     elementIds: string[];
-    paletteItems: () => T[];
+    paletteItems: () => MaybePromise<Array<T>>;
     actions: (item: T, elementIds: string[]) => Action[];
     showSearch?: boolean;
     customCssClass?: string;

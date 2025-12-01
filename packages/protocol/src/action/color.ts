@@ -1,5 +1,4 @@
-import type { Operation, PaletteItem } from '@eclipse-glsp/protocol';
-import { Action } from '@eclipse-glsp/protocol';
+import type { Operation } from '@eclipse-glsp/protocol';
 
 export interface ChangeColorOperation extends Operation {
   kind: typeof ChangeColorOperation.KIND;
@@ -31,18 +30,5 @@ export namespace ChangeColorOperation {
       isOperation: true,
       ...options
     };
-  }
-}
-
-export interface UpdateColorPaletteAction extends Action {
-  kind: typeof UpdateColorPaletteAction.KIND;
-  paletteItems: PaletteItem[];
-}
-
-export namespace UpdateColorPaletteAction {
-  export const KIND = 'updateColorPalette';
-
-  export function is(object: unknown): object is UpdateColorPaletteAction {
-    return Action.hasKind(object, KIND);
   }
 }

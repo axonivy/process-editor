@@ -14,7 +14,7 @@ interface EditColorFormProps {
   onDelete: () => void;
 }
 
-export const EditColorForm: React.FC<EditColorFormProps> = ({ actionDispatcher, elementIds, item, onSave, onDelete }) => {
+export const EditColorForm = ({ actionDispatcher, elementIds, item, onSave, onDelete }: EditColorFormProps) => {
   const { t } = useTranslation();
 
   const nameInputRef = React.useRef<HTMLInputElement>(null);

@@ -1,11 +1,14 @@
 import { EditorContextService, GLSPAbstractUIExtension, GModelRoot } from '@eclipse-glsp/client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { inject, injectable } from 'inversify';
 import * as React from 'react';
 import { createRoot, type Root } from 'react-dom/client';
+import { IVY_TYPES } from '../types';
 
 @injectable()
 export abstract class ReactUIExtension extends GLSPAbstractUIExtension {
   @inject(EditorContextService) protected editorContext!: EditorContextService;
+  @inject(IVY_TYPES.QueryClient) protected queryClient!: QueryClient;
 
   protected nodeRoot?: Root;
   protected currentRoot?: Readonly<GModelRoot>;
@@ -37,7 +40,9 @@ export abstract class ReactUIExtension extends GLSPAbstractUIExtension {
     if (this.nodeRoot) {
       this.nodeRoot.render(
         <React.Fragment>
-          <React.StrictMode>{this.render(root, ...contextElementIds)}</React.StrictMode>
+          <React.StrictMode>
+            <QueryClientProvider client={this.queryClient}>{this.render(root, ...contextElementIds)}</QueryClientProvider>
+          </React.StrictMode>
         </React.Fragment>
       );
     }

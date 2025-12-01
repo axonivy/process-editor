@@ -28,14 +28,3 @@
   padding: var(--size-1, 0.25rem);
   z-index: 10;
 }
-.quick-action-bar-menu {
-  padding: var(--size-2);
-  border-radius: 4px;
-  background: var(--glsp-bar-menu-bg);
-  width: 372px;
-  box-shadow: var(--glsp-box-shadow);
-  .ui-palette {
-    --quick-action-bar-height: 34px;
-    max-height: min(500px, calc(var(--radix-popover-content-available-height) - 2 * var(--size-2) - var(--quick-action-bar-height)));
-  }
-}

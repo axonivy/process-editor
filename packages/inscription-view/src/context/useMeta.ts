@@ -1,5 +1,6 @@
 import type { InscriptionMetaRequestTypes } from '@axonivy/process-editor-inscription-protocol';
 import { useQuery } from '@tanstack/react-query';
+import { genQueryKey } from '../query/query-client';
 import { useClient } from './useClient';
 
 type NonUndefinedGuard<T> = T extends undefined ? never : T;
@@ -13,7 +14,7 @@ export function useMeta<TMeta extends keyof InscriptionMetaRequestTypes>(
   const client = useClient();
   return useQuery({
     enabled: !options?.disable,
-    queryKey: [path, args],
+    queryKey: genQueryKey(path, args),
     queryFn: () => client.meta(path, args),
     initialData: initialData
   });

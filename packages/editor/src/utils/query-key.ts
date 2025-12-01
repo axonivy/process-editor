@@ -1,3 +1,3 @@
 export const genQueryKey = (...args: unknown[]) => {
-  return ['process-inscription', ...args];
+  return ['process-editor', ...args];
 };

@@ -12,8 +12,21 @@ interface ToolBarOptionsMenuProps {
   actionDispatcher: IActionDispatcher;
 }
 
-export const ToolBarOptions = ({ closeMenu, ...props }: { closeMenu: () => void } & ToolBarOptionsMenuProps) => (
-  <PopoverContent className={'tool-bar-options-content'} sideOffset={12} collisionPadding={4} onEscapeKeyDown={closeMenu}>
+export const ToolBarOptions = ({
+  closeMenu,
+  restoreFocus,
+  ...props
+}: { closeMenu: () => void; restoreFocus: () => void } & ToolBarOptionsMenuProps) => (
+  <PopoverContent
+    className={'tool-bar-options-content'}
+    sideOffset={12}
+    collisionPadding={4}
+    onEscapeKeyDown={closeMenu}
+    onCloseAutoFocus={event => {
+      event.preventDefault();
+      restoreFocus();
+    }}
+  >
     <PopoverArrow />
     <ToolBarOptionsMenu {...props} />
   </PopoverContent>

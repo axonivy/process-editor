@@ -1,6 +1,7 @@
 import {
   createIvyDiagramContainer,
   IVY_ACCESSIBILITY_MODULES,
+  ivyReactQueryDevToolsModule,
   ivyStandaloneCopyPasteModule,
   ivyThemeModule
 } from '@axonivy/process-editor';
@@ -32,6 +33,7 @@ export default function createContainer(options: IvyDiagramOptions): Container {
     ivyStandaloneBreakpointModule,
     ivyStandaloneCopyPasteModule,
     ivyThemeModule,
+    ivyReactQueryDevToolsModule,
 
     // ivyNavigationModule is a replacement for navigationModule but it is already removed in the default IvyDiagramContainer
     ivyNavigationModule,

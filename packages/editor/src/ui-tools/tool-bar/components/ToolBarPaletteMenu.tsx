@@ -1,14 +1,16 @@
-import { Palette, PaletteSection, type PaletteItemConfig } from '@axonivy/ui-components';
-import { type IActionDispatcher } from '@eclipse-glsp/client';
+import { Palette, PaletteSection, Spinner, type PaletteItemConfig } from '@axonivy/ui-components';
+import { type IActionDispatcher, type PaletteItem } from '@eclipse-glsp/client';
+import { useQuery } from '@tanstack/react-query';
 import { t } from 'i18next';
 import React from 'react';
+import { genQueryKey } from '../../../utils/query-key';
 import { MenuPaletteIcon } from '../../palette/MenuPaletteIcon';
 import { MenuPaletteItem } from '../../palette/MenuPaletteItem';
 import { paletteItemsToSections, type ExtendedPaletteItem } from '../../palette/palette-utils';
 import { ShowToolBarMenuAction } from '../tool-bar-menu';
 
 interface ToolBarPaletteMenuProps {
-  paletteItems: ExtendedPaletteItem[];
+  onSelect: () => void;
   menuAction: ShowToolBarMenuAction;
   actionDispatcher: IActionDispatcher;
 }
@@ -18,26 +20,40 @@ export type ToolPaletteItemConfig = PaletteItemConfig & {
   info?: string;
 };
 
-export const ToolBarPaletteMenu: React.FC<ToolBarPaletteMenuProps> = ({ paletteItems, menuAction, actionDispatcher }) => {
+export const ToolBarPaletteMenu = ({ onSelect, menuAction, actionDispatcher }: ToolBarPaletteMenuProps) => {
   const onItemSelected = React.useCallback(
-    async (item: ExtendedPaletteItem) => {
+    async (item: PaletteItem) => {
       const actions = menuAction.actions(item);
       actionDispatcher.dispatchAll(actions);
+      onSelect();
     },
-    [actionDispatcher, menuAction]
+    [actionDispatcher, menuAction, onSelect]
   );
 
-  const sections = React.useMemo(
-    () =>
+  const {
+    data: sections,
+    isPending,
+    isError
+  } = useQuery({
+    queryKey: genQueryKey('palette-items', menuAction.id),
+    queryFn: async () => await menuAction.paletteItems(),
+    select: paletteItems =>
       paletteItemsToSections<ExtendedPaletteItem, ToolPaletteItemConfig>(paletteItems, item => ({
         name: item.label,
         description: item.description || item.label,
         paletteIcon: <MenuPaletteIcon item={item} />,
         info: item.info,
         onClick: async () => onItemSelected(item)
-      })),
-    [paletteItems, onItemSelected]
-  );
+      }))
+  });
+
+  if (isPending) {
+    return <Spinner size='small' />;
+  }
+
+  if (isError) {
+    return t('label.empty');
+  }
 
   return (
     <Palette sections={sections} options={{ searchPlaceholder: t('common.label.search'), emptyMessage: t('label.empty') }}>

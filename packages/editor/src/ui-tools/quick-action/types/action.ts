@@ -23,7 +23,7 @@ export class SelectActivityTypeQuickActionProvider extends SingleQuickActionProv
         sorting: 'Y',
         action: ShowQuickActionMenuAction.create({
           elementIds: [element.id],
-          paletteItems: () => this.types.getPaletteItems(),
+          paletteItems: this.types.getPaletteItems(),
           actions: this.actions,
           customCssClass: 'activity-type-menu'
         }),

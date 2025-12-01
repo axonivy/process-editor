@@ -11,7 +11,6 @@ import {
   type IEditModeListener,
   ISelectionListener,
   MouseListener,
-  type PaletteItem,
   SelectionService,
   SetUIExtensionVisibilityAction,
   TYPES,
@@ -51,7 +50,6 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
 
   protected lastButtonClickEvent?: ToolBarButtonClickEvent;
   protected activeMenuAction?: ShowToolBarMenuAction | ShowToolBarOptionsMenuAction;
-  protected loadedPaletteItems?: PaletteItem[];
 
   protected toDisposeOnDisable = new DisposableCollection();
   protected override toDisposeOnHide = new DisposableCollection();
@@ -106,7 +104,7 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
         </Flex>
 
         {/* Dynamic popover for menu items and options */}
-        <Popover open={!!this.activeMenuAction}>
+        <Popover open={this.activeMenuAction !== undefined}>
           <PopoverAnchor
             style={{ display: 'none' }}
             virtualRef={this.lastButtonClickEvent?.reference ? { current: this.lastButtonClickEvent.reference } : undefined}
@@ -118,17 +116,26 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
               collisionPadding={4}
               ref={ref => ref?.parentElement?.querySelector('input')?.focus()}
               onEscapeKeyDown={() => this.closeMenu()}
+              onCloseAutoFocus={event => {
+                event.preventDefault();
+                this.restoreFocusOnDiagram();
+              }}
             >
               <PopoverArrow />
               <ToolBarPaletteMenu
-                paletteItems={this.loadedPaletteItems || []}
+                onSelect={() => this.closeMenu()}
                 menuAction={this.activeMenuAction}
                 actionDispatcher={this.actionDispatcher}
               />
             </PopoverContent>
           )}
           {this.activeMenuAction && ShowToolBarOptionsMenuAction.is(this.activeMenuAction) && (
-            <ToolBarOptions action={this.activeMenuAction} actionDispatcher={this.actionDispatcher} closeMenu={() => this.closeMenu()} />
+            <ToolBarOptions
+              action={this.activeMenuAction}
+              actionDispatcher={this.actionDispatcher}
+              closeMenu={() => this.closeMenu()}
+              restoreFocus={() => this.restoreFocusOnDiagram()}
+            />
           )}
         </Popover>
       </Toolbar>
@@ -185,22 +192,17 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
   }
 
   async toggleToolBarMenu(action: ShowToolBarMenuAction): Promise<void> {
-    const items = await action.paletteItems();
-    if (items.length !== 0 && action.id !== this.activeMenuAction?.id) {
+    if (action.id !== this.activeMenuAction?.id) {
       this.activeMenuAction = action;
-      this.loadedPaletteItems = items;
       this.update();
     } else {
       this.closeMenu();
-      // Reset focus to diagram
-      document.getElementById(this.options.baseDiv)?.querySelector<HTMLDivElement>('div[tabindex]')?.focus();
     }
   }
 
   toggleOptionsMenu(action: ShowToolBarOptionsMenuAction): void {
     if (action.id !== this.activeMenuAction?.id) {
       this.activeMenuAction = action;
-      this.loadedPaletteItems = undefined;
       this.update();
     } else {
       this.closeMenu();
@@ -210,8 +212,11 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
   private closeMenu(): void {
     this.lastButtonClickEvent = undefined;
     this.activeMenuAction = undefined;
-    this.loadedPaletteItems = undefined;
     this.update();
+  }
+
+  restoreFocusOnDiagram(): void {
+    document.getElementById(this.options.baseDiv)?.querySelector<HTMLDivElement>('div[tabindex]')?.focus();
   }
 
   changeActiveButton(evt?: ToolBarButtonClickEvent): void {

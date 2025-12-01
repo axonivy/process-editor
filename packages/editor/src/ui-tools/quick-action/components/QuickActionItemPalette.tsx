@@ -1,13 +1,15 @@
-import { Palette, PaletteSection } from '@axonivy/ui-components';
+import { Palette, PaletteSection, Spinner } from '@axonivy/ui-components';
 import { PaletteItem, type IActionDispatcherProvider } from '@eclipse-glsp/client';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { genQueryKey } from '../../../utils/query-key';
 import { MenuPaletteIcon } from '../../palette/MenuPaletteIcon';
 import { MenuPaletteItem } from '../../palette/MenuPaletteItem';
 import { paletteItemsToSections, type ExtendedPaletteItem } from '../../palette/palette-utils';
 import type { ToolPaletteItemConfig } from '../../tool-bar/components/ToolBarPaletteMenu';
 import type { ShowQuickActionMenuAction } from '../quick-action-menu-ui';
-import { newColorPaletteItem } from './ColorPaletteItem';
+import { QuickActionPaletteWrapper } from './QuickActionPaletteWrapper';
 
 interface QuickActionItemPaletteProps {
   action: ShowQuickActionMenuAction;
@@ -27,18 +29,36 @@ export const QuickActionItemPalette: React.FC<QuickActionItemPaletteProps> = ({ 
     [closeUi, actionDispatcher, action]
   );
 
-  const sections = React.useMemo(() => {
-    const paletteItems = action.isEditable ? [...action.paletteItems(), newColorPaletteItem()] : action.paletteItems();
-    return paletteItemsToSections<ExtendedPaletteItem, ToolPaletteItemConfig>(paletteItems, item => ({
-      name: item.label,
-      description: item.label,
-      paletteIcon: <MenuPaletteIcon item={item} />,
-      onClick: async () => onItemSelected(item)
-    }));
-  }, [action, onItemSelected]);
+  const {
+    data: sections,
+    isPending,
+    isError
+  } = useQuery({
+    queryKey: genQueryKey('quick-action-palette-items', action.customCssClass, action.elementIds),
+    queryFn: async () => await action.paletteItems(),
+    select: paletteItems =>
+      paletteItemsToSections<ExtendedPaletteItem, ToolPaletteItemConfig>(paletteItems, item => ({
+        name: item.label,
+        description: item.label,
+        paletteIcon: <MenuPaletteIcon item={item} />,
+        onClick: async () => onItemSelected(item)
+      }))
+  });
+
+  if (isPending) {
+    return (
+      <QuickActionPaletteWrapper>
+        <Spinner size='small' />
+      </QuickActionPaletteWrapper>
+    );
+  }
+
+  if (isError) {
+    return <QuickActionPaletteWrapper>{t('label.empty')}</QuickActionPaletteWrapper>;
+  }
 
   return (
-    <div className='bar-menu quick-action-bar-menu' ref={ref => ref?.querySelector('input')?.focus()}>
+    <QuickActionPaletteWrapper ref={ref => ref?.querySelector('input')?.focus()}>
       <Palette options={{ searchPlaceholder: t('common.label.search'), emptyMessage: t('label.empty') }} sections={sections}>
         {(title, items) => (
           <PaletteSection key={title} title={title} items={items}>
@@ -46,6 +66,6 @@ export const QuickActionItemPalette: React.FC<QuickActionItemPaletteProps> = ({ 
           </PaletteSection>
         )}
       </Palette>
-    </div>
+    </QuickActionPaletteWrapper>
   );
 };

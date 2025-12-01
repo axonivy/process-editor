@@ -16,15 +16,14 @@ export class ElementsPaletteHandler implements IActionHandler {
   @inject(TYPES.IActionDispatcher) protected readonly actionDispatcher!: IActionDispatcher;
 
   protected paletteItems: Array<PaletteItem> = [];
-  protected extensionItems?: Promise<Array<PaletteItem>>;
 
   getPaletteItems(): PaletteItem[] {
     return this.paletteItems;
   }
 
-  async getExtensionItems() {
-    if (!this.extensionItems) {
-      this.extensionItems = new Promise(resolve => {
+  getExtensionItems() {
+    return () =>
+      new Promise<Array<PaletteItem>>(resolve => {
         this.actionDispatcher
           .request(RequestContextActions.create({ contextId: 'ivy-tool-extensions-palette', editorContext: { selectedElementIds: [] } }))
           .then(response => {
@@ -33,8 +32,6 @@ export class ElementsPaletteHandler implements IActionHandler {
             }
           });
       });
-    }
-    return this.extensionItems;
   }
 
   handle(action: Action) {

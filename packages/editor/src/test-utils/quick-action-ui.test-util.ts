@@ -6,6 +6,7 @@ import {
   GGraphView,
   GNode,
   TYPES,
+  bindOrRebind,
   configureModelElement,
   createFeatureSet,
   type CustomFeatures,
@@ -14,6 +15,7 @@ import {
   type GModelRoot,
   type Point
 } from '@eclipse-glsp/client';
+import { QueryClient } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { expect } from 'chai';
 import { type Container } from 'inversify';
@@ -26,6 +28,7 @@ import { jumpFeature } from '../jump/model';
 import ivyLaneModule from '../lanes/di.config';
 import type { IvyViewerOptions } from '../options';
 import { configureIvyViewerOptions } from '../options';
+import { IVY_TYPES } from '../types';
 import ivyQuickActionModule from '../ui-tools/quick-action/di.config';
 import { quickActionFeature } from '../ui-tools/quick-action/model';
 import { QuickActionUI } from '../ui-tools/quick-action/quick-action-ui';
@@ -46,6 +49,7 @@ export function createContainer(options?: Partial<IvyViewerOptions>): Container 
   );
   configureModelElement(container, DefaultTypes.GRAPH, GGraph, GGraphView);
   configureIvyViewerOptions(container, options ?? {});
+  bindOrRebind(container, IVY_TYPES.QueryClient).toConstantValue(new QueryClient());
   return container;
 }
 

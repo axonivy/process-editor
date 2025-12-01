@@ -16,6 +16,7 @@ import { InscriptionEditor, type InscriptionOutlineProps } from './components/ed
 import { useClient } from './context/useClient';
 import { DataContextInstance } from './context/useDataContext';
 import { DEFAULT_EDITOR_CONTEXT, EditorContextInstance } from './context/useEditorContext';
+import { genQueryKey } from './query/query-client';
 import type { Unary } from './types/lambda';
 
 function App({ outline, ...context }: InscriptionElementContext & InscriptionOutlineProps) {
@@ -29,9 +30,9 @@ function App({ outline, ...context }: InscriptionElementContext & InscriptionOut
 
   const queryKeys = useMemo(() => {
     return {
-      data: (context: InscriptionElementContext) => ['data', context],
-      saveData: (context: InscriptionElementContext) => ['saveData', context],
-      validation: (context: InscriptionElementContext) => ['validations', context]
+      data: (context: InscriptionElementContext) => genQueryKey('data', context),
+      saveData: (context: InscriptionElementContext) => genQueryKey('saveData', context),
+      validation: (context: InscriptionElementContext) => genQueryKey('validations', context)
     };
   }, []);
 
