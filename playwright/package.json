@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@open-rpc/client-js": "2.0.0",
-    "@playwright/test": "1.56.1"
+    "@playwright/test": "1.57.0"
   },
   "type": "module",
   "scripts": {
