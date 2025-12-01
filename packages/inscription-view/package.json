@@ -17,11 +17,11 @@
     "@axonivy/process-editor-inscription-core": "~13.2.0-next",
     "@axonivy/process-editor-inscription-protocol": "~13.2.0-next",
     "@tanstack/react-virtual": "^3.11.2",
+    "@typefox/monaco-editor-react": "7.4.0",
     "immer": "^11.0.0",
     "react-aria": "^3.38.0",
     "react-error-boundary": "^6.0.0",
-    "monaco-languageclient": "10.4.0-next.2",
-    "@typefox/monaco-editor-react": "7.4.0"
+    "monaco-languageclient": "10.4.0"
   },
   "overrides": {
     "vscode": "npm:@codingame/monaco-vscode-extension-api",

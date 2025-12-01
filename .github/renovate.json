@@ -9,21 +9,9 @@
   "rebaseWhen": "conflicted",
   "packageRules": [
     {
-      "matchDepNames": [
-        "@codingame/*",
-        "monaco-editor*",
-        "monaco-languageclient"
-      ],
-      "enabled": false
-    },
-    {
-      "matchDepNames": [
-        "@playwright/test",
-        "mcr.microsoft.com/playwright",
-        "@eclipse-glsp/*"
-      ],
-      "matchBaseBranches": ["release/10.0"],
-      "enabled": false
+      "matchDepNames": ["@codingame/*", "monaco-languageclient"],
+      "matchBaseBranches": ["master"],
+      "enabled": true
     }
   ]
 }
