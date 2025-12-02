@@ -4,6 +4,7 @@ interface MonacoConfigOptions {
   supportedLocales?: string[];
   removeAsset?: (fileName: string) => boolean;
   logging?: boolean;
+  ignorePackages?: string[];
 }
 
 // the i18n json files are produced by language bundles that have translations for common extensions, e.g., json, css, Markdown, etc.
@@ -56,6 +57,11 @@ const monacoConfigPlugin = (options: MonacoConfigOptions = {}): Plugin => {
 
               const importPath = id.slice(id.lastIndexOf('node_modules/') + 'node_modules/'.length);
               const packageName = importPath.startsWith('@') ? importPath.split('/', 2).join('/') : (importPath.split('/', 1)[0] ?? id);
+
+              if (options.ignorePackages?.includes(packageName)) {
+                log(`Ignoring package for chunking: ${packageName}`, logging);
+                return;
+              }
 
               // chunk React seaparately as it is large and may be shared with other parts of the application
               if (packageName === 'react' || packageName === 'react-dom') {
