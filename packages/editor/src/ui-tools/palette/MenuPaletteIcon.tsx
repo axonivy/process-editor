@@ -2,7 +2,15 @@ import { IvyIcon } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import React from 'react';
 import { elementIcons, standardIcons, type StandardIcon } from '../../diagram/icon/icons';
-import { ActivityTypes, EventEndTypes, EventIntermediateTypes, EventStartTypes, GatewayTypes, LaneTypes } from '../../diagram/view-types';
+import {
+  ActivityTypes,
+  EventBoundaryTypes,
+  EventEndTypes,
+  EventIntermediateTypes,
+  EventStartTypes,
+  GatewayTypes,
+  LaneTypes
+} from '../../diagram/view-types';
 import type { ExtendedPaletteItem } from './palette-utils';
 
 export const MenuPaletteIcon = ({ item }: { item: ExtendedPaletteItem }) => {
@@ -53,7 +61,7 @@ const getBaseSymbol = (iconUri: string) => {
   if (iconUri.startsWith(EventStartTypes.DEFAULT)) {
     return <circle cx='14' cy='14' r='13' style={{ fill: 'none', stroke: 'currentcolor' }} />;
   }
-  if (iconUri.startsWith(EventIntermediateTypes.DEFAULT)) {
+  if (iconUri.startsWith(EventIntermediateTypes.DEFAULT) || iconUri.startsWith(EventBoundaryTypes.DEFAULT)) {
     return (
       <>
         <circle cx='14' cy='14' r='13' style={{ fill: 'none', stroke: 'currentcolor' }} />
