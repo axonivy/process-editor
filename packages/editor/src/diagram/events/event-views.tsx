@@ -26,7 +26,7 @@ export class EventNodeView extends CircularNodeView {
           cy={radius}
           style={{ stroke: node.color }}
         ></circle>
-        {this.getEventDecorator(radius)}
+        {this.getEventDecorator(radius, node.color)}
         {getIconDecorator(this.customIconHandler?.isShowCustomIcons ? node.customIcon : node.type, radius, node.color)}
         {context.renderChildren(node)}
         {createExecutionBadge(node, 2 * radius)}
@@ -35,14 +35,14 @@ export class EventNodeView extends CircularNodeView {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  protected getEventDecorator(radius: number): VNode | undefined {
+  protected getEventDecorator(radius: number, color: string): VNode | undefined {
     return;
   }
 }
 
 @injectable()
 export class IntermediateEventNodeView extends EventNodeView {
-  protected override getEventDecorator(radius: number): VNode {
-    return <circle class-sprotty-node class-sprotty-task-node r={radius - 3} cx={radius} cy={radius}></circle>;
+  protected override getEventDecorator(radius: number, color: string): VNode {
+    return <circle class-sprotty-node class-sprotty-task-node r={radius - 3} cx={radius} cy={radius} style={{ stroke: color }}></circle>;
   }
 }

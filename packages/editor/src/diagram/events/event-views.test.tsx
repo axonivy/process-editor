@@ -177,7 +177,7 @@ describe('EventNodeView', () => {
     const node = toHTML(view);
     expect(node).to.contains('<circle class="sprotty-node" r="15" cx="15" cy="15" style="stroke: " />');
     if (options.intermediate) {
-      expect(node).to.contains('<circle class="sprotty-node sprotty-task-node" r="12" cx="15" cy="15" />');
+      expect(node).to.contains('<circle class="sprotty-node sprotty-task-node" r="12" cx="15" cy="15" style="stroke: " />');
     }
     if (options.icon) {
       expect(node).to.contains('<svg class="sprotty-icon sprotty-icon-svg" viewBox="0 0 20 20" height="18" width="18" x="6" y="6"');

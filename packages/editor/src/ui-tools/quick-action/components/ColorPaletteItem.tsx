@@ -13,7 +13,7 @@ export function isNewColorPaletteItem(item: ColorPaletteItem): boolean {
 }
 
 export function isDefaultColorPaletteItem(item: ColorPaletteItem): boolean {
-  return item.label === 'default';
+  return item.id === 'default';
 }
 
 export function newColorPaletteItem(): ColorPaletteItem {
