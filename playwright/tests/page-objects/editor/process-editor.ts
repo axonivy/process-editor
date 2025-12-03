@@ -108,6 +108,13 @@ export class ProcessEditor {
     return new Inscription(page, page.locator('#inscription-ui'));
   }
 
+  async createEvent(type: string, position?: Point) {
+    await this.toolbar().triggerCreateElement('events', type);
+    await this.clickAt(position ?? { x: 200, y: 200 });
+    const id = (await this.graph.locator('> g > g.selected').getAttribute('id')) ?? undefined;
+    return new Element(this.page, this.graph, { id });
+  }
+
   async createActivity(type: string, position?: Point) {
     await this.toolbar().triggerCreateElement('activities', type);
     await this.clickAt(position ?? { x: 200, y: 200 });

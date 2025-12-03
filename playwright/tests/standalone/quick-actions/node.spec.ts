@@ -28,34 +28,34 @@ test('label edit', async ({ page }) => {
 
 test('custom icon', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
-  const userDialog = await processEditor.createActivity('User Dialog', { x: 300, y: 100 });
-  await expect(userDialog.icon).toBeVisible();
-  const menu = await userDialog.quickActionBar().changeIcon();
+  const signal = await processEditor.createEvent('Signal Start', { x: 300, y: 100 });
+  await expect(signal.icon).toBeVisible();
+  const menu = await signal.quickActionBar().changeIcon();
   await menu.expectGroups(['Default', 'Web Content', 'Standard Icons']);
   for (const img of await menu.locator().locator('img').all()) {
     await expect(img).toHaveJSProperty('complete', true);
     await expect(img).not.toHaveJSProperty('naturalWidth', 0);
   }
   await expect(menu.items(menu.group('Web Content'))).toHaveCount(3);
-  await expect(menu.item('Default').locator('svg')).toBeVisible();
+  await expect(menu.item('Signal').first().locator('svg')).toBeVisible();
 
-  await menu.click('Compensate');
-  await expect(userDialog.icon).toBeVisible();
-  await expect(userDialog.icon.locator('svg path')).toHaveAttribute('d', /M 9.167969/);
+  await menu.item('Compensate').click();
+  await expect(signal.icon).toBeVisible();
+  await expect(signal.icon.locator('path')).toHaveAttribute('d', /M 9.167969/);
 
-  await userDialog.quickActionBar().changeIcon();
-  await menu.click('NoDecorator');
-  await expect(userDialog.icon).toBeHidden();
+  await signal.quickActionBar().changeIcon();
+  await menu.item('No Icon').click();
+  await expect(signal.icon).toBeHidden();
 
-  await userDialog.quickActionBar().changeIcon();
-  await menu.click('Developer');
-  await expect(userDialog.icon).toBeVisible();
-  await expect(userDialog.icon.locator('img')).toHaveAttribute('src', /Developer.jpg/);
+  await signal.quickActionBar().changeIcon();
+  await menu.item('Developer').click();
+  await expect(signal.icon).toBeVisible();
+  await expect(signal.icon.locator('img')).toHaveAttribute('src', /Developer.jpg/);
 
-  await userDialog.quickActionBar().changeIcon();
-  await menu.click('Default');
-  await expect(userDialog.icon).toBeVisible();
-  await expect(userDialog.icon.locator('svg path')).toHaveAttribute('d', /M10 11.23C10.94/);
+  await signal.quickActionBar().changeIcon();
+  await menu.item('Signal').first().click();
+  await expect(signal.icon).toBeVisible();
+  await expect(signal.icon.locator('path')).toHaveAttribute('d', /M 5.167969/);
 });
 
 test('delete', async ({ page }) => {
