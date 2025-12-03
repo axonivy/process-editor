@@ -16,6 +16,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { type Table } from '@tanstack/react-table';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { genQueryKey } from '../../..';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useFunction } from '../../../context/useFunction';
 import { useRoles } from '../../parts/common/role/useRoles';
@@ -46,7 +47,7 @@ export const AddRolePopover = ({
     {
       onSuccess: () => {
         toast.info(t('browser.role.addSuccess'));
-        queryClient.invalidateQueries({ queryKey: ['meta/workflow/roleTree', context] });
+        queryClient.invalidateQueries({ queryKey: genQueryKey('meta/workflow/roleTree', context) });
         setOpen(false);
       },
       onError: error => {

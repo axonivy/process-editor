@@ -1,6 +1,6 @@
 import { ChangeIconOperation } from '@axonivy/process-editor-protocol';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { Action, GModelElement, PaletteItem, TYPES, type IActionDispatcher } from '@eclipse-glsp/client';
+import { Action, GModelElement, PaletteItem, TYPES, type IActionDispatcher, type MaybePromise } from '@eclipse-glsp/client';
 import { t } from 'i18next';
 import { inject, injectable } from 'inversify';
 import { isWithCustomIcon } from '../../../diagram/icon/model';
@@ -19,10 +19,10 @@ export class SelectIconQuickActionProvider extends SingleQuickActionProvider {
     if (!isWithCustomIcon(element) || element.type === ActivityTypes.COMMENT) {
       return;
     }
-    return this.quickAction(element.id, () => this.icons.getPaletteItems(element));
+    return this.quickAction(element.id, this.icons.getPaletteItems(element));
   }
 
-  quickAction(elementId: string, paletteItems: () => PaletteItem[]): QuickAction {
+  quickAction(elementId: string, paletteItems: () => MaybePromise<PaletteItem[]>): QuickAction {
     return {
       icon: IvyIcons.CustomImage,
       title: t('quickAction.customIcon'),

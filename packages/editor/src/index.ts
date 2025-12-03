@@ -12,6 +12,7 @@ export { default as ivyStartActionModule } from './start-action/di.config';
 export { default as ivyThemeModule } from './theme/di.config';
 export { ivyChangeBoundsToolModule, ivyExportModule } from './tools/di.config';
 export * from './ui-tools/notification/di.config';
+export * from './ui-tools/query-client-devtools/di.config';
 export { default as ivyQuickActionModule } from './ui-tools/quick-action/di.config';
 export { default as ivyToolBarModule } from './ui-tools/tool-bar/di.config';
 export { default as ivyWrapModule } from './wrap/di.config';

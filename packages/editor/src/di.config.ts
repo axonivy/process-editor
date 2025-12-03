@@ -18,6 +18,7 @@ import {
   overrideViewerOptions,
   statusModule
 } from '@eclipse-glsp/client';
+import { QueryClient } from '@tanstack/react-query';
 import { Container } from 'inversify';
 import ivyAnimateModule from './animate/di.config';
 import './colors.css';
@@ -95,6 +96,8 @@ export default function createContainer(widgetId: string, ...containerConfigurat
   bindOrRebind(container, TYPES.ILogger).to(ConsoleLogger).inSingletonScope();
   bindOrRebind(container, TYPES.LogLevel).toConstantValue(LogLevel.warn);
   bindOrRebind(container, TYPES.ISnapper).to(GLSPCenterGridSnapper);
+
+  bindOrRebind(container, IVY_TYPES.QueryClient).toConstantValue(new QueryClient());
 
   overrideViewerOptions(container, {
     baseDiv: widgetId,

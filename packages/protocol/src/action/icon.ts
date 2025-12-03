@@ -1,4 +1,4 @@
-import { Action, type Operation, type PaletteItem } from '@eclipse-glsp/protocol';
+import { type Operation } from '@eclipse-glsp/protocol';
 
 export interface ChangeIconOperation extends Operation {
   kind: typeof ChangeIconOperation.KIND;
@@ -23,18 +23,5 @@ export namespace ChangeIconOperation {
       isOperation: true,
       ...options
     };
-  }
-}
-
-export interface UpdateIconPaletteAction extends Action {
-  kind: typeof UpdateIconPaletteAction.KIND;
-  paletteItems: PaletteItem[];
-}
-
-export namespace UpdateIconPaletteAction {
-  export const KIND = 'updateIconPalette';
-
-  export function is(object: unknown): object is UpdateIconPaletteAction {
-    return Action.hasKind(object, KIND);
   }
 }

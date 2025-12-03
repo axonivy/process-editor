@@ -3,6 +3,7 @@ import { IvyIcons } from '@axonivy/ui-icons';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { genQueryKey } from '../../..';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
 import { PathContext } from '../../../context/usePath';
@@ -39,7 +40,7 @@ const ResultPart = ({ hideParamDesc }: { hideParamDesc?: boolean }) => {
   const { data: variableInfo } = useMeta('meta/scripting/out', { context, location: 'result' }, { variables: [], types: {} });
   const queryClient = useQueryClient();
   useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: ['meta/scripting/out'] });
+    queryClient.invalidateQueries({ queryKey: genQueryKey('meta/scripting/out') });
   }, [config.result.params, queryClient]);
 
   const { maximizeState, maximizeCode } = useMaximizedCodeEditor();

@@ -12,5 +12,4 @@ export * from './monaco/monaco-language-util';
 export * from './monaco/monaco-modules';
 export * from './monaco/monaco-util';
 
-export * from './query/QueryProvider';
 export * from './query/query-client';

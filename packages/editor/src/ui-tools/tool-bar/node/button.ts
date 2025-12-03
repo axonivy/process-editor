@@ -14,10 +14,7 @@ export abstract class CreateElementsButtonProvider implements ToolBarButtonProvi
     return this.createToolBarButton(this.paletteItems());
   }
 
-  protected actions = (paletteItem: PaletteItem): Action[] => [
-    ShowToolBarMenuAction.create({ id: '', paletteItems: () => [], actions: () => [] }),
-    ...paletteItem.actions
-  ];
+  protected actions = (paletteItem: PaletteItem): Action[] => paletteItem.actions;
 
   protected paletteItems(): () => PaletteItem[] {
     return () => this.paletteHandler.getPaletteItems();
@@ -141,7 +138,7 @@ export class ExtensionButtonProvider extends CreateElementsButtonProvider {
       action: () =>
         ShowToolBarMenuAction.create({
           id,
-          paletteItems: () => this.paletteHandler.getExtensionItems(),
+          paletteItems: this.paletteHandler.getExtensionItems(),
           actions: this.actions,
           showSearch: true,
           customCssClass: 'menu-as-list'

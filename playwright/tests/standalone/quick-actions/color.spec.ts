@@ -47,7 +47,6 @@ test('add new and remove color', async ({ page }) => {
   const menu = quickAction.menu().locator();
   await quickAction.addColor();
 
-  await quickAction.trigger('Select color');
   await expect(menu).toBeVisible();
   const newColor = menu.locator('.ui-palette-item:has-text("TestColor")');
   await expect(newColor).toBeVisible();

@@ -1,19 +1,13 @@
 import { webSocketConnection, type Connection } from '@axonivy/jsonrpc';
 import { InscriptionClientJsonRpc } from '@axonivy/process-editor-inscription-core';
-import {
-  App,
-  ClientContextProvider,
-  IvyLanguageClient,
-  LogLevel,
-  MonacoEditorUtil,
-  QueryProvider,
-  initQueryClient
-} from '@axonivy/process-editor-inscription-view';
+import { App, ClientContextProvider, IvyLanguageClient, LogLevel, MonacoEditorUtil } from '@axonivy/process-editor-inscription-view';
 import { Flex, Spinner, ThemeProvider, Toaster } from '@axonivy/ui-components';
+import { QueryClient } from '@tanstack/react-query';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { getCurrentLanguage, initTranslation } from './i18n';
 import './index.css';
+import { QueryProvider } from './QueryProvider';
 import { URLParams } from './url-helper';
 
 export async function start(): Promise<void> {
@@ -22,7 +16,7 @@ export async function start(): Promise<void> {
   const pmv = URLParams.pmv();
   const pid = URLParams.pid();
   const theme = URLParams.themeMode();
-  const queryClient = initQueryClient();
+  const queryClient = new QueryClient();
   const rootElement = document.getElementById('root');
   if (!rootElement) {
     throw new Error('root element not found');

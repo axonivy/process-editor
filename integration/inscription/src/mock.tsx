@@ -1,18 +1,13 @@
 import type { ElementType } from '@axonivy/process-editor-inscription-protocol';
-import {
-  App,
-  ClientContextProvider,
-  LogLevel,
-  MonacoEditorUtil,
-  QueryProvider,
-  initQueryClient
-} from '@axonivy/process-editor-inscription-view';
+import { App, ClientContextProvider, LogLevel, MonacoEditorUtil } from '@axonivy/process-editor-inscription-view';
 import { ThemeProvider, Toaster } from '@axonivy/ui-components';
+import { QueryClient } from '@tanstack/react-query';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { initTranslation } from './i18n';
 import './index.css';
 import { InscriptionClientMock } from './mock/inscription-client-mock';
+import { QueryProvider } from './QueryProvider';
 import { URLParams } from './url-helper';
 
 export async function start(): Promise<void> {
@@ -24,7 +19,7 @@ export async function start(): Promise<void> {
     throw new Error('root element not found');
   }
   const root = createRoot(rootElement);
-  const queryClient = initQueryClient();
+  const queryClient = new QueryClient();
   const client = new InscriptionClientMock(readonly, type);
   await MonacoEditorUtil.configureMonaco({ theme, logLevel: LogLevel.Debug });
   initTranslation();

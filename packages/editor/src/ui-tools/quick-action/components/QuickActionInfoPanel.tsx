@@ -5,6 +5,7 @@ import { marked } from 'marked';
 import React from 'react';
 import type { ShowInfoQuickActionMenuAction } from '../quick-action-menu-ui';
 import './QuickActionInfoPanel.css';
+import { QuickActionPaletteWrapper } from './QuickActionPaletteWrapper';
 
 interface QuickActionInfoPanelProps {
   action: ShowInfoQuickActionMenuAction;
@@ -23,7 +24,7 @@ function getIvyIconForSeverity(severity: GIssueSeverity): IvyIcons {
 
 export const QuickActionInfoPanel: React.FC<QuickActionInfoPanelProps> = ({ action }) => {
   return (
-    <div className='bar-menu quick-action-bar-menu bar-menu-text simple-menu'>
+    <QuickActionPaletteWrapper className='bar-menu-text simple-menu'>
       {action.title && <h3 className='simple-menu-header'>{action.title}</h3>}
       {action.markers.map((marker, index) => (
         <div key={index} className='menu-marker'>
@@ -52,6 +53,6 @@ export const QuickActionInfoPanel: React.FC<QuickActionInfoPanelProps> = ({ acti
         {/* eslint-disable-next-line i18next/no-literal-string */}
         <strong>PID: </strong> {action.elementId}
       </p>
-    </div>
+    </QuickActionPaletteWrapper>
   );
 };

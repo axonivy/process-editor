@@ -4,11 +4,10 @@ import { InscriptionClientJsonRpc } from '@axonivy/process-editor-inscription-co
 import type { InscriptionContext } from '@axonivy/process-editor-inscription-protocol';
 import {
   ClientContextProvider,
+  genQueryKey,
   IvyLanguageClient,
   LogLevel,
-  MonacoEditorUtil,
-  QueryProvider,
-  initQueryClient
+  MonacoEditorUtil
 } from '@axonivy/process-editor-inscription-view';
 import { JumpAction, MoveIntoViewportAction, SwitchThemeAction } from '@axonivy/process-editor-protocol';
 import {
@@ -16,6 +15,8 @@ import {
   GArgument,
   GModelRoot,
   ISelectionListener,
+  isNotUndefined,
+  isOpenable,
   OpenAction,
   RedoAction,
   SelectAction,
@@ -24,12 +25,9 @@ import {
   TYPES,
   UndoAction,
   UpdateModelAction,
-  isNotUndefined,
-  isOpenable,
   type IActionDispatcher,
   type IActionHandler
 } from '@eclipse-glsp/client';
-import { QueryClient } from '@tanstack/react-query';
 import { inject, injectable, postConstruct } from 'inversify';
 import * as React from 'react';
 import InscriptionView from './InscriptionView';
@@ -47,7 +45,6 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
   private inscriptionContext?: InscriptionContext;
   private inscriptionClient?: Promise<InscriptionClientJsonRpc>;
   private resolvedInscriptionClient?: InscriptionClientJsonRpc;
-  private queryClient?: QueryClient;
   private invalidateAfterNextUpdate = false;
 
   public id(): string {
@@ -72,7 +69,6 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
     super.initializeContents(containerElement);
     this.changeUiVisiblitiy(false);
     this.inscriptionContext = this.initInscriptionContext();
-    this.queryClient = initQueryClient();
     this.inscriptionClient = this.startInscriptionClient().then(client => this.resolveInscriptionClient(client));
   }
 
@@ -87,17 +83,15 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
     }
     return (
       <ClientContextProvider client={this.resolvedInscriptionClient}>
-        <QueryProvider client={this.queryClient}>
-          <InscriptionView
-            app={this.inscriptionContext.app}
-            pmv={this.inscriptionContext.pmv}
-            pid={this.inscriptionElement}
-            outline={{
-              selection: this.selectionService.getSelectedElementIDs()[0],
-              onClick: id => this.selectFromOutline(id)
-            }}
-          />
-        </QueryProvider>
+        <InscriptionView
+          app={this.inscriptionContext.app}
+          pmv={this.inscriptionContext.pmv}
+          pid={this.inscriptionElement}
+          outline={{
+            selection: this.selectionService.getSelectedElementIDs()[0],
+            onClick: id => this.selectFromOutline(id)
+          }}
+        />
       </ClientContextProvider>
     );
   }
@@ -157,7 +151,7 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
     }
     if (Action.hasKind(action, UpdateModelAction.KIND) && this.invalidateAfterNextUpdate) {
       this.invalidateAfterNextUpdate = false;
-      this.queryClient?.invalidateQueries({ queryKey: ['data'] });
+      this.queryClient?.invalidateQueries({ queryKey: genQueryKey('data') });
     }
     return;
   }
