@@ -26,5 +26,4 @@
   box-shadow: var(--glsp-box-shadow);
   border-radius: var(--border-r2, 5px);
   padding: var(--size-1, 0.25rem);
-  z-index: 10;
 }
