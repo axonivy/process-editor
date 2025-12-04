@@ -24,7 +24,7 @@
 }
 body {
   .ui-select-content,
-  .ui-popover-content,
+  .ui-popover-content:not(.quick-action-ui),
   .ui-tooltip-content {
     z-index: 1010;
   }
