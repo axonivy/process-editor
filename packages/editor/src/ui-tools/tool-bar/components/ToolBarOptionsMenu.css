@@ -7,7 +7,6 @@
 }
 
 .tool-bar-options-menu {
-  width: 170px;
   background: var(--glsp-bar-menu-bg);
   border-radius: 4px;
   .tool-bar-options-header {
