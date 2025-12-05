@@ -33,13 +33,13 @@ The process editor component has to be built using npm.
 
 ```bash
 #install node modules
-npm install
+pnpm install
 
 #build typescript
-npm run build
+pnpm run build
 
 #build integrations (sometimes you need to delete the node_modules folder first because of a missing monaco-editor dependency)
-npm run package
+pnpm run package
 ```
 
 ## Running the process editor

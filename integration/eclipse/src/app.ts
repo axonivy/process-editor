@@ -2,8 +2,7 @@ import { DiagramLoader } from '@eclipse-glsp/client';
 
 import { IvyBaseJsonrpcGLSPClient } from '@axonivy/process-editor';
 import { getParameters } from '@eclipse-glsp/ide';
-import { ApplicationIdProvider, GLSPClient, GLSPWebSocketProvider } from '@eclipse-glsp/protocol';
-import type { MessageConnection } from 'vscode-jsonrpc';
+import { ApplicationIdProvider, GLSPClient, GLSPWebSocketProvider, type JsonrpcGLSPClient } from '@eclipse-glsp/protocol';
 
 import { LogLevel, MonacoEditorUtil } from '@axonivy/process-editor-inscription-view';
 import type { ThemeMode } from '@axonivy/process-editor-protocol';
@@ -39,6 +38,8 @@ const wsProvider = new GLSPWebSocketProvider(webSocketUrl);
 wsProvider.listen({ onConnection: initialize, onReconnect: reconnect, logger: console });
 MonacoEditorUtil.configureMonaco({ theme, logLevel: debug ? LogLevel.Debug : LogLevel.Warning });
 initTranslation();
+
+type MessageConnection = JsonrpcGLSPClient.Options['connectionProvider'];
 
 async function initialize(connectionProvider: MessageConnection, isReconnecting = false): Promise<void> {
   glspClient = new IvyBaseJsonrpcGLSPClient({ id, connectionProvider });

@@ -10,19 +10,24 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "dependencies": {
-    "@axonivy/process-editor": "~13.2.0-next",
-    "@axonivy/process-editor-inscription-core": "~13.2.0-next",
-    "@axonivy/process-editor-inscription-protocol": "~13.2.0-next",
-    "@axonivy/process-editor-inscription-view": "~13.2.0-next",
+    "@axonivy/process-editor": "workspace:~13.2.0-next",
+    "@axonivy/process-editor-inscription-core": "workspace:~13.2.0-next",
+    "@axonivy/process-editor-inscription-protocol": "workspace:~13.2.0-next",
+    "@axonivy/process-editor-inscription-view": "workspace:~13.2.0-next",
+    "@axonivy/process-editor-protocol": "workspace:~13.2.0-next",
     "@eclipse-glsp/client": "2.5.0"
   },
   "peerDependencies": {
     "@axonivy/jsonrpc": "~13.2.0-next",
     "@axonivy/ui-icons": "~13.2.0-next",
     "i18next": "^24.2.3 || ^25.0.0",
-    "react": "^19.0"
+    "inversify": "^6.2",
+    "react": "^19.0",
+    "react-aria": "^3.38"
   },
   "devDependencies": {
+    "@axonivy/ui-components": "~13.2.0-next.934.4686e45",
+    "@axonivy/ui-icons": "~13.2.0-next.934.4686e45",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "react": "^19.0.0",

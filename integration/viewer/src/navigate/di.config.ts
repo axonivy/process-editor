@@ -1,5 +1,4 @@
-import { FeatureModule, configureActionHandler, navigationModule } from '@eclipse-glsp/client';
-import { NavigateToExternalTargetAction } from '@eclipse-glsp/protocol';
+import { FeatureModule, NavigateToExternalTargetAction, configureActionHandler, navigationModule } from '@eclipse-glsp/client';
 import { NavigateToExternalTargetActionHandler } from './action-handler';
 
 const ivyNavigationModule = new FeatureModule(

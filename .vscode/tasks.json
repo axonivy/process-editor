@@ -7,7 +7,7 @@
       "label": "Start Standalone",
       "type": "shell",
       "group": "build",
-      "command": "npm run dev",
+      "command": "pnpm run dev",
       "presentation": {
         "reveal": "always",
         "panel": "dedicated"
@@ -31,7 +31,7 @@
       "label": "Start Viewer",
       "type": "shell",
       "group": "build",
-      "command": "npm run dev:viewer",
+      "command": "pnpm run dev:viewer",
       "presentation": {
         "reveal": "always",
         "panel": "dedicated"
@@ -55,7 +55,7 @@
       "label": "Start Eclipse",
       "type": "shell",
       "group": "build",
-      "command": "npm run dev:eclipse",
+      "command": "pnpm run dev:eclipse",
       "presentation": {
         "reveal": "always",
         "panel": "dedicated"
@@ -79,7 +79,7 @@
       "label": "Start Inscription",
       "type": "shell",
       "group": "build",
-      "command": "npm run dev:inscription",
+      "command": "pnpm run dev:inscription",
       "presentation": {
         "reveal": "always",
         "panel": "dedicated"
