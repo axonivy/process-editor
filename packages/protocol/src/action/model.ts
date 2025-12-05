@@ -1,8 +1,7 @@
 import type { Action, GModelRootSchema } from '@eclipse-glsp/protocol';
 import { UpdateModelAction } from '@eclipse-glsp/protocol';
-import type * as sprotty from 'sprotty-protocol/lib/actions';
 
-export interface ReloadModelAction extends Action, Omit<sprotty.UpdateModelAction, 'matches' | 'cause'> {
+export interface ReloadModelAction extends Action {
   kind: typeof UpdateModelAction.KIND;
   newRoot?: GModelRootSchema;
   animate?: boolean;

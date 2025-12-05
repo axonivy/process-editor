@@ -10,17 +10,21 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "dependencies": {
-    "@axonivy/process-editor": "~13.2.0-next",
+    "@axonivy/process-editor": "workspace:~13.2.0-next",
+    "@axonivy/process-editor-protocol": "workspace:~13.2.0-next",
     "@axonivy/ui-components": "~13.2.0-next.934.4686e45",
     "@axonivy/ui-icons": "~13.2.0-next.934.4686e45",
-    "@eclipse-glsp/client": "2.5.0"
+    "@eclipse-glsp/client": "2.5.0",
+    "i18next": "^25.0.0",
+    "i18next-browser-languagedetector": "^8.0.4",
+    "inversify": "^6.2"
   },
   "devDependencies": {
+    "@axonivy/monaco-vite-plugin": "workspace:~13.2.0-next",
     "@vscode/codicons": "^0.0.43",
     "reflect-metadata": "~0.2.2",
     "vite": "^7.0.0",
-    "vite-tsconfig-paths": "^5.1.4",
-    "@axonivy/monaco-vite-plugin": "13.2.0-next"
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "type": "module",
   "scripts": {

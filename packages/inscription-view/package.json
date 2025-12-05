@@ -14,22 +14,31 @@
     "src"
   ],
   "dependencies": {
-    "@axonivy/process-editor-inscription-core": "~13.2.0-next",
-    "@axonivy/process-editor-inscription-protocol": "~13.2.0-next",
+    "@axonivy/process-editor-inscription-core": "workspace:~13.2.0-next",
+    "@axonivy/process-editor-inscription-protocol": "workspace:~13.2.0-next",
     "@tanstack/react-virtual": "^3.11.2",
     "@typefox/monaco-editor-react": "7.4.0",
     "immer": "^11.0.0",
+    "monaco-languageclient": "10.4.0",
     "react-aria": "^3.38.0",
-    "react-error-boundary": "^6.0.0",
-    "monaco-languageclient": "10.4.0"
-  },
-  "overrides": {
-    "vscode": "npm:@codingame/monaco-vscode-extension-api",
-    "monaco-editor": "@npm:@codingame/monaco-vscode-editor-api"
+    "react-error-boundary": "^6.0.0"
   },
   "peerDependencies": {
+    "@axonivy/jsonrpc": "~13.2.0-next",
     "@axonivy/ui-components": "~13.2.0-next",
     "@axonivy/ui-icons": "~13.2.0-next",
+    "@codingame/monaco-vscode-api": "^23",
+    "@codingame/monaco-vscode-configuration-service-override": "^23",
+    "@codingame/monaco-vscode-editor-api": "^23",
+    "@codingame/monaco-vscode-editor-service-override": "^23",
+    "@codingame/monaco-vscode-extension-api": "^23",
+    "@codingame/monaco-vscode-keybindings-service-override": "^23",
+    "@codingame/monaco-vscode-language-pack-de": "^23",
+    "@codingame/monaco-vscode-language-pack-fr": "^23",
+    "@codingame/monaco-vscode-language-pack-ja": "^23",
+    "@codingame/monaco-vscode-languages-service-override": "^23",
+    "@codingame/monaco-vscode-localization-service-override": "^23",
+    "@codingame/monaco-vscode-workbench-service-override": "^23",
     "@radix-ui/react-dialog": "^1.1",
     "@radix-ui/react-tabs": "^1.1",
     "@tanstack/react-query": "^5.64",
@@ -41,6 +50,9 @@
     "react-i18next": "^15.4.1 || ^16.0.0"
   },
   "devDependencies": {
+    "@axonivy/jsonrpc": "~13.2.0-next.934.4686e45",
+    "@axonivy/ui-components": "~13.2.0-next.934.4686e45",
+    "@axonivy/ui-icons": "~13.2.0-next.934.4686e45",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.0",
@@ -59,7 +71,6 @@
     "clean": "rimraf lib *.tsbuildinfo",
     "build": "tsc --build && tscp",
     "package": "tsc -p tsconfig.production.json && tscp",
-    "build:clean": "npm run clean && npm run build",
     "type": "tsc --noEmit",
     "test": "vitest",
     "test:ci": "vitest --watch=false"

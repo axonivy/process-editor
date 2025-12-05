@@ -1,11 +1,18 @@
 import { IvyBaseJsonrpcGLSPClient, prefsColorScheme } from '@axonivy/process-editor';
 import { LogLevel, MonacoEditorUtil } from '@axonivy/process-editor-inscription-view';
 import type { ThemeMode } from '@axonivy/process-editor-protocol';
-import type { IActionDispatcher } from '@eclipse-glsp/client';
-import { DiagramLoader, EditMode, GLSPWebSocketProvider, MessageAction, StatusAction, TYPES } from '@eclipse-glsp/client';
-import { ApplicationIdProvider, GLSPClient } from '@eclipse-glsp/protocol';
+import type { IActionDispatcher, JsonrpcGLSPClient } from '@eclipse-glsp/client';
+import {
+  ApplicationIdProvider,
+  DiagramLoader,
+  EditMode,
+  GLSPClient,
+  GLSPWebSocketProvider,
+  MessageAction,
+  StatusAction,
+  TYPES
+} from '@eclipse-glsp/client';
 import type { Container } from 'inversify';
-import type { MessageConnection } from 'vscode-jsonrpc';
 import createContainer from './di.config';
 import { initTranslation } from './i18n';
 import './index.css';
@@ -38,6 +45,8 @@ const wsProvider = new GLSPWebSocketProvider(webSocketUrl);
 wsProvider.listen({ onConnection: initialize, onReconnect: reconnect, logger: console });
 MonacoEditorUtil.configureMonaco({ theme, logLevel: debug ? LogLevel.Debug : LogLevel.Warning });
 initTranslation();
+
+type MessageConnection = JsonrpcGLSPClient.Options['connectionProvider'];
 
 async function initialize(connectionProvider: MessageConnection, isReconnecting = false): Promise<void> {
   glspClient = new IvyBaseJsonrpcGLSPClient({ id, connectionProvider });

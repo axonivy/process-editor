@@ -1,11 +1,24 @@
 #!/bin/bash
 set -e
 
-sed -i -E "s/(\"@axonivy[^\"]*\"): \"[^\"]*\"/\1: \"~${1/SNAPSHOT/next}\"/" packages/*/package.json
-sed -i -E "s/(\"@axonivy[^\"]*\"): \"[^\"]*\"/\1: \"~${1/SNAPSHOT/next}\"/" integration/*/package.json
-sed -i -E "s/(\"@axonivy[^\"]*\"): \"[^\"]*\"/\1: \"~${1/SNAPSHOT/next}\"/" package.json
+if [ -z "$1" ]; then
+  echo "Usage: $0 <version>"
+  exit 1
+fi
 
-npm run update:axonivy:next
+VERSION="$1"
+
+update_version() {
+  local version="${1/SNAPSHOT/next}"
+  sed -i -E "s/(\"@axonivy[^\"]*\": \"(workspace:)?)[^\"]*(\")/\1~$version\3/" "$2"
+}
+
+for pkg in packages/*/package.json integration/*/package.json package.json; do
+  update_version "$VERSION" "$pkg"
+done
+
+pnpm run update:axonivy:next
+
 if [ "$DRY_RUN" = false ]; then
-  npm install
+  pnpm install --no-frozen-lockfile
 fi

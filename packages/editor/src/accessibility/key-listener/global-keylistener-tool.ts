@@ -1,12 +1,16 @@
 import {
+  Action,
   BaseEditTool,
   FocusDomAction,
+  matchesKeystroke,
   repeatOnMessagesUpdated,
+  SelectAction,
   SelectionService,
+  toArray,
+  TYPES,
   type IShortcutManager,
   type ShortcutRegistration
 } from '@eclipse-glsp/client';
-import { Action, matchesKeystroke, SelectAction, toArray, TYPES } from '@eclipse-glsp/sprotty';
 import { t } from 'i18next';
 import { inject, injectable } from 'inversify';
 import { StartEventNode } from '../../diagram/model';

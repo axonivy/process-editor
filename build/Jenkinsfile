@@ -16,8 +16,8 @@ pipeline {
         script {
           catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
             docker.build('node', '-f build/Dockerfile.node .').inside {
-              sh 'npm run update:axonivy:next'
-              sh 'npm run ci'
+              sh 'pnpm run update:axonivy:next'
+              sh 'pnpm run ci'
             }
           }
           archiveArtifacts 'integration/*/build/**'
@@ -56,11 +56,11 @@ pipeline {
       steps {
         script {
           docker.build('node', '-f build/Dockerfile.node .').inside {
-            sh 'npm run build'
+            sh 'pnpm run build'
             sh 'git checkout .'
             withCredentials([string(credentialsId: 'npmjs-registry.ivyteam.ch-auth-token', variable: 'NPM_AUTH_TOKEN')]) {
               sh 'npm set "//npmjs-registry.ivyteam.ch/:_authToken = $NPM_AUTH_TOKEN"'
-              sh 'npm run publish:next'
+              sh 'pnpm run publish:next'
             }
           }
         }

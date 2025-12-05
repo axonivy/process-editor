@@ -1,3 +1,4 @@
+import { Emitter } from '@axonivy/jsonrpc';
 import type {
   ElementData,
   ElementType,
@@ -14,7 +15,6 @@ import type {
 } from '@axonivy/process-editor-inscription-protocol';
 import { DEFAULT_DATA } from '@axonivy/process-editor-inscription-protocol';
 import { deepmerge } from 'deepmerge-ts';
-import { Emitter } from 'vscode-jsonrpc';
 import { deepEqual } from '../../../../packages/inscription-view/src/utils/equals';
 import { DataMock } from './data-mock';
 import { MetaMock } from './meta-mock';

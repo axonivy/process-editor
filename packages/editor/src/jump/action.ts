@@ -4,13 +4,13 @@ import {
   EditorContextService,
   GModelElement,
   isViewport,
+  SelectAllAction,
   SetViewportAction,
   TYPES,
   type IActionDispatcher,
   type IActionHandler,
   type Viewport
 } from '@eclipse-glsp/client';
-import { SelectAllAction } from '@eclipse-glsp/protocol';
 import { inject, injectable } from 'inversify';
 
 import { JumpAction } from '@axonivy/process-editor-protocol';

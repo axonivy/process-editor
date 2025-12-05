@@ -1,12 +1,11 @@
 /** @jsx svg */
 import { isBoundsAware, type IView, svg } from '@eclipse-glsp/client';
 import { injectable } from 'inversify';
-import type { VNode } from 'snabbdom';
 import { SBreakpointHandle } from './model';
 
 @injectable()
 export class SBreakpointHandleView implements IView {
-  render(handle: SBreakpointHandle): VNode {
+  render(handle: SBreakpointHandle) {
     if (isBoundsAware(handle.parent)) {
       return (
         <g>

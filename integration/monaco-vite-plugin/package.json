@@ -14,7 +14,6 @@
   ],
   "source": "src/index",
   "exports": "./dist/index.js",
-  "dependencies": {},
   "peerDependencies": {
     "vite": "^7.0.0"
   },

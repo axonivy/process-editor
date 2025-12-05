@@ -18,7 +18,7 @@
     "bpmn"
   ],
   "dependencies": {
-    "@axonivy/process-editor-protocol": "~13.2.0-next",
+    "@axonivy/process-editor-protocol": "workspace:~13.2.0-next",
     "@eclipse-glsp/client": "2.5.0",
     "marked": "^17.0.0",
     "uuid": "^13.0.0"
@@ -29,17 +29,24 @@
     "@tanstack/react-query": "^5.64",
     "@tanstack/react-query-devtools": "^5.64",
     "i18next": "^24.2.3 || ^25.0.0",
-    "react-i18next": "^15.4.1 || ^16.0.0",
+    "inversify": "^6.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-i18next": "^15.4.1 || ^16.0.0"
   },
   "devDependencies": {
+    "@axonivy/ui-components": "~13.2.0-next.934.4686e45",
+    "@axonivy/ui-icons": "~13.2.0-next.934.4686e45",
     "@testing-library/react": "^16.2.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
     "@vanilla-extract/recipes": "^0.5.5",
     "happy-dom": "^20.0.0",
-    "inversify": "^6.2.1",
     "reflect-metadata": "~0.2.2",
-    "snabbdom-to-html": "^7.1.0"
+    "snabbdom": "3.5.1",
+    "snabbdom-to-html": "^7.1.0",
+    "sprotty": "1.4.0",
+    "vscode-jsonrpc": "8.2.1"
   },
   "scripts": {
     "clean": "rimraf lib tsconfig.*tsbuildinfo",

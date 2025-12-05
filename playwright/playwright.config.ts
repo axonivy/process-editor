@@ -1,4 +1,4 @@
-import { devices, defineConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 const STANDALONE_URL = process.env.CI ? 'http://localhost:4000' : 'http://localhost:3000';
 const VIEWER_URL = process.env.CI ? 'http://localhost:4001' : 'http://localhost:3001';
@@ -18,17 +18,17 @@ export default defineConfig({
   },
   webServer: [
     {
-      command: `npm run ${process.env.CI ? 'serve' : 'dev'} -w @axonivy/process-editor-standalone`,
+      command: `pnpm run --filter @axonivy/process-editor-standalone ${process.env.CI ? 'serve' : 'dev'}`,
       url: STANDALONE_URL,
       reuseExistingServer: !process.env.CI
     },
     {
-      command: `npm run ${process.env.CI ? 'serve' : 'dev'} -w @axonivy/process-editor-viewer`,
+      command: `pnpm run --filter @axonivy/process-editor-viewer ${process.env.CI ? 'serve' : 'dev'}`,
       url: VIEWER_URL,
       reuseExistingServer: !process.env.CI
     },
     {
-      command: `npm run ${process.env.CI ? 'serve' : 'dev'} -w @axonivy/process-editor-inscription-standalone`,
+      command: `pnpm run --filter @axonivy/process-editor-inscription-standalone ${process.env.CI ? 'serve' : 'dev'}`,
       url: INSCRIPTION_URL,
       reuseExistingServer: !process.env.CI
     }

@@ -17,8 +17,8 @@ import {
 } from '@eclipse-glsp/client';
 import { QueryClient } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
-import { expect } from 'chai';
 import { type Container } from 'inversify';
+import { expect } from 'vitest';
 import ivyConnectorModule from '../connector/di.config';
 import { ActivityNode, Edge, EndEventNode, EventNode, GatewayNode, LaneNode, MulitlineEditLabel } from '../diagram/model';
 import { ActivityTypes, EdgeTypes, EventEndTypes, EventStartTypes, GatewayTypes, LaneTypes } from '../diagram/view-types';
