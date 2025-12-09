@@ -9,26 +9,28 @@
     "node": "24.11.0"
   },
   "scripts": {
-    "ci": "npm install && npm run build && npm run type && npm run package && (npm run lint:ci || true) && npm run test:ci && npm run i18n:ci",
-    "clean": "lerna run clean",
+    "preinstall": "npx only-allow pnpm",
+    "ci": "pnpm install --no-frozen-lockfile && pnpm run build && pnpm run type && pnpm run package && (pnpm run lint:ci || true) && pnpm run test:ci && pnpm run i18n:ci",
+    "clean": "pnpm run -r clean",
     "build": "tsc --build && tscp --build",
-    "package": "lerna run package",
-    "type": "lerna run type",
+    "package": "pnpm run -r package",
+    "type": "pnpm run -r type",
     "lint": "eslint",
     "lint:ci": "eslint -o eslint.xml -f checkstyle",
     "lint:fix": "eslint --fix",
     "lint:inspect": "eslint --inspect-config",
     "i18n": "i18next-cli extract",
     "i18n:ci": "i18next-cli extract --ci --dry-run",
-    "protocol:inscription": "npm run -w @axonivy/process-editor-inscription-protocol",
-    "dev": "npm run -w @axonivy/process-editor-standalone dev",
-    "dev:viewer": "npm run -w @axonivy/process-editor-viewer dev",
-    "dev:eclipse": "npm run -w @axonivy/process-editor-eclipse dev",
-    "dev:inscription": "npm run -w @axonivy/process-editor-inscription-standalone dev",
+    "protocol:inscription": "pnpm run --filter @axonivy/process-editor-inscription-protocol",
+    "dev": "pnpm run --filter @axonivy/process-editor-standalone dev",
+    "dev:viewer": "pnpm run --filter @axonivy/process-editor-viewer dev",
+    "dev:eclipse": "pnpm run --filter @axonivy/process-editor-eclipse dev",
+    "dev:inscription": "pnpm run --filter @axonivy/process-editor-inscription-standalone dev",
     "test": "vitest test",
     "test:ci": "vitest run --reporter=default --reporter=junit --outputFile=report.xml",
-    "webtest": "npm run -w @axonivy/process-editor-playwright webtest",
+    "webtest": "pnpm run --filter @axonivy/process-editor-playwright webtest",
     "update:axonivy:next": "npx --yes npm-check-updates @axonivy* -ws -t semver -u",
+    "raise:version": "lerna version --no-git-tag-version --no-push --ignore-scripts --exact --yes",
     "publish:next": "lerna publish --exact --canary --preid next --pre-dist-tag next --no-git-tag-version --no-push --ignore-scripts --yes"
   },
   "devDependencies": {
@@ -37,7 +39,6 @@
     "@axonivy/ts-config": "~13.2.0-next.934.4686e45",
     "@lerna-lite/cli": "^4.0.0",
     "@lerna-lite/publish": "^4.0.0",
-    "@lerna-lite/run": "^4.0.0",
     "@lerna-lite/version": "^4.0.0",
     "@types/node": "^24.0.0",
     "i18next-cli": "^1.21.1",
@@ -46,13 +47,6 @@
     "typescript": "^5.8.3",
     "typescript-cp": "^0.1.9",
     "vitest": "^4.0.0"
-  },
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "integration/*",
-      "playwright"
-    ]
   },
   "prettier": "@axonivy/prettier-config"
 }

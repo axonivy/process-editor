@@ -21,7 +21,6 @@
     "clean": "rimraf lib tsconfig.tsbuildinfo",
     "build": "tsc --build",
     "package": "tsc",
-    "build:clean": "npm run clean && npm run generate && npm run build",
     "generate": "node ./schemaCodegen.cjs",
     "type": "tsc --noEmit"
   },

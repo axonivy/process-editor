@@ -7,8 +7,7 @@ import type {
   ModelRendererFactory,
   ViewRegistry
 } from '@eclipse-glsp/client';
-import { TYPES, baseViewModule, configureView, routingModule } from '@eclipse-glsp/client';
-import { DefaultTypes } from '@eclipse-glsp/protocol';
+import { DefaultTypes, TYPES, baseViewModule, configureView, routingModule } from '@eclipse-glsp/client';
 import type { Container } from 'inversify';
 import type { VNode } from 'snabbdom';
 import toHTML from 'snabbdom-to-html';
