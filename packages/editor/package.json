@@ -32,7 +32,8 @@
     "inversify": "^6.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-i18next": "^15.4.1 || ^16.0.0"
+    "react-i18next": "^15.4.1 || ^16.0.0",
+    "snabbdom": "^3.5.1"
   },
   "devDependencies": {
     "@axonivy/ui-components": "~13.2.0-next.934.4686e45",
@@ -43,7 +44,6 @@
     "@vanilla-extract/recipes": "^0.5.5",
     "happy-dom": "^20.0.0",
     "reflect-metadata": "~0.2.2",
-    "snabbdom": "3.5.1",
     "snabbdom-to-html": "^7.1.0",
     "sprotty": "1.4.0",
     "vscode-jsonrpc": "8.2.1"

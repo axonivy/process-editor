@@ -328,6 +328,9 @@ importers:
       react-i18next:
         specifier: ^15.4.1 || ^16.0.0
         version: 16.0.0(i18next@25.5.3(typescript@5.9.3))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.3)
+      snabbdom:
+        specifier: ^3.5.1
+        version: 3.5.1
       uuid:
         specifier: ^13.0.0
         version: 13.0.0
@@ -356,9 +359,6 @@ importers:
       reflect-metadata:
         specifier: ~0.2.2
         version: 0.2.2
-      snabbdom:
-        specifier: 3.5.1
-        version: 3.5.1
       snabbdom-to-html:
         specifier: ^7.1.0
         version: 7.1.0
