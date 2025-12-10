@@ -14,7 +14,15 @@ import {
 } from '@axonivy/process-editor';
 import type { ThemeMode } from '@axonivy/process-editor-protocol';
 import type { IDiagramOptions } from '@eclipse-glsp/client';
-import { createDiagramOptionsModule, deletionToolModule, edgeEditToolModule, nodeCreationToolModule } from '@eclipse-glsp/client';
+import {
+  bindAsService,
+  ChangeBoundsManager,
+  createDiagramOptionsModule,
+  deletionToolModule,
+  edgeEditToolModule,
+  nodeCreationToolModule,
+  TYPES
+} from '@eclipse-glsp/client';
 import type { Container } from 'inversify';
 import { ivyCustomIconModule } from './custom-icon/di.config';
 import ivyNavigationModule from './navigate/di.config';
@@ -55,6 +63,8 @@ export default function createContainer(options: IvyDiagramOptions): Container {
     },
     { remove: ivyQuickActionModule, add: ivyViewerQuickActionModule }
   );
+  // Needed by other viewport move listener
+  bindAsService(container, TYPES.IChangeBoundsManager, ChangeBoundsManager);
   overrideIvyViewerOptions(container, { hideSensitiveInfo: true });
   return container;
 }
