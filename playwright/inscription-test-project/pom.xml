@@ -25,6 +25,10 @@
       <artifactId>ivy-api</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.axonivy.ivy.spi</groupId>
+      <artifactId>ivy-process-extension-spi</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
       <scope>provided</scope>
