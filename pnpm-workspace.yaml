@@ -8,5 +8,5 @@ publicHoistPattern:
   - '@codingame/monaco-vscode-extension-api'
   - '@codingame/monaco-vscode-editor-api'
 overrides:
-  'vscode': 'npm:@codingame/monaco-vscode-extension-api@^23.2'
-  'monaco-editor': 'npm:@codingame/monaco-vscode-editor-api@^23.2'
+  'vscode': 'npm:@codingame/monaco-vscode-extension-api'
+  'monaco-editor': 'npm:@codingame/monaco-vscode-editor-api'
