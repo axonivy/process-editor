@@ -12,8 +12,8 @@
   "dependencies": {
     "@axonivy/process-editor": "workspace:~14.0.0-next",
     "@axonivy/process-editor-protocol": "workspace:~14.0.0-next",
-    "@axonivy/ui-components": "~13.2.0-next.934.4686e45",
-    "@axonivy/ui-icons": "~13.2.0-next.934.4686e45",
+    "@axonivy/ui-components": "~14.0.0-next.957.4046f5f",
+    "@axonivy/ui-icons": "~14.0.0-next.957.4046f5f",
     "@eclipse-glsp/client": "2.5.0",
     "i18next": "^25.0.0",
     "i18next-browser-languagedetector": "^8.0.4",
