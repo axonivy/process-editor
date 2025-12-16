@@ -58,16 +58,16 @@ importers:
         specifier: ~13.2.0-next.934.4686e45
         version: 13.2.0-next.934.4686e45
       '@axonivy/process-editor':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../../packages/editor
       '@axonivy/process-editor-inscription':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../../packages/inscription
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../../packages/inscription-view
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: ~13.2.0-next.934.4686e45
@@ -104,7 +104,7 @@ importers:
         version: 16.4.1(i18next@25.7.2(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
     devDependencies:
       '@axonivy/monaco-vite-plugin':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../monaco-vite-plugin
       '@vscode/codicons':
         specifier: ^0.0.44
@@ -125,13 +125,13 @@ importers:
         specifier: ~13.2.0-next.934.4686e45
         version: 13.2.0-next.934.4686e45
       '@axonivy/process-editor-inscription-core':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../../packages/inscription-core
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../../packages/inscription-protocol
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../../packages/inscription-view
       '@axonivy/ui-components':
         specifier: ~13.2.0-next.934.4686e45
@@ -156,7 +156,7 @@ importers:
         version: 16.4.1(i18next@25.7.2(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
     devDependencies:
       '@axonivy/monaco-vite-plugin':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../monaco-vite-plugin
       '@types/react':
         specifier: ^19.0.8
@@ -195,19 +195,19 @@ importers:
         specifier: ~13.2.0-next.934.4686e45
         version: 13.2.0-next.934.4686e45
       '@axonivy/process-editor':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../../packages/editor
       '@axonivy/process-editor-inscription':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../../packages/inscription
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../../packages/inscription-protocol
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../../packages/inscription-view
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: ~13.2.0-next.934.4686e45
@@ -238,7 +238,7 @@ importers:
         version: 16.4.1(i18next@25.7.2(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
     devDependencies:
       '@axonivy/monaco-vite-plugin':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../monaco-vite-plugin
       '@vscode/codicons':
         specifier: ^0.0.44
@@ -256,10 +256,10 @@ importers:
   integration/viewer:
     dependencies:
       '@axonivy/process-editor':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../../packages/editor
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: ~13.2.0-next.934.4686e45
@@ -281,7 +281,7 @@ importers:
         version: 6.2.2(reflect-metadata@0.2.2)
     devDependencies:
       '@axonivy/monaco-vite-plugin':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../monaco-vite-plugin
       '@vscode/codicons':
         specifier: ^0.0.44
@@ -299,7 +299,7 @@ importers:
   packages/editor:
     dependencies:
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../protocol
       '@eclipse-glsp/client':
         specifier: 2.5.0
@@ -375,19 +375,19 @@ importers:
         specifier: ~13.2.0-next
         version: 13.2.0-next.934.4686e45
       '@axonivy/process-editor':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../editor
       '@axonivy/process-editor-inscription-core':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../inscription-core
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../inscription-protocol
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../inscription-view
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../protocol
       '@eclipse-glsp/client':
         specifier: 2.5.0
@@ -424,7 +424,7 @@ importers:
   packages/inscription-core:
     dependencies:
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../inscription-protocol
     devDependencies:
       '@axonivy/jsonrpc':
@@ -440,10 +440,10 @@ importers:
   packages/inscription-view:
     dependencies:
       '@axonivy/process-editor-inscription-core':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../inscription-core
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../inscription-protocol
       '@radix-ui/react-dialog':
         specifier: ^1.1
@@ -642,10 +642,10 @@ importers:
   playwright:
     devDependencies:
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../packages/inscription-protocol
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~13.2.0-next
+        specifier: workspace:~14.0.0-next
         version: link:../packages/inscription-view
       '@open-rpc/client-js':
         specifier: 2.0.0
