@@ -1,6 +1,6 @@
 {
   "name": "@axonivy/process-editor-inscription-standalone",
-  "version": "13.2.0-next",
+  "version": "14.0.0-next",
   "private": true,
   "author": "Axon Ivy AG",
   "homepage": "https://developer.axonivy.com/",
@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@axonivy/jsonrpc": "~13.2.0-next.934.4686e45",
-    "@axonivy/process-editor-inscription-core": "workspace:~13.2.0-next",
-    "@axonivy/process-editor-inscription-protocol": "workspace:~13.2.0-next",
-    "@axonivy/process-editor-inscription-view": "workspace:~13.2.0-next",
+    "@axonivy/process-editor-inscription-core": "workspace:~14.0.0-next",
+    "@axonivy/process-editor-inscription-protocol": "workspace:~14.0.0-next",
+    "@axonivy/process-editor-inscription-view": "workspace:~14.0.0-next",
     "@axonivy/ui-components": "~13.2.0-next.934.4686e45",
     "@axonivy/ui-icons": "~13.2.0-next.934.4686e45",
     "@tanstack/react-query": "^5.64",
@@ -22,7 +22,7 @@
     "react-i18next": "^16.0.0"
   },
   "devDependencies": {
-    "@axonivy/monaco-vite-plugin": "workspace:~13.2.0-next",
+    "@axonivy/monaco-vite-plugin": "workspace:~14.0.0-next",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^5.0.0",
