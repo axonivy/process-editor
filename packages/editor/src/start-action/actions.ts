@@ -10,7 +10,10 @@ import { IvyIcons } from '@axonivy/ui-icons';
 export class StarProcessQuickActionProvider extends SingleQuickActionProvider {
   singleQuickAction(element: GModelElement): QuickAction | undefined {
     if (element instanceof StartEventNode && element.type === EventStartTypes.START) {
-      const processStartUri = GArgument.getString(element, 'processStartUri') ?? '';
+      const processStartUri = GArgument.getString(element, 'processStartUri');
+      if (!processStartUri) {
+        return undefined;
+      }
       return {
         icon: IvyIcons.Play,
         title: 'Start Process (X)',
