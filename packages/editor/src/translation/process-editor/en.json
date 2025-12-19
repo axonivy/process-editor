@@ -107,7 +107,9 @@
   },
   "common": {
     "hotkey": {
-      "help": "Open Help ({{hotkey}})"
+      "help": "Open Help ({{hotkey}})",
+      "redo": "Redo ({{hotkey}})",
+      "undo": "Undo ({{hotkey}})"
     },
     "label": {
       "apply": "Apply",
@@ -475,9 +477,7 @@
     "marquee": "'Marquee Tool ({{hotkey}})'",
     "openDataClass": "Open Data Class ({{hotkey}})",
     "openFormEditor": "Open Form Editor ({{hotkey}})",
-    "redo": "Redo",
-    "selection": "Selection Tool",
-    "undo": "Undo"
+    "selection": "Selection Tool"
   },
   "viewport": {
     "center": "Center ({{hotkey}})",
