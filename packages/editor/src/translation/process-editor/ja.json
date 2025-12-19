@@ -107,7 +107,9 @@
   },
   "common": {
     "hotkey": {
-      "help": "ヘルプを開く ({{hotkey}})"
+      "help": "ヘルプを開く ({{hotkey}})",
+      "redo": "やり直す ({{hotkey}})",
+      "undo": "元に戻す ({{hotkey}})"
     },
     "label": {
       "apply": "適用",
@@ -475,9 +477,7 @@
     "marquee": "'マーキーツール ({{hotkey}})'",
     "openDataClass": "データクラスを開く ({{hotkey}})",
     "openFormEditor": "フォームエディターを開く ({{hotkey}})",
-    "redo": "やり直す",
-    "selection": "選択ツール",
-    "undo": "元に戻す"
+    "selection": "選択ツール"
   },
   "viewport": {
     "center": "センター ({{hotkey}})",
