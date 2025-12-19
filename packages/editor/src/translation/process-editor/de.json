@@ -107,7 +107,9 @@
   },
   "common": {
     "hotkey": {
-      "help": "Hilfe öffnen ({{hotkey}})"
+      "help": "Hilfe öffnen ({{hotkey}})",
+      "redo": "Wiederholen ({{hotkey}})",
+      "undo": "Rückgängig ({{hotkey}})"
     },
     "label": {
       "apply": "Anwenden",
@@ -475,9 +477,7 @@
     "marquee": "Auswahl-Werkzeug ({{hotkey}})",
     "openDataClass": "Datenklasse öffnen ({{hotkey}})",
     "openFormEditor": "Formulareditor öffnen ({{hotkey}})",
-    "redo": "Wiederherstellen",
-    "selection": "Auswahlwerkzeug",
-    "undo": "Rückgängig"
+    "selection": "Auswahlwerkzeug"
   },
   "viewport": {
     "center": "Zentrieren ({{hotkey}})",
