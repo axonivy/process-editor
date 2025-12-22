@@ -18,16 +18,16 @@
     "@eclipse-glsp/client": "2.5.0"
   },
   "peerDependencies": {
-    "@axonivy/jsonrpc": "~13.2.0-next",
-    "@axonivy/ui-icons": "~13.2.0-next",
+    "@axonivy/jsonrpc": "~13.2.1-next",
+    "@axonivy/ui-icons": "~13.2.1-next",
     "i18next": "^24.2.3 || ^25.0.0",
     "inversify": "^6.2",
     "react": "^19.0",
     "react-aria": "^3.38"
   },
   "devDependencies": {
-    "@axonivy/ui-components": "~13.2.0-next.934.4686e45",
-    "@axonivy/ui-icons": "~13.2.0-next.934.4686e45",
+    "@axonivy/ui-components": "~13.2.1-next.959.db3e985",
+    "@axonivy/ui-icons": "~13.2.1-next.959.db3e985",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "react": "^19.0.0",
