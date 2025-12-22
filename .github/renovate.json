@@ -9,7 +9,7 @@
   "rebaseWhen": "conflicted",
   "packageRules": [
     {
-      "matchDepNames": ["@codingame/*", "monaco-languageclient"],
+      "matchDepNames": ["monaco-languageclient"],
       "matchBaseBranches": ["master"],
       "enabled": true
     }
