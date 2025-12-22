@@ -47,7 +47,7 @@
     "@codingame/monaco-vscode-editor-service-override": "23.3.0",
     "@codingame/monaco-vscode-extension-api": "23.3.0",
     "@codingame/monaco-vscode-extensions-service-override": "23.3.0",
-    "@codingame/monaco-vscode-keybindings-service-override": "23.3.0",
+    "@codingame/monaco-vscode-keybindings-service-override": "24.1.1",
     "@codingame/monaco-vscode-language-pack-cs": "23.3.0",
     "@codingame/monaco-vscode-language-pack-de": "23.3.0",
     "@codingame/monaco-vscode-language-pack-es": "23.3.0",
