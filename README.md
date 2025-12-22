@@ -20,7 +20,6 @@ However, it's of course also possible to use another text editor.
 - `packages/editor`: GLSP-based Axon Ivy process editor
 - `packages/inscription`: UI extension for element inscription view
 - `packages/protocol`: GLSP actions for process editor
-- `integration/eclipse`: Eclipse IDE integrations of the process editor
 - `integration/standalone`: Standalone integration of the process editor
 - `integration/viewer`: Standalone integration of the process viewer (read-only with less tooling)
 - `integration/monaco-vite-plugin`: A vite plugin to work with the monaco integration

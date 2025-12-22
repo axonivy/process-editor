@@ -37,10 +37,6 @@
       "path": "./integration/viewer"
     },
     {
-      "name": "integration/eclipse",
-      "path": "./integration/eclipse"
-    },
-    {
       "name": "integration/inscription",
       "path": "./integration/inscription"
     },

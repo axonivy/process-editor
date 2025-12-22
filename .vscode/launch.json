@@ -21,17 +21,6 @@
       "postDebugTask": "Terminate All Tasks"
     },
     {
-      "name": "Launch Eclipse (Chrome)",
-      "type": "chrome",
-      "request": "launch",
-      "url": "http://localhost:3002",
-      "sourceMapPathOverrides": {
-        "webpack:///src/*": "${webRoot}/*"
-      },
-      "preLaunchTask": "Start Eclipse",
-      "postDebugTask": "Terminate All Tasks"
-    },
-    {
       "name": "Launch Inscription (Chrome)",
       "type": "chrome",
       "request": "launch",

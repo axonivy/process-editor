@@ -52,73 +52,6 @@ importers:
         specifier: ^4.0.0
         version: 4.0.16(@types/node@24.10.4)(happy-dom@20.0.11)(jiti@2.6.1)(jsdom@27.3.0(postcss@8.5.6))(yaml@2.8.2)
 
-  integration/eclipse:
-    dependencies:
-      '@axonivy/jsonrpc':
-        specifier: ~14.0.0-next.957.4046f5f
-        version: 14.0.0-next.957.4046f5f
-      '@axonivy/process-editor':
-        specifier: workspace:~14.0.0-next
-        version: link:../../packages/editor
-      '@axonivy/process-editor-inscription':
-        specifier: workspace:~14.0.0-next
-        version: link:../../packages/inscription
-      '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~14.0.0-next
-        version: link:../../packages/inscription-view
-      '@axonivy/process-editor-protocol':
-        specifier: workspace:~14.0.0-next
-        version: link:../../packages/protocol
-      '@axonivy/ui-components':
-        specifier: ~14.0.0-next.957.4046f5f
-        version: 14.0.0-next.957.4046f5f(@axonivy/ui-icons@14.0.0-next.957.4046f5f)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      '@axonivy/ui-icons':
-        specifier: ~14.0.0-next.957.4046f5f
-        version: 14.0.0-next.957.4046f5f
-      '@eclipse-glsp/client':
-        specifier: 2.5.0
-        version: 2.5.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
-      '@eclipse-glsp/ide':
-        specifier: 2.5.0
-        version: 2.5.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
-      '@eclipse-glsp/protocol':
-        specifier: 2.5.0
-        version: 2.5.0(inversify@6.2.2(reflect-metadata@0.2.2))
-      '@tanstack/react-query':
-        specifier: ^5.64
-        version: 5.90.12(react@19.2.3)
-      '@tanstack/react-query-devtools':
-        specifier: ^5.64
-        version: 5.91.1(@tanstack/react-query@5.90.12(react@19.2.3))(react@19.2.3)
-      i18next:
-        specifier: ^25.0.0
-        version: 25.7.3(typescript@5.9.3)
-      i18next-browser-languagedetector:
-        specifier: ^8.0.4
-        version: 8.2.0
-      inversify:
-        specifier: ^6.2
-        version: 6.2.2(reflect-metadata@0.2.2)
-      react-i18next:
-        specifier: ^16.0.0
-        version: 16.5.0(i18next@25.7.3(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
-    devDependencies:
-      '@axonivy/monaco-vite-plugin':
-        specifier: workspace:~14.0.0-next
-        version: link:../monaco-vite-plugin
-      '@vscode/codicons':
-        specifier: ^0.0.44
-        version: 0.0.44
-      reflect-metadata:
-        specifier: ~0.2.2
-        version: 0.2.2
-      vite:
-        specifier: ^7.0.0
-        version: 7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2)
-      vite-tsconfig-paths:
-        specifier: ^6.0.0
-        version: 6.0.3(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2))
-
   integration/inscription:
     dependencies:
       '@axonivy/jsonrpc':
@@ -1265,10 +1198,6 @@ packages:
     resolution: {integrity: sha512-5uIyxXcUBxfGpvX/N8gIFvZnRmY19kjv2QAPt/polCcMLVSc2zRDXrF5OMvubf1K+bN1AJBNkLQhnFmg4FFAAg==}
     peerDependencies:
       inversify: ^6.1.3
-
-  '@eclipse-glsp/ide@2.5.0':
-    resolution: {integrity: sha512-bLyb2eaGf+5NAkxUp1xG7wUrbGjc85nN+tw5Ucz4ZkgpvdIioIPiA0wnUlq+DOb32m0RWOMTEKbb9zllcMqtvA==}
-    engines: {yarn: 1.0.x || >=1.2.1}
 
   '@eclipse-glsp/protocol@2.5.0':
     resolution: {integrity: sha512-bPHGamXtkbhFqV+2LAzrkOWw7iUmFIdYT+5uPdGqo3BPITiAA2cyE3iRuePwqgiqidhZrhPW60vL0GRgvgZ3TQ==}
@@ -7359,13 +7288,6 @@ snapshots:
       snabbdom: 3.5.1
       vscode-jsonrpc: 8.2.0
     transitivePeerDependencies:
-      - reflect-metadata
-
-  '@eclipse-glsp/ide@2.5.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)':
-    dependencies:
-      '@eclipse-glsp/client': 2.5.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
-    transitivePeerDependencies:
-      - inversify
       - reflect-metadata
 
   '@eclipse-glsp/protocol@2.5.0(inversify@6.2.2(reflect-metadata@0.2.2))':
