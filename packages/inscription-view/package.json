@@ -24,9 +24,9 @@
     "react-error-boundary": "^6.0.0"
   },
   "peerDependencies": {
-    "@axonivy/jsonrpc": "~13.2.0-next",
-    "@axonivy/ui-components": "~13.2.0-next",
-    "@axonivy/ui-icons": "~13.2.0-next",
+    "@axonivy/jsonrpc": "~13.2.1-next",
+    "@axonivy/ui-components": "~13.2.1-next",
+    "@axonivy/ui-icons": "~13.2.1-next",
     "@radix-ui/react-dialog": "^1.1",
     "@radix-ui/react-tabs": "^1.1",
     "@tanstack/react-query": "^5.64",
@@ -38,9 +38,9 @@
     "react-i18next": "^15.4.1 || ^16.0.0"
   },
   "devDependencies": {
-    "@axonivy/jsonrpc": "~13.2.0-next.934.4686e45",
-    "@axonivy/ui-components": "~13.2.0-next.934.4686e45",
-    "@axonivy/ui-icons": "~13.2.0-next.934.4686e45",
+    "@axonivy/jsonrpc": "~13.2.1-next.959.db3e985",
+    "@axonivy/ui-components": "~13.2.1-next.959.db3e985",
+    "@axonivy/ui-icons": "~13.2.1-next.959.db3e985",
     "@codingame/monaco-vscode-api": "23.3.0",
     "@codingame/monaco-vscode-configuration-service-override": "23.3.0",
     "@codingame/monaco-vscode-editor-api": "23.3.0",
