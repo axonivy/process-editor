@@ -52,30 +52,6 @@
       ]
     },
     {
-      "label": "Start Eclipse",
-      "type": "shell",
-      "group": "build",
-      "command": "pnpm run dev:eclipse",
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated"
-      },
-      "isBackground": true,
-      "problemMatcher": [
-        {
-          "owner": "typescript",
-          "pattern": {
-            "regexp": ""
-          },
-          "background": {
-            "activeOnStart": true,
-            "beginsPattern": ".*",
-            "endsPattern": ".*"
-          }
-        }
-      ]
-    },
-    {
       "label": "Start Inscription",
       "type": "shell",
       "group": "build",

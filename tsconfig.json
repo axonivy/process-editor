@@ -13,7 +13,6 @@
     { "path": "packages/editor/tsconfig.build.json" },
     { "path": "integration/monaco-vite-plugin/tsconfig.json" },
     { "path": "integration/standalone/tsconfig.json" },
-    { "path": "integration/viewer/tsconfig.json" },
-    { "path": "integration/eclipse/tsconfig.json" }
+    { "path": "integration/viewer/tsconfig.json" }
   ]
 }
