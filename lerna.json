@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
-  "version": "13.2.0-next",
+  "version": "13.2.1-next",
   "npmClient": "pnpm",
   "command": {
     "run": {
@@ -17,5 +17,9 @@
       "registry": "https://npmjs-registry.ivyteam.ch/"
     }
   },
-  "packages": ["packages/*", "integration/*", "playwright"]
+  "packages": [
+    "packages/*",
+    "integration/*",
+    "playwright"
+  ]
 }

@@ -6,7 +6,7 @@
 
   <groupId>ch.ivyteam.process</groupId>
   <artifactId>process-viewer-client</artifactId>
-  <version>13.2.0-SNAPSHOT</version>
+  <version>13.2.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <distributionManagement>
