@@ -116,8 +116,8 @@ importers:
         specifier: ^7.0.0
         version: 7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2)
       vite-tsconfig-paths:
-        specifier: ^5.1.4
-        version: 5.1.4(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2))
+        specifier: ^6.0.0
+        version: 6.0.3(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2))
 
   integration/inscription:
     dependencies:
@@ -180,8 +180,8 @@ importers:
         specifier: ^7.0.0
         version: 7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2)
       vite-tsconfig-paths:
-        specifier: ^5.1.4
-        version: 5.1.4(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2))
+        specifier: ^6.0.0
+        version: 6.0.3(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2))
 
   integration/monaco-vite-plugin:
     dependencies:
@@ -250,8 +250,8 @@ importers:
         specifier: ^7.0.0
         version: 7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2)
       vite-tsconfig-paths:
-        specifier: ^5.1.4
-        version: 5.1.4(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2))
+        specifier: ^6.0.0
+        version: 6.0.3(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2))
 
   integration/viewer:
     dependencies:
@@ -293,8 +293,8 @@ importers:
         specifier: ^7.0.0
         version: 7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2)
       vite-tsconfig-paths:
-        specifier: ^5.1.4
-        version: 5.1.4(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2))
+        specifier: ^6.0.0
+        version: 6.0.3(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2))
 
   packages/editor:
     dependencies:
@@ -5888,8 +5888,8 @@ packages:
     resolution: {integrity: sha512-BM0Upcemlce8/9+HE+/VpWqn3u3mYh6Om/FEC8yPMnEHwf710fW5Q6fhjT1SQyRlZD1G9CJbgfH+rWgAcIvjlQ==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  vite-tsconfig-paths@5.1.4:
-    resolution: {integrity: sha512-cYj0LRuLV2c2sMqhqhGpaO3LretdtMn/BVX4cPLanIZuwwrkVl+lK84E/miEXkCHWXuq65rhNN4rXsBcOB3S4w==}
+  vite-tsconfig-paths@6.0.3:
+    resolution: {integrity: sha512-7bL7FPX/DSviaZGYUKowWF1AiDVWjMjxNbE8lyaVGDezkedWqfGhlnQ4BZXre0ZN5P4kAgIJfAlgFDVyjrCIyg==}
     peerDependencies:
       vite: '*'
     peerDependenciesMeta:
@@ -12881,7 +12881,7 @@ snapshots:
 
   validate-npm-package-name@7.0.1: {}
 
-  vite-tsconfig-paths@5.1.4(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2)):
+  vite-tsconfig-paths@6.0.3(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2)):
     dependencies:
       debug: 4.4.3
       globrex: 0.1.2
