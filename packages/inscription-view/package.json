@@ -63,7 +63,7 @@
     "@codingame/monaco-vscode-language-pack-zh-hans": "23.3.0",
     "@codingame/monaco-vscode-language-pack-zh-hant": "23.3.0",
     "@codingame/monaco-vscode-languages-service-override": "23.3.0",
-    "@codingame/monaco-vscode-localization-service-override": "23.3.0",
+    "@codingame/monaco-vscode-localization-service-override": "24.1.1",
     "@codingame/monaco-vscode-log-service-override": "23.3.0",
     "@codingame/monaco-vscode-model-service-override": "23.3.0",
     "@codingame/monaco-vscode-monarch-service-override": "23.3.0",
