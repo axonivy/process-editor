@@ -474,7 +474,7 @@
     "extensions": "拡張子",
     "gateways": "ゲートウェイ",
     "grid": "グリッド",
-    "marquee": "'マーキーツール ({{hotkey}})'",
+    "marquee": "マーキーツール ({{hotkey}})",
     "openDataClass": "データクラスを開く ({{hotkey}})",
     "openFormEditor": "フォームエディターを開く ({{hotkey}})",
     "selection": "選択ツール"

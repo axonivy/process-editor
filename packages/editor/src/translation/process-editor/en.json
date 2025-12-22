@@ -474,7 +474,7 @@
     "extensions": "Extensions",
     "gateways": "Gateways",
     "grid": "Grid",
-    "marquee": "'Marquee Tool ({{hotkey}})'",
+    "marquee": "Marquee Tool ({{hotkey}})",
     "openDataClass": "Open Data Class ({{hotkey}})",
     "openFormEditor": "Open Form Editor ({{hotkey}})",
     "selection": "Selection Tool"
