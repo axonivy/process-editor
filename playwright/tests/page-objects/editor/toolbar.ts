@@ -10,7 +10,7 @@ export class Toolbar {
   protected readonly toolbar: Locator;
   protected readonly toolbarMenu: Menu;
   protected readonly optionsMenu: OptionsMenu;
-  protected readonly defaultTool: Locator;
+  readonly defaultTool: Locator;
   protected readonly marqueeTool: Locator;
   protected readonly optionsBtn: Locator;
 
