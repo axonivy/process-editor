@@ -83,7 +83,11 @@ export class IvyGlobalKeyListenerTool extends BaseEditTool {
   }
 
   protected isInput(event: KeyboardEvent) {
-    return event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement;
+    return event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement || this.isMonacoEditor(event);
+  }
+
+  protected isMonacoEditor(event: KeyboardEvent) {
+    return event.target instanceof HTMLDivElement && event.target.classList.contains('native-edit-context');
   }
 
   protected matchesSetFocusOnToolPalette(event: KeyboardEvent): boolean {
