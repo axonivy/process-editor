@@ -15,7 +15,7 @@ test('focus jumps', async ({ page }) => {
   await expect(editor.inscription().inscriptionTab('General').tabButtonLocator).toBeFocused();
 });
 
-test('focus jumps not work in monaco', async ({ page }) => {
+test('focus jumps not work in input fields', async ({ page }) => {
   const editor = await ProcessEditor.openProcess(page);
   const inscription = await editor.startElement.inscribe();
   const startTab = inscription.inscriptionTab('Start');
@@ -28,4 +28,10 @@ test('focus jumps not work in monaco', async ({ page }) => {
   await page.keyboard.press('3');
   await monaco.expectCodeFocused();
   await expect(editor.inscription().inscriptionTab('General').tabButtonLocator).not.toBeFocused();
+
+  const signature = startTab.section('Signature').textArea().locator;
+  await signature.focus();
+  await page.keyboard.press('1');
+  await expect(signature).toBeFocused();
+  await expect(editor.toolbar().defaultTool).not.toBeFocused();
 });
