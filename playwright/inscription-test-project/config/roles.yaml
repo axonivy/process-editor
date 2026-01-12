@@ -1,21 +1,21 @@
 # yaml-language-server: $schema=https://json-schema.axonivy.com/app/14.0.0/roles.json
 Roles:
-- Id: FacilityManager
-- Id: Secretary
-- Id: IT-Manager
-- Id: Support
-- Id: First Level
-  Parent: Support
-- Id: Second Level
-  Parent: Support
-- Id: Application Permissions
-- Id: Process M
-  Parent: Application Permissions
-  Members:
-  - IT-Manager
-  - Secretary
-  - First Level
-- Id: Process N
-  Parent: Application Permissions
-  Members:
-  - FacilityManager
+  - Id: FacilityManager
+  - Id: Secretary
+  - Id: IT-Manager
+  - Id: Support
+  - Id: First Level
+    Parent: Support
+  - Id: Second Level
+    Parent: Support
+  - Id: Application Permissions
+  - Id: Process M
+    Parent: Application Permissions
+    Members:
+      - IT-Manager
+      - Secretary
+      - First Level
+  - Id: Process N
+    Parent: Application Permissions
+    Members:
+      - FacilityManager
