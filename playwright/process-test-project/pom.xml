@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.axonivy.ivy.api</groupId>
@@ -11,9 +13,11 @@
   <groupId>process.test.project</groupId>
   <artifactId>process-test-project</artifactId>
   <version>14.0.0-SNAPSHOT</version>
-  <packaging>iar-integration-test</packaging>
+  <packaging>iar</packaging>
   <properties>
-    <engine.test.app>process-test-project</engine.test.app>
+    <engine.test.app>Developer-process-test-project</engine.test.app>
+    <engine.test.ws>process-test-project</engine.test.ws>
+    <engine.dir>${project.build.directory}/ivyEngine</engine.dir>
     <engine.page.url>https://product.ivyteam.io/</engine.page.url>
     <webtest.cmd>webtest</webtest.cmd>
   </properties>
@@ -58,14 +62,55 @@
   <build>
     <plugins>
       <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>create-workspace</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>
+                ${engine.dir}/data/workspaces/Developer/${engine.test.ws}/process-test-project</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>.</directory>
+                  <excludes>
+                    <exclude>.DS_Store</exclude>
+                  </excludes>
+                </resource>
+              </resources>
+              <overwrite>true</overwrite>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
         <extensions>true</extensions>
+        <executions>
+          <execution>
+            <id>start.test.engine</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>start-test-engine</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>stop.test.engine</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>stop-test-engine</goal>
+            </goals>
+          </execution>
+        </executions>
         <configuration>
           <useLatestMinor>true</useLatestMinor>
           <engineListPageUrl>${engine.page.url}</engineListPageUrl>
-          <deployToEngineApplication>${engine.test.app}</deployToEngineApplication>
-          <additionalVmOptions>-Dglsp.test.mode=true -Ddev.mode=true</additionalVmOptions>
+          <engineDirectory>${engine.dir}</engineDirectory>
+          <additionalVmOptions>-Ddev.mode=true</additionalVmOptions>
         </configuration>
       </plugin>
       <plugin>
@@ -86,6 +131,7 @@
               </arguments>
               <environmentVariables>
                 <BASE_URL>${test.engine.url}</BASE_URL>
+                <TEST_WS>~Developer-${engine.test.ws}</TEST_WS>
                 <TEST_APP>${engine.test.app}</TEST_APP>
                 <SCREENSHOT_DIR>${project.build.directory}</SCREENSHOT_DIR>
                 <REPORT_DIR>${project.build.directory}</REPORT_DIR>

@@ -68,7 +68,7 @@ test.describe('Browsers', () => {
 });
 
 async function openSection(page: Page, pid: string, inscriptionTabName: string, sectionName: string): Promise<Section> {
-  const view = await openElementInscription(page, pid, 'inscription-test-project');
+  const view = await openElementInscription(page, pid);
   await page.addStyleTag({ content: 'body { overflow: hidden; }' });
   const tab = view.inscriptionTab(inscriptionTabName);
   await tab.open();

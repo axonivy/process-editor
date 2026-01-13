@@ -11,7 +11,7 @@ test.describe('HTML Dialog Process', () => {
   let testee: CreateProcessResult;
 
   test.beforeAll(async () => {
-    testee = await createProcess('Database', { processKind: 'HTML_DIALOG' });
+    testee = await createProcess('Database', { processKind: 'Html Dialog Logic' });
   });
 
   test.beforeEach(async ({ page }) => {

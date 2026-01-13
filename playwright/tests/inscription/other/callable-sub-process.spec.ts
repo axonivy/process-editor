@@ -12,7 +12,7 @@ test.describe('Callable Sub Process', () => {
   let testee: CreateProcessResult;
 
   test.beforeAll(async () => {
-    testee = await createProcess('Database', { processKind: 'CALLABLE_SUB' });
+    testee = await createProcess('Database', { processKind: 'Callable Sub Process' });
   });
 
   test.beforeEach(async ({ page }) => {

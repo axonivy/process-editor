@@ -18,3 +18,7 @@ src_dataClasses/
 src_generated/
 src_wsproc/
 logs/
+
+# test
+processes/test/
+dataclasses/test/

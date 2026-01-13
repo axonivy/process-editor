@@ -15,7 +15,7 @@ test.describe('WS Start', () => {
   let testee: CreateProcessResult;
 
   test.beforeAll(async () => {
-    testee = await createProcess('WebserviceStart', { processKind: 'WEB_SERVICE' });
+    testee = await createProcess('WebserviceStart', { processKind: 'Web Service Process' });
   });
 
   test.beforeEach(async ({ page }) => {

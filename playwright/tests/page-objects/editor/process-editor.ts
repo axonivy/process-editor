@@ -1,6 +1,6 @@
 import type { ConsoleMessage, Locator, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
-import { randomUUID } from 'crypto';
+import { createRandomProcess } from '../../create-random-process';
 import { Inscription } from '../inscription/inscription-view';
 import { Connector } from './connector';
 import { Activity, Element, Lane, Pool } from './element';
@@ -13,6 +13,11 @@ import type { CmdCtrl, Point } from './types';
 import { ViewportBar } from './viewport';
 
 const startSelector = GRAPH_SELECTOR + ' .start\\:requestStart';
+export const server = process.env.BASE_URL
+  ? `${process.env.BASE_URL}${process.env.TEST_WS}`
+  : 'http://localhost:8080/~Developer-process-test-project';
+const app = process.env.TEST_APP ?? 'Developer-process-test-project';
+const pmv = 'process-test-project';
 
 export class ProcessEditor {
   readonly page: Page;
@@ -37,11 +42,11 @@ export class ProcessEditor {
   }
 
   static async openProcess(page: Page, options?: { urlQueryParam?: string; file?: string; waitFor?: string }) {
-    await page.goto(
-      ProcessEditor.processEditorUrl('process-test-project', options?.file ?? `processes/test/${randomUUID()}.p.json`) +
-        (options?.urlQueryParam ?? '')
-    );
+    const serverUrl = server.replace(/^https?:\/\//, '');
+    const file = await getOrCreateFile(options?.file);
+    await page.goto(`?server=${serverUrl}&app=${app}&pmv=${pmv}&file=${file}` + (options?.urlQueryParam ?? ''));
     await page.addStyleTag({ content: '.palette-body {transition: none !important;}' });
+    await page.addStyleTag({ content: `.tsqd-parent-container { display: none; }` });
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
     const waitForElement = page.locator(options?.waitFor ?? startSelector).first();
@@ -52,16 +57,6 @@ export class ProcessEditor {
       await expect(waitForElement).toBeVisible();
     }
     return new ProcessEditor(page);
-  }
-
-  private static processEditorUrl(pmv: string, file: string): string {
-    const app = process.env.TEST_APP ?? 'designer';
-    return `?server=${ProcessEditor.serverUrl()}&app=${app}&pmv=${pmv}&file=${file}`;
-  }
-
-  private static serverUrl(): string {
-    const server = process.env.BASE_URL ?? 'localhost:8081';
-    return server.replace(/^https?:\/\//, '');
   }
 
   elementByPid(pid: string) {
@@ -228,4 +223,11 @@ async function waitForConsoleMessage(
 
     page.on('console', onConsoleMessage);
   });
+}
+
+async function getOrCreateFile(file: string | undefined) {
+  if (file) {
+    return file;
+  }
+  return await createRandomProcess(server, app, pmv);
 }

@@ -2,17 +2,23 @@
 import type { ElementType } from '@axonivy/process-editor-inscription-protocol';
 import { Client, RequestManager, WebSocketTransport } from '@open-rpc/client-js';
 import { randomUUID } from 'crypto';
+import { createRandomProcess, type ProcessKind } from './create-random-process';
 
 const SELECT_KIND = 'elementSelected';
 const SET_KIND = 'setModel';
 const UPDATE_KIND = 'updateModel';
+
+export const server = process.env.BASE_URL
+  ? `${process.env.BASE_URL}${process.env.TEST_WS}`
+  : 'http://localhost:8080/~Developer-inscription-test-project';
+const app = process.env.TEST_APP ?? 'Developer-inscription-test-project';
+const pmv = 'inscription-test-project';
 
 type Action<T = unknown> = {
   action: T;
 };
 type SelectAction = Action<{ selectedElementsIDs: string[] }>;
 type SetModelAction = Action<{ newRoot: { id: string } }>;
-type ProcessKind = 'NORMAL' | 'WEB_SERVICE' | 'CALLABLE_SUB' | 'HTML_DIALOG';
 
 export class GlspProtocol {
   private readonly client: Client;
@@ -23,13 +29,14 @@ export class GlspProtocol {
   private readonly sessionId: string;
   private readonly processUUID: string;
 
-  constructor(private readonly kind: ProcessKind = 'NORMAL') {
-    const transport = new WebSocketTransport(`ws://${this.serverUrl()}/ivy-glsp-process-editor`);
+  constructor(file: string) {
+    const serverUrl = server.replace(/^https?:\/\//, '');
+    const transport = new WebSocketTransport(`ws://${serverUrl}/${app}/ivy-glsp-process-editor`);
     this.client = new Client(new RequestManager([transport]));
     this.client.onError(error => console.error(error));
     this.appId = randomUUID();
     this.processUUID = randomUUID();
-    this.processUri = `/processes/${this.kind}-${this.processUUID}`;
+    this.processUri = file;
     this.sessionId = `${this.appId}_${this.processUri}`;
   }
 
@@ -164,8 +171,8 @@ export class GlspProtocol {
         needsClientLayout: true,
         needsServerLayout: false,
         sourceUri: this.processUri,
-        app: process.env.TEST_APP ?? 'designer',
-        pmv: 'inscription-test-project',
+        app,
+        pmv,
         pid: '',
         readonly: false,
         diagramType: this.glspDiagramType
@@ -233,12 +240,6 @@ export class GlspProtocol {
   private isUpdateModelAction(object: any): object is Action {
     return 'action' in object && 'kind' in object.action && object.action.kind === UPDATE_KIND;
   }
-
-  private serverUrl(): string {
-    const app = process.env.TEST_APP ?? '';
-    const server = process.env.BASE_URL ? process.env.BASE_URL + app : 'localhost:8081/designer';
-    return server.replace(/^https?:\/\//, '');
-  }
 }
 
 export type CreateProcessResult = { processId: string; elementId: string; processUUID: string };
@@ -253,7 +254,8 @@ export async function createProcess(
     processKind?: ProcessKind;
   }
 ): Promise<CreateProcessResult> {
-  const glsp = new GlspProtocol(options?.processKind);
+  const file = await createRandomProcess(server, app, pmv, options?.processKind);
+  const glsp = new GlspProtocol(file);
   const processId = await glsp.initProcess();
   let elementId = await glsp.createElement(processId, type, options?.location);
   if (options?.connectTo) {

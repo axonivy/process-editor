@@ -17,6 +17,7 @@
   },
   "type": "module",
   "scripts": {
+    "clean": "node --experimental-strip-types tests/global.teardown.ts",
     "type": "tsc --noEmit",
     "build": "tsc --build",
     "webtest": "playwright test --project=standalone-chrome",

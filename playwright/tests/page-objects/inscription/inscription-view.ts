@@ -3,9 +3,13 @@ import { expect } from '@playwright/test';
 import { InscriptionTab } from './inscription-tab';
 import { Outline } from './outline';
 
-export const openElementInscription = async (page: Page, pid: string, pmv = 'inscription-test-project') => {
-  const server = process.env.BASE_URL ?? 'localhost:8081';
-  const app = process.env.TEST_APP ?? 'designer';
+export const server = process.env.BASE_URL
+  ? `${process.env.BASE_URL}${process.env.TEST_WS}`
+  : 'localhost:8080/~Developer-inscription-test-project';
+const app = process.env.TEST_APP ?? 'Developer-inscription-test-project';
+const pmv = 'inscription-test-project';
+
+export const openElementInscription = async (page: Page, pid: string) => {
   const serverUrl = server.replace(/^https?:\/\//, '');
   const url = `?server=${serverUrl}&app=${app}&pmv=${pmv}&pid=${pid}`;
   await page.goto(url);
@@ -38,6 +42,7 @@ export const openMockInscription = async (page: Page, options?: { type?: string;
 
 const initPage = async (page: Page) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.addStyleTag({ content: `.tsqd-parent-container { display: none; }` });
 };
 
 export class Inscription {
