@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName": "Data",
+  "namespace": "inscription.test.project",
+  "isBusinessCaseData": false,
+  "fields": [
+    {
+      "name": "city",
+      "type": "String",
+      "modifiers": ["PERSISTENT"]
+    },
+    {
+      "name": "user",
+      "type": "screenshot.project.User",
+      "modifiers": ["PERSISTENT"]
+    }
+  ]
+}
