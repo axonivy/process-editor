@@ -22,6 +22,7 @@ export class Combobox {
   }
 
   async choose(value: string) {
+    await this.locator.click();
     await this.locator.fill(value);
     await this.page.getByRole('option', { name: value }).first().click();
   }
