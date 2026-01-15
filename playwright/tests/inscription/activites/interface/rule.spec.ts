@@ -5,19 +5,15 @@ import { GeneralTest } from '../../parts/name';
 import { runTest } from '../../parts/part-tester';
 import { ProgramInterfaceErrorTest } from '../../parts/program-interface-error';
 
-test.describe.configure({ mode: 'serial' });
-
 let processId: string;
 let view: Inscription;
-test.beforeAll(async () => {
-  processId = (await copyInscriptionProcess('192FC4D4F5911DE3')).processIdentifier.pid;
-});
 
 test.beforeEach(async ({ page }) => {
+  processId = (await copyInscriptionProcess('192FC4D4F5911DE3')).processIdentifier.pid;
   view = await openElementInscription(page, processId + '-f4');
 });
 
-test.afterAll(async () => {
+test.afterEach(async () => {
   await deleteInscriptionProcess(processId);
 });
 

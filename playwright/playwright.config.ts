@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 const STANDALONE_URL = process.env.CI ? 'http://localhost:4000' : 'http://localhost:3000';
 const VIEWER_URL = process.env.CI ? 'http://localhost:4001' : 'http://localhost:3001';
-const INSCRIPTION_URL = process.env.CI ? 'http://localhost:4003' : 'http://localhost:3003';
+const INSCRIPTION_URL = process.env.CI ? 'http://localhost:4003' : 'http://localhost:3004';
 const REPORT_DIR = process.env.REPORT_DIR ? `${process.env.REPORT_DIR}/` : '';
 
 export default defineConfig({
@@ -14,7 +14,7 @@ export default defineConfig({
   use: {
     actionTimeout: 0,
     trace: 'retain-on-failure',
-    headless: true
+    headless: false
   },
   webServer: [
     {

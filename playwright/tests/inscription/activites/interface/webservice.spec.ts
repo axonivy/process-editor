@@ -8,19 +8,16 @@ import { WsErrorTest } from '../../parts/ws-error';
 import { WsOutputTest } from '../../parts/ws-output';
 import { WsRequestTest } from '../../parts/ws-request';
 
-test.describe.configure({ mode: 'serial' });
-
 let processId: string;
 let view: Inscription;
-test.beforeAll(async () => {
-  processId = (await copyInscriptionProcess('192FC4D4F5911DE3')).processIdentifier.pid;
-});
 
 test.beforeEach(async ({ page }) => {
+  processId = (await copyInscriptionProcess('192FC4D4F5911DE3')).processIdentifier.pid;
+  console.log('Process ID:', processId);
   view = await openElementInscription(page, processId + '-f1');
 });
 
-test.afterAll(async () => {
+test.afterEach(async () => {
   await deleteInscriptionProcess(processId);
 });
 
