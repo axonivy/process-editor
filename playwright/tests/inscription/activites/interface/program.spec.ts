@@ -1,37 +1,39 @@
 import { test } from '@playwright/test';
-import type { CreateProcessResult } from '../../../glsp-protocol';
-import { createProcess } from '../../../glsp-protocol';
+import { copyInscriptionProcess, deleteInscriptionProcess } from '../../../create-random-process';
 import { openElementInscription, type Inscription } from '../../../page-objects/inscription/inscription-view';
 import { GeneralTest } from '../../parts/name';
 import { runTest } from '../../parts/part-tester';
 import { ProgramInterfaceErrorTest } from '../../parts/program-interface-error';
 import { ProgramInterfaceStartTest } from '../../parts/program-interface-start';
 
-test.describe('Program', () => {
-  let view: Inscription;
-  let testee: CreateProcessResult;
+test.describe.configure({ mode: 'serial' });
 
-  test.beforeAll(async () => {
-    testee = await createProcess('ProgramInterface');
-  });
+let processId: string;
+let view: Inscription;
+test.beforeAll(async () => {
+  processId = (await copyInscriptionProcess('192FC4D4F5911DE3')).processIdentifier.pid;
+});
 
-  test.beforeEach(async ({ page }) => {
-    view = await openElementInscription(page, testee.elementId);
-  });
+test.beforeEach(async ({ page }) => {
+  view = await openElementInscription(page, processId + '-f5');
+});
 
-  test('Header', async () => {
-    await view.expectHeaderText('Program');
-  });
+test.afterAll(async () => {
+  await deleteInscriptionProcess(processId);
+});
 
-  test('General', async () => {
-    await runTest(view, GeneralTest);
-  });
+test('Header', async () => {
+  await view.expectHeaderText('Program');
+});
 
-  test('Java Bean', async () => {
-    await runTest(view, ProgramInterfaceStartTest);
-  });
+test('General', async () => {
+  await runTest(view, GeneralTest);
+});
 
-  test('Error', async () => {
-    await runTest(view, ProgramInterfaceErrorTest);
-  });
+test('Java Bean', async () => {
+  await runTest(view, ProgramInterfaceStartTest);
+});
+
+test('Error', async () => {
+  await runTest(view, ProgramInterfaceErrorTest);
 });

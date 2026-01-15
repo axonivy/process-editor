@@ -1,6 +1,5 @@
 import { test } from '@playwright/test';
-import type { CreateProcessResult } from '../../../glsp-protocol';
-import { createProcess } from '../../../glsp-protocol';
+import { copyInscriptionProcess, deleteInscriptionProcess } from '../../../create-random-process';
 import { openElementInscription, type Inscription } from '../../../page-objects/inscription/inscription-view';
 import { DataCacheTest } from '../../parts/db-cache';
 import { GeneralTest } from '../../parts/name';
@@ -9,39 +8,42 @@ import { WsErrorTest } from '../../parts/ws-error';
 import { WsOutputTest } from '../../parts/ws-output';
 import { WsRequestTest } from '../../parts/ws-request';
 
-test.describe('Web Service', () => {
-  let view: Inscription;
-  let testee: CreateProcessResult;
+test.describe.configure({ mode: 'serial' });
 
-  test.beforeAll(async () => {
-    testee = await createProcess('WebServiceCall');
-  });
+let processId: string;
+let view: Inscription;
+test.beforeAll(async () => {
+  processId = (await copyInscriptionProcess('192FC4D4F5911DE3')).processIdentifier.pid;
+});
 
-  test.beforeEach(async ({ page }) => {
-    view = await openElementInscription(page, testee.elementId);
-  });
+test.beforeEach(async ({ page }) => {
+  view = await openElementInscription(page, processId + '-f1');
+});
 
-  test('Header', async () => {
-    await view.expectHeaderText('Web Service');
-  });
+test.afterAll(async () => {
+  await deleteInscriptionProcess(processId);
+});
 
-  test('General', async () => {
-    await runTest(view, GeneralTest);
-  });
+test('Header', async () => {
+  await view.expectHeaderText('Web Service');
+});
 
-  test('Request', async () => {
-    await runTest(view, WsRequestTest);
-  });
+test('General', async () => {
+  await runTest(view, GeneralTest);
+});
 
-  test('Cache', async () => {
-    await runTest(view, DataCacheTest);
-  });
+test('Request', async () => {
+  await runTest(view, WsRequestTest);
+});
 
-  test('Error', async () => {
-    await runTest(view, WsErrorTest);
-  });
+test('Cache', async () => {
+  await runTest(view, DataCacheTest);
+});
 
-  test('Output', async () => {
-    await runTest(view, WsOutputTest);
-  });
+test('Error', async () => {
+  await runTest(view, WsErrorTest);
+});
+
+test('Output', async () => {
+  await runTest(view, WsOutputTest);
 });

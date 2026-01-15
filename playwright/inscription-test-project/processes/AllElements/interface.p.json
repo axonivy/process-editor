@@ -1,0 +1,50 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "id" : "192FC4D4F5911DE3",
+  "config" : {
+    "data" : "inscription.test.project.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "Database",
+      "visual" : {
+        "at" : { "x" : 120, "y" : 80 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "WebServiceCall",
+      "name" : "Web Service",
+      "visual" : {
+        "at" : { "x" : 280, "y" : 80 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "RestClientCall",
+      "name" : "Rest Client",
+      "visual" : {
+        "at" : { "x" : 440, "y" : 80 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "EMail",
+      "name" : "Mail",
+      "visual" : {
+        "at" : { "x" : 120, "y" : 192 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "ThirdPartyProgramInterface",
+      "impl" : "RuleActivity",
+      "name" : "Rule",
+      "visual" : {
+        "at" : { "x" : 280, "y" : 192 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "ProgramInterface",
+      "name" : "Program",
+      "visual" : {
+        "at" : { "x" : 440, "y" : 192 }
+      }
+    } ]
+}

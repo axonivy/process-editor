@@ -1,6 +1,5 @@
 import { test } from '@playwright/test';
-import type { CreateProcessResult } from '../../../glsp-protocol';
-import { createProcess } from '../../../glsp-protocol';
+import { copyInscriptionProcess, deleteInscriptionProcess } from '../../../create-random-process';
 import { openElementInscription, type Inscription } from '../../../page-objects/inscription/inscription-view';
 import { MailAttachmentTest } from '../../parts/mail-attachments';
 import { MailContentTest } from '../../parts/mail-content';
@@ -9,39 +8,42 @@ import { MailHeaderTest } from '../../parts/mail-header';
 import { GeneralTest } from '../../parts/name';
 import { runTest } from '../../parts/part-tester';
 
-test.describe('EMail', () => {
-  let view: Inscription;
-  let testee: CreateProcessResult;
+test.describe.configure({ mode: 'serial' });
 
-  test.beforeAll(async () => {
-    testee = await createProcess('EMail');
-  });
+let processId: string;
+let view: Inscription;
+test.beforeAll(async () => {
+  processId = (await copyInscriptionProcess('192FC4D4F5911DE3')).processIdentifier.pid;
+});
 
-  test.beforeEach(async ({ page }) => {
-    view = await openElementInscription(page, testee.elementId);
-  });
+test.beforeEach(async ({ page }) => {
+  view = await openElementInscription(page, processId + '-f3');
+});
 
-  test('Header', async () => {
-    await view.expectHeaderText('E-Mail');
-  });
+test.afterAll(async () => {
+  await deleteInscriptionProcess(processId);
+});
 
-  test('General', async () => {
-    await runTest(view, GeneralTest);
-  });
+test('Header', async () => {
+  await view.expectHeaderText('E-Mail');
+});
 
-  test('MailHeader', async () => {
-    await runTest(view, MailHeaderTest);
-  });
+test('General', async () => {
+  await runTest(view, GeneralTest);
+});
 
-  test('MailError', async () => {
-    await runTest(view, MailErrorTest);
-  });
+test('MailHeader', async () => {
+  await runTest(view, MailHeaderTest);
+});
 
-  test('MailContent', async () => {
-    await runTest(view, MailContentTest);
-  });
+test('MailError', async () => {
+  await runTest(view, MailErrorTest);
+});
 
-  test('MailAttachments', async () => {
-    await runTest(view, MailAttachmentTest);
-  });
+test('MailContent', async () => {
+  await runTest(view, MailContentTest);
+});
+
+test('MailAttachments', async () => {
+  await runTest(view, MailAttachmentTest);
 });

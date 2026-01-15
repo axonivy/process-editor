@@ -1,56 +1,55 @@
 import { test } from '@playwright/test';
-import { createProcess } from '../../glsp-protocol';
+import { copyInscriptionProcess, deleteInscriptionProcess } from '../../create-random-process';
 import { openElementInscription } from '../../page-objects/inscription/inscription-view';
 import { GeneralTestWithoutTags } from '../parts/name';
 import { runTest } from '../parts/part-tester';
 
-test.describe('BPMN Activities', () => {
-  test('Generic', async ({ page }) => {
-    const testee = await createProcess('GenericBpmnElement');
-    const view = await openElementInscription(page, testee.elementId);
-    await view.expectHeaderText('Generic');
-    await runTest(view, GeneralTestWithoutTags);
-  });
+let processId: string;
+test.beforeAll(async () => {
+  processId = (await copyInscriptionProcess('192FC4D84018CBE2')).processIdentifier.pid;
+});
 
-  test('User', async ({ page }) => {
-    const testee = await createProcess('UserBpmnElement');
-    const view = await openElementInscription(page, testee.elementId);
-    await view.expectHeaderText('User');
-  });
+test.afterAll(async () => {
+  await deleteInscriptionProcess(processId);
+});
 
-  test('Manual', async ({ page }) => {
-    const testee = await createProcess('ManualBpmnElement');
-    const view = await openElementInscription(page, testee.elementId);
-    await view.expectHeaderText('Manual');
-  });
+test('Generic', async ({ page }) => {
+  const view = await openElementInscription(page, `${processId}-S10`);
+  await view.expectHeaderText('Generic');
+  await runTest(view, GeneralTestWithoutTags);
+});
 
-  test('Script', async ({ page }) => {
-    const testee = await createProcess('ScriptBpmnElement');
-    const view = await openElementInscription(page, testee.elementId);
-    await view.expectHeaderText('Script');
-  });
+test('User', async ({ page }) => {
+  const view = await openElementInscription(page, `${processId}-S20`);
+  await view.expectHeaderText('User');
+});
 
-  test('Service', async ({ page }) => {
-    const testee = await createProcess('ServiceBpmnElement');
-    const view = await openElementInscription(page, testee.elementId);
-    await view.expectHeaderText('Service');
-  });
+test('Manual', async ({ page }) => {
+  const view = await openElementInscription(page, `${processId}-S30`);
+  await view.expectHeaderText('Manual');
+});
 
-  test('Rule', async ({ page }) => {
-    const testee = await createProcess('RuleBpmnElement');
-    const view = await openElementInscription(page, testee.elementId);
-    await view.expectHeaderText('Rule');
-  });
+test('Script', async ({ page }) => {
+  const view = await openElementInscription(page, `${processId}-S40`);
+  await view.expectHeaderText('Script');
+});
 
-  test('Receive', async ({ page }) => {
-    const testee = await createProcess('ReceiveBpmnElement');
-    const view = await openElementInscription(page, testee.elementId);
-    await view.expectHeaderText('Receive');
-  });
+test('Service', async ({ page }) => {
+  const view = await openElementInscription(page, `${processId}-S50`);
+  await view.expectHeaderText('Service');
+});
 
-  test('Send', async ({ page }) => {
-    const testee = await createProcess('SendBpmnElement');
-    const view = await openElementInscription(page, testee.elementId);
-    await view.expectHeaderText('Send');
-  });
+test('Rule', async ({ page }) => {
+  const view = await openElementInscription(page, `${processId}-S60`);
+  await view.expectHeaderText('Rule');
+});
+
+test('Receive', async ({ page }) => {
+  const view = await openElementInscription(page, `${processId}-S80`);
+  await view.expectHeaderText('Receive');
+});
+
+test('Send', async ({ page }) => {
+  const view = await openElementInscription(page, `${processId}-S70`);
+  await view.expectHeaderText('Send');
 });
