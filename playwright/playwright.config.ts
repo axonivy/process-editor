@@ -42,9 +42,24 @@ export default defineConfig({
     { name: 'viewer-chrome', use: { ...devices['Desktop Chrome'], baseURL: VIEWER_URL }, testDir: './tests/viewer' },
     { name: 'viewer-firefox', use: { ...devices['Desktop Firefox'], baseURL: VIEWER_URL }, testDir: './tests/viewer' },
     { name: 'viewer-webkit', use: { ...devices['Desktop Safari'], baseURL: VIEWER_URL }, testDir: './tests/viewer' },
-    { name: 'inscription-chrome', use: { ...devices['Desktop Chrome'], baseURL: INSCRIPTION_URL }, testDir: './tests/inscription' },
-    { name: 'inscription-firefox', use: { ...devices['Desktop Firefox'], baseURL: INSCRIPTION_URL }, testDir: './tests/inscription' },
-    { name: 'inscription-webkit', use: { ...devices['Desktop Safari'], baseURL: INSCRIPTION_URL }, testDir: './tests/inscription' },
+    {
+      name: 'inscription-chrome',
+      use: { ...devices['Desktop Chrome'], baseURL: INSCRIPTION_URL },
+      fullyParallel: false,
+      testDir: './tests/inscription'
+    },
+    {
+      name: 'inscription-firefox',
+      use: { ...devices['Desktop Firefox'], baseURL: INSCRIPTION_URL },
+      fullyParallel: false,
+      testDir: './tests/inscription'
+    },
+    {
+      name: 'inscription-webkit',
+      use: { ...devices['Desktop Safari'], baseURL: INSCRIPTION_URL },
+      fullyParallel: false,
+      testDir: './tests/inscription'
+    },
     {
       name: 'screenshots-process',
       use: { ...devices['Desktop Chrome'], viewport: { width: 1000, height: 500 }, colorScheme: 'light', baseURL: STANDALONE_URL },
