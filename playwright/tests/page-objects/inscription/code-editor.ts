@@ -3,7 +3,7 @@ import { expect } from '@playwright/test';
 
 class CodeEditor {
   private readonly contentAssist: Locator;
-  private readonly code: Locator;
+  readonly code: Locator;
   private readonly scriptArea: Locator;
 
   constructor(
@@ -55,10 +55,14 @@ class CodeEditor {
 
   async clear() {
     await this.activate();
+    await this.clearInternal();
+    await this.blur();
+  }
+
+  protected async clearInternal() {
     await this.selectAll();
     await this.page.keyboard.press('Delete');
     await this.expectCode('');
-    await this.blur();
   }
 
   protected async selectAll() {
@@ -100,7 +104,7 @@ class CodeEditor {
     return new Browser(this.page);
   }
 
-  private async blur() {
+  async blur() {
     await this.page.locator('*:focus').blur();
   }
 
@@ -185,5 +189,13 @@ export class MacroEditor extends CodeEditor {
 export class ScriptCell extends CodeEditor {
   constructor(page: Page, locator: Locator, parentLocator: Locator) {
     super(page, locator, locator, parentLocator);
+  }
+
+  override async clearInternal() {
+    if ((await this.code.locator('.monaco-editor').all()).length > 0) {
+      return super.clearInternal();
+    }
+    // Unknown type of script cell, fallback to textbox clear
+    await this.locator.clear();
   }
 }
