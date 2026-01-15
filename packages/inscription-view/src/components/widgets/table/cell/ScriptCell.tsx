@@ -14,8 +14,12 @@ export const ScriptCell = <TData,>({
   browsers: BrowserType[];
   placeholder?: string;
 }) => {
-  if (type && type.length === 0) {
-    return <InputCell className='script-cell' cell={cell} placeholder={placeholder} />;
+  if (type === undefined || type.length === 0) {
+    return (
+      <div className='code-input'>
+        <InputCell className='script-cell view-lines' cell={cell} placeholder={placeholder} />
+      </div>
+    );
   }
   return <CodeEditorCell cell={cell} macro={false} type={type} browsers={browsers} placeholder={placeholder} />;
 };
