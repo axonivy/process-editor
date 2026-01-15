@@ -10,21 +10,17 @@ import {
   TYPES
 } from '@eclipse-glsp/client';
 import { inject, injectable } from 'inversify';
+import { SChildElementImpl } from 'sprotty';
 import { addBreakpointHandles, type Breakable, isBreakable, removeBreakpointHandles, SBreakpointHandle } from './model';
 
 export interface BreakpointFeedbackAction extends Action {
   kind: typeof BreakpointFeedbackCommand.KIND;
   breakpoints: ElementBreakpoint[];
-  oldBreakpoints?: ElementBreakpoint[];
   globalDisabled?: boolean;
 }
 
 export namespace BreakpointFeedbackAction {
-  export function create(options: {
-    breakpoints: ElementBreakpoint[];
-    oldBreakpoints?: ElementBreakpoint[];
-    globalDisabled?: boolean;
-  }): BreakpointFeedbackAction {
+  export function create(options: { breakpoints: ElementBreakpoint[]; globalDisabled?: boolean }): BreakpointFeedbackAction {
     return {
       kind: BreakpointFeedbackCommand.KIND,
       ...options
@@ -43,12 +39,13 @@ export class BreakpointFeedbackCommand extends Command {
   }
 
   execute(context: CommandExecutionContext): GModelRoot {
-    this.action.oldBreakpoints?.forEach(breakpoint => {
-      const element = context.root.index.getById(breakpoint.elementId);
-      if (element instanceof GChildElement && isBreakable(element)) {
-        removeBreakpointHandles(element);
-      }
-    });
+    context.root.index
+      .all()
+      .filter(e => e instanceof SBreakpointHandle)
+      .filter(e => e instanceof SChildElementImpl)
+      .forEach(e => {
+        removeBreakpointHandles((e as SChildElementImpl).parent);
+      });
     this.action.breakpoints.forEach(breakpoint => {
       const element = context.root.index.getById(breakpoint.elementId);
       if (element instanceof GChildElement && isBreakable(element)) {

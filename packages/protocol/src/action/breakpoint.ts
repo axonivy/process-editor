@@ -1,4 +1,4 @@
-import { Action, hasArrayProp, hasBooleanProp } from '@eclipse-glsp/protocol';
+import { Action, hasArrayProp, hasBooleanProp, hasStringProp } from '@eclipse-glsp/protocol';
 
 export interface SetBreakpointAction extends Action {
   kind: typeof SetBreakpointAction.KIND;
@@ -13,6 +13,10 @@ export namespace SetBreakpointAction {
       kind: KIND,
       ...options
     };
+  }
+
+  export function is(object: unknown): object is SetBreakpointAction {
+    return Action.hasKind(object, KIND) && hasStringProp(object, 'elementId');
   }
 }
 
@@ -30,6 +34,10 @@ export namespace ToggleBreakpointAction {
       kind: KIND,
       ...options
     };
+  }
+
+  export function is(object: unknown): object is ToggleBreakpointAction {
+    return Action.hasKind(object, KIND) && hasStringProp(object, 'elementId') && hasBooleanProp(object, 'disable');
   }
 }
 

@@ -64,7 +64,7 @@ describe('BreakpointFeedbackAction', () => {
     assertBreakpoint(node.children[0]!, '', false, false);
     expect(node.children[0]).to.be.an.instanceOf(SBreakpointHandle);
 
-    await actionDispatcher.dispatch(BreakpointFeedbackAction.create({ breakpoints: [], oldBreakpoints: [elementBreakpoint] }));
+    await actionDispatcher.dispatch(BreakpointFeedbackAction.create({ breakpoints: [] }));
     expect(node.children).toHaveLength(0);
   });
 
@@ -75,9 +75,7 @@ describe('BreakpointFeedbackAction', () => {
     root.add(node);
 
     const elementBreakpoint = { elementId: 'foo', condition: 'test condition', disabled: true };
-    await actionDispatcher.dispatch(
-      BreakpointFeedbackAction.create({ breakpoints: [elementBreakpoint], oldBreakpoints: [], globalDisabled: true })
-    );
+    await actionDispatcher.dispatch(BreakpointFeedbackAction.create({ breakpoints: [elementBreakpoint], globalDisabled: true }));
     expect(node.children).to.have.lengthOf(1);
     assertBreakpoint(node.children[0]!, 'test condition', true, true);
     expect(node.children[0]).to.be.an.instanceOf(SBreakpointHandle);
