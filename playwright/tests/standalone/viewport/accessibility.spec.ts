@@ -26,11 +26,11 @@ test('toggle and focus inscription shortcut', async ({ page }) => {
   await inscription.expectClosed();
   await page.keyboard.press('Digit3');
   await inscription.expectOpen();
+  const tabButton = inscription.inscriptionTab('General').tabButtonLocator;
+  await expect(tabButton).toBeVisible();
+  await expect(tabButton).not.toBeFocused();
   await page.keyboard.press('Digit3');
-  await page.waitForFunction(() => {
-    return document.activeElement?.getAttribute('aria-label') === 'General';
-  });
-  await expect(inscription.inscriptionTab('General').tabButtonLocator).toBeFocused();
+  await expect(tabButton).toBeFocused();
 });
 
 test('do not change focus if input is focused', async ({ page }) => {
