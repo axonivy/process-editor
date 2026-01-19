@@ -17,9 +17,9 @@
     "@axonivy/process-editor-inscription-core": "workspace:~14.0.0-next",
     "@axonivy/process-editor-inscription-protocol": "workspace:~14.0.0-next",
     "@tanstack/react-virtual": "^3.11.2",
-    "@typefox/monaco-editor-react": "7.5.0",
+    "@typefox/monaco-editor-react": "7.6.0",
     "immer": "^11.0.0",
-    "monaco-languageclient": "10.5.0",
+    "monaco-languageclient": "10.6.0",
     "react-aria": "^3.38.0",
     "react-error-boundary": "^6.0.0"
   },

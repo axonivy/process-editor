@@ -23,22 +23,22 @@ importers:
         version: 14.0.0-next.957.4046f5f
       '@lerna-lite/cli':
         specifier: ^4.0.0
-        version: 4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@lerna-lite/version@4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@types/node@24.10.6)
+        version: 4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@lerna-lite/version@4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@types/node@24.10.9)
       '@lerna-lite/publish':
         specifier: ^4.0.0
-        version: 4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0)
+        version: 4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0)
       '@lerna-lite/version':
         specifier: ^4.0.0
-        version: 4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@types/node@24.10.6)(conventional-commits-filter@5.0.0)
+        version: 4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@types/node@24.10.9)(conventional-commits-filter@5.0.0)
       '@types/node':
         specifier: ^24.0.0
-        version: 24.10.6
+        version: 24.10.9
       i18next-cli:
         specifier: ^1.21.1
-        version: 1.34.1(@swc/helpers@0.5.17)(@types/node@24.10.6)(i18next@25.7.4(typescript@5.9.3))(typescript@5.9.3)
+        version: 1.36.1(@swc/helpers@0.5.17)(@types/node@24.10.9)(i18next@25.7.4(typescript@5.9.3))(typescript@5.9.3)
       prettier:
         specifier: ^3.5.3
-        version: 3.7.4
+        version: 3.8.0
       rimraf:
         specifier: ^6.0.1
         version: 6.1.2
@@ -50,7 +50,7 @@ importers:
         version: 0.1.9(typescript@5.9.3)
       vitest:
         specifier: ^4.0.0
-        version: 4.0.16(@types/node@24.10.6)(happy-dom@20.1.0)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
+        version: 4.0.17(@types/node@24.10.9)(happy-dom@20.3.1)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
 
   integration/inscription:
     dependencies:
@@ -74,10 +74,10 @@ importers:
         version: 14.0.0-next.957.4046f5f
       '@tanstack/react-query':
         specifier: ^5.64
-        version: 5.90.16(react@19.2.3)
+        version: 5.90.17(react@19.2.3)
       '@tanstack/react-query-devtools':
         specifier: ^5.64
-        version: 5.91.2(@tanstack/react-query@5.90.16(react@19.2.3))(react@19.2.3)
+        version: 5.91.2(@tanstack/react-query@5.90.17(react@19.2.3))(react@19.2.3)
       i18next:
         specifier: ^25.0.0
         version: 25.7.4(typescript@5.9.3)
@@ -86,7 +86,7 @@ importers:
         version: 8.2.0
       react-i18next:
         specifier: ^16.0.0
-        version: 16.5.2(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
+        version: 16.5.3(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
     devDependencies:
       '@axonivy/monaco-vite-plugin':
         specifier: workspace:~14.0.0-next
@@ -99,7 +99,7 @@ importers:
         version: 19.2.3(@types/react@19.2.8)
       '@vitejs/plugin-react':
         specifier: ^5.0.0
-        version: 5.1.2(vite@7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2))
+        version: 5.1.2(vite@7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2))
       deepmerge-ts:
         specifier: ^7.0.0
         version: 7.1.5
@@ -111,16 +111,16 @@ importers:
         version: 19.2.3(react@19.2.3)
       vite:
         specifier: ^7.0.0
-        version: 7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2)
+        version: 7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2)
       vite-tsconfig-paths:
         specifier: ^6.0.0
-        version: 6.0.4(typescript@5.9.3)(vite@7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2))
+        version: 6.0.4(typescript@5.9.3)(vite@7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2))
 
   integration/monaco-vite-plugin:
     dependencies:
       vite:
         specifier: ^7.0.0
-        version: 7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2)
+        version: 7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2)
 
   integration/standalone:
     dependencies:
@@ -153,10 +153,10 @@ importers:
         version: 2.5.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       '@tanstack/react-query':
         specifier: ^5.64
-        version: 5.90.16(react@19.2.3)
+        version: 5.90.17(react@19.2.3)
       '@tanstack/react-query-devtools':
         specifier: ^5.64
-        version: 5.91.2(@tanstack/react-query@5.90.16(react@19.2.3))(react@19.2.3)
+        version: 5.91.2(@tanstack/react-query@5.90.17(react@19.2.3))(react@19.2.3)
       i18next:
         specifier: ^25.0.0
         version: 25.7.4(typescript@5.9.3)
@@ -168,7 +168,7 @@ importers:
         version: 6.2.2(reflect-metadata@0.2.2)
       react-i18next:
         specifier: ^16.0.0
-        version: 16.5.2(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
+        version: 16.5.3(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
     devDependencies:
       '@axonivy/monaco-vite-plugin':
         specifier: workspace:~14.0.0-next
@@ -181,10 +181,10 @@ importers:
         version: 0.2.2
       vite:
         specifier: ^7.0.0
-        version: 7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2)
+        version: 7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2)
       vite-tsconfig-paths:
         specifier: ^6.0.0
-        version: 6.0.4(typescript@5.9.3)(vite@7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2))
+        version: 6.0.4(typescript@5.9.3)(vite@7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2))
 
   integration/viewer:
     dependencies:
@@ -224,10 +224,10 @@ importers:
         version: 0.2.2
       vite:
         specifier: ^7.0.0
-        version: 7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2)
+        version: 7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2)
       vite-tsconfig-paths:
         specifier: ^6.0.0
-        version: 6.0.4(typescript@5.9.3)(vite@7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2))
+        version: 6.0.4(typescript@5.9.3)(vite@7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2))
 
   packages/editor:
     dependencies:
@@ -239,10 +239,10 @@ importers:
         version: 2.5.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       '@tanstack/react-query':
         specifier: ^5.64
-        version: 5.90.16(react@19.2.3)
+        version: 5.90.17(react@19.2.3)
       '@tanstack/react-query-devtools':
         specifier: ^5.64
-        version: 5.91.2(@tanstack/react-query@5.90.16(react@19.2.3))(react@19.2.3)
+        version: 5.91.2(@tanstack/react-query@5.90.17(react@19.2.3))(react@19.2.3)
       i18next:
         specifier: ^24.2.3 || ^25.0.0
         version: 25.7.4(typescript@5.9.3)
@@ -260,7 +260,7 @@ importers:
         version: 19.2.3(react@19.2.3)
       react-i18next:
         specifier: ^15.4.1 || ^16.0.0
-        version: 16.5.2(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
+        version: 16.5.3(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
       snabbdom:
         specifier: ^3.5.1
         version: 3.5.1
@@ -288,7 +288,7 @@ importers:
         version: 0.5.7(@vanilla-extract/css@1.17.2)
       happy-dom:
         specifier: ^20.0.0
-        version: 20.1.0
+        version: 20.3.1
       reflect-metadata:
         specifier: ~0.2.2
         version: 0.2.2
@@ -386,10 +386,10 @@ importers:
         version: 1.1.13(@types/react-dom@19.2.3(@types/react@19.2.8))(@types/react@19.2.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@tanstack/react-query':
         specifier: ^5.64
-        version: 5.90.16(react@19.2.3)
+        version: 5.90.17(react@19.2.3)
       '@tanstack/react-query-devtools':
         specifier: ^5.64
-        version: 5.91.2(@tanstack/react-query@5.90.16(react@19.2.3))(react@19.2.3)
+        version: 5.91.2(@tanstack/react-query@5.90.17(react@19.2.3))(react@19.2.3)
       '@tanstack/react-table':
         specifier: ^8.20
         version: 8.21.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -397,8 +397,8 @@ importers:
         specifier: ^3.11.2
         version: 3.13.18(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@typefox/monaco-editor-react':
-        specifier: 7.5.0
-        version: 7.5.0
+        specifier: 7.6.0
+        version: 7.6.0
       downshift:
         specifier: ^9.0
         version: 9.0.13(react@19.2.3)
@@ -409,17 +409,17 @@ importers:
         specifier: ^11.0.0
         version: 11.1.3
       monaco-languageclient:
-        specifier: 10.5.0
-        version: 10.5.0
+        specifier: 10.6.0
+        version: 10.6.0
       react-aria:
         specifier: ^3.38.0
         version: 3.45.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-error-boundary:
         specifier: ^6.0.0
-        version: 6.0.3(react@19.2.3)
+        version: 6.1.0(react@19.2.3)
       react-i18next:
         specifier: ^15.4.1 || ^16.0.0
-        version: 16.5.2(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
+        version: 16.5.3(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
     devDependencies:
       '@axonivy/jsonrpc':
         specifier: ~14.0.0-next.957.4046f5f
@@ -549,7 +549,7 @@ importers:
         version: 14.6.1(@testing-library/dom@10.4.0)
       '@types/node':
         specifier: ^24.0.0
-        version: 24.10.6
+        version: 24.10.9
       '@types/react':
         specifier: ^19.0.8
         version: 19.2.8
@@ -731,8 +731,14 @@ packages:
   '@codingame/monaco-vscode-bulk-edit-service-override@24.2.0':
     resolution: {integrity: sha512-onsUrBTldwCin487tGkS0qfaKY9Du5n434tjCrfict9EBbvK08Gv7rpgY92qfX5Kt4R10zcl+G9LzOS/NAiAsQ==}
 
+  '@codingame/monaco-vscode-bulk-edit-service-override@25.0.0':
+    resolution: {integrity: sha512-paVncZYp7o72DHnvV/0aBYxMi1pWNXd11z2EPKpcfDots9lbuoSxbQonqurxjHud3dlpm5UkqiEEOHMmjcsIbw==}
+
   '@codingame/monaco-vscode-configuration-service-override@24.2.0':
     resolution: {integrity: sha512-zuDi/YpPloTD5iFChjjTNQL060thGJKHHincl+OZQmQFKaWk+WcAtl8aizaG6ItwAm3QByhxAOIgyPua7iamnA==}
+
+  '@codingame/monaco-vscode-configuration-service-override@25.0.0':
+    resolution: {integrity: sha512-h5Us5tmWWvVYEwTx7M4eGaGFafGgMPCPczxyLohGudMRIF72WUfF6rPvGi/GMDZZGbieVk+060BQ8MfRVqupng==}
 
   '@codingame/monaco-vscode-editor-api@24.2.0':
     resolution: {integrity: sha512-btwnwatbKuhxCyY6n9gBJkGcRGhZrJTzhoPnbW/fyC4O9yXX4WxwiAQzJdYpn/0YDlehcczgAWftXiCrMcCNYA==}
@@ -742,6 +748,9 @@ packages:
 
   '@codingame/monaco-vscode-editor-service-override@24.2.0':
     resolution: {integrity: sha512-1mSHWHSHWO0SzhugmhyBJzfgqe+nUzCpmyeehk38P0XPFuhc66exwWslPbBWVGHqMYuiN3yS/5YQ0VDbnYwqWA==}
+
+  '@codingame/monaco-vscode-editor-service-override@25.0.0':
+    resolution: {integrity: sha512-AtQKS+Z4BD/p5BJwR/+YDwzZz15tOz6uE7m7j5YV9EBXqNiwUbOuowfnByW4WoFYy6DOyyBl13SRc4UB038ASA==}
 
   '@codingame/monaco-vscode-environment-service-override@24.2.0':
     resolution: {integrity: sha512-FspOVaxbjoLIjoH+VQF4xigzXcpOT8/3wpqhw4SKXpNQGOAKcPosUtwa/TPlfOwi/6x3h/f/PAPDiGDMpzbhMg==}
@@ -776,50 +785,98 @@ packages:
   '@codingame/monaco-vscode-keybindings-service-override@24.2.0':
     resolution: {integrity: sha512-V4x03mFTTkS+Uyq8zKYDI6niVtW8rHTekqm2qwXTRioSFJdRgp6HLSXaDK8b1rY30VRMGNjE8X9S6vHLA/lZ9Q==}
 
+  '@codingame/monaco-vscode-keybindings-service-override@25.0.0':
+    resolution: {integrity: sha512-MffsjLsaF3E4f6nNX0Lw1Q0WGr7ArvIcvYbXcoJjmQsz9twkz7zHOs/kmyEhPOLh+luFDYQynGmcG6DoMyibkw==}
+
   '@codingame/monaco-vscode-language-pack-cs@24.2.0':
     resolution: {integrity: sha512-tueyoUO0irwqXzr1TCEkLoDgKaVIJ+9gg8upgFje8CCZ51l6a9DcQ+XqMJzN09z9j/FDogeeFprMfIadiULnXA==}
+
+  '@codingame/monaco-vscode-language-pack-cs@25.0.0':
+    resolution: {integrity: sha512-3XCQLVucZUeZpFm/EKTnmuaGekIqBlpxn+05a4lv3gcLAo8tpd8K6Y8+bNuMH7/Yue67HGN6EJSr+S2+aHHyRw==}
 
   '@codingame/monaco-vscode-language-pack-de@24.2.0':
     resolution: {integrity: sha512-S1zOG7eNd9TiXNVQ8wNDLwUGnAvFpG1k40/KGxBMNOdbJiizWfVY7WoqUebLQYm5fNK5BijIDv1c+WlwygX+cw==}
 
+  '@codingame/monaco-vscode-language-pack-de@25.0.0':
+    resolution: {integrity: sha512-YQKy8dMbeoGDNhawUVXPkCtrkHPzx8So/rL8lJGxqYduyZI50jUolm9QdnWi2dqnRN7Xg6gPAF1t/n5x/M1Hiw==}
+
   '@codingame/monaco-vscode-language-pack-es@24.2.0':
     resolution: {integrity: sha512-9Y0yoT0B2OqQO3R59HKZ9F5HhDvIlIUdyDdOwm+y+UOTLLjStwnNLL50mlXeYfFocqOWiyiilD82mEnKeGtLAA==}
+
+  '@codingame/monaco-vscode-language-pack-es@25.0.0':
+    resolution: {integrity: sha512-mQXVvH2O2RJhZF3I+SdHCMsz84ha1POOTSfz56gg/B6CL5hueaEMlfucy25YHx0iOo8IAU6Wcl9gpo6tYHnPSw==}
 
   '@codingame/monaco-vscode-language-pack-fr@24.2.0':
     resolution: {integrity: sha512-R19EKNJdC7eEuOQOdt+hg+l5xcYpfoh5t97OquNm0nzOEvAN6KVWPNuk1Bsd5S8c2429ds1CTa/SkwtlmmyISw==}
 
+  '@codingame/monaco-vscode-language-pack-fr@25.0.0':
+    resolution: {integrity: sha512-89tqcDYJ+A3NuPZklvR5KSQ0EusIBDToZ38KmoWWSBmJLAhsGo7YFMYxvmSnyjLVUhWPJb8RI2tOuXOB8bUYmw==}
+
   '@codingame/monaco-vscode-language-pack-it@24.2.0':
     resolution: {integrity: sha512-Tsmx3yI07shL5a51k4MJytGeWVEXiWAglGfkSiwlB/qba0RQKURRIHwJNh+WiQnjgkF+RdToC8qezWcwx6BF3g==}
+
+  '@codingame/monaco-vscode-language-pack-it@25.0.0':
+    resolution: {integrity: sha512-G4LcfK/xsKJPTNX1yNULZv+gEPRep7gy4oETUmQPiqh8YIFkFbtUI/iYdwSK+3Gxfd1MdgpXxGgQ8MHJNtuFJQ==}
 
   '@codingame/monaco-vscode-language-pack-ja@24.2.0':
     resolution: {integrity: sha512-e0+YFiIPj1Ve6XAq1zQUcshpLvtK8+94VEgg+RPNzAWenPT9TKQYFzeVkzwX6dAqOfM2ywBgv1YkQIUfWTcsQQ==}
 
+  '@codingame/monaco-vscode-language-pack-ja@25.0.0':
+    resolution: {integrity: sha512-CeJRVIhWHhsPPfv9ZnfMSzto6uLkEtZdO7npVoNHTuiLFz5gDGlvTJFkuySZ8gADDaQ5AyHDU8UJz5L/sBB9kg==}
+
   '@codingame/monaco-vscode-language-pack-ko@24.2.0':
     resolution: {integrity: sha512-zmg71p2YzkhP/rhS6fP9VI4DHi1f7/QiZNBeyh+cCvturqLZq8mus6Az8pdKAUsX8qbhrdPawleS3bQ72ljORw==}
+
+  '@codingame/monaco-vscode-language-pack-ko@25.0.0':
+    resolution: {integrity: sha512-y6iN/3h0Zr0wDk5VozVxg0jQ712G7q/HtEV7zFTvt3sUQ4MNIMy1i0N38VaTzin1ZlU/tWxF32n8dImeT0uINA==}
 
   '@codingame/monaco-vscode-language-pack-pl@24.2.0':
     resolution: {integrity: sha512-+bIzkMFfyUnHHO83FbBQnIVY2Hpnx28ef3Sn0JuViQXHKf3fVjk+GylCl31PV0oKesigPjHftkUFAbQCdNQL/w==}
 
+  '@codingame/monaco-vscode-language-pack-pl@25.0.0':
+    resolution: {integrity: sha512-NyEOozpzu3kKcbvXhgPlMYaUvob0S1Qm3KiF8YjgZHPO0O68Z7aHk0tchIEMIQCtTFJJyEoLEFOAXqIlNpcYFQ==}
+
   '@codingame/monaco-vscode-language-pack-pt-br@24.2.0':
     resolution: {integrity: sha512-glBQ70KT1O4ipL6j4Zi2tle/znbsw5R1DvfZcl+Png8/ia6XVk8j1PMRT0wKbPdA6F7bGCKqmDqb1AQX4wqXvQ==}
+
+  '@codingame/monaco-vscode-language-pack-pt-br@25.0.0':
+    resolution: {integrity: sha512-6TWpNm+305K1PjiRsGgH8y/JxuHbExt9mPPHLVyyBl0uBdtdfc7ofslftv6Zcwj9zhRt0rfRjedSxxtVzggz7Q==}
 
   '@codingame/monaco-vscode-language-pack-qps-ploc@24.2.0':
     resolution: {integrity: sha512-nbA7USPt5ja36+0V8Uj/fWyKv24TQAYTg7MBA6Yy8pueerHGlcnQzXawNsavWTOuZ9goEBqJrOTz0He3310Nmg==}
 
+  '@codingame/monaco-vscode-language-pack-qps-ploc@25.0.0':
+    resolution: {integrity: sha512-x+WyxlS73YexjvDdzLNEzn8HwkE7tSM6LzgaWz1wFbmO1c2bGMuLLFmrpspUtA+CPqhZ2mPMuzxW/DhRuKrf6w==}
+
   '@codingame/monaco-vscode-language-pack-ru@24.2.0':
     resolution: {integrity: sha512-yujqccZ8KWciPK5PkOPb3qNV6xGFcsA4GNYIxoM/L+Us4kJgLplChXhYdZfVmP20bw76axlj0d2D97rjOQjZ+w==}
+
+  '@codingame/monaco-vscode-language-pack-ru@25.0.0':
+    resolution: {integrity: sha512-PQIdGVxua7GAxdVf9crArI7W0KzhlN7a4Fg10QdoKr2HpyZSy2r401cSSfobgBapBXl/cjHKdnzeMpyiarIK7w==}
 
   '@codingame/monaco-vscode-language-pack-tr@24.2.0':
     resolution: {integrity: sha512-v/KRAWvtYp4RHW+OxgKrFoHnT9Kjs2QmGspgVEncfVJ3DEYu1mb0voCyVvKbNaf2o3jQe9fMWNifBuECOnmRQQ==}
 
+  '@codingame/monaco-vscode-language-pack-tr@25.0.0':
+    resolution: {integrity: sha512-cJP0yyUpacJ1zGSTOKvNAeSaOU1Tl98/IMaqVnMxL7lC2D7LBw3N8U+o2IdyDmv1IxElbQgOA+VpaOAPqc3Tig==}
+
   '@codingame/monaco-vscode-language-pack-zh-hans@24.2.0':
     resolution: {integrity: sha512-lulx1Ii90ZHtExDYftMBzqr8vCkLGHYq9gk1V3ZiKixo22Ma+qqL5k0BWL4+NPuqHFS3v08fOnJIN67CyO9cfg==}
+
+  '@codingame/monaco-vscode-language-pack-zh-hans@25.0.0':
+    resolution: {integrity: sha512-LNeqwr43v4SMO9LHj3y4CHzdVxzSJWbJdOSQb+mgKUnquC1FXZ2qinSsWd7hZ7fsR8/OvcgsTxvcI8SrUW50IA==}
 
   '@codingame/monaco-vscode-language-pack-zh-hant@24.2.0':
     resolution: {integrity: sha512-kRHZpfp1jmj8uHW84J62dzrUsiJPVJ2+3K0CB7OEPGCd0H1SuCEMrhvjB6zpb8XWOzUQVA3Ty9K2N59UA0szww==}
 
+  '@codingame/monaco-vscode-language-pack-zh-hant@25.0.0':
+    resolution: {integrity: sha512-oSEmvGpDpZT4oQsAzbcZ+pU84udS2IvELsGWm1pPh6p3Fxtkf0FV4k0D/TgqK0zUvIMz2GZ8RE5QeVO2jk5PaA==}
+
   '@codingame/monaco-vscode-languages-service-override@24.2.0':
     resolution: {integrity: sha512-zOPvT6N7bceSlHlgO0Z+09G1blbCu1OXQPFO7WzqGp4kRwQJwidj7mNfN0oa2n1Y1IxfjiTUgCQEW7LRIqgwDA==}
+
+  '@codingame/monaco-vscode-languages-service-override@25.0.0':
+    resolution: {integrity: sha512-TwJSI85SvWCAZ650Plhf7e5xNgB3FCHOkC1uDzdnEOx+1/5lMoLLRf+TUfoXwgEPmQV3pTZ3n/MNudXmCu5uSQ==}
 
   '@codingame/monaco-vscode-layout-service-override@24.2.0':
     resolution: {integrity: sha512-vxS/77lY2EmVCVknevKdwLuimoB4r3t6MATqjSFV05RO3YJ/VEnpddxS+Lr3oRG25fMNQ83LAu1KQWZZ/7jG4w==}
@@ -830,14 +887,26 @@ packages:
   '@codingame/monaco-vscode-localization-service-override@24.2.0':
     resolution: {integrity: sha512-tB6iysLBpNpOC1iti3HjEeOxhNu4jKvsfWj26J1wuweLH02+jY4hpJksX9uWt2AjPr8+g9VDqT6i5bWr+grhNQ==}
 
+  '@codingame/monaco-vscode-localization-service-override@25.0.0':
+    resolution: {integrity: sha512-DpzxEplUPa6vEGAnkdOhu8B737fjccepec2icVOnBdWoYD/y5QFSjYIn0BoefMR/s6fMBLMpmr6NskKl6UgvOg==}
+
   '@codingame/monaco-vscode-log-service-override@24.2.0':
     resolution: {integrity: sha512-IsVNeBIyk6RaumaiNtg3eL8SHjqolbTxZ6la8PggfEskIzueHbq8dWmIlbVZNm4+fFQ7l66h4Ektus9F4dWAjQ==}
+
+  '@codingame/monaco-vscode-log-service-override@25.0.0':
+    resolution: {integrity: sha512-GtKSoB7BVnqxypsQ9srYwejWXvy0Ot93k5m6TveLbd7thnXAh0izseML0nDzVHb6EYQEVgN7CnmUhjsxQpwGzw==}
 
   '@codingame/monaco-vscode-model-service-override@24.2.0':
     resolution: {integrity: sha512-Xya1ZORVATZKAFQhh+1/D6+1RNynaOnxoiw3T7ekBsvyw4A6GTwh3TZDZaPbF7QG7sxCf8BUx5gBM/4x1ytwcw==}
 
+  '@codingame/monaco-vscode-model-service-override@25.0.0':
+    resolution: {integrity: sha512-m/L9HCIk+Nz44PUxjmDctYDDvjNTCc3f6U4NYkT8D8qBkM+C0V+8QMmqikWZ9gdRF1mwsNrmh9n15vV73OAAZA==}
+
   '@codingame/monaco-vscode-monarch-service-override@24.2.0':
     resolution: {integrity: sha512-2PKfAxiBq4fgOgf1LXULrAP8tncU9zGobHnihhhyM1qPw7AVNUOgvA3DI/eq+gn+CryifJBXpRNBGwCr7eYxLA==}
+
+  '@codingame/monaco-vscode-monarch-service-override@25.0.0':
+    resolution: {integrity: sha512-sz/hFesNhfQEUNY1D8gSsqYJXRVaiFZqKuJQFhCiTpwNKB+VmhuepxGzF4d8FXcezVqoFF+lE32NGNGEkCxUBA==}
 
   '@codingame/monaco-vscode-quickaccess-service-override@24.2.0':
     resolution: {integrity: sha512-99BGm/pkFpBfg8ObJhXeCBlZwkoFF9U3lq38txPImdpHBFWsneyE5S4wS8YmJ8OZ17FRyqlUCuwOHsnsl9yj6A==}
@@ -863,29 +932,56 @@ packages:
   '@codingame/monaco-vscode-textmate-service-override@24.2.0':
     resolution: {integrity: sha512-cvEjJD/rHoKb72/MKjlzMkJippZMBCyiXa/Vl3d9pEPxeJ4HOY9mvS+8LsLh7LWGadWaUa+sWY4UIyX0bqQd4A==}
 
+  '@codingame/monaco-vscode-textmate-service-override@25.0.0':
+    resolution: {integrity: sha512-/NUrermd7vBVI5bcwg9/60YYpoDSxPuPEupRTkAN7fcB5uluv0UumF3THU9qDgT3yNOLhivOhsPb+1niwWNbGg==}
+
   '@codingame/monaco-vscode-theme-defaults-default-extension@24.2.0':
     resolution: {integrity: sha512-O5dy40AH14Eyyb6rvu2HpxpmZ5vNH/R1GDm/NgSVdYQ9/VBz6wvnX7YemOo8BdZxViCdEiu7539bakQ6QkI/xA==}
+
+  '@codingame/monaco-vscode-theme-defaults-default-extension@25.0.0':
+    resolution: {integrity: sha512-37ZCyBJNaMlzyMhNbcTNOAHg4xeHkueJa8iE+kFtD1TMSDCaFfepbsz6uO1/BtoRn54vH6qAGwNPBpuYuW+Pug==}
 
   '@codingame/monaco-vscode-theme-service-override@24.2.0':
     resolution: {integrity: sha512-UrNske6wtBPYhZbe0vmY2nt92ypP7PSfy2x+sYxCSDP7LnpQChqgG/ZFE2yx40d2Re5oPIN6tBNn2dqyqy/NBg==}
 
+  '@codingame/monaco-vscode-theme-service-override@25.0.0':
+    resolution: {integrity: sha512-K+v4K667i/McSmyxq8Mv7NF0AYF8LAJxhbVfoCg8L3XDWneHmbIbYSzSL1er2KChUefC4/n3wmL7HKf3WBmkQg==}
+
   '@codingame/monaco-vscode-view-banner-service-override@24.2.0':
     resolution: {integrity: sha512-fl2c2/em0BOtjxaKzMkeGtcVs296uR0MvQoANQwMtch3PvWI8MS3zX6+AUe48pxmWRnxlFthTUE3Uq1lWOTtoA==}
+
+  '@codingame/monaco-vscode-view-banner-service-override@25.0.0':
+    resolution: {integrity: sha512-QIJe53x15KQUlecBXtbdbvSZYAApsfZKyN6NkqpKiSOZNKO1vjnGLeYMQcYrOMLFi3Q8zA75ZeWOAChVSiGyFQ==}
 
   '@codingame/monaco-vscode-view-common-service-override@24.2.0':
     resolution: {integrity: sha512-lAG/KP8pg0kUAIzOB4RDs0s3BFAZwjHD5n2Y1J7Y7RBuT55FwJu+AdY7fYBYEHFvXP3RYvoWbW2uGj/Pc46+Sg==}
 
+  '@codingame/monaco-vscode-view-common-service-override@25.0.0':
+    resolution: {integrity: sha512-mH3nBVReCSYCbIN9qNfaDB1/toz+kopfudD/Fi/5Dh8BCnrZwuXtE1Myy8LPN1+kjw9AuJ/goRPTmX8TP/Q3xg==}
+
   '@codingame/monaco-vscode-view-status-bar-service-override@24.2.0':
     resolution: {integrity: sha512-elYwMo/FYz2WKgD0n4bH3o2/yNfWSHdd9Lzeumh+qFaUcOsXPpCexWOil7S3WLZqVuAq9FRR2Gk9XZdx/srGdg==}
+
+  '@codingame/monaco-vscode-view-status-bar-service-override@25.0.0':
+    resolution: {integrity: sha512-FWk515n6CQ6qs/9TQ9cWqvRSox36K1ZN3modrhWdSL6hh63ZC8F9uJuwGnpsAq1o+D5HhylFsOlRcJHBbyZ0WQ==}
 
   '@codingame/monaco-vscode-view-title-bar-service-override@24.2.0':
     resolution: {integrity: sha512-0YiP4D9U0OE+ruE+JuJK8y3C1TLyJo/dDAD0C6AS1RaUoHfY2bgyvmkdRfIfsmIRPdiNO/XzH8OMBxRvI/YQpg==}
 
+  '@codingame/monaco-vscode-view-title-bar-service-override@25.0.0':
+    resolution: {integrity: sha512-e900DB5ukFqyjbKukplbqwaIIHU0XlBc5DT3aqGBBfwfcW0yYfszEuo++RWUvDjt0VeZUSpHYL6ylvpAXyrmbQ==}
+
   '@codingame/monaco-vscode-views-service-override@24.2.0':
     resolution: {integrity: sha512-PLVJSsiHpZlcCiZI2VR0Zq/31VtM9nE4Tc1NixNAbtCd/D5qnam2prlW6zO7ZFj6VA8JTOSVOZB1lGTL1Q7piw==}
 
+  '@codingame/monaco-vscode-views-service-override@25.0.0':
+    resolution: {integrity: sha512-Oi9tWpl96jvYIrzgeBvuHUafhGtTyGSA2DA85ms0O+p98wMTRZrWXpBiS7V0wT/s4kj17x2IEr6t+EN6FXRzCg==}
+
   '@codingame/monaco-vscode-workbench-service-override@24.2.0':
     resolution: {integrity: sha512-hKQ55pnBr0A//1LyBET7skwmzc80TnwUP61YZEz3LOP6cCkGPXsM+miY0QYWH/2u9Dl44AzenIoxJ8YxQZEihg==}
+
+  '@codingame/monaco-vscode-workbench-service-override@25.0.0':
+    resolution: {integrity: sha512-AJRm+YKpSTPiKsUanDbYneMFqXDVtoLg9PhReBiBX/8tOreguML9uaE93YzKEOgribqyTRruNMA1mqaroSCesA==}
 
   '@conventional-changelog/git-client@2.5.1':
     resolution: {integrity: sha512-lAw7iA5oTPWOLjiweb7DlGEMDEvzqzLLa6aWOly2FSZ64IwLE8T458rC+o+WvI31Doz6joM7X2DoNog7mX8r4A==}
@@ -2924,8 +3020,8 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
 
-  '@tanstack/query-core@5.90.16':
-    resolution: {integrity: sha512-MvtWckSVufs/ja463/K4PyJeqT+HMlJWtw6PrCpywznd2NSgO3m4KwO9RqbFqGg6iDE8vVMFWMeQI4Io3eEYww==}
+  '@tanstack/query-core@5.90.17':
+    resolution: {integrity: sha512-hDww+RyyYhjhUfoYQ4es6pbgxY7LNiPWxt4l1nJqhByjndxJ7HIjDxTBtfvMr5HwjYavMrd+ids5g4Rfev3lVQ==}
 
   '@tanstack/query-devtools@5.92.0':
     resolution: {integrity: sha512-N8D27KH1vEpVacvZgJL27xC6yPFUy0Zkezn5gnB3L3gRCxlDeSuiya7fKge8Y91uMTnC8aSxBQhcK6ocY7alpQ==}
@@ -2936,8 +3032,8 @@ packages:
       '@tanstack/react-query': ^5.90.14
       react: ^18 || ^19
 
-  '@tanstack/react-query@5.90.16':
-    resolution: {integrity: sha512-bpMGOmV4OPmif7TNMteU/Ehf/hoC0Kf98PDc0F4BZkFrEapRMEqI/V6YS0lyzwSV6PQpY1y4xxArUIfBW5LVxQ==}
+  '@tanstack/react-query@5.90.17':
+    resolution: {integrity: sha512-PGc2u9KLwohDUSchjW9MZqeDQJfJDON7y4W7REdNBgiFKxQy+Pf7eGjiFWEj5xPqKzAeHYdAb62IWI1a9UJyGQ==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -2998,8 +3094,8 @@ packages:
     resolution: {integrity: sha512-Y8cK9aggNRsqJVaKUlEYs4s7CvQ1b1ta2DVPyAimb0I2qhzjNk+A+mxvll/klL0RlfuIUei8BF7YWiua4kQqww==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  '@typefox/monaco-editor-react@7.5.0':
-    resolution: {integrity: sha512-QfvJeK6BHbbbI9cXvY6QbKVL9Qy13qL/nKSWNhy0WcVpp1qbhn8E7y154syLbnOSNVYt2bnh3T52dVKk8MAhow==}
+  '@typefox/monaco-editor-react@7.6.0':
+    resolution: {integrity: sha512-Pgk5CNQS1D33f6tnHXqwdOwCuS2rRa2VwBtjXjIXq0fvRUuUCo/sVr5q8g/KgdPxcj3AhTk9EfL5DfD6ARbNbw==}
     engines: {node: '>=20.10.0', npm: '>=10.2.3'}
 
   '@types/aria-query@5.0.4':
@@ -3032,14 +3128,14 @@ packages:
   '@types/lodash@4.17.14':
     resolution: {integrity: sha512-jsxagdikDiDBeIRaPYtArcT8my4tN1og7MtMRquFT3XNA6axxyHDRUemqDz/taRDdOUn0GnGHRCuff4q48sW9A==}
 
-  '@types/node@20.19.28':
-    resolution: {integrity: sha512-VyKBr25BuFDzBFCK5sUM6ZXiWfqgCTwTAOK8qzGV/m9FCirXYDlmczJ+d5dXBAQALGCdRRdbteKYfJ84NGEusw==}
+  '@types/node@20.19.30':
+    resolution: {integrity: sha512-WJtwWJu7UdlvzEAUm484QNg5eAoq5QR08KDNx7g45Usrs2NtOPiX8ugDqmKdXkyL03rBqU5dYNYVQetEpBHq2g==}
 
-  '@types/node@22.19.5':
-    resolution: {integrity: sha512-HfF8+mYcHPcPypui3w3mvzuIErlNOh2OAG+BCeBZCEwyiD5ls2SiCwEyT47OELtf7M3nHxBdu0FsmzdKxkN52Q==}
+  '@types/node@22.19.7':
+    resolution: {integrity: sha512-MciR4AKGHWl7xwxkBa6xUGxQJ4VBOmPTF7sL+iGzuahOFaO0jHCsuEfS80pan1ef4gWId1oWOweIhrDEYLuaOw==}
 
-  '@types/node@24.10.6':
-    resolution: {integrity: sha512-B8h60xgJMR/xmgyX9fncRzEW9gCxoJjdenUhke2v1JGOd/V66KopmWrLPXi5oUI4VuiGK+d+HlXJjDRZMj21EQ==}
+  '@types/node@24.10.9':
+    resolution: {integrity: sha512-ne4A0IpG3+2ETuREInjPNhUGis1SFjv1d5asp8MzEAGtOZeTeHVDOYqOgqfhvseqg/iXty2hjBf1zAOb7RNiNw==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -3141,11 +3237,11 @@ packages:
     peerDependencies:
       vite: ^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
 
-  '@vitest/expect@4.0.16':
-    resolution: {integrity: sha512-eshqULT2It7McaJkQGLkPjPjNph+uevROGuIMJdG3V+0BSR2w9u6J9Lwu+E8cK5TETlfou8GRijhafIMhXsimA==}
+  '@vitest/expect@4.0.17':
+    resolution: {integrity: sha512-mEoqP3RqhKlbmUmntNDDCJeTDavDR+fVYkSOw8qRwJFaW/0/5zA9zFeTrHqNtcmwh6j26yMmwx2PqUDPzt5ZAQ==}
 
-  '@vitest/mocker@4.0.16':
-    resolution: {integrity: sha512-yb6k4AZxJTB+q9ycAvsoxGn+j/po0UaPgajllBgt1PzoMAAmJGYFdDk0uCcRcxb3BrME34I6u8gHZTQlkqSZpg==}
+  '@vitest/mocker@4.0.17':
+    resolution: {integrity: sha512-+ZtQhLA3lDh1tI2wxe3yMsGzbp7uuJSWBM1iTIKCbppWTSBN09PUC+L+fyNlQApQoR+Ps8twt2pbSSXg2fQVEQ==}
     peerDependencies:
       msw: ^2.4.9
       vite: ^6.0.0 || ^7.0.0-0
@@ -3155,20 +3251,20 @@ packages:
       vite:
         optional: true
 
-  '@vitest/pretty-format@4.0.16':
-    resolution: {integrity: sha512-eNCYNsSty9xJKi/UdVD8Ou16alu7AYiS2fCPRs0b1OdhJiV89buAXQLpTbe+X8V9L6qrs9CqyvU7OaAopJYPsA==}
+  '@vitest/pretty-format@4.0.17':
+    resolution: {integrity: sha512-Ah3VAYmjcEdHg6+MwFE17qyLqBHZ+ni2ScKCiW2XrlSBV4H3Z7vYfPfz7CWQ33gyu76oc0Ai36+kgLU3rfF4nw==}
 
-  '@vitest/runner@4.0.16':
-    resolution: {integrity: sha512-VWEDm5Wv9xEo80ctjORcTQRJ539EGPB3Pb9ApvVRAY1U/WkHXmmYISqU5E79uCwcW7xYUV38gwZD+RV755fu3Q==}
+  '@vitest/runner@4.0.17':
+    resolution: {integrity: sha512-JmuQyf8aMWoo/LmNFppdpkfRVHJcsgzkbCA+/Bk7VfNH7RE6Ut2qxegeyx2j3ojtJtKIbIGy3h+KxGfYfk28YQ==}
 
-  '@vitest/snapshot@4.0.16':
-    resolution: {integrity: sha512-sf6NcrYhYBsSYefxnry+DR8n3UV4xWZwWxYbCJUt2YdvtqzSPR7VfGrY0zsv090DAbjFZsi7ZaMi1KnSRyK1XA==}
+  '@vitest/snapshot@4.0.17':
+    resolution: {integrity: sha512-npPelD7oyL+YQM2gbIYvlavlMVWUfNNGZPcu0aEUQXt7FXTuqhmgiYupPnAanhKvyP6Srs2pIbWo30K0RbDtRQ==}
 
-  '@vitest/spy@4.0.16':
-    resolution: {integrity: sha512-4jIOWjKP0ZUaEmJm00E0cOBLU+5WE0BpeNr3XN6TEF05ltro6NJqHWxXD0kA8/Zc8Nh23AT8WQxwNG+WeROupw==}
+  '@vitest/spy@4.0.17':
+    resolution: {integrity: sha512-I1bQo8QaP6tZlTomQNWKJE6ym4SHf3oLS7ceNjozxxgzavRAgZDc06T7kD8gb9bXKEgcLNt00Z+kZO6KaJ62Ew==}
 
-  '@vitest/utils@4.0.16':
-    resolution: {integrity: sha512-h8z9yYhV3e1LEfaQ3zdypIrnAg/9hguReGZoS7Gl0aBG5xgA410zBqECqmaF/+RkTggRsfnzc1XaAHA6bmUufA==}
+  '@vitest/utils@4.0.17':
+    resolution: {integrity: sha512-RG6iy+IzQpa9SB8HAFHJ9Y+pTzI+h8553MrciN9eC6TFBErqrQaTas4vG+MVj8S4uKk8uTT2p0vgZPnTdxd96w==}
 
   '@vscode/codicons@0.0.44':
     resolution: {integrity: sha512-F7qPRumUK3EHjNdopfICLGRf3iNPoZQt+McTHAn4AlOWPB3W2kL4H0S7uqEqbyZ6rCxaeDjpAn3MCUnwTu/VJQ==}
@@ -3366,8 +3462,8 @@ packages:
   caniuse-lite@1.0.30001760:
     resolution: {integrity: sha512-7AAMPcueWELt1p3mi13HR/LHH0TJLT11cnwDJEs3xA4+CK/PLKeO9Kl1oru24htkyUKtkGCvAx4ohB0Ttry8Dw==}
 
-  chai@6.2.1:
-    resolution: {integrity: sha512-p4Z49OGG5W/WBCPSS/dH3jQ73kD6tiMmUM+bckNK6Jr5JHMG3k9bg/BvKR8lKmtVBKmOiuVaV2ws8s9oSbwysg==}
+  chai@6.2.2:
+    resolution: {integrity: sha512-NUPRluOfOiTKBKvWPtSD4PhFvWCqOi0BGStNWs57X9js7XGTprSmFoz5F0tWhR4WPjNeR9jXqdC7/UpSJTnlRg==}
     engines: {node: '>=18'}
 
   chalk@4.1.2:
@@ -3405,8 +3501,8 @@ packages:
     resolution: {integrity: sha512-aCj4O5wKyszjMmDT4tZj93kxyydN/K5zPWSCe6/0AV/AA1pqe5ZBIw0a2ZfPQV7lL5/yb5HsUreJ6UFAF1tEQw==}
     engines: {node: '>=18'}
 
-  cli-spinners@3.3.0:
-    resolution: {integrity: sha512-/+40ljC3ONVnYIttjMWrlL51nItDAbBrq2upN8BPyvGU/2n5Oxw3tbNwORCaNuNqLJnxGqOfjUuhsv7l5Q4IsQ==}
+  cli-spinners@3.4.0:
+    resolution: {integrity: sha512-bXfOC4QcT1tKXGorxL3wbJm6XJPDqEnij2gQ2m7ESQuE+/z9YFIWnl/5RpTiKWbMq3EVKR4fRLJGn6DVfu0mpw==}
     engines: {node: '>=18.20'}
 
   cli-width@4.1.0:
@@ -4010,8 +4106,8 @@ packages:
     engines: {node: '>=0.4.7'}
     hasBin: true
 
-  happy-dom@20.1.0:
-    resolution: {integrity: sha512-ebvqjBqzenBk2LjzNEAzoj7yhw7rW/R2/wVevMu6Mrq3MXtcI/RUz4+ozpcOcqVLEWPqLfg2v9EAU7fFXZUUJw==}
+  happy-dom@20.3.1:
+    resolution: {integrity: sha512-tLvsizNno05Hij0PoB0QN/S8xf0YU2AGvO11/JlJDw5McA/gzyn0Ni1RwbTI1/zteUbOekJH0t6q8HFvjbxsGg==}
     engines: {node: '>=20.0.0'}
 
   has-bigints@1.1.0:
@@ -4087,8 +4183,8 @@ packages:
   i18next-browser-languagedetector@8.2.0:
     resolution: {integrity: sha512-P+3zEKLnOF0qmiesW383vsLdtQVyKtCNA9cjSoKCppTKPQVfKd2W8hbVo5ZhNJKDqeM7BOcvNoKJOjpHh4Js9g==}
 
-  i18next-cli@1.34.1:
-    resolution: {integrity: sha512-s9bIgtu5fE5BgGFxlXGgYwvIdKGXQuLkR2tG7hbwn8Y8wcJ5r3CyNqOsjnKyG+QMGn16/Vs0Q8RNeM9AWF82aw==}
+  i18next-cli@1.36.1:
+    resolution: {integrity: sha512-q4lRuqVPTNI6Ip5YFCRNNGiTh/s/5nfl18coOnjDu7Cb1BiJeRXShFGL5Tcka4ii0k5ndOMjxIAkoNN6EXCwyQ==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -4604,8 +4700,8 @@ packages:
   modern-ahocorasick@1.1.0:
     resolution: {integrity: sha512-sEKPVl2rM+MNVkGQt3ChdmD8YsigmXdn5NifZn6jiwn9LRJpWm8F3guhaqrJT/JOat6pwpbXEk6kv+b9DMIjsQ==}
 
-  monaco-languageclient@10.5.0:
-    resolution: {integrity: sha512-stKCyDc/Nw4aZ2oP1M+7fye+rFi8PB0rciWzqJq5qFaDJnj9GQMCyE2oVeo1BqGy5v2p2G/gYkt8v00kuXvZkQ==}
+  monaco-languageclient@10.6.0:
+    resolution: {integrity: sha512-wrrZo6jz10XA5i0uVGP32C7MvHU5Qsqa3h7LnTuPoKtwBLteYBHdyrqHTYqW0Rme4LLJRhMDqbvkvAn06PYWkw==}
     engines: {node: '>=20.10.0', npm: '>=10.2.3'}
 
   ms@2.1.3:
@@ -4907,6 +5003,11 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
+  prettier@3.8.0:
+    resolution: {integrity: sha512-yEPsovQfpxYfgWNhCfECjG5AQaO+K3dp6XERmOepyPDVqcJm+bjyCVO3pmU+nAPe0N5dDvekfGezt/EIiRe1TA==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   pretty-format@27.5.1:
     resolution: {integrity: sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
@@ -4957,8 +5058,8 @@ packages:
     peerDependencies:
       react: ^19.2.3
 
-  react-error-boundary@6.0.3:
-    resolution: {integrity: sha512-5guqn2UYpCFjE8UDMA8J7Kke+YSGBFrKQRJb3XdcaGZXYINZfQXgBt3ifY6MvjkN7QROc5A8zclyoSCwrcRUKw==}
+  react-error-boundary@6.1.0:
+    resolution: {integrity: sha512-02k9WQ/mUhdbXir0tC1NiMesGzRPaCsJEWU/4bcFrbY1YMZOtHShtZP6zw0SJrBWA/31H0KT9/FgdL8+sPKgHA==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
 
@@ -4968,8 +5069,8 @@ packages:
       react: '>=16.8.1'
       react-dom: '>=16.8.1'
 
-  react-i18next@16.5.2:
-    resolution: {integrity: sha512-GG/SBVxx9dvrO1uCs8VYdKfOP8NEBUhNP+2VDQLCifRJ8DL1qPq296k2ACNGyZMDe7iyIlz/LMJTQOs8HXSRvw==}
+  react-i18next@16.5.3:
+    resolution: {integrity: sha512-fo+/NNch37zqxOzlBYrWMx0uy/yInPkRfjSuy4lqKdaecR17nvCHnEUt3QyzA8XjQ2B/0iW/5BhaHR3ZmukpGw==}
     peerDependencies:
       i18next: '>= 25.6.2'
       react: '>= 16.8.0'
@@ -5370,10 +5471,12 @@ packages:
   tar@6.2.1:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   tar@7.5.2:
     resolution: {integrity: sha512-7NyxrTE4Anh8km8iEy7o0QYPs+0JKBTj5ZaqHg6B39erLg0qYXN3BijtShwbsNSvQ+LN75+KV+C4QR/f6Gwnpg==}
     engines: {node: '>=18'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   tinybench@2.9.0:
     resolution: {integrity: sha512-0+DUvqWMValLmha6lr4kD8iAMK1HzV0/aKnCtWb9v9641TnP/MFb7Pc2bxoxQjTXAErryXVgUOfv2YqNllqGeg==}
@@ -5623,18 +5726,18 @@ packages:
       yaml:
         optional: true
 
-  vitest@4.0.16:
-    resolution: {integrity: sha512-E4t7DJ9pESL6E3I8nFjPa4xGUd3PmiWDLsDztS2qXSJWfHtbQnwAWylaBvSNY48I3vr8PTqIZlyK8TE3V3CA4Q==}
+  vitest@4.0.17:
+    resolution: {integrity: sha512-FQMeF0DJdWY0iOnbv466n/0BudNdKj1l5jYgl5JVTwjSsZSlqyXFt/9+1sEyhR6CLowbZpV7O1sCHrzBhucKKg==}
     engines: {node: ^20.0.0 || ^22.0.0 || >=24.0.0}
     hasBin: true
     peerDependencies:
       '@edge-runtime/vm': '*'
       '@opentelemetry/api': ^1.9.0
       '@types/node': ^20.0.0 || ^22.0.0 || >=24.0.0
-      '@vitest/browser-playwright': 4.0.16
-      '@vitest/browser-preview': 4.0.16
-      '@vitest/browser-webdriverio': 4.0.16
-      '@vitest/ui': 4.0.16
+      '@vitest/browser-playwright': 4.0.17
+      '@vitest/browser-preview': 4.0.17
+      '@vitest/browser-webdriverio': 4.0.17
+      '@vitest/ui': 4.0.17
       happy-dom: '*'
       jsdom: '*'
     peerDependenciesMeta:
@@ -5696,6 +5799,9 @@ packages:
 
   vscode-textmate@9.2.1:
     resolution: {integrity: sha512-eXiUi2yYFv9bdvgrYtJynA7UemCEkpVNE50S9iBBA08LYG5t9+/TB+8IRS/YoYOubCez2OkSyZ1Q12eQMwzbrw==}
+
+  vscode-textmate@9.3.1:
+    resolution: {integrity: sha512-U19nFkCraZF9/bkQKQYsb9mRqM9NwpToQQFl40nGiioZTH9gRtdtCHwp48cubayVfreX3ivnoxgxQgNwrTVmQg==}
 
   vscode-uri@3.0.8:
     resolution: {integrity: sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw==}
@@ -6148,10 +6254,19 @@ snapshots:
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
 
+  '@codingame/monaco-vscode-bulk-edit-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+
   '@codingame/monaco-vscode-configuration-service-override@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
       '@codingame/monaco-vscode-files-service-override': 24.2.0
+
+  '@codingame/monaco-vscode-configuration-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+      '@codingame/monaco-vscode-files-service-override': 25.0.0
 
   '@codingame/monaco-vscode-editor-api@24.2.0':
     dependencies:
@@ -6164,6 +6279,10 @@ snapshots:
   '@codingame/monaco-vscode-editor-service-override@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
+
+  '@codingame/monaco-vscode-editor-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
 
   '@codingame/monaco-vscode-environment-service-override@24.2.0':
     dependencies:
@@ -6214,66 +6333,132 @@ snapshots:
       '@codingame/monaco-vscode-api': 24.2.0
       '@codingame/monaco-vscode-files-service-override': 24.2.0
 
+  '@codingame/monaco-vscode-keybindings-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+      '@codingame/monaco-vscode-files-service-override': 25.0.0
+
   '@codingame/monaco-vscode-language-pack-cs@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
+
+  '@codingame/monaco-vscode-language-pack-cs@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
 
   '@codingame/monaco-vscode-language-pack-de@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
 
+  '@codingame/monaco-vscode-language-pack-de@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+
   '@codingame/monaco-vscode-language-pack-es@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
+
+  '@codingame/monaco-vscode-language-pack-es@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
 
   '@codingame/monaco-vscode-language-pack-fr@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
 
+  '@codingame/monaco-vscode-language-pack-fr@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+
   '@codingame/monaco-vscode-language-pack-it@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
+
+  '@codingame/monaco-vscode-language-pack-it@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
 
   '@codingame/monaco-vscode-language-pack-ja@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
 
+  '@codingame/monaco-vscode-language-pack-ja@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+
   '@codingame/monaco-vscode-language-pack-ko@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
+
+  '@codingame/monaco-vscode-language-pack-ko@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
 
   '@codingame/monaco-vscode-language-pack-pl@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
 
+  '@codingame/monaco-vscode-language-pack-pl@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+
   '@codingame/monaco-vscode-language-pack-pt-br@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
+
+  '@codingame/monaco-vscode-language-pack-pt-br@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
 
   '@codingame/monaco-vscode-language-pack-qps-ploc@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
 
+  '@codingame/monaco-vscode-language-pack-qps-ploc@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+
   '@codingame/monaco-vscode-language-pack-ru@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
+
+  '@codingame/monaco-vscode-language-pack-ru@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
 
   '@codingame/monaco-vscode-language-pack-tr@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
 
+  '@codingame/monaco-vscode-language-pack-tr@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+
   '@codingame/monaco-vscode-language-pack-zh-hans@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
+
+  '@codingame/monaco-vscode-language-pack-zh-hans@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
 
   '@codingame/monaco-vscode-language-pack-zh-hant@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
 
+  '@codingame/monaco-vscode-language-pack-zh-hant@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+
   '@codingame/monaco-vscode-languages-service-override@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
       '@codingame/monaco-vscode-files-service-override': 24.2.0
+
+  '@codingame/monaco-vscode-languages-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+      '@codingame/monaco-vscode-files-service-override': 25.0.0
 
   '@codingame/monaco-vscode-layout-service-override@24.2.0':
     dependencies:
@@ -6287,18 +6472,35 @@ snapshots:
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
 
+  '@codingame/monaco-vscode-localization-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+
   '@codingame/monaco-vscode-log-service-override@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
       '@codingame/monaco-vscode-environment-service-override': 24.2.0
 
+  '@codingame/monaco-vscode-log-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+      '@codingame/monaco-vscode-environment-service-override': 25.0.0
+
   '@codingame/monaco-vscode-model-service-override@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
 
+  '@codingame/monaco-vscode-model-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+
   '@codingame/monaco-vscode-monarch-service-override@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
+
+  '@codingame/monaco-vscode-monarch-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
 
   '@codingame/monaco-vscode-quickaccess-service-override@24.2.0':
     dependencies:
@@ -6346,31 +6548,64 @@ snapshots:
       vscode-oniguruma: 1.7.0
       vscode-textmate: 9.2.1
 
+  '@codingame/monaco-vscode-textmate-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+      '@codingame/monaco-vscode-files-service-override': 25.0.0
+      vscode-oniguruma: 1.7.0
+      vscode-textmate: 9.3.1
+
   '@codingame/monaco-vscode-theme-defaults-default-extension@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
+
+  '@codingame/monaco-vscode-theme-defaults-default-extension@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
 
   '@codingame/monaco-vscode-theme-service-override@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
       '@codingame/monaco-vscode-files-service-override': 24.2.0
 
+  '@codingame/monaco-vscode-theme-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+      '@codingame/monaco-vscode-files-service-override': 25.0.0
+
   '@codingame/monaco-vscode-view-banner-service-override@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
+
+  '@codingame/monaco-vscode-view-banner-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
 
   '@codingame/monaco-vscode-view-common-service-override@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
       '@codingame/monaco-vscode-bulk-edit-service-override': 24.2.0
 
+  '@codingame/monaco-vscode-view-common-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+      '@codingame/monaco-vscode-bulk-edit-service-override': 25.0.0
+
   '@codingame/monaco-vscode-view-status-bar-service-override@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
 
+  '@codingame/monaco-vscode-view-status-bar-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+
   '@codingame/monaco-vscode-view-title-bar-service-override@24.2.0':
     dependencies:
       '@codingame/monaco-vscode-api': 24.2.0
+
+  '@codingame/monaco-vscode-view-title-bar-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
 
   '@codingame/monaco-vscode-views-service-override@24.2.0':
     dependencies:
@@ -6379,6 +6614,14 @@ snapshots:
       '@codingame/monaco-vscode-layout-service-override': 24.2.0
       '@codingame/monaco-vscode-quickaccess-service-override': 24.2.0
       '@codingame/monaco-vscode-view-common-service-override': 24.2.0
+
+  '@codingame/monaco-vscode-views-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+      '@codingame/monaco-vscode-keybindings-service-override': 25.0.0
+      '@codingame/monaco-vscode-layout-service-override': 25.0.0
+      '@codingame/monaco-vscode-quickaccess-service-override': 25.0.0
+      '@codingame/monaco-vscode-view-common-service-override': 25.0.0
 
   '@codingame/monaco-vscode-workbench-service-override@24.2.0':
     dependencies:
@@ -6389,6 +6632,16 @@ snapshots:
       '@codingame/monaco-vscode-view-common-service-override': 24.2.0
       '@codingame/monaco-vscode-view-status-bar-service-override': 24.2.0
       '@codingame/monaco-vscode-view-title-bar-service-override': 24.2.0
+
+  '@codingame/monaco-vscode-workbench-service-override@25.0.0':
+    dependencies:
+      '@codingame/monaco-vscode-api': 25.0.0
+      '@codingame/monaco-vscode-keybindings-service-override': 25.0.0
+      '@codingame/monaco-vscode-quickaccess-service-override': 25.0.0
+      '@codingame/monaco-vscode-view-banner-service-override': 25.0.0
+      '@codingame/monaco-vscode-view-common-service-override': 25.0.0
+      '@codingame/monaco-vscode-view-status-bar-service-override': 25.0.0
+      '@codingame/monaco-vscode-view-title-bar-service-override': 25.0.0
 
   '@conventional-changelog/git-client@2.5.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.1)':
     dependencies:
@@ -6644,166 +6897,166 @@ snapshots:
 
   '@inquirer/ansi@2.0.3': {}
 
-  '@inquirer/checkbox@5.0.4(@types/node@24.10.6)':
+  '@inquirer/checkbox@5.0.4(@types/node@24.10.9)':
     dependencies:
       '@inquirer/ansi': 2.0.3
-      '@inquirer/core': 11.1.1(@types/node@24.10.6)
+      '@inquirer/core': 11.1.1(@types/node@24.10.9)
       '@inquirer/figures': 2.0.3
-      '@inquirer/type': 4.0.3(@types/node@24.10.6)
+      '@inquirer/type': 4.0.3(@types/node@24.10.9)
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/confirm@6.0.4(@types/node@24.10.6)':
+  '@inquirer/confirm@6.0.4(@types/node@24.10.9)':
     dependencies:
-      '@inquirer/core': 11.1.1(@types/node@24.10.6)
-      '@inquirer/type': 4.0.3(@types/node@24.10.6)
+      '@inquirer/core': 11.1.1(@types/node@24.10.9)
+      '@inquirer/type': 4.0.3(@types/node@24.10.9)
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/core@10.3.2(@types/node@24.10.6)':
+  '@inquirer/core@10.3.2(@types/node@24.10.9)':
     dependencies:
       '@inquirer/ansi': 1.0.2
       '@inquirer/figures': 1.0.15
-      '@inquirer/type': 3.0.10(@types/node@24.10.6)
+      '@inquirer/type': 3.0.10(@types/node@24.10.9)
       cli-width: 4.1.0
       mute-stream: 2.0.0
       signal-exit: 4.1.0
       wrap-ansi: 6.2.0
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/core@11.1.1(@types/node@24.10.6)':
+  '@inquirer/core@11.1.1(@types/node@24.10.9)':
     dependencies:
       '@inquirer/ansi': 2.0.3
       '@inquirer/figures': 2.0.3
-      '@inquirer/type': 4.0.3(@types/node@24.10.6)
+      '@inquirer/type': 4.0.3(@types/node@24.10.9)
       cli-width: 4.1.0
       mute-stream: 3.0.0
       signal-exit: 4.1.0
       wrap-ansi: 9.0.2
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/editor@5.0.4(@types/node@24.10.6)':
+  '@inquirer/editor@5.0.4(@types/node@24.10.9)':
     dependencies:
-      '@inquirer/core': 11.1.1(@types/node@24.10.6)
-      '@inquirer/external-editor': 2.0.3(@types/node@24.10.6)
-      '@inquirer/type': 4.0.3(@types/node@24.10.6)
+      '@inquirer/core': 11.1.1(@types/node@24.10.9)
+      '@inquirer/external-editor': 2.0.3(@types/node@24.10.9)
+      '@inquirer/type': 4.0.3(@types/node@24.10.9)
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/expand@4.0.23(@types/node@24.10.6)':
+  '@inquirer/expand@4.0.23(@types/node@24.10.9)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@24.10.6)
-      '@inquirer/type': 3.0.10(@types/node@24.10.6)
+      '@inquirer/core': 10.3.2(@types/node@24.10.9)
+      '@inquirer/type': 3.0.10(@types/node@24.10.9)
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/expand@5.0.4(@types/node@24.10.6)':
+  '@inquirer/expand@5.0.4(@types/node@24.10.9)':
     dependencies:
-      '@inquirer/core': 11.1.1(@types/node@24.10.6)
-      '@inquirer/type': 4.0.3(@types/node@24.10.6)
+      '@inquirer/core': 11.1.1(@types/node@24.10.9)
+      '@inquirer/type': 4.0.3(@types/node@24.10.9)
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/external-editor@2.0.3(@types/node@24.10.6)':
+  '@inquirer/external-editor@2.0.3(@types/node@24.10.9)':
     dependencies:
       chardet: 2.1.1
       iconv-lite: 0.7.2
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
   '@inquirer/figures@1.0.15': {}
 
   '@inquirer/figures@2.0.3': {}
 
-  '@inquirer/input@4.3.1(@types/node@24.10.6)':
+  '@inquirer/input@4.3.1(@types/node@24.10.9)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@24.10.6)
-      '@inquirer/type': 3.0.10(@types/node@24.10.6)
+      '@inquirer/core': 10.3.2(@types/node@24.10.9)
+      '@inquirer/type': 3.0.10(@types/node@24.10.9)
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/input@5.0.4(@types/node@24.10.6)':
+  '@inquirer/input@5.0.4(@types/node@24.10.9)':
     dependencies:
-      '@inquirer/core': 11.1.1(@types/node@24.10.6)
-      '@inquirer/type': 4.0.3(@types/node@24.10.6)
+      '@inquirer/core': 11.1.1(@types/node@24.10.9)
+      '@inquirer/type': 4.0.3(@types/node@24.10.9)
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/number@4.0.4(@types/node@24.10.6)':
+  '@inquirer/number@4.0.4(@types/node@24.10.9)':
     dependencies:
-      '@inquirer/core': 11.1.1(@types/node@24.10.6)
-      '@inquirer/type': 4.0.3(@types/node@24.10.6)
+      '@inquirer/core': 11.1.1(@types/node@24.10.9)
+      '@inquirer/type': 4.0.3(@types/node@24.10.9)
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/password@5.0.4(@types/node@24.10.6)':
+  '@inquirer/password@5.0.4(@types/node@24.10.9)':
     dependencies:
       '@inquirer/ansi': 2.0.3
-      '@inquirer/core': 11.1.1(@types/node@24.10.6)
-      '@inquirer/type': 4.0.3(@types/node@24.10.6)
+      '@inquirer/core': 11.1.1(@types/node@24.10.9)
+      '@inquirer/type': 4.0.3(@types/node@24.10.9)
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/prompts@8.2.0(@types/node@24.10.6)':
+  '@inquirer/prompts@8.2.0(@types/node@24.10.9)':
     dependencies:
-      '@inquirer/checkbox': 5.0.4(@types/node@24.10.6)
-      '@inquirer/confirm': 6.0.4(@types/node@24.10.6)
-      '@inquirer/editor': 5.0.4(@types/node@24.10.6)
-      '@inquirer/expand': 5.0.4(@types/node@24.10.6)
-      '@inquirer/input': 5.0.4(@types/node@24.10.6)
-      '@inquirer/number': 4.0.4(@types/node@24.10.6)
-      '@inquirer/password': 5.0.4(@types/node@24.10.6)
-      '@inquirer/rawlist': 5.2.0(@types/node@24.10.6)
-      '@inquirer/search': 4.1.0(@types/node@24.10.6)
-      '@inquirer/select': 5.0.4(@types/node@24.10.6)
+      '@inquirer/checkbox': 5.0.4(@types/node@24.10.9)
+      '@inquirer/confirm': 6.0.4(@types/node@24.10.9)
+      '@inquirer/editor': 5.0.4(@types/node@24.10.9)
+      '@inquirer/expand': 5.0.4(@types/node@24.10.9)
+      '@inquirer/input': 5.0.4(@types/node@24.10.9)
+      '@inquirer/number': 4.0.4(@types/node@24.10.9)
+      '@inquirer/password': 5.0.4(@types/node@24.10.9)
+      '@inquirer/rawlist': 5.2.0(@types/node@24.10.9)
+      '@inquirer/search': 4.1.0(@types/node@24.10.9)
+      '@inquirer/select': 5.0.4(@types/node@24.10.9)
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/rawlist@5.2.0(@types/node@24.10.6)':
+  '@inquirer/rawlist@5.2.0(@types/node@24.10.9)':
     dependencies:
-      '@inquirer/core': 11.1.1(@types/node@24.10.6)
-      '@inquirer/type': 4.0.3(@types/node@24.10.6)
+      '@inquirer/core': 11.1.1(@types/node@24.10.9)
+      '@inquirer/type': 4.0.3(@types/node@24.10.9)
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/search@4.1.0(@types/node@24.10.6)':
+  '@inquirer/search@4.1.0(@types/node@24.10.9)':
     dependencies:
-      '@inquirer/core': 11.1.1(@types/node@24.10.6)
+      '@inquirer/core': 11.1.1(@types/node@24.10.9)
       '@inquirer/figures': 2.0.3
-      '@inquirer/type': 4.0.3(@types/node@24.10.6)
+      '@inquirer/type': 4.0.3(@types/node@24.10.9)
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/select@4.4.2(@types/node@24.10.6)':
+  '@inquirer/select@4.4.2(@types/node@24.10.9)':
     dependencies:
       '@inquirer/ansi': 1.0.2
-      '@inquirer/core': 10.3.2(@types/node@24.10.6)
+      '@inquirer/core': 10.3.2(@types/node@24.10.9)
       '@inquirer/figures': 1.0.15
-      '@inquirer/type': 3.0.10(@types/node@24.10.6)
+      '@inquirer/type': 3.0.10(@types/node@24.10.9)
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/select@5.0.4(@types/node@24.10.6)':
+  '@inquirer/select@5.0.4(@types/node@24.10.9)':
     dependencies:
       '@inquirer/ansi': 2.0.3
-      '@inquirer/core': 11.1.1(@types/node@24.10.6)
+      '@inquirer/core': 11.1.1(@types/node@24.10.9)
       '@inquirer/figures': 2.0.3
-      '@inquirer/type': 4.0.3(@types/node@24.10.6)
+      '@inquirer/type': 4.0.3(@types/node@24.10.9)
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/type@3.0.10(@types/node@24.10.6)':
+  '@inquirer/type@3.0.10(@types/node@24.10.9)':
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
-  '@inquirer/type@4.0.3(@types/node@24.10.6)':
+  '@inquirer/type@4.0.3(@types/node@24.10.9)':
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
   '@internationalized/date@3.10.1':
     dependencies:
@@ -6877,10 +7130,10 @@ snapshots:
 
   '@jsdevtools/ono@7.1.3': {}
 
-  '@lerna-lite/cli@4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@lerna-lite/version@4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@types/node@24.10.6)':
+  '@lerna-lite/cli@4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@lerna-lite/version@4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@types/node@24.10.9)':
     dependencies:
-      '@lerna-lite/core': 4.10.5(@types/node@24.10.6)
-      '@lerna-lite/init': 4.10.5(@types/node@24.10.6)
+      '@lerna-lite/core': 4.10.5(@types/node@24.10.9)
+      '@lerna-lite/init': 4.10.5(@types/node@24.10.9)
       '@lerna-lite/npmlog': 4.10.4
       dedent: 1.7.1
       dotenv: 17.2.3
@@ -6888,18 +7141,18 @@ snapshots:
       load-json-file: 7.0.1
       yargs: 18.0.0
     optionalDependencies:
-      '@lerna-lite/publish': 4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0)
-      '@lerna-lite/version': 4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@types/node@24.10.6)(conventional-commits-filter@5.0.0)
+      '@lerna-lite/publish': 4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0)
+      '@lerna-lite/version': 4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@types/node@24.10.9)(conventional-commits-filter@5.0.0)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
       - supports-color
 
-  '@lerna-lite/core@4.10.5(@types/node@24.10.6)':
+  '@lerna-lite/core@4.10.5(@types/node@24.10.9)':
     dependencies:
-      '@inquirer/expand': 4.0.23(@types/node@24.10.6)
-      '@inquirer/input': 4.3.1(@types/node@24.10.6)
-      '@inquirer/select': 4.4.2(@types/node@24.10.6)
+      '@inquirer/expand': 4.0.23(@types/node@24.10.9)
+      '@inquirer/input': 4.3.1(@types/node@24.10.9)
+      '@inquirer/select': 4.4.2(@types/node@24.10.9)
       '@lerna-lite/npmlog': 4.10.4
       '@npmcli/run-script': 10.0.3
       ci-info: 4.3.1
@@ -6927,9 +7180,9 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  '@lerna-lite/init@4.10.5(@types/node@24.10.6)':
+  '@lerna-lite/init@4.10.5(@types/node@24.10.9)':
     dependencies:
-      '@lerna-lite/core': 4.10.5(@types/node@24.10.6)
+      '@lerna-lite/core': 4.10.5(@types/node@24.10.9)
       fs-extra: 11.3.3
       p-map: 7.0.4
       write-json-file: 7.0.0
@@ -6948,12 +7201,12 @@ snapshots:
       tinyrainbow: 3.0.3
       wide-align: 1.1.5
 
-  '@lerna-lite/publish@4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0)':
+  '@lerna-lite/publish@4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0)':
     dependencies:
-      '@lerna-lite/cli': 4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@lerna-lite/version@4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@types/node@24.10.6)
-      '@lerna-lite/core': 4.10.5(@types/node@24.10.6)
+      '@lerna-lite/cli': 4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@lerna-lite/version@4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@types/node@24.10.9)
+      '@lerna-lite/core': 4.10.5(@types/node@24.10.9)
       '@lerna-lite/npmlog': 4.10.4
-      '@lerna-lite/version': 4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@types/node@24.10.6)(conventional-commits-filter@5.0.0)
+      '@lerna-lite/version': 4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@types/node@24.10.9)(conventional-commits-filter@5.0.0)
       '@npmcli/arborist': 9.1.9
       '@npmcli/package-json': 7.0.4
       byte-size: 9.0.1
@@ -6986,11 +7239,11 @@ snapshots:
       - conventional-commits-filter
       - supports-color
 
-  '@lerna-lite/version@4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@types/node@24.10.6)(conventional-commits-filter@5.0.0)':
+  '@lerna-lite/version@4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@types/node@24.10.9)(conventional-commits-filter@5.0.0)':
     dependencies:
       '@conventional-changelog/git-client': 2.5.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.1)
-      '@lerna-lite/cli': 4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@lerna-lite/version@4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@types/node@24.10.6)(conventional-commits-filter@5.0.0))(@types/node@24.10.6)
-      '@lerna-lite/core': 4.10.5(@types/node@24.10.6)
+      '@lerna-lite/cli': 4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@lerna-lite/version@4.10.5(@lerna-lite/publish@4.10.5(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@types/node@24.10.9)(conventional-commits-filter@5.0.0))(@types/node@24.10.9)
+      '@lerna-lite/core': 4.10.5(@types/node@24.10.9)
       '@lerna-lite/npmlog': 4.10.4
       '@octokit/plugin-enterprise-rest': 6.0.1
       '@octokit/rest': 22.0.1
@@ -8836,11 +9089,11 @@ snapshots:
   '@simple-libs/child-process-utils@1.0.1':
     dependencies:
       '@simple-libs/stream-utils': 1.1.0
-      '@types/node': 22.19.5
+      '@types/node': 22.19.7
 
   '@simple-libs/stream-utils@1.1.0':
     dependencies:
-      '@types/node': 22.19.5
+      '@types/node': 22.19.7
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
@@ -8911,19 +9164,19 @@ snapshots:
       - supports-color
       - typescript
 
-  '@tanstack/query-core@5.90.16': {}
+  '@tanstack/query-core@5.90.17': {}
 
   '@tanstack/query-devtools@5.92.0': {}
 
-  '@tanstack/react-query-devtools@5.91.2(@tanstack/react-query@5.90.16(react@19.2.3))(react@19.2.3)':
+  '@tanstack/react-query-devtools@5.91.2(@tanstack/react-query@5.90.17(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@tanstack/query-devtools': 5.92.0
-      '@tanstack/react-query': 5.90.16(react@19.2.3)
+      '@tanstack/react-query': 5.90.17(react@19.2.3)
       react: 19.2.3
 
-  '@tanstack/react-query@5.90.16(react@19.2.3)':
+  '@tanstack/react-query@5.90.17(react@19.2.3)':
     dependencies:
-      '@tanstack/query-core': 5.90.16
+      '@tanstack/query-core': 5.90.17
       react: 19.2.3
 
   '@tanstack/react-table@8.21.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
@@ -8983,10 +9236,10 @@ snapshots:
       '@tufjs/canonical-json': 2.0.0
       minimatch: 10.1.1
 
-  '@typefox/monaco-editor-react@7.5.0':
+  '@typefox/monaco-editor-react@7.6.0':
     dependencies:
-      '@codingame/monaco-vscode-editor-api': 24.2.0
-      '@codingame/monaco-vscode-extension-api': 24.2.0
+      '@codingame/monaco-vscode-editor-api': 25.0.0
+      '@codingame/monaco-vscode-extension-api': 25.0.0
       react: 19.2.3
       vscode: '@codingame/monaco-vscode-extension-api@25.0.0'
 
@@ -9026,15 +9279,15 @@ snapshots:
 
   '@types/lodash@4.17.14': {}
 
-  '@types/node@20.19.28':
+  '@types/node@20.19.30':
     dependencies:
       undici-types: 6.21.0
 
-  '@types/node@22.19.5':
+  '@types/node@22.19.7':
     dependencies:
       undici-types: 6.21.0
 
-  '@types/node@24.10.6':
+  '@types/node@24.10.9':
     dependencies:
       undici-types: 7.16.0
 
@@ -9059,7 +9312,7 @@ snapshots:
 
   '@types/ws@8.18.1':
     dependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
   '@typescript-eslint/eslint-plugin@8.49.0(@typescript-eslint/parser@8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
@@ -9175,7 +9428,7 @@ snapshots:
     dependencies:
       '@vanilla-extract/css': 1.17.2
 
-  '@vitejs/plugin-react@5.1.2(vite@7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2))':
+  '@vitejs/plugin-react@5.1.2(vite@7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2))':
     dependencies:
       '@babel/core': 7.28.5
       '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.28.5)
@@ -9183,47 +9436,47 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.53
       '@types/babel__core': 7.20.5
       react-refresh: 0.18.0
-      vite: 7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2)
+      vite: 7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/expect@4.0.16':
+  '@vitest/expect@4.0.17':
     dependencies:
       '@standard-schema/spec': 1.1.0
       '@types/chai': 5.2.3
-      '@vitest/spy': 4.0.16
-      '@vitest/utils': 4.0.16
-      chai: 6.2.1
+      '@vitest/spy': 4.0.17
+      '@vitest/utils': 4.0.17
+      chai: 6.2.2
       tinyrainbow: 3.0.3
 
-  '@vitest/mocker@4.0.16(vite@7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2))':
+  '@vitest/mocker@4.0.17(vite@7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2))':
     dependencies:
-      '@vitest/spy': 4.0.16
+      '@vitest/spy': 4.0.17
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2)
+      vite: 7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2)
 
-  '@vitest/pretty-format@4.0.16':
+  '@vitest/pretty-format@4.0.17':
     dependencies:
       tinyrainbow: 3.0.3
 
-  '@vitest/runner@4.0.16':
+  '@vitest/runner@4.0.17':
     dependencies:
-      '@vitest/utils': 4.0.16
+      '@vitest/utils': 4.0.17
       pathe: 2.0.3
 
-  '@vitest/snapshot@4.0.16':
+  '@vitest/snapshot@4.0.17':
     dependencies:
-      '@vitest/pretty-format': 4.0.16
+      '@vitest/pretty-format': 4.0.17
       magic-string: 0.30.21
       pathe: 2.0.3
 
-  '@vitest/spy@4.0.16': {}
+  '@vitest/spy@4.0.17': {}
 
-  '@vitest/utils@4.0.16':
+  '@vitest/utils@4.0.17':
     dependencies:
-      '@vitest/pretty-format': 4.0.16
+      '@vitest/pretty-format': 4.0.17
       tinyrainbow: 3.0.3
 
   '@vscode/codicons@0.0.44': {}
@@ -9435,7 +9688,7 @@ snapshots:
 
   caniuse-lite@1.0.30001760: {}
 
-  chai@6.2.1: {}
+  chai@6.2.2: {}
 
   chalk@4.1.2:
     dependencies:
@@ -9472,7 +9725,7 @@ snapshots:
     dependencies:
       restore-cursor: 5.1.0
 
-  cli-spinners@3.3.0: {}
+  cli-spinners@3.4.0: {}
 
   cli-width@4.1.0: {}
 
@@ -10212,9 +10465,9 @@ snapshots:
     optionalDependencies:
       uglify-js: 3.19.3
 
-  happy-dom@20.1.0:
+  happy-dom@20.3.1:
     dependencies:
-      '@types/node': 20.19.28
+      '@types/node': 20.19.30
       '@types/whatwg-mimetype': 3.0.2
       '@types/ws': 8.18.1
       whatwg-mimetype: 3.0.0
@@ -10297,7 +10550,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.28.6
 
-  i18next-cli@1.34.1(@swc/helpers@0.5.17)(@types/node@24.10.6)(i18next@25.7.4(typescript@5.9.3))(typescript@5.9.3):
+  i18next-cli@1.36.1(@swc/helpers@0.5.17)(@types/node@24.10.9)(i18next@25.7.4(typescript@5.9.3))(typescript@5.9.3):
     dependencies:
       '@croct/json5-parser': 0.2.2
       '@swc/core': 1.15.4(@swc/helpers@0.5.17)
@@ -10307,13 +10560,13 @@ snapshots:
       execa: 9.6.1
       glob: 13.0.0
       i18next-resources-for-ts: 2.0.0(@swc/helpers@0.5.17)
-      inquirer: 13.1.0(@types/node@24.10.6)
+      inquirer: 13.1.0(@types/node@24.10.9)
       jiti: 2.6.1
       jsonc-parser: 3.3.1
       minimatch: 10.1.1
       ora: 9.0.0
       react: 19.2.3
-      react-i18next: 16.5.2(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
+      react-i18next: 16.5.3(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
       swc-walk: 1.0.1
     transitivePeerDependencies:
       - '@swc/helpers'
@@ -10375,17 +10628,17 @@ snapshots:
 
   ini@6.0.0: {}
 
-  inquirer@13.1.0(@types/node@24.10.6):
+  inquirer@13.1.0(@types/node@24.10.9):
     dependencies:
       '@inquirer/ansi': 2.0.3
-      '@inquirer/core': 11.1.1(@types/node@24.10.6)
-      '@inquirer/prompts': 8.2.0(@types/node@24.10.6)
-      '@inquirer/type': 4.0.3(@types/node@24.10.6)
+      '@inquirer/core': 11.1.1(@types/node@24.10.9)
+      '@inquirer/prompts': 8.2.0(@types/node@24.10.9)
+      '@inquirer/type': 4.0.3(@types/node@24.10.9)
       mute-stream: 3.0.0
       run-async: 4.0.6
       rxjs: 7.8.2
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
 
   internal-slot@1.1.0:
     dependencies:
@@ -10620,7 +10873,7 @@ snapshots:
       js-yaml: 4.1.1
       lodash: 4.17.21
       minimist: 1.2.8
-      prettier: 3.7.4
+      prettier: 3.8.0
       tinyglobby: 0.2.15
 
   json-schema-traverse@0.4.1: {}
@@ -10836,38 +11089,38 @@ snapshots:
 
   modern-ahocorasick@1.1.0: {}
 
-  monaco-languageclient@10.5.0:
+  monaco-languageclient@10.6.0:
     dependencies:
-      '@codingame/monaco-vscode-api': 24.2.0
-      '@codingame/monaco-vscode-configuration-service-override': 24.2.0
-      '@codingame/monaco-vscode-editor-api': 24.2.0
-      '@codingame/monaco-vscode-editor-service-override': 24.2.0
-      '@codingame/monaco-vscode-extension-api': 24.2.0
-      '@codingame/monaco-vscode-extensions-service-override': 24.2.0
-      '@codingame/monaco-vscode-language-pack-cs': 24.2.0
-      '@codingame/monaco-vscode-language-pack-de': 24.2.0
-      '@codingame/monaco-vscode-language-pack-es': 24.2.0
-      '@codingame/monaco-vscode-language-pack-fr': 24.2.0
-      '@codingame/monaco-vscode-language-pack-it': 24.2.0
-      '@codingame/monaco-vscode-language-pack-ja': 24.2.0
-      '@codingame/monaco-vscode-language-pack-ko': 24.2.0
-      '@codingame/monaco-vscode-language-pack-pl': 24.2.0
-      '@codingame/monaco-vscode-language-pack-pt-br': 24.2.0
-      '@codingame/monaco-vscode-language-pack-qps-ploc': 24.2.0
-      '@codingame/monaco-vscode-language-pack-ru': 24.2.0
-      '@codingame/monaco-vscode-language-pack-tr': 24.2.0
-      '@codingame/monaco-vscode-language-pack-zh-hans': 24.2.0
-      '@codingame/monaco-vscode-language-pack-zh-hant': 24.2.0
-      '@codingame/monaco-vscode-languages-service-override': 24.2.0
-      '@codingame/monaco-vscode-localization-service-override': 24.2.0
-      '@codingame/monaco-vscode-log-service-override': 24.2.0
-      '@codingame/monaco-vscode-model-service-override': 24.2.0
-      '@codingame/monaco-vscode-monarch-service-override': 24.2.0
-      '@codingame/monaco-vscode-textmate-service-override': 24.2.0
-      '@codingame/monaco-vscode-theme-defaults-default-extension': 24.2.0
-      '@codingame/monaco-vscode-theme-service-override': 24.2.0
-      '@codingame/monaco-vscode-views-service-override': 24.2.0
-      '@codingame/monaco-vscode-workbench-service-override': 24.2.0
+      '@codingame/monaco-vscode-api': 25.0.0
+      '@codingame/monaco-vscode-configuration-service-override': 25.0.0
+      '@codingame/monaco-vscode-editor-api': 25.0.0
+      '@codingame/monaco-vscode-editor-service-override': 25.0.0
+      '@codingame/monaco-vscode-extension-api': 25.0.0
+      '@codingame/monaco-vscode-extensions-service-override': 25.0.0
+      '@codingame/monaco-vscode-language-pack-cs': 25.0.0
+      '@codingame/monaco-vscode-language-pack-de': 25.0.0
+      '@codingame/monaco-vscode-language-pack-es': 25.0.0
+      '@codingame/monaco-vscode-language-pack-fr': 25.0.0
+      '@codingame/monaco-vscode-language-pack-it': 25.0.0
+      '@codingame/monaco-vscode-language-pack-ja': 25.0.0
+      '@codingame/monaco-vscode-language-pack-ko': 25.0.0
+      '@codingame/monaco-vscode-language-pack-pl': 25.0.0
+      '@codingame/monaco-vscode-language-pack-pt-br': 25.0.0
+      '@codingame/monaco-vscode-language-pack-qps-ploc': 25.0.0
+      '@codingame/monaco-vscode-language-pack-ru': 25.0.0
+      '@codingame/monaco-vscode-language-pack-tr': 25.0.0
+      '@codingame/monaco-vscode-language-pack-zh-hans': 25.0.0
+      '@codingame/monaco-vscode-language-pack-zh-hant': 25.0.0
+      '@codingame/monaco-vscode-languages-service-override': 25.0.0
+      '@codingame/monaco-vscode-localization-service-override': 25.0.0
+      '@codingame/monaco-vscode-log-service-override': 25.0.0
+      '@codingame/monaco-vscode-model-service-override': 25.0.0
+      '@codingame/monaco-vscode-monarch-service-override': 25.0.0
+      '@codingame/monaco-vscode-textmate-service-override': 25.0.0
+      '@codingame/monaco-vscode-theme-defaults-default-extension': 25.0.0
+      '@codingame/monaco-vscode-theme-service-override': 25.0.0
+      '@codingame/monaco-vscode-views-service-override': 25.0.0
+      '@codingame/monaco-vscode-workbench-service-override': 25.0.0
       vscode: '@codingame/monaco-vscode-extension-api@25.0.0'
       vscode-languageclient: 9.0.1
       vscode-languageserver-protocol: 3.17.5
@@ -11028,7 +11281,7 @@ snapshots:
     dependencies:
       chalk: 5.6.2
       cli-cursor: 5.0.0
-      cli-spinners: 3.3.0
+      cli-spinners: 3.4.0
       is-interactive: 2.0.0
       is-unicode-supported: 2.1.0
       log-symbols: 7.0.1
@@ -11202,6 +11455,8 @@ snapshots:
 
   prettier@3.7.4: {}
 
+  prettier@3.8.0: {}
+
   pretty-format@27.5.1:
     dependencies:
       ansi-regex: 5.0.1
@@ -11289,7 +11544,7 @@ snapshots:
       react: 19.2.3
       scheduler: 0.27.0
 
-  react-error-boundary@6.0.3(react@19.2.3):
+  react-error-boundary@6.1.0(react@19.2.3):
     dependencies:
       react: 19.2.3
 
@@ -11298,7 +11553,7 @@ snapshots:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
 
-  react-i18next@16.5.2(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3):
+  react-i18next@16.5.3(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3):
     dependencies:
       '@babel/runtime': 7.28.6
       html-parse-stringify: 3.0.1
@@ -11968,18 +12223,18 @@ snapshots:
 
   validate-npm-package-name@7.0.2: {}
 
-  vite-tsconfig-paths@6.0.4(typescript@5.9.3)(vite@7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2)):
+  vite-tsconfig-paths@6.0.4(typescript@5.9.3)(vite@7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2)):
     dependencies:
       debug: 4.4.3
       globrex: 0.1.2
       tsconfck: 3.1.6(typescript@5.9.3)
     optionalDependencies:
-      vite: 7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2)
+      vite: 7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2):
+  vite@7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2):
     dependencies:
       esbuild: 0.27.2
       fdir: 6.5.0(picomatch@4.0.3)
@@ -11988,20 +12243,20 @@ snapshots:
       rollup: 4.55.1
       tinyglobby: 0.2.15
     optionalDependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.9
       fsevents: 2.3.3
       jiti: 2.6.1
       yaml: 2.8.2
 
-  vitest@4.0.16(@types/node@24.10.6)(happy-dom@20.1.0)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2):
+  vitest@4.0.17(@types/node@24.10.9)(happy-dom@20.3.1)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2):
     dependencies:
-      '@vitest/expect': 4.0.16
-      '@vitest/mocker': 4.0.16(vite@7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2))
-      '@vitest/pretty-format': 4.0.16
-      '@vitest/runner': 4.0.16
-      '@vitest/snapshot': 4.0.16
-      '@vitest/spy': 4.0.16
-      '@vitest/utils': 4.0.16
+      '@vitest/expect': 4.0.17
+      '@vitest/mocker': 4.0.17(vite@7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2))
+      '@vitest/pretty-format': 4.0.17
+      '@vitest/runner': 4.0.17
+      '@vitest/snapshot': 4.0.17
+      '@vitest/spy': 4.0.17
+      '@vitest/utils': 4.0.17
       es-module-lexer: 1.7.0
       expect-type: 1.3.0
       magic-string: 0.30.21
@@ -12013,11 +12268,11 @@ snapshots:
       tinyexec: 1.0.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vite: 7.3.1(@types/node@24.10.6)(jiti@2.6.1)(yaml@2.8.2)
+      vite: 7.3.1(@types/node@24.10.9)(jiti@2.6.1)(yaml@2.8.2)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 24.10.6
-      happy-dom: 20.1.0
+      '@types/node': 24.10.9
+      happy-dom: 20.3.1
       jsdom: 27.4.0
     transitivePeerDependencies:
       - jiti
@@ -12078,6 +12333,8 @@ snapshots:
   vscode-oniguruma@1.7.0: {}
 
   vscode-textmate@9.2.1: {}
+
+  vscode-textmate@9.3.1: {}
 
   vscode-uri@3.0.8: {}
 
