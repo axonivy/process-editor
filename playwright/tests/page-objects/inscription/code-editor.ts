@@ -18,7 +18,6 @@ class CodeEditor {
   }
 
   async activate() {
-    await expect(this.page.locator('.editor-root')).toHaveAttribute('data-monaco-state', 'loaded');
     if (await this.locator.isVisible()) {
       // we may need to click before the editor is actually triggered to load
       // or we simply want to click into the editor to have it properly focussed
@@ -35,8 +34,8 @@ class CodeEditor {
 
   async expectLoaded() {
     // code-input might already be in the DOM but not yet fully loaded
+    await expect(this.code).not.toHaveClass(/loading/);
     await expect(this.code.locator('.view-lines')).toBeVisible();
-    await expect(this.code).not.toHaveText('Loading Editor...');
   }
 
   async expectCodeFocused() {
