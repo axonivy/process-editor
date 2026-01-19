@@ -1,3 +1,4 @@
+import { expect } from '@playwright/test';
 import type { ScriptArea } from '../../page-objects/inscription/code-editor';
 import type { Combobox } from '../../page-objects/inscription/combobox';
 import type { Part } from '../../page-objects/inscription/part';
@@ -23,7 +24,7 @@ class Call extends PartObject {
     this.callSection = part.section(selectLabel);
     this.call = this.callSection.combobox();
     this.mappingSection = part.section('Mapping');
-    this.mapping = this.mappingSection.table(['text', 'expression']);
+    this.mapping = this.mappingSection.table(['label', 'expression']);
     this.codeSection = part.section('Code');
     this.code = this.codeSection.scriptArea();
   }
@@ -32,6 +33,7 @@ class Call extends PartObject {
     await this.callSection.expectIsOpen();
     await this.call.choose(this.selectValue);
     await this.mappingSection.expectIsOpen();
+    await expect(this.mapping.row(2).column(0).locator).toHaveText('country');
     await this.mapping.row(2).column(1).fill('"test"');
     await this.codeSection.open();
     await this.code.fill('code');
