@@ -9,7 +9,7 @@ export async function screenshotInscriptionTab(
   screenshotName: string,
   fullView = false
 ) {
-  const view = await openElementInscription(page, pid, 'inscription-test-project');
+  const view = await openElementInscription(page, pid);
   await page.addStyleTag({ content: 'body { overflow: hidden; }' });
   const tab = view.inscriptionTab(inscriptionTabName);
   await tab.open();
@@ -25,7 +25,7 @@ export async function screenshotInscriptionTab(
 }
 
 export async function screenshotSection(page: Page, pid: string, inscriptionTabName: string, sectionName: string, screenshotName: string) {
-  const view = await openElementInscription(page, pid, 'inscription-test-project');
+  const view = await openElementInscription(page, pid);
   await page.addStyleTag({ content: 'body { overflow: hidden; }' });
   const tab = view.inscriptionTab(inscriptionTabName);
   await tab.open();

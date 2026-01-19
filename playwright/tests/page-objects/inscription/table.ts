@@ -114,7 +114,7 @@ export class Row {
 }
 
 export class Cell {
-  private readonly locator: Locator;
+  readonly locator: Locator;
   private readonly textbox: Locator;
   private readonly select: Select;
   private readonly combobox: Combobox;
