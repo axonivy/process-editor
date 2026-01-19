@@ -83,6 +83,7 @@ export namespace MonacoEditorUtil {
     }
     const monaco = await MonacoUtil.initialize(initConfig);
     await Promise.all([IvyScriptLanguage.install(monaco), IvyMacroLanguage.install(monaco), IvyMonacoTheme.setTheme(theme, monaco)]);
+    document.querySelector('.editor-root')?.setAttribute('data-monaco-state', 'loaded');
     return monaco;
   }
 

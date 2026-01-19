@@ -18,6 +18,7 @@ class CodeEditor {
   }
 
   async activate() {
+    await expect(this.page.locator('.editor-root')).toHaveAttribute('data-monaco-state', 'loaded');
     if (await this.locator.isVisible()) {
       // we may need to click before the editor is actually triggered to load
       // or we simply want to click into the editor to have it properly focussed
