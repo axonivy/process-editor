@@ -1,0 +1,27 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "id" : "183E49FD86C52942",
+  "config" : {
+    "data" : "process.test.project.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "signature" : "start"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    } ]
+}

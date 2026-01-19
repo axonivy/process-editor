@@ -129,6 +129,7 @@
               <goal>exec</goal>
             </goals>
             <configuration>
+              <skip>${maven.test.skip}</skip>
               <executable>pnpm</executable>
               <arguments>
                 <argument>run</argument>
