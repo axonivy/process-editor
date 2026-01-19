@@ -23,7 +23,7 @@ class Call extends PartObject {
     this.callSection = part.section(selectLabel);
     this.call = this.callSection.combobox();
     this.mappingSection = part.section('Mapping');
-    this.mapping = this.mappingSection.table(['text', 'expression']);
+    this.mapping = this.mappingSection.table(['label', 'expression']);
     this.codeSection = part.section('Code');
     this.code = this.codeSection.scriptArea();
   }

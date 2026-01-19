@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { ProcessEditor } from '../../page-objects/editor/process-editor';
 
 test('diagram', async ({ page }) => {
@@ -8,7 +8,7 @@ test('diagram', async ({ page }) => {
 });
 
 test('problem marker', async ({ page }) => {
-  const editor = await ProcessEditor.openProcess(page);
+  const editor = await ProcessEditor.openProcess(page, { file: 'processes/empty.p.json' });
   const hd = await editor.createActivity('User Dialog');
   await hd.expectHasWarning();
 
@@ -26,4 +26,6 @@ test('problem marker', async ({ page }) => {
 
   await editor.jumpOut().click();
   await sub.expectHasWarning();
+  await sub.delete();
+  await expect(sub.locator()).toBeHidden();
 });

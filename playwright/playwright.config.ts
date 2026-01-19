@@ -6,10 +6,10 @@ const INSCRIPTION_URL = process.env.CI ? 'http://localhost:4003' : 'http://local
 const REPORT_DIR = process.env.REPORT_DIR ? `${process.env.REPORT_DIR}/` : '';
 
 export default defineConfig({
-  timeout: 1000 * (process.env.CI ? 120 : 30),
+  timeout: 1000 * (process.env.CI ? 60 : 30),
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 1 : 0,
+  retries: process.env.CI ? 3 : 0,
   reporter: process.env.CI ? [['./tests/custom-reporter.ts'], ['junit', { outputFile: `${REPORT_DIR}report.xml` }], ['list']] : 'html',
   use: {
     actionTimeout: 0,

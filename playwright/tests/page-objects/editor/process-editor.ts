@@ -13,6 +13,9 @@ import type { CmdCtrl, Point } from './types';
 import { ViewportBar } from './viewport';
 
 const startSelector = GRAPH_SELECTOR + ' .start\\:requestStart';
+export const server = process.env.BASE_URL ? `${process.env.BASE_URL}` : 'http://localhost:8080/~Developer-process-test-project';
+const app = process.env.TEST_APP ?? 'Developer-process-test-project';
+const pmv = 'process-test-project';
 
 export class ProcessEditor {
   readonly page: Page;
@@ -37,10 +40,9 @@ export class ProcessEditor {
   }
 
   static async openProcess(page: Page, options?: { urlQueryParam?: string; file?: string; waitFor?: string }) {
-    await page.goto(
-      ProcessEditor.processEditorUrl('process-test-project', options?.file ?? `processes/test/${randomUUID()}.p.json`) +
-        (options?.urlQueryParam ?? '')
-    );
+    const serverUrl = server.replace(/^https?:\/\//, '');
+    const file = options?.file ?? `processes/test/${randomUUID()}.p.json`;
+    await page.goto(`?server=${serverUrl}&app=${app}&pmv=${pmv}&file=${file}` + (options?.urlQueryParam ?? ''));
     await page.addStyleTag({ content: '.palette-body {transition: none !important;}' });
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
@@ -52,16 +54,6 @@ export class ProcessEditor {
       await expect(waitForElement).toBeVisible();
     }
     return new ProcessEditor(page);
-  }
-
-  private static processEditorUrl(pmv: string, file: string): string {
-    const app = process.env.TEST_APP ?? 'designer';
-    return `?server=${ProcessEditor.serverUrl()}&app=${app}&pmv=${pmv}&file=${file}`;
-  }
-
-  private static serverUrl(): string {
-    const server = process.env.BASE_URL ?? 'localhost:8081';
-    return server.replace(/^https?:\/\//, '');
   }
 
   elementByPid(pid: string) {

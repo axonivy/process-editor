@@ -38,9 +38,9 @@
     "react-i18next": "^15.4.1 || ^16.0.0"
   },
   "devDependencies": {
-    "@axonivy/jsonrpc": "~14.0.0-next.957.4046f5f",
-    "@axonivy/ui-components": "~14.0.0-next.957.4046f5f",
-    "@axonivy/ui-icons": "~14.0.0-next.957.4046f5f",
+    "@axonivy/jsonrpc": "~14.0.0-next.985.6f2a62c",
+    "@axonivy/ui-components": "~14.0.0-next.985.6f2a62c",
+    "@axonivy/ui-icons": "~14.0.0-next.985.6f2a62c",
     "@codingame/monaco-vscode-api": "25.0.0",
     "@codingame/monaco-vscode-configuration-service-override": "25.0.0",
     "@codingame/monaco-vscode-editor-api": "25.0.0",

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.axonivy.ivy.api</groupId>
@@ -13,7 +15,7 @@
   <version>14.0.0-SNAPSHOT</version>
   <packaging>iar-integration-test</packaging>
   <properties>
-    <engine.test.app>inscription-test</engine.test.app>
+    <engine.test.app>inscription-test-project</engine.test.app>
     <engine.page.url>https://product.ivyteam.io/</engine.page.url>
     <webtest.cmd>webtest</webtest.cmd>
   </properties>
@@ -84,6 +86,7 @@
               <goal>exec</goal>
             </goals>
             <configuration>
+              <skip>${maven.test.skip}</skip>
               <executable>pnpm</executable>
               <arguments>
                 <argument>run</argument>

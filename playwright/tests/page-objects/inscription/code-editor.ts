@@ -34,8 +34,8 @@ class CodeEditor {
 
   async expectLoaded() {
     // code-input might already be in the DOM but not yet fully loaded
+    await expect(this.code).not.toHaveClass(/loading/);
     await expect(this.code.locator('.view-lines')).toBeVisible();
-    await expect(this.code).not.toHaveText('Loading Editor...');
   }
 
   async expectCodeFocused() {

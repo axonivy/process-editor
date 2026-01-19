@@ -8,7 +8,7 @@
       "name": "Launch Standalone (Chrome)",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:3000?server=localhost:8081&app=designer&pmv=workflow-demos&file=/processes/Humantask/ProcurementRequestParallel.p.json",
+      "url": "http://localhost:3000?server=localhost:8080/~Developer-process-test-project&app=Developer-process-test-project&pmv=process-test-project&file=processes/quickstart.p.json",
       "preLaunchTask": "Start Standalone",
       "postDebugTask": "Terminate All Tasks"
     },
@@ -16,7 +16,7 @@
       "name": "Launch Viewer (Chrome)",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:3001?server=localhost:8081&mode=viewer&app=designer&pmv=workflow-demos&file=/processes/Humantask/ProcurementRequestParallel.p.json",
+      "url": "http://localhost:3001?server=localhost:8080/~Developer-process-test-project&mode=viewer&app=Developer-process-test-project&pmv=process-test-project&file=processes/quickstart.p.json",
       "preLaunchTask": "Start Viewer",
       "postDebugTask": "Terminate All Tasks"
     },
@@ -24,7 +24,7 @@
       "name": "Launch Inscription (Chrome)",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:3003?server=localhost:8081&app=designer&pmv=workflow-demos&pid=15254DC87A1B183B-f3",
+      "url": "http://localhost:3003?server=localhost:8080/~Developer-inscription-test-project&app=Developer-inscription-test-project&pmv=inscription-test-project&pid=16C51F1EE34D5EF5-f15",
       "sourceMapPathOverrides": {
         "webpack:///src/*": "${webRoot}/*"
       },
