@@ -3,6 +3,12 @@ import type { ElementType } from '@axonivy/process-editor-inscription-protocol';
 import { Client, RequestManager, WebSocketTransport } from '@open-rpc/client-js';
 import { randomUUID } from 'crypto';
 
+export const server = process.env.BASE_URL
+  ? `${process.env.BASE_URL}${process.env.TEST_WS}`
+  : 'http://localhost:8080/~Developer-inscription-test-project';
+const app = process.env.TEST_APP ?? 'Developer-inscription-test-project';
+const pmv = 'inscription-test-project';
+
 const SELECT_KIND = 'elementSelected';
 const SET_KIND = 'setModel';
 const UPDATE_KIND = 'updateModel';
@@ -24,7 +30,8 @@ export class GlspProtocol {
   private readonly processUUID: string;
 
   constructor(private readonly kind: ProcessKind = 'NORMAL') {
-    const transport = new WebSocketTransport(`ws://${this.serverUrl()}/ivy-glsp-process-editor`);
+    const serverUrl = server.replace(/^https?:\/\//, '');
+    const transport = new WebSocketTransport(`ws://${serverUrl}/${app}/ivy-glsp-process-editor`);
     this.client = new Client(new RequestManager([transport]));
     this.client.onError(error => console.error(error));
     this.appId = randomUUID();
@@ -164,8 +171,8 @@ export class GlspProtocol {
         needsClientLayout: true,
         needsServerLayout: false,
         sourceUri: this.processUri,
-        app: process.env.TEST_APP ?? 'designer',
-        pmv: 'inscription-test-project',
+        app,
+        pmv,
         pid: '',
         readonly: false,
         diagramType: this.glspDiagramType
@@ -232,12 +239,6 @@ export class GlspProtocol {
 
   private isUpdateModelAction(object: any): object is Action {
     return 'action' in object && 'kind' in object.action && object.action.kind === UPDATE_KIND;
-  }
-
-  private serverUrl(): string {
-    const app = process.env.TEST_APP ?? '';
-    const server = process.env.BASE_URL ? process.env.BASE_URL + app : 'localhost:8081/designer';
-    return server.replace(/^https?:\/\//, '');
   }
 }
 
