@@ -21,7 +21,7 @@
     "immer": "^11.0.0",
     "monaco-languageclient": "10.6.0",
     "react-aria": "^3.38.0",
-    "react-error-boundary": "^6.0.0"
+    "react-error-boundary": "^6.1.0"
   },
   "peerDependencies": {
     "@axonivy/jsonrpc": "~14.0.0-next",

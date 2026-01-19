@@ -415,7 +415,7 @@ importers:
         specifier: ^3.38.0
         version: 3.45.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-error-boundary:
-        specifier: ^6.0.0
+        specifier: ^6.1.0
         version: 6.1.0(react@19.2.3)
       react-i18next:
         specifier: ^15.4.1 || ^16.0.0
