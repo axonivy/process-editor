@@ -10,7 +10,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 3 : 0,
-  reporter: process.env.CI ? [['./tests/custom-reporter.ts'], ['junit', { outputFile: `${REPORT_DIR}report.xml` }], ['list']] : 'html',
+  reporter: process.env.CI ? [['junit', { outputFile: `${REPORT_DIR}report.xml`, includeProjectInTestName: true }], ['list']] : 'html',
   use: {
     actionTimeout: 0,
     trace: 'retain-on-failure',
