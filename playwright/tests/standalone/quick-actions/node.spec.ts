@@ -9,12 +9,12 @@ test('event actions', async ({ page }) => {
 
   await start.quickActionBar().count(0);
   await start.select();
-  await start.quickActionBar().count(8);
+  await start.quickActionBar().count(9);
   await end.select();
-  await end.quickActionBar().count(5);
+  await end.quickActionBar().count(6);
   await end.delete();
   await start.select();
-  await start.quickActionBar().count(9);
+  await start.quickActionBar().count(10);
 });
 
 test('label edit', async ({ page }) => {

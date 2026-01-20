@@ -130,6 +130,10 @@ export class Element extends BaseElement {
   get icon() {
     return this.element.locator('.sprotty-icon').first();
   }
+
+  get breakpointHandle() {
+    return this.element.locator('.ivy-breakpoint-handle');
+  }
 }
 
 export class Activity extends Element {
