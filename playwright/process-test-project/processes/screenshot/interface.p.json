@@ -53,14 +53,6 @@
         "at" : { "x" : 120, "y" : 192 }
       }
     }, {
-      "id" : "f4",
-      "type" : "ThirdPartyProgramInterface",
-      "impl" : "RuleActivity",
-      "name" : "Rule",
-      "visual" : {
-        "at" : { "x" : 280, "y" : 192 }
-      }
-    }, {
       "id" : "f5",
       "type" : "ProgramInterface",
       "name" : "Program",

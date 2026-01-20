@@ -11,7 +11,6 @@ const INTERFACE_PID = {
   REST_POST2: '159FF3D428E42BB5-f9',
   REST_POST3: '159FF3D428E42BB5-f16',
   EMAIL: '180D20366E0D3C6D-f3',
-  RULE: '175083477C6BF05D-f3',
   PROGRAM: '16C70B87DCB65433-f8'
 } as const;
 
@@ -84,16 +83,6 @@ test.describe('Email', () => {
 
   test('Attachments Tab', async ({ page }) => {
     await screenshotInscriptionTab(page, INTERFACE_PID.EMAIL, 'Attachments', 'mail-tab-attachments.png');
-  });
-});
-
-test.describe('Rule', () => {
-  test('Error Tab', async ({ page }) => {
-    await screenshotInscriptionTab(page, INTERFACE_PID.RULE, 'Error', 'rule-tab-error.png');
-  });
-
-  test('Configuration Tab', async ({ page }) => {
-    await screenshotInscriptionTab(page, INTERFACE_PID.RULE, 'Configuration', 'rule-tab-configuration.png');
   });
 });
 
