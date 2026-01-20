@@ -57,7 +57,6 @@ test('interface', async ({ page }) => {
   await screenshot(editor.element('webServiceCall'), 'webservice');
   await screenshot(editor.element('restClientCall'), 'restclient');
   await screenshot(editor.element('eMail'), 'mail');
-  await screenshot(editor.element('thirdPartyProgramInterface:RuleActivity'), 'rule');
   await screenshot(editor.element('programInterface'), 'program-interface');
 });
 

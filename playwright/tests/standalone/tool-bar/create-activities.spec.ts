@@ -6,7 +6,7 @@ test('create all workflow activities', async ({ page }) => {
 });
 
 test('create all interface activities', async ({ page }) => {
-  await createAllElements(page, 'activities', 1, 6);
+  await createAllElements(page, 'activities', 1, 5);
 });
 
 test('create all bpmn activities', async ({ page }) => {
