@@ -22,7 +22,7 @@ export const TableReadFields = () => {
   const columnMetas = useMeta('meta/database/columns', { context, database: config.query.dbName, table: config.query.sql.table }, []).data;
 
   const data = useMemo(() => {
-    const select = config.query.sql.select;
+    const select = config.query.sql.select ?? [];
     return columnMetas.map<Column>(c => ({ ...c, selected: select.includes(c.name) }));
   }, [columnMetas, config.query.sql.select]);
 
