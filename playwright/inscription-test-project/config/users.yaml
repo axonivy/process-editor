@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/app/14.0.0/users.json
+Users:
+  - Name: Berta
+    FullName: Berta Meier
+  - Name: Anna
+    Password: anna.123
+    FullName: Anna Sunshine
+    Mail: anna@sunshine.com
+    Roles:
+      - Secretary
+    Properties:
+      phone: 0123 456 789
+      office: LONDON
