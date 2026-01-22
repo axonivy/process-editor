@@ -23,7 +23,7 @@ export const TableReadFields = () => {
   const [data, setData] = useState<Column[]>([]);
 
   useEffect(() => {
-    const select = config.query.sql.select;
+    const select = config.query.sql.select ?? [];
     const columnData = columnMetas.map<Column>(c => {
       return { ...c, selected: select.includes(c.name) };
     });
