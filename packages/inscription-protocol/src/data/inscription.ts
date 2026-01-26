@@ -11,7 +11,6 @@ export type ContentObjectType = "STRING" | "FILE" | "FOLDER";
 export type WfFieldType = "STRING" | "TEXT" | "NUMBER" | "TIMESTAMP";
 export type Widget = Script | Label | Text;
 export type WidgetType = "TEXT" | "LABEL" | "SCRIPT";
-export type WorkflowType = "START" | "TASK" | "CASE";
 /**
  * Supports macros for dynamic content.
  * Macros are IvyScript expressions enclosed in '<%=' and '%>', enabling the embedding of dynamic values such as data class attributes.
@@ -29,12 +28,21 @@ export type CacheInvalidation = "NONE" | "FIXED_TIME" | "LIFETIME";
 export type CacheMode = "DO_NOT_CACHE" | "CACHE" | "INVALIDATE_CACHE";
 export type CacheScope = "SESSION" | "APPLICATION";
 export type QueryKind = "READ" | "WRITE" | "UPDATE" | "DELETE" | "ANY";
+/**
+ * The dialog and respective method start to invoke in the format '<dialog-namespace>.<dialog-name>:<start-method-signature>(<parameter-types>)'.
+ */
+export type DialogReference = string;
+/**
+ * Reference to a Process separated by a ':' to the signature of a startable element.
+ */
+export type ProcessReference = string;
 export type IntermediateEventTimeoutAction = "NOTHING" | "DESTROY_TASK" | "CONTINUE_WITHOUT_EVENT";
 export type HttpMethod = "GET" | "POST" | "PUT" | "HEAD" | "DELETE" | "PATCH" | "OPTIONS" | "JAX_RS";
 export type InputType = "ENTITY" | "FORM" | "RAW";
 export type WsAuth = "NONE" | "WS_SECURITY" | "HTTP_BASIC";
 export type Type = "START" | "INTERMEDIATE" | "ACTIVITY";
 export type Severity = "INFO" | "WARNING" | "ERROR";
+export type WorkflowType = "START" | "TASK" | "CASE";
 
 export interface Inscription {
   addRoleRequest: AddRoleRequest;
@@ -56,7 +64,6 @@ export interface Inscription {
   eventCodeMeta: EventCodeMeta[];
   function: Function[];
   group: Group[];
-  inscriptionActionArgs: InscriptionActionArgs;
   inscriptionContext: InscriptionContext;
   inscriptionElementContext: InscriptionElementContext;
   inscriptionRequest: InscriptionRequest;
@@ -307,27 +314,6 @@ export interface Text {
   multiline: boolean;
   widgetType: WidgetType;
 }
-export interface InscriptionActionArgs {
-  actionId:
-    | "newHtmlDialog"
-    | "newProcess"
-    | "newProgram"
-    | "newRestClient"
-    | "newWebServiceClient"
-    | "openConfig"
-    | "openCustomField"
-    | "openEndPage"
-    | "openOrCreateCmsCategory"
-    | "openPage"
-    | "openProgram"
-    | "openUrl";
-  context: InscriptionElementContext;
-  payload: string | OpenCustomField;
-}
-export interface OpenCustomField {
-  name: string;
-  type: WorkflowType;
-}
 export interface InscriptionRequest {
   context: InscriptionElementContext;
   data: Data;
@@ -435,6 +421,9 @@ export interface WfNotification {
 export interface ElementSubProcessCall {
   call: ScriptMapCode;
   output: ScriptMapCode;
+  /**
+   * Process of kind CALLABLE_SUB only. To signature from ElementCallSubStart
+   */
   processCall: string;
 }
 export interface ElementDatabase {
@@ -492,6 +481,9 @@ export interface ElementScript {
 export interface ElementAlternative {
   conditions: AlternativeConditions;
 }
+/**
+ * Conditions map connector IDs to the logical statement that must be satisfied for that path to be taken
+ */
 export interface AlternativeConditions {
   [k: string]: string;
 }
@@ -560,12 +552,12 @@ export interface SoapOperation {
 export interface ElementDialogCall {
   call: ScriptMapCode;
   output: ScriptMapCode;
-  dialog: string;
+  dialog: DialogReference;
 }
 export interface ElementTriggerCall {
   call: ScriptMapCode;
   output: ScriptMapCode;
-  processCall: string;
+  processCall: ProcessReference;
 }
 export interface ElementErrorStartEvent {
   output: ScriptMapCode;
@@ -624,7 +616,7 @@ export interface JavaEventTimeout {
 export interface ElementUserTask {
   call: ScriptMapCode;
   output: ScriptMapCode;
-  dialog: string;
+  dialog: DialogReference;
   task: WfTask;
   case: WfCase;
 }
