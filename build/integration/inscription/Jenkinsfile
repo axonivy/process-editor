@@ -48,13 +48,13 @@ pipeline {
                 pnpm run protocol:inscription clean
 
                 artifacts="https://jenkins.ivyteam.io/job/core_json-schema/job/'''+branchName+'''/lastSuccessfulBuild/artifact"
-                devSchema="${artifacts}/workspace/ch.ivyteam.ivy.inscription.lsp.schema/target/editor-ts/*/inscription-tsgen.json/*zip*/process.zip"
-                curl -o process.zip ${devSchema}
-                unzip -j process.zip
+                devSchema="${artifacts}/workspace/ch.ivyteam.ivy.inscription.lsp.schema/target/editor-ts/*/inscription-tsgen.json/*zip*/schema.zip"
+                curl -o schema.zip ${devSchema}
+                unzip -j schema.zip
                 mv $PWD/inscription-tsgen.json $PWD/inscription.json
                 pnpm run protocol:inscription generate $PWD/inscription.json
 
-                pnpm run build && pnpm run lint:ci
+                pnpm run build && pnpm run type && pnpm run lint:ci
               '''
             }
           }
