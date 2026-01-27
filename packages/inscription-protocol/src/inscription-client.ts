@@ -1,5 +1,5 @@
-import type { InscriptionActionArgs, InscriptionElementContext, ValidationResult } from './data/inscription';
-import type { InscriptionData, InscriptionSaveData } from './data/inscription-data';
+import type { InscriptionElementContext, ValidationResult } from './data/inscription';
+import type { InscriptionActionArgs, InscriptionData, InscriptionSaveData } from './data/inscription-data';
 import type { InscriptionMetaRequestTypes } from './inscription-protocol';
 
 export interface Event<T> {

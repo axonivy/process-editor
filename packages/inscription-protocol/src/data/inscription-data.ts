@@ -8,6 +8,7 @@ import type {
   ElementProgramInterface,
   ElementWaitEvent,
   ErrorDefinition,
+  InscriptionElementContext,
   InscriptionRequest,
   InscriptionSaveRequest,
   InscriptionType,
@@ -24,7 +25,8 @@ import type {
   SoapWsProcessException,
   StartPermission,
   WebserviceProcessConfig,
-  WfTask
+  WfTask,
+  WorkflowType
 } from './inscription';
 import type { GeneralData } from './part-data';
 
@@ -66,3 +68,25 @@ export type SchemaKeys =
   | keyof ElementWaitEvent
   | keyof JavaEventTimeout;
 export type SchemaPath = Brand<string, 'SchemaPath'>;
+
+export interface InscriptionActionArgs {
+  actionId:
+    | 'newHtmlDialog'
+    | 'newProcess'
+    | 'newProgram'
+    | 'newRestClient'
+    | 'newWebServiceClient'
+    | 'openConfig'
+    | 'openCustomField'
+    | 'openEndPage'
+    | 'openOrCreateCmsCategory'
+    | 'openPage'
+    | 'openProgram'
+    | 'openUrl';
+  context: InscriptionElementContext;
+  payload: string | OpenCustomField;
+}
+export interface OpenCustomField {
+  name: string;
+  type: WorkflowType;
+}

@@ -17,7 +17,6 @@ import type {
   EventCodeMeta,
   Function,
   Group,
-  InscriptionActionArgs,
   InscriptionContext,
   InscriptionElementContext,
   JavaType,
@@ -45,7 +44,7 @@ import type {
   WfCustomField,
   WorkflowTypeRequest
 } from './data/inscription';
-import type { InscriptionData, InscriptionSaveData } from './data/inscription-data';
+import type { InscriptionActionArgs, InscriptionData, InscriptionSaveData } from './data/inscription-data';
 
 export interface InscriptionMetaRequestTypes {
   'meta/start/dialogs': [CallableDialogRequest, CallableStart[]];

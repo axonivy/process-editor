@@ -11,7 +11,6 @@ export type ContentObjectType = "STRING" | "FILE" | "FOLDER";
 export type WfFieldType = "STRING" | "TEXT" | "NUMBER" | "TIMESTAMP";
 export type Widget = Script | Label | Text;
 export type WidgetType = "TEXT" | "LABEL" | "SCRIPT";
-export type WorkflowType = "START" | "TASK" | "CASE";
 /**
  * Supports macros for dynamic content.
  * Macros are IvyScript expressions enclosed in '<%=' and '%>', enabling the embedding of dynamic values such as data class attributes.
@@ -43,6 +42,7 @@ export type InputType = "ENTITY" | "FORM" | "RAW";
 export type WsAuth = "NONE" | "WS_SECURITY" | "HTTP_BASIC";
 export type Type = "START" | "INTERMEDIATE" | "ACTIVITY";
 export type Severity = "INFO" | "WARNING" | "ERROR";
+export type WorkflowType = "START" | "TASK" | "CASE";
 
 export interface Inscription {
   addRoleRequest: AddRoleRequest;
@@ -64,7 +64,6 @@ export interface Inscription {
   eventCodeMeta: EventCodeMeta[];
   function: Function[];
   group: Group[];
-  inscriptionActionArgs: InscriptionActionArgs;
   inscriptionContext: InscriptionContext;
   inscriptionElementContext: InscriptionElementContext;
   inscriptionRequest: InscriptionRequest;
@@ -314,27 +313,6 @@ export interface Text {
   configKey: string;
   multiline: boolean;
   widgetType: WidgetType;
-}
-export interface InscriptionActionArgs {
-  actionId:
-    | "newHtmlDialog"
-    | "newProcess"
-    | "newProgram"
-    | "newRestClient"
-    | "newWebServiceClient"
-    | "openConfig"
-    | "openCustomField"
-    | "openEndPage"
-    | "openOrCreateCmsCategory"
-    | "openPage"
-    | "openProgram"
-    | "openUrl";
-  context: InscriptionElementContext;
-  payload: string | OpenCustomField;
-}
-export interface OpenCustomField {
-  name: string;
-  type: WorkflowType;
 }
 export interface InscriptionRequest {
   context: InscriptionElementContext;
