@@ -21,7 +21,7 @@ export const RestClientSelect = () => {
   };
 
   const newAction = useAction('newRestClient');
-  const openAction = useAction('openConfig');
+  const openAction = useAction('openRestConfig');
   const controls: FieldsetControl[] = [
     { label: t('part.rest.restConfigOpen'), icon: IvyIcons.GoToSource, action: () => openAction() },
     { label: t('part.rest.restConfigCreate'), icon: IvyIcons.Plus, action: () => newAction() }

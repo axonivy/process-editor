@@ -239,6 +239,8 @@
       "title": "Bedingung"
     },
     "db": {
+      "clientCreate": "Neue Datenbankverbindung erstellen",
+      "clientOpen": "Datenbankverbindung öffnen",
       "definition": "Definition",
       "direction": "Richtung",
       "fields": "Felder",
