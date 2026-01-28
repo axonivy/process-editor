@@ -29,7 +29,7 @@ export class GlspProtocol {
 
   constructor(private readonly kind: ProcessKind = 'NORMAL') {
     const serverUrl = server.replace(/^https?:\/\//, '');
-    const transport = new WebSocketTransport(`ws://${serverUrl}/${app}/ivy-glsp-process-editor`);
+    const transport = new WebSocketTransport(`ws://${serverUrl}/${app}/1/ivy-glsp-process-editor`);
     this.client = new Client(new RequestManager([transport]));
     this.client.onError(error => console.error(error));
     this.appId = randomUUID();

@@ -19,7 +19,7 @@ import './index.css';
 import { getParameters, getServerDomain, isReadonly, isSecureConnection } from './url-helper';
 
 const parameters = getParameters();
-const app = parameters.get('app') ?? 'designer';
+const app = parameters.get('app') ?? '';
 let server = parameters.get('server');
 if (!server) {
   server = getServerDomain().replace(app, '');
@@ -37,7 +37,7 @@ const diagramType = 'ivy-glsp-process';
 const clientId = ApplicationIdProvider.get() + '_' + sourceUri + pid;
 
 const webSocketBase = `${isSecureConnection() ? 'wss' : 'ws'}://${server}/`;
-const webSocketUrl = `${webSocketBase}${app}/${id}`;
+const webSocketUrl = `${webSocketBase}${app}/1/${id}`;
 
 let glspClient: GLSPClient;
 let container: Container;
