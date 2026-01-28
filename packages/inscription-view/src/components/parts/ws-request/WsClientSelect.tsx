@@ -19,7 +19,7 @@ export const WsClientSelect = () => {
   const selectedItem = items.find(i => i.value === config.clientId) ?? { label: config.clientId, value: config.clientId };
 
   const newAction = useAction('newWebServiceClient');
-  const openAction = useAction('openConfig');
+  const openAction = useAction('openWsConfig');
   const openWsConfig: FieldsetControl = { label: t('part.ws.clientOpen'), icon: IvyIcons.GoToSource, action: () => openAction() };
   const createWsClient: FieldsetControl = { label: t('part.ws.clientCreate'), icon: IvyIcons.Plus, action: () => newAction() };
 

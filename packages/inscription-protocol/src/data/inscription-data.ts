@@ -76,13 +76,15 @@ export interface InscriptionActionArgs {
     | 'newProgram'
     | 'newRestClient'
     | 'newWebServiceClient'
-    | 'openConfig'
+    | 'newDatabaseConfig'
+    | 'openRestConfig'
+    | 'openWsConfig'
+    | 'openDatabaseConfig'
     | 'openCustomField'
     | 'openEndPage'
     | 'openOrCreateCmsCategory'
     | 'openPage'
-    | 'openProgram'
-    | 'openUrl';
+    | 'openProgram';
   context: InscriptionElementContext;
   payload: string | OpenCustomField;
 }
