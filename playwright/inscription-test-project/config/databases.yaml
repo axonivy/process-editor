@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://json-schema.axonivy.com/app/0.0.1/databases.json
+# yaml-language-server: $schema=https://json-schema.axonivy.com/config/14.0.0/databases.json
 Databases:
   test:
     Url: jdbc:hsqldb:mem:IvySystemDatabase

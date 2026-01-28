@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://json-schema.axonivy.com/app/12.0.0/webservice-clients.json
+# yaml-language-server: $schema=https://json-schema.axonivy.com/config/14.0.0/webservice-clients.json
 WebServiceClients:
   webservice:
     Id: 1842DB7CC45C39D7
@@ -6,13 +6,13 @@ WebServiceClients:
     WsCallLibrary: CXF
     Endpoints:
       GeoIPServiceSoap:
-      - http://www.webservicex.net/geoipservice.asmx
+        - http://www.webservicex.net/geoipservice.asmx
       GeoIPServiceSoap12:
-      - http://www.webservicex.net/geoipservice.asmx
+        - http://www.webservicex.net/geoipservice.asmx
       GeoIPServiceHttpGet:
-      - http://www.webservicex.net/geoipservice.asmx
+        - http://www.webservicex.net/geoipservice.asmx
       GeoIPServiceHttpPost:
-      - http://www.webservicex.net/geoipservice.asmx
+        - http://www.webservicex.net/geoipservice.asmx
     Codegen:
       WsdlUrl: http://test-webservices.ivyteam.io/wsdl/geoIpServiceWsdl/geoipservice.wsdl
       NamespacePackage:
