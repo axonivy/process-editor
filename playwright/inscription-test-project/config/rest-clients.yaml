@@ -20,7 +20,7 @@ RestClients:
   #- [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
   pet:
     UUID: 765ebcdd-aa37-41af-9727-964bd201b5eb
-    Url: ${ivy.app.baseurl}/{api}/{apiVersion}
+    Url: '{ivy.app.baseurl}/{api}/{apiVersion}'
     Features:
       - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
     Properties:
@@ -41,7 +41,7 @@ RestClients:
     Url: http://test-webservices.ivyteam.io:8080/json-processing-webapp-2.25
   approvalService:
     UUID: e61c6d1f-106e-46ea-8327-fe18e4c1d912
-    Url: ${ivy.app.baseurl}/api/approve
+    Url: '{ivy.app.baseurl}/api/approve'
     Features:
       - ch.ivyteam.ivy.rest.client.authentication.HttpBasicAuthenticationFeature
       - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
