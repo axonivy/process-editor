@@ -35,7 +35,7 @@
   },
   "scripts": {
     "clean": "rimraf lib tsconfig.*tsbuildinfo",
-    "build": "tsc --build tsconfig.build.json && tscp",
+    "build": "tsc --build tsconfig.build.json",
     "build:icons": "fantasticon -c ./icons/.fantasticonrc.json && npm run cp:icons",
     "cp:icons": "cpx \"icons/dist/*.ts\" src/ && cpx \"icons/dist/*.{css,ttf}\" css/",
     "type": "tsc --noEmit",
