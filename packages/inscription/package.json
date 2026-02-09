@@ -32,7 +32,7 @@
   },
   "scripts": {
     "clean": "rimraf lib tsconfig.tsbuildinfo",
-    "build": "tsc --build && tscp",
+    "build": "tsc --build",
     "type": "tsc --noEmit"
   },
   "files": [

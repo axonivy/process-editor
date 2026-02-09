@@ -29,8 +29,8 @@
   "source": "src/index",
   "scripts": {
     "clean": "rimraf lib tsconfig.tsbuildinfo",
-    "build": "tsc --build && tscp",
-    "package": "tsc && tscp",
+    "build": "tsc --build",
+    "package": "tsc",
     "build:clean": "npm run clean && npm run build",
     "type": "tsc --noEmit"
   }
