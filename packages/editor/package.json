@@ -50,7 +50,7 @@
   },
   "scripts": {
     "clean": "rimraf lib tsconfig.*tsbuildinfo",
-    "build": "tsc --build tsconfig.build.json",
+    "build": "tsc --build tsconfig.build.json && tscp",
     "type": "tsc --noEmit",
     "test": "vitest",
     "test:ci": "vitest --watch=false"

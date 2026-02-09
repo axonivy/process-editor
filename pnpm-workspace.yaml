@@ -2,9 +2,7 @@ packages:
   - packages/*
   - integration/*
   - playwright
-
 preferWorkspacePackages: true
-
 publicHoistPattern:
   - eslint
   - '@codingame/monaco-vscode-*'
