@@ -11,7 +11,7 @@
   "scripts": {
     "ci": "npm install && npm run monaco-postinstall && npm run build && npm run type && npm run package && (npm run lint:ci || true) && npm run test:ci",
     "clean": "lerna run clean",
-    "build": "tsc --build",
+    "build": "tsc --build && tscp --build",
     "monaco-postinstall": "npm explore monaco-languageclient -- npm run postinstall",
     "package": "lerna run package",
     "type": "lerna run type",
@@ -40,6 +40,7 @@
     "prettier": "^3.5.3",
     "rimraf": "^6.0.1",
     "typescript": "^5.8.3",
+    "typescript-cp": "^0.1.9",
     "vitest": "^3.0.8"
   },
   "workspaces": {
