@@ -12,7 +12,7 @@
     "preinstall": "npx only-allow pnpm",
     "ci": "pnpm install --no-frozen-lockfile && pnpm run build && pnpm run type && pnpm run package && (pnpm run lint:ci || true) && pnpm run test:ci && pnpm run i18n:ci",
     "clean": "pnpm run -r clean",
-    "build": "tsc --build && tscp --build",
+    "build": "tsc --build",
     "package": "pnpm run -r package",
     "type": "pnpm run -r type",
     "lint": "eslint",
@@ -45,7 +45,6 @@
     "prettier": "^3.5.3",
     "rimraf": "^6.0.1",
     "typescript": "^5.8.3",
-    "typescript-cp": "^0.1.9",
     "vitest": "^4.0.0"
   },
   "prettier": "@axonivy/prettier-config"
