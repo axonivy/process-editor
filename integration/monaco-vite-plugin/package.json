@@ -21,7 +21,7 @@
   "scripts": {
     "clean": "rimraf dist tsconfig.tsbuildinfo",
     "build": "tsc --build",
-    "package": "tsc && tscp",
+    "package": "tsc",
     "type": "tsc --noEmit",
     "watch": "tsc --watch"
   }
