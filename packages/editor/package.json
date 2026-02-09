@@ -36,8 +36,8 @@
     "snabbdom": "^3.5.1"
   },
   "devDependencies": {
-    "@axonivy/ui-components": "~14.0.0-next.985.6f2a62c",
-    "@axonivy/ui-icons": "~14.0.0-next.985.6f2a62c",
+    "@axonivy/ui-components": "~14.0.0-next.999.00590d5",
+    "@axonivy/ui-icons": "~14.0.0-next.999.00590d5",
     "@testing-library/react": "^16.2.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",

@@ -5,8 +5,7 @@ packages:
 preferWorkspacePackages: true
 publicHoistPattern:
   - eslint
-  - '@codingame/monaco-vscode-extension-api'
-  - '@codingame/monaco-vscode-editor-api'
+  - '@codingame/monaco-vscode-*'
 overrides:
   'vscode': 'npm:@codingame/monaco-vscode-extension-api'
   'monaco-editor': 'npm:@codingame/monaco-vscode-editor-api'

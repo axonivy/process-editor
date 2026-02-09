@@ -13,7 +13,7 @@
     "@axonivy/process-editor-inscription-protocol": "workspace:~14.0.0-next",
     "@axonivy/process-editor-inscription-view": "workspace:~14.0.0-next",
     "@open-rpc/client-js": "2.0.0",
-    "@playwright/test": "1.58.0"
+    "@playwright/test": "1.58.1"
   },
   "type": "module",
   "scripts": {
