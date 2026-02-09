@@ -2,7 +2,9 @@ import { useReadonly } from '@axonivy/ui-components';
 import React, { Suspense, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
-import { MONACO_OPTIONS, MonacoEditor } from '../../../monaco/monaco-editor-util';
+import { IvyMacroLanguage } from '../../../monaco/ivy-macro-language';
+import { IvyScriptLanguage } from '../../../monaco/ivy-script-language';
+import { MONACO_OPTIONS, MonacoEditor, MonacoEditorUtil, useLanguageClientSessionId } from '../../../monaco/monaco-editor-util';
 import type { monaco } from '../../../monaco/monaco-modules';
 import './CodeEditor.css';
 
@@ -17,6 +19,7 @@ export type CodeEditorProps = {
 };
 
 export const CodeEditor = ({ value, onChange, context, macro, onMountFuncs, options, ...props }: CodeEditorProps) => {
+  const sessionId = useLanguageClientSessionId();
   const { t } = useTranslation();
   const { elementContext } = useEditorContext();
   const readonly = useReadonly();
@@ -24,7 +27,7 @@ export const CodeEditor = ({ value, onChange, context, macro, onMountFuncs, opti
 
   const monacoOptions = useMemo(() => ({ ...(options ?? MONACO_OPTIONS), readOnly: readonly }), [options, readonly]);
   const contextPath = `${elementContext.app}/${elementContext.pmv}/${elementContext.pid}`;
-  const language = macro ? 'ivyMacro' : 'ivyScript';
+  const language = macro ? IvyMacroLanguage.Language.id : IvyScriptLanguage.Language.id;
 
   const updatePlaceholder = (showPlaceholder: boolean) => {
     if (placeholderElement.current) {
@@ -41,15 +44,16 @@ export const CodeEditor = ({ value, onChange, context, macro, onMountFuncs, opti
   );
 
   const onDidContentChange = React.useCallback(
-    (content: string) => {
-      updatePlaceholder(content.length === 0);
-      onChange(content);
+    (content?: string) => {
+      const text = content ?? '';
+      updatePlaceholder(text.length === 0);
+      onChange(text);
     },
     [onChange]
   );
 
   return (
-    <div className='code-editor' key={contextPath}>
+    <div className='code-editor' key={`${contextPath}-${sessionId}`}>
       <Suspense
         fallback={
           <div className='code-input loading' tabIndex={0}>
@@ -59,14 +63,15 @@ export const CodeEditor = ({ value, onChange, context, macro, onMountFuncs, opti
       >
         <MonacoEditor
           key={contextPath}
-          uri={`${language}/${contextPath}/${context.location}/${context.type ? context.type : ''}`}
-          language={language}
-          content={value}
+          defaultPath={`${language}/${contextPath}/${context.location}/${context.type ? context.type : ''}`}
+          defaultLanguage={language}
+          defaultValue={value}
+          value={value}
+          theme={MonacoEditorUtil.theme}
           className='code-input'
           options={monacoOptions}
-          onDidContentChange={onDidContentChange}
-          onIsEditorReady={onIsEditorReady}
-          style={{ height: props.height, maxHeight: props.height }}
+          onChange={onDidContentChange}
+          onMount={onIsEditorReady}
           {...props}
         />
       </Suspense>
