@@ -8,7 +8,7 @@
   "scripts": {
     "ci": "npm install && npm run build:icons && npm run build && npm run type && npm run package",
     "clean": "lerna run clean",
-    "build": "tsc --build && tscp --build",
+    "build": "tsc --build",
     "build:icons": "npm run -w @axonivy/process-editor build:icons",
     "package": "lerna run package",
     "type": "lerna run type",
@@ -24,8 +24,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
-    "@lerna-lite/cli": "^4.6.2",
-    "@lerna-lite/run": "^4.6.2",
+    "@lerna-lite/cli": "^4.11.2",
+    "@lerna-lite/run": "^4.11.2",
     "@types/node": "^24.10.0",
     "@typescript-eslint/eslint-plugin": "^8.24.1",
     "@typescript-eslint/parser": "^8.24.1",
@@ -35,7 +35,6 @@
     "prettier": "^3.5.2",
     "rimraf": "^6.0.1",
     "typescript": "^5.7.3",
-    "typescript-cp": "^0.1.9",
     "typescript-eslint": "^8.19.0",
     "vite": "^6.1.1",
     "vite-tsconfig-paths": "^5.1.4",
