@@ -430,114 +430,6 @@ importers:
       '@axonivy/ui-icons':
         specifier: ~14.0.0-next.985.6f2a62c
         version: 14.0.0-next.985.6f2a62c
-      '@codingame/monaco-vscode-api':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-configuration-service-override':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-editor-api':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-editor-service-override':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-extension-api':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-extensions-service-override':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-keybindings-service-override':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-language-pack-cs':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-language-pack-de':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-language-pack-es':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-language-pack-fr':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-language-pack-it':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-language-pack-ja':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-language-pack-ko':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-language-pack-pl':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-language-pack-pt-br':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-language-pack-qps-ploc':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-language-pack-ru':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-language-pack-tr':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-language-pack-zh-hans':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-language-pack-zh-hant':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-languages-service-override':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-localization-service-override':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-log-service-override':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-model-service-override':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-monarch-service-override':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-standalone-css-language-features':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-standalone-html-language-features':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-standalone-json-language-features':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-standalone-languages':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-standalone-typescript-language-features':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-textmate-service-override':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-theme-defaults-default-extension':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-theme-service-override':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-views-service-override':
-        specifier: 25.1.2
-        version: 25.1.2
-      '@codingame/monaco-vscode-workbench-service-override':
-        specifier: 25.1.2
-        version: 25.1.2
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.9.1
@@ -814,21 +706,6 @@ packages:
 
   '@codingame/monaco-vscode-quickaccess-service-override@25.1.2':
     resolution: {integrity: sha512-7IIrXnwHiF3w9d9p9kspEUz/LCibMLUztmRpGdZQfFtWBJw043q7rk8V1O42KdXr1hVg9IR5vfffwjy9nbiiUg==}
-
-  '@codingame/monaco-vscode-standalone-css-language-features@25.1.2':
-    resolution: {integrity: sha512-ecwUGS50gqG3yEool0KfUyqVRhObvx32EbjbXH+tHI4XOWDZB4OUt0r8Gzj10qPMFwFM/qGE3EPGk9gHAmS1tA==}
-
-  '@codingame/monaco-vscode-standalone-html-language-features@25.1.2':
-    resolution: {integrity: sha512-9x8xNgTY5+woQfJy8TmSeyqL2t4sXGubSZxpOVZf+y8bQZJDzPrV5f6QnYySkTUIEbPZdlEzh4zqw+eEeV/W0A==}
-
-  '@codingame/monaco-vscode-standalone-json-language-features@25.1.2':
-    resolution: {integrity: sha512-d07FBwwv8IhJQRJ9DsHoMrPX23/6S05SS1qDx8Kr1s8Agg+yFI2OEZIcG40ZrMRcx2rdzWb2EQjt9hG+l6PCbg==}
-
-  '@codingame/monaco-vscode-standalone-languages@25.1.2':
-    resolution: {integrity: sha512-7BUGsU6xXv0Dt9YM9vKWJP99lxVZf5aZj872qQokRFQNZddXO1UKtKbs+LP2xUxlC5JqVuTNcxdM1/p9/X3rZw==}
-
-  '@codingame/monaco-vscode-standalone-typescript-language-features@25.1.2':
-    resolution: {integrity: sha512-G2oKD5jGzrD3vYKfZZF54DgtW3SMmA0qlttaWR5Vu0eSAvyghXp1mdvds3u7deXY/KRL8X34vanT7aNtB9wosA==}
 
   '@codingame/monaco-vscode-textmate-service-override@25.1.2':
     resolution: {integrity: sha512-AL0FtSQBW+1vtoXYQvUqB2hfWojpK73Kq/n6KuNXxjLF/XBJ5FpeeZDfrBfwhWPPoHuBTsaFUCQy4L8xQgbVlA==}
@@ -3162,9 +3039,6 @@ packages:
 
   '@vscode/iconv-lite-umd@0.7.1':
     resolution: {integrity: sha512-tK6k0DXFHW7q5+GGuGZO+phpAqpxO4WXl+BLc/8/uOk3RsM2ssAL3CQUQDb1TGfwltjsauhN6S4ghYZzs4sPFw==}
-
-  '@vscode/l10n@0.0.18':
-    resolution: {integrity: sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==}
 
   abbrev@4.0.0:
     resolution: {integrity: sha512-a1wflyaL0tHtJSmLSOVybYhy22vRih4eduhhrkcjgrWGnRfrZtovJ2FRjxuTtkkj47O/baf0R86QU5OuYpz8fA==}
@@ -5666,15 +5540,6 @@ packages:
     resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
     engines: {node: '>=0.10.0'}
 
-  vscode-css-languageservice@6.2.14:
-    resolution: {integrity: sha512-5UPQ9Y1sUTnuMyaMBpO7LrBkqjhEJb5eAwdUlDp+Uez8lry+Tspnk3+3p2qWS4LlNsr4p3v9WkZxUf1ltgFpgw==}
-
-  vscode-html-languageservice@5.2.0:
-    resolution: {integrity: sha512-cdNMhyw57/SQzgUUGSIMQ66jikqEN6nBNyhx5YuOyj9310+eY9zw8Q0cXpiKzDX8aHYFewQEXRnigl06j/TVwQ==}
-
-  vscode-json-languageservice@5.3.11:
-    resolution: {integrity: sha512-WYS72Ymria3dn8ZbjtBbt5K71m05wY1Q6hpXV5JxUT0q75Ts0ljLmnZJAVpx8DjPgYbFD+Z8KHpWh2laKLUCtQ==}
-
   vscode-jsonrpc@8.2.0:
     resolution: {integrity: sha512-C+r0eKJUIfiDIfwJhria30+TYWPtuHJXHtI7J0YlOmKAo7ogxP20T0zxB7HZQIFhIyvoBPwWskjxrvAtfjyZfA==}
     engines: {node: '>=14.0.0'}
@@ -5690,17 +5555,8 @@ packages:
   vscode-languageserver-protocol@3.17.5:
     resolution: {integrity: sha512-mb1bvRJN8SVznADSGWM9u/b07H7Ecg0I3OgXDuLdn307rl/J3A9YD6/eYOssqhecL27hK1IPZAsaqh00i/Jljg==}
 
-  vscode-languageserver-textdocument@1.0.12:
-    resolution: {integrity: sha512-cxWNPesCnQCcMPeenjKKsOCKQZ/L6Tv19DTRIGuLWe32lyzWhihGVJ/rcckZXJxfdKCFvRLS3fpBIsV/ZGX4zA==}
-
   vscode-languageserver-types@3.17.5:
     resolution: {integrity: sha512-Ld1VelNuX9pdF39h2Hgaeb5hEZM2Z3jUrrMgWQAu82jMtZp7p3vJT3BzToKtZI7NgQssZje5o0zryOrhQvzQAg==}
-
-  vscode-uri@3.0.8:
-    resolution: {integrity: sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw==}
-
-  vscode-uri@3.1.0:
-    resolution: {integrity: sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==}
 
   vscode-ws-jsonrpc@3.5.0:
     resolution: {integrity: sha512-13ZDy7Od4AfEPK2HIfY3DtyRi4FVsvFql1yobVJrpIoHOKGGJpIjVvIJpMxkrHzCZzWlYlg+WEu2hrYkCTvM0Q==}
@@ -6254,37 +6110,6 @@ snapshots:
   '@codingame/monaco-vscode-quickaccess-service-override@25.1.2':
     dependencies:
       '@codingame/monaco-vscode-api': 25.1.2
-
-  '@codingame/monaco-vscode-standalone-css-language-features@25.1.2':
-    dependencies:
-      monaco-editor: '@codingame/monaco-vscode-editor-api@25.1.2'
-      vscode-css-languageservice: 6.2.14
-      vscode-languageserver-textdocument: 1.0.12
-      vscode-languageserver-types: 3.17.5
-
-  '@codingame/monaco-vscode-standalone-html-language-features@25.1.2':
-    dependencies:
-      monaco-editor: '@codingame/monaco-vscode-editor-api@25.1.2'
-      vscode-html-languageservice: 5.2.0
-      vscode-languageserver-textdocument: 1.0.12
-      vscode-languageserver-types: 3.17.5
-
-  '@codingame/monaco-vscode-standalone-json-language-features@25.1.2':
-    dependencies:
-      jsonc-parser: 3.3.1
-      monaco-editor: '@codingame/monaco-vscode-editor-api@25.1.2'
-      vscode-json-languageservice: 5.3.11
-      vscode-languageserver-textdocument: 1.0.12
-      vscode-languageserver-types: 3.17.5
-      vscode-uri: 3.0.8
-
-  '@codingame/monaco-vscode-standalone-languages@25.1.2':
-    dependencies:
-      monaco-editor: '@codingame/monaco-vscode-editor-api@25.1.2'
-
-  '@codingame/monaco-vscode-standalone-typescript-language-features@25.1.2':
-    dependencies:
-      monaco-editor: '@codingame/monaco-vscode-editor-api@25.1.2'
 
   '@codingame/monaco-vscode-textmate-service-override@25.1.2':
     dependencies:
@@ -9177,8 +9002,6 @@ snapshots:
 
   '@vscode/iconv-lite-umd@0.7.1': {}
 
-  '@vscode/l10n@0.0.18': {}
-
   abbrev@4.0.0: {}
 
   acorn-jsx@5.3.2(acorn@8.15.0):
@@ -12003,28 +11826,6 @@ snapshots:
 
   void-elements@3.1.0: {}
 
-  vscode-css-languageservice@6.2.14:
-    dependencies:
-      '@vscode/l10n': 0.0.18
-      vscode-languageserver-textdocument: 1.0.12
-      vscode-languageserver-types: 3.17.5
-      vscode-uri: 3.1.0
-
-  vscode-html-languageservice@5.2.0:
-    dependencies:
-      '@vscode/l10n': 0.0.18
-      vscode-languageserver-textdocument: 1.0.12
-      vscode-languageserver-types: 3.17.5
-      vscode-uri: 3.1.0
-
-  vscode-json-languageservice@5.3.11:
-    dependencies:
-      '@vscode/l10n': 0.0.18
-      jsonc-parser: 3.3.1
-      vscode-languageserver-textdocument: 1.0.12
-      vscode-languageserver-types: 3.17.5
-      vscode-uri: 3.1.0
-
   vscode-jsonrpc@8.2.0: {}
 
   vscode-jsonrpc@8.2.1: {}
@@ -12040,13 +11841,7 @@ snapshots:
       vscode-jsonrpc: 8.2.0
       vscode-languageserver-types: 3.17.5
 
-  vscode-languageserver-textdocument@1.0.12: {}
-
   vscode-languageserver-types@3.17.5: {}
-
-  vscode-uri@3.0.8: {}
-
-  vscode-uri@3.1.0: {}
 
   vscode-ws-jsonrpc@3.5.0:
     dependencies:
