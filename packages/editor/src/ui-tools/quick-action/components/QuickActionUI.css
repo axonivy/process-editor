@@ -4,6 +4,7 @@
   width: 100%;
 }
 .quick-action-ui.ui-popover-content {
+  border: none;
   visibility: visible;
   padding: 0;
   background-color: transparent;
@@ -11,10 +12,6 @@
 }
 .quick-action-selection-box {
   position: absolute;
-  --selection-padding: 6px;
-  padding: calc(var(--selection-padding));
-  margin-left: calc(-1 * var(--selection-padding));
-  margin-top: calc(-1 * var(--selection-padding));
   border: 1px dashed var(--glsp-multiselect-box-border);
   background: none;
   pointer-events: none;

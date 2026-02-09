@@ -45,10 +45,10 @@ export const QuickActionUI: React.FC<QuickActionUIProps> = ({
         <div
           className='quick-action-selection-box'
           style={{
-            top: `${bounds.y}px`,
-            left: `${bounds.x}px`,
-            height: `${bounds.height}px`,
-            width: `${bounds.width}px`,
+            top: `${bounds.y - 6}px`,
+            left: `${bounds.x - 6}px`,
+            height: `${bounds.height + 12}px`,
+            width: `${bounds.width + 12}px`,
             visibility: drawSelectionBox ? 'visible' : 'hidden'
           }}
         />

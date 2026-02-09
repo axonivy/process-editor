@@ -34,9 +34,9 @@
     "publish:next": "lerna publish --exact --canary --preid next --pre-dist-tag next --no-git-tag-version --no-push --ignore-scripts --yes"
   },
   "devDependencies": {
-    "@axonivy/eslint-config": "~14.0.0-next.999.00590d5",
-    "@axonivy/prettier-config": "~14.0.0-next.999.00590d5",
-    "@axonivy/ts-config": "~14.0.0-next.999.00590d5",
+    "@axonivy/eslint-config": "~14.0.0-next.1011.e9ae6be",
+    "@axonivy/prettier-config": "~14.0.0-next.1011.e9ae6be",
+    "@axonivy/ts-config": "~14.0.0-next.1011.e9ae6be",
     "@lerna-lite/cli": "^4.0.0",
     "@lerna-lite/publish": "^4.0.0",
     "@lerna-lite/version": "^4.0.0",

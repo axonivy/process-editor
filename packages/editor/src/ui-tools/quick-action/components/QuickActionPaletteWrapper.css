@@ -2,7 +2,7 @@
   padding: var(--size-2);
   border-radius: 4px;
   background: var(--glsp-bar-menu-bg);
-  width: 372px;
+  width: 388px;
   box-shadow: var(--glsp-box-shadow);
   .ui-palette {
     --quick-action-bar-height: 34px;

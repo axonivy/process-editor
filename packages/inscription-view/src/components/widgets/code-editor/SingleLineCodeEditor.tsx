@@ -115,7 +115,7 @@ export const SingleLineCodeEditor = ({ onChange, onMountFuncs, editorOptions, ke
 
   return (
     <CodeEditor
-      height={20}
+      height={42}
       onChange={onCodeChange}
       options={editorOptions ? { ...SINGLE_LINE_MONACO_OPTIONS, ...editorOptions } : SINGLE_LINE_MONACO_OPTIONS}
       onMountFuncs={[...mountFuncs, monacoAutoFocus, singleLineMountFuncs]}
