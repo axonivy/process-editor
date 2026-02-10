@@ -9,6 +9,7 @@
     height: 99%;
     box-shadow: var(--glsp-box-shadow);
     z-index: 100;
+    border: 1px solid var(--glsp-border);
   }
   input:focus,
   textarea:focus {

@@ -1,4 +1,4 @@
-import { useReadonly } from '@axonivy/ui-components';
+import { Flex, useReadonly } from '@axonivy/ui-components';
 import React, { Suspense, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
@@ -52,9 +52,9 @@ export const CodeEditor = ({ value, onChange, context, macro, onMountFuncs, opti
     <div className='code-editor' key={contextPath}>
       <Suspense
         fallback={
-          <div className='code-input loading' tabIndex={0}>
+          <Flex alignItems='center' className='code-input loading' style={{ height: props.height }} tabIndex={0}>
             {t('label.editorLoading')}
-          </div>
+          </Flex>
         }
       >
         <MonacoEditor

@@ -13,7 +13,7 @@ export namespace IvyMonacoTheme {
         colors: {
           'editor.foreground': '#FFFFFF',
           'editorCursor.foreground': '#FFFFFF',
-          'editor.background': '#333333'
+          'editor.background': '#33333300'
         },
         inherit: true,
         rules: []

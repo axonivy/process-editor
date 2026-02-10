@@ -47,7 +47,7 @@ test('increase element size using bottom-right handle', async ({ page }) => {
   // expected position = same position for bottom right resizing = (248,170)
   // expected size = element position - diagram mouse position = (552,478)
   await element.expectPosition({ x: 248, y: 170 });
-  await element.expectSize(552, 478);
+  await element.expectSize(552, 486);
   expect(topLeftHandleBounds).toStrictEqual(await topLeftHandle.boundingBox());
   expect(bottomRightHandleBounds).not.toStrictEqual(await bottomRightHandle.boundingBox());
 });

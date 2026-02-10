@@ -27,7 +27,7 @@
     }
     input {
       padding-left: 2rem;
-      width: calc(100% - var(--input-padding, 10px) - 2rem - 2px);
+      width: 100%;
     }
   }
 }

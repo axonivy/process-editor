@@ -1,5 +1,9 @@
 .code-editor {
   background: var(--N25);
+  position: relative;
+}
+.code-editor .loading {
+  padding: var(--input-padding);
 }
 .code-editor .code-input {
   border-radius: var(--border-r1);
@@ -8,7 +12,9 @@
   line-height: 12px;
   color: var(--body);
   text-align: start;
-  padding: var(--input-padding);
+  .monaco-editor {
+    padding: var(--input-padding);
+  }
 }
 
 .code-editor .code-input:focus-within {
