@@ -10,18 +10,18 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "dependencies": {
-    "@axonivy/process-editor": "12.0.13-next",
-    "@axonivy/process-editor-inscription-core": "12.0.13-next",
-    "@axonivy/process-editor-inscription-protocol": "12.0.13-next",
-    "@axonivy/process-editor-inscription-view": "12.0.13-next",
+    "@axonivy/process-editor": "~12.0.13-next",
+    "@axonivy/process-editor-inscription-core": "~12.0.13-next",
+    "@axonivy/process-editor-inscription-protocol": "~12.0.13-next",
+    "@axonivy/process-editor-inscription-view": "~12.0.13-next",
     "@codingame/monaco-vscode-editor-service-override": "1.83.3",
     "@codingame/monaco-vscode-languages-service-override": "1.83.3",
     "@codingame/monaco-vscode-model-service-override": "1.83.3",
     "@eclipse-glsp/client": "2.3.0"
   },
   "peerDependencies": {
-    "@axonivy/jsonrpc": "~12.0.12-next",
-    "@axonivy/ui-icons": "~12.0.12-next",
+    "@axonivy/jsonrpc": "~12.0.13-next",
+    "@axonivy/ui-icons": "~12.0.13-next",
     "react": "^18.2"
   },
   "devDependencies": {
