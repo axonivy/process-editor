@@ -10,12 +10,12 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "dependencies": {
-    "@axonivy/jsonrpc": "~12.0.12-next.675.08a492f",
-    "@axonivy/process-editor": "12.0.13-next",
-    "@axonivy/process-editor-inscription": "12.0.13-next",
-    "@axonivy/process-editor-inscription-view": "12.0.13-next",
-    "@axonivy/ui-components": "~12.0.12-next.675.08a492f",
-    "@axonivy/ui-icons": "~12.0.12-next.675.08a492f",
+    "@axonivy/jsonrpc": "~12.0.13-next.706.1505655",
+    "@axonivy/process-editor": "~12.0.13-next",
+    "@axonivy/process-editor-inscription": "~12.0.13-next",
+    "@axonivy/process-editor-inscription-view": "~12.0.13-next",
+    "@axonivy/ui-components": "~12.0.13-next.706.1505655",
+    "@axonivy/ui-icons": "~12.0.13-next.706.1505655",
     "@eclipse-glsp/client": "2.3.0",
     "@eclipse-glsp/ide": "2.3.0",
     "@eclipse-glsp/protocol": "2.3.0",
