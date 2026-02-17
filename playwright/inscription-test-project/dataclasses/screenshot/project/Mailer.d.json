@@ -1,19 +1,21 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "Mailer",
   "namespace" : "screenshot.project",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "subject",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "error",
-    "type" : "ch.ivyteam.ivy.bpm.error.BpmError"
+    "type" : "ch.ivyteam.ivy.bpm.error.BpmError",
+    "modifiers" : [ ]
   }, {
     "name" : "user",
-    "type" : "ch.ivyteam.test.Person"
+    "type" : "ch.ivyteam.test.Person",
+    "modifiers" : [ ]
   }, {
     "name" : "documents",
-    "type" : "java.util.List<File>"
+    "type" : "java.util.List<File>",
+    "modifiers" : [ ]
   } ]
 }

@@ -1,23 +1,15 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "Person",
   "namespace" : "market",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "id",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Long"
   }, {
-    "name" : "firstname",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "firstname"
   }, {
-    "name" : "lastname",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "lastname"
   }, {
-    "name" : "title",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "title"
   } ]
 }

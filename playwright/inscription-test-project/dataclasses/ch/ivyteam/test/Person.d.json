@@ -1,36 +1,22 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "Person",
   "namespace" : "ch.ivyteam.test",
   "comment" : "A registered webshop user \uD83D\uDD10",
-  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "name",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "name"
   }, {
-    "name" : "lastname",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "lastname"
   }, {
-    "name" : "street",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "street"
   }, {
     "name" : "zip",
-    "type" : "Integer",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Integer"
   }, {
-    "name" : "city",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "city"
   }, {
-    "name" : "country",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "country"
   }, {
-    "name" : "mail",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "mail"
   } ]
 }
