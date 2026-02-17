@@ -8,7 +8,7 @@ RUN apt-get update &&\
   apt-get install software-properties-common -y &&\
   apt-add-repository universe -y &&\
   apt-get update &&\
-  apt-get install openjdk-21-jdk -y
+  apt-get install openjdk-25-jdk -y
 
 ARG MAVEN_VERSION=3.9.12
 ARG BASE_URL=https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries
