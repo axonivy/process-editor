@@ -1,19 +1,13 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "AddContactData",
   "namespace" : "ch.ivyteam.documentation.project",
-  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "organisation",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "organisation"
   }, {
     "name" : "persons",
-    "type" : "List<String>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "List<String>"
   }, {
-    "name" : "addPerson",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "addPerson"
   } ]
 }
