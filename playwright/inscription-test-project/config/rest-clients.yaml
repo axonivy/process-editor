@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://json-schema.axonivy.com/config/14.0.0/rest-clients.json
+# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0-dev/config/rest-clients.json
 RestClients:
   stock:
     UUID: 539ed1ab-1274-4716-b6d0-85d682e0acd7
