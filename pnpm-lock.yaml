@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  monaco-editor:
+    hash: 899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f
+    path: patches/monaco-editor.patch
+
 importers:
 
   .:
@@ -431,7 +436,7 @@ importers:
         version: 0.5.1(ws@8.19.0)
       '@monaco-editor/react':
         specifier: 4.8.0-rc.3
-        version: 4.8.0-rc.3(monaco-editor@0.55.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        version: 4.8.0-rc.3(monaco-editor@0.55.1(patch_hash=899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.9.1
@@ -455,7 +460,7 @@ importers:
         version: 28.1.0
       monaco-editor:
         specifier: 0.55.1
-        version: 0.55.1
+        version: 0.55.1(patch_hash=899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f)
       react:
         specifier: ^19.0.0
         version: 19.2.4
@@ -6571,10 +6576,10 @@ snapshots:
     dependencies:
       state-local: 1.0.7
 
-  '@monaco-editor/react@4.8.0-rc.3(monaco-editor@0.55.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+  '@monaco-editor/react@4.8.0-rc.3(monaco-editor@0.55.1(patch_hash=899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       '@monaco-editor/loader': 1.7.0
-      monaco-editor: 0.55.1
+      monaco-editor: 0.55.1(patch_hash=899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f)
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
 
@@ -10407,7 +10412,7 @@ snapshots:
 
   modern-ahocorasick@1.1.0: {}
 
-  monaco-editor@0.55.1:
+  monaco-editor@0.55.1(patch_hash=899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f):
     dependencies:
       dompurify: 3.2.7
       marked: 14.0.0

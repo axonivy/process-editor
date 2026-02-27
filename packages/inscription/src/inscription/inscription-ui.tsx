@@ -98,8 +98,12 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
 
   async startInscriptionClient(): Promise<InscriptionClientJsonRpc> {
     const model = this.selectionService.getModelRoot();
-    const webSocketAddress = this.action?.connection?.server ?? GArgument.getString(model, 'webSocket') ?? 'ws://localhost:8081/';
-    IvyLanguageClient.connect({ server: webSocketAddress, logLevel: LogLevel.Debug, connection: this.action?.connection?.ivyScript });
+    const webSocketAddress = this.action?.connection?.server ?? GArgument.getString(model, 'webSocket') ?? 'ws://localhost:8080/';
+    IvyLanguageClient.connect({
+      server: webSocketAddress,
+      logLevel: LogLevel.Debug /*remove*/,
+      connection: this.action?.connection?.ivyScript
+    });
     if (this.action?.connection?.inscription) {
       return InscriptionClientJsonRpc.startClient(this.action.connection.inscription);
     }

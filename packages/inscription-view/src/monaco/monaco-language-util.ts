@@ -10,8 +10,6 @@ import {
   StreamLogger
 } from '@hediet/json-rpc';
 import type { IvyLanguageClientConnection } from './ivy-language-client';
-import { IvyMacroLanguage } from './ivy-macro-language';
-import { IvyScriptLanguage } from './ivy-script-language';
 import { LogLevel, type MonacoApi, type monaco } from './monaco-modules';
 import { MonacoUtil } from './monaco-util';
 
@@ -53,7 +51,7 @@ export class FixedStreamLogger extends StreamLogger {
   }
 
   override send(message: Message): Promise<void> {
-    return super.send(fixTextDocumentSyncMessage(message, this.monaco));
+    return super.send(message /*fixTextDocumentSyncMessage(message, this.monaco)*/);
   }
 }
 
@@ -76,7 +74,7 @@ export class ConnectionTransport extends BaseMessageTransport implements Disposa
   }
 
   protected override _sendImpl(message: Message): Promise<void> {
-    return this.connection.writer.write(fixTextDocumentSyncMessage(message, this.monaco));
+    return this.connection.writer.write(message /*fixTextDocumentSyncMessage(message, this.monaco)*/);
   }
 
   override log(logger: IMessageLogger = new ConsoleMessageLogger()): IMessageTransport {
@@ -163,40 +161,40 @@ export class ReconnectingWebSocketTransport extends BaseMessageTransport {
   }
 }
 
-function fixTextDocumentSyncMessage(message: Message, monaco: MonacoApi): Message {
-  // Workaround for https://github.com/microsoft/monaco-editor/issues/5224
-  // Our URIs adhere to this schema: ${language}/${app}/${pmv}/${pid}/${location}/${type?}, see CodeEditor.defaultPath
-  // -> language: correctly cased to match the language id
-  // -> app: assume lower case is fine
-  // -> pmv: assume lower case is fine
-  // -> pid: make sure that the base PID (up to the first '-') is upper case as the server expects
-  // -> location: assume lower case is fine
-  // -> type: assume lower case is fine
-  // -> preserve trailing slashes so URIs match between didOpen and subsequent requests
-  //
-  // Alternative: Already create the defaultPath with lower casing to avoid the bug altogether but it is unclear whether the server would handle that correctly
-  //
-  if (isTextDocumentSyncMessage(message)) {
-    const uri = monaco.Uri.parse(message.params.textDocument.uri);
-    const [language, app, pmv, pid, ...rest] = uri.path.split('/').filter(Boolean);
-    const languageIds = [IvyScriptLanguage.Language.id, IvyMacroLanguage.Language.id];
-    const fixedLanguage = languageIds.find(id => id.toLowerCase() === language?.toLowerCase());
-    if (fixedLanguage && pid) {
-      const hyphenIndex = pid.indexOf('-');
-      const fixedPid = hyphenIndex === -1 ? pid.toUpperCase() : pid.substring(0, hyphenIndex).toUpperCase() + pid.substring(hyphenIndex);
-      const fixedPath = '/' + [fixedLanguage, app, pmv, fixedPid, ...rest].join('/') + (uri.path.endsWith('/') ? '/' : '');
-      const fixedUri = uri.with({ path: fixedPath });
-      message.params.textDocument.uri = fixedUri.toString();
-    }
-  }
-  return message;
-}
+// function fixTextDocumentSyncMessage(message: Message, monaco: MonacoApi): Message {
+//   // Workaround for https://github.com/microsoft/monaco-editor/issues/5224
+//   // Our URIs adhere to this schema: ${language}/${app}/${pmv}/${pid}/${location}/${type?}, see CodeEditor.defaultPath
+//   // -> language: correctly cased to match the language id
+//   // -> app: assume lower case is fine
+//   // -> pmv: assume lower case is fine
+//   // -> pid: make sure that the base PID (up to the first '-') is upper case as the server expects
+//   // -> location: assume lower case is fine
+//   // -> type: assume lower case is fine
+//   // -> preserve trailing slashes so URIs match between didOpen and subsequent requests
+//   //
+//   // Alternative: Already create the defaultPath with lower casing to avoid the bug altogether but it is unclear whether the server would handle that correctly
+//   //
+//   if (isTextDocumentSyncMessage(message)) {
+//     const uri = monaco.Uri.parse(message.params.textDocument.uri);
+//     const [language, app, pmv, pid, ...rest] = uri.path.split('/').filter(Boolean);
+//     const languageIds = [IvyScriptLanguage.Language.id, IvyMacroLanguage.Language.id];
+//     const fixedLanguage = languageIds.find(id => id.toLowerCase() === language?.toLowerCase());
+//     if (fixedLanguage && pid) {
+//       const hyphenIndex = pid.indexOf('-');
+//       const fixedPid = hyphenIndex === -1 ? pid.toUpperCase() : pid.substring(0, hyphenIndex).toUpperCase() + pid.substring(hyphenIndex);
+//       const fixedPath = '/' + [fixedLanguage, app, pmv, fixedPid, ...rest].join('/') + (uri.path.endsWith('/') ? '/' : '');
+//       const fixedUri = uri.with({ path: fixedPath });
+//       message.params.textDocument.uri = fixedUri.toString();
+//     }
+//   }
+//   return message;
+// }
 
-function isTextDocumentSyncMessage(message: Message): message is Message & {
-  method: 'textDocument/didOpen' | 'textDocument/didChange' | 'textDocument/didClose';
-  params: { textDocument: { uri: string } };
-} {
-  return (
-    message.method === 'textDocument/didOpen' || message.method === 'textDocument/didChange' || message.method === 'textDocument/didClose'
-  );
-}
+// function isTextDocumentSyncMessage(message: Message): message is Message & {
+//   method: 'textDocument/didOpen' | 'textDocument/didChange' | 'textDocument/didClose';
+//   params: { textDocument: { uri: string } };
+// } {
+//   return (
+//     message.method === 'textDocument/didOpen' || message.method === 'textDocument/didChange' || message.method === 'textDocument/didClose'
+//   );
+// }
