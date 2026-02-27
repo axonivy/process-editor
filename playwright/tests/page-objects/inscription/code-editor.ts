@@ -48,7 +48,7 @@ class CodeEditor {
     }
     await this.activate();
     await this.selectAll();
-    await this.page.keyboard.type(value);
+    await this.page.keyboard.insertText(value);
     await this.expectCode(expectedValue);
     await this.blur();
   }

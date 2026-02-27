@@ -43,7 +43,7 @@ test.describe('Scripting', () => {
     await script.fill('Verify User <%= ', 'Verify User <%= %>'); // auto-complete closing tag
     await script.activate();
     await page.keyboard.press('ArrowLeft+ArrowLeft+ArrowLeft');
-    await page.keyboard.type('in.');
+    await page.keyboard.insertText('in.');
 
     await screenshot(section.currentLocator(), 'code-macro.png');
   });

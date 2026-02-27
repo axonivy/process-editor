@@ -1,10 +1,10 @@
-import { ConsoleTimer } from '@axonivy/process-editor-inscription-core';
-import React from 'react';
+import { ConsoleTimer, LazyLoader } from '@axonivy/process-editor-inscription-core';
+import React, { useSyncExternalStore } from 'react';
 import { focusAdjacentTabIndexMonaco } from '../utils/focus';
 import { IvyMacroLanguage } from './ivy-macro-language';
 import { IvyMonacoTheme } from './ivy-monaco-theme';
 import { IvyScriptLanguage } from './ivy-script-language';
-import { MonacoEditorReactComp } from './monaco-editor-react';
+import { MonacoLanguageUtil } from './monaco-language-util';
 import type { MonacoApi, monaco } from './monaco-modules';
 import { MonacoUtil, type MonacoInitParams } from './monaco-util';
 
@@ -60,6 +60,8 @@ export const SINGLE_LINE_MONACO_OPTIONS: monaco.editor.IStandaloneEditorConstruc
 export type MonacoEditorConfiguration = MonacoInitParams & { theme?: IvyMonacoTheme };
 
 export namespace MonacoEditorUtil {
+  export const theme = IvyMonacoTheme.DEFAULT_THEME_NAME;
+
   export const keyActionEscShiftTab = (editor: monaco.editor.IStandaloneCodeEditor) => {
     editor.addCommand(KeyCode.Escape, () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -104,24 +106,25 @@ export namespace MonacoEditorUtil {
   }
 }
 
-// We currently have an issue with the Typefox React editor where our in-line editors get disposed automatically in Strict Mode
-// https://github.com/TypeFox/monaco-languageclient/issues/994
-//
-// export const TypefoxMonacoEditorReact = new LazyLoader(() => import('@typefox/monaco-editor-react'));
-// export const MonacoEditor = React.lazy(async () => {
-//   const timer = new ConsoleTimer(true, 'Initialize Monaco Editor Component (only necessary once)').start();
-//   timer.step('Wait for Monaco API...');
-//   await MonacoUtil.monaco();
-//   timer.step('Load Editor Component...');
-//   const module = await TypefoxMonacoEditorReact.load();
-//   timer.end();
-//   return { default: module.MonacoEditorReactComp };
-// });
-
+export const MonacoEditorReact = new LazyLoader(() => import('@monaco-editor/react'));
 export const MonacoEditor = React.lazy(async () => {
   const timer = new ConsoleTimer(true, 'Initialize Monaco Editor Component (only necessary once)').start();
   timer.step('Wait for Monaco API...');
-  await MonacoUtil.monaco();
+  const monaco = await MonacoUtil.monaco();
+  timer.step('Load Editor Component...');
+  const editor = await MonacoEditorReact.load();
+  timer.step('Configure Editor Component...');
+  editor.loader.config({ monaco });
+  timer.step('Initialize Editor Component...');
+  await editor.loader.init();
   timer.end();
-  return { default: MonacoEditorReactComp };
+  return { default: editor.Editor };
 });
+
+/** Hook that returns a key that changes when the language client reconnects */
+export function useLanguageClientSessionId(): number {
+  return useSyncExternalStore(
+    callback => MonacoLanguageUtil.onLanguageClientReconnected(callback).dispose,
+    () => MonacoLanguageUtil.sessionId
+  );
+}
