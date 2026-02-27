@@ -56,7 +56,7 @@ export const CodeEditor = ({ value, onChange, context, macro, onMountFuncs, opti
     <div className='code-editor' key={`${contextPath}-${sessionId}`}>
       <Suspense
         fallback={
-          <Flex alignItems='center' className='code-input loading' style={{ height: props.height }} tabIndex={0}>
+          <Flex className='code-input loading' style={{ height: props.height }} tabIndex={0}>
             {t('label.editorLoading')}
           </Flex>
         }

@@ -2,6 +2,11 @@ packages:
   - packages/*
   - integration/*
   - playwright
+
+patchedDependencies:
+  monaco-editor: patches/monaco-editor.patch
+
 preferWorkspacePackages: true
+
 publicHoistPattern:
   - eslint
