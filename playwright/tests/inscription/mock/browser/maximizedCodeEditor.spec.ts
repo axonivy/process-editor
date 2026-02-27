@@ -21,7 +21,7 @@ test('maximized code editor', async ({ page }) => {
   await expectCodeInEditor(maximizedCodeEditor, 'test');
   //check if value is transfered to minimized code editor
   await maximizedCodeEditor.click();
-  await page.keyboard.type('hello');
+  await page.keyboard.insertText('hello');
   await page.getByRole('button', { name: 'Apply' }).click();
   await expect(page.getByRole('dialog')).toBeHidden();
   await expectCodeInEditor(maximizedCodeEditor, 'testhello');
@@ -30,7 +30,7 @@ test('maximized code editor', async ({ page }) => {
   await maximizedButton.click();
   await expectCodeInEditor(maximizedCodeEditor, 'test123');
   await maximizedCodeEditor.click();
-  await page.keyboard.type('hello');
+  await page.keyboard.insertText('hello');
   await page.getByRole('button', { name: 'Cancel' }).click();
   await expectCodeInEditor(maximizedCodeEditor, 'test123');
 });
@@ -50,7 +50,7 @@ test('maximized code editor in table cell', async ({ page }) => {
   await expectCodeInEditor(maximizedCodeEditor, 'test');
   //check if value is transfered to minimized code editor
   await maximizedCodeEditor.click();
-  await page.keyboard.type('hello');
+  await page.keyboard.insertText('hello');
   await page.getByRole('button', { name: 'Apply' }).click();
   await expect(page.getByRole('dialog')).toBeHidden();
   await conditionCell.expectValue('testhello');

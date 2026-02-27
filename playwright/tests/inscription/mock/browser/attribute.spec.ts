@@ -27,7 +27,7 @@ test('browser replace selection', async ({ page }) => {
   await category.activate();
   await assertCodeVisible(page);
 
-  await page.keyboard.type('test 123 zag');
+  await page.keyboard.insertText('test 123 zag');
   await code(page).dblclick();
 
   await applyBrowser(page, 'Attribute', 'in.bla', 2);

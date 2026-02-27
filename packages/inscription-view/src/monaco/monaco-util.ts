@@ -1,32 +1,18 @@
 import { ConsoleTimer, Deferred } from '@axonivy/process-editor-inscription-core';
 
-import type { WorkerLoader } from 'monaco-languageclient/workerFactory';
-import {
-  CodinGame,
-  LogLevel,
-  MonacoLanguageClient,
-  MonacoLanguagePack,
-  type MonacoApi,
-  type VscodeApi,
-  type monaco
-} from './monaco-modules';
+import { LogLevel, MonacoLanguagePack, MonacoModule, type MonacoApi } from './monaco-modules';
 
-export type LazyIEditorOverrideServices = () => Promise<monaco.editor.IEditorOverrideServices>;
-
-export type WorkerLabel =
-  | 'TextEditorWorker'
-  | 'TextMateWorker'
-  | 'OutputLinkDetectionWorker'
-  | 'LanguageDetectionWorker'
-  | 'NotebookEditorWorker'
-  | 'LocalFileSearchWorker'
-  | (string & {});
+// Must be defined before Monaco tries to access it, but getWorker itself is lazy -
+// the Worker is only created when Monaco actually needs one (e.g., for color detection)
+self.MonacoEnvironment = {
+  getWorker() {
+    return new Worker(new URL('monaco-editor/esm/vs/editor/editor.worker.js', import.meta.url), { type: 'module' });
+  }
+};
 
 export interface MonacoInitParams {
   locale?: string;
   logLevel?: LogLevel;
-  serviceOverrides?: LazyIEditorOverrideServices[];
-  workerLoaders?: Partial<Record<WorkerLabel, WorkerLoader>>;
 }
 
 export namespace MonacoUtil {
@@ -44,12 +30,7 @@ export namespace MonacoUtil {
     return _initialized;
   }
 
-  export async function initialize({
-    locale,
-    logLevel = LogLevel.Warning,
-    serviceOverrides = [],
-    workerLoaders = {}
-  }: MonacoInitParams = {}): Promise<MonacoApi> {
+  export async function initialize({ locale, logLevel = LogLevel.Warning }: MonacoInitParams = {}): Promise<MonacoApi> {
     if (initialized()) {
       return monaco();
     }
@@ -61,60 +42,10 @@ export namespace MonacoUtil {
       await MonacoLanguagePack.loadLocale(locale);
     }
 
-    timer.step('Load necessary modules...');
-    const lcMonacoVscode = await MonacoLanguageClient.Vscode.load();
-    const lcWorkerFactory = await MonacoLanguageClient.WorkerFactory.load();
-
-    timer.step('Load service overrides...');
-    const loadedServiceOverrides = await Promise.all(serviceOverrides.map(serviceOverride => serviceOverride()));
-    const mergedServiceOverrides = loadedServiceOverrides.reduce((acc, curr) => ({ ...acc, ...curr }), {});
-
-    timer.step('Initialize Monaco Vscode API...');
-    const apiWrapper = new lcMonacoVscode.MonacoVscodeApiWrapper({
-      $type: 'classic',
-      viewsConfig: { $type: 'EditorService' },
-      logLevel: logLevel,
-      serviceOverrides: mergedServiceOverrides,
-      userConfiguration: {},
-      monacoWorkerFactory: logger =>
-        lcWorkerFactory.useWorkerFactory({
-          workerLoaders: { ...lcWorkerFactory.defineDefaultWorkerLoaders(), ...workerLoaders },
-          logger
-        }),
-      advanced: { enforceSemanticHighlighting: true },
-      workspaceConfig: {
-        productConfiguration: {
-          applicationName: 'Axon Ivy Editor',
-          builtInExtensions: [],
-          commit: undefined
-        }
-      }
-    });
-
-    await apiWrapper.start({ caller: 'MonacoUtil', performServiceConsistencyChecks: true }); // after this monaco is available globally
-
     timer.step('Load initialized Monaco Vscode API...');
-    const _monaco = await CodinGame.MonacoVscodeEditorApi.load();
+    const _monaco = await MonacoModule.Api.load();
     timer.end();
     _monacoInstance.resolve(_monaco);
     return _monacoInstance.promise;
-  }
-
-  export async function vscode(): Promise<VscodeApi> {
-    return CodinGame.MonacoVscodeExtensionsApi.load();
-  }
-
-  export async function vscodeServicesReady(): Promise<void> {
-    const vscodeApi = await CodinGame.MonacoVscodeApi.load();
-    const serviceReadyDeferred = new Deferred<void>();
-    vscodeApi.withReadyServices(() => {
-      serviceReadyDeferred.resolve();
-      return {
-        dispose: () => {
-          /* no op */
-        }
-      };
-    });
-    return serviceReadyDeferred.promise;
   }
 }
