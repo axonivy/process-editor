@@ -48,7 +48,11 @@ class CodeEditor {
     }
     await this.activate();
     await this.selectAll();
-    await this.page.keyboard.insertText(value);
+    if (this.page.context().browser()?.browserType().name() === 'firefox') {
+      await this.page.keyboard.type(value);
+    } else {
+      await this.page.keyboard.insertText(value);
+    }
     await this.expectCode(expectedValue);
     await this.blur();
   }
