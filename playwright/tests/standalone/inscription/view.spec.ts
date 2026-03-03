@@ -47,8 +47,16 @@ test('ivyscript lsp', async ({ page }) => {
   const section = part.section('Code');
   await section.open();
   const code = section.scriptArea();
+
+  await code.fill('i');
   await code.triggerContentAssist();
   await code.expectContentAssistContains('ivy');
+  await code.triggerMonacoCompletion('ivy, Variable');
+  await page.keyboard.type('.l');
+  await code.triggerMonacoCompletion('log, Variable');
+  await page.keyboard.type('.de');
+  await code.triggerMonacoCompletion('debug(Object message), Method');
+  await code.expectValue('ivy.log.debug(message)');
 });
 
 test('process', async ({ page }) => {
