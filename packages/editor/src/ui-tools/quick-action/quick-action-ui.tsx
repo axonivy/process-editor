@@ -4,6 +4,7 @@ import {
   type BoundsAware,
   CursorCSS,
   GEdge,
+  GLSPMouseTool,
   GLabel,
   GModelElement,
   GModelRoot,
@@ -16,6 +17,7 @@ import {
   SelectAllAction,
   SelectionService,
   SetUIExtensionVisibilityAction,
+  SetViewportAction,
   TYPES,
   getAbsoluteBounds,
   isNotUndefined
@@ -39,6 +41,7 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
   @inject(TYPES.IActionDispatcherProvider) public actionDispatcherProvider!: IActionDispatcherProvider;
   @inject(SelectionService) protected selectionService!: SelectionService;
   @multiInject(IVY_TYPES.QuickActionProvider) protected quickActionProviders!: QuickActionProvider[];
+  @inject(GLSPMouseTool) mouseTool!: GLSPMouseTool;
 
   private activeQuickActions: QuickAction[] = [];
   private activeQuickAction?: string;
@@ -84,6 +87,9 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
     }
     if (RemoveMarqueeAction.is(action) && this.editorContext.selectedElements.length > 0) {
       this.showUi();
+    }
+    if (SetViewportAction.is(action)) {
+      this.updateUI();
     }
   }
 

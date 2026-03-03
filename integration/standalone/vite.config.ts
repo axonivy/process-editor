@@ -25,8 +25,7 @@ export default defineConfig(() => ({
       return sourcePath.includes('node_modules') && !sourcePath.includes('@eclipse-glsp') && !sourcePath.includes('@axonivy');
     },
     proxy: {
-      // needed for custom images on screenshots
-      '/process-test-project': { target: process.env.BASE_URL ?? 'http://localhost:8081/' }
+      '/~Developer-process-test-project': { target: process.env.BASE_URL ?? 'http://localhost:8080/' }
     }
   },
   preview: {
@@ -35,6 +34,7 @@ export default defineConfig(() => ({
   resolve: {
     alias: {
       '@axonivy/process-editor': resolve(__dirname, '../../packages/editor/src'),
+      '@axonivy/process-editor-history': resolve(__dirname, '../../packages/history/src'),
       '@axonivy/process-editor-inscription': resolve(__dirname, '../../packages/inscription/src'),
       '@axonivy/process-editor-inscription-view': resolve(__dirname, '../../packages/inscription-view/src'),
       '@axonivy/process-editor-inscription-core': resolve(__dirname, '../../packages/inscription-core/src'),

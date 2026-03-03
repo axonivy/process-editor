@@ -1,0 +1,11 @@
+.history-ui-container {
+  position: absolute;
+  visibility: hidden;
+  height: 100%;
+  width: 100%;
+  user-select: text;
+  .ui-table-row {
+    height: 20px;
+    font-size: 11px;
+  }
+}

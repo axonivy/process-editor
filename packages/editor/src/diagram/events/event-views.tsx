@@ -1,5 +1,5 @@
 /** @jsx svg */
-import { CircularNodeView, type RenderingContext, hiddenBoundingRect, svg } from '@eclipse-glsp/client';
+import { CircularNodeView, type IActionDispatcher, type RenderingContext, TYPES, hiddenBoundingRect, svg } from '@eclipse-glsp/client';
 import { inject, injectable, optional } from 'inversify';
 import type { VNode } from 'snabbdom';
 import { createExecutionBadge } from '../../execution/views';
@@ -11,6 +11,7 @@ import { EventNode } from '../model';
 @injectable()
 export class EventNodeView extends CircularNodeView {
   @inject(CustomIconToggleActionHandler) @optional() protected customIconHandler?: CustomIconToggleActionHandler;
+  @inject(TYPES.IActionDispatcher) protected actionDispatcher!: IActionDispatcher;
 
   override render(node: EventNode, context: RenderingContext): VNode {
     const radius = this.getRadius(node);
@@ -29,7 +30,7 @@ export class EventNodeView extends CircularNodeView {
         {this.getEventDecorator(radius, node.color)}
         {getIconDecorator(this.customIconHandler?.isShowCustomIcons ? node.customIcon : node.type, radius, node.color)}
         {context.renderChildren(node)}
-        {createExecutionBadge(node, 2 * radius)}
+        {createExecutionBadge(this.actionDispatcher, node, 2 * radius)}
       </g>
     );
   }
