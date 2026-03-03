@@ -6,6 +6,6 @@ export interface Executable {
   executionCount?: number;
 }
 
-export function isExecutable(element: GModelElement): element is GModelElement {
+export function isExecutable(element: GModelElement): element is GModelElement & Executable {
   return element.hasFeature(executionFeature);
 }

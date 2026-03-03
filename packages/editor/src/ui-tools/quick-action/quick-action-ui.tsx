@@ -16,6 +16,7 @@ import {
   SelectAllAction,
   SelectionService,
   SetUIExtensionVisibilityAction,
+  SetViewportAction,
   TYPES,
   getAbsoluteBounds,
   isNotUndefined
@@ -84,6 +85,9 @@ export class QuickActionUI extends ReactUIExtension implements IActionHandler, I
     }
     if (RemoveMarqueeAction.is(action) && this.editorContext.selectedElements.length > 0) {
       this.showUi();
+    }
+    if (SetViewportAction.is(action)) {
+      this.updateUI();
     }
   }
 

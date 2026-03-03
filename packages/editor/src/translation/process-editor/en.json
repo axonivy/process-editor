@@ -117,11 +117,14 @@
       "browser": "Browser",
       "cancel": "Cancel",
       "category": "Category",
+      "close": "Close",
       "color": "Color",
       "delete": "Delete",
       "description": "Description",
       "mapping": "Mapping",
       "name": "Name",
+      "pin": "Pin",
+      "refresh": "Refresh",
       "roles": "Roles",
       "save": "Save",
       "search": "Search",
@@ -130,6 +133,9 @@
       "type": "Type",
       "value": "Value"
     }
+  },
+  "history": {
+    "error": "Error loading history"
   },
   "label": {
     "action": "Action",

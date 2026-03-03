@@ -25,8 +25,9 @@ export default defineConfig(() => ({
       return sourcePath.includes('node_modules') && !sourcePath.includes('@eclipse-glsp') && !sourcePath.includes('@axonivy');
     },
     proxy: {
-      // needed for custom images on screenshots
-      '/process-test-project': { target: process.env.BASE_URL ?? 'http://localhost:8081/' }
+      '/process-test-project': { target: process.env.BASE_URL ?? 'http://localhost:8080/' },
+      '/dev-workflow-ui': { target: process.env.BASE_URL ?? 'http://localhost:8080/' },
+      '/~Developer-process-test-project': { target: process.env.BASE_URL ?? 'http://localhost:8080/' }
     }
   },
   preview: {

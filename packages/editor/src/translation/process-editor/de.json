@@ -117,11 +117,14 @@
       "browser": "Browser",
       "cancel": "Abbrechen",
       "category": "Kategorie",
+      "close": "Schliessen",
       "color": "Farbe",
       "delete": "Löschen",
       "description": "Beschreibung",
       "mapping": "Zuordnung",
       "name": "Name",
+      "pin": "Anheften",
+      "refresh": "Aktualisieren",
       "roles": "Rollen",
       "save": "Speichern",
       "search": "Suchen",
@@ -130,6 +133,9 @@
       "type": "Typ",
       "value": "Wert"
     }
+  },
+  "history": {
+    "error": "Fehler beim Laden der Historie"
   },
   "label": {
     "action": "Aktion",
