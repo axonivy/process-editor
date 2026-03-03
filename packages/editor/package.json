@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "@axonivy/process-editor-protocol": "workspace:~14.0.0-next",
-    "@eclipse-glsp/client": "2.5.0",
+    "@eclipse-glsp/client": "2.6.0",
     "marked": "^17.0.0",
     "uuid": "^13.0.0"
   },

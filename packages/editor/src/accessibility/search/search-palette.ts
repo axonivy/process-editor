@@ -1,6 +1,8 @@
 import { IvyIcons } from '@axonivy/ui-icons';
 import {
   type AutocompleteSuggestion,
+  AutocompleteSuggestionProviderContext,
+  BaseAutocompletePalette,
   CenterAction,
   GEdge,
   GLabel,
@@ -18,20 +20,9 @@ import './search-palette.css';
 
 @injectable()
 export class IvySearchAutocompletePalette extends SearchAutocompletePalette {
-  protected override getSuggestionProviders() {
-    return [new RevealNodeAutocompleteSuggestionProvider(), new RevealEdgeElementAutocompleteSuggestionProvider()];
-  }
-
   override show(root: Readonly<GModelRoot>, ...contextElementIds: string[]): void {
-    // customization: Skip deselecting all elements
-    this.activeElement = document.activeElement;
-    if (!this.containerElement) {
-      if (!this.initialize()) return;
-    }
-    this.onBeforeShow(this.containerElement, root, ...contextElementIds);
-    this.setContainerVisible(true);
-    this.root = root;
-    this.autocompleteWidget.open(root);
+    // customization: Skip deselecting all elements executed in search palette super class
+    BaseAutocompletePalette.prototype.show.call(this, root, ...contextElementIds);
   }
 }
 
@@ -48,8 +39,17 @@ const iconForType = (type: string) => {
   return IvyIcons.PoolSwimlanes;
 };
 
+@injectable()
 export class RevealNodeAutocompleteSuggestionProvider implements IAutocompleteSuggestionProvider {
-  async retrieveSuggestions(root: Readonly<GModelRoot>): Promise<AutocompleteSuggestion[]> {
+  get id(): string {
+    return 'ivy.reveal-node-suggestion';
+  }
+
+  canHandle(context: string): boolean {
+    return context === AutocompleteSuggestionProviderContext.CANVAS;
+  }
+
+  async getSuggestions(root: Readonly<GModelRoot>): Promise<AutocompleteSuggestion[]> {
     return toArray(root.index.all())
       .filter(element => element instanceof GNode)
       .map(node => ({
@@ -73,8 +73,18 @@ export class RevealNodeAutocompleteSuggestionProvider implements IAutocompleteSu
     return label?.text ? label.text : node.id;
   }
 }
+
+@injectable()
 export class RevealEdgeElementAutocompleteSuggestionProvider implements IAutocompleteSuggestionProvider {
-  async retrieveSuggestions(root: Readonly<GModelRoot>): Promise<AutocompleteSuggestion[]> {
+  get id(): string {
+    return 'ivy.reveal-edge-element-suggestion';
+  }
+
+  canHandle(context: string): boolean {
+    return context === AutocompleteSuggestionProviderContext.CANVAS;
+  }
+
+  async getSuggestions(root: Readonly<GModelRoot>): Promise<AutocompleteSuggestion[]> {
     const edges = toArray(root.index.all().filter(element => element instanceof GEdge)) as GEdge[];
     return edges.map(edge => ({
       element: edge,
