@@ -122,6 +122,16 @@ class CodeEditor {
   async expectContentAssistContains(contentAssist: string) {
     await expect(this.contentAssist).toContainText(contentAssist);
   }
+
+  async triggerMonacoCompletion(expectedCompletion: string) {
+    await expect(this.contentAssist).toBeVisible();
+    if (this.page.context().browser()?.browserType().name() === 'webkit') {
+      await this.contentAssist.getByRole('option', { name: expectedCompletion }).first().click();
+    } else {
+      await this.contentAssist.getByRole('listitem', { name: expectedCompletion }).first().click();
+    }
+    await expect(this.contentAssist).toBeHidden();
+  }
 }
 
 export class Browser {
