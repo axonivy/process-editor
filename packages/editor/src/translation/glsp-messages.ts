@@ -42,9 +42,9 @@ const doTranslateMessages = () => {
       shortcut_reset: t('a11y.hotkeyDesc.resizeDefault') // ResizeKeyTool (previously: ResizeKeyListener), Ctrl+0
     },
     search: {
-      label: t('a11y.search.label'), // SearchAutocompletePaletteTool, aria-label
-      placeholder: t('a11y.search.placeholder'), // SearchAutocompletePaletteTool, placeholder
-      shortcut_activate: t('a11y.hotkeyDesc.searchPalette') // SearchAutocompletePaletteTool, CTRL+F
+      label: t('a11y.search.label'), // SearchAutocompletePalette, aria-label
+      placeholder: t('a11y.search.placeholder'), // SearchAutocompletePalette, placeholder
+      shortcut_activate: t('a11y.hotkeyDesc.searchPalette') // IvyGlobalKeyListenerTool, CTRL+F / CMD+F
     },
     shortcut: {
       //   group_focus: undefined, // unused by GLSP
@@ -52,7 +52,7 @@ const doTranslateMessages = () => {
       //   group_grid: undefined, // unused by GLSP
       group_move: t('a11y.hotkeyGroup.move'), // ChangeBoundsTool (previously: MoveKeyListener), ViewportKeyTool (previously: MoveKeyListener)
       group_navigation: t('a11y.hotkeyGroup.navigation'), // ElementNavigatorTool (previously: ElementNavigatorKeyListener)
-      group_search: t('a11y.hotkeyGroup.search'), // SearchAutocompletePaletteTool
+      group_search: t('a11y.hotkeyGroup.search'), // IvyGlobalKeyListenerTool
       group_resize: t('a11y.hotkeyGroup.resize'), // DefaultResizeKeyTool (previously: ResizeKeyListener), ResizeKeyTool (previously: ResizeKeyListener)
       //   group_tool_palette: undefined, // GlobalKeyListenerTool, not used, we have IvyGlobalKeyListenerTool
       //   group_viewport: undefined, // unused by GLSP

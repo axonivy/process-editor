@@ -15,7 +15,7 @@
     "@axonivy/process-editor-inscription-protocol": "workspace:~14.0.0-next",
     "@axonivy/process-editor-inscription-view": "workspace:~14.0.0-next",
     "@axonivy/process-editor-protocol": "workspace:~14.0.0-next",
-    "@eclipse-glsp/client": "2.5.0"
+    "@eclipse-glsp/client": "2.6.0"
   },
   "peerDependencies": {
     "@axonivy/jsonrpc": "~14.0.0-next",

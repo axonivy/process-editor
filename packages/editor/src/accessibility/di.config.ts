@@ -1,10 +1,7 @@
 import {
-  bindAsService,
-  configureActionHandler,
   DefaultResizeKeyListener,
   DefaultResizeKeyTool,
   DeselectKeyTool,
-  elementNavigationModule,
   FeatureModule,
   FocusDomAction,
   HideToastAction,
@@ -12,12 +9,17 @@ import {
   ResizeElementAction,
   ResizeKeyListener,
   ResizeKeyTool,
-  resizeModule,
-  searchPaletteModule,
   ShowToastMessageAction,
+  TYPES,
+  bindAsService,
+  configureActionHandler,
+  elementNavigationModule,
+  resizeModule,
+  searchPaletteDefaultSuggestionsModule,
+  searchPaletteModule,
+  standaloneSearchPaletteModule,
   standaloneShortcutsModule,
   toastModule,
-  TYPES,
   viewKeyToolsModule
 } from '@eclipse-glsp/client';
 import { translateMessages } from '../translation/glsp-messages';
@@ -27,8 +29,11 @@ import { JumpOutKeyListener } from './key-listener/jump-out';
 import { QuickActionKeyListener } from './key-listener/quick-actions';
 import './key-shortcut/accessible-key-shortcut.css';
 import { IvyResizeElementHandler } from './resize-key-tool/resize-key-handler';
-import { IvySearchAutocompletePalette } from './search/search-palette';
-import { IvySearchAutocompletePaletteTool } from './search/search-tool';
+import {
+  IvySearchAutocompletePalette,
+  RevealEdgeElementAutocompleteSuggestionProvider,
+  RevealNodeAutocompleteSuggestionProvider
+} from './search/search-palette';
 import { IvyToast } from './toast/toast-tool';
 
 translateMessages();
@@ -54,11 +59,20 @@ export const ivyResizeModule = new FeatureModule(
 export const ivySearchPaletteModule = new FeatureModule(
   (bind, _unbind, isBound, rebind) => {
     const context = { bind, isBound, rebind };
-    // fully customized
+    // custom search palette (skips deselecting all elements on show)
     bindAsService(context, TYPES.IUIExtension, IvySearchAutocompletePalette);
-    bindAsService(context, TYPES.IDefaultTool, IvySearchAutocompletePaletteTool);
   },
   { featureId: searchPaletteModule.featureId }
+);
+
+export const ivySearchPaletteDefaultSuggestionsModule = new FeatureModule(
+  (bind, _unbind, isBound, rebind) => {
+    const context = { bind, isBound, rebind };
+    // custom suggestion providers (Ivy icons and types)
+    bindAsService(context, TYPES.IAutocompleteSuggestionProvider, RevealNodeAutocompleteSuggestionProvider);
+    bindAsService(context, TYPES.IAutocompleteSuggestionProvider, RevealEdgeElementAutocompleteSuggestionProvider);
+  },
+  { featureId: searchPaletteDefaultSuggestionsModule.featureId }
 );
 
 export const ivyToastModule = new FeatureModule(
@@ -107,7 +121,9 @@ export const ivyDomFocusModule = new FeatureModule(
 
 export const IVY_ACCESSIBILITY_MODULES: ModuleConfiguration[] = [
   { replace: ivyResizeModule }, // instead of: resizeModule
-  { add: ivySearchPaletteModule }, // instead of: searchPaletteModule
+  { replace: ivySearchPaletteModule }, // instead of: searchPaletteModule
+  { replace: ivySearchPaletteDefaultSuggestionsModule }, // instead of: searchPaletteDefaultSuggestionsModule
+  { add: standaloneSearchPaletteModule }, // standard key listener (Ctrl+F / Cmd+F)
   { add: ivyToastModule }, // instead of: toastModule
   { add: ivyViewKeyToolsModule }, // instead of: viewKeyToolsModule
   { add: elementNavigationModule }, // standard accessibility module

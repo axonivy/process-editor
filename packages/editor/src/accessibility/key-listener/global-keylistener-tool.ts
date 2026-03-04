@@ -2,7 +2,9 @@ import {
   Action,
   BaseEditTool,
   FocusDomAction,
+  isMac,
   matchesKeystroke,
+  messages,
   repeatOnMessagesUpdated,
   SelectAction,
   SelectionService,
@@ -53,6 +55,12 @@ export class IvyGlobalKeyListenerTool extends BaseEditTool {
         shortcuts: ['2'],
         description: t('a11y.hotkeyDesc.focusGraph'),
         group: t('a11y.hotkeyGroup.graph'),
+        position: 0
+      },
+      {
+        shortcuts: [isMac() ? 'CMD' : 'CTRL', 'F'],
+        description: messages.search.shortcut_activate,
+        group: messages.shortcut.group_search,
         position: 0
       }
     ];
