@@ -4,6 +4,9 @@
   height: 100%;
   width: 100%;
   user-select: text;
+  .ui-table {
+    table-layout: auto;
+  }
   .ui-table-row {
     height: 20px;
     font-size: 11px;
