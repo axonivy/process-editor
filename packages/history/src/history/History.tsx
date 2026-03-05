@@ -1,3 +1,4 @@
+import { RequestHistoryAction, type HistoryNode } from '@axonivy/process-editor-protocol';
 import {
   BasicField,
   ButtonGroup,
@@ -10,27 +11,26 @@ import {
   useTableGlobalFilter
 } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { type IActionDispatcher } from '@eclipse-glsp/client/lib/re-exports';
+import { useQuery } from '@tanstack/react-query';
 import { flexRender, getCoreRowModel, useReactTable, type ColumnDef } from '@tanstack/react-table';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export type HistoryNode = {
-  id: string;
-  title: string;
-  icon?: IvyIcons;
-  children: Array<HistoryNode>;
-};
-
-export const History = ({ elementId }: { elementId: string }) => {
+export const History = ({ actionDispatcher, elementId }: { actionDispatcher: IActionDispatcher; elementId: string }) => {
   const { t } = useTranslation();
+  const query = useQuery({
+    queryKey: ['process-history', elementId],
+    queryFn: () => actionDispatcher.request(RequestHistoryAction.create({ elementId }))
+  });
   const [searchActive, setSearchActive] = useState(false);
   const globalFilter = useTableGlobalFilter({ searchAutoFocus: true });
   const expanded = useTableExpand<HistoryNode>();
   const columns: ColumnDef<HistoryNode, string>[] = [
     {
-      accessorKey: 'title',
+      accessorKey: 'description',
       cell: cell => (
-        <ExpandableCell cell={cell} icon={cell.row.original.icon}>
+        <ExpandableCell cell={cell} icon={historyNodeIcon(cell.row.original)}>
           <span>{cell.getValue()}</span>
         </ExpandableCell>
       )
@@ -39,7 +39,7 @@ export const History = ({ elementId }: { elementId: string }) => {
   const table = useReactTable({
     ...expanded.options,
     ...globalFilter.options,
-    data: tempData,
+    data: query.data?.historyNodes || [],
     columns,
     getCoreRowModel: getCoreRowModel(),
     state: {
@@ -47,6 +47,11 @@ export const History = ({ elementId }: { elementId: string }) => {
       ...globalFilter.tableState
     }
   });
+
+  if (query.isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <BasicField
       label={`History of '${elementId}'`}
@@ -74,7 +79,7 @@ export const History = ({ elementId }: { elementId: string }) => {
       <Table>
         <TableBody>
           {table.getRowModel().rows.map(row => (
-            <TableRow key={row.original.id}>
+            <TableRow key={row.id}>
               {row.getVisibleCells().map(cell => (
                 <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
               ))}
@@ -86,48 +91,17 @@ export const History = ({ elementId }: { elementId: string }) => {
   );
 };
 
-const tempData: HistoryNode[] = [
-  {
-    id: '1',
-    title: 'HTTP GET Humantask/...',
-    icon: IvyIcons.ArrowRight,
-    children: [
-      {
-        id: '1-1',
-        title: '11:34:44.368',
-        icon: IvyIcons.Settings,
-        children: [
-          {
-            id: '1-1-1',
-            title: 'in = workflow.humantask.Pro...',
-            icon: IvyIcons.Attachment,
-            children: [
-              {
-                id: '1-1-1-1',
-                title: 'accepted = null',
-                icon: IvyIcons.Attachment,
-                children: []
-              },
-              {
-                id: '1-1-1-2',
-                title: 'amount = null',
-                icon: IvyIcons.Attachment,
-                children: []
-              }
-            ]
-          }
-        ]
-      },
-      {
-        id: '1-2',
-        title: 'Node 1.2',
-        children: []
-      }
-    ]
-  },
-  {
-    id: '2',
-    title: 'Node 2',
-    children: []
+const historyNodeIcon = (node: HistoryNode) => {
+  switch (node.type) {
+    case 'REQUEST_FINISHED':
+      return IvyIcons.ActivitiesGroup;
+    case 'REQUEST_PAUSED':
+      return IvyIcons.Manual;
+    case 'REQUEST_RUNNING':
+      return IvyIcons.Play;
+    case 'EXECUTION':
+      return IvyIcons.Clock;
+    case 'DATA':
+      return IvyIcons.Attribute;
   }
-];
+};

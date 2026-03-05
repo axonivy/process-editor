@@ -75,7 +75,7 @@ export class HistoryUi extends ReactUIExtension implements IActionHandler, ISele
           collisionBoundary={this.containerElement}
           style={{ width: 500, visibility: 'visible' }}
         >
-          <History elementId={this.element.id} />
+          <History actionDispatcher={this.actionDispatcher} elementId={this.element.id} />
         </PopoverContent>
       </Popover>
     );
