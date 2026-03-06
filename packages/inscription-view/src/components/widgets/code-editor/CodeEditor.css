@@ -12,9 +12,7 @@
   line-height: 12px;
   color: var(--body);
   text-align: start;
-  .monaco-editor {
-    padding: var(--input-padding);
-  }
+  padding: var(--input-padding);
 }
 
 .code-editor .code-input:focus-within {
