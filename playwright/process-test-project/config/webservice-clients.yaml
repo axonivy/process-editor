@@ -1,9 +1,8 @@
-# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0-dev/config/webservice-clients.json
+# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0-dev/config/webservice-clients-1.json
 WebServiceClients:
   webservice:
     Id: 1842DB7CC45C39D7
     ServiceClass: net.webservicex.client.GeoIPService
-    WsCallLibrary: CXF
     Endpoints:
       GeoIPServiceSoap:
         - http://www.webservicex.net/geoipservice.asmx
