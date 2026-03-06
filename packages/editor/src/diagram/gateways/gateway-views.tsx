@@ -1,5 +1,15 @@
 /** @jsx svg */
-import { Diamond, DiamondNodeView, GShapeElement, hiddenBoundingRect, Point, svg, type RenderingContext } from '@eclipse-glsp/client';
+import {
+  Diamond,
+  DiamondNodeView,
+  GShapeElement,
+  hiddenBoundingRect,
+  Point,
+  svg,
+  TYPES,
+  type IActionDispatcher,
+  type RenderingContext
+} from '@eclipse-glsp/client';
 import { inject, injectable, optional } from 'inversify';
 import type { VNode } from 'snabbdom';
 import { createExecutionBadge } from '../../execution/views';
@@ -10,6 +20,7 @@ import { GatewayNode } from '../model';
 @injectable()
 export class GatewayNodeView extends DiamondNodeView {
   @inject(CustomIconToggleActionHandler) @optional() protected customIconHandler?: CustomIconToggleActionHandler;
+  @inject(TYPES.IActionDispatcher) protected actionDispatcher!: IActionDispatcher;
 
   override render(node: GatewayNode, context: RenderingContext): VNode {
     const diamond = new Diamond({ height: Math.max(node.size.height, 0), width: Math.max(node.size.width, 0), x: 0, y: 0 });
@@ -29,7 +40,7 @@ export class GatewayNodeView extends DiamondNodeView {
         />
         {getIconDecorator(this.customIconHandler?.isShowCustomIcons ? node.customIcon : node.type, radius, node.color)}
         {context.renderChildren(node)}
-        {createExecutionBadge(node, Math.max(node.size.width, 0))}
+        {createExecutionBadge(this.actionDispatcher, node, Math.max(node.size.width, 0))}
       </g>
     );
   }

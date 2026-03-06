@@ -1,0 +1,14 @@
+{
+  "extends": "@axonivy/ts-config/package",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "include": ["src"],
+  "references": [
+    { "path": "../protocol/tsconfig.json" },
+    { "path": "../editor/tsconfig.build.json" }
+  ]
+}

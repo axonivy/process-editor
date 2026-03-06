@@ -35,6 +35,7 @@
 .execution-badge {
   fill: var(--glsp-node);
   stroke: var(--glsp-execution);
+  cursor: pointer;
 }
 .failed .execution-badge {
   stroke: var(--glsp-execution-failed);
@@ -45,6 +46,7 @@
 text.execution-text {
   fill: var(--glsp-execution);
   font-size: 8pt;
+  cursor: pointer;
 }
 .failed .execution-text {
   fill: var(--glsp-execution-failed);

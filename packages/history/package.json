@@ -1,0 +1,47 @@
+{
+  "name": "@axonivy/process-editor-history",
+  "version": "14.0.0-next",
+  "description": "GLSP sprotty diagrams for the Axon Ivy Processes",
+  "license": "(EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0)",
+  "author": "Axon Ivy AG",
+  "homepage": "https://developer.axonivy.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/axonivy/process-editor"
+  },
+  "dependencies": {
+    "@axonivy/process-editor": "workspace:~14.0.0-next",
+    "@axonivy/process-editor-protocol": "workspace:~14.0.0-next",
+    "@eclipse-glsp/client": "2.6.0"
+  },
+  "peerDependencies": {
+    "@axonivy/ui-components": "~14.0.0-next",
+    "@axonivy/ui-icons": "~14.0.0-next",
+    "@tanstack/react-table": "^8.20",
+    "@tanstack/react-query": "^5.64",
+    "i18next": "^24.2.3 || ^25.0.0",
+    "inversify": "^6.2",
+    "react": "^19.0",
+    "react-i18next": "^15.4.1 || ^16.0.0"
+  },
+  "devDependencies": {
+    "@axonivy/ui-components": "~14.0.0-next.1011.e9ae6be",
+    "@axonivy/ui-icons": "~14.0.0-next.1011.e9ae6be",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "scripts": {
+    "clean": "rimraf lib tsconfig.tsbuildinfo",
+    "build": "tsc --build && tscp",
+    "type": "tsc --noEmit"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "type": "module",
+  "types": "lib/index",
+  "module": "lib/index"
+}

@@ -1,12 +1,17 @@
 /** @jsx svg */
-import { svg } from '@eclipse-glsp/client';
+import { ShowHistoryAction } from '@axonivy/process-editor-protocol';
+import { svg, type GModelElement, type IActionDispatcher } from '@eclipse-glsp/client';
 import type { VNode } from 'snabbdom';
 import type { Executable } from './model';
 
-export function createExecutionBadge(node: Executable, width: number): VNode | undefined {
+export function createExecutionBadge(
+  actionDispatcher: IActionDispatcher,
+  node: Executable & GModelElement,
+  width: number
+): VNode | undefined {
   if (node.executionCount) {
     return (
-      <g>
+      <g on={{ click: () => actionDispatcher.dispatch(ShowHistoryAction.create(node.id)) }}>
         <rect class-execution-badge rx='7' ry='7' x={width - 11} y={-7} width={22} height={14}></rect>
         <text class-execution-text x={width} dy='.4em'>
           {node.executionCount}

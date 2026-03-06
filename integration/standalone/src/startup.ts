@@ -1,5 +1,5 @@
 import { EnableInscriptionAction } from '@axonivy/process-editor-inscription';
-import { EnableViewportAction, SwitchThemeAction, UpdatePaletteItems } from '@axonivy/process-editor-protocol';
+import { EnableHistoryAction, EnableViewportAction, SwitchThemeAction, UpdatePaletteItems } from '@axonivy/process-editor-protocol';
 import type { IActionDispatcher, IDiagramStartup } from '@eclipse-glsp/client';
 import { EnableToolPaletteAction, NavigationTarget, SelectAction, TYPES } from '@eclipse-glsp/client';
 import { ContainerModule, inject, injectable } from 'inversify';
@@ -25,6 +25,7 @@ export class StandaloneDiagramStartup implements IDiagramStartup {
         inscriptionContext: this.options.inscriptionContext
       })
     );
+    this.actionDispatcher.dispatch(EnableHistoryAction.create());
     if (this.options.select) {
       const elementIds = this.options.select.split(NavigationTarget.ELEMENT_IDS_SEPARATOR);
       this.actionDispatcher.dispatch(SelectAction.create({ selectedElementsIDs: elementIds }));
