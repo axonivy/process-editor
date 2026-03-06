@@ -2,11 +2,10 @@ import { RequestHistoryAction } from '@axonivy/process-editor-protocol';
 import { Popover, PopoverAnchor, PopoverContent, Spinner } from '@axonivy/ui-components';
 import type { Bounds, IActionDispatcher } from '@eclipse-glsp/client';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HistoryTree, type HistoryTreeProps } from './HistoryTree';
-
-const HISTORY_PINNED_STORAGE_KEY = 'process-editor.history.pinned';
+import { PinnedHistory } from './PinnedHistory';
+import { useHistoryPinnedState } from './useHistoryPinnedState';
 
 type HistoryPopoverProps = {
   containerElement: HTMLElement;
@@ -17,32 +16,18 @@ type HistoryPopoverProps = {
 };
 
 export const HistoryPopover = ({ bounds, containerElement, actionDispatcher, elementId, closeHistory }: HistoryPopoverProps) => {
-  const [pinned, setPinned] = useState(() => {
-    try {
-      return window.localStorage.getItem(HISTORY_PINNED_STORAGE_KEY) === 'true';
-    } catch {
-      return false;
-    }
-  });
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem(HISTORY_PINNED_STORAGE_KEY, String(pinned));
-    } catch {
-      // Ignore storage failures (e.g. private mode).
-    }
-  }, [pinned]);
+  const { pinned, togglePinned } = useHistoryPinnedState();
 
   const history = (
     <HistoryContent
       actionDispatcher={actionDispatcher}
       elementId={elementId}
-      togglePinned={() => setPinned(value => !value)}
+      togglePinned={togglePinned}
       closeHistory={closeHistory}
     />
   );
   if (pinned) {
-    return <div className='history-pinned'>{history}</div>;
+    return <PinnedHistory>{history}</PinnedHistory>;
   }
   return (
     <Popover open={true}>

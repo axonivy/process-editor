@@ -17,11 +17,41 @@
     left: var(--size-4);
     bottom: var(--size-4);
     visibility: visible;
-    width: 500px;
+    min-width: 250px;
+    min-height: 180px;
     background: var(--glsp-tool-bg);
     border-radius: var(--border-r2, 5px);
     box-shadow: var(--glsp-box-shadow);
     padding: var(--size-2, 0.5rem);
+    overflow: auto;
+    box-sizing: border-box;
+  }
+  .history-pinned-resizer-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    cursor: ns-resize;
+    z-index: 1;
+  }
+  .history-pinned-resizer-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 100%;
+    cursor: ew-resize;
+    z-index: 1;
+  }
+  .history-pinned-resizer-top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 14px;
+    height: 14px;
+    cursor: nesw-resize;
+    z-index: 2;
   }
   .ui-table {
     table-layout: auto;
