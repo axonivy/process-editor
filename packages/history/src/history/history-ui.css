@@ -4,6 +4,25 @@
   height: 100%;
   width: 100%;
   user-select: text;
+  div[data-slot='popover-anchor'] {
+    position: absolute;
+    visibility: hidden;
+  }
+  .ui-popover-content {
+    width: 500px;
+    visibility: visible;
+  }
+  .history-pinned {
+    position: fixed;
+    left: var(--size-4);
+    bottom: var(--size-4);
+    visibility: visible;
+    width: 500px;
+    background: var(--glsp-tool-bg);
+    border-radius: var(--border-r2, 5px);
+    box-shadow: var(--glsp-box-shadow);
+    padding: var(--size-2, 0.5rem);
+  }
   .ui-table {
     table-layout: auto;
   }

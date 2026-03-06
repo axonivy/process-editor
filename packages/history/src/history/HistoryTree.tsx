@@ -15,7 +15,14 @@ import { flexRender, getCoreRowModel, useReactTable, type ColumnDef, type Expand
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export const HistoryTree = ({ elementId, data }: { elementId: string; data: Array<HistoryNode> }) => {
+export type HistoryTreeProps = {
+  elementId: string;
+  data: Array<HistoryNode>;
+  togglePinned: () => void;
+  closeHistory: () => void;
+};
+
+export const HistoryTree = ({ elementId, data, togglePinned, closeHistory }: HistoryTreeProps) => {
   const { t } = useTranslation();
   const [searchActive, setSearchActive] = useState(false);
   const globalFilter = useTableGlobalFilter({ searchAutoFocus: true });
@@ -63,6 +70,18 @@ export const HistoryTree = ({ elementId, data }: { elementId: string; data: Arra
               'aria-label': t('common.label.refresh'),
               icon: IvyIcons.Reset,
               onClick: () => console.log('refresh clicked')
+            },
+            {
+              title: t('common.label.pin'),
+              'aria-label': t('common.label.pin'),
+              icon: IvyIcons.WindowMinimize,
+              onClick: togglePinned
+            },
+            {
+              title: t('common.label.close'),
+              'aria-label': t('common.label.close'),
+              icon: IvyIcons.Close,
+              onClick: closeHistory
             }
           ]}
         />

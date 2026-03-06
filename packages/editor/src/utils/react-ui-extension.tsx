@@ -35,7 +35,10 @@ export abstract class ReactUIExtension extends GLSPAbstractUIExtension {
   }
 
   protected update(): void {
-    const root = this.currentRoot ?? this.editorContext.modelRoot;
+    const root = this.root();
+    if (!root) {
+      return;
+    }
     const contextElementIds = this.currentContextElementIds ?? [];
     if (this.nodeRoot) {
       this.nodeRoot.render(
@@ -45,6 +48,14 @@ export abstract class ReactUIExtension extends GLSPAbstractUIExtension {
           </React.StrictMode>
         </React.Fragment>
       );
+    }
+  }
+
+  protected root() {
+    try {
+      return this.currentRoot ?? this.editorContext.modelRoot;
+    } catch {
+      return;
     }
   }
 }

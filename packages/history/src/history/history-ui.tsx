@@ -1,6 +1,5 @@
 import { isExecutable, ReactUIExtension, type Executable } from '@axonivy/process-editor';
 import { EnableHistoryAction, ShowHistoryAction } from '@axonivy/process-editor-protocol';
-import { Popover, PopoverAnchor, PopoverContent } from '@axonivy/ui-components';
 import {
   getAbsoluteBounds,
   GModelRoot,
@@ -17,7 +16,7 @@ import {
 } from '@eclipse-glsp/client';
 import { inject, injectable, postConstruct } from 'inversify';
 import * as React from 'react';
-import { History } from './History';
+import { HistoryPopover } from './History';
 
 @injectable()
 export class HistoryUi extends ReactUIExtension implements IActionHandler, ISelectionListener {
@@ -48,36 +47,21 @@ export class HistoryUi extends ReactUIExtension implements IActionHandler, ISele
   }
 
   protected render(): React.ReactNode {
+    if (!this.showHistory) {
+      return null;
+    }
     if (!this.element) {
       return null;
     }
     const bounds = getAbsoluteBounds(this.element);
     return (
-      <Popover open={this.showHistory}>
-        <PopoverAnchor asChild>
-          <div
-            style={{
-              position: 'absolute',
-              top: `${bounds.y - 6}px`,
-              left: `${bounds.x - 6}px`,
-              height: `${bounds.height + 12}px`,
-              width: `${bounds.width + 12}px`,
-              visibility: 'hidden'
-            }}
-          />
-        </PopoverAnchor>
-        <PopoverContent
-          side='bottom'
-          align='center'
-          sideOffset={10}
-          collisionPadding={8}
-          container={this.containerElement}
-          collisionBoundary={this.containerElement}
-          style={{ width: 500, visibility: 'visible' }}
-        >
-          <History actionDispatcher={this.actionDispatcher} elementId={this.element.id} />
-        </PopoverContent>
-      </Popover>
+      <HistoryPopover
+        bounds={bounds}
+        containerElement={this.containerElement}
+        actionDispatcher={this.actionDispatcher}
+        elementId={this.element.id}
+        closeHistory={() => this.closeHistory()}
+      />
     );
   }
 
@@ -113,10 +97,14 @@ export class HistoryUi extends ReactUIExtension implements IActionHandler, ISele
       this.element = element;
       this.changeUiVisiblitiy(true);
     } else {
-      this.element = undefined;
-      this.showHistory = false;
-      this.changeUiVisiblitiy(false);
+      this.closeHistory();
     }
+  }
+
+  closeHistory() {
+    this.element = undefined;
+    this.showHistory = false;
+    this.changeUiVisiblitiy(false);
   }
 }
 
