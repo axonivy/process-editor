@@ -5,30 +5,30 @@ import { NewPartTest, PartObject } from './part-tester';
 
 class EndPage extends PartObject {
   section: Section;
-  endPage: TextArea;
+  endPageInput: TextArea;
 
   constructor(part: Part) {
     super(part);
     this.section = part.section('End Page');
-    this.endPage = this.section.textArea({});
+    this.endPageInput = this.section.textArea({});
   }
 
   async fill() {
     await this.section.expectIsOpen();
-    await this.endPage.fill('page.xhtml');
+    await this.endPageInput.fill('page.xhtml');
   }
 
   async assertFill() {
-    await this.endPage.expectValue('page.xhtml');
+    await this.endPageInput.expectValue('page.xhtml');
   }
 
   async clear() {
-    await this.endPage.clear();
+    await this.endPageInput.clear();
   }
 
   async assertClear() {
     await this.section.expectIsOpen();
-    await this.endPage.expectEmpty();
+    await this.endPageInput.expectEmpty();
   }
 }
 
