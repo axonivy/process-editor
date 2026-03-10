@@ -103,7 +103,7 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
+      </plugin>      
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
@@ -117,23 +117,6 @@
             <configuration>
               <sources>
                 <source>${project.basedir}/src_generated/ws/GeoIpService</source>
-              </sources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>add-generated-source</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>add-source</goal>
-            </goals>
-            <configuration>
-              <sources>
                 <source>${project.basedir}/src_generated/rest/pet</source>
               </sources>
             </configuration>
