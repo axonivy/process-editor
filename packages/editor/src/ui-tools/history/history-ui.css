@@ -59,5 +59,8 @@
   .ui-table-row {
     height: 20px;
     font-size: 11px;
+    .lazy-state-icon {
+      font-size: 14px;
+    }
   }
 }

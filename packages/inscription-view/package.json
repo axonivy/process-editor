@@ -36,9 +36,9 @@
     "react-i18next": "^15.4.1 || ^16.0.0"
   },
   "devDependencies": {
-    "@axonivy/jsonrpc": "~14.0.0-next.1045.37d6391",
-    "@axonivy/ui-components": "~14.0.0-next.1045.37d6391",
-    "@axonivy/ui-icons": "~14.0.0-next.1045.37d6391",
+    "@axonivy/jsonrpc": "~14.0.0-next.1048.55a3654",
+    "@axonivy/ui-components": "~14.0.0-next.1048.55a3654",
+    "@axonivy/ui-icons": "~14.0.0-next.1048.55a3654",
     "@hediet/json-rpc": "^0.5.0",
     "@hediet/json-rpc-browser": "^0.5.1",
     "@hediet/json-rpc-websocket": "^0.5.1",

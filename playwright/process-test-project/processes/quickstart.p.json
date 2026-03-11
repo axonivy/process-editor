@@ -9,7 +9,16 @@
       "type" : "RequestStart",
       "name" : "start.ivp",
       "config" : {
-        "signature" : "start"
+        "signature" : "start",
+        "input" : {
+          "map" : { },
+          "code" : [
+            "out.deep.test = \"1\";",
+            "out.deep.deep.test = \"2\";",
+            "out.deep.deep.deep.test = \"3\";",
+            "out.deep.deep.deep.deep.test = \"4\";"
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
