@@ -2,6 +2,7 @@ import {
   createIvyDiagramContainer,
   IVY_ACCESSIBILITY_MODULES,
   ivyBreakpointModule,
+  ivyHistoryModule,
   ivyReactQueryDevToolsModule,
   ivyStandaloneCopyPasteModule,
   ivyThemeModule
@@ -15,6 +16,7 @@ import type { Container } from 'inversify';
 import ivyStandaloneBreakpointModule from './breakpoint/di.config';
 import ivyDirtyStateModule from './dirty-state/di.config';
 import ivyNavigationModule from './navigate/di.config';
+import ivyStandaloneStartProcessModule from './start-process/di.config';
 import { ivyStartupDiagramModule } from './startup';
 
 export interface IvyDiagramOptions extends IDiagramOptions {
@@ -33,6 +35,7 @@ export default function createContainer(options: IvyDiagramOptions): Container {
     undoRedoModule,
     ivyStandaloneBreakpointModule,
     ivyStandaloneCopyPasteModule,
+    ivyStandaloneStartProcessModule,
     ivyThemeModule,
     ivyReactQueryDevToolsModule,
     ivyBreakpointModule,
@@ -41,6 +44,7 @@ export default function createContainer(options: IvyDiagramOptions): Container {
     ivyNavigationModule,
     ivyDirtyStateModule,
     ivyInscriptionModule,
+    ivyHistoryModule,
     ivyStartupDiagramModule,
     ...IVY_ACCESSIBILITY_MODULES
   );

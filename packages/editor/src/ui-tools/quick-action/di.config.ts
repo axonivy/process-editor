@@ -1,4 +1,4 @@
-import { FeatureModule, RemoveMarqueeAction, TYPES, bindAsService, configureActionHandler } from '@eclipse-glsp/client';
+import { FeatureModule, RemoveMarqueeAction, SetViewportAction, TYPES, bindAsService, configureActionHandler } from '@eclipse-glsp/client';
 import type { interfaces } from 'inversify';
 
 import { IVY_TYPES } from '../../types';
@@ -26,6 +26,7 @@ const ivyQuickActionModule = new FeatureModule((bind, _unbind, isBound) => {
   configureActionHandler({ bind, isBound }, ShowQuickActionMenuAction.KIND, QuickActionUI);
   configureActionHandler({ bind, isBound }, ShowInfoQuickActionMenuAction.KIND, QuickActionUI);
   configureActionHandler({ bind, isBound }, RemoveMarqueeAction.KIND, QuickActionUI);
+  configureActionHandler({ bind, isBound }, SetViewportAction.KIND, QuickActionUI);
 
   configureQuickActionEdgeTool({ bind, isBound });
   configureQuickActionProviders({ bind });

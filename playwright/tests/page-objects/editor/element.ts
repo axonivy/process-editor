@@ -100,6 +100,13 @@ export class Element extends BaseElement {
     return view;
   }
 
+  async showHistory() {
+    await this.executionBadge.click();
+    const view = ProcessEditor.history(this.page);
+    await view.expectOpen();
+    return view;
+  }
+
   async expectPosition(point: Point) {
     await expect(this.element).toHaveAttribute('transform', `translate(${point.x}, ${point.y})`);
   }
@@ -133,6 +140,10 @@ export class Element extends BaseElement {
 
   get breakpointHandle() {
     return this.element.locator('.ivy-breakpoint-handle');
+  }
+
+  get executionBadge() {
+    return this.element.locator('.execution');
   }
 }
 

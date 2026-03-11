@@ -159,7 +159,7 @@ describe('EventNodeView', () => {
     start.executionCount = 3;
     const view = viewRegistry.get(EventStartTypes.START).render(start, context);
     const executionBadge =
-      '<g><rect class="execution-badge" rx="7" ry="7" x="19" y="-7" width="22" height="14" /><text class="execution-text" x="30" dy=".4em">3</text></g>';
+      '<g class="execution"><rect class="execution-badge" rx="7" ry="7" x="19" y="-7" width="22" height="14" /><text class="execution-text" x="30" dy=".4em">3</text></g>';
     expect(toHTML(view)).to.contains(executionBadge);
   });
 

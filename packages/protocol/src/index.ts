@@ -9,6 +9,7 @@ export * from './action/data-class';
 export * from './action/execution';
 export * from './action/form-editor';
 export * from './action/go-to-source';
+export * from './action/history';
 export * from './action/icon';
 export * from './action/jump';
 export * from './action/message';

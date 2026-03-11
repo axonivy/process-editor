@@ -244,6 +244,9 @@ importers:
       '@tanstack/react-query-devtools':
         specifier: ^5.64
         version: 5.91.3(@tanstack/react-query@5.90.21(react@19.2.4))(react@19.2.4)
+      '@tanstack/react-table':
+        specifier: ^8.20
+        version: 8.21.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       i18next:
         specifier: ^24.2.3 || ^25.0.0
         version: 25.8.14(typescript@5.9.3)

@@ -1,5 +1,13 @@
 /** @jsx svg */
-import { ATTR_BBOX_ELEMENT, GShapeElement, RectangularNodeView, type RenderingContext, svg } from '@eclipse-glsp/client';
+import {
+  ATTR_BBOX_ELEMENT,
+  GShapeElement,
+  type IActionDispatcher,
+  RectangularNodeView,
+  type RenderingContext,
+  svg,
+  TYPES
+} from '@eclipse-glsp/client';
 import { inject, injectable, optional } from 'inversify';
 import type { VNode } from 'snabbdom';
 import { createExecutionBadge } from '../../execution/views';
@@ -11,6 +19,7 @@ import { ActivityNode } from '../model';
 @injectable()
 export class ActivityNodeView extends RectangularNodeView {
   @inject(CustomIconToggleActionHandler) @optional() protected customIconHandler?: CustomIconToggleActionHandler;
+  @inject(TYPES.IActionDispatcher) protected actionDispatcher!: IActionDispatcher;
 
   override render(node: ActivityNode, context: RenderingContext): VNode | undefined {
     if (!this.isVisible(node, context)) {
@@ -35,7 +44,7 @@ export class ActivityNodeView extends RectangularNodeView {
         {context.renderChildren(node)}
         {getActivityIconDecorator(node, this.customIconHandler?.isShowCustomIcons ? node.customIcon : node.type)}
         {this.getNodeDecorator(node)}
-        {createExecutionBadge(node, node.bounds.width)}
+        {createExecutionBadge(this.actionDispatcher, node, node.bounds.width)}
       </g>
     );
   }
