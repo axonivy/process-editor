@@ -135,7 +135,10 @@
     }
   },
   "history": {
-    "error": "Error loading history"
+    "error": "Error loading history",
+    "lazyInvalid": "Missing lazy-loading data",
+    "lazyLoadError": "Failed to load data",
+    "loadingNode": "Loading..."
   },
   "label": {
     "action": "Action",

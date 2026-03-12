@@ -10,5 +10,9 @@
   }, {
     "name" : "price",
     "type" : "Number"
+  }, {
+    "name" : "deep",
+    "type" : "process.test.project.DeepTestData",
+    "modifiers" : [ ]
   } ]
 }

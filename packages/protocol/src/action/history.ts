@@ -36,6 +36,7 @@ export namespace ShowHistoryAction {
 export interface RequestHistoryAction extends RequestAction<SetHistoryAction> {
   kind: typeof RequestHistoryAction.KIND;
   elementId: string;
+  lazyDataRequest?: LazyDataRequest;
 }
 
 export namespace RequestHistoryAction {
@@ -45,7 +46,7 @@ export namespace RequestHistoryAction {
     return RequestAction.hasKind(object, KIND) && hasStringProp(object, 'elementId');
   }
 
-  export function create(options: { elementId: string; requestId?: string }): RequestHistoryAction {
+  export function create(options: { elementId: string; lazyDataRequest?: LazyDataRequest }): RequestHistoryAction {
     return {
       kind: KIND,
       requestId: '',
@@ -67,8 +68,19 @@ export namespace SetHistoryAction {
   }
 }
 
+export interface LazyDataRequest {
+  requestId: string;
+  executionTime: string;
+  dataPath: string;
+}
+
 export type HistoryNode = {
+  id: string;
   type: 'REQUEST_FINISHED' | 'REQUEST_PAUSED' | 'REQUEST_RUNNING' | 'EXECUTION' | 'DATA';
+  expandable: boolean;
+  requestId?: string;
+  executionTime?: string;
+  dataPath?: string;
   description: string;
   children: Array<HistoryNode>;
 };

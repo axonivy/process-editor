@@ -1,0 +1,12 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "simpleName" : "DeepTestData",
+  "namespace" : "process.test.project",
+  "fields" : [ {
+    "name" : "deep",
+    "type" : "process.test.project.DeepTestData",
+    "modifiers" : [ ]
+  }, {
+    "name" : "test"
+  } ]
+}

@@ -131,6 +131,12 @@
       "value": "値"
     }
   },
+  "history": {
+    "error": "履歴の読み込み中にエラーが発生しました",
+    "lazyInvalid": "遅延読み込みデータが不足しています",
+    "lazyLoadError": "データを読み込めませんでした",
+    "loadingNode": "読み込み中..."
+  },
   "label": {
     "action": "アクション",
     "allowAnonymous": "匿名を許可する",
