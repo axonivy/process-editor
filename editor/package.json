@@ -27,7 +27,7 @@
     "@types/toastify-js": "^1.11.1",
     "@types/uuid": "^10.0.0",
     "cpx2": "^2.0.0",
-    "fantasticon": "^1.2.3",
+    "fantasticon": "^4.1.0",
     "jsdom": "^26.0.0",
     "reflect-metadata": "^0.2.0",
     "snabbdom-to-html": "^7.1.0",
