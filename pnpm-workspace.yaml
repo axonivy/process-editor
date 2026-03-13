@@ -2,6 +2,9 @@ packages:
   - packages/*
   - integration/*
   - playwright
+overrides:
+  dompurify@>=3.1.3 <=3.3.1: '>=3.3.2'
+  typescript-cp>tar: '>=7.5.11'
 
 patchedDependencies:
   monaco-editor: patches/monaco-editor.patch
