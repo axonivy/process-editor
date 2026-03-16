@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Vendor: Axon Ivy
-Specification-Title: OpenAPIv3 Client
-GENERATED_AT: Thu Oct 05 13:47:30 CEST 2023
-SERVICE_SPEC: file:/Users/lli/GitWorkspace/core/workspace/ch.ivyteam.ivy
- .lsp.inscription.tests/test/ch/ivyteam/ivy/lsp/inscription/meta/rest/pe
- tstore-oas3.json
-NAMESPACE: api.v3.client
-
