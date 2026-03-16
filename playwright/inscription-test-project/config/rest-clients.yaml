@@ -27,6 +27,7 @@ RestClients:
       PATH.apiVersion: v1
       PATH.api: ${ivy.var.myVar}
     OpenAPI:
+      SpecUrl: file:/Users/lli/GitWorkspace/core/workspace/ch.ivyteam.ivy.lsp.inscription.tests/test/ch/ivyteam/ivy/lsp/inscription/meta/rest/petstore-oas3.json
       Namespace: api.v3.client
   twitter:
     UUID: d6b7615f-1087-483d-9dbe-9b704bbe7f02
