@@ -1,1 +1,1 @@
-FROM maven:3.9.12-eclipse-temurin-25
+FROM maven:3.9.14-eclipse-temurin-25
