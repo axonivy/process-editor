@@ -33,7 +33,8 @@ export const MAXIMIZED_MONACO_OPTIONS: monaco.editor.IStandaloneEditorConstructi
   ...MONACO_OPTIONS,
   lineNumbers: 'on',
   folding: true,
-  showFoldingControls: 'always'
+  showFoldingControls: 'always',
+  foldingImportsByDefault: true
 };
 
 export const SINGLE_LINE_MONACO_OPTIONS: monaco.editor.IStandaloneEditorConstructionOptions = {

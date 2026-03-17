@@ -1,4 +1,4 @@
-import type { Action, IActionHandler } from '@eclipse-glsp/client';
+import { type Action, type IActionHandler } from '@eclipse-glsp/client';
 import { injectable } from 'inversify';
 
 export interface SetDirtyStateAction extends Action {
@@ -20,12 +20,20 @@ export namespace SetDirtyStateAction {
 
 @injectable()
 export class SetDirtyStateActionHandler implements IActionHandler {
+  private dirty = false;
+
   handle(action: SetDirtyStateAction): void {
+    this.dirty = false;
     const url = document.URL;
     let processName = url.substring(url.lastIndexOf('/') + 1);
     if (action.isDirty) {
+      this.dirty = true;
       processName = '* ' + processName;
     }
     document.title = processName;
+  }
+
+  isDirty(): boolean {
+    return this.dirty;
   }
 }
