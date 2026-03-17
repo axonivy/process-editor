@@ -1,6 +1,6 @@
 import { useField } from '@axonivy/ui-components';
 import { usePath } from '../../../context/usePath';
-import { MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
+import { MAXIMIZED_MONACO_OPTIONS, MonacoEditorUtil } from '../../../monaco/monaco-editor-util';
 import type { monaco } from '../../../monaco/monaco-modules';
 import Browser from '../../browser/Browser';
 import { MaximizedCodeEditorBrowser } from '../../browser/MaximizedCodeEditorBrowser';
@@ -26,13 +26,6 @@ export const ScriptArea = ({ maximizeState, ...props }: ScriptAreaProps) => {
       maximizeState.setIsMaximizedCodeEditorOpen(true);
     });
   };
-  const setScrollPosition = (editor: monaco.editor.IStandaloneCodeEditor) => {
-    const text = editor.getValue();
-    const importRegex = /^import .+;/gm;
-    const importMatches = text.match(importRegex);
-    const importAmount = importMatches ? importMatches.length : 0;
-    editor.revealLine(importAmount + 1);
-  };
 
   const { inputProps } = useField();
 
@@ -54,7 +47,8 @@ export const ScriptArea = ({ maximizeState, ...props }: ScriptAreaProps) => {
             {...props}
             initHeight={props.value.length > 0 ? () => 400 : undefined}
             location={path}
-            onMountFuncs={[setEditor, keyActionMountFunc, MonacoEditorUtil.keyActionEscShiftTab, setScrollPosition]}
+            options={MAXIMIZED_MONACO_OPTIONS}
+            onMountFuncs={[setEditor, keyActionMountFunc, MonacoEditorUtil.keyActionEscShiftTab]}
           />
           <Browser {...browser} types={props.browsers} accept={modifyEditor} location={path} initSearchFilter={getMonacoSelection} />
         </div>
