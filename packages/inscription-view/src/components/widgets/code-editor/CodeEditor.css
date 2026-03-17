@@ -1,5 +1,6 @@
 .code-editor {
   background: var(--N25);
+  position: relative;
 }
 .code-editor .code-input {
   border-radius: var(--border-r1);
