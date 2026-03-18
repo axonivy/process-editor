@@ -25,6 +25,12 @@
     padding: var(--size-2, 0.5rem);
     overflow: auto;
     box-sizing: border-box;
+    .ui-fieldset {
+      height: 100%;
+    }
+    .ui-table-root {
+      max-height: 100%;
+    }
   }
   .history-pinned-resizer-top {
     position: absolute;
