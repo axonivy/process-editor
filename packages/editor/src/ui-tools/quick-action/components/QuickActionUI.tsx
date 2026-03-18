@@ -65,7 +65,7 @@ export const QuickActionUI: React.FC<QuickActionUIProps> = ({
         collisionBoundary={container}
       >
         <Flex direction='column' alignItems='center'>
-          <Flex className='quick-actions-bar' gap={4}>
+          <Flex className='quick-actions-bar shadow-lg' gap={4}>
             <QuickActionGroup
               quickActions={quickActions}
               location='Left'
