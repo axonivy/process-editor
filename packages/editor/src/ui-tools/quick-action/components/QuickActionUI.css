@@ -8,7 +8,9 @@
   visibility: visible;
   padding: 0;
   background-color: transparent;
-  box-shadow: none;
+  &:has(.quick-action-bar-menu) {
+    box-shadow: none;
+  }
 }
 .quick-action-selection-box {
   position: absolute;
@@ -20,7 +22,7 @@
   position: relative;
   max-height: 44px;
   background: var(--glsp-tool-bg);
-  box-shadow: var(--glsp-box-shadow);
   border-radius: var(--border-r2, 5px);
   padding: var(--size-1, 0.25rem);
+  border: 1px solid var(--N100);
 }
