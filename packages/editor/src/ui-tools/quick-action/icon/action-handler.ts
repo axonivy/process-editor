@@ -47,7 +47,7 @@ export class IconPaletteHandler {
       label: 'Default',
       sortString: 'A',
       actions: [],
-      children: [{ id: 'default', label, icon, sortString: '0000', actions: [] }]
+      children: [{ id: '', label, icon, sortString: '0000', actions: [] }]
     };
     if (icon) {
       defaultIconGroup.children?.push(NO_DEFAULT_ICON);

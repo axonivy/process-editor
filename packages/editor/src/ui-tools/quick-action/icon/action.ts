@@ -42,7 +42,7 @@ export class SelectIconQuickActionProvider extends SingleQuickActionProvider {
   actions = (item: PaletteItem, elementIds: string[]): Action[] => [
     ChangeIconOperation.changeIcon({
       elementId: elementIds[0] ?? '',
-      icon: item.icon ?? ''
+      icon: item.id
     })
   ];
 }
