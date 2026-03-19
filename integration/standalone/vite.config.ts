@@ -1,22 +1,23 @@
 import monacoConfigPlugin from '@axonivy/monaco-vite-plugin';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig(() => ({
-  plugins: [tsconfigPaths(), monacoConfigPlugin()],
-  esbuild: {
-    target: 'esnext',
-    tsconfigRaw: {
-      compilerOptions: {
-        experimentalDecorators: true,
-        emitDecoratorMetadata: true
-      }
+  plugins: [monacoConfigPlugin()],
+  oxc: {
+    decorator: {
+      legacy: true,
+      emitDecoratorMetadata: true
     }
   },
   build: {
     outDir: 'build',
     chunkSizeWarningLimit: 5000
+  },
+  css: {
+    lightningcss: {
+      errorRecovery: true
+    }
   },
   server: {
     port: 3000,

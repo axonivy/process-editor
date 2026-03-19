@@ -1,8 +1,7 @@
 /** @jsx svg */
 import type { Bounds } from '@eclipse-glsp/client';
 import { svg } from '@eclipse-glsp/client';
-import type { VNode } from 'snabbdom';
-import virtualize from 'sprotty/lib/lib/virtualize';
+import { h, type VNode } from 'snabbdom';
 
 import type { ActivityNode } from '../model';
 import { ActivityTypes } from '../view-types';
@@ -64,7 +63,10 @@ function iconDecorator(iconUri: string, bounds: Bounds, smallIcon: boolean, colo
     );
   }
   if (icon.style === 'img') {
-    const foreignObjectContents = virtualize(`<img src="${icon.src}"></img>`);
+    const foreignObjectContents = h('img', {
+      attrs: { src: icon.src },
+      style: { width: '100%', height: '100%' }
+    });
     return (
       <foreignObject
         requiredFeatures='http://www.w3.org/TR/SVG11/feature#Extensibility'

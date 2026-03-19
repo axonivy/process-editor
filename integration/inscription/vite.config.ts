@@ -2,14 +2,13 @@ import monacoConfigPlugin from '@axonivy/monaco-vite-plugin';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig(() => ({
-  plugins: [react(), tsconfigPaths(), monacoConfigPlugin()],
+  plugins: [react(), monacoConfigPlugin()],
   build: {
     outDir: 'build',
     chunkSizeWarningLimit: 5000,
-    rollupOptions: {
+    rolldownOptions: {
       input: {
         index: './index.html',
         mock: './mock.html'

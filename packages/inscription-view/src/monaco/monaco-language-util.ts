@@ -14,8 +14,8 @@ import { LogLevel, type MonacoApi, type monaco } from './monaco-modules';
 import { MonacoUtil } from './monaco-util';
 
 export namespace MonacoLanguageUtil {
-  export let sessionId = 0;
-  const monacoLanguageClientReconnectedEmitter = new EventEmitter<typeof sessionId>();
+  export const session = { id: 0 };
+  const monacoLanguageClientReconnectedEmitter = new EventEmitter<typeof session.id>();
   export const onLanguageClientReconnected = monacoLanguageClientReconnectedEmitter.event;
 
   export async function setLanguageClient({
@@ -30,7 +30,7 @@ export namespace MonacoLanguageUtil {
       return new monaco.lsp.MonacoLspClient(logLevel === LogLevel.Debug ? transport.log() : transport);
     }
     const transport = new ReconnectingWebSocketTransport(server, webSocketOptions, logLevel, monaco);
-    transport.onReconnect(() => monacoLanguageClientReconnectedEmitter.fire(sessionId++));
+    transport.onReconnect(() => monacoLanguageClientReconnectedEmitter.fire(session.id++));
     return new monaco.lsp.MonacoLspClient(logLevel === LogLevel.Debug ? transport.log() : transport);
   }
 

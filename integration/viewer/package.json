@@ -23,8 +23,7 @@
     "@axonivy/monaco-vite-plugin": "workspace:~14.0.0-next",
     "@vscode/codicons": "^0.0.45",
     "reflect-metadata": "~0.2.2",
-    "vite": "^7.0.0",
-    "vite-tsconfig-paths": "^6.0.0"
+    "vite": "^8.0.0"
   },
   "type": "module",
   "scripts": {

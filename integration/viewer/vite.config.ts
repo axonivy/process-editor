@@ -1,20 +1,21 @@
 import { resolve } from 'path';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig(() => ({
-  plugins: [tsconfigPaths()],
+  plugins: [],
   build: {
     outDir: 'build',
     chunkSizeWarningLimit: 5000
   },
-  esbuild: {
-    target: 'esnext',
-    tsconfigRaw: {
-      compilerOptions: {
-        experimentalDecorators: true,
-        emitDecoratorMetadata: true
-      }
+  oxc: {
+    decorator: {
+      legacy: true,
+      emitDecoratorMetadata: true
+    }
+  },
+  css: {
+    lightningcss: {
+      errorRecovery: true
     }
   },
   server: {
