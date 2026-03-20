@@ -8,6 +8,7 @@ import type {
   CmsMetaRequest,
   ConnectorRef,
   ContentObject,
+  DatabaseClient,
   DatabaseColumn,
   DatabaseColumnRequest,
   DatabaseTablesRequest,
@@ -62,7 +63,7 @@ export interface InscriptionMetaRequestTypes {
   'meta/workflow/categoryPaths': [WorkflowTypeRequest, CategoryPathMeta[]];
   'meta/workflow/customFields': [WorkflowTypeRequest, WfCustomField[]];
 
-  'meta/database/names': [InscriptionContext, string[]];
+  'meta/database/clients': [InscriptionContext, DatabaseClient[]];
   'meta/database/tables': [DatabaseTablesRequest, string[]];
   'meta/database/columns': [DatabaseColumnRequest, DatabaseColumn[]];
 

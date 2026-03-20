@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
 import { PathContext } from '../../../context/usePath';
-import Select, { type SelectItem } from '../../widgets/select/Select';
+import { Select, type SelectItem } from '../../widgets/select/Select';
 import { PathFieldset } from '../common/path/PathFieldset';
 import { useWsRequestData } from './useWsRequestData';
 
