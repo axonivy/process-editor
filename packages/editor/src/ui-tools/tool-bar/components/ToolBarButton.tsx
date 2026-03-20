@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { Button, PaletteButton, PaletteButtonLabel } from '@axonivy/ui-components';
 import React from 'react';
 import { type ToolBarButton as ToolBarButtonType } from '../button';

@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { type HistoryNode } from '@axonivy/process-editor-protocol';
 import { BasicTooltip, ExpandableCell, IvyIcon, Table, TableBody, TableCell, TableRow, useTableGlobalFilter } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';

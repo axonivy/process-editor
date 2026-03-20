@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { UpdatePaletteItems } from '@axonivy/process-editor-protocol';
 import { Flex, Popover, PopoverAnchor, PopoverArrow, PopoverContent, Toolbar } from '@axonivy/ui-components';
 import {

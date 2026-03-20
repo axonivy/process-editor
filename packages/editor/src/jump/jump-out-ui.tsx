@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { JumpAction } from '@axonivy/process-editor-protocol';
 import { Button } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';

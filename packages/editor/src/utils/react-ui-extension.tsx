@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { EditorContextService, GLSPAbstractUIExtension, GModelRoot } from '@eclipse-glsp/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { inject, injectable } from 'inversify';

@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import React, { type ReactNode } from 'react';
 import { useResizablePinnedDimensions } from './useResizablePinnedDimensions';
 

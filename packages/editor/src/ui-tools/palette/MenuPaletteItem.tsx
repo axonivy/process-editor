@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { cn, Flex, type PaletteItemConfig, type PaletteItemProps } from '@axonivy/ui-components';
 import React from 'react';
 import './MenuPaletteItem.css';

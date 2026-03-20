@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { IvyIcons } from '@axonivy/ui-icons';
 import { type GIssueSeverity } from '@eclipse-glsp/client';
 import { t } from 'i18next';

@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { Flex, Popover, PopoverAnchor, PopoverContent } from '@axonivy/ui-components';
 import { Bounds, type IActionDispatcherProvider } from '@eclipse-glsp/client';
 import React from 'react';

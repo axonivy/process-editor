@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { Button, Flex, hotkeyText, isWindows, Separator, ToolbarContainer } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { GArgument, GModelRoot, type IActionDispatcher, RedoAction, UndoAction } from '@eclipse-glsp/client';

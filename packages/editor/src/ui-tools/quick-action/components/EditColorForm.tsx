@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { ChangeColorOperation } from '@axonivy/process-editor-protocol';
 import { BasicInput, Button, Field, Flex, Label } from '@axonivy/ui-components';
 import { type IActionDispatcherProvider, type PaletteItem } from '@eclipse-glsp/client';

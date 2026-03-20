@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { cn, Flex, IvyIcon, type PaletteItemConfig, type PaletteItemProps } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { t } from 'i18next';

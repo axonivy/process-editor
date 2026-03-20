@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import {
   SetModelAction,
   SetUIExtensionVisibilityAction,

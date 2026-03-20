@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { Button, Flex } from '@axonivy/ui-components';
 import React from 'react';
 import type { QuickAction, QuickActionLocation } from '../quick-action';

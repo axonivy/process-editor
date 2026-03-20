@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { cn } from '@axonivy/ui-components';
 import React, { type ComponentProps } from 'react';
 import './QuickActionPaletteWrapper.css';

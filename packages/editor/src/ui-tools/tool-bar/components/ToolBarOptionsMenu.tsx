@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { CustomIconToggleAction, SwitchThemeAction } from '@axonivy/process-editor-protocol';
 import { Field, Flex, IvyIcon, Label, PopoverArrow, PopoverContent, Switch } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';

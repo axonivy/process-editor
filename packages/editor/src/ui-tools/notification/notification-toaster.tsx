@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { ElementChangedAction, MoveIntoViewportAction } from '@axonivy/process-editor-protocol';
 import { toast, Toaster } from '@axonivy/ui-components';
 import {
