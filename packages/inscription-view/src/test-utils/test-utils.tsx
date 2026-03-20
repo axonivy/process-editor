@@ -4,6 +4,7 @@ import type {
   ConfigData,
   ConnectorRef,
   ContentObject,
+  DatabaseClient,
   DatabaseColumn,
   DataclassType,
   ElementData,
@@ -55,7 +56,7 @@ type ContextHelperProps = {
     outScripting?: VariableInfo;
     inScripting?: VariableInfo;
     connectors?: DeepPartial<ConnectorRef[]>;
-    databases?: string[];
+    databases?: DatabaseClient[];
     tables?: string[];
     columns?: DatabaseColumn[];
     wsClients?: WebServiceClient[];
@@ -150,7 +151,7 @@ const ContextHelper = (
             return Promise.resolve(props.meta?.inScripting ?? EMPTY_VAR_INFO);
           case 'meta/connector/out':
             return Promise.resolve(props.meta?.connectors ? (props.meta.connectors as ConnectorRef[]) : []);
-          case 'meta/database/names':
+          case 'meta/database/clients':
             return Promise.resolve(props.meta?.databases ?? []);
           case 'meta/database/tables':
             return Promise.resolve(props.meta?.tables ?? []);

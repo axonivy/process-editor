@@ -16,7 +16,10 @@ describe('QueryPart', () => {
       wrapperProps: {
         data: data && { config: data },
         meta: {
-          databases: ['IvySystemDatabase', 'test'],
+          databases: [
+            { name: 'IvySystemDatabase', iconUrl: '' },
+            { name: 'test', iconUrl: '' }
+          ],
           tables: ['Person'],
           columns: [{ name: 'column', type: 'VarChar(10)', ivyType: 'String' }]
         }

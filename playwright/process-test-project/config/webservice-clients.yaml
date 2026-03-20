@@ -3,6 +3,7 @@ WebServiceClients:
   webservice:
     Id: 1842DB7CC45C39D7
     ServiceClass: net.webservicex.client.GeoIPService
+    Icon: res:/webContent/icons/user.png
     Endpoints:
       GeoIPServiceSoap:
         - http://www.webservicex.net/geoipservice.asmx

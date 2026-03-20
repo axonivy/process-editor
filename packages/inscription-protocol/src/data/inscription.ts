@@ -55,6 +55,7 @@ export interface Inscription {
   connectorRef: ConnectorRef[];
   contentObject: ContentObject[];
   customFieldSchema: WfCustomField[];
+  databaseClient: DatabaseClient[];
   databaseColumn: DatabaseColumn[];
   databaseColumnRequest: DatabaseColumnRequest;
   databaseTablesRequest: DatabaseTablesRequest;
@@ -80,7 +81,7 @@ export interface Inscription {
   restEntityInfoRequest: RestEntityInfoRequest;
   restResource: RestResource;
   restResourceRequest: RestResourceRequest;
-  roleMeta: RoleMeta;
+  roleMeta: RoleMeta[];
   schemaKey: SchemaKey;
   scriptingDataArgs: ScriptingDataArgs;
   signalCodeRequest: SignalCodeRequest;
@@ -239,6 +240,10 @@ export interface WfCustomField {
   name: string;
   type: WfFieldType;
   value: string;
+}
+export interface DatabaseClient {
+  iconUrl: string;
+  name: string;
 }
 export interface DatabaseColumn {
   ivyType: string;
@@ -773,6 +778,7 @@ export interface ProgramInterfacesRequest {
 }
 export interface RestClient {
   clientId: string;
+  iconUrl: string;
   name: string;
 }
 export interface RestClientRequest {
@@ -868,6 +874,7 @@ export interface ValidationResult {
 export interface Void {}
 export interface WebServiceClient {
   clientId: string;
+  iconUrl: string;
   name: string;
 }
 export interface WebServiceClientRequest {

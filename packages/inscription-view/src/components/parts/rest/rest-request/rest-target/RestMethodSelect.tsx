@@ -10,7 +10,7 @@ import type { ComboboxItem } from '../../../../widgets/combobox/Combobox';
 import Combobox from '../../../../widgets/combobox/Combobox';
 import InputWithBrowser from '../../../../widgets/input/InputWithBrowser';
 import type { SelectItem } from '../../../../widgets/select/Select';
-import Select from '../../../../widgets/select/Select';
+import { Select } from '../../../../widgets/select/Select';
 import { PathFieldset } from '../../../common/path/PathFieldset';
 import { useRestRequestData } from '../../useRestRequestData';
 import { useUpdateRestResource } from '../../useUpdateRestResource';
