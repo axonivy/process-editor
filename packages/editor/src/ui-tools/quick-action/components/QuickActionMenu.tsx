@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import type { IActionDispatcherProvider } from '@eclipse-glsp/client';
 import React from 'react';
 import { ShowInfoQuickActionMenuAction, ShowQuickActionMenuAction } from '../quick-action-menu-ui';

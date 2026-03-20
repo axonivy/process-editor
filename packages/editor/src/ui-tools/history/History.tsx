@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { RequestHistoryAction, type HistoryNode } from '@axonivy/process-editor-protocol';
 import { BasicField, ButtonGroup, Popover, PopoverAnchor, PopoverContent, Spinner, type ButtonProps } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';

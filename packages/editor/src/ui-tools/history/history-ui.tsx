@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { EnableHistoryAction, ShowHistoryAction } from '@axonivy/process-editor-protocol';
 import {
   GArgument,

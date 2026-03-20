@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { Palette, PaletteSection, Spinner, type PaletteItemConfig } from '@axonivy/ui-components';
 import { type IActionDispatcher, type PaletteItem } from '@eclipse-glsp/client';
 import { useQuery } from '@tanstack/react-query';

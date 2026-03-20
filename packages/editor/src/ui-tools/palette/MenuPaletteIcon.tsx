@@ -1,3 +1,4 @@
+// @jsxRuntime automatic
 import { IvyIcon } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import React from 'react';
