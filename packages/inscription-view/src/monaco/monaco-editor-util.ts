@@ -63,10 +63,15 @@ export type MonacoEditorConfiguration = MonacoInitParams & { theme?: IvyMonacoTh
 export namespace MonacoEditorUtil {
   export const theme = IvyMonacoTheme.DEFAULT_THEME_NAME;
 
+  export const isSuggestWidgetOpen = (editor: monaco.editor.IStandaloneCodeEditor): boolean => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const state = (editor as any)._contentWidgets['editor.widget.suggestWidget']?.widget?._widget?._state;
+    return typeof state === 'number' && state >= 3;
+  };
+
   export const keyActionEscShiftTab = (editor: monaco.editor.IStandaloneCodeEditor) => {
     editor.addCommand(KeyCode.Escape, () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if ((editor as any)._contentWidgets['editor.widget.suggestWidget']?.widget._widget._state === 3) {
+      if (isSuggestWidgetOpen(editor)) {
         editor.trigger(undefined, 'hideSuggestWidget', undefined);
       } else {
         focusAdjacentTabIndexMonaco('next');
