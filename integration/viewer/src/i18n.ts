@@ -5,7 +5,8 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 export const initTranslation = () => {
   if (i18n.isInitializing || i18n.isInitialized) return;
   i18n.use(LanguageDetector).init({
-    debug: true,
+    debug: false,
+    showSupportNotice: false,
     supportedLngs: ['en', 'de'],
     fallbackLng: 'en',
     ns: ['process-editor'],

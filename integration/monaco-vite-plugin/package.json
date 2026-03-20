@@ -15,7 +15,7 @@
   "source": "src/index",
   "exports": "./dist/index.js",
   "peerDependencies": {
-    "vite": "^7.0.0"
+    "vite": "^7.0.0 || ^8.0.0"
   },
   "type": "module",
   "scripts": {

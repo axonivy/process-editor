@@ -126,6 +126,6 @@ export const MonacoEditor = React.lazy(async () => {
 export function useLanguageClientSessionId(): number {
   return useSyncExternalStore(
     callback => MonacoLanguageUtil.onLanguageClientReconnected(callback).dispose,
-    () => MonacoLanguageUtil.sessionId
+    () => MonacoLanguageUtil.session.id
   );
 }
