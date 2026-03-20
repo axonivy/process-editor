@@ -5,7 +5,16 @@ import { DatabaseSelect } from './DatabaseSelect';
 describe('DatabaseSelect', () => {
   test('data', async () => {
     customRender(<DatabaseSelect />, {
-      wrapperProps: { data: { config: { query: { dbName: 'test' } } }, meta: { databases: ['ivy', 'test', 'db'] } }
+      wrapperProps: {
+        data: { config: { query: { dbName: 'test' } } },
+        meta: {
+          databases: [
+            { name: 'ivy', iconUrl: '' },
+            { name: 'test', iconUrl: '' },
+            { name: 'db', iconUrl: '' }
+          ]
+        }
+      }
     });
     await SelectUtil.assertValue('test');
     await SelectUtil.assertOptionsCount(3);

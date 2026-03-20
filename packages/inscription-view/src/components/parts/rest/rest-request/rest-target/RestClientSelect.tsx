@@ -4,8 +4,8 @@ import { useAction } from '../../../../../context/useAction';
 import { useEditorContext } from '../../../../../context/useEditorContext';
 import { useMeta } from '../../../../../context/useMeta';
 import type { FieldsetControl } from '../../../../widgets/fieldset/fieldset-control';
-import type { SelectItem } from '../../../../widgets/select/Select';
-import Select from '../../../../widgets/select/Select';
+import type { IconSelectItem } from '../../../../widgets/select/Select';
+import { IconSelect } from '../../../../widgets/select/Select';
 import { PathFieldset } from '../../../common/path/PathFieldset';
 import { useRestRequestData } from '../../useRestRequestData';
 
@@ -14,7 +14,11 @@ export const RestClientSelect = () => {
   const { config, updateTarget } = useRestRequestData();
 
   const { context } = useEditorContext();
-  const items = useMeta('meta/rest/clients', context, []).data.map<SelectItem>(client => ({ label: client.name, value: client.clientId }));
+  const items = useMeta('meta/rest/clients', context, []).data.map<IconSelectItem>(client => ({
+    label: client.name,
+    value: client.clientId,
+    iconUrl: client.iconUrl
+  }));
   const selectedItem = items.find(i => i.value === config.target.clientId) ?? {
     label: config.target.clientId,
     value: config.target.clientId
@@ -30,7 +34,7 @@ export const RestClientSelect = () => {
   return (
     <PathFieldset label={t('part.rest.client')} path='clientId' controls={controls}>
       <div className='rest-client-select'>
-        <Select value={selectedItem} onChange={item => updateTarget('clientId', item.value)} items={items} />
+        <IconSelect value={selectedItem} onChange={item => updateTarget('clientId', item.value)} items={items} />
       </div>
     </PathFieldset>
   );

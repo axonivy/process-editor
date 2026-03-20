@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PathContext } from '../../../../context/usePath';
 import type { SelectItem } from '../../../widgets/select/Select';
-import Select from '../../../widgets/select/Select';
+import { Select } from '../../../widgets/select/Select';
 import { PathFieldset } from '../../common/path/PathFieldset';
 import { useQueryData } from '../useQueryData';
 

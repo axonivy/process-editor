@@ -9,7 +9,7 @@ import { usePartState, type PartProps } from '../../editors/part/usePart';
 import { MacroArea } from '../../widgets/code-editor/MacroArea';
 import Fieldset from '../../widgets/fieldset/Fieldset';
 import type { SelectItem } from '../../widgets/select/Select';
-import Select from '../../widgets/select/Select';
+import { Select } from '../../widgets/select/Select';
 import { PathFieldset } from '../common/path/PathFieldset';
 import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
 import { useMailData } from './useMailData';
