@@ -21,7 +21,7 @@
     "@axonivy/jsonrpc": "~14.0.0-next",
     "@axonivy/ui-icons": "~14.0.0-next",
     "i18next": "^24.2.3 || ^25.0.0",
-    "inversify": "^6.2",
+    "inversify": "^6.2 || ^8.0.0",
     "react": "^19.0",
     "react-aria": "^3.38"
   },

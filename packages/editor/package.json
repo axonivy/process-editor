@@ -30,7 +30,7 @@
     "@tanstack/react-query-devtools": "^5.64",
     "@tanstack/react-table": "^8.20",
     "i18next": "^24.2.3 || ^25.0.0",
-    "inversify": "^6.2",
+    "inversify": "^6.2 || ^8.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^15.4.1 || ^16.0.0",
