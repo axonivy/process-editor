@@ -20,6 +20,8 @@ import { useMeta } from '../../../context/useMeta';
 import { ExpandableCell } from '../../widgets/table/cell/ExpandableCell';
 import { SearchTable } from '../../widgets/table/table/Table';
 import { TableShowMore } from '../../widgets/table/footer/TableFooter';
+import DOMPurify from 'dompurify';
+
 export const FUNCTION_BROWSER_ID = 'func' as const;
 
 export const useFuncBrowser = (onDoubleClick: () => void): UseBrowserImplReturnValue => {
@@ -182,7 +184,10 @@ const FunctionBrowser = (props: { value: string; onChange: (value: BrowserValue)
         )}
       </SearchTable>
       {showHelper && (
-        <pre className='browser-helptext' dangerouslySetInnerHTML={{ __html: `<b>${props.value}</b>${selectedFunctionDoc}` }} />
+        <pre
+          className='browser-helptext'
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(`<b>${props.value}</b>${selectedFunctionDoc}`) }}
+        />
       )}
     </>
   );

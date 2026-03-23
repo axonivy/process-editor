@@ -12,6 +12,8 @@ import { SearchTable } from '../../widgets/table/table/Table';
 import BrowserTableRow from '../BrowserTableRow';
 import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 import { getCursorValue } from './cursor-value';
+import DOMPurify from 'dompurify';
+
 export const TYPE_BROWSER_ID = 'type' as const;
 
 export type TypeBrowserObject = JavaType & { icon: IvyIcons };
@@ -266,7 +268,7 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
       {showHelper && (
         <pre className='browser-helptext'>
           <b>{value}</b>
-          <span dangerouslySetInnerHTML={{ __html: `${doc}` }}></span>
+          <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(doc) }}></span>
         </pre>
       )}
       <Checkbox label='Use Type as List' value={typeAsList} onChange={() => setTypeAsList(!typeAsList)} />
