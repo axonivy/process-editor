@@ -19,6 +19,7 @@
   ],
   "dependencies": {
     "@eclipse-glsp/client": "1.1.0-RC02",
+    "dompurify": "^3.0.0",
     "marked": "^15.0.6",
     "toastify-js": "1.12.0"
   },
