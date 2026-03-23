@@ -22,6 +22,14 @@ export default config.defineConfig(
         {
           varsIgnorePattern: 'svg' // Ignore unused svg imports as needed for snabbdom VNodes to work
         }
+      ],
+      '@tanstack/query/exhaustive-deps': [
+        'error',
+        {
+          allowlist: {
+            variables: ['client', 'actionDispatcher', 'action']
+          }
+        }
       ]
     }
   },
