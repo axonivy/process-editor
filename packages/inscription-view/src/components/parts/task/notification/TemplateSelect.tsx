@@ -1,7 +1,7 @@
 import type { WfNotification } from '@axonivy/process-editor-inscription-protocol';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import Select, { type SelectItem } from '../../../widgets/select/Select';
+import { Select, type SelectItem } from '../../../widgets/select/Select';
 import { PathFieldset } from '../../common/path/PathFieldset';
 import { useTemplates } from './useTemplates';
 

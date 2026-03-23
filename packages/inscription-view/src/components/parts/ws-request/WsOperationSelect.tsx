@@ -3,7 +3,7 @@ import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
 import { PathContext } from '../../../context/usePath';
 import type { SelectItem } from '../../widgets/select/Select';
-import Select from '../../widgets/select/Select';
+import { Select } from '../../widgets/select/Select';
 import { PathFieldset } from '../common/path/PathFieldset';
 import { useWsRequestData } from './useWsRequestData';
 

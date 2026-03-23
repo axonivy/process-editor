@@ -7,8 +7,8 @@ import { RestClientSelect } from './RestClientSelect';
 describe('RestClientSelect', () => {
   function renderSelect(data?: DeepPartial<RestRequestData>) {
     const restClients = [
-      { clientId: '0', name: 'fake' },
-      { clientId: '1234', name: 'personService' }
+      { clientId: '0', name: 'fake', iconUrl: '' },
+      { clientId: '1234', name: 'personService', iconUrl: '' }
     ];
     customRender(<RestClientSelect />, { wrapperProps: { data: data && { config: data }, meta: { restClients } } });
   }

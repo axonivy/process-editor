@@ -11,8 +11,8 @@ describe('WsClientSelect', () => {
         data: data && { config: data },
         meta: {
           wsClients: [
-            { clientId: 'client1', name: 'Super' },
-            { clientId: 'name', name: 'soaper' }
+            { clientId: 'client1', name: 'Super', iconUrl: '' },
+            { clientId: 'name', name: 'soaper', iconUrl: '' }
           ]
         }
       }
