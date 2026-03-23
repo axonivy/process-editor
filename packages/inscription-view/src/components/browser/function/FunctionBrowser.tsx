@@ -11,6 +11,7 @@ import {
   type RowSelectionState
 } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
+import DOMPurify from 'dompurify';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
@@ -21,6 +22,7 @@ import { SearchTable } from '../../widgets/table/table/Table';
 import BrowserTableRow from '../BrowserTableRow';
 import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 import { getParentNames } from './parent-name';
+
 export const FUNCTION_BROWSER_ID = 'func' as const;
 
 export const useFuncBrowser = (onDoubleClick: () => void): UseBrowserImplReturnValue => {
@@ -193,7 +195,12 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
           </TableFooter>
         )}
       </SearchTable>
-      {showHelper && <pre className='browser-helptext' dangerouslySetInnerHTML={{ __html: `<b>${value}</b>${selectedFunctionDoc}` }} />}
+      {showHelper && (
+        <pre
+          className='browser-helptext'
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(`<b>${value}</b>${selectedFunctionDoc}`) }}
+        />
+      )}
     </>
   );
 };

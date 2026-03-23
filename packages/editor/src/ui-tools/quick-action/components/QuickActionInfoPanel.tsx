@@ -1,6 +1,7 @@
 // @jsxRuntime automatic
 import { IvyIcons } from '@axonivy/ui-icons';
 import { type GIssueSeverity } from '@eclipse-glsp/client';
+import DOMPurify from 'dompurify';
 import { t } from 'i18next';
 import { marked } from 'marked';
 import React from 'react';
@@ -41,7 +42,10 @@ export const QuickActionInfoPanel: React.FC<QuickActionInfoPanelProps> = ({ acti
         </div>
       ))}
       {action.text && (
-        <div className='simple-menu-text' dangerouslySetInnerHTML={{ __html: marked.parse(action.text, { async: false, breaks: true }) }} />
+        <div
+          className='simple-menu-text'
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(marked.parse(action.text, { async: false, breaks: true })) }}
+        />
       )}
       {action.info &&
         Object.entries(action.info).map(([label, info]) => (

@@ -3,6 +3,7 @@ import { TableBody, TableCell, useTableKeyHandler, type BrowserNode } from '@axo
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { ColumnDef, ExpandedState, FilterFn, RowSelectionState } from '@tanstack/react-table';
 import { getCoreRowModel, getExpandedRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table';
+import DOMPurify from 'dompurify';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
@@ -14,6 +15,7 @@ import BrowserTableRow from '../BrowserTableRow';
 import type { BrowserValue, UseBrowserImplReturnValue } from '../useBrowser';
 import { getCursorValue } from './cursor-value';
 import { useTypeData } from './type-data';
+
 export const TYPE_BROWSER_ID = 'type' as const;
 
 export const useTypeBrowser = (onDoubleClick: () => void, initSearchFilter: () => string, location: string): UseBrowserImplReturnValue => {
@@ -208,7 +210,7 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
       {showHelper && (
         <pre className='browser-helptext'>
           <b>{value}</b>
-          <span dangerouslySetInnerHTML={{ __html: `${doc}` }}></span>
+          <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(doc) }}></span>
         </pre>
       )}
       <Checkbox label={t('browser.type.asList')} value={typeAsList} onChange={() => setTypeAsList(!typeAsList)} />

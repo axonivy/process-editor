@@ -242,6 +242,9 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.20
         version: 8.21.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      dompurify:
+        specifier: '>=3.3.2'
+        version: 3.3.3
       i18next:
         specifier: ^24.2.3 || ^25.0.0
         version: 25.8.20(typescript@5.9.3)
@@ -398,6 +401,9 @@ importers:
       '@tanstack/react-virtual':
         specifier: ^3.11.2
         version: 3.13.23(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      dompurify:
+        specifier: '>=3.3.2'
+        version: 3.3.3
       downshift:
         specifier: ^9.0
         version: 9.0.13(react@19.2.4)

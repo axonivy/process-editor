@@ -17,6 +17,7 @@
     "@axonivy/process-editor-inscription-core": "workspace:~14.0.0-next",
     "@axonivy/process-editor-inscription-protocol": "workspace:~14.0.0-next",
     "@tanstack/react-virtual": "^3.11.2",
+    "dompurify": "^3.0.0",
     "immer": "^11.0.0",
     "react-aria": "^3.38.0",
     "react-error-boundary": "^6.1.0"
