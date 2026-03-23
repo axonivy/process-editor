@@ -37,6 +37,7 @@ export const CodeEditor = ({ value, onChange, context, macro, onMountFuncs, opti
 
   const onIsEditorReady = React.useCallback(
     (editor: monaco.editor.IStandaloneCodeEditor) => {
+      registerSuggestRetrigger(editor);
       onMountFuncs?.forEach(func => func(editor));
       updatePlaceholder(editor.getValue() === '');
     },
@@ -81,4 +82,28 @@ export const CodeEditor = ({ value, onChange, context, macro, onMountFuncs, opti
       </div>
     </div>
   );
+};
+
+const isSimpleTypingEvent = (event: monaco.editor.IModelContentChangedEvent): boolean => {
+  if (event.isFlush || event.changes.length !== 1) {
+    return false;
+  }
+  const change = event.changes[0];
+  if (!change) {
+    return false;
+  }
+  return change.rangeLength <= 1 && change.text.length === 1 && !/[\n\r]/.test(change.text);
+};
+
+const registerSuggestRetrigger = (editor: monaco.editor.IStandaloneCodeEditor): void => {
+  editor.onDidChangeModelContent(event => {
+    if (!MonacoEditorUtil.isSuggestWidgetOpen(editor) || !isSimpleTypingEvent(event)) {
+      return;
+    }
+    queueMicrotask(() => {
+      if (editor.getModel() && MonacoEditorUtil.isSuggestWidgetOpen(editor)) {
+        editor.trigger('retrigger', 'editor.action.triggerSuggest', undefined);
+      }
+    });
+  });
 };

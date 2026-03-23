@@ -28,16 +28,12 @@ export const SingleLineCodeEditor = ({ onChange, onMountFuncs, editorOptions, ke
 
   const singleLineMountFuncs = (editor: monaco.editor.IStandaloneCodeEditor) => {
     editor.createContextKey('singleLine', true);
-    const isSuggestWidgetOpen = (editor: monaco.editor.IStandaloneCodeEditor) =>
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (editor as any)._contentWidgets['editor.widget.suggestWidget']?.widget._widget._state === STATE_OPEN;
     const triggerAcceptSuggestion = (editor: monaco.editor.IStandaloneCodeEditor) =>
       editor.trigger(undefined, 'acceptSelectedSuggestion', undefined);
-    const STATE_OPEN = 3;
     editor.addCommand(
       MonacoEditorUtil.KeyCode.Enter,
       () => {
-        if (isSuggestWidgetOpen(editor)) {
+        if (MonacoEditorUtil.isSuggestWidgetOpen(editor)) {
           triggerAcceptSuggestion(editor);
         } else if (keyActions?.enter) {
           keyActions.enter();
@@ -48,7 +44,7 @@ export const SingleLineCodeEditor = ({ onChange, onMountFuncs, editorOptions, ke
     editor.addCommand(
       MonacoEditorUtil.KeyCode.Tab,
       () => {
-        if (isSuggestWidgetOpen(editor)) {
+        if (MonacoEditorUtil.isSuggestWidgetOpen(editor)) {
           triggerAcceptSuggestion(editor);
         } else {
           if (editor.hasTextFocus() && document.activeElement instanceof HTMLElement) {
@@ -64,7 +60,7 @@ export const SingleLineCodeEditor = ({ onChange, onMountFuncs, editorOptions, ke
     editor.addCommand(
       MonacoEditorUtil.KeyCode.DownArrow,
       () => {
-        if (isSuggestWidgetOpen(editor)) {
+        if (MonacoEditorUtil.isSuggestWidgetOpen(editor)) {
           editor.trigger(undefined, 'selectNextSuggestion', undefined);
         } else if (keyActions?.arrowDown) {
           keyActions.arrowDown();
@@ -75,7 +71,7 @@ export const SingleLineCodeEditor = ({ onChange, onMountFuncs, editorOptions, ke
     editor.addCommand(
       MonacoEditorUtil.KeyCode.UpArrow,
       () => {
-        if (isSuggestWidgetOpen(editor)) {
+        if (MonacoEditorUtil.isSuggestWidgetOpen(editor)) {
           editor.trigger(undefined, 'selectPrevSuggestion', undefined);
         } else if (keyActions?.arrowUp) {
           keyActions.arrowUp();
@@ -95,7 +91,7 @@ export const SingleLineCodeEditor = ({ onChange, onMountFuncs, editorOptions, ke
     editor.addCommand(
       MonacoEditorUtil.KeyCode.Escape,
       () => {
-        if (isSuggestWidgetOpen(editor)) {
+        if (MonacoEditorUtil.isSuggestWidgetOpen(editor)) {
           editor.trigger(undefined, 'hideSuggestWidget', undefined);
         } else if (keyActions?.escape) {
           keyActions.escape();
