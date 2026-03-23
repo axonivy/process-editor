@@ -12,7 +12,7 @@ import { ShowToolBarMenuAction } from '../tool-bar-menu';
 
 interface ToolBarPaletteMenuProps {
   onSelect: () => void;
-  menuAction: ShowToolBarMenuAction;
+  action: ShowToolBarMenuAction;
   actionDispatcher: IActionDispatcher;
 }
 
@@ -21,14 +21,14 @@ export type ToolPaletteItemConfig = PaletteItemConfig & {
   info?: string;
 };
 
-export const ToolBarPaletteMenu = ({ onSelect, menuAction, actionDispatcher }: ToolBarPaletteMenuProps) => {
+export const ToolBarPaletteMenu = ({ onSelect, action, actionDispatcher }: ToolBarPaletteMenuProps) => {
   const onItemSelected = React.useCallback(
     async (item: PaletteItem) => {
-      const actions = menuAction.actions(item);
+      const actions = action.actions(item);
       actionDispatcher.dispatchAll(actions);
       onSelect();
     },
-    [actionDispatcher, menuAction, onSelect]
+    [actionDispatcher, action, onSelect]
   );
 
   const {
@@ -36,8 +36,8 @@ export const ToolBarPaletteMenu = ({ onSelect, menuAction, actionDispatcher }: T
     isPending,
     isError
   } = useQuery({
-    queryKey: genQueryKey('palette-items', menuAction.id),
-    queryFn: async () => await menuAction.paletteItems(),
+    queryKey: genQueryKey('palette-items', action.id),
+    queryFn: async () => await action.paletteItems(),
     select: paletteItems =>
       paletteItemsToSections<ExtendedPaletteItem, ToolPaletteItemConfig>(paletteItems, item => ({
         name: item.label,
@@ -60,7 +60,7 @@ export const ToolBarPaletteMenu = ({ onSelect, menuAction, actionDispatcher }: T
     <Palette sections={sections} options={{ searchPlaceholder: t('common.label.search'), emptyMessage: t('label.empty') }}>
       {(title, items) => (
         <PaletteSection key={title} title={title} items={items}>
-          {item => <MenuPaletteItem key={item.name} {...item} horizontal={menuAction.id === 'extensions_menu'} />}
+          {item => <MenuPaletteItem key={item.name} {...item} horizontal={action.id === 'extensions_menu'} />}
         </PaletteSection>
       )}
     </Palette>

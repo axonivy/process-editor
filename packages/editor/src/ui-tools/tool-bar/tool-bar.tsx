@@ -125,7 +125,7 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
               <PopoverArrow />
               <ToolBarPaletteMenu
                 onSelect={() => this.closeMenu()}
-                menuAction={this.activeMenuAction}
+                action={this.activeMenuAction}
                 actionDispatcher={this.actionDispatcher}
               />
             </PopoverContent>
