@@ -4,6 +4,7 @@ import { StreamlineIcons } from '../../StreamlineIcons';
 import { createElement, createIcon } from '../../utils/ui-utils';
 import { ItemMenu, type ShowMenuAction, SimpleMenu } from '../menu/menu';
 import { EditColorUi } from './color/edit-color-ui';
+import DOMPurify from 'dompurify';
 
 export interface ShowQuickActionMenuAction extends ShowMenuAction {
   kind: typeof ShowQuickActionMenuAction.KIND;
@@ -199,7 +200,7 @@ export class InfoQuickActionMenu extends SimpleMenu {
   }
 
   private createDescription(description: string): HTMLElement {
-    const htmlText = marked.parse(description, { async: false, breaks: true });
+    const htmlText = DOMPurify.sanitize(marked.parse(description, { async: false, breaks: true }));
     const template = document.createElement('template');
     template.innerHTML = htmlText;
     const text = createElement('div', ['simple-menu-text']);
