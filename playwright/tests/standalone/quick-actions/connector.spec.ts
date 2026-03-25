@@ -1,6 +1,5 @@
 import { expect, test } from '@playwright/test';
 import { ProcessEditor } from '../../page-objects/editor/process-editor';
-import { cmdCtrl } from '../../page-objects/editor/test-helper';
 
 test('actions', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
@@ -14,7 +13,7 @@ test('label edit', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
   const edge = processEditor.edge();
   const labelEdit = await edge.quickActionBar().editLabel();
-  await labelEdit.edit('Test label', cmdCtrl());
+  await labelEdit.edit('Test label');
   await edge.expectLabel('Test label');
 });
 

@@ -1,5 +1,4 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import type { CmdCtrl } from './types';
 
 export class LabelEdit {
   readonly page: Page;
@@ -22,9 +21,9 @@ export class LabelEdit {
     await expect(this.textarea).toBeHidden();
   }
 
-  async edit(label: string, cmdCtrl: CmdCtrl) {
-    await this.page.keyboard.press(`${cmdCtrl}+A`);
-    await this.page.keyboard.type(label);
+  async edit(label: string) {
+    await this.textarea.clear();
+    await this.textarea.fill(label);
     await this.page.keyboard.press('Enter');
   }
 }
