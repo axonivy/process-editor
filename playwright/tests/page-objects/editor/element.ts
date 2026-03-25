@@ -8,7 +8,7 @@ export class BaseElement {
   protected readonly page: Page;
   protected element!: Locator;
   protected colorLocator!: Locator;
-  protected labelLocator!: Locator;
+  labelLocator!: Locator;
 
   constructor(page: Page) {
     this.page = page;

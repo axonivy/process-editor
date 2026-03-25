@@ -30,4 +30,12 @@ export class IvySvgExporter extends GLSPSvgExporter {
     const bounds = allBounds.filter(Bounds.isValid).reduce(Bounds.combine);
     return { ...bounds, x: bounds.x - 5, y: bounds.y - 5, width: bounds.width + 10, height: bounds.height + 10 };
   }
+
+  protected override copyStyle(source: Element, target: Element, skippedProperties: string[]): void {
+    try {
+      super.copyStyle(source, target, skippedProperties);
+    } catch {
+      console.debug('Ignore elements with not styles');
+    }
+  }
 }

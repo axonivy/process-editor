@@ -1,6 +1,5 @@
 import { expect, test } from '@playwright/test';
 import { ProcessEditor } from '../../page-objects/editor/process-editor';
-import { cmdCtrl } from '../../page-objects/editor/test-helper';
 
 test('root lane actions', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
@@ -14,7 +13,7 @@ test('root lane label', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
   const lane = await processEditor.createLane({ x: 10, y: 60 });
   const labelEdit = await lane.quickActionBar().editLabel();
-  await labelEdit.edit('Test label', cmdCtrl());
+  await labelEdit.edit('Test label');
   await lane.expectLabel('Test label');
 });
 
@@ -40,7 +39,7 @@ test('pool label', async ({ page }) => {
   await pool.expectLabel(processName);
 
   const labelEdit = await pool.quickActionBar().editLabel();
-  await labelEdit.edit('Test label', cmdCtrl());
+  await labelEdit.edit('Test label');
   await pool.expectLabel('Test label');
 });
 

@@ -22,7 +22,7 @@ test('label edit', async ({ page }) => {
   const start = processEditor.startElement;
   await start.expectLabel('start');
   const labelEdit = await start.quickActionBar().editLabel();
-  await labelEdit.edit('test label', cmdCtrl());
+  await labelEdit.edit('test label');
   await start.expectLabel('test label');
 });
 

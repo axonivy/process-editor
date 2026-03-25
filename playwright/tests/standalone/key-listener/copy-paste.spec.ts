@@ -7,7 +7,13 @@ test('copy node', async ({ page, browserName }) => {
   const processEditor = await ProcessEditor.openProcess(page);
   const start = processEditor.startElement;
   await expect(start.locator()).toHaveCount(1);
-  await start.select();
+
+  // XIVY-18769 Copy element with label that contains new lines
+  await start.quickActionBar().pressShortCut('L');
+  await start.labelEdit().expectVisible();
+  await start.labelEdit().edit('bla\n\nasdf');
+  await expect(start.labelLocator).toHaveText('bla\n\nasdf', { useInnerText: true });
+
   await processEditor.copyPaste(cmdCtrl(), 'RequestStart');
   await expect(start.locator()).toHaveCount(2);
 });

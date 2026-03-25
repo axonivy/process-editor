@@ -38,7 +38,7 @@ test('label edit', async ({ page }) => {
 
   await start.quickActionBar().pressShortCut('L');
   await label.expectVisible();
-  await label.edit('test label', cmdCtrl());
+  await label.edit('test label');
   await start.expectLabel('test label');
 });
 
