@@ -140,10 +140,12 @@ export class ProcessEditor {
 
   async copyPaste(cmdCtrl: CmdCtrl, ...expectedClipboardData: Array<string>) {
     const message = waitForConsoleMessage(this.page, /Added data to clipboard:/);
+    const message2 = waitForConsoleMessage(this.page, /Selection SVG export took/);
     await this.page.keyboard.press(`${cmdCtrl}+C`);
     for (const data of expectedClipboardData) {
       expect(await message).toContain(data);
     }
+    expect(await message2).toMatch(/^Selection SVG export took \d+(?:\.\d+)? ms for \d+ selected element\(s\)\.$/);
     await this.graph.click({ position: { x: 200, y: 200 } });
     await this.page.keyboard.press(`${cmdCtrl}+V`);
   }
