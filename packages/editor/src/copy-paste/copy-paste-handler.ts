@@ -9,6 +9,7 @@ import {
   TYPES,
   type Bounds,
   type GModelElement,
+  type GModelRoot,
   type IActionDispatcher,
   type IAsyncClipboardService,
   type ICopyPasteHandler,
@@ -94,18 +95,9 @@ export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
     this.clipboardService.put(action.clipboardData, clipboardId);
     if (navigator.clipboard?.write) {
       const clipboardItemData: Record<string, string | Blob | PromiseLike<string | Blob>> = {
-        'text/plain': clipboardData
+        'text/plain': clipboardData,
+        'image/png': pngClipboardData(this.actionDispatcher, this.svgExporter, this.editorContext.modelRoot, selection)
       };
-      const response = await this.actionDispatcher.request(RequestExportSvgAction.create());
-      if (response.svg) {
-        const bounds = this.svgExporter.getSvgBounds(this.editorContext.modelRoot);
-        const cropRegion = this.svgExporter.getSvgBounds(this.editorContext.modelRoot, selection);
-        clipboardItemData['image/png'] = await toPNGBlob(response.svg, {
-          ...cropRegion,
-          x: cropRegion.x - bounds.x,
-          y: cropRegion.y - bounds.y
-        });
-      }
       navigator.clipboard.write([new ClipboardItem(clipboardItemData)]);
     } else if (navigator.clipboard) {
       navigator.clipboard.writeText(clipboardData);
@@ -134,6 +126,41 @@ export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
     return document.activeElement?.parentElement?.id === this.viewerOptions.baseDiv;
   }
 }
+
+const pngClipboardData = async (
+  actionDispatcher: IActionDispatcher,
+  svgExporter: IvySvgExporter,
+  modelRoot: GModelRoot,
+  selection: Array<GModelElement>
+) => {
+  const selectionExportStart = performance.now();
+  const selectionSvg = svgExporter.exportSelectionSvg(modelRoot, selection);
+  const selectionExportDuration = performance.now() - selectionExportStart;
+  const selectionBounds = svgExporter.getSvgBounds(modelRoot, selection);
+
+  if (selectionSvg) {
+    console.debug(`Selection SVG export took ${selectionExportDuration.toFixed(1)} ms for ${selection.length} selected element(s).`);
+    return toPNGBlob(selectionSvg, { ...selectionBounds, x: 0, y: 0 });
+  }
+
+  console.debug(
+    `Selection SVG export fell back to full export after ${selectionExportDuration.toFixed(1)} ms for ${selection.length} selected element(s).`
+  );
+  const fullExportStart = performance.now();
+  const response = await actionDispatcher.request(RequestExportSvgAction.create());
+  const fullExportDuration = performance.now() - fullExportStart;
+  if (response.svg) {
+    console.debug(`Full SVG export took ${fullExportDuration.toFixed(1)} ms.`);
+    const bounds = svgExporter.getSvgBounds(modelRoot);
+    return toPNGBlob(response.svg, {
+      ...selectionBounds,
+      x: selectionBounds.x - bounds.x,
+      y: selectionBounds.y - bounds.y
+    });
+  }
+  console.debug(`Full SVG export returned no SVG after ${fullExportDuration.toFixed(1)} ms.`);
+  return '';
+};
 
 const toPNGBlob = async (svg: string, bounds: Bounds) => {
   return new Promise<Blob>((resolve, reject) => {
