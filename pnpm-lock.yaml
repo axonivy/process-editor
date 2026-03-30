@@ -55,7 +55,7 @@ importers:
         version: 0.1.9(typescript@5.9.3)
       vitest:
         specifier: ^4.0.0
-        version: 4.1.2(@types/node@24.12.0)(happy-dom@20.8.8)(jsdom@29.0.1)(vite@8.0.3(@emnapi/core@1.9.0)(@emnapi/runtime@1.9.0)(@types/node@24.12.0)(esbuild@0.27.2)(jiti@2.6.1)(yaml@2.8.3))
+        version: 4.1.2(@types/node@24.12.0)(happy-dom@20.8.9)(jsdom@29.0.1)(vite@8.0.3(@emnapi/core@1.9.0)(@emnapi/runtime@1.9.0)(@types/node@24.12.0)(esbuild@0.27.2)(jiti@2.6.1)(yaml@2.8.3))
 
   integration/inscription:
     dependencies:
@@ -293,7 +293,7 @@ importers:
         version: 0.5.7(@vanilla-extract/css@1.17.2)
       happy-dom:
         specifier: ^20.0.0
-        version: 20.8.8
+        version: 20.8.9
       reflect-metadata:
         specifier: ~0.2.2
         version: 0.2.2
@@ -3787,8 +3787,8 @@ packages:
     engines: {node: '>=0.4.7'}
     hasBin: true
 
-  happy-dom@20.8.8:
-    resolution: {integrity: sha512-5/F8wxkNxYtsN0bXfMwIyNLZ9WYsoOYPbmoluqVJqv8KBUbcyKZawJ7uYK4WTX8IHBLYv+VXIwfeNDPy1oKMwQ==}
+  happy-dom@20.8.9:
+    resolution: {integrity: sha512-Tz23LR9T9jOGVZm2x1EPdXqwA37G/owYMxRwU0E4miurAtFsPMQ1d2Jc2okUaSjZqAFz2oEn3FLXC5a0a+siyA==}
     engines: {node: '>=20.0.0'}
 
   has-bigints@1.1.0:
@@ -9673,7 +9673,7 @@ snapshots:
     optionalDependencies:
       uglify-js: 3.19.3
 
-  happy-dom@20.8.8:
+  happy-dom@20.8.9:
     dependencies:
       '@types/node': 24.12.0
       '@types/whatwg-mimetype': 3.0.2
@@ -11423,7 +11423,7 @@ snapshots:
       - '@emnapi/core'
       - '@emnapi/runtime'
 
-  vitest@4.1.2(@types/node@24.12.0)(happy-dom@20.8.8)(jsdom@29.0.1)(vite@8.0.3(@emnapi/core@1.9.0)(@emnapi/runtime@1.9.0)(@types/node@24.12.0)(esbuild@0.27.2)(jiti@2.6.1)(yaml@2.8.3)):
+  vitest@4.1.2(@types/node@24.12.0)(happy-dom@20.8.9)(jsdom@29.0.1)(vite@8.0.3(@emnapi/core@1.9.0)(@emnapi/runtime@1.9.0)(@types/node@24.12.0)(esbuild@0.27.2)(jiti@2.6.1)(yaml@2.8.3)):
     dependencies:
       '@vitest/expect': 4.1.2
       '@vitest/mocker': 4.1.2(vite@8.0.3(@emnapi/core@1.9.0)(@emnapi/runtime@1.9.0)(@types/node@24.12.0)(esbuild@0.27.2)(jiti@2.6.1)(yaml@2.8.3))
@@ -11447,7 +11447,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 24.12.0
-      happy-dom: 20.8.8
+      happy-dom: 20.8.9
       jsdom: 29.0.1
     transitivePeerDependencies:
       - msw
