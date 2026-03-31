@@ -29,7 +29,7 @@
       "name" : "Call twitter",
       "config" : {
         "target" : {
-          "clientId" : "d6b7615f-1087-483d-9dbe-9b704bbe7f02",
+          "clientId" : "twitter",
           "path" : "statuses/user_timeline.json",
           "templateParams" : {
             "api.version" : "\"1.1\""
@@ -99,7 +99,7 @@
       "config" : {
         "method" : "POST",
         "target" : {
-          "clientId" : "a320a922-175c-43c0-adc6-b6694ecae306",
+          "clientId" : "JsonProcessing",
           "path" : "document"
         },
         "body" : {
@@ -182,7 +182,7 @@
       "config" : {
         "method" : "JAX_RS",
         "target" : {
-          "clientId" : "e61c6d1f-106e-46ea-8327-fe18e4c1d912"
+          "clientId" : "approvalService"
         },
         "code" : [
           "import javax.ws.rs.client.Entity;",
@@ -222,7 +222,7 @@
       "config" : {
         "method" : "PUT",
         "target" : {
-          "clientId" : "e61c6d1f-106e-46ea-8327-fe18e4c1d912"
+          "clientId" : "approvalService"
         },
         "body" : {
           "type" : "FORM",
@@ -295,7 +295,7 @@
       "config" : {
         "method" : "PUT",
         "target" : {
-          "clientId" : "a320a922-175c-43c0-adc6-b6694ecae306",
+          "clientId" : "JsonProcessing",
           "path" : "crm"
         },
         "body" : {
@@ -349,7 +349,7 @@
       "config" : {
         "method" : "HEAD",
         "target" : {
-          "clientId" : "a320a922-175c-43c0-adc6-b6694ecae306",
+          "clientId" : "JsonProcessing",
           "path" : "document",
           "properties" : {
             "username" : "in.person.name",

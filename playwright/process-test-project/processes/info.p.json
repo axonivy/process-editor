@@ -64,7 +64,7 @@
       "name" : "rest",
       "config" : {
         "target" : {
-          "clientId" : "d319aec9-4d1f-49a2-b859-ce8854b3091a",
+          "clientId" : "test",
           "path" : "/asdf"
         }
       },
