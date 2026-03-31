@@ -263,7 +263,7 @@
       "config" : {
         "method" : "POST",
         "target" : {
-          "clientId" : "539ed1ab-1274-4716-b6d0-85d682e0acd7",
+          "clientId" : "stock",
           "templateParams" : {
             "request.kind" : "\"approve\"",
             "product.quantity" : "in.quantity",
