@@ -28,7 +28,7 @@
       "type" : "WebServiceCall",
       "name" : "get GEO IP cached",
       "config" : {
-        "clientId" : "160DF5320F0D7ACD",
+        "clientId" : "GeoIpService",
         "operation" : {
           "name" : "GetGeoIPContext",
           "port" : "GeoIPServiceSoap"
@@ -62,7 +62,7 @@
       "type" : "WebServiceCall",
       "name" : "get GEO IP",
       "config" : {
-        "clientId" : "160DF5320F0D7ACD",
+        "clientId" : "GeoIpService",
         "operation" : {
           "name" : "GetGeoIP",
           "port" : "GeoIPServiceSoap",

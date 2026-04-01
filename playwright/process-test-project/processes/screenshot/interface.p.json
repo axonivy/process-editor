@@ -24,7 +24,7 @@
       "type" : "WebServiceCall",
       "name" : "Web Service",
       "config" : {
-        "clientId" : "1842DB7CC45C39D7",
+        "clientId" : "webservice",
         "operation" : {
           "name" : "GetGeoIP",
           "port" : "GeoIPServiceSoap"
