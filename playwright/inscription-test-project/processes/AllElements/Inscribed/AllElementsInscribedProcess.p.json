@@ -226,7 +226,7 @@
       "type" : "WebServiceCall",
       "name" : "Check IP",
       "config" : {
-        "clientId" : "160DF5320F0D7ACD",
+        "clientId" : "GeoIpService",
         "operation" : {
           "name" : "GetGeoIP",
           "port" : "GeoIPServiceSoap"

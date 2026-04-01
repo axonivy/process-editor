@@ -1,9 +1,10 @@
-# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0-dev/config/webservice-clients-1.json
+# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0-dev/config/webservice-clients-2.json
 WebServiceClients:
-  Personal Service:
-    Id: 1610883FA3A6C2CB
+  Personal-Service:
+    Name: Personal Service
+    LegacyId: 1610883FA3A6C2CB
   GeoIpService:
-    Id: 160DF5320F0D7ACD
+    Name: GeoIpService
     WsdlUrl: http://www.webservicex.net/geoipservice.asmx?WSDL
     ServiceClass: net.webservicex.client.GeoIPService
     Endpoints:
@@ -20,3 +21,4 @@ WebServiceClients:
     Properties:
       username: bruno
       password: ${decrypt:\u00E8\u00BD\u0080\u007C\u0051\u0095\u00D1\u0071\u0070\u0047\u0072\u00B5\u00BC\u00E0\u004B\u00A9\u0003\u0040\u0034\u00D8\u0079\u00D0\u00F9\u0076\u009C\u00A1\u0031\u00DF\u005C\u001F\u008F\u00DA}
+    LegacyId: 160DF5320F0D7ACD
