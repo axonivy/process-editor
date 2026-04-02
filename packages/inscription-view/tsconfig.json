@@ -5,7 +5,8 @@
     "outDir": "lib",
     "paths": {
       "test-utils": ["./src/test-utils/test-utils"]
-    }
+    },
+    "types": ["vite/client"]
   },
   "include": ["src"],
   "references": [{ "path": "../inscription-protocol/tsconfig.json" }]
