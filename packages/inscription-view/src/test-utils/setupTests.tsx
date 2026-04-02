@@ -24,6 +24,7 @@ global.IntersectionObserver = class IntersectionObserver {
   }
 };
 
+//@ts-ignore
 global.ResizeObserver = class ResizeObserver {
   [x: string]: any;
   constructor(cb: any) {

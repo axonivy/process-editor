@@ -4,7 +4,8 @@
     "rootDir": "src",
     "outDir": "lib",
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "types": ["vite/client"]
   },
   "include": ["src"],
   "references": [

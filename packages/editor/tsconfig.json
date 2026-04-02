@@ -3,7 +3,7 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib",
-    "types": ["node", "reflect-metadata"],
+    "types": ["node", "reflect-metadata", "vite/client"],
     "jsx": "react",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
