@@ -40,7 +40,7 @@ export const webSocketConnection = <TConnection = Connection>(url: string | URL,
   const options = { ...defaultOptions, ...initOptions };
   let webSocket: WebSocket | undefined;
   let connection: TConnection | undefined;
-  let reconnectTimeout: number | NodeJS.Timeout | undefined;
+  let reconnectTimeout: number | undefined;
   let reconnectAttempts = 0;
 
   const scheduleReconnect = (
@@ -89,7 +89,7 @@ export const webSocketConnection = <TConnection = Connection>(url: string | URL,
       }
       webSocket.onerror = () => {
         handler.logger?.error(options.errorMessage);
-        clearInterval(reconnectTimeout);
+        clearTimeout(reconnectTimeout);
       };
 
       webSocket.onclose = () => {
@@ -106,7 +106,7 @@ export const webSocketConnection = <TConnection = Connection>(url: string | URL,
           reject(new Error('WebSocket connection failed to initialize'));
           return;
         }
-        clearInterval(reconnectTimeout);
+        clearTimeout(reconnectTimeout);
         reconnectAttempts = 0;
         const wrappedSocket = wrap(webSocket);
         const newConnection = { reader: new WebSocketMessageReader(wrappedSocket), writer: new WebSocketMessageWriter(wrappedSocket) };
