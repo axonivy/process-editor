@@ -40,7 +40,7 @@ export const webSocketConnection = <TConnection = Connection>(url: string | URL,
   const options = { ...defaultOptions, ...initOptions };
   let webSocket: WebSocket | undefined;
   let connection: TConnection | undefined;
-  let reconnectTimeout: number | NodeJS.Timeout | undefined;
+  let reconnectTimeout: number | undefined;
   let reconnectAttempts = 0;
 
   const scheduleReconnect = (
