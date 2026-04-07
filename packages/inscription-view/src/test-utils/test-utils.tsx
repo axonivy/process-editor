@@ -91,7 +91,6 @@ const customizedDeepmerge = deepmergeCustom<unknown, { DeepMergeFilterValuesURI:
 const initTranslation = () => {
   if (i18n.isInitializing || i18n.isInitialized) return;
   i18n.use(initReactI18next).init({
-    showSupportNotice: false,
     lng: 'en',
     fallbackLng: 'en',
     ns: ['process-editor'],
