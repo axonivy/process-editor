@@ -10,7 +10,6 @@ export const initTranslation = () => {
     .use(LanguageDetector)
     .init({
       debug: true,
-      showSupportNotice: false,
       supportedLngs: ['en', 'de'],
       fallbackLng: 'en',
       ns: ['process-editor'],
