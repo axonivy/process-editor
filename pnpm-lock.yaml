@@ -40,7 +40,7 @@ importers:
         version: 24.12.2
       i18next-cli:
         specifier: ^1.21.1
-        version: 1.51.6(@swc/helpers@0.5.19)(@types/node@24.12.2)(i18next@25.10.10(typescript@5.9.3))(typescript@5.9.3)
+        version: 1.51.6(@swc/helpers@0.5.19)(@types/node@24.12.2)(i18next@26.0.3(typescript@5.9.3))(typescript@5.9.3)
       prettier:
         specifier: ^3.5.3
         version: 3.8.1
@@ -87,14 +87,14 @@ importers:
         specifier: ^5.64
         version: 5.96.2(@tanstack/react-query@5.96.2(react@19.2.4))(react@19.2.4)
       i18next:
-        specifier: ^25.0.0
-        version: 25.10.10(typescript@5.9.3)
+        specifier: ^26.0.0
+        version: 26.0.3(typescript@5.9.3)
       i18next-browser-languagedetector:
         specifier: ^8.0.4
         version: 8.2.1
       react-i18next:
         specifier: ^16.0.0
-        version: 16.6.6(i18next@25.10.10(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
+        version: 16.6.6(i18next@26.0.3(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
     devDependencies:
       '@axonivy/monaco-vite-plugin':
         specifier: workspace:~14.0.0-next
@@ -163,8 +163,8 @@ importers:
         specifier: ^5.64
         version: 5.96.2(@tanstack/react-query@5.96.2(react@19.2.4))(react@19.2.4)
       i18next:
-        specifier: ^25.0.0
-        version: 25.10.10(typescript@5.9.3)
+        specifier: ^26.0.0
+        version: 26.0.3(typescript@5.9.3)
       i18next-browser-languagedetector:
         specifier: ^8.0.4
         version: 8.2.1
@@ -173,7 +173,7 @@ importers:
         version: 6.2.2(reflect-metadata@0.2.2)
       react-i18next:
         specifier: ^16.0.0
-        version: 16.6.6(i18next@25.10.10(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
+        version: 16.6.6(i18next@26.0.3(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
     devDependencies:
       '@axonivy/monaco-vite-plugin':
         specifier: workspace:~14.0.0-next
@@ -206,8 +206,8 @@ importers:
         specifier: 2.6.0
         version: 2.6.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       i18next:
-        specifier: ^25.0.0
-        version: 25.10.10(typescript@5.9.3)
+        specifier: ^26.0.0
+        version: 26.0.3(typescript@5.9.3)
       i18next-browser-languagedetector:
         specifier: ^8.0.4
         version: 8.2.1
@@ -249,8 +249,8 @@ importers:
         specifier: '>=3.3.2'
         version: 3.3.3
       i18next:
-        specifier: ^24.2.3 || ^25.0.0
-        version: 25.10.10(typescript@5.9.3)
+        specifier: ^24.2.3 || ^25.0.0 || ^26.0.0
+        version: 26.0.3(typescript@5.9.3)
       inversify:
         specifier: ^6.2
         version: 6.2.2(reflect-metadata@0.2.2)
@@ -265,7 +265,7 @@ importers:
         version: 19.2.4(react@19.2.4)
       react-i18next:
         specifier: ^15.4.1 || ^16.0.0
-        version: 16.6.6(i18next@25.10.10(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
+        version: 16.6.6(i18next@26.0.3(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
       snabbdom:
         specifier: ^3.5.1
         version: 3.5.1
@@ -334,8 +334,8 @@ importers:
         specifier: 2.6.0
         version: 2.6.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       i18next:
-        specifier: ^24.2.3 || ^25.0.0
-        version: 25.10.10(typescript@5.9.3)
+        specifier: ^24.2.3 || ^25.0.0 || ^26.0.0
+        version: 26.0.3(typescript@5.9.3)
       inversify:
         specifier: ^6.2
         version: 6.2.2(reflect-metadata@0.2.2)
@@ -411,8 +411,8 @@ importers:
         specifier: ^9.0
         version: 9.0.13(react@19.2.4)
       i18next:
-        specifier: ^24.2.3 || ^25.0.0
-        version: 25.10.10(typescript@5.9.3)
+        specifier: ^24.2.3 || ^25.0.0 || ^26.0.0
+        version: 26.0.3(typescript@5.9.3)
       immer:
         specifier: ^11.0.0
         version: 11.1.4
@@ -424,7 +424,7 @@ importers:
         version: 6.1.1(react@19.2.4)
       react-i18next:
         specifier: ^15.4.1 || ^16.0.0
-        version: 16.6.6(i18next@25.10.10(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
+        version: 16.6.6(i18next@26.0.3(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
     devDependencies:
       '@axonivy/jsonrpc':
         specifier: ~14.0.0-next.1079.485110d
@@ -3804,8 +3804,8 @@ packages:
     resolution: {integrity: sha512-BGPebhvjrvU+pgKNsIzb3cxl6/8LJw1pxNkIlUpnxCC4SXjbIwXeHuNxFnOkTAryRfMqYf81lPjYD2gngDyOfQ==}
     hasBin: true
 
-  i18next@25.10.10:
-    resolution: {integrity: sha512-cqUW2Z3EkRx7NqSyywjkgCLK7KLCL6IFVFcONG7nVYIJ3ekZ1/N5jUsihHV6Bq37NfhgtczxJcxduELtjTwkuQ==}
+  i18next@26.0.3:
+    resolution: {integrity: sha512-1571kXINxHKY7LksWp8wP+zP0YqHSSpl/OW0Y0owFEf2H3s8gCAffWaZivcz14rMkOvn3R/psiQxVsR9t2Nafg==}
     peerDependencies:
       typescript: ^5 || ^6
     peerDependenciesMeta:
@@ -9628,7 +9628,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.29.2
 
-  i18next-cli@1.51.6(@swc/helpers@0.5.19)(@types/node@24.12.2)(i18next@25.10.10(typescript@5.9.3))(typescript@5.9.3):
+  i18next-cli@1.51.6(@swc/helpers@0.5.19)(@types/node@24.12.2)(i18next@26.0.3(typescript@5.9.3))(typescript@5.9.3):
     dependencies:
       '@croct/json5-parser': 0.2.2
       '@swc/core': 1.15.24(@swc/helpers@0.5.19)
@@ -9644,7 +9644,7 @@ snapshots:
       minimatch: 10.2.5
       ora: 9.3.0
       react: 19.2.4
-      react-i18next: 17.0.2(i18next@25.10.10(typescript@5.9.3))(react@19.2.4)(typescript@5.9.3)
+      react-i18next: 17.0.2(i18next@26.0.3(typescript@5.9.3))(react@19.2.4)(typescript@5.9.3)
       yaml: 2.8.3
     transitivePeerDependencies:
       - '@swc/helpers'
@@ -9663,7 +9663,7 @@ snapshots:
     transitivePeerDependencies:
       - '@swc/helpers'
 
-  i18next@25.10.10(typescript@5.9.3):
+  i18next@26.0.3(typescript@5.9.3):
     dependencies:
       '@babel/runtime': 7.29.2
     optionalDependencies:
@@ -10605,22 +10605,22 @@ snapshots:
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
 
-  react-i18next@16.6.6(i18next@25.10.10(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3):
+  react-i18next@16.6.6(i18next@26.0.3(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3):
     dependencies:
       '@babel/runtime': 7.29.2
       html-parse-stringify: 3.0.1
-      i18next: 25.10.10(typescript@5.9.3)
+      i18next: 26.0.3(typescript@5.9.3)
       react: 19.2.4
       use-sync-external-store: 1.6.0(react@19.2.4)
     optionalDependencies:
       react-dom: 19.2.4(react@19.2.4)
       typescript: 5.9.3
 
-  react-i18next@17.0.2(i18next@25.10.10(typescript@5.9.3))(react@19.2.4)(typescript@5.9.3):
+  react-i18next@17.0.2(i18next@26.0.3(typescript@5.9.3))(react@19.2.4)(typescript@5.9.3):
     dependencies:
       '@babel/runtime': 7.29.2
       html-parse-stringify: 3.0.1
-      i18next: 25.10.10(typescript@5.9.3)
+      i18next: 26.0.3(typescript@5.9.3)
       react: 19.2.4
       use-sync-external-store: 1.6.0(react@19.2.4)
     optionalDependencies:
