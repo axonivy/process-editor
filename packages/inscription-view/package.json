@@ -34,7 +34,7 @@
     "downshift": "^9.0",
     "i18next": "^25.0.0 || ^26.0.0",
     "react": "^19.0",
-    "react-i18next": "^16.0.0"
+    "react-i18next": "^16.0.0 || ^17.0.0"
   },
   "devDependencies": {
     "@axonivy/jsonrpc": "~14.0.0-next.1079.485110d",
