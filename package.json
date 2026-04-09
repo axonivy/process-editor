@@ -6,7 +6,7 @@
     "node": ">=20.19"
   },
   "volta": {
-    "node": "24.11.0"
+    "node": "24.14.1"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
