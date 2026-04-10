@@ -9,11 +9,11 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "dependencies": {
-    "@axonivy/jsonrpc": "~12.0.14-next.724.29dc761",
-    "@axonivy/process-editor-inscription-core": "12.0.15-next",
-    "@axonivy/process-editor-inscription-view": "12.0.15-next",
-    "@axonivy/ui-components": "~12.0.14-next.724.29dc761",
-    "@axonivy/ui-icons": "~12.0.14-next.724.29dc761",
+    "@axonivy/jsonrpc": "~12.0.15-next.736.41cf02f",
+    "@axonivy/process-editor-inscription-core": "~12.0.15-next",
+    "@axonivy/process-editor-inscription-view": "~12.0.15-next",
+    "@axonivy/ui-components": "~12.0.15-next.736.41cf02f",
+    "@axonivy/ui-icons": "~12.0.15-next.736.41cf02f",
     "@tanstack/react-query": "^5.32",
     "@tanstack/react-query-devtools": "^5.32",
     "path-browserify": "^1.0.1"
