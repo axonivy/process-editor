@@ -29,7 +29,7 @@
     "test": "vitest test",
     "test:ci": "vitest run --reporter=default --reporter=junit --outputFile=report.xml",
     "webtest": "pnpm run --filter @axonivy/process-editor-playwright webtest",
-    "update:axonivy:next": "npx --yes npm-check-updates @axonivy* -ws -t semver -u",
+    "update:axonivy:next": "npx --yes npm-check-updates @axonivy* -w -c 0 -t semver -u",
     "raise:version": "lerna version --no-git-tag-version --no-push --ignore-scripts --exact --yes",
     "publish:next": "lerna publish --exact --canary --preid next --pre-dist-tag next --no-git-tag-version --no-push --ignore-scripts --yes"
   },
