@@ -2,7 +2,7 @@ import type { QueryData } from '@axonivy/process-editor-inscription-protocol';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
 import { usePartState, type PartProps } from '../../../components/editors/part/usePart';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
 import { DatabaseSelect } from './database/DatabaseSelect';
@@ -36,14 +36,14 @@ const QueryPart = () => {
   const query = useQuery();
   return (
     <>
-      <PathContext path='query'>
+      <PathProvider path='query'>
         <ValidationCollapsible label={t('label.database')} defaultOpen={true}>
           <QueryKindSelect />
           <DatabaseSelect />
           {config.query.sql.kind !== 'ANY' && <TableSelect />}
         </ValidationCollapsible>
         {query}
-      </PathContext>
+      </PathProvider>
     </>
   );
 };

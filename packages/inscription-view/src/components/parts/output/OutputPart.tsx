@@ -3,7 +3,7 @@ import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import type { BrowserType } from '../../browser/useBrowser';
 import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
@@ -47,7 +47,7 @@ const OutputPart = ({ additionalBrowsers, showSudo, defaultOpenCode }: OutputPar
 
   const { maximizeState, maximizeCode } = useMaximizedCodeEditor();
   return (
-    <PathContext path='output'>
+    <PathProvider path='output'>
       <MappingPart
         data={config.output.map}
         variableInfo={variableInfo}
@@ -72,6 +72,6 @@ const OutputPart = ({ additionalBrowsers, showSudo, defaultOpenCode }: OutputPar
         </ValidationFieldset>
         {showSudo && <Checkbox label={t('part.output.disablePermission')} value={config.sudo} onChange={updateSudo} />}
       </PathCollapsible>
-    </PathContext>
+    </PathProvider>
   );
 };

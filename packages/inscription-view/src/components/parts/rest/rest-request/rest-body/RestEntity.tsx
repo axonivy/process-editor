@@ -2,7 +2,7 @@ import { EMPTY_VAR_INFO } from '@axonivy/process-editor-inscription-protocol';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../../context/useEditorContext';
 import { useMeta } from '../../../../../context/useMeta';
-import { PathContext } from '../../../../../context/usePath';
+import { PathProvider } from '../../../../../context/usePath';
 import useMaximizedCodeEditor from '../../../../browser/useMaximizedCodeEditor';
 import { ScriptArea } from '../../../../widgets/code-editor/ScriptArea';
 import { MappingField } from '../../../common/mapping-tree/MappingPart';
@@ -25,7 +25,7 @@ export const RestEntity = () => {
   const showEntityType = useShowEntityTypeCombo(entityTypes, config.body.entity.type);
   const { maximizeState, maximizeCode } = useMaximizedCodeEditor();
   return (
-    <PathContext path='entity'>
+    <PathProvider path='entity'>
       {showEntityType && (
         <PathFieldset label={t('part.rest.entityType')} path='type'>
           <RestEntityTypeCombobox value={config.body.entity.type} onChange={change => updateEntity('type', change)} items={entityTypes} />
@@ -45,6 +45,6 @@ export const RestEntity = () => {
           browsers={['attr', 'func', 'type']}
         />
       </PathFieldset>
-    </PathContext>
+    </PathProvider>
   );
 };

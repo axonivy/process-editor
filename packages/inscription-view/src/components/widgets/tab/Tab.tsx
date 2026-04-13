@@ -38,16 +38,16 @@ export const TabRoot = ({ tabs, value, onChange, children }: TabsProps & { child
 
 export const TabList = ({ tabs }: TabsProps) => (
   <TabsList className='tabs-list'>
-    {tabs.map((tab, index) => (
-      <TabTrigger key={`${index}-${tab.name}`} tab={tab} tabIcon={tab.icon} />
+    {tabs.map(tab => (
+      <TabTrigger key={tab.id} tab={tab} tabIcon={tab.icon} />
     ))}
   </TabsList>
 );
 
 export const TabContent = ({ tabs }: TabsProps) => (
   <>
-    {tabs.map((tab, index) => (
-      <TabsContent key={`${index}-${tab}`} className='tabs-content' value={tab.id}>
+    {tabs.map(tab => (
+      <TabsContent key={tab.id} className='tabs-content' value={tab.id}>
         {tab.content}
       </TabsContent>
     ))}

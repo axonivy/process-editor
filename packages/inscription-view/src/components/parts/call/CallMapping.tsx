@@ -1,7 +1,7 @@
 import type { ValidationResult, VariableInfo } from '@axonivy/process-editor-inscription-protocol';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
 import { ScriptArea } from '../../widgets/code-editor/ScriptArea';
@@ -20,7 +20,7 @@ const CallMapping = ({ variableInfo }: { variableInfo: VariableInfo }) => {
   const { maximizeState, maximizeCode } = useMaximizedCodeEditor();
 
   return (
-    <PathContext path='call'>
+    <PathProvider path='call'>
       <MappingPart
         data={config.call.map}
         defaultData={defaultConfig.call.map}
@@ -44,7 +44,7 @@ const CallMapping = ({ variableInfo }: { variableInfo: VariableInfo }) => {
           />
         </ValidationFieldset>
       </PathCollapsible>
-    </PathContext>
+    </PathProvider>
   );
 };
 

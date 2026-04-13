@@ -1,18 +1,18 @@
 import type { SchemaKeys, SchemaPath } from '@axonivy/process-editor-inscription-protocol';
 import type { ReactNode } from 'react';
-import { createContext, useContext } from 'react';
+import { createContext, use } from 'react';
 
-const PathContextInstance = createContext<SchemaPath | SchemaKeys | ''>('');
+const PathContext = createContext<SchemaPath | SchemaKeys | ''>('');
 
-export const PathContext = ({ path, children }: { path: SchemaKeys | number; children: ReactNode }) => {
+export const PathProvider = ({ path, children }: { path: SchemaKeys | number; children: ReactNode }) => {
   const fullPath = useFullPath([path]);
-  return <PathContextInstance.Provider value={fullPath}>{children}</PathContextInstance.Provider>;
+  return <PathContext value={fullPath}>{children}</PathContext>;
 };
 
-export const usePath = () => useContext(PathContextInstance);
+export const usePath = () => use(PathContext);
 
 export const useFullPath = (paths?: Array<SchemaKeys | number>) => {
-  const parentPath = useContext(PathContextInstance);
+  const parentPath = use(PathContext);
   return mergePaths(parentPath, paths ?? []);
 };
 

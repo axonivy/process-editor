@@ -2,7 +2,7 @@ import type { ProgramInterfaceStartData } from '@axonivy/process-editor-inscript
 import { IVY_EXCEPTIONS, IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
-import { PathContext } from '../../../../context/usePath';
+import { PathProvider } from '../../../../context/usePath';
 import { useValidations } from '../../../../context/useValidation';
 import { deepEqual } from '../../../../utils/equals';
 import { usePartState, type PartProps } from '../../../editors/part/usePart';
@@ -34,13 +34,13 @@ const ProgramInterfaceErrorPart = () => {
   return (
     <>
       <PathCollapsible label={t('part.program.error.title')} path='exceptionHandler' defaultOpen={true}>
-        <PathContext path='error'>
+        <PathProvider path='error'>
           <ExceptionSelect
             value={config.exceptionHandler}
             onChange={change => update('exceptionHandler', change)}
             staticExceptions={[IVY_EXCEPTIONS.programException, IVY_EXCEPTIONS.ignoreException]}
           />
-        </PathContext>
+        </PathProvider>
       </PathCollapsible>
 
       <PathCollapsible

@@ -136,6 +136,7 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
   useEffect(() => {
     const selectedRow = table.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
       setShowHelper(false);
       onChange({ value: '' });
       return;
@@ -147,15 +148,20 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
 
     //setup Meta-Call for docApi
     const parentRow = selectedRow.getParentRow();
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setType(
       parentRow
         ? parentRow.original.returnType.packageName + '.' + parentRow.original.returnType.simpleName
         : selectedRow.original.returnType.packageName + '.' + selectedRow.original.returnType.simpleName
     );
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setMethod(selectedRow.original.name);
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setParamTypes(selectedRow.original.params.map(param => param.type));
     //setup Helpertext
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setSelectedFunctionDoc(doc);
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setShowHelper(true);
   }, [doc, onChange, rowSelection, table]);
 
@@ -198,6 +204,7 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
       {showHelper && (
         <pre
           className='browser-helptext'
+          // eslint-disable-next-line @eslint-react/dom-no-dangerously-set-innerhtml
           dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(`<b>${value}</b>${selectedFunctionDoc}`) }}
         />
       )}

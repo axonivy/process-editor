@@ -5,7 +5,7 @@ import type { ColumnDef } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
 import { ScriptCell } from '../../widgets/table/cell/ScriptCell';
@@ -31,9 +31,9 @@ export function useMailAttachmentPart(): PartProps {
 
 const MailAttachmentsPart = () => {
   return (
-    <PathContext path='attachments'>
+    <PathProvider path='attachments'>
       <MailAttachmentTable />
-    </PathContext>
+    </PathProvider>
   );
 };
 

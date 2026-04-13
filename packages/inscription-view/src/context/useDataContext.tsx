@@ -1,6 +1,6 @@
 import type { ConfigData, ElementData, ValidationResult, WfTask } from '@axonivy/process-editor-inscription-protocol';
 import { produce } from 'immer';
-import { createContext, useCallback, useContext } from 'react';
+import { createContext, use, useCallback, type ReactNode } from 'react';
 import type { UpdateConsumer } from '../types/lambda';
 
 export interface DataContext {
@@ -14,8 +14,12 @@ export interface DataContext {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const defaultDataContext: any = undefined;
 
-export const DataContextInstance = createContext<DataContext>(defaultDataContext);
-export const useDataContext = (): DataContext => useContext(DataContextInstance);
+const DataContext = createContext<DataContext>(defaultDataContext);
+export const DataContextProvider = ({ context, children }: { context: DataContext; children: ReactNode }) => {
+  return <DataContext value={context}>{children}</DataContext>;
+};
+
+export const useDataContext = (): DataContext => use(DataContext);
 
 export type ConfigDataContext<T> = {
   config: T;
@@ -41,7 +45,10 @@ export function useConfigDataContext<T extends ConfigData>(): ConfigDataContext<
   return { config: data.config as T, initConfig: initData.config as T, defaultConfig: defaultData as T, setConfig };
 }
 
-export const TaskDataContextInstance = createContext<number | undefined>(undefined);
+const TaskDataContext = createContext<number | undefined>(undefined);
+export const TaskDataContextProvider = ({ taskNumber, children }: { taskNumber: number | undefined; children: ReactNode }) => {
+  return <TaskDataContext value={taskNumber}>{children}</TaskDataContext>;
+};
 
 export type TaskDataContext = {
   task: WfTask;
@@ -52,7 +59,7 @@ export type TaskDataContext = {
 export function useTaskDataContext(): TaskDataContext & {
   setTask: UpdateConsumer<WfTask>;
 } {
-  const taskNumber = useContext(TaskDataContextInstance);
+  const taskNumber = use(TaskDataContext);
   const { config, defaultConfig, initConfig, setConfig } = useConfigDataContext();
 
   const setTask = useCallback<UpdateConsumer<WfTask>>(

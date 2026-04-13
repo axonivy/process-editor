@@ -206,7 +206,7 @@ async function waitForConsoleMessage(
 ): Promise<string> {
   return new Promise((resolve, reject) => {
     const onConsoleMessage = (msg: ConsoleMessage) => {
-      let found = false;
+      let found: boolean;
       if (typeof messageContent === 'string') {
         found = msg.text().includes(messageContent);
       } else {

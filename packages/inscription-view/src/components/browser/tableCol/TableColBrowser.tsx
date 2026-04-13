@@ -48,6 +48,7 @@ const TableColumnBrowser = ({ value, onChange, onDoubleClick }: TableColumnBrows
     if (select.length > 1 || select[0] !== '*') {
       columns = columnMetas.filter(c => select.includes(c.name));
     }
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setData(columns);
   }, [columnMetas, config.query.sql.select]);
 
@@ -93,10 +94,12 @@ const TableColumnBrowser = ({ value, onChange, onDoubleClick }: TableColumnBrows
     const selectedRow = table.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
       onChange({ value: '' });
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
       setShowHelper(false);
       return;
     }
 
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setShowHelper(true);
     onChange({ value: selectedRow.original.name, data: selectedRow.original });
   }, [onChange, rowSelection, table]);

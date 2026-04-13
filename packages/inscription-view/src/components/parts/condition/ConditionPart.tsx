@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
 import { Condition } from './condition';
@@ -37,8 +37,8 @@ const ConditionPart = () => {
   }, [config.conditions, outConnectors]);
 
   return (
-    <PathContext path='conditions'>
+    <PathProvider path='conditions'>
       <ConditionTable data={conditions} onChange={conditions => update('conditions', Condition.to(conditions))} />
-    </PathContext>
+    </PathProvider>
   );
 };

@@ -1,6 +1,6 @@
 import type { SchemaKeys } from '@axonivy/process-editor-inscription-protocol';
 import type { ReactNode } from 'react';
-import { PathContext } from '../../../../context/usePath';
+import { PathProvider } from '../../../../context/usePath';
 import type { CollapsibleProps } from '../../../widgets/collapsible/Collapsible';
 import { ValidationCollapsible } from './validation/ValidationCollapsible';
 
@@ -10,7 +10,7 @@ export type PathCollapsibleProps = CollapsibleProps & {
 };
 
 export const PathCollapsible = ({ path: location, children, ...props }: PathCollapsibleProps) => (
-  <PathContext path={location}>
+  <PathProvider path={location}>
     <ValidationCollapsible {...props}>{children}</ValidationCollapsible>
-  </PathContext>
+  </PathProvider>
 );

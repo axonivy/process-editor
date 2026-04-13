@@ -2,7 +2,7 @@ import type { SchemaKeys, VariableInfo } from '@axonivy/process-editor-inscripti
 import { deepEqual } from '@axonivy/ui-components';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PathContext } from '../../../../context/usePath';
+import { PathProvider } from '../../../../context/usePath';
 import type { BrowserType } from '../../../browser/useBrowser';
 import Fieldset from '../../../widgets/fieldset/Fieldset';
 import { PathCollapsible } from '../path/PathCollapsible';
@@ -39,11 +39,11 @@ export const MappingField = ({ path, data, ...props }: MappingPartProps) => {
   const globalFilter = useTableGlobalFilter();
   const onlyInscribedFilter = useTableOnlyInscribed();
   return (
-    <PathContext path={path ?? 'map'}>
+    <PathProvider path={path ?? 'map'}>
       <Fieldset label={t('common.label.mapping')} controls={[globalFilter.control, onlyInscribedFilter.control]}>
         <MappingTree data={data} {...props} globalFilter={globalFilter} onlyInscribedFilter={onlyInscribedFilter} />
       </Fieldset>
-    </PathContext>
+    </PathProvider>
   );
 };
 

@@ -11,8 +11,8 @@ type RadioProps<T extends string> = Omit<ComponentProps<typeof RadioGroup>, 'val
 
 const Radio = <T extends string>({ value, onChange, items, orientation = 'vertical', ...props }: RadioProps<T>) => (
   <RadioGroup value={value} onValueChange={onChange} orientation={orientation} {...props}>
-    {items.map((item, index) => (
-      <RadioItem key={`${index}-${item.value}`} {...item} />
+    {items.map(item => (
+      <RadioItem key={item.value} {...item} />
     ))}
   </RadioGroup>
 );

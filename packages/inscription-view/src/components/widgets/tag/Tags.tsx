@@ -23,7 +23,7 @@ const Tags = (props: {
 
   const [prevAvailableTags, setPrevAvailableTags] = useState(props.availableTags);
   const [prevTags, setPrevTags] = useState(props.tags);
-  const [dropDownTags, setDropDownTags] = useState<string[]>(ddTags(props.availableTags, props.tags));
+  const [dropDownTags, setDropDownTags] = useState<string[]>(() => ddTags(props.availableTags, props.tags));
   if (props.availableTags !== prevAvailableTags || props.tags !== prevTags) {
     setPrevAvailableTags(props.availableTags);
     setPrevTags(props.tags);
@@ -112,8 +112,8 @@ const Tags = (props: {
     <>
       <Popover open={isOpen}>
         <div className='tags'>
-          {props.tags.map((tag, index) => (
-            <div key={`${tag}-${index}`} className='added-tag' role='gridcell'>
+          {props.tags.map(tag => (
+            <div key={tag} className='added-tag' role='gridcell'>
               <span>{tag}</span>
               <button
                 className='tag-remove'
@@ -161,7 +161,7 @@ const Tags = (props: {
                   <Flex
                     gap={2}
                     className={`combobox-menu-entry ${highlightedIndex === index ? 'hover' : ''} ${selectedItem === item ? 'selected' : ''}`}
-                    key={`${item}${index}`}
+                    key={item}
                     {...getItemProps({ item, index })}
                   >
                     <span>{item}</span>

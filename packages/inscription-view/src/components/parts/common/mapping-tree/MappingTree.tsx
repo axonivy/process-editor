@@ -34,8 +34,10 @@ const MappingTree = ({ data, variableInfo, onChange, globalFilter, onlyInscribed
   useEffect(() => {
     const treeData = MappingTreeData.of(variableInfo);
     Object.entries(data).forEach(mapping => MappingTreeData.update(variableInfo, treeData, mapping[0].split('.'), mapping[1]));
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setTree(treeData);
     if (updateExpanded) {
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
       setExpanded(expandState(treeData));
     }
   }, [data, updateExpanded, variableInfo]);

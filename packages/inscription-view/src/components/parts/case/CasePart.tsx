@@ -1,7 +1,7 @@
 import type { CaseData } from '@axonivy/process-editor-inscription-protocol';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
 import CustomFieldTable from '../common/customfield/CustomFieldTable';
@@ -27,9 +27,9 @@ const CasePart = () => {
   const { config, defaultConfig, update } = useCaseData();
 
   return (
-    <PathContext path='case'>
+    <PathProvider path='case'>
       <Information config={config.case} defaultConfig={defaultConfig.case} update={update} />
       <CustomFieldTable data={config.case.customFields} onChange={change => update('customFields', change)} type='CASE' />
-    </PathContext>
+    </PathProvider>
   );
 };

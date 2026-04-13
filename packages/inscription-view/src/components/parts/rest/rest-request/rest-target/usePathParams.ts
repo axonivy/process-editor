@@ -4,7 +4,7 @@ import { useEditorContext } from '../../../../../context/useEditorContext';
 import { useMeta } from '../../../../../context/useMeta';
 import { useRestRequestData } from '../../useRestRequestData';
 
-export const useTargetPathSplit = (path: string) => {
+export const targetPathSplit = (path: string) => {
   return path.split(/(\{[^}]*\})/gm);
 };
 

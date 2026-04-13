@@ -177,12 +177,16 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
 
     const selectedRow = table.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
       setSelectedContentObject({ name: '', children: [], fullPath: '', type: 'STRING', values: {} });
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
       setShowHelper(false);
       onChange({ value: '' });
       return;
     }
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setSelectedContentObject(selectedRow.original);
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setShowHelper(true);
     onChange({ value: addIvyPathToValue(selectedRow.original.fullPath, selectedRow.original.type, noApiCall) });
   }, [onChange, rowSelection, noApiCall, table, location]);

@@ -2,8 +2,8 @@ import type { TaskData } from '@axonivy/process-editor-inscription-protocol';
 import { PanelMessage } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
-import { TaskDataContextInstance, useConfigDataContext } from '../../../context/useDataContext';
-import { mergePaths, PathContext } from '../../../context/usePath';
+import { TaskDataContextProvider, useConfigDataContext } from '../../../context/useDataContext';
+import { mergePaths, PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
 import { Tabs, type Tab } from '../../widgets/tab/Tab';
@@ -38,13 +38,13 @@ const MultiTasksPart = () => {
         name: taskId,
         messages: taskVals,
         content: (
-          <PathContext path='tasks'>
-            <TaskDataContextInstance.Provider value={index}>
-              <PathContext path={index}>
+          <PathProvider path='tasks'>
+            <TaskDataContextProvider taskNumber={index}>
+              <PathProvider path={index}>
                 <Task />
-              </PathContext>
-            </TaskDataContextInstance.Provider>
-          </PathContext>
+              </PathProvider>
+            </TaskDataContextProvider>
+          </PathProvider>
         )
       };
     }) ?? [];

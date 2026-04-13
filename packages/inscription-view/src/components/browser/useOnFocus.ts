@@ -11,15 +11,15 @@ export const useOnFocus = (
   focusValue: { value: string; onChange: React.Dispatch<React.SetStateAction<string>> };
   browser: ReturnType<typeof useBrowser>;
 } => {
-  const [isFocusWithin, setFocusWithin] = useState(false);
+  const [isFocusWithin, setIsFocusWithin] = useState(false);
   const [focusValue, setFocusValue] = useState(initialValue);
   const [prevFocusValue, setPrevFocusValue] = useState(initialValue);
   const browser = useBrowser();
   const { focusWithinProps } = useFocusWithin({
-    onFocusWithin: () => setFocusWithin(true),
+    onFocusWithin: () => setIsFocusWithin(true),
     onBlurWithin: () => {
       if (!browser.open) {
-        setFocusWithin(false);
+        setIsFocusWithin(false);
         onChange(focusValue);
       }
     }

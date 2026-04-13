@@ -1,7 +1,7 @@
 import type { RestResponseData } from '@axonivy/process-editor-inscription-protocol';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
 import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
@@ -28,7 +28,7 @@ const RestErrorPart = () => {
   const { t } = useTranslation();
   const { config, update } = useRestErrorData();
   return (
-    <PathContext path='response'>
+    <PathProvider path='response'>
       <ValidationCollapsible label={t('label.error')} defaultOpen={true} paths={['clientError', 'statusError']}>
         <RestError
           label={t('part.rest.onError')}
@@ -43,6 +43,6 @@ const RestErrorPart = () => {
           path='statusError'
         />
       </ValidationCollapsible>
-    </PathContext>
+    </PathProvider>
   );
 };
