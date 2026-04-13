@@ -25,7 +25,7 @@ type ResizableCodeEditorProps = Omit<CodeEditorProps, 'height' | 'context'> & {
 };
 
 export const ResizableCodeEditor = ({ initHeight, location, ...props }: ResizableCodeEditorProps) => {
-  const [height, setHeight] = useState(initHeight ? initHeight() : 250);
+  const [height, setHeight] = useState(() => (initHeight ? initHeight() : 250));
   const [resizeActive, setResizeActive] = useState(false);
   const { moveProps } = useMove({
     onMoveStart() {

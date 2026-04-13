@@ -23,15 +23,15 @@ export const CodeEditor = ({ value, onChange, context, macro, onMountFuncs, opti
   const { t } = useTranslation();
   const { elementContext } = useEditorContext();
   const readonly = useReadonly();
-  const placeholderElement = useRef<HTMLDivElement>(null);
+  const placeholderElementRef = useRef<HTMLDivElement>(null);
 
   const monacoOptions = useMemo(() => ({ ...(options ?? MONACO_OPTIONS), readOnly: readonly }), [options, readonly]);
   const contextPath = `${elementContext.app}/${elementContext.pmv}/${elementContext.pid}`;
   const language = macro ? IvyMacroLanguage.Language.id : IvyScriptLanguage.Language.id;
 
   const updatePlaceholder = (showPlaceholder: boolean) => {
-    if (placeholderElement.current) {
-      placeholderElement.current.style.display = showPlaceholder ? 'block' : 'none';
+    if (placeholderElementRef.current) {
+      placeholderElementRef.current.style.display = showPlaceholder ? 'block' : 'none';
     }
   };
 
@@ -76,7 +76,7 @@ export const CodeEditor = ({ value, onChange, context, macro, onMountFuncs, opti
         />
       </Suspense>
 
-      <div ref={placeholderElement} className={`monaco-placeholder ${monacoOptions.lineNumbers === 'on' ? 'with-lineNumbers' : ''}`}>
+      <div ref={placeholderElementRef} className={`monaco-placeholder ${monacoOptions.lineNumbers === 'on' ? 'with-lineNumbers' : ''}`}>
         {t('label.editorPlaceholder')}
       </div>
     </div>

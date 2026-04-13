@@ -1,6 +1,6 @@
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import MappingPart from '../common/mapping-tree/MappingPart';
 import { useWsRequestData } from './useWsRequestData';
 
@@ -14,7 +14,7 @@ export const WsMapping = () => {
     .find(() => true) ?? { variables: [], types: {} };
 
   return (
-    <PathContext path='operation'>
+    <PathProvider path='operation'>
       <MappingPart
         data={config.operation.parameters}
         defaultData={defaultConfig.operation.parameters}
@@ -23,6 +23,6 @@ export const WsMapping = () => {
         path='parameters'
         browsers={['attr', 'func', 'type', 'cms']}
       />
-    </PathContext>
+    </PathProvider>
   );
 };

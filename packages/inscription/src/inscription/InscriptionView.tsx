@@ -10,7 +10,7 @@ const InscriptionView = ({ pid, ...props }: ComponentProps<typeof App>) => {
     setElement(pid);
   }
 
-  const [width, setWidth] = useState(inscriptionWidthStorage().getWidth());
+  const [width, setWidth] = useState(() => inscriptionWidthStorage().getWidth());
   const [resizeActive, setResizeActive] = useState(false);
   const { moveProps } = useMove({
     onMoveStart() {

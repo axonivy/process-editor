@@ -36,8 +36,8 @@ import { useRef } from 'react';
 import { initReactI18next } from 'react-i18next';
 import enTranslation from '../../../editor/src/translation/process-editor/en.json';
 import { ClientContextProvider, type ClientContext } from '../context/useClient';
-import { DataContextInstance, type DataContext } from '../context/useDataContext';
-import { DEFAULT_EDITOR_CONTEXT, EditorContextInstance } from '../context/useEditorContext';
+import { DataContextProvider, type DataContext } from '../context/useDataContext';
+import { DEFAULT_EDITOR_CONTEXT, EditorContextProvider } from '../context/useEditorContext';
 import { OpenApiContextProvider } from '../context/useOpenApi';
 import type { DeepPartial } from './type-utils';
 
@@ -214,15 +214,15 @@ const ContextHelper = (
   return (
     <div ref={editorRef}>
       <ReadonlyProvider readonly={props.editor?.readonly ?? false}>
-        <EditorContextInstance.Provider value={editorContext}>
+        <EditorContextProvider context={editorContext}>
           <ClientContextProvider client={client.client}>
             <QueryClientProvider client={queryClient}>
-              <DataContextInstance.Provider value={data}>
+              <DataContextProvider context={data}>
                 <OpenApiContextProvider>{props.children}</OpenApiContextProvider>
-              </DataContextInstance.Provider>
+              </DataContextProvider>
             </QueryClientProvider>
           </ClientContextProvider>
-        </EditorContextInstance.Provider>
+        </EditorContextProvider>
       </ReadonlyProvider>
     </div>
   );

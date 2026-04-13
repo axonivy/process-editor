@@ -58,7 +58,7 @@ const columnsToOrderBy = (data: Column[]) => {
 export const TableSort = () => {
   const { t } = useTranslation();
   const { config, updateSql } = useQueryData();
-  const [data, setData] = useState<Column[]>(orderByToColumns(config.query.sql.orderBy ?? []));
+  const [data, setData] = useState<Column[]>(() => orderByToColumns(config.query.sql.orderBy ?? []));
 
   const { elementContext: context } = useEditorContext();
   const columnItems = useMeta('meta/database/columns', { context, database: config.query.dbName, table: config.query.sql.table }, []).data;

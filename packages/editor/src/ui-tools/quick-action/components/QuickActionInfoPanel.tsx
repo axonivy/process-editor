@@ -29,6 +29,7 @@ export const QuickActionInfoPanel: React.FC<QuickActionInfoPanelProps> = ({ acti
     <QuickActionPaletteWrapper className='bar-menu-text simple-menu'>
       {action.title && <h3 className='simple-menu-header'>{action.title}</h3>}
       {action.markers.map((marker, index) => (
+        // eslint-disable-next-line @eslint-react/no-array-index-key
         <div key={index} className='menu-marker'>
           {marker.issues.map(issue => (
             <div key={issue.message} className='menu-issue'>
@@ -44,6 +45,7 @@ export const QuickActionInfoPanel: React.FC<QuickActionInfoPanelProps> = ({ acti
       {action.text && (
         <div
           className='simple-menu-text'
+          // eslint-disable-next-line @eslint-react/dom-no-dangerously-set-innerhtml
           dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(marked.parse(action.text, { async: false, breaks: true })) }}
         />
       )}

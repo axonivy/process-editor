@@ -2,7 +2,7 @@ import type { CacheData } from '@axonivy/process-editor-inscription-protocol';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
 import { usePartState, type PartProps } from '../../../components/editors/part/usePart';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import Collapsible from '../../widgets/collapsible/Collapsible';
 import Radio from '../../widgets/radio/Radio';
@@ -28,7 +28,7 @@ const CachePart = () => {
   const { t } = useTranslation();
   const { config, update, updateGroup, updateEntry } = useCacheData();
   return (
-    <PathContext path='cache'>
+    <PathProvider path='cache'>
       <Collapsible label={t('part.cache.mode.title')} defaultOpen={true}>
         <Radio
           value={config.cache.mode}
@@ -79,6 +79,6 @@ const CachePart = () => {
           />
         </>
       )}
-    </PathContext>
+    </PathProvider>
   );
 };

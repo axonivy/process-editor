@@ -1,10 +1,10 @@
 import type { InscriptionContext, InscriptionElementContext, InscriptionType, PID } from '@axonivy/process-editor-inscription-protocol';
-import { createContext, useContext } from 'react';
+import { createContext, use, type ReactNode, type RefObject } from 'react';
 
-export type EditorContext = {
+type EditorContext = {
   context: InscriptionContext;
   elementContext: InscriptionElementContext;
-  editorRef: React.MutableRefObject<HTMLElement | null>;
+  editorRef: RefObject<HTMLElement | null>;
   type: InscriptionType;
   navigateTo: (pid: PID) => void;
 };
@@ -24,5 +24,8 @@ export const DEFAULT_EDITOR_CONTEXT: EditorContext = {
   navigateTo: () => {}
 };
 
-export const EditorContextInstance = createContext<EditorContext>(DEFAULT_EDITOR_CONTEXT);
-export const useEditorContext = (): EditorContext => useContext(EditorContextInstance);
+const EditorContext = createContext<EditorContext>(DEFAULT_EDITOR_CONTEXT);
+export const EditorContextProvider = ({ context, children }: { context: EditorContext; children: ReactNode }) => {
+  return <EditorContext value={context}>{children}</EditorContext>;
+};
+export const useEditorContext = (): EditorContext => use(EditorContext);

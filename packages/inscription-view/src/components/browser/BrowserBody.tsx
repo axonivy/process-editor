@@ -26,6 +26,7 @@ const BrowserBody = ({ open, tabs, activeTab, onTabsChange, onApply, disableAppl
   const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setPortalContainer(editorRef.current);
   }, [editorRef]);
 

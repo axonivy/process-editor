@@ -2,19 +2,19 @@ import type { RestRequestData } from '@axonivy/process-editor-inscription-protoc
 import type { DeepPartial } from 'test-utils';
 import { customRenderHook, waitFor } from 'test-utils';
 import { describe, expect, test } from 'vitest';
-import { useFindPathParams, useTargetPathSplit } from './usePathParams';
+import { targetPathSplit, useFindPathParams } from './usePathParams';
 
-describe('useTargetPathSplit', () => {
+describe('targetPathSplit', () => {
   test('empty', () => {
-    expect(useTargetPathSplit('')).toEqual(['']);
+    expect(targetPathSplit('')).toEqual(['']);
   });
 
   test('no findings', () => {
-    expect(useTargetPathSplit('/bla/hi/test')).toEqual(['/bla/hi/test']);
+    expect(targetPathSplit('/bla/hi/test')).toEqual(['/bla/hi/test']);
   });
 
   test('params', () => {
-    expect(useTargetPathSplit('/{bla}/hi/{test}')).toEqual(['/', '{bla}', '/hi/', '{test}', '']);
+    expect(targetPathSplit('/{bla}/hi/{test}')).toEqual(['/', '{bla}', '/hi/', '{test}', '']);
   });
 });
 

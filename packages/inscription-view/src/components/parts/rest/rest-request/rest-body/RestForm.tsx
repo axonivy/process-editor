@@ -5,7 +5,7 @@ import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react
 import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PathContext } from '../../../../../context/usePath';
+import { PathProvider } from '../../../../../context/usePath';
 import { deepEqual } from '../../../../../utils/equals';
 import Fieldset from '../../../../widgets/fieldset/Fieldset';
 import type { FieldsetControl } from '../../../../widgets/fieldset/fieldset-control';
@@ -120,7 +120,7 @@ export const RestForm = () => {
   }
 
   return (
-    <PathContext path='form'>
+    <PathProvider path='form'>
       <div>
         {tableActions.length > 0 && <Fieldset label=' ' controls={tableActions} />}
         <Table>
@@ -139,6 +139,6 @@ export const RestForm = () => {
         </Table>
         {showAddButton() && <TableAddRow addRow={addRow} />}
       </div>
-    </PathContext>
+    </PathProvider>
   );
 };

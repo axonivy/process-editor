@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { genQueryKey } from '../../..';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
@@ -46,7 +46,7 @@ const ResultPart = ({ hideParamDesc }: { hideParamDesc?: boolean }) => {
   const { maximizeState, maximizeCode } = useMaximizedCodeEditor();
 
   return (
-    <PathContext path='result'>
+    <PathProvider path='result'>
       <ParameterTable
         label={t('part.result.paramter')}
         data={config.result.params}
@@ -76,6 +76,6 @@ const ResultPart = ({ hideParamDesc }: { hideParamDesc?: boolean }) => {
           />
         </ValidationFieldset>
       </PathCollapsible>
-    </PathContext>
+    </PathProvider>
   );
 };

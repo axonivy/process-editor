@@ -125,13 +125,16 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
     const selectedRow = tableDynamic.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
       onChange({ value: '' });
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
       setShowHelper(false);
       return;
     }
 
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setShowHelper(true);
     const isIvyType = ivyTypes.some(javaClass => javaClass.fullQualifiedName === selectedRow.original.data?.fullQualifiedName);
 
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setType(selectedRow.original.data?.fullQualifiedName ?? '');
 
     if (location.includes('code')) {
@@ -160,10 +163,13 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
 
   useEffect(() => {
     if (debouncedFilterValue.length > 0) {
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
       setMainFilter(debouncedFilterValue);
     } else {
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
       setMainFilter('');
     }
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setExpanded(true);
   }, [debouncedFilterValue]);
 
@@ -210,6 +216,7 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
       {showHelper && (
         <pre className='browser-helptext'>
           <b>{value}</b>
+          {/* eslint-disable-next-line @eslint-react/dom-no-dangerously-set-innerhtml */}
           <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(doc) }}></span>
         </pre>
       )}

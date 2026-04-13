@@ -14,8 +14,8 @@ import './App.css';
 import AppStateView from './AppStateView';
 import { InscriptionEditor, type InscriptionOutlineProps } from './components/editors/InscriptionEditor';
 import { useClient } from './context/useClient';
-import { DataContextInstance } from './context/useDataContext';
-import { DEFAULT_EDITOR_CONTEXT, EditorContextInstance } from './context/useEditorContext';
+import { DataContextProvider } from './context/useDataContext';
+import { DEFAULT_EDITOR_CONTEXT, EditorContextProvider } from './context/useEditorContext';
 import { genQueryKey } from './query/query-client';
 import type { Unary } from './types/lambda';
 
@@ -98,8 +98,8 @@ function App({ outline, ...context }: InscriptionElementContext & InscriptionOut
   return (
     <div ref={editorRef} className='editor-root' data-mutation-state={mutation.status}>
       <ReadonlyProvider readonly={data.readonly ?? false}>
-        <EditorContextInstance.Provider
-          value={{
+        <EditorContextProvider
+          context={{
             context: { app: context.app, pmv: context.pmv },
             elementContext: context,
             editorRef,
@@ -107,8 +107,8 @@ function App({ outline, ...context }: InscriptionElementContext & InscriptionOut
             navigateTo: (pid: PID) => outline?.onClick?.(pid)
           }}
         >
-          <DataContextInstance.Provider
-            value={{
+          <DataContextProvider
+            context={{
               data: data.data,
               setData: mutation.mutate,
               defaultData: data.defaults,
@@ -117,8 +117,8 @@ function App({ outline, ...context }: InscriptionElementContext & InscriptionOut
             }}
           >
             <InscriptionEditor outline={outline} showOutline={showOutline} setShowOutline={setShowOutline} />
-          </DataContextInstance.Provider>
-        </EditorContextInstance.Provider>
+          </DataContextProvider>
+        </EditorContextProvider>
       </ReadonlyProvider>
     </div>
   );

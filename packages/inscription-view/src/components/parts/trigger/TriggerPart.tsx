@@ -3,7 +3,7 @@ import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
 import { PanelMessage } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
 import Checkbox from '../../widgets/checkbox/Checkbox';
@@ -42,7 +42,7 @@ const TriggerPart = () => {
             label={t('part.trigger.startTriggerable')}
           />
           {config.triggerable && (
-            <PathContext path='task'>
+            <PathProvider path='task'>
               <ResponsibleCollapsible
                 responsible={config.task.responsible}
                 defaultResponsible={defaultConfig.task.responsible}
@@ -67,7 +67,7 @@ const TriggerPart = () => {
                   />
                 </PathFieldset>
               </ValidationCollapsible>
-            </PathContext>
+            </PathProvider>
           )}
         </>
       ) : (

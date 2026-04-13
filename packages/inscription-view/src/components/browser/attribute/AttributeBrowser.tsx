@@ -51,13 +51,16 @@ const AttributeBrowser = ({
 
   useEffect(() => {
     if (location.endsWith('code')) {
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
       setVarInfo({ variables: [...inVarInfo.variables, ...outVarInfo.variables], types: { ...inVarInfo.types, ...outVarInfo.types } });
     } else {
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
       setVarInfo(inVarInfo);
     }
   }, [inVarInfo, outVarInfo, location]);
 
   useEffect(() => {
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setTree(MappingTreeData.of(varInfo));
   }, [varInfo]);
 
@@ -125,6 +128,7 @@ const AttributeBrowser = ({
     if (selectedRow === undefined) {
       return;
     }
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setShowHelper(true);
     onChange({ value: calcFullPathId(selectedRow) });
   }, [onChange, rowSelection, table]);

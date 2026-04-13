@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
-import { PathContext } from '../../../../context/usePath';
+import { PathProvider } from '../../../../context/usePath';
 import Combobox, { type ComboboxItem } from '../../../widgets/combobox/Combobox';
 import { PathFieldset } from '../../common/path/PathFieldset';
 import { useQueryData } from '../useQueryData';
@@ -15,10 +15,10 @@ export const TableSelect = () => {
   }));
 
   return (
-    <PathContext path='sql'>
+    <PathProvider path='sql'>
       <PathFieldset label={t('part.db.table')} path='table'>
         <Combobox value={config.query.sql.table} onChange={change => updateSql('table', change)} items={tableItems} />
       </PathFieldset>
-    </PathContext>
+    </PathProvider>
   );
 };

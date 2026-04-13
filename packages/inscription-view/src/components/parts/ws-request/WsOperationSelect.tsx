@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import type { SelectItem } from '../../widgets/select/Select';
 import { Select } from '../../widgets/select/Select';
 import { PathFieldset } from '../common/path/PathFieldset';
@@ -22,10 +22,10 @@ export const WsOperationSelect = () => {
   const selectedItem = items.find(i => i.value === config.operation.name) ?? { label: config.operation.name, value: config.operation.name };
 
   return (
-    <PathContext path='operation'>
+    <PathProvider path='operation'>
       <PathFieldset label={t('part.ws.operation')} path='name'>
         <Select value={selectedItem} onChange={item => updateOperation('name', item.value)} items={items} />
       </PathFieldset>
-    </PathContext>
+    </PathProvider>
   );
 };

@@ -1,7 +1,7 @@
 import type { RequestData } from '@axonivy/process-editor-inscription-protocol';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
 import Checkbox from '../../widgets/checkbox/Checkbox';
@@ -39,7 +39,7 @@ const RequestPart = () => {
       />
       {config.request.isHttpRequestable && (
         <>
-          <PathContext path='request'>
+          <PathProvider path='request'>
             {config.request.linkName}
             <Checkbox
               value={config.request.isVisibleOnStartList}
@@ -49,7 +49,7 @@ const RequestPart = () => {
             />
             <Information config={config.request} defaultConfig={defaultConfig.request} update={updateRequest} />
             <StartCustomFieldTable data={config.request.customFields} onChange={change => updateRequest('customFields', change)} />
-          </PathContext>
+          </PathProvider>
           <Permission
             config={config.permission}
             defaultConfig={defaultConfig.permission}

@@ -2,11 +2,11 @@ import type { DatabaseColumn } from '@axonivy/process-editor-inscription-protoco
 import { SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
 import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
 import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
-import { PathContext } from '../../../../context/usePath';
+import { PathProvider } from '../../../../context/usePath';
 import { ScriptCell } from '../../../widgets/table/cell/ScriptCell';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
 import { ValidationRow } from '../../common/path/validation/ValidationRow';
@@ -21,9 +21,8 @@ export const TableFields = () => {
   const { config, updateSql } = useQueryData();
   const { elementContext: context } = useEditorContext();
   const columnMetas = useMeta('meta/database/columns', { context, database: config.query.dbName, table: config.query.sql.table }, []).data;
-  const [data, setData] = useState<Column[]>([]);
 
-  useEffect(() => {
+  const data = useMemo(() => {
     const fields = config.query.sql.fields ?? {};
     const columnData = columnMetas.map<Column>(c => {
       return { ...c, expression: fields[c.name] ?? '' };
@@ -31,7 +30,7 @@ export const TableFields = () => {
     Object.keys(fields)
       .filter(field => !columnData.find(column => column.name === field))
       .forEach(unknown => columnData.push({ name: unknown, expression: fields[unknown] ?? '', type: '', ivyType: '' }));
-    setData(columnData);
+    return columnData;
   }, [columnMetas, config.query.sql.fields]);
 
   const columns = useMemo<ColumnDef<Column, string>[]>(
@@ -93,7 +92,7 @@ export const TableFields = () => {
   });
 
   return (
-    <PathContext path='sql'>
+    <PathProvider path='sql'>
       <PathCollapsible
         label={t('part.db.fields')}
         path='fields'
@@ -114,6 +113,6 @@ export const TableFields = () => {
           </TableBody>
         </Table>
       </PathCollapsible>
-    </PathContext>
+    </PathProvider>
   );
 };

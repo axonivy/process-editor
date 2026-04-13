@@ -185,7 +185,7 @@ export class IvyResizeHandleView extends GResizeHandleView {
     const node = (
       <svg class-lane-resize-handle class-mouseover={handle.hoverFeedback} x={0} y={position.y - 10} width={width} height={20}>
         <rect x={0} y={0} height={20} width={width} class-lane-resize-mouse-handle />
-        <line x1={width / 2 - 20} y1={10} x2={width / 2 + 20} y2={10} />;
+        <line x1={width / 2 - 20} y1={10} x2={width / 2 + 20} y2={10} />
       </svg>
     );
     setAttr(node, 'data-kind', handle.location);

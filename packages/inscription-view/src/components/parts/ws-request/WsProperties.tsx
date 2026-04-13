@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { deepEqual } from '../../../utils/equals';
 import { PropertyTable } from '../common/properties/PropertyTable';
 import { useWsRequestData } from './useWsRequestData';
@@ -14,7 +14,7 @@ export const WsProperties = () => {
   const knownProperties = useMeta('meta/webservice/properties', { clientId: config.clientId, context }, []).data;
 
   return (
-    <PathContext path='properties'>
+    <PathProvider path='properties'>
       <PropertyTable
         properties={config.properties}
         update={change => update('properties', change)}
@@ -22,6 +22,6 @@ export const WsProperties = () => {
         label={t('part.ws.properties')}
         defaultOpen={!deepEqual(config.properties, defaultConfig.properties)}
       />
-    </PathContext>
+    </PathProvider>
   );
 };

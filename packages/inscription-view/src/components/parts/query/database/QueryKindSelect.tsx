@@ -2,7 +2,7 @@ import type { QueryKind } from '@axonivy/process-editor-inscription-protocol';
 import { QUERY_KIND } from '@axonivy/process-editor-inscription-protocol';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PathContext } from '../../../../context/usePath';
+import { PathProvider } from '../../../../context/usePath';
 import type { SelectItem } from '../../../widgets/select/Select';
 import { Select } from '../../../widgets/select/Select';
 import { PathFieldset } from '../../common/path/PathFieldset';
@@ -13,7 +13,7 @@ export const QueryKindSelect = () => {
   const { config, updateSql } = useQueryData();
   const items = useMemo<SelectItem[]>(() => Object.entries(QUERY_KIND).map(([label, value]) => ({ label, value })), []);
   return (
-    <PathContext path='sql'>
+    <PathProvider path='sql'>
       <PathFieldset label={t('part.db.queryKind')} path='kind'>
         <Select
           value={{ label: config.query.sql.kind, value: config.query.sql.kind }}
@@ -21,6 +21,6 @@ export const QueryKindSelect = () => {
           items={items}
         />
       </PathFieldset>
-    </PathContext>
+    </PathProvider>
   );
 };

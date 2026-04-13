@@ -14,8 +14,14 @@ export const ActionCell = ({ actions }: { actions: Action[] }) => {
   return (
     <TableCell className='action-cell' style={{ width: `${actions.length * 20}px` }}>
       <Flex direction='row' gap={1} justifyContent='flex-end'>
-        {actions.map((action, index) => (
-          <Button key={index} onClick={action.action} disabled={readonly || action.disabled} aria-label={action.label} icon={action.icon} />
+        {actions.map(action => (
+          <Button
+            key={action.label}
+            onClick={action.action}
+            disabled={readonly || action.disabled}
+            aria-label={action.label}
+            icon={action.icon}
+          />
         ))}
       </Flex>
     </TableCell>

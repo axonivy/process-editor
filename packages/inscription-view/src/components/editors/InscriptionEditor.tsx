@@ -67,6 +67,7 @@ const Header = ({ children }: { children?: ReactNode }) => {
       {tabValidations.length > 0 && (
         <SidebarMessages className='header-messages'>
           {tabValidations.map((validaiton, index) => (
+            // eslint-disable-next-line @eslint-react/no-array-index-key
             <Message key={index} message={validaiton.message} variant={validaiton.severity.toLocaleLowerCase() as Lowercase<Severity>} />
           ))}
         </SidebarMessages>

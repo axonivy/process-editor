@@ -56,6 +56,7 @@ const ConfigurationPart = () => {
         return (
           <div className='info-text'>
             {sentences.map((sentence, index) => (
+              // eslint-disable-next-line @eslint-react/no-array-index-key
               <p key={index}>{sentence?.length > 0 ? sentence : ' '}</p>
             ))}
           </div>
@@ -108,8 +109,9 @@ const ConfigurationPart = () => {
         </PathCollapsible>
       ) : (
         editorItems.map((group, index) => (
-          <PathCollapsible label={group.name} defaultOpen={index === 0} path={'userConfig'} key={index}>
+          <PathCollapsible label={group.name} defaultOpen={index === 0} path={'userConfig'} key={group.name}>
             {group.widgets.map((widget, wIndex) => (
+              // eslint-disable-next-line @eslint-react/no-array-index-key
               <Flex direction='column' className='configuration-widget' key={wIndex}>
                 {renderWidgetComponent(widget)}
               </Flex>

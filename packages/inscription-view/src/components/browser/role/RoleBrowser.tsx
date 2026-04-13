@@ -88,15 +88,17 @@ const RoleBrowser = ({ value, showtaskRoles, onChange, onDoubleClick }: RoleBrow
     const selectedRow = table.getSelectedRowModel().flatRows[0];
     if (selectedRow === undefined) {
       onChange({ value: '' });
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
       setShowHelper(false);
       return;
     }
 
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setShowHelper(true);
     onChange({ value: selectedRow.original.id });
   }, [onChange, rowSelection, table]);
 
-  const [addedRole, setAddedRoleName] = useState('');
+  const [addedRole, setAddedRole] = useState('');
 
   useEffect(() => {
     if (addedRole.length === 0) {
@@ -105,15 +107,17 @@ const RoleBrowser = ({ value, showtaskRoles, onChange, onDoubleClick }: RoleBrow
     const newRow = table.getRowModel().flatRows.find(row => row.original.id === addedRole);
     if (newRow) {
       newRow.getParentRow()?.toggleExpanded(true);
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
       setRowSelection({ [newRow.id]: true });
-      setAddedRoleName('');
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
+      setAddedRole('');
     }
   }, [addedRole, roleItems, table]);
 
   return (
     <>
       <Flex justifyContent='flex-end'>
-        <AddRolePopover value={value} table={table} setAddedRoleName={setAddedRoleName} />
+        <AddRolePopover value={value} table={table} setAddedRoleName={setAddedRole} />
       </Flex>
       <SearchTable
         search={{

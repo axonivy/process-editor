@@ -133,7 +133,7 @@ const Combobox = <T extends ComboboxItem>({
               className={`combobox-menu-entry ${highlightedIndex === index ? 'hover' : ''} ${
                 selectedItem?.value === item.value ? 'selected' : ''
               }`}
-              key={`${item.value}${index}`}
+              key={item.value}
               {...getItemProps({ item, index })}
             >
               {option(item)}

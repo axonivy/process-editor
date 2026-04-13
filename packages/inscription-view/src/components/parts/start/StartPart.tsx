@@ -3,7 +3,7 @@ import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
@@ -55,7 +55,7 @@ const StartPart = ({ hideParamDesc, synchParams, signatureDefaultOpen }: StartPa
           <Input value={config.signature} onChange={change => updateSignature(change)} />
         </ValidationFieldset>
       </PathCollapsible>
-      <PathContext path='input'>
+      <PathProvider path='input'>
         <ParameterTable
           label={t('part.start.inputParamters')}
           data={config.input.params}
@@ -85,7 +85,7 @@ const StartPart = ({ hideParamDesc, synchParams, signatureDefaultOpen }: StartPa
             />
           </ValidationFieldset>
         </PathCollapsible>
-      </PathContext>
+      </PathProvider>
     </>
   );
 };

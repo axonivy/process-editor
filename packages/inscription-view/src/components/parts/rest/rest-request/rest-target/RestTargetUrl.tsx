@@ -3,33 +3,24 @@ import { useEditorContext } from '../../../../../context/useEditorContext';
 import { useMeta } from '../../../../../context/useMeta';
 import { useRestRequestData } from '../../useRestRequestData';
 import './RestTargetUrl.css';
-import { useTargetPathSplit } from './usePathParams';
+import { targetPathSplit } from './usePathParams';
 
 const RestTargetQueryParams = ({ queryParams }: { queryParams: [string, string][] }) => {
   if (queryParams.length === 0) {
-    return <></>;
+    return null;
   }
-  const params = queryParams.map(([name, value], index) => {
-    if (value !== undefined && value.length > 0) {
-      return (
-        <Fragment key={`${index}-${name}`}>
-          <span className='query-name'>{name}</span>=<span className='query-value'>{value}</span>
-        </Fragment>
-      );
-    }
-    return (
-      <span key={`${index}-${name}`} className='query-name'>
-        {name}
-      </span>
-    );
-  });
   return (
     <>
       ?
-      {params.map((p, index) => (
-        <Fragment key={index}>
-          {p}
-          {index < params.length - 1 ? '&' : ''}
+      {queryParams.map(([name, value], index) => (
+        <Fragment key={`${name}-${value}`}>
+          <span className='query-name'>{name}</span>
+          {value !== undefined && value.length > 0 && (
+            <>
+              =<span className='query-value'>{value}</span>
+            </>
+          )}
+          {index < queryParams.length - 1 ? '&' : ''}
         </Fragment>
       ))}
     </>
@@ -37,17 +28,19 @@ const RestTargetQueryParams = ({ queryParams }: { queryParams: [string, string][
 };
 
 const RestTargetPath = ({ path }: { path: string }) => {
-  const parts = useTargetPathSplit(path);
+  const parts = targetPathSplit(path);
   return (
     <>
       {parts.map((part, index) => {
         if (part.includes('{') && part.includes('}')) {
           return (
+            // eslint-disable-next-line @eslint-react/no-array-index-key
             <span key={`${index}-${part}`} className='path-param'>
               {part}
             </span>
           );
         }
+        // eslint-disable-next-line @eslint-react/no-array-index-key
         return <Fragment key={`${index}-${part}`}>{part}</Fragment>;
       })}
     </>

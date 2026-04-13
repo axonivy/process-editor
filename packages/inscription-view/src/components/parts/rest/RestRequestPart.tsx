@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
 import { useOpenApi } from '../../../context/useOpenApi';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
 import { ValidationCollapsible } from '../common/path/validation/ValidationCollapsible';
@@ -61,7 +61,7 @@ const RestRequestPart = () => {
 
   return (
     <>
-      <PathContext path='target'>
+      <PathProvider path='target'>
         <ValidationCollapsible label={t('part.rest.service')} defaultOpen={true}>
           <RestTargetUrl />
           <RestClientSelect />
@@ -70,7 +70,7 @@ const RestRequestPart = () => {
         <RestParameters />
         <RestHeaders />
         <RestProperties />
-      </PathContext>
+      </PathProvider>
       {bodyPart(config.method)}
     </>
   );

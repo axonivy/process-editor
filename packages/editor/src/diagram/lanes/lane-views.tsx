@@ -108,6 +108,7 @@ export class RotateLabelView extends GLabelView {
     return (
       <text class-sprotty-label transform={rotate}>
         {label.text.split('\n').map((line, index) => (
+          // eslint-disable-next-line @eslint-react/no-array-index-key
           <tspan key={index} dy={index === 0 ? 0 : '1.2em'} x={0} style={line ? {} : { visibility: 'hidden' }}>
             {line ? line : '.'}
           </tspan>

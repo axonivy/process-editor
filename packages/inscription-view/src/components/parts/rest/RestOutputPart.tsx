@@ -3,7 +3,7 @@ import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
 import { useMeta } from '../../../context/useMeta';
-import { PathContext } from '../../../context/usePath';
+import { PathProvider } from '../../../context/usePath';
 import { useValidations } from '../../../context/useValidation';
 import useMaximizedCodeEditor from '../../browser/useMaximizedCodeEditor';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
@@ -45,8 +45,8 @@ const RestOutputPart = () => {
   const showResultType = useShowResultTypeCombo(resultTypes, config.response.entity.type);
   const { maximizeState, maximizeCode } = useMaximizedCodeEditor();
   return (
-    <PathContext path='response'>
-      <PathContext path='entity'>
+    <PathProvider path='response'>
+      <PathProvider path='entity'>
         {showResultType && (
           <PathCollapsible label={t('part.rest.resultType')} path='type' defaultOpen={true}>
             <ValidationFieldset label={t('part.rest.readBodyType')}>
@@ -81,7 +81,7 @@ const RestOutputPart = () => {
             />
           </ValidationFieldset>
         </PathCollapsible>
-      </PathContext>
-    </PathContext>
+      </PathProvider>
+    </PathProvider>
   );
 };

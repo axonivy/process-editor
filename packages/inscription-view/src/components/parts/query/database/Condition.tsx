@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { PathContext } from '../../../../context/usePath';
+import { PathProvider } from '../../../../context/usePath';
 import useMaximizedCodeEditor from '../../../browser/useMaximizedCodeEditor';
 import { MacroArea } from '../../../widgets/code-editor/MacroArea';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
@@ -11,7 +11,7 @@ export const Condition = () => {
   const { config, defaultConfig, updateSql } = useQueryData();
   const { maximizeState, maximizeCode } = useMaximizedCodeEditor();
   return (
-    <PathContext path='sql'>
+    <PathProvider path='sql'>
       <PathCollapsible
         label={t('label.condition')}
         controls={[maximizeCode]}
@@ -27,6 +27,6 @@ export const Condition = () => {
           />
         </ValidationFieldset>
       </PathCollapsible>
-    </PathContext>
+    </PathProvider>
   );
 };
