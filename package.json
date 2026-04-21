@@ -43,6 +43,14 @@
     "typescript-cp": "^0.1.9",
     "vitest": "^3.0.8"
   },
+  "overrides": {
+    "@eclipse-glsp/client": {
+      "lodash": "4.18.1"
+    },
+    "typescript-cp": {
+      "tar": "^7.5.11"
+    }
+  },
   "workspaces": {
     "packages": [
       "packages/*",
