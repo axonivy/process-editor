@@ -22,7 +22,7 @@
     "@eclipse-glsp/client": "2.6.0",
     "dompurify": "^3.0.0",
     "marked": "^18.0.0",
-    "uuid": "^13.0.0"
+    "uuid": "^14.0.0"
   },
   "peerDependencies": {
     "@axonivy/ui-components": "~14.0.0-next",
