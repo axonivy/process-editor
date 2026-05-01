@@ -11,9 +11,7 @@ overrides:
   uuid@<14.0.0: '>=14.0.0'
 
 patchedDependencies:
-  monaco-editor:
-    hash: 899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f
-    path: patches/monaco-editor.patch
+  monaco-editor: 899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f
 
 importers:
 
@@ -109,7 +107,7 @@ importers:
         version: 19.2.3(@types/react@19.2.14)
       '@vitejs/plugin-react':
         specifier: ^6.0.0
-        version: 6.0.1(vite@8.0.10(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.8.3))
+        version: 6.0.1(vite@8.0.10(@types/node@24.12.2)(jiti@2.6.1)(yaml@2.8.3))
       deepmerge-ts:
         specifier: ^7.0.0
         version: 7.1.5
@@ -121,13 +119,13 @@ importers:
         version: 19.2.5(react@19.2.5)
       vite:
         specifier: ^8.0.0
-        version: 8.0.10(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.8.3)
+        version: 8.0.10(@types/node@24.12.2)(jiti@2.6.1)(yaml@2.8.3)
 
   integration/monaco-vite-plugin:
     dependencies:
       vite:
         specifier: ^7.0.0 || ^8.0.0
-        version: 8.0.10(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.8.3)
+        version: 8.0.10(@types/node@24.12.2)(jiti@2.6.1)(yaml@2.8.3)
 
   integration/standalone:
     dependencies:
@@ -188,7 +186,7 @@ importers:
         version: 0.2.2
       vite:
         specifier: ^8.0.0
-        version: 8.0.10(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.8.3)
+        version: 8.0.10(@types/node@24.12.2)(jiti@2.6.1)(yaml@2.8.3)
 
   integration/viewer:
     dependencies:
@@ -228,7 +226,7 @@ importers:
         version: 0.2.2
       vite:
         specifier: ^8.0.0
-        version: 8.0.10(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.8.3)
+        version: 8.0.10(@types/node@24.12.2)(jiti@2.6.1)(yaml@2.8.3)
 
   packages/editor:
     dependencies:
@@ -271,9 +269,6 @@ importers:
       snabbdom:
         specifier: ^3.5.1
         version: 3.5.1
-      uuid:
-        specifier: ^14.0.0
-        version: 14.0.0
     devDependencies:
       '@axonivy/ui-components':
         specifier: ~14.0.0-next.1125.e82f52e
@@ -2121,9 +2116,6 @@ packages:
 
   '@types/node@24.12.2':
     resolution: {integrity: sha512-A1sre26ke7HDIuY/M23nd9gfB+nrmhtYyMINbjI1zHJxYteKR6qSMX56FsmjMcDb3SMcjJg5BiRRgOCC/yBD0g==}
-
-  '@types/node@25.6.0':
-    resolution: {integrity: sha512-+qIYRKdNYJwY3vRCZMdJbPLJAtGjQBudzZzdzwQYkEPQd+PJGixUL5QfvCLDaULoLv+RhT3LDkwEfKaAkgSmNQ==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -4178,9 +4170,6 @@ packages:
 
   undici-types@7.16.0:
     resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
-
-  undici-types@7.19.2:
-    resolution: {integrity: sha512-qYVnV5OEm2AW8cJMCpdV20CDyaN3g0AjDlOGf1OW4iaDEx8MwdtChUp4zu4H0VP3nDRF/8RKWH+IPp9uW0YGZg==}
 
   undici@6.25.0:
     resolution: {integrity: sha512-ZgpWDC5gmNiuY9CnLVXEH8rl50xhRCuLNA97fAUnKi8RRuV4E6KG31pDTsLVUKnohJE0I3XDrTeEydAXRw47xg==}
@@ -6340,11 +6329,6 @@ snapshots:
     dependencies:
       undici-types: 7.16.0
 
-  '@types/node@25.6.0':
-    dependencies:
-      undici-types: 7.19.2
-    optional: true
-
   '@types/normalize-package-data@2.4.4': {}
 
   '@types/parse-path@7.1.0':
@@ -6489,10 +6473,10 @@ snapshots:
     dependencies:
       '@vanilla-extract/css': 1.20.1
 
-  '@vitejs/plugin-react@6.0.1(vite@8.0.10(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.8.3))':
+  '@vitejs/plugin-react@6.0.1(vite@8.0.10(@types/node@24.12.2)(jiti@2.6.1)(yaml@2.8.3))':
     dependencies:
       '@rolldown/pluginutils': 1.0.0-rc.7
-      vite: 8.0.10(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.8.3)
+      vite: 8.0.10(@types/node@24.12.2)(jiti@2.6.1)(yaml@2.8.3)
 
   '@vitest/expect@4.1.5':
     dependencies:
@@ -8507,9 +8491,6 @@ snapshots:
 
   undici-types@7.16.0: {}
 
-  undici-types@7.19.2:
-    optional: true
-
   undici@6.25.0: {}
 
   undici@7.24.7: {}
@@ -8567,19 +8548,6 @@ snapshots:
       tinyglobby: 0.2.16
     optionalDependencies:
       '@types/node': 24.12.2
-      fsevents: 2.3.3
-      jiti: 2.6.1
-      yaml: 2.8.3
-
-  vite@8.0.10(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.8.3):
-    dependencies:
-      lightningcss: 1.32.0
-      picomatch: 4.0.4
-      postcss: 8.5.10
-      rolldown: 1.0.0-rc.17
-      tinyglobby: 0.2.16
-    optionalDependencies:
-      '@types/node': 25.6.0
       fsevents: 2.3.3
       jiti: 2.6.1
       yaml: 2.8.3

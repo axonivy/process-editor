@@ -18,7 +18,6 @@ import {
 } from '@eclipse-glsp/client';
 import { t } from 'i18next';
 import { inject, injectable } from 'inversify';
-import { v4 as uuid } from 'uuid';
 import type { IvySvgExporter } from '../tools/export/ivy-svg-exporter';
 
 interface ClipboardId {
@@ -53,7 +52,7 @@ export class IvyServerCopyPasteHandler implements ICopyPasteHandler {
 
   handleCopy(event: ClipboardEvent): void {
     if (event.clipboardData && this.shouldCopy()) {
-      const clipboardId = uuid();
+      const clipboardId = crypto.randomUUID() ?? crypto.getRandomValues(new Uint32Array(4)).join('-');
       event.clipboardData.setData(CLIPBOARD_DATA_FORMAT, toClipboardId(clipboardId));
       this.actionDispatcher
         .request(RequestClipboardDataAction.create(this.editorContext.get()))
