@@ -18,3 +18,4 @@ publicHoistPattern:
   - eslint
 trustPolicy: no-downgrade
 trustPolicyIgnoreAfter: 43200 # minutes (30 days)
+verifyDepsBeforeRun: warn
