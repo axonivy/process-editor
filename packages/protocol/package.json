@@ -23,6 +23,7 @@
   "scripts": {
     "clean": "rimraf lib tsconfig.tsbuildinfo",
     "build": "tsc --build",
+    "package": "tsc",
     "type": "tsc --noEmit"
   },
   "files": [
