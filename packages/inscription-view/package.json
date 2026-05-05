@@ -57,9 +57,9 @@
     "vite": "^8.0.0"
   },
   "type": "module",
-  "module": "lib/index",
-  "types": "lib/index",
-  "source": "src/index",
+  "module": "lib/inscription-view.js",
+  "types": "lib/index.d.ts",
+  "main": "lib/inscription-view.js",
   "scripts": {
     "clean": "rimraf lib *.tsbuildinfo",
     "build": "tsc --build",

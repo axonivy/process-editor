@@ -47,6 +47,7 @@
     "src"
   ],
   "type": "module",
-  "types": "lib/index",
-  "module": "lib/index"
+  "module": "lib/process-inscription.js",
+  "types": "lib/index.d.ts",
+  "main": "lib/process-inscription.js"
 }

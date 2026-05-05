@@ -65,6 +65,7 @@
     "src"
   ],
   "type": "module",
-  "types": "lib/index",
-  "module": "lib/index"
+  "module": "lib/process-editor.js",
+  "types": "lib/index.d.ts",
+  "main": "lib/process-editor.js"
 }
