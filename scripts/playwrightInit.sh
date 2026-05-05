@@ -14,7 +14,7 @@ for TEST_PROJECT_NAME in "${TEST_PROJECTS[@]}"; do
     exit 1
   fi
 
-  TARGET_DIR="$1/workspace/ch.ivyteam.ivy.server.file.feature/target/server-root/data/workspaces/Developer/$TEST_PROJECT_NAME"
+  TARGET_DIR="$1/workspace/ch.ivyteam.ivy.server.file.feature/target/server-root/data/default/workspaces/Developer/$TEST_PROJECT_NAME"
   mkdir -p "$TARGET_DIR"
   if [ -L "$TARGET_DIR/$TEST_PROJECT_NAME" ]; then
     rm "$TARGET_DIR/$TEST_PROJECT_NAME"
