@@ -30,16 +30,12 @@
     "@axonivy/ui-icons": "~14.0.0-next.1125.e82f52e",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
-    "@vitejs/plugin-react": "^6.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "vite-plugin-dts": "^5.0.0",
-    "vite": "^8.0.0"
+    "react-dom": "^19.0.0"
   },
   "scripts": {
     "clean": "rimraf lib tsconfig.tsbuildinfo",
-    "build": "tsc --build",
-    "package": "pnpm run clean && vite build && tsc",
+    "build": "tsc --build && tscp",
     "type": "tsc --noEmit"
   },
   "files": [
@@ -47,7 +43,6 @@
     "src"
   ],
   "type": "module",
-  "module": "lib/process-inscription.js",
-  "types": "lib/index.d.ts",
-  "main": "lib/process-inscription.js"
+  "types": "lib/index",
+  "module": "lib/index"
 }
