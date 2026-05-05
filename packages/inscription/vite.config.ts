@@ -10,7 +10,7 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      fileName: 'index',
+      fileName: 'process-inscription',
       formats: ['es']
     },
     rolldownOptions: {
