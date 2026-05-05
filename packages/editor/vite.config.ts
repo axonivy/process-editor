@@ -1,9 +1,10 @@
 import { resolve } from 'path';
+import { esmExternalRequirePlugin } from 'vite';
 import dts from 'vite-plugin-dts';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  plugins: [dts({ tsconfigPath: './tsconfig.build.json' })],
+  plugins: [esmExternalRequirePlugin({ external: ['react', 'react-dom'] }), dts({ tsconfigPath: './tsconfig.build.json' })],
   build: {
     outDir: 'lib',
     sourcemap: true,
@@ -23,10 +24,8 @@ export default defineConfig({
         'i18next',
         'marked',
         'react-i18next',
-        'react',
         'react-error-boundary',
-        'react/jsx-runtime',
-        'react-dom'
+        'react/jsx-runtime'
       ]
     }
   },
