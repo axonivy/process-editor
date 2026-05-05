@@ -48,11 +48,14 @@
     "reflect-metadata": "~0.2.2",
     "snabbdom-to-html": "^7.1.0",
     "sprotty": "1.4.0",
-    "vscode-jsonrpc": "8.2.1"
+    "vscode-jsonrpc": "8.2.1",
+    "vite-plugin-dts": "^5.0.0",
+    "vite": "^8.0.0"
   },
   "scripts": {
     "clean": "rimraf lib tsconfig.*tsbuildinfo",
-    "build": "tsc --build tsconfig.build.json && tscp",
+    "build": "tsc --build",
+    "package": "pnpm run clean && vite build && tsc -p tsconfig.build.json",
     "type": "tsc --noEmit",
     "test": "vitest",
     "test:ci": "vitest --watch=false"
@@ -62,6 +65,7 @@
     "src"
   ],
   "type": "module",
-  "types": "lib/index",
-  "module": "lib/index"
+  "module": "lib/process-editor.js",
+  "types": "lib/index.d.ts",
+  "main": "lib/process-editor.js"
 }
