@@ -1,6 +1,6 @@
 import type { Bounds, CustomFeatures, Dimension, GLabel, GModelFactory, Point } from '@eclipse-glsp/client';
 import { DefaultTypes, GGraph, GGraphView, GNode, TYPES, configureModelElement, createFeatureSet } from '@eclipse-glsp/client';
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import type { Container } from 'inversify';
 import ivyConnectorModule from '../connector/di.config';
 import { ActivityNode, Edge, EndEventNode, EventNode, GatewayNode, LaneNode, MulitlineEditLabel } from '../diagram/model';

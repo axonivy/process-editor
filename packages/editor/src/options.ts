@@ -1,5 +1,4 @@
 import type { interfaces } from 'inversify';
-import { safeAssign } from 'sprotty-protocol/lib/utils/object';
 import { IVY_TYPES } from './types';
 
 export interface IvyViewerOptions {
@@ -37,4 +36,8 @@ export function overrideIvyViewerOptions(container: interfaces.Container, option
   const opt = container.get<IvyViewerOptions>(IVY_TYPES.IvyViewerOptions);
   safeAssign(opt, options);
   return opt;
+}
+
+export function safeAssign<T extends object>(target: T, partial: Partial<T>): T {
+  return Object.assign(target, partial);
 }

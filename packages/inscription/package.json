@@ -10,23 +10,30 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "dependencies": {
-    "@axonivy/process-editor": "~12.0.15-next",
-    "@axonivy/process-editor-inscription-core": "~12.0.15-next",
-    "@axonivy/process-editor-inscription-protocol": "~12.0.15-next",
-    "@axonivy/process-editor-inscription-view": "~12.0.15-next",
+    "@axonivy/process-editor": "workspace:~12.0.15-next",
+    "@axonivy/process-editor-inscription-core": "workspace:~12.0.15-next",
+    "@axonivy/process-editor-inscription-protocol": "workspace:~12.0.15-next",
+    "@axonivy/process-editor-inscription-view": "workspace:~12.0.15-next",
+    "@axonivy/process-editor-protocol": "workspace:~14.0.0-next",
     "@codingame/monaco-vscode-editor-service-override": "1.83.3",
     "@codingame/monaco-vscode-languages-service-override": "1.83.3",
     "@codingame/monaco-vscode-model-service-override": "1.83.3",
-    "@eclipse-glsp/client": "2.3.0"
+    "@eclipse-glsp/client": "2.3.0",
+    "inversify": "^6.2"
   },
   "peerDependencies": {
     "@axonivy/jsonrpc": "~12.0.15-next",
     "@axonivy/ui-icons": "~12.0.15-next",
-    "react": "^18.2"
+    "@tanstack/react-query": "^5.64",
+    "react": "^18.2",
+    "react-aria": "^3.38"
   },
   "devDependencies": {
+    "@axonivy/jsonrpc": "~12.0.15-next",
+    "@axonivy/ui-icons": "~12.0.15-next",
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
+    "monaco-languageclient": "^6.6.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

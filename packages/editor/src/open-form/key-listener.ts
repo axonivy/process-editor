@@ -1,7 +1,6 @@
 import { OpenFormEditorAction } from '@axonivy/process-editor-protocol';
 import type { Action, GModelElement } from '@eclipse-glsp/client';
-import { KeyListener } from '@eclipse-glsp/client';
-import { matchesKeystroke } from 'sprotty/lib/utils/keyboard';
+import { KeyListener, matchesKeystroke } from '@eclipse-glsp/client';
 
 export class OpenDataClassKeyListener extends KeyListener {
   keyDown(element: GModelElement, event: KeyboardEvent): Action[] {

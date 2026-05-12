@@ -10,19 +10,21 @@
   },
   "dependencies": {
     "@axonivy/jsonrpc": "~12.0.15-next.736.41cf02f",
-    "@axonivy/process-editor-inscription-core": "~12.0.15-next",
-    "@axonivy/process-editor-inscription-view": "~12.0.15-next",
+    "@axonivy/process-editor-inscription-core": "workspace:~12.0.15-next",
+    "@axonivy/process-editor-inscription-protocol": "workspace:~12.0.15-next",
+    "@axonivy/process-editor-inscription-view": "workspace:~12.0.15-next",
     "@axonivy/ui-components": "~12.0.15-next.736.41cf02f",
     "@axonivy/ui-icons": "~12.0.15-next.736.41cf02f",
     "@tanstack/react-query": "^5.32",
     "@tanstack/react-query-devtools": "^5.32",
-    "path-browserify": "^1.0.1"
+    "vscode-jsonrpc": "8.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.4",
     "deepmerge-ts": "^5.1.0",
+    "monaco-languageclient": "^6.6.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "vite": "^7.0.0",
