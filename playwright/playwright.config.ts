@@ -18,17 +18,17 @@ export default defineConfig({
   },
   webServer: [
     {
-      command: `npm run ${process.env.CI ? 'serve' : 'dev'} -w @axonivy/process-editor-standalone`,
+      command: `pnpm run --filter @axonivy/process-editor-standalone ${process.env.CI ? 'serve' : 'dev'}`,
       url: STANDALONE_URL,
       reuseExistingServer: !process.env.CI
     },
     {
-      command: `npm run ${process.env.CI ? 'serve' : 'dev'} -w @axonivy/process-editor-viewer`,
+      command: `pnpm run --filter @axonivy/process-editor-viewer ${process.env.CI ? 'serve' : 'dev'}`,
       url: VIEWER_URL,
       reuseExistingServer: !process.env.CI
     },
     {
-      command: `npm run ${process.env.CI ? 'serve' : 'dev'} -w @axonivy/process-editor-inscription-standalone`,
+      command: `pnpm run --filter @axonivy/process-editor-inscription-standalone ${process.env.CI ? 'serve' : 'dev'}`,
       url: INSCRIPTION_URL,
       reuseExistingServer: !process.env.CI
     }

@@ -2,10 +2,13 @@ import {
   FocusDomAction,
   GlobalKeyListenerTool,
   KeyboardToolPalette,
+  matchesKeystroke,
+  SelectAction,
   SelectionService,
-  SetAccessibleKeyShortcutAction
+  SetAccessibleKeyShortcutAction,
+  toArray,
+  type Action
 } from '@eclipse-glsp/client';
-import { Action, matchesKeystroke, SelectAction, toArray } from '@eclipse-glsp/sprotty';
 import { injectable, inject } from 'inversify';
 import { StartEventNode } from '../../diagram/model';
 

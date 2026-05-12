@@ -18,7 +18,8 @@ import {
   type IActionDispatcher,
   UndoAction,
   RedoAction,
-  UpdateModelAction
+  UpdateModelAction,
+  OpenAction
 } from '@eclipse-glsp/client';
 import { webSocketConnection, type Connection } from '@axonivy/jsonrpc';
 import type { MonacoLanguageClient } from 'monaco-languageclient';
@@ -26,7 +27,6 @@ import { QueryClient } from '@tanstack/react-query';
 import { inject, injectable, postConstruct } from 'inversify';
 
 import { type Root, createRoot } from 'react-dom/client';
-import { OpenAction } from 'sprotty-protocol';
 import InscriptionView from './InscriptionView';
 import { EnableInscriptionAction, ToggleInscriptionAction } from './action';
 import * as React from 'react';

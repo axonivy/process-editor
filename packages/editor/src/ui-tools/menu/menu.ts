@@ -1,6 +1,5 @@
 import type { Action, IActionDispatcher, MaybePromise, PaletteItem } from '@eclipse-glsp/client';
-import { compare } from '@eclipse-glsp/client';
-import { matchesKeystroke } from 'sprotty/lib/utils/keyboard';
+import { compare, matchesKeystroke } from '@eclipse-glsp/client';
 import { ActivityTypes, EventIntermediateTypes, EventStartTypes } from '../../diagram/view-types';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { createElement, createIcon } from '../../utils/ui-utils';
@@ -46,7 +45,11 @@ export abstract class ItemMenu implements Menu {
   protected searchField?: HTMLInputElement;
   protected itemsDiv?: HTMLElement;
 
-  constructor(readonly actionDispatcher: IActionDispatcher, readonly action: ShowMenuAction, protected paletteItems: Array<PaletteItem>) {
+  constructor(
+    readonly actionDispatcher: IActionDispatcher,
+    readonly action: ShowMenuAction,
+    protected paletteItems: Array<PaletteItem>
+  ) {
     this.paletteItemsCopy = JSON.parse(JSON.stringify(this.paletteItems));
   }
 
