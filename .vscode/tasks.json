@@ -7,7 +7,7 @@
       "label": "Start Standalone",
       "type": "shell",
       "group": "build",
-      "command": "npm run dev",
+      "command": "pnpm run dev",
       "presentation": {
         "reveal": "always",
         "panel": "dedicated"
@@ -31,7 +31,7 @@
       "label": "Start Eclipse",
       "type": "shell",
       "group": "build",
-      "command": "npm run dev:eclipse",
+      "command": "pnpm run dev:eclipse",
       "presentation": {
         "reveal": "always",
         "panel": "dedicated"

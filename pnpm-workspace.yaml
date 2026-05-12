@@ -1,0 +1,20 @@
+packages:
+  - editor
+  - integration/*
+allowBuilds:
+  '@swc/core': false
+  es5-ext: false
+  esbuild: false
+  ttf2woff2: false
+minimumReleaseAgeExclude:
+  - '@axonivy/*'
+overrides:
+  lodash@<=4.17.23: '>=4.18.0'
+  typescript-cp>tar: '>=7.5.11'
+  uuid@<14.0.0: '>=14.0.0'
+preferWorkspacePackages: true
+publicHoistPattern:
+  - eslint
+trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 43200 # minutes (30 days)
+verifyDepsBeforeRun: warn

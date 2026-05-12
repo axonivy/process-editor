@@ -5,27 +5,29 @@
   "engines": {
     "node": ">=20.10.0"
   },
+  "volta": {
+    "node": "24.14.1"
+  },
   "scripts": {
-    "ci": "npm install && npm run build:icons && npm run build && npm run type && npm run package",
-    "clean": "lerna run clean",
+    "preinstall": "npx only-allow pnpm",
+    "check": "pnpm run type && (pnpm run lint:ci || true) && pnpm run test:ci",
+    "clean": "pnpm run -r clean",
     "build": "tsc --build",
-    "build:icons": "npm run -w @axonivy/process-editor build:icons",
-    "package": "lerna run package",
-    "type": "lerna run type",
+    "build:icons": "pnpm run --filter @axonivy/process-editor build:icons",
+    "package": "pnpm run -r package",
+    "type": "pnpm run -r type",
     "lint": "eslint",
     "lint:ci": "eslint -o eslint.xml -f checkstyle",
     "lint:fix": "eslint --fix",
     "lint:inspect": "eslint --inspect-config",
-    "dev": "npm run -w @axonivy/process-editor-standalone dev",
-    "dev:eclipse": "npm run -w @axonivy/process-editor-eclipse dev",
-    "test": "npm run -w @axonivy/process-editor test",
-    "test:ci": "npm run -w @axonivy/process-editor test:ci",
-    "webtest": "npm run -w @axonivy/process-editor-standalone webtest"
+    "dev": "pnpm run --filter @axonivy/process-editor-standalone dev",
+    "dev:eclipse": "pnpm run --filter @axonivy/process-editor-eclipse dev",
+    "test": "pnpm run --filter @axonivy/process-editor test",
+    "test:ci": "pnpm run --filter @axonivy/process-editor test:ci",
+    "webtest": "pnpm run --filter @axonivy/process-editor-standalone webtest"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
-    "@lerna-lite/cli": "^4.11.2",
-    "@lerna-lite/run": "^4.11.2",
     "@types/node": "^24.10.0",
     "@typescript-eslint/eslint-plugin": "^8.24.1",
     "@typescript-eslint/parser": "^8.24.1",
@@ -40,15 +42,5 @@
     "vite-tsconfig-paths": "^5.1.4",
     "vite-plugin-node-polyfills": "^0.26.0",
     "setimmediate": "^1.0.5"
-  },
-  "workspaces": {
-    "packages": [
-      "editor",
-      "integration/standalone",
-      "integration/eclipse"
-    ]
-  },
-  "volta": {
-    "node": "24.14.1"
   }
 }

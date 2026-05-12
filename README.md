@@ -23,17 +23,17 @@ However, it's of course also possible to use another text editor.
 
 ## Building the process editor
 
-The process editor component has to be built using npm.
+The process editor component has to be built using pnpm.
 
 ```bash
 #install node modules
-npm install
+pnpm install
 
 #build typescript
-npm run build
+pnpm run build
 
 #build integrations
-npm run package
+pnpm run package
 ```
 
 ## Running the process editor

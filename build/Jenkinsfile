@@ -19,7 +19,8 @@ pipeline {
         script {
           catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
             docker.build('node', '-f build/Dockerfile.node .').inside {
-              sh 'npm run ci'
+              sh 'pnpm install'
+              sh 'pnpm run build:icons && pnpm run build && pnpm run type && pnpm run package'
               archiveArtifacts 'integration/*/build/**'
             }
           }
@@ -33,7 +34,7 @@ pipeline {
           catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
             docker.build('node', '-f build/Dockerfile.node .').inside {
               timeout(30) {
-                sh 'npm run lint:ci'
+                sh 'pnpm run lint:ci'
               }
             }
           }
@@ -50,7 +51,7 @@ pipeline {
           catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
             docker.build('node', '-f build/Dockerfile.node .').inside {
               timeout(30) {
-                sh 'npm run test:ci'
+                sh 'pnpm run test:ci'
               }
             }
           }
@@ -62,7 +63,6 @@ pipeline {
       steps {
         script {
           docker.build('node-webtest', '-f build/Dockerfile.playwright .').inside {
-            sh 'npm install && npm run package'
             dir ('integration/standalone/glsp-test-project') {
               maven cmd: "-ntp verify -Dengine.page.url=${params.engineSource}"
             }
@@ -75,7 +75,7 @@ pipeline {
 
     stage('Deploy (Maven)') {
       when {
-        expression { isReleaseOrMasterBranch() && currentBuild.currentResult == 'SUCCESS' }
+        expression { isReleasingBranch() && currentBuild.currentResult == 'SUCCESS' }
       }
       steps {
         script {
@@ -97,8 +97,4 @@ pipeline {
       }
     }
   }
-}
-
-def isReleaseOrMasterBranch() {
-  return env.BRANCH_NAME == 'master' || env.BRANCH_NAME.startsWith('release/') 
 }

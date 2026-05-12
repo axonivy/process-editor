@@ -4,7 +4,7 @@ This package contains the Axon Ivy (GLSP-based) process editor.
 
 ## Building
 
-This project is build with `npm`.
+This project is build with `pnpm`.
 
 ## More information
 
