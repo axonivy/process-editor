@@ -1,8 +1,9 @@
 import tseslint from 'typescript-eslint';
 import eslint from '@eslint/js';
 import playwright from 'eslint-plugin-playwright';
+import { defineConfig } from 'eslint/config';
 
-export default tseslint.config(
+export default defineConfig(
   // Base eslint recommended config
   eslint.configs.recommended,
 

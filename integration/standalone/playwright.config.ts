@@ -15,7 +15,7 @@ export default defineConfig({
   },
   webServer: [
     {
-      command: `npm run ${process.env.CI ? 'serve' : 'dev'} -w @axonivy/process-editor-standalone`,
+      command: `pnpm run --filter @axonivy/process-editor-standalone ${process.env.CI ? 'serve' : 'dev'}`,
       url: STANDALONE_URL,
       reuseExistingServer: !process.env.CI
     }

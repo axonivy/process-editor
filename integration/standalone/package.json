@@ -10,11 +10,17 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "dependencies": {
+    "@axonivy/process-editor": "workspace:^10.0.1",
     "@eclipse-glsp/client": "1.1.0-RC02",
-    "@axonivy/process-editor": "^10.0.1"
+    "@eclipse-glsp/protocol": "1.1.0-RC02",
+    "inversify": "5.1.1",
+    "sprotty": "0.13.0-next.1c4343c.328",
+    "toastify-js": "1.12.0",
+    "vscode-jsonrpc": "5.0.1"
   },
   "devDependencies": {
     "@playwright/test": "1.59.1",
+    "@types/toastify-js": "^1.11.1",
     "reflect-metadata": "^0.2.0"
   },
   "type": "module",

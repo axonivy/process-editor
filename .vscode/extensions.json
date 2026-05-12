@@ -5,7 +5,6 @@
   "recommendations": [
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "amodio.tsl-problem-matcher",
     "vitest.explorer",
     "ms-playwright.playwright"
   ],
