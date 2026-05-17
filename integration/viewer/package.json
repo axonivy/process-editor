@@ -17,7 +17,7 @@
     "@eclipse-glsp/client": "2.3.0",
     "@eclipse-glsp/protocol": "2.3.0",
     "inversify": "^6.2",
-    "vscode-jsonrpc": "8.2.0"
+    "vscode-jsonrpc": "8.2.1"
   },
   "devDependencies": {
     "@vscode/codicons": "^0.0.45",

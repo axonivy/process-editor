@@ -37,7 +37,7 @@
   "devDependencies": {
     "@axonivy/ui-components": "~12.0.15-next",
     "@axonivy/ui-icons": "~12.0.15-next",
-    "@tanstack/eslint-plugin-query": "5.100.9",
+    "@tanstack/eslint-plugin-query": "5.100.10",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
