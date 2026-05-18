@@ -24,7 +24,7 @@
     "dompurify": "^3.0.0",
     "marked": "^15.0.6",
     "toastify-js": "1.12.0",
-    "vscode-jsonrpc": "8.2.0"
+    "vscode-jsonrpc": "8.2.1"
   },
   "peerDependencies": {
     "@axonivy/ui-icons": "~12.0.15-next",
@@ -32,7 +32,7 @@
     "sprotty": "^1.4.0"
   },
   "devDependencies": {
-    "@axonivy/ui-icons": "~12.0.15-next",
+    "@axonivy/ui-icons": "~12.0.15-next.754.45e44e2",
     "@types/toastify-js": "^1.12.3",
     "happy-dom": "^20.0.10",
     "inversify": "^6.2.1",
