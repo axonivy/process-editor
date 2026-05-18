@@ -29,8 +29,8 @@
     "react-aria": "^3.38"
   },
   "devDependencies": {
-    "@axonivy/jsonrpc": "~12.0.15-next",
-    "@axonivy/ui-icons": "~12.0.15-next",
+    "@axonivy/jsonrpc": "~12.0.15-next.754.45e44e2",
+    "@axonivy/ui-icons": "~12.0.15-next.754.45e44e2",
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "monaco-languageclient": "^6.6.1",

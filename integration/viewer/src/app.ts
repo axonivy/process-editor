@@ -1,9 +1,8 @@
 import { IvyBaseJsonrpcGLSPClient, SwitchThemeActionHandler } from '@axonivy/process-editor';
-import type { IActionDispatcher } from '@eclipse-glsp/client';
+import type { IActionDispatcher, JsonrpcGLSPClient } from '@eclipse-glsp/client';
 import { DiagramLoader, EditMode, GLSPWebSocketProvider, MessageAction, StatusAction, TYPES } from '@eclipse-glsp/client';
 import { ApplicationIdProvider, GLSPClient } from '@eclipse-glsp/protocol';
 import type { Container } from 'inversify';
-import type { MessageConnection } from 'vscode-jsonrpc';
 import createContainer from './di.config';
 import './index.css';
 import { params } from './url-helper';
@@ -21,6 +20,8 @@ let glspClient: GLSPClient;
 let container: Container;
 const wsProvider = new GLSPWebSocketProvider(`${webSocketUrl}/${id}`, { reconnectDelay: 5000, reconnectAttempts: 120 });
 wsProvider.listen({ onConnection: initialize, onReconnect: reconnect, logger: console });
+
+type MessageConnection = JsonrpcGLSPClient.Options['connectionProvider'];
 
 async function initialize(connectionProvider: MessageConnection, isReconnecting = false): Promise<void> {
   glspClient = new IvyBaseJsonrpcGLSPClient({ id, connectionProvider });
