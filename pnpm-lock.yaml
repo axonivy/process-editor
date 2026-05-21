@@ -54,19 +54,19 @@ importers:
         specifier: ~12.0.15-next.754.45e44e2
         version: 12.0.15-next.754.45e44e2
       '@axonivy/process-editor':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/editor
       '@axonivy/process-editor-inscription':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/inscription
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/inscription-protocol
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/inscription-view
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: ~12.0.15-next.754.45e44e2
@@ -112,13 +112,13 @@ importers:
         specifier: ~12.0.15-next.754.45e44e2
         version: 12.0.15-next.754.45e44e2
       '@axonivy/process-editor-inscription-core':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/inscription-core
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/inscription-protocol
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/inscription-view
       '@axonivy/ui-components':
         specifier: ~12.0.15-next.754.45e44e2
@@ -170,19 +170,19 @@ importers:
         specifier: ~12.0.15-next.754.45e44e2
         version: 12.0.15-next.754.45e44e2
       '@axonivy/process-editor':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/editor
       '@axonivy/process-editor-inscription':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/inscription
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/inscription-protocol
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/inscription-view
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: ~12.0.15-next.754.45e44e2
@@ -225,10 +225,10 @@ importers:
   integration/viewer:
     dependencies:
       '@axonivy/process-editor':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/editor
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: ~12.0.15-next.754.45e44e2
@@ -265,7 +265,7 @@ importers:
   packages/editor:
     dependencies:
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../protocol
       '@eclipse-glsp/client':
         specifier: 2.3.0
@@ -314,19 +314,19 @@ importers:
   packages/inscription:
     dependencies:
       '@axonivy/process-editor':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../editor
       '@axonivy/process-editor-inscription-core':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../inscription-core
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../inscription-protocol
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../inscription-view
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~14.0.0-next
+        specifier: workspace:~12.0.16-next
         version: link:../protocol
       '@codingame/monaco-vscode-editor-service-override':
         specifier: 1.83.3
@@ -375,7 +375,7 @@ importers:
   packages/inscription-core:
     dependencies:
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../inscription-protocol
       monaco-editor:
         specifier: ^0.44.0
@@ -403,10 +403,10 @@ importers:
   packages/inscription-view:
     dependencies:
       '@axonivy/process-editor-inscription-core':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../inscription-core
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../inscription-protocol
       '@monaco-editor/react':
         specifier: ^4.6.0
@@ -491,10 +491,10 @@ importers:
   playwright:
     devDependencies:
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../packages/inscription-protocol
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~12.0.15-next
+        specifier: workspace:~12.0.16-next
         version: link:../packages/inscription-view
       '@open-rpc/client-js':
         specifier: 1.8.1

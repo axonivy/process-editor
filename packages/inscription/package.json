@@ -1,6 +1,6 @@
 {
   "name": "@axonivy/process-editor-inscription",
-  "version": "12.0.15-next",
+  "version": "12.0.16-next",
   "description": "GLSP sprotty diagrams for the Axon Ivy Processes",
   "license": "(EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0)",
   "author": "Axon Ivy AG",
@@ -10,11 +10,11 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "dependencies": {
-    "@axonivy/process-editor": "workspace:~12.0.15-next",
-    "@axonivy/process-editor-inscription-core": "workspace:~12.0.15-next",
-    "@axonivy/process-editor-inscription-protocol": "workspace:~12.0.15-next",
-    "@axonivy/process-editor-inscription-view": "workspace:~12.0.15-next",
-    "@axonivy/process-editor-protocol": "workspace:~14.0.0-next",
+    "@axonivy/process-editor": "workspace:~12.0.16-next",
+    "@axonivy/process-editor-inscription-core": "workspace:~12.0.16-next",
+    "@axonivy/process-editor-inscription-protocol": "workspace:~12.0.16-next",
+    "@axonivy/process-editor-inscription-view": "workspace:~12.0.16-next",
+    "@axonivy/process-editor-protocol": "workspace:~12.0.16-next",
     "@codingame/monaco-vscode-editor-service-override": "1.83.3",
     "@codingame/monaco-vscode-languages-service-override": "1.83.3",
     "@codingame/monaco-vscode-model-service-override": "1.83.3",
