@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@axonivy/process-editor-playwright",
-  "version": "12.0.15-next",
+  "version": "12.0.16-next",
   "description": "Playwright tests for the Axon Ivy process editor",
   "author": "Axon Ivy AG",
   "homepage": "https://developer.axonivy.com",
@@ -10,8 +10,8 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "devDependencies": {
-    "@axonivy/process-editor-inscription-protocol": "workspace:~12.0.15-next",
-    "@axonivy/process-editor-inscription-view": "workspace:~12.0.15-next",
+    "@axonivy/process-editor-inscription-protocol": "workspace:~12.0.16-next",
+    "@axonivy/process-editor-inscription-view": "workspace:~12.0.16-next",
     "@open-rpc/client-js": "1.8.1",
     "@playwright/test": "1.60.0"
   },
