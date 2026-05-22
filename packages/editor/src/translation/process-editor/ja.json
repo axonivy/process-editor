@@ -128,7 +128,10 @@
       "settings": "設定",
       "theme": "テーマ",
       "type": "タイプ",
-      "value": "値"
+      "value": "値",
+      "close": "ふりがな",
+      "pin": "ログイン",
+      "refresh": "リフレッシュ"
     }
   },
   "history": {
@@ -258,7 +261,9 @@
       "sqlQuery": "SQL クエリ",
       "startIndex": "開始インデックス",
       "table": "表",
-      "title": "クエリ"
+      "title": "クエリ",
+      "clientCreate": "新しいデータベースクライアントを作成する",
+      "clientOpen": "データベース クライアント"
     },
     "endPage": {
       "title": "終了ページ"
