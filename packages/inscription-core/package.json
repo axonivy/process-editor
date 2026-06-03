@@ -14,7 +14,7 @@
     "src"
   ],
   "dependencies": {
-    "@axonivy/process-editor-inscription-protocol": "workspace:~14.0.0-next"
+    "@axonivy/process-editor-inscription-protocol": "workspace:~"
   },
   "peerDependencies": {
     "@axonivy/jsonrpc": "~14.0.0-next"

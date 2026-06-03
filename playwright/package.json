@@ -10,8 +10,8 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "devDependencies": {
-    "@axonivy/process-editor-inscription-protocol": "workspace:~14.0.0-next",
-    "@axonivy/process-editor-inscription-view": "workspace:~14.0.0-next",
+    "@axonivy/process-editor-inscription-protocol": "workspace:~",
+    "@axonivy/process-editor-inscription-view": "workspace:~",
     "@open-rpc/client-js": "2.0.0",
     "@playwright/test": "1.60.0"
   },
