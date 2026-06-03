@@ -15,4 +15,5 @@ WebServiceClients:
         - http://www.webservicex.net/geoipservice.asmx
     Codegen:
       WsdlUrl: http://test-webservices.ivyteam.io/wsdl/geoIpServiceWsdl/geoipservice.wsdl
+      Namespace: net.webservicex.client
     LegacyId: 1842DB7CC45C39D7
