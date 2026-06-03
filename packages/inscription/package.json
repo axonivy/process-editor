@@ -10,11 +10,11 @@
     "url": "https://github.com/axonivy/process-editor"
   },
   "dependencies": {
-    "@axonivy/process-editor": "workspace:~14.0.0-next",
-    "@axonivy/process-editor-inscription-core": "workspace:~14.0.0-next",
-    "@axonivy/process-editor-inscription-protocol": "workspace:~14.0.0-next",
-    "@axonivy/process-editor-inscription-view": "workspace:~14.0.0-next",
-    "@axonivy/process-editor-protocol": "workspace:~14.0.0-next",
+    "@axonivy/process-editor": "workspace:~",
+    "@axonivy/process-editor-inscription-core": "workspace:~",
+    "@axonivy/process-editor-inscription-protocol": "workspace:~",
+    "@axonivy/process-editor-inscription-view": "workspace:~",
+    "@axonivy/process-editor-protocol": "workspace:~",
     "@eclipse-glsp/client": "2.6.0"
   },
   "peerDependencies": {
@@ -28,10 +28,10 @@
   "devDependencies": {
     "@axonivy/ui-components": "~14.0.0-next.1125.e82f52e",
     "@axonivy/ui-icons": "~14.0.0-next.1125.e82f52e",
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
   },
   "scripts": {
     "clean": "rimraf lib tsconfig.tsbuildinfo",

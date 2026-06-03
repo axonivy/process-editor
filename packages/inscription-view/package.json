@@ -14,13 +14,13 @@
     "src"
   ],
   "dependencies": {
-    "@axonivy/process-editor-inscription-core": "workspace:~14.0.0-next",
-    "@axonivy/process-editor-inscription-protocol": "workspace:~14.0.0-next",
-    "@tanstack/react-virtual": "^3.11.2",
-    "dompurify": "^3.0.0",
-    "immer": "^11.0.0",
-    "react-aria": "^3.38.0",
-    "react-error-boundary": "^6.1.0"
+    "@axonivy/process-editor-inscription-core": "workspace:~",
+    "@axonivy/process-editor-inscription-protocol": "workspace:~",
+    "@tanstack/react-virtual": "^3.13.26",
+    "dompurify": "^3.4.7",
+    "immer": "^11.1.8",
+    "react-aria": "^3.49.0",
+    "react-error-boundary": "^6.1.2"
   },
   "peerDependencies": {
     "@axonivy/jsonrpc": "~14.0.0-next",
@@ -44,16 +44,16 @@
     "@hediet/json-rpc-browser": "^0.5.1",
     "@hediet/json-rpc-websocket": "^0.5.1",
     "@monaco-editor/react": "4.8.0-rc.3",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
-    "@testing-library/user-event": "^14.6.0",
-    "@types/node": "^24.0.0",
-    "@types/react": "^19.0.8",
-    "deepmerge-ts": "^7.0.0",
-    "jsdom": "^29.0.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.12.4",
+    "@types/react": "^19.2.15",
+    "deepmerge-ts": "^7.1.5",
+    "jsdom": "^29.1.1",
     "monaco-editor": "0.55.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
   },
   "type": "module",
   "module": "lib/index",

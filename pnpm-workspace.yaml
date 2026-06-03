@@ -11,6 +11,7 @@ overrides:
   lodash@<=4.17.23: '>=4.18.0'
   typescript-cp>tar: '>=7.5.11'
   uuid@<14.0.0: '>=14.0.0'
+  ws@>=8.0.0 <8.20.1: ^8.20.1
 patchedDependencies:
   monaco-editor: patches/monaco-editor.patch
 preferWorkspacePackages: true
