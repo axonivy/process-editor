@@ -26,6 +26,6 @@
     "type": "tsc --noEmit"
   },
   "devDependencies": {
-    "json-schema-to-typescript": "^13.1.1"
+    "json-schema-to-typescript": "^13.1.2"
   }
 }

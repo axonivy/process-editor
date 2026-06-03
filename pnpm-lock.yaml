@@ -18,35 +18,35 @@ importers:
         specifier: ~12.0.16-next.762.6b30854
         version: 12.0.16-next.762.6b30854(typescript@5.9.3)
       '@lerna-lite/cli':
-        specifier: ^4.11.2
+        specifier: ^4.11.5
         version: 4.11.5(@lerna-lite/publish@4.11.5)(@lerna-lite/run@4.11.5)(@lerna-lite/version@4.11.5)(@types/node@24.12.4)
       '@lerna-lite/publish':
-        specifier: ^4.11.2
+        specifier: ^4.11.5
         version: 4.11.5(@lerna-lite/run@4.11.5)(@types/node@24.12.4)(conventional-commits-filter@5.0.0)
       '@lerna-lite/run':
-        specifier: ^4.11.2
+        specifier: ^4.11.5
         version: 4.11.5(@lerna-lite/publish@4.11.5)(@lerna-lite/version@4.11.5)(@types/node@24.12.4)
       '@lerna-lite/version':
-        specifier: ^4.11.2
+        specifier: ^4.11.5
         version: 4.11.5(@lerna-lite/publish@4.11.5)(@lerna-lite/run@4.11.5)(@types/node@24.12.4)(conventional-commits-filter@5.0.0)
       '@types/node':
-        specifier: ^24.10.0
+        specifier: ^24.12.4
         version: 24.12.4
       prettier:
-        specifier: ^3.5.3
+        specifier: ^3.8.3
         version: 3.8.3
       rimraf:
-        specifier: ^6.0.1
+        specifier: ^6.1.3
         version: 6.1.3
       typescript:
-        specifier: ^5.8.3
+        specifier: ^5.9.3
         version: 5.9.3
       typescript-cp:
         specifier: ^0.1.9
         version: 0.1.9(typescript@5.9.3)
       vitest:
-        specifier: ^3.0.8
-        version: 3.2.4(@types/node@24.12.4)(happy-dom@20.9.0)(jsdom@25.0.1)(yaml@2.8.3)
+        specifier: ^4.1.8
+        version: 4.1.8(@types/node@24.12.4)(happy-dom@20.9.0)(jsdom@25.0.1)(vite@7.3.3(@types/node@24.12.4)(yaml@2.8.3))
 
   integration/eclipse:
     dependencies:
@@ -54,19 +54,19 @@ importers:
         specifier: ~12.0.16-next.762.6b30854
         version: 12.0.16-next.762.6b30854
       '@axonivy/process-editor':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/editor
       '@axonivy/process-editor-inscription':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/inscription
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/inscription-protocol
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/inscription-view
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: ~12.0.16-next.762.6b30854
@@ -84,13 +84,13 @@ importers:
         specifier: 2.3.0
         version: 2.3.0(inversify@6.2.2(reflect-metadata@0.2.2))
       '@tanstack/react-query':
-        specifier: ^5.32
+        specifier: ^5.100.14
         version: 5.100.14(react@18.3.1)
       '@tanstack/react-query-devtools':
-        specifier: ^5.32
+        specifier: ^5.100.14
         version: 5.100.14(@tanstack/react-query@5.100.14(react@18.3.1))(react@18.3.1)
       inversify:
-        specifier: ^6.2
+        specifier: ^6.2.2
         version: 6.2.2(reflect-metadata@0.2.2)
     devDependencies:
       '@vscode/codicons':
@@ -100,7 +100,7 @@ importers:
         specifier: ~0.2.2
         version: 0.2.2
       vite:
-        specifier: ^7.0.0
+        specifier: ^7.3.3
         version: 7.3.3(@types/node@24.12.4)(yaml@2.8.3)
       vite-tsconfig-paths:
         specifier: ^5.1.4
@@ -112,13 +112,13 @@ importers:
         specifier: ~12.0.16-next.762.6b30854
         version: 12.0.16-next.762.6b30854
       '@axonivy/process-editor-inscription-core':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/inscription-core
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/inscription-protocol
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/inscription-view
       '@axonivy/ui-components':
         specifier: ~12.0.16-next.762.6b30854
@@ -127,23 +127,23 @@ importers:
         specifier: ~12.0.16-next.762.6b30854
         version: 12.0.16-next.762.6b30854
       '@tanstack/react-query':
-        specifier: ^5.32
+        specifier: ^5.100.14
         version: 5.100.14(react@18.3.1)
       '@tanstack/react-query-devtools':
-        specifier: ^5.32
+        specifier: ^5.100.14
         version: 5.100.14(@tanstack/react-query@5.100.14(react@18.3.1))(react@18.3.1)
       vscode-jsonrpc:
         specifier: 8.2.1
         version: 8.2.1
     devDependencies:
       '@types/react':
-        specifier: ^18.3.4
+        specifier: ^18.3.29
         version: 18.3.29
       '@types/react-dom':
-        specifier: ^18.3.0
+        specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.29)
       '@vitejs/plugin-react':
-        specifier: ^4.3.4
+        specifier: ^4.7.0
         version: 4.7.0(vite@7.3.3(@types/node@24.12.4)(yaml@2.8.3))
       deepmerge-ts:
         specifier: ^5.1.0
@@ -158,7 +158,7 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       vite:
-        specifier: ^7.0.0
+        specifier: ^7.3.3
         version: 7.3.3(@types/node@24.12.4)(yaml@2.8.3)
       vite-tsconfig-paths:
         specifier: ^5.1.4
@@ -170,19 +170,19 @@ importers:
         specifier: ~12.0.16-next.762.6b30854
         version: 12.0.16-next.762.6b30854
       '@axonivy/process-editor':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/editor
       '@axonivy/process-editor-inscription':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/inscription
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/inscription-protocol
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/inscription-view
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: ~12.0.16-next.762.6b30854
@@ -197,13 +197,13 @@ importers:
         specifier: 2.3.0
         version: 2.3.0(inversify@6.2.2(reflect-metadata@0.2.2))
       '@tanstack/react-query':
-        specifier: ^5.32
+        specifier: ^5.100.14
         version: 5.100.14(react@18.3.1)
       '@tanstack/react-query-devtools':
-        specifier: ^5.32
+        specifier: ^5.100.14
         version: 5.100.14(@tanstack/react-query@5.100.14(react@18.3.1))(react@18.3.1)
       inversify:
-        specifier: ^6.2
+        specifier: ^6.2.2
         version: 6.2.2(reflect-metadata@0.2.2)
     devDependencies:
       '@vscode/codicons':
@@ -216,7 +216,7 @@ importers:
         specifier: ~0.2.2
         version: 0.2.2
       vite:
-        specifier: ^7.0.0
+        specifier: ^7.3.3
         version: 7.3.3(@types/node@24.12.4)(yaml@2.8.3)
       vite-tsconfig-paths:
         specifier: ^5.1.4
@@ -225,10 +225,10 @@ importers:
   integration/viewer:
     dependencies:
       '@axonivy/process-editor':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/editor
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: ~12.0.16-next.762.6b30854
@@ -243,7 +243,7 @@ importers:
         specifier: 2.3.0
         version: 2.3.0(inversify@6.2.2(reflect-metadata@0.2.2))
       inversify:
-        specifier: ^6.2
+        specifier: ^6.2.2
         version: 6.2.2(reflect-metadata@0.2.2)
     devDependencies:
       '@vscode/codicons':
@@ -256,7 +256,7 @@ importers:
         specifier: ~0.2.2
         version: 0.2.2
       vite:
-        specifier: ^7.0.0
+        specifier: ^7.3.3
         version: 7.3.3(@types/node@24.12.4)(yaml@2.8.3)
       vite-tsconfig-paths:
         specifier: ^5.1.4
@@ -265,7 +265,7 @@ importers:
   packages/editor:
     dependencies:
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../protocol
       '@eclipse-glsp/client':
         specifier: 2.3.0
@@ -274,10 +274,10 @@ importers:
         specifier: 2.3.0
         version: 2.3.0(inversify@6.2.2(reflect-metadata@0.2.2))
       dompurify:
-        specifier: '>=3.3.2'
+        specifier: ^3.4.7
         version: 3.4.7
       marked:
-        specifier: ^15.0.6
+        specifier: ^15.0.12
         version: 15.0.12
       snabbdom:
         specifier: ^3.5.1
@@ -296,13 +296,13 @@ importers:
         specifier: ~12.0.16-next.762.6b30854
         version: 12.0.16-next.762.6b30854
       '@types/toastify-js':
-        specifier: ^1.12.3
+        specifier: ^1.12.4
         version: 1.12.4
       happy-dom:
-        specifier: ^20.0.10
+        specifier: ^20.9.0
         version: 20.9.0
       inversify:
-        specifier: ^6.2.1
+        specifier: ^6.2.2
         version: 6.2.2(reflect-metadata@0.2.2)
       reflect-metadata:
         specifier: ~0.2.2
@@ -314,19 +314,19 @@ importers:
   packages/inscription:
     dependencies:
       '@axonivy/process-editor':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../editor
       '@axonivy/process-editor-inscription-core':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../inscription-core
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../inscription-protocol
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../inscription-view
       '@axonivy/process-editor-protocol':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../protocol
       '@codingame/monaco-vscode-editor-service-override':
         specifier: 1.83.3
@@ -344,7 +344,7 @@ importers:
         specifier: ^5.64
         version: 5.100.14(react@18.3.1)
       inversify:
-        specifier: ^6.2
+        specifier: ^6.2.2
         version: 6.2.2(reflect-metadata@0.2.2)
       react-aria:
         specifier: ^3.38
@@ -357,10 +357,10 @@ importers:
         specifier: ~12.0.16-next.762.6b30854
         version: 12.0.16-next.762.6b30854
       '@types/react':
-        specifier: ^18.3.4
+        specifier: ^18.3.29
         version: 18.3.29
       '@types/react-dom':
-        specifier: ^18.3.0
+        specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.29)
       monaco-languageclient:
         specifier: ^6.6.1
@@ -375,7 +375,7 @@ importers:
   packages/inscription-core:
     dependencies:
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../inscription-protocol
       monaco-editor:
         specifier: ^0.44.0
@@ -397,19 +397,19 @@ importers:
   packages/inscription-protocol:
     devDependencies:
       json-schema-to-typescript:
-        specifier: ^13.1.1
+        specifier: ^13.1.2
         version: 13.1.2
 
   packages/inscription-view:
     dependencies:
       '@axonivy/process-editor-inscription-core':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../inscription-core
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../inscription-protocol
       '@monaco-editor/react':
-        specifier: ^4.6.0
+        specifier: ^4.7.0
         version: 4.7.0(monaco-editor@0.44.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-dialog':
         specifier: ^1.1
@@ -427,19 +427,19 @@ importers:
         specifier: ^8.20
         version: 8.21.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/react-virtual':
-        specifier: ^3.11.1
+        specifier: ^3.13.26
         version: 3.13.26(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       dompurify:
-        specifier: '>=3.3.2'
+        specifier: ^3.4.7
         version: 3.4.7
       downshift:
         specifier: ^9.0
         version: 9.0.13(react@18.3.1)
       immer:
-        specifier: ^10.0.3
+        specifier: ^10.2.0
         version: 10.2.0
       react-aria:
-        specifier: ^3.38.0
+        specifier: ^3.49.0
         version: 3.49.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-error-boundary:
         specifier: ^4.1.2
@@ -455,19 +455,19 @@ importers:
         specifier: 5.100.14
         version: 5.100.14(eslint@9.39.4)(typescript@5.9.3)
       '@testing-library/jest-dom':
-        specifier: ^6.6.3
+        specifier: ^6.9.1
         version: 6.9.1
       '@testing-library/react':
-        specifier: ^16.1.0
+        specifier: ^16.3.2
         version: 16.3.2(@testing-library/dom@10.4.0)(@types/react-dom@18.3.7(@types/react@18.3.29))(@types/react@18.3.29)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@testing-library/user-event':
-        specifier: ^14.5.2
+        specifier: ^14.6.1
         version: 14.6.1(@testing-library/dom@10.4.0)
       '@types/node':
-        specifier: ^24.10.0
+        specifier: ^24.12.4
         version: 24.12.4
       '@types/react':
-        specifier: ^18.3.4
+        specifier: ^18.3.29
         version: 18.3.29
       deepmerge-ts:
         specifier: ^5.1.0
@@ -491,10 +491,10 @@ importers:
   playwright:
     devDependencies:
       '@axonivy/process-editor-inscription-protocol':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../packages/inscription-protocol
       '@axonivy/process-editor-inscription-view':
-        specifier: workspace:~12.0.16-next
+        specifier: workspace:~
         version: link:../packages/inscription-view
       '@open-rpc/client-js':
         specifier: 1.8.1
@@ -1920,6 +1920,9 @@ packages:
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
 
+  '@standard-schema/spec@1.1.0':
+    resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
+
   '@swc/helpers@0.5.23':
     resolution: {integrity: sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==}
 
@@ -2039,6 +2042,9 @@ packages:
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
 
+  '@types/estree@1.0.9':
+    resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
+
   '@types/glob@7.2.0':
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
 
@@ -2152,34 +2158,34 @@ packages:
     peerDependencies:
       vite: ^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
 
-  '@vitest/expect@3.2.4':
-    resolution: {integrity: sha512-Io0yyORnB6sikFlt8QW5K7slY4OjqNX9jmJQ02QDda8lyM6B5oNgVWoSoKPac8/kgnCUzuHQKrSLtu/uOqqrig==}
+  '@vitest/expect@4.1.8':
+    resolution: {integrity: sha512-h3nDO677RDLEGlBxyQ5CW8RlMThSKSRLUePLOx09gNIWRL40edgA1GCZSZgf1W55MFAG6/Sw14KeaAnqv0NKdQ==}
 
-  '@vitest/mocker@3.2.4':
-    resolution: {integrity: sha512-46ryTE9RZO/rfDd7pEqFl7etuyzekzEhUbTW3BvmeO/BcCMEgq59BKhek3dXDWgAj4oMK6OZi+vRr1wPW6qjEQ==}
+  '@vitest/mocker@4.1.8':
+    resolution: {integrity: sha512-LEiN/xe4OSIbKe9HQIp5OC24agGD9J5CnmMgsLohVVoOPWL9a2sBoR6VBx43jQZb7Kr1l4RCuyCJzcAa0+dojw==}
     peerDependencies:
       msw: ^2.4.9
-      vite: ^5.0.0 || ^6.0.0 || ^7.0.0-0
+      vite: ^6.0.0 || ^7.0.0 || ^8.0.0
     peerDependenciesMeta:
       msw:
         optional: true
       vite:
         optional: true
 
-  '@vitest/pretty-format@3.2.4':
-    resolution: {integrity: sha512-IVNZik8IVRJRTr9fxlitMKeJeXFFFN0JaB9PHPGQ8NKQbGpfjlTx9zO4RefN8gp7eqjNy8nyK3NZmBzOPeIxtA==}
+  '@vitest/pretty-format@4.1.8':
+    resolution: {integrity: sha512-9GasEBxpZ1VYIpqHf/0+YGg121uSNwCKOJqIrTwWP/TB7DmFCiaBpNl3aPZzoLWfWkuqhbH8vJIVobZkvdo2cA==}
 
-  '@vitest/runner@3.2.4':
-    resolution: {integrity: sha512-oukfKT9Mk41LreEW09vt45f8wx7DordoWUZMYdY/cyAk7w5TWkTRCNZYF7sX7n2wB7jyGAl74OxgwhPgKaqDMQ==}
+  '@vitest/runner@4.1.8':
+    resolution: {integrity: sha512-EmVxeBAfMJvycdjd6Hm+RbFBbA9fKvo0Kx37hNpBYoYeavH3RNsBXWDooR1mgD52dCrxIIuP7UotpfiwOikvcg==}
 
-  '@vitest/snapshot@3.2.4':
-    resolution: {integrity: sha512-dEYtS7qQP2CjU27QBC5oUOxLE/v5eLkGqPE0ZKEIDGMs4vKWe7IjgLOeauHsR0D5YuuycGRO5oSRXnwnmA78fQ==}
+  '@vitest/snapshot@4.1.8':
+    resolution: {integrity: sha512-acfZboRmAIf05DEKcBQy33VXojFJjtUdLyo7oOmV9kebb2xdU01UknNiPuPZoJZQyO7DF0gZdTGTpeAzET9QPQ==}
 
-  '@vitest/spy@3.2.4':
-    resolution: {integrity: sha512-vAfasCOe6AIK70iP5UD11Ac4siNUNJ9i/9PZ3NKx07sG6sUxeag1LWdNrMWeKKYBLlzuK+Gn65Yd5nyL6ds+nw==}
+  '@vitest/spy@4.1.8':
+    resolution: {integrity: sha512-6EevtBp6OZOPF7bmz36HrGMeP3txgVSrgebWxHOafDXGkhIzfXK14f8KF6MuFfgXXUeHxmpD3BQxkV00/3s5mA==}
 
-  '@vitest/utils@3.2.4':
-    resolution: {integrity: sha512-fB2V0JFrQSMsCo9HiSq3Ezpdv4iYaXRG1Sx8edX3MwxfyNn83mKiGzOcH+Fkxt4MHxr3y42fQi1oeAInqgX2QA==}
+  '@vitest/utils@4.1.8':
+    resolution: {integrity: sha512-uOJamYALNhfJ6iolExyQM40yIQwDqYnkKtQ5VCiSe17E33H0aQ/u+1GlRuz4LZBk6Mm3sg90G9hEbmEt37C1Zg==}
 
   '@vscode/codicons@0.0.45':
     resolution: {integrity: sha512-1KAZ7XCMagp5Gdrlr4bbbcAqgcIL623iO1wW6rfcSVGAVUQvR0WP7bQx1SbJ11gmV3fdQTSEFIJQ/5C+HuVasw==}
@@ -2323,11 +2329,11 @@ packages:
   brace-expansion@1.1.14:
     resolution: {integrity: sha512-MWPGfDxnyzKU7rNOW9SP/c50vi3xrmrua/+6hfPbCS2ABNWfx24vPidzvC7krjU/RTo235sV776ymlsMtGKj8g==}
 
-  brace-expansion@2.1.0:
-    resolution: {integrity: sha512-TN1kCZAgdgweJhWWpgKYrQaMNHcDULHkWwQIspdtjV4Y5aurRdZpjAqn6yX3FPqTA9ngHCc4hJxMAMgGfve85w==}
+  brace-expansion@2.1.1:
+    resolution: {integrity: sha512-WR1cURNjuvBLMZBMbqM0UoE+WAfdUcEV1ccD8PVBVOI+Z3ND4+SZbN8RsfT2bMuG1qwz5RFvPukSZm5fF2D5eA==}
 
-  brace-expansion@5.0.5:
-    resolution: {integrity: sha512-VZznLgtwhn+Mact9tfiwx64fA9erHH/MCXEUfB/0bX/6Fz6ny5EGTXYltMocqg4xFAQZtnO3DHWWXi8RiuN7cQ==}
+  brace-expansion@5.0.6:
+    resolution: {integrity: sha512-kLpxurY4Z4r9sgMsyG0Z9uzsBlgiU/EFKhj/h91/8yHu0edo7XuixOIH3VcJ8kkxs6/jPzoI6U9Vj3WqbMQ94g==}
     engines: {node: 18 || 20 || >=22}
 
   braces@3.0.3:
@@ -2350,10 +2356,6 @@ packages:
     peerDependenciesMeta:
       '@75lb/nature':
         optional: true
-
-  cac@6.7.14:
-    resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
-    engines: {node: '>=8'}
 
   cacache@20.0.4:
     resolution: {integrity: sha512-M3Lab8NPYlZU2exsL3bMVvMrMqgwCnMWfdZbK28bn3pK6APT/Te/I8hjRPNu1uwORY9a1eEQoifXbKPQMfMTOA==}
@@ -2381,17 +2383,13 @@ packages:
   caniuse-lite@1.0.30001726:
     resolution: {integrity: sha512-VQAUIUzBiZ/UnlM28fSp2CRF3ivUn1BWEvxMcVTNwpw91Py1pGbPIyIKtd+tzct9C3ouceCVdGAXxZOpZAsgdw==}
 
-  chai@5.3.3:
-    resolution: {integrity: sha512-4zNhdJD/iOjSH0A05ea+Ke6MU5mmpQcbQsSOkgdaUMJ9zTlDTD/GYlwohmIE2u0gaxHYiVHEn1Fw9mZ/ktJWgw==}
+  chai@6.2.2:
+    resolution: {integrity: sha512-NUPRluOfOiTKBKvWPtSD4PhFvWCqOi0BGStNWs57X9js7XGTprSmFoz5F0tWhR4WPjNeR9jXqdC7/UpSJTnlRg==}
     engines: {node: '>=18'}
 
   chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
-
-  check-error@2.1.3:
-    resolution: {integrity: sha512-PAJdDJusoxnwm1VwW07VWwUN1sl7smmC3OKggvndJFadxxDRyFJBX/ggnu/KE4kQAB7a3Dp8f/YXC1FlUprWmA==}
-    engines: {node: '>= 16'}
 
   chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
@@ -2564,10 +2562,6 @@ packages:
       babel-plugin-macros:
         optional: true
 
-  deep-eql@5.0.2:
-    resolution: {integrity: sha512-h5k/5U50IJJFpzfL6nO9jaaumfjO/f2NjK/oYB2Djzm4p9L+3T9qWpZqZ2hAbLPuuYq9wrU08WQyBTL5GbPk5Q==}
-    engines: {node: '>=6'}
-
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
@@ -2681,8 +2675,8 @@ packages:
     resolution: {integrity: sha512-HVLACW1TppGYjJ8H6/jqH/pqOtKRw6wMlrB23xfExmFWxFquAIWCmwoLsOyN96K4a5KbmOf5At9ZUO3GZbetAw==}
     engines: {node: '>= 0.4'}
 
-  es-module-lexer@1.7.0:
-    resolution: {integrity: sha512-jEQoCwk8hyb2AZziIOLhDqpm5+2ww5uIE6lkO/6jcOCusfk6LhMHpXXfBLXTZ7Ydyt0j4VoUQv6uGNYbdW+kBA==}
+  es-module-lexer@2.1.0:
+    resolution: {integrity: sha512-n27zTYMjYu1aj4MjCWzSP7G9r75utsaoc8m61weK+W8JMBGGQybd43GstCXZ3WNmSFtGT9wi59qQTW6mhTR5LQ==}
 
   es-object-atoms@1.1.1:
     resolution: {integrity: sha512-FGgH2h8zKNim9ljj7dankFPcICIK9Cp5bm+c2gQSYePhpaG5+esrLODihIorn+Pe6FGJzWhXQotPv73jTaldXA==}
@@ -3349,9 +3343,6 @@ packages:
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
-  js-tokens@9.0.1:
-    resolution: {integrity: sha512-mxa9E9ITFOt0ban3j6L5MpjwegGz6lBQmM1IJkWeBZGcMxto50+eWdjC/52xDbS2vy0k7vIMK0Fe2wfL9OQSpQ==}
-
   js-yaml@4.1.1:
     resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
     hasBin: true
@@ -3477,9 +3468,6 @@ packages:
   loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
-
-  loupe@3.2.1:
-    resolution: {integrity: sha512-CdzqowRJCeLU72bHvWqwRBBlLcMEtIvGrlvef74kMnV2AolS9Y8xUv1I0U/MNAWMhBlKIoyuEgoJ0t/bbwHbLQ==}
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
@@ -3741,6 +3729,9 @@ packages:
     resolution: {integrity: sha512-gXah6aZrcUxjWg2zR2MwouP2eHlCBzdV4pygudehaKXSGW4v2AsRQUK+lwwXhii6KFZcunEnmSUoYp5CXibxtA==}
     engines: {node: '>= 0.4'}
 
+  obug@2.1.1:
+    resolution: {integrity: sha512-uTqF9MuPraAQ+IsnPf366RG4cP9RtUi7MLO1N3KEc+wb0a6yKpeL0lmk2IB1jY5KHPAlTc6T/JRdC/YqxHNwkQ==}
+
   once@1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
 
@@ -3861,10 +3852,6 @@ packages:
 
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
-
-  pathval@2.0.1:
-    resolution: {integrity: sha512-//nshmD55c46FuFw26xV/xFAaB5HF9Xdap7HJBBnrKdAd6/GxDBaNA1870O79+9ueg61cZLSVc+OaFlfmObYVQ==}
-    engines: {node: '>= 14.16'}
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -4257,8 +4244,8 @@ packages:
   state-local@1.0.7:
     resolution: {integrity: sha512-HTEHMNieakEnoe33shBYcZ7NX83ACUjCu8c40iOGEZsngj9zRnkqS9j1pqQPXwobB0ZcVTk27REb7COQ0UR59w==}
 
-  std-env@3.10.0:
-    resolution: {integrity: sha512-5GS12FdOZNliM5mAOxFRg7Ir0pWz8MdpYm6AY6VPkGpbA7ZzmbzNcBJQ0GPvvyWgcY7QAhCgf9Uy89I03faLkg==}
+  std-env@4.1.0:
+    resolution: {integrity: sha512-Rq7ybcX2RuC55r9oaPVEW7/xu3tj8u4GeBYHBWCychFtzMIr86A7e3PPEBPT37sHStKX3+TiX/Fr/ACmJLVlLQ==}
 
   stop-iteration-iterator@1.1.0:
     resolution: {integrity: sha512-eLoXW/DHyl62zxY4SCaIgnRhuMr6ri4juEYARS8E6sCEqzKpOiE521Ucofdx+KnDZl5xmvGYaaKCk5FEOxJCoQ==}
@@ -4318,9 +4305,6 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
 
-  strip-literal@3.1.0:
-    resolution: {integrity: sha512-8r3mkIM/2+PpjHoOtiAW8Rg3jJLHaV7xPwG+YRGrv6FP0wwk/toTpATxWYOW0BKdWwl82VT2tFYi5DlROa0Mxg==}
-
   supports-color@7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
@@ -4350,30 +4334,19 @@ packages:
   tinybench@2.9.0:
     resolution: {integrity: sha512-0+DUvqWMValLmha6lr4kD8iAMK1HzV0/aKnCtWb9v9641TnP/MFb7Pc2bxoxQjTXAErryXVgUOfv2YqNllqGeg==}
 
-  tinyexec@0.3.2:
-    resolution: {integrity: sha512-KQQR9yN7R5+OSwaK0XQoj22pwHoTlgYqmUscPYoknOoWCWfj/5/ABTMRi69FrKU5ffPVh5QcFikpWJI/P1ocHA==}
+  tinyexec@1.2.4:
+    resolution: {integrity: sha512-SHf/r48b7vOrjve9PxJo3MN5v5yuyjHvdUcrQffT3WXMUfnGmHDVbC4k3sHJaJTgZCwpUplIaAo5ANtMyp3YHg==}
+    engines: {node: '>=18'}
 
   tinyglobby@0.2.16:
     resolution: {integrity: sha512-pn99VhoACYR8nFHhxqix+uvsbXineAasWm5ojXoN8xEwK5Kd3/TrhNn1wByuD52UxWRLy8pu+kRMniEi6Eq9Zg==}
     engines: {node: '>=12.0.0'}
 
-  tinypool@1.1.1:
-    resolution: {integrity: sha512-Zba82s87IFq9A9XmjiX5uZA/ARWDrB03OHlq+Vw1fSdt0I+4/Kutwy8BP4Y/y/aORMo61FQ0vIb5j44vSo5Pkg==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-
   tinyqueue@2.0.3:
     resolution: {integrity: sha512-ppJZNDuKGgxzkHihX8v9v9G5f+18gzaTfrukGrq6ueg0lmH4nqVnA2IPG0AEH3jKEk2GRJCUhDoqpoiw3PHLBA==}
 
-  tinyrainbow@2.0.0:
-    resolution: {integrity: sha512-op4nsTR47R6p0vMUUoYl/a+ljLFVtlfaXkLQmqfLR1qHma1h/ysYk4hEXZ880bf2CYgTskvTa/e196Vd5dDQXw==}
-    engines: {node: '>=14.0.0'}
-
   tinyrainbow@3.1.0:
     resolution: {integrity: sha512-Bf+ILmBgretUrdJxzXM0SgXLZ3XfiaUuOj/IKQHuTXip+05Xn+uyEYdVg0kYDipTBcLrCVyUzAPz7QmArb0mmw==}
-    engines: {node: '>=14.0.0'}
-
-  tinyspy@4.0.4:
-    resolution: {integrity: sha512-azl+t0z7pw/z958Gy9svOTuzqIk6xq+NSheJzn5MMWtWTFywIacg2wUlzKFGtt3cthx0r2SxMK0yzJOR0IES7Q==}
     engines: {node: '>=14.0.0'}
 
   tldts-core@6.1.67:
@@ -4548,11 +4521,6 @@ packages:
     resolution: {integrity: sha512-hVDIBwsRruT73PbK7uP5ebUt+ezEtCmzZz3F59BSr2F6OVFnJ/6h8liuvdLrQ88Xmnk6/+xGGuq+pG9WwTuy3A==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  vite-node@3.2.4:
-    resolution: {integrity: sha512-EbKSKh+bh1E1IFxeO0pg1n4dvoOTt0UDiXMd/qn++r98+jPO1xtJilvXldeuQ8giIB5IkpjCgMleHMNEsGH6pg==}
-    engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
-    hasBin: true
-
   vite-tsconfig-paths@5.1.4:
     resolution: {integrity: sha512-cYj0LRuLV2c2sMqhqhGpaO3LretdtMn/BVX4cPLanIZuwwrkVl+lK84E/miEXkCHWXuq65rhNN4rXsBcOB3S4w==}
     peerDependencies:
@@ -4601,26 +4569,39 @@ packages:
       yaml:
         optional: true
 
-  vitest@3.2.4:
-    resolution: {integrity: sha512-LUCP5ev3GURDysTWiP47wRRUpLKMOfPh+yKTx3kVIEiu5KOMeqzpnYNsKyOoVrULivR8tLcks4+lga33Whn90A==}
-    engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
+  vitest@4.1.8:
+    resolution: {integrity: sha512-flY6ScbCIt9HThs+C5HS7jvGOB560DJtk/Z15IQROTA6zEy49Nh8T/dofWTQL+n3vswqn87sbJNiuqw1SDp5Ig==}
+    engines: {node: ^20.0.0 || ^22.0.0 || >=24.0.0}
     hasBin: true
     peerDependencies:
       '@edge-runtime/vm': '*'
-      '@types/debug': ^4.1.12
-      '@types/node': ^18.0.0 || ^20.0.0 || >=22.0.0
-      '@vitest/browser': 3.2.4
-      '@vitest/ui': 3.2.4
+      '@opentelemetry/api': ^1.9.0
+      '@types/node': ^20.0.0 || ^22.0.0 || >=24.0.0
+      '@vitest/browser-playwright': 4.1.8
+      '@vitest/browser-preview': 4.1.8
+      '@vitest/browser-webdriverio': 4.1.8
+      '@vitest/coverage-istanbul': 4.1.8
+      '@vitest/coverage-v8': 4.1.8
+      '@vitest/ui': 4.1.8
       happy-dom: '*'
       jsdom: '*'
+      vite: ^6.0.0 || ^7.0.0 || ^8.0.0
     peerDependenciesMeta:
       '@edge-runtime/vm':
         optional: true
-      '@types/debug':
+      '@opentelemetry/api':
         optional: true
       '@types/node':
         optional: true
-      '@vitest/browser':
+      '@vitest/browser-playwright':
+        optional: true
+      '@vitest/browser-preview':
+        optional: true
+      '@vitest/browser-webdriverio':
+        optional: true
+      '@vitest/coverage-istanbul':
+        optional: true
+      '@vitest/coverage-v8':
         optional: true
       '@vitest/ui':
         optional: true
@@ -6451,6 +6432,8 @@ snapshots:
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
+  '@standard-schema/spec@1.1.0': {}
+
   '@swc/helpers@0.5.23':
     dependencies:
       tslib: 2.8.1
@@ -6576,6 +6559,8 @@ snapshots:
   '@types/deep-eql@4.0.2': {}
 
   '@types/estree@1.0.8': {}
+
+  '@types/estree@1.0.9': {}
 
   '@types/glob@7.2.0':
     dependencies:
@@ -6725,47 +6710,46 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/expect@3.2.4':
+  '@vitest/expect@4.1.8':
     dependencies:
+      '@standard-schema/spec': 1.1.0
       '@types/chai': 5.2.3
-      '@vitest/spy': 3.2.4
-      '@vitest/utils': 3.2.4
-      chai: 5.3.3
-      tinyrainbow: 2.0.0
+      '@vitest/spy': 4.1.8
+      '@vitest/utils': 4.1.8
+      chai: 6.2.2
+      tinyrainbow: 3.1.0
 
-  '@vitest/mocker@3.2.4(vite@7.3.3(@types/node@24.12.4)(yaml@2.8.3))':
+  '@vitest/mocker@4.1.8(vite@7.3.3(@types/node@24.12.4)(yaml@2.8.3))':
     dependencies:
-      '@vitest/spy': 3.2.4
+      '@vitest/spy': 4.1.8
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
       vite: 7.3.3(@types/node@24.12.4)(yaml@2.8.3)
 
-  '@vitest/pretty-format@3.2.4':
+  '@vitest/pretty-format@4.1.8':
     dependencies:
-      tinyrainbow: 2.0.0
+      tinyrainbow: 3.1.0
 
-  '@vitest/runner@3.2.4':
+  '@vitest/runner@4.1.8':
     dependencies:
-      '@vitest/utils': 3.2.4
+      '@vitest/utils': 4.1.8
       pathe: 2.0.3
-      strip-literal: 3.1.0
 
-  '@vitest/snapshot@3.2.4':
+  '@vitest/snapshot@4.1.8':
     dependencies:
-      '@vitest/pretty-format': 3.2.4
+      '@vitest/pretty-format': 4.1.8
+      '@vitest/utils': 4.1.8
       magic-string: 0.30.21
       pathe: 2.0.3
 
-  '@vitest/spy@3.2.4':
-    dependencies:
-      tinyspy: 4.0.4
+  '@vitest/spy@4.1.8': {}
 
-  '@vitest/utils@3.2.4':
+  '@vitest/utils@4.1.8':
     dependencies:
-      '@vitest/pretty-format': 3.2.4
-      loupe: 3.2.1
-      tinyrainbow: 2.0.0
+      '@vitest/pretty-format': 4.1.8
+      convert-source-map: 2.0.0
+      tinyrainbow: 3.1.0
 
   '@vscode/codicons@0.0.45': {}
 
@@ -6913,11 +6897,11 @@ snapshots:
       balanced-match: 1.0.2
       concat-map: 0.0.1
 
-  brace-expansion@2.1.0:
+  brace-expansion@2.1.1:
     dependencies:
       balanced-match: 1.0.2
 
-  brace-expansion@5.0.5:
+  brace-expansion@5.0.6:
     dependencies:
       balanced-match: 4.0.4
 
@@ -6935,8 +6919,6 @@ snapshots:
       update-browserslist-db: 1.1.3(browserslist@4.25.1)
 
   byte-size@9.0.1: {}
-
-  cac@6.7.14: {}
 
   cacache@20.0.4:
     dependencies:
@@ -6974,20 +6956,12 @@ snapshots:
 
   caniuse-lite@1.0.30001726: {}
 
-  chai@5.3.3:
-    dependencies:
-      assertion-error: 2.0.1
-      check-error: 2.1.3
-      deep-eql: 5.0.2
-      loupe: 3.2.1
-      pathval: 2.0.1
+  chai@6.2.2: {}
 
   chalk@4.1.2:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
-
-  check-error@2.1.3: {}
 
   chokidar@3.6.0:
     dependencies:
@@ -7161,8 +7135,6 @@ snapshots:
 
   dedent@1.7.2: {}
 
-  deep-eql@5.0.2: {}
-
   deep-is@0.1.4: {}
 
   deepmerge-ts@5.1.0: {}
@@ -7328,7 +7300,7 @@ snapshots:
       iterator.prototype: 1.1.5
       math-intrinsics: 1.1.0
 
-  es-module-lexer@1.7.0: {}
+  es-module-lexer@2.1.0: {}
 
   es-object-atoms@1.1.1:
     dependencies:
@@ -7487,7 +7459,7 @@ snapshots:
       '@humanfs/node': 0.16.8
       '@humanwhocodes/module-importer': 1.0.1
       '@humanwhocodes/retry': 0.4.3
-      '@types/estree': 1.0.8
+      '@types/estree': 1.0.9
       ajv: 6.14.0
       chalk: 4.1.2
       cross-spawn: 7.0.6
@@ -7538,7 +7510,7 @@ snapshots:
 
   estree-walker@3.0.3:
     dependencies:
-      '@types/estree': 1.0.8
+      '@types/estree': 1.0.9
 
   esutils@2.0.3: {}
 
@@ -8103,8 +8075,6 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  js-tokens@9.0.1: {}
-
   js-yaml@4.1.1:
     dependencies:
       argparse: 2.0.1
@@ -8252,8 +8222,6 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
-  loupe@3.2.1: {}
-
   lru-cache@10.4.3: {}
 
   lru-cache@11.3.5: {}
@@ -8323,7 +8291,7 @@ snapshots:
 
   minimatch@10.2.5:
     dependencies:
-      brace-expansion: 5.0.5
+      brace-expansion: 5.0.6
 
   minimatch@3.1.5:
     dependencies:
@@ -8331,11 +8299,11 @@ snapshots:
 
   minimatch@5.1.9:
     dependencies:
-      brace-expansion: 2.1.0
+      brace-expansion: 2.1.1
 
   minimatch@9.0.9:
     dependencies:
-      brace-expansion: 2.1.0
+      brace-expansion: 2.1.1
 
   minimist@1.2.8: {}
 
@@ -8536,6 +8504,8 @@ snapshots:
       define-properties: 1.2.1
       es-object-atoms: 1.1.1
 
+  obug@2.1.1: {}
+
   once@1.4.0:
     dependencies:
       wrappy: 1.0.2
@@ -8671,8 +8641,6 @@ snapshots:
   path-type@4.0.0: {}
 
   pathe@2.0.3: {}
-
-  pathval@2.0.1: {}
 
   picocolors@1.1.1: {}
 
@@ -9133,7 +9101,7 @@ snapshots:
 
   state-local@1.0.7: {}
 
-  std-env@3.10.0: {}
+  std-env@4.1.0: {}
 
   stop-iteration-iterator@1.1.0:
     dependencies:
@@ -9220,10 +9188,6 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  strip-literal@3.1.0:
-    dependencies:
-      js-tokens: 9.0.1
-
   supports-color@7.2.0:
     dependencies:
       has-flag: 4.0.0
@@ -9255,22 +9219,16 @@ snapshots:
 
   tinybench@2.9.0: {}
 
-  tinyexec@0.3.2: {}
+  tinyexec@1.2.4: {}
 
   tinyglobby@0.2.16:
     dependencies:
       fdir: 6.5.0(picomatch@4.0.4)
       picomatch: 4.0.4
 
-  tinypool@1.1.1: {}
-
   tinyqueue@2.0.3: {}
 
-  tinyrainbow@2.0.0: {}
-
   tinyrainbow@3.1.0: {}
-
-  tinyspy@4.0.4: {}
 
   tldts-core@6.1.67: {}
 
@@ -9440,27 +9398,6 @@ snapshots:
 
   validate-npm-package-name@7.0.2: {}
 
-  vite-node@3.2.4(@types/node@24.12.4)(yaml@2.8.3):
-    dependencies:
-      cac: 6.7.14
-      debug: 4.4.3
-      es-module-lexer: 1.7.0
-      pathe: 2.0.3
-      vite: 7.3.3(@types/node@24.12.4)(yaml@2.8.3)
-    transitivePeerDependencies:
-      - '@types/node'
-      - jiti
-      - less
-      - lightningcss
-      - sass
-      - sass-embedded
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - tsx
-      - yaml
-
   vite-tsconfig-paths@5.1.4(typescript@5.9.3)(vite@7.3.3(@types/node@24.12.4)(yaml@2.8.3)):
     dependencies:
       debug: 4.4.3
@@ -9485,48 +9422,34 @@ snapshots:
       fsevents: 2.3.3
       yaml: 2.8.3
 
-  vitest@3.2.4(@types/node@24.12.4)(happy-dom@20.9.0)(jsdom@25.0.1)(yaml@2.8.3):
+  vitest@4.1.8(@types/node@24.12.4)(happy-dom@20.9.0)(jsdom@25.0.1)(vite@7.3.3(@types/node@24.12.4)(yaml@2.8.3)):
     dependencies:
-      '@types/chai': 5.2.3
-      '@vitest/expect': 3.2.4
-      '@vitest/mocker': 3.2.4(vite@7.3.3(@types/node@24.12.4)(yaml@2.8.3))
-      '@vitest/pretty-format': 3.2.4
-      '@vitest/runner': 3.2.4
-      '@vitest/snapshot': 3.2.4
-      '@vitest/spy': 3.2.4
-      '@vitest/utils': 3.2.4
-      chai: 5.3.3
-      debug: 4.4.3
+      '@vitest/expect': 4.1.8
+      '@vitest/mocker': 4.1.8(vite@7.3.3(@types/node@24.12.4)(yaml@2.8.3))
+      '@vitest/pretty-format': 4.1.8
+      '@vitest/runner': 4.1.8
+      '@vitest/snapshot': 4.1.8
+      '@vitest/spy': 4.1.8
+      '@vitest/utils': 4.1.8
+      es-module-lexer: 2.1.0
       expect-type: 1.3.0
       magic-string: 0.30.21
+      obug: 2.1.1
       pathe: 2.0.3
       picomatch: 4.0.4
-      std-env: 3.10.0
+      std-env: 4.1.0
       tinybench: 2.9.0
-      tinyexec: 0.3.2
+      tinyexec: 1.2.4
       tinyglobby: 0.2.16
-      tinypool: 1.1.1
-      tinyrainbow: 2.0.0
+      tinyrainbow: 3.1.0
       vite: 7.3.3(@types/node@24.12.4)(yaml@2.8.3)
-      vite-node: 3.2.4(@types/node@24.12.4)(yaml@2.8.3)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 24.12.4
       happy-dom: 20.9.0
       jsdom: 25.0.1
     transitivePeerDependencies:
-      - jiti
-      - less
-      - lightningcss
       - msw
-      - sass
-      - sass-embedded
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - tsx
-      - yaml
 
   vscode-jsonrpc@8.1.0: {}
 
