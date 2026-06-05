@@ -367,7 +367,7 @@ importers:
         version: link:../inscription-protocol
     devDependencies:
       '@axonivy/jsonrpc':
-        specifier: 14.0.0-next.1125.e82f52e
+        specifier: ~14.0.0-next.1125.e82f52e
         version: 14.0.0-next.1125.e82f52e
 
   packages/inscription-protocol:
