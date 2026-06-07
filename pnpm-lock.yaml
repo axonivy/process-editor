@@ -305,8 +305,8 @@ importers:
         specifier: 1.4.0
         version: 1.4.0(reflect-metadata@0.2.2)
       vscode-jsonrpc:
-        specifier: 8.2.1
-        version: 8.2.1
+        specifier: 9.0.0
+        version: 9.0.0
 
   packages/inscription:
     dependencies:
@@ -4326,6 +4326,10 @@ packages:
 
   vscode-jsonrpc@8.2.1:
     resolution: {integrity: sha512-kdjOSJ2lLIn7r1rtrMbbNCHjyMPfRnowdKjBQ+mGq6NAW5QY2bEZC/khaC5OR8svbbjvLEaIXkOq45e2X9BIbQ==}
+    engines: {node: '>=14.0.0'}
+
+  vscode-jsonrpc@9.0.0:
+    resolution: {integrity: sha512-+VvMmQPJhtvJ+8O+zu2JKIRiLxXF8NW7krWgyMGeOHrp4Cn23T5hc0v2LknNeopDOB70wghHAds7mKtcZ0I4Sg==}
     engines: {node: '>=14.0.0'}
 
   w3c-xmlserializer@5.0.0:
@@ -8544,6 +8548,8 @@ snapshots:
   vscode-jsonrpc@8.2.0: {}
 
   vscode-jsonrpc@8.2.1: {}
+
+  vscode-jsonrpc@9.0.0: {}
 
   w3c-xmlserializer@5.0.0:
     dependencies:

@@ -48,7 +48,7 @@
     "reflect-metadata": "~0.2.2",
     "snabbdom-to-html": "^7.1.0",
     "sprotty": "1.4.0",
-    "vscode-jsonrpc": "8.2.1"
+    "vscode-jsonrpc": "9.0.0"
   },
   "scripts": {
     "clean": "rimraf lib tsconfig.*tsbuildinfo",
