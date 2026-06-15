@@ -3,7 +3,7 @@
   "name": "@axonivy/process-editor-root",
   "version": "11.4.0-next",
   "engines": {
-    "node": ">=20.19"
+    "node": ">=24.11"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
