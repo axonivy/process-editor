@@ -20,7 +20,7 @@ pipeline {
       steps {
         script {
           docker.build('node-webtest', '-f build/Dockerfile.playwright .').inside {
-            sh 'pnpm run update:axonivy:next && pnpm install --no-frozen-lockfile'
+            sh 'pnpm install && pnpm run update:axonivy:next'
             sh 'pnpm run package'
             dir ('playwright/inscription-test-project') {
               maven cmd: "-ntp verify -Dengine.page.url=${params.engineSource} -Dwebtest.cmd=webtest:inscription:${browser()}"
@@ -44,7 +44,7 @@ pipeline {
             docker.build('node', '-f build/Dockerfile.node .').inside {
               def branchName = env.BRANCH_NAME.replace("/", "%252F")
               sh '''
-                pnpm install --no-frozen-lockfile
+                pnpm install
                 pnpm run protocol:inscription clean
 
                 artifacts="https://jenkins.ivyteam.io/job/core_json-schema/job/'''+branchName+'''/lastSuccessfulBuild/artifact"
