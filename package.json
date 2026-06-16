@@ -24,12 +24,12 @@
     "test": "vitest test",
     "test:ci": "vitest run --reporter=default --reporter=junit --outputFile=report.xml",
     "webtest": "pnpm run --filter @axonivy/process-editor-playwright webtest",
-    "update:axonivy:next": "npx --yes npm-check-updates @axonivy* -w -c 0 -t semver -u",
+    "update:axonivy:next": "pnpm update -r @axonivy",
     "raise:version": "lerna version --no-git-tag-version --no-push --ignore-scripts --exact --yes",
-    "publish:next": "lerna publish --exact --canary --preid next --pre-dist-tag next --no-git-tag-version --no-push --ignore-scripts --yes"
+    "publish:next": "lerna publish --exact --canary --preid next --pre-dist-tag next-12.0.16 --no-git-tag-version --no-push --ignore-scripts --yes"
   },
   "devDependencies": {
-    "@axonivy/eslint-config": "~12.0.16-next.762.6b30854",
+    "@axonivy/eslint-config": "next-12.0.16",
     "@lerna-lite/cli": "^4.11.5",
     "@lerna-lite/publish": "^4.11.5",
     "@lerna-lite/run": "^4.11.5",
