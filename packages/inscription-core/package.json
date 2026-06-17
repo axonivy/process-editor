@@ -20,7 +20,7 @@
     "@axonivy/jsonrpc": "~14.0.0-next"
   },
   "devDependencies": {
-    "@axonivy/jsonrpc": "~14.0.0-next.1125.e82f52e"
+    "@axonivy/jsonrpc": "next-14.0.0"
   },
   "type": "module",
   "types": "lib/index",

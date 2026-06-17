@@ -17,6 +17,8 @@ patchedDependencies:
 preferWorkspacePackages: true
 publicHoistPattern:
   - eslint
+registries:
+  '@axonivy': 'https://npmjs-registry.ivyteam.ch/'
 trustPolicy: no-downgrade
 trustPolicyIgnoreAfter: 43200 # minutes (30 days)
 verifyDepsBeforeRun: warn
