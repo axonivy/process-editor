@@ -20,15 +20,15 @@
     "@axonivy/ui-icons": "next-12.0.16",
     "@eclipse-glsp/client": "2.3.0",
     "@eclipse-glsp/protocol": "2.3.0",
-    "@tanstack/react-query": "^5.100.14",
-    "@tanstack/react-query-devtools": "^5.100.14",
+    "@tanstack/react-query": "^5.101.0",
+    "@tanstack/react-query-devtools": "^5.101.0",
     "inversify": "^6.2.2"
   },
   "devDependencies": {
     "@vscode/codicons": "^0.0.45",
     "path-browserify": "^1.0.1",
     "reflect-metadata": "~0.2.2",
-    "vite": "^7.3.3",
+    "vite": "^7.3.5",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "type": "module",
