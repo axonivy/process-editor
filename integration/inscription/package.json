@@ -15,19 +15,19 @@
     "@axonivy/process-editor-inscription-view": "workspace:~",
     "@axonivy/ui-components": "next-12.0.16",
     "@axonivy/ui-icons": "next-12.0.16",
-    "@tanstack/react-query": "^5.100.14",
-    "@tanstack/react-query-devtools": "^5.100.14",
+    "@tanstack/react-query": "^5.101.0",
+    "@tanstack/react-query-devtools": "^5.101.0",
     "vscode-jsonrpc": "8.2.1"
   },
   "devDependencies": {
-    "@types/react": "^18.3.29",
+    "@types/react": "^18.3.30",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^4.7.0",
     "deepmerge-ts": "^5.1.0",
     "monaco-languageclient": "^6.6.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "vite": "^7.3.3",
+    "vite": "^7.3.5",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "type": "module",
