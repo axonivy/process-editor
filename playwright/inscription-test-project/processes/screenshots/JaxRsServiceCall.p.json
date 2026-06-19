@@ -185,10 +185,10 @@
           "clientId" : "approvalService"
         },
         "code" : [
-          "import javax.ws.rs.client.Entity;",
+          "import jakarta.ws.rs.client.Entity;",
           "import com.fasterxml.jackson.databind.JsonNode;",
-          "import javax.ws.rs.core.MultivaluedHashMap;",
-          "import javax.ws.rs.core.MultivaluedMap;",
+          "import jakarta.ws.rs.core.MultivaluedHashMap;",
+          "import jakarta.ws.rs.core.MultivaluedMap;",
           "",
           "MultivaluedMap map = new MultivaluedHashMap();",
           "map.add(\"title\",\"I need a new car\");",

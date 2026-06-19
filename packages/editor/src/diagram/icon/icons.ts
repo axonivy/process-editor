@@ -118,7 +118,7 @@ export const elementIcons = {
 export type ElementIcon = { src: string; style: 'img' } | { path: string; style: 'svg' } | { style: 'none' };
 
 export const resolveIcon = (iconUri: string): ElementIcon => {
-  if (iconUri.includes('/faces/javax.faces.resource')) {
+  if (iconUri.includes('/faces/jakarta.faces.resource')) {
     return { src: iconUri, style: 'img' };
   }
   if (iconUri.startsWith('std:')) {
