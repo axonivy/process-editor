@@ -16,14 +16,14 @@ test('extensions with entries', async ({ page }) => {
 
   const genderizeItem = menu.items(restGroup).nth(0);
   await expect(genderizeItem).toContainText('genderizehttp://localhost/');
-  await expect(genderizeItem.locator('img')).toHaveAttribute('src', /javax.faces.resource\/icons\/genderize.png/);
+  await expect(genderizeItem.locator('img')).toHaveAttribute('src', /jakarta.faces.resource\/icons\/genderize.png/);
   const testItem = menu.items(restGroup).nth(1);
   await expect(testItem).toContainText('testhttp://localhost/');
   const subProcItem = menu.items(callableGroup).nth(1);
   await expect(subProcItem).toContainText('subproc');
   const subWithIconItem = menu.items(callableGroup).nth(2);
   await expect(subWithIconItem).toContainText('subWithIcon');
-  await expect(subWithIconItem.locator('img')).toHaveAttribute('src', /javax.faces.resource\/icons\/Developer.jpg/);
+  await expect(subWithIconItem.locator('img')).toHaveAttribute('src', /jakarta.faces.resource\/icons\/Developer.jpg/);
 
   await menu.search('gen');
   await expect(menu.items()).toHaveCount(1);

@@ -22,10 +22,10 @@ describe('Event and Gateway Icons', () => {
   });
 
   test('img icon', () => {
-    let node = getIconDecorator('/faces/javax.faces.resource/url', 30, '');
-    assertImgIcon(node!, { height: 18, width: 18, x: 21, y: 21 }, '/faces/javax.faces.resource/url');
-    node = getIconDecorator('/faces/javax.faces.resource/url', 30, 'red');
-    assertImgIcon(node!, { height: 18, width: 18, x: 21, y: 21 }, '/faces/javax.faces.resource/url');
+    let node = getIconDecorator('/faces/jakarta.faces.resource/url', 30, '');
+    assertImgIcon(node!, { height: 18, width: 18, x: 21, y: 21 }, '/faces/jakarta.faces.resource/url');
+    node = getIconDecorator('/faces/jakarta.faces.resource/url', 30, 'red');
+    assertImgIcon(node!, { height: 18, width: 18, x: 21, y: 21 }, '/faces/jakarta.faces.resource/url');
   });
 });
 
@@ -46,10 +46,10 @@ describe('Activity Icons', () => {
 
   test('img icon', () => {
     const activity = { type: ActivityTypes.SCRIPT, bounds: { height: 60, width: 120, x: 0, y: 0 } } as ActivityNode;
-    let node = getActivityIconDecorator(activity, '/faces/javax.faces.resource/url');
-    assertActivityImgIcon(node!, { height: 20, width: 20, x: 10, y: 60 / 2 - 10 }, '/faces/javax.faces.resource/url');
-    node = getActivityIconDecorator(activity, '/faces/javax.faces.resource/url');
-    assertActivityImgIcon(node!, { height: 20, width: 20, x: 10, y: 60 / 2 - 10 }, '/faces/javax.faces.resource/url');
+    let node = getActivityIconDecorator(activity, '/faces/jakarta.faces.resource/url');
+    assertActivityImgIcon(node!, { height: 20, width: 20, x: 10, y: 60 / 2 - 10 }, '/faces/jakarta.faces.resource/url');
+    node = getActivityIconDecorator(activity, '/faces/jakarta.faces.resource/url');
+    assertActivityImgIcon(node!, { height: 20, width: 20, x: 10, y: 60 / 2 - 10 }, '/faces/jakarta.faces.resource/url');
   });
 });
 

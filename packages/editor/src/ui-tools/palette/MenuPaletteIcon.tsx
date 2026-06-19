@@ -20,7 +20,7 @@ export const MenuPaletteIcon = ({ item }: { item: ExtendedPaletteItem }) => {
     return <i />;
   }
 
-  if (iconUri.includes('/faces/javax.faces.resource')) {
+  if (iconUri.includes('/faces/jakarta.faces.resource')) {
     return <img style={{ height: 26, width: 26, objectFit: 'contain' }} src={iconUri} alt={item.label} />;
   }
 
