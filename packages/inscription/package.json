@@ -28,7 +28,7 @@
   "devDependencies": {
     "@axonivy/ui-components": "next-14.0.0",
     "@axonivy/ui-icons": "next-14.0.0",
-    "@types/react": "^19.2.16",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
