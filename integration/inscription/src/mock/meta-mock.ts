@@ -393,6 +393,33 @@ export namespace MetaMock {
           multiline: false
         }
       ]
+    },
+    {
+      name: 'Model',
+      widgets: [
+        {
+          items: [
+            {
+              name: 'whoami',
+              description: 'identifies the current user',
+              icon: 'icon'
+            },
+            {
+              name: 'add',
+              description: 'calculation universe',
+              icon: 'plus'
+            },
+            {
+              name: 'weather',
+              description: 'provides weather information',
+              icon: 'cloud'
+            }
+          ],
+          widgetType: 'MULTI_SELECT',
+          configKey: 'tools',
+          multiline: false
+        }
+      ]
     }
   ];
 
