@@ -17,6 +17,16 @@ type MultiSelectWidgetProps = {
   configKey: string;
 };
 
+function isImageUrl(url: string): boolean {
+  if (!url) return false;
+  return url.startsWith('http://') || url.startsWith('https://') || url.startsWith('/') || url.startsWith('data:');
+}
+
+function renderIcon(icon: string): React.ReactNode {
+  if (!icon || icon === '') return null;
+  return isImageUrl(icon) ? <img src={icon} alt='icon' style={{ height: 18 }} /> : <span style={{ fontSize: 18 }}>{icon}</span>;
+}
+
 export function MultiSelectWidget({ value, onChange, items, configKey }: MultiSelectWidgetProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { inputProps } = useField();
@@ -37,12 +47,23 @@ export function MultiSelectWidget({ value, onChange, items, configKey }: MultiSe
         <Combobox.Value>
           {(selectedItems: string[]) => (
             <>
-              {selectedItems.map(itemName => (
-                <Combobox.Chip key={itemName} className='ui-combobox-root-chip' aria-label={itemName}>
-                  {itemName}
-                  <Combobox.ChipRemove render={<Button icon={IvyIcons.Close} />} />
-                </Combobox.Chip>
-              ))}
+              {selectedItems.map(itemName => {
+                const item = mergedItems.find(i => i.name === itemName);
+                return (
+                  <Combobox.Chip
+                    key={itemName}
+                    className='ui-combobox-root-chip'
+                    aria-label={itemName}
+                    title={item ? `${item.description}` : itemName}
+                  >
+                    <Flex alignItems='center' gap={1}>
+                      {renderIcon(item?.icon || '')}
+                      <span>{itemName}</span>
+                    </Flex>
+                    <Combobox.ChipRemove render={<Button icon={IvyIcons.Close} />} />
+                  </Combobox.Chip>
+                );
+              })}
               <Flex alignItems='center' gap={1} className='flex-1 min-w-fit'>
                 <Combobox.Input
                   className='ui-combobox-root-input'
@@ -84,12 +105,12 @@ function itemLabel(itemName: string, items: SelectableItem[]): React.ReactNode {
     return itemName;
   }
 
-  if (item.icon) {
+  if (item.icon && item.icon !== '') {
     return (
       <Flex alignItems='center' gap={2}>
-        <IvyIcon icon={item.icon as IvyIcons} />
+        {renderIcon(item.icon)}
         <span>{item.name}</span>
-        {item.description && <span className='text-n600 text-xs'>{item.description}</span>}
+        {item.description && <span className='combobox-menu-entry-additional'>{` - ${item.description}`}</span>}
       </Flex>
     );
   }
@@ -98,7 +119,7 @@ function itemLabel(itemName: string, items: SelectableItem[]): React.ReactNode {
     return (
       <Flex direction='column' gap={1}>
         <span>{item.name}</span>
-        <span className='text-n600 text-xs'>{item.description}</span>
+        {item.description && <span className='combobox-menu-entry-additional'>{` - ${item.description}`}</span>}
       </Flex>
     );
   }
