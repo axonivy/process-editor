@@ -69,9 +69,7 @@ export function MultiSelectWidget({ value, onChange, items, configKey }: MultiSe
       <Combobox.Portal>
         <Combobox.Positioner className='z-50 outline-none' sideOffset={4} anchor={containerRef}>
           <Combobox.Popup className='max-h-[min(var(--available-height),23rem)] w-(--anchor-width) max-w-(--available-width) origin-(--transform-origin) scroll-py-2 overflow-auto overscroll-contain rounded-sm border border-n100 bg-background p-1 text-body shadow-lg transition-[transform,scale,opacity] data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0'>
-            <Combobox.Empty className='p-2 leading-none text-n700 empty:m-0 empty:p-0'>
-              No options available
-            </Combobox.Empty>
+            <Combobox.Empty className='p-2 leading-none text-n700 empty:m-0 empty:p-0'>No options available</Combobox.Empty>
             <Combobox.List>
               {(itemName: string) => (
                 <Combobox.Item
@@ -82,9 +80,7 @@ export function MultiSelectWidget({ value, onChange, items, configKey }: MultiSe
                   <Combobox.ItemIndicator className='absolute left-2 flex size-3.5 items-center justify-center'>
                     <IvyIcon icon={IvyIcons.Check} />
                   </Combobox.ItemIndicator>
-                  <div className='truncate'>
-                    {itemLabel(itemName, mergedItems)}
-                  </div>
+                  <div className='truncate'>{itemLabel(itemName, mergedItems)}</div>
                 </Combobox.Item>
               )}
             </Combobox.List>
@@ -104,7 +100,7 @@ function itemLabel(itemName: string, items: SelectableItem[]): React.ReactNode {
   if (item.icon) {
     return (
       <Flex alignItems='center' gap={2}>
-        <IvyIcon icon={item.icon} />
+        <IvyIcon icon={item.icon as IvyIcons} />
         <span>{item.name}</span>
         {item.description && <span className='text-n600 text-xs'>{item.description}</span>}
       </Flex>
@@ -113,7 +109,7 @@ function itemLabel(itemName: string, items: SelectableItem[]): React.ReactNode {
 
   if (item.description) {
     return (
-      <Flex direction='column' gap={0.5}>
+      <Flex direction='column' gap={1}>
         <span>{item.name}</span>
         <span className='text-n600 text-xs'>{item.description}</span>
       </Flex>
