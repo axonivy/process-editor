@@ -34,4 +34,21 @@ test.describe('Program', () => {
   test('Error', async () => {
     await runTest(view, ProgramInterfaceErrorTest);
   });
+
+  test('Configuration', async () => {
+    const start = view.inscriptionTab('Java Bean');
+    await start.open();
+    await start.section('Java Class').open();
+    await start.combobox().choose('com.axonivy.wf.custom.ErpLoader');
+
+    const config = view.inscriptionTab('Configuration');
+    await config.open();
+
+    const multi = config.multiSelect();
+    await multi.choose('CSV');
+    await multi.choose('XLS');
+    await multi.expectValue('CSV,XLS');
+
+    await multi.expectChipItem('CSV', { emoji: '🪪️', description: 'stable plain text' });
+  });
 });

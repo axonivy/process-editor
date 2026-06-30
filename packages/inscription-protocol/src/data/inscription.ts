@@ -85,7 +85,7 @@ export interface Inscription {
   schemaKey: SchemaKey;
   scriptingDataArgs: ScriptingDataArgs;
   signalCodeRequest: SignalCodeRequest;
-  string: string;
+  string: string[];
   typeSearchRequest: TypeSearchRequest;
   validationResult: ValidationResult[];
   variableInfo: VariableInfo;
@@ -328,7 +328,8 @@ export interface MultiSelect {
 export interface SelectableItem {
   description: string;
   icon: string;
-  name: string;
+  id: string;
+  label: string;
 }
 export interface InscriptionRequest {
   context: InscriptionElementContext;
