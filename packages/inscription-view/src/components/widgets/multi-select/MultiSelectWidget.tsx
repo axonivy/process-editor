@@ -24,7 +24,9 @@ function isImageUrl(url: string): boolean {
 
 function renderIcon(icon: string): React.ReactNode {
   if (!icon || icon === '') return null;
-  return isImageUrl(icon) ? <img src={icon} alt='icon' style={{ height: 18 }} /> : <span style={{ fontSize: 18 }}>{icon}</span>;
+  return isImageUrl(icon)
+    ? <img src={icon} alt='' aria-hidden='true' style={{ height: 18, width: 18 }} />
+    : <span aria-hidden='true' style={{ fontSize: 18 }}>{icon}</span>;
 }
 
 export function MultiSelectWidget({ value, onChange, items, configKey }: MultiSelectWidgetProps) {
