@@ -1,4 +1,4 @@
-import type { ConfigurationData, Label, Script, Text, Widget } from '@axonivy/process-editor-inscription-protocol';
+import type { ConfigurationData, Label, MultiSelect, Script, Text, Widget } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
 import { Flex, Message } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
@@ -10,6 +10,7 @@ import { usePartState, type PartProps } from '../../../editors/part/usePart';
 import { MacroArea } from '../../../widgets/code-editor/MacroArea';
 import { MacroInput } from '../../../widgets/code-editor/MacroInput';
 import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
+import { MultiSelectWidget } from '../../../widgets/multi-select/MultiSelectWidget';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
 import './Configuration.css';
 import { useConfigurationData } from './useConfigurationData';
@@ -45,6 +46,10 @@ const ConfigurationPart = () => {
 
   function isText(object: Widget): object is Text {
     return object.widgetType == 'TEXT';
+  }
+
+  function isMultiSelect(object: Widget): object is MultiSelect {
+    return object.widgetType === 'MULTI_SELECT';
   }
 
   const renderWidgetComponent = (widget: Widget) => {
@@ -95,6 +100,19 @@ const ConfigurationPart = () => {
           aria-label={widget.configKey}
           onChange={change => updateUserConfig(widget.configKey, change)}
           browsers={['attr', 'func', 'cms']}
+        />
+      );
+    }
+    if (isMultiSelect(widget)) {
+      const multiSelectWidget = widget as MultiSelect;
+      const selectedValue = config.userConfig[multiSelectWidget.configKey] ?? '';
+      const value = typeof selectedValue === 'string' && selectedValue.length > 0 ? selectedValue.split(',').map(v => v.trim()) : [];
+      return (
+        <MultiSelectWidget
+          value={value}
+          onChange={change => updateUserConfig(multiSelectWidget.configKey, change.join(', '))}
+          items={multiSelectWidget.items}
+          configKey={multiSelectWidget.configKey}
         />
       );
     }
