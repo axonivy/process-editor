@@ -1,7 +1,7 @@
 import { Button, Flex, IvyIcon, useField, useReadonly } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { Combobox } from '@base-ui/react/combobox';
-import { useMemo, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import './MultiSelectWidget.css';
 
 type SelectableItem = {
