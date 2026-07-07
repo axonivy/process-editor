@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "@axonivy/process-editor-protocol": "workspace:~",
-    "@eclipse-glsp/client": "2.6.0",
+    "@eclipse-glsp/client": "2.7.0",
     "dompurify": "^3.4.11",
     "marked": "^18.0.5"
   },
