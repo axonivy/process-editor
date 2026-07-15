@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useFocusWithin } from 'react-aria';
 import { useBrowser } from './useBrowser';
 
@@ -11,20 +11,46 @@ export const useOnFocus = (
   focusValue: { value: string; onChange: React.Dispatch<React.SetStateAction<string>> };
   browser: ReturnType<typeof useBrowser>;
 } => {
-  const [isFocusWithin, setFocusWithin] = useState(false);
+  const [isFocusWithin, setIsFocusWithin] = useState(false);
   const [focusValue, setFocusValue] = useState(initialValue);
+  const [prevFocusValue, setPrevFocusValue] = useState(initialValue);
   const browser = useBrowser();
+  const latestFocusValueRef = useRef(focusValue);
+  const latestOnChangeRef = useRef(onChange);
+  const isFocusWithinRef = useRef(isFocusWithin);
+  const lastCommittedValueRef = useRef(initialValue);
+
+  latestFocusValueRef.current = focusValue;
+  latestOnChangeRef.current = onChange;
+  isFocusWithinRef.current = isFocusWithin;
+
   useEffect(() => {
-    setFocusValue(initialValue);
-  }, [initialValue]);
+    return () => {
+      const hasUncommittedChange = latestFocusValueRef.current !== lastCommittedValueRef.current;
+      if (isFocusWithinRef.current && hasUncommittedChange) {
+        latestOnChangeRef.current(latestFocusValueRef.current);
+      }
+    };
+  }, []);
+
   const { focusWithinProps } = useFocusWithin({
-    onFocusWithin: () => setFocusWithin(true),
+    onFocusWithin: () => {
+      isFocusWithinRef.current = true;
+      setIsFocusWithin(true);
+    },
     onBlurWithin: () => {
       if (!browser.open) {
-        setFocusWithin(false);
+        isFocusWithinRef.current = false;
+        setIsFocusWithin(false);
         onChange(focusValue);
+        lastCommittedValueRef.current = focusValue;
       }
     }
   });
+  if (initialValue !== prevFocusValue) {
+    setFocusValue(initialValue);
+    setPrevFocusValue(initialValue);
+    lastCommittedValueRef.current = initialValue;
+  }
   return { isFocusWithin, focusWithinProps, focusValue: { value: focusValue, onChange: setFocusValue }, browser };
 };
