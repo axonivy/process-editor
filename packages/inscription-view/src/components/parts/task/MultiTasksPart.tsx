@@ -7,6 +7,7 @@ import { Tabs, type Tab } from '../../widgets/tab/Tab';
 import { mergePaths, PathContext } from '../../../context/usePath';
 import { TaskDataContextInstance } from '../../../context/useDataContext';
 import EmptyWidget from '../../widgets/empty/EmptyWidget';
+import { useState } from 'react';
 
 export function useMultiTasksPart(): PartProps {
   const { config, defaultConfig, initConfig, resetTasks } = useMutliTaskData();
@@ -20,6 +21,8 @@ export function useMultiTasksPart(): PartProps {
 const MultiTasksPart = () => {
   const { config } = useMutliTaskData();
   const validations = useValidations(['tasks']);
+
+  const [activeTab, setActiveTab] = useState('');
 
   const tabs: Tab[] =
     config.tasks?.map<Tab>((task, index) => {
@@ -41,5 +44,26 @@ const MultiTasksPart = () => {
       };
     }) ?? [];
 
-  return <>{tabs.length > 0 ? <Tabs tabs={tabs} /> : <EmptyWidget message='There is no (Task) output flow connected.' />}</>;
+  const onTabChange = (nextTab: string) => {
+    const activeElement = document.activeElement;
+    const isTabNavigationElement =
+      activeElement instanceof HTMLElement &&
+      (activeElement.getAttribute('role') === 'tab' || activeElement.closest('[role="tablist"]') !== null);
+    if (activeElement instanceof HTMLElement && !isTabNavigationElement) {
+      activeElement.blur();
+    }
+    setActiveTab(nextTab);
+  };
+
+  const selectedTab = tabs.some(tab => tab.id === activeTab) ? activeTab : (tabs[0]?.id ?? '');
+
+  return (
+    <>
+      {tabs.length > 0 ? (
+        <Tabs tabs={tabs} value={selectedTab} onChange={onTabChange} />
+      ) : (
+        <EmptyWidget message='There is no (Task) output flow connected.' />
+      )}
+    </>
+  );
 };
