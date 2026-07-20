@@ -6,6 +6,18 @@ import ErrorFallback from '../../widgets/error/ErrorFallback';
 
 const Part = ({ parts }: { parts: PartProps[] }) => {
   const { value, updateValue } = useInscriptionTabState(parts);
+
+  const updatePart = (newValue: string) => {
+    const activeElement = document.activeElement;
+    const isTabNavigationElement =
+      activeElement instanceof HTMLElement &&
+      (activeElement.getAttribute('role') === 'tab' || activeElement.closest('[role="tablist"]') !== null);
+    if (activeElement instanceof HTMLElement && !isTabNavigationElement) {
+      activeElement.blur();
+    }
+    updateValue(newValue);
+  };
+
   return (
     <BasicInscriptionTabs
       tabs={parts.map(p => {
@@ -33,7 +45,7 @@ const Part = ({ parts }: { parts: PartProps[] }) => {
         };
       })}
       value={value}
-      onChange={updateValue}
+      onChange={updatePart}
     />
   );
 };

@@ -1,6 +1,7 @@
 import type { TaskData } from '@axonivy/process-editor-inscription-protocol';
 import { PanelMessage } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TaskDataContextProvider, useConfigDataContext } from '../../../context/useDataContext';
 import { mergePaths, PathProvider } from '../../../context/usePath';
@@ -49,8 +50,24 @@ const MultiTasksPart = () => {
       };
     }) ?? [];
 
+  const [activeTab, setActiveTab] = useState('');
+
   if (tabs.length === 0) {
     return <PanelMessage icon={IvyIcons.UserTask} message={t('part.task.noTaskMessage')} />;
   }
-  return <Tabs tabs={tabs} />;
+
+  const onTabChange = (nextTab: string) => {
+    const activeElement = document.activeElement;
+    const isTabNavigationElement =
+      activeElement instanceof HTMLElement &&
+      (activeElement.getAttribute('role') === 'tab' || activeElement.closest('[role="tablist"]') !== null);
+    if (activeElement instanceof HTMLElement && !isTabNavigationElement) {
+      activeElement.blur();
+    }
+    setActiveTab(nextTab);
+  };
+
+  const selectedTab = tabs.some(tab => tab.id === activeTab) ? activeTab : (tabs[0]?.id ?? '');
+
+  return <Tabs tabs={tabs} value={selectedTab} onChange={onTabChange} />;
 };
