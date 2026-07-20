@@ -9,7 +9,7 @@
     "preinstall": "npx only-allow pnpm",
     "check": "pnpm run type && pnpm run lint:ci && pnpm run test:ci && pnpm run i18n:ci",
     "clean": "pnpm run -r clean",
-    "build": "tsc --build && tscp --build",
+    "build": "pnpm run -r build && tscp --build",
     "package": "pnpm run -r package",
     "type": "pnpm run -r type",
     "lint": "eslint",
