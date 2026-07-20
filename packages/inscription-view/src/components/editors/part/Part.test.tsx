@@ -54,6 +54,7 @@ describe('Part', () => {
 
   beforeEach(() => {
     console.error = vi.fn();
+    sessionStorage.removeItem('process-inscription-tab');
   });
 
   afterEach(() => {
@@ -81,6 +82,24 @@ describe('Part', () => {
     const trigger = screen.getByRole('tab', { name: 'Call' });
     await userEvent.click(trigger);
     assertActive('General', 'inactive');
+    assertActive('Call', 'active');
+  });
+
+  test('blurs active element before tab switch', async () => {
+    renderPart([
+      { ...generalPart, content: <input aria-label='cell-input' /> },
+      { ...callPart, content: <h1>Call</h1> }
+    ]);
+
+    await userEvent.click(screen.getByRole('tab', { name: 'General' }));
+    const input = screen.getByRole('textbox', { name: 'cell-input' });
+    const blurSpy = vi.spyOn(input, 'blur');
+    await userEvent.click(input);
+    expect(input).toHaveFocus();
+
+    await userEvent.click(screen.getByRole('tab', { name: 'Call' }));
+
+    expect(blurSpy).toHaveBeenCalledTimes(1);
     assertActive('Call', 'active');
   });
 

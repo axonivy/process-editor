@@ -3,7 +3,7 @@ import { DEFAULT_TASK, DEFAULT_TASK_DATA } from '@axonivy/process-editor-inscrip
 import { deepmerge } from 'deepmerge-ts';
 import type { DeepPartial } from 'test-utils';
 import { customRender, customRenderHook, screen, userEvent } from 'test-utils';
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import type { PartStateFlag } from '../../editors/part/usePart';
 import { useMultiTasksPart } from './MultiTasksPart';
 
@@ -44,6 +44,24 @@ describe('MultiTasksPart', () => {
     expect(screen.getByLabelText('Name')).toHaveValue('task 1');
     await userEvent.click(screen.getByRole('tab', { name: 'TaskB' }));
     expect(screen.getByLabelText('Name')).toHaveValue('task 2');
+  });
+
+  test('blurs active input before switching task tab', async () => {
+    renderPart({
+      tasks: [
+        { id: 'TaskA', name: 'task 1' },
+        { id: 'TaskB', name: 'task 2' }
+      ]
+    });
+
+    const input = screen.getByLabelText('Name');
+    const blurSpy = vi.spyOn(input, 'blur');
+    await userEvent.click(input);
+    expect(input).toHaveFocus();
+
+    await userEvent.click(screen.getByRole('tab', { name: 'TaskB' }));
+
+    expect(blurSpy).toHaveBeenCalledTimes(1);
   });
 
   function assertState(expectedState: PartStateFlag, data?: DeepPartial<TaskData>) {
