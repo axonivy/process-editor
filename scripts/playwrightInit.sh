@@ -1,4 +1,3 @@
-
 #!/bin/bash
 TEST_PROJECTS=("process-test-project" "inscription-test-project")
 
