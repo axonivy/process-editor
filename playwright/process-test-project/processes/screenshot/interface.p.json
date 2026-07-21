@@ -57,7 +57,7 @@
       "type" : "ProgramInterface",
       "name" : "Program",
       "config" : {
-        "javaClass" : "ch.ivyteam.ivy.process.extension.impl.AbstractUserProcessExtension"
+        "javaClass" : "com.axonivy.wf.custom.AcmeProgram"
       },
       "visual" : {
         "at" : { "x" : 440, "y" : 192 }

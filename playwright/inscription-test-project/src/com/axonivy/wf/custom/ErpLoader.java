@@ -2,53 +2,32 @@ package com.axonivy.wf.custom;
 
 import com.axonivy.erp.ErpFileService;
 
-import ch.ivyteam.ivy.process.engine.IRequestId;
-import ch.ivyteam.ivy.process.extension.impl.AbstractUserProcessExtension;
-import ch.ivyteam.ivy.process.extension.ui.ExtensionUiBuilder;
-import ch.ivyteam.ivy.process.extension.ui.IUiFieldEditor;
-import ch.ivyteam.ivy.process.extension.ui.UiEditorExtension;
-import ch.ivyteam.ivy.scripting.language.IIvyScriptContext;
-import ch.ivyteam.ivy.scripting.objects.CompositeObject;
+import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.process.program.activity.AbortableExecution;
+import ch.ivyteam.ivy.process.program.activity.ProgramExecutor;
+import ch.ivyteam.ivy.process.program.ui.ProgramEditorUi;
+import ch.ivyteam.ivy.process.program.ui.ProgramUiBuilder;
 import ch.ivyteam.ivy.scripting.objects.File;
 
-@SuppressWarnings("removal")
-public class ErpLoader extends AbstractUserProcessExtension {
+public class ErpLoader implements ProgramExecutor, ProgramEditorUi {
 
   @Override
-  public CompositeObject perform(IRequestId requestId, CompositeObject in, IIvyScriptContext context) throws Exception {
-
-    String pathScript = getConfigurationProperty(Config.PATH);
-    File statistics = (File) executeIvyScript(context, pathScript);
-    if (statistics.exists()) {
-      ErpFileService.instance().reportStats(statistics);
-    } else {
-      getLog(context).warn("Failed to resolve statistics file from " + pathScript);
-    }
-
-    return in;
+  public AbortableExecution newExecution() {
+    return e -> {
+      String path = e.config().get(Config.PATH);
+      var statistics = e.script().executeExpression(path, File.class);
+      if (statistics.isPresent() && statistics.get().exists()) {
+        ErpFileService.instance().reportStats(statistics.get());
+      } else {
+        Ivy.log().warn("Failed to resolve statistics file from " + path);
+      }
+    };
   }
 
-  public static class Editor extends UiEditorExtension {
-
-    private IUiFieldEditor filePath;
-
-    @Override
-    public void initUiFields(ExtensionUiBuilder ui) {
-      ui.label("The CSV statistic to report to Acme.ERP:").create();
-      filePath = ui.scriptField().requireType(File.class).create();
-    }
-
-    @Override
-    protected void loadUiDataFromConfiguration() {
-      filePath.setText(getBeanConfigurationProperty(Config.PATH));
-    }
-
-    @Override
-    protected boolean saveUiDataToConfiguration() {
-      clearBeanConfiguration();
-      setBeanConfigurationProperty(Config.PATH, filePath.getText());
-      return true;
-    }
+  @Override
+  public void editor(ProgramUiBuilder ui) {
+    ui.label("The CSV statistic to report to Acme.ERP:").create();
+    ui.scriptField(Config.PATH).requireType(File.class).create();
   }
 
   private static interface Config {

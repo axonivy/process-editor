@@ -5,34 +5,55 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.ivy.persistence.PersistencyException;
-import ch.ivyteam.ivy.process.extension.ui.ExtensionUiBuilder;
-import ch.ivyteam.ivy.process.extension.ui.IUiFieldEditor;
-import ch.ivyteam.ivy.process.extension.ui.UiEditorExtension;
-import ch.ivyteam.ivy.process.intermediateevent.AbstractProcessIntermediateEventBean;
+import ch.ivyteam.ivy.process.extension.ProgramConfig;
+import ch.ivyteam.ivy.process.intermediateevent.IProcessIntermediateEventBean;
+import ch.ivyteam.ivy.process.intermediateevent.IProcessIntermediateEventBeanRuntime;
+import ch.ivyteam.ivy.process.program.ui.ProgramEditorUi;
+import ch.ivyteam.ivy.process.program.ui.ProgramUiBuilder;
 
-@SuppressWarnings("removal")
-public class ErpPrintJob extends AbstractProcessIntermediateEventBean {
+public class ErpPrintJob implements IProcessIntermediateEventBean, ProgramEditorUi {
 
-  public ErpPrintJob() {
-    super("ErpPrintJob", "Waits for ERP reports", File.class);
+  private IProcessIntermediateEventBeanRuntime runtime;
+  private String path;
+
+  @Override
+  public String getName() {
+    return "ErpPrintJob";
+  }
+
+  @Override
+  public String getDescription() {
+    return "Waits for ERP reports";
+  }
+
+  @Override
+  public Class<?> getResultObjectClass() {
+    return File.class;
+  }
+
+  @Override
+  public void initialize(IProcessIntermediateEventBeanRuntime eventRuntime, ProgramConfig config) {
+    try {
+      this.runtime = eventRuntime;
+      this.path = config.get(Config.PATH);
+      String interval = config.get(Config.INTERVAL);
+      if (interval != null) {
+        eventRuntime.poll().asDefinedByIvyScript(interval);
+      }
+    } catch (Exception ex) {
+      eventRuntime.getRuntimeLogLogger().error("Failed to initialize ErpPrintJob polling", ex);
+    }
   }
 
   @Override
   public void poll() {
-    Properties configs = ErpInvoice.createProperties(getConfiguration());
-    int seconds = Integer.parseInt(configs.getProperty(Config.INTERVAL, "60"));
-    getEventBeanRuntime().setPollTimeInterval(TimeUnit.SECONDS.toMillis(seconds));
-
-    String path = configs.getProperty(Config.PATH, "");
-    try (Stream<Path> csv = Files.list(Path.of(path)).filter(f -> f.startsWith("erp-print"))) {
+    try (Stream<Path> csv = Files.list(Path.of(path)).filter(f -> f.getFileName().toString().startsWith("erp-print"))) {
       List<Path> reports = csv.collect(Collectors.toList());
       for (Path report : reports) {
         String fileName = report.getFileName().toString();
@@ -40,45 +61,25 @@ public class ErpPrintJob extends AbstractProcessIntermediateEventBean {
         continueProcess(report.toFile(), eventId);
       }
     } catch (IOException ex) {
-      getEventBeanRuntime().getRuntimeLogLogger().error("Failed to check ERP for updates", ex);
+      runtime.getRuntimeLogLogger().error("Failed to check ERP for updates", ex);
     }
   }
 
   private void continueProcess(File report, String eventId) {
     try {
-      getEventBeanRuntime().fireProcessIntermediateEventEx(eventId, report, "");
+      runtime.fireProcessIntermediateEventEx(eventId, report, "");
     } catch (PersistencyException ex) {
-      getEventBeanRuntime().getRuntimeLogLogger().error("Failed to resume process with event" + eventId, ex);
+      runtime.getRuntimeLogLogger().error("Failed to resume process with event" + eventId, ex);
     }
   }
+  
+  @Override
+  public void editor(ProgramUiBuilder ui) {
+    ui.label("Path to read produced PDF files from:").create();
+    ui.textField(Config.PATH).create();
 
-  public static class Editor extends UiEditorExtension {
-
-    private IUiFieldEditor path;
-    private IUiFieldEditor interval;
-
-    @Override
-    public void initUiFields(ExtensionUiBuilder ui) {
-      ui.label("Path to read produced PDF files from:").create();
-      path = ui.textField().create();
-
-      ui.label("Interval in seconds to check for changes:").create();
-      interval = ui.scriptField().requireType(Integer.class).create();
-    }
-
-    @Override
-    protected void loadUiDataFromConfiguration() {
-      path.setText(getBeanConfigurationProperty(Config.PATH));
-      interval.setText(getBeanConfigurationProperty(Config.INTERVAL));
-    }
-
-    @Override
-    protected boolean saveUiDataToConfiguration() {
-      clearBeanConfiguration();
-      setBeanConfigurationProperty(Config.PATH, path.getText());
-      setBeanConfigurationProperty(Config.INTERVAL, interval.getText());
-      return true;
-    }
+    ui.label("Interval in seconds to check for changes:").create();
+    ui.scriptField(Config.INTERVAL).requireType(Integer.class).create();
   }
 
   private interface Config {
