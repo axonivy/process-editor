@@ -28,6 +28,9 @@
       "name" : "Program Start",
       "config" : {
         "javaClass" : "ch.ivyteam.ivy.process.eventstart.beans.TimerBean",
+        "userConfig" : {
+          "time" : "\"15 10 * * MON\""
+        },
         "link" : "eventLink.ivp"
       },
       "visual" : {
