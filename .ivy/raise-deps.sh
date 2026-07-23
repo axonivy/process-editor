@@ -24,7 +24,7 @@ for pkg in packages/*/package.json integration/*/package.json package.json; do
   update_version "$pkg"
 done
 
-Skip install, because transient dependencies are not available yet
+# Skip install, because transient dependencies are not available yet
 if [ "$DRY_RUN" = false ]; then
   pnpm install --no-frozen-lockfile
 fi
