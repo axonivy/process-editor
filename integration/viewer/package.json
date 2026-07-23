@@ -12,8 +12,8 @@
   "dependencies": {
     "@axonivy/process-editor": "workspace:~",
     "@axonivy/process-editor-protocol": "workspace:~",
-    "@axonivy/ui-components": "next-12.0.16",
-    "@axonivy/ui-icons": "next-12.0.16",
+    "@axonivy/ui-components": "next-12.0.17",
+    "@axonivy/ui-icons": "next-12.0.17",
     "@eclipse-glsp/client": "2.3.0",
     "@eclipse-glsp/protocol": "2.3.0",
     "inversify": "^6.2.2"
