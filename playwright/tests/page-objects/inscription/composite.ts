@@ -2,6 +2,7 @@ import type { Locator, Page } from '@playwright/test';
 import { Checkbox } from './checkbox';
 import { MacroEditor, ScriptArea, ScriptInput } from './code-editor';
 import { Combobox } from './combobox';
+import { MultiSelect } from './multi-select';
 import { RadioGroup } from './radio-group';
 import { Select } from './select';
 import type { ColumnType } from './table';
@@ -32,6 +33,10 @@ export abstract class Composite {
 
   select(options: { label?: string; nth?: number }) {
     return new Select(this.page, this.locator, options);
+  }
+
+  multiSelect(options?: { label?: string; nth?: number }) {
+    return new MultiSelect(this.page, this.locator, options);
   }
 
   combobox(label?: string) {

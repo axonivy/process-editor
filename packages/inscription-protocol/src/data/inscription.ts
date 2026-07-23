@@ -9,8 +9,8 @@
 export type PID = string
 export type ContentObjectType = "STRING" | "FILE" | "FOLDER";
 export type WfFieldType = "STRING" | "TEXT" | "NUMBER" | "TIMESTAMP";
-export type Widget = Script | Label | Text;
-export type WidgetType = "TEXT" | "LABEL" | "SCRIPT";
+export type Widget = Script | Label | Text | MultiSelect;
+export type WidgetType = "TEXT" | "LABEL" | "SCRIPT" | "MULTI_SELECT";
 /**
  * Supports macros for dynamic content.
  * Macros are IvyScript expressions enclosed in '<%=' and '%>', enabling the embedding of dynamic values such as data class attributes.
@@ -85,7 +85,7 @@ export interface Inscription {
   schemaKey: SchemaKey;
   scriptingDataArgs: ScriptingDataArgs;
   signalCodeRequest: SignalCodeRequest;
-  string: string;
+  string: string[];
   typeSearchRequest: TypeSearchRequest;
   validationResult: ValidationResult[];
   variableInfo: VariableInfo;
@@ -318,6 +318,18 @@ export interface Text {
   configKey: string;
   multiline: boolean;
   widgetType: WidgetType;
+}
+export interface MultiSelect {
+  configKey: string;
+  items: SelectableItem[];
+  multiline: boolean;
+  widgetType: WidgetType;
+}
+export interface SelectableItem {
+  description: string;
+  icon: string;
+  id: string;
+  label: string;
 }
 export interface InscriptionRequest {
   context: InscriptionElementContext;

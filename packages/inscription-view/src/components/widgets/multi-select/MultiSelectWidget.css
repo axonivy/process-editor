@@ -1,0 +1,122 @@
+.ui-combobox-root {
+  min-height: 2.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--size-1);
+  border-radius: var(--border-r1);
+  border: 1px solid var(--border-input-color);
+  background-color: var(--N25);
+  padding: var(--size-0-75);
+  transition: border-color 200ms ease;
+}
+
+.ui-combobox-root:focus-within {
+  border-color: var(--border-active);
+  outline: none;
+}
+
+.ui-combobox-root-chip {
+  display: flex;
+  height: 1.25rem;
+  align-items: center;
+  gap: var(--size-1);
+  overflow: hidden;
+  border-radius: var(--border-r1);
+  background-color: var(--N100);
+  padding: var(--size-0-5) var(--size-0-5) var(--size-0-5) var(--size-1);
+  font-size: var(--font-body);
+  outline: none;
+}
+
+.ui-combobox-root-chip:focus-within {
+  background-color: var(--P75);
+}
+
+.ui-combobox-root-chip:hover {
+  background-color: var(--P75);
+}
+
+.ui-combobox-root-input {
+  margin: 0;
+  width: 100%;
+  min-width: 0;
+  flex: 1 1 auto;
+  border: none;
+  background: transparent;
+  font-size: var(--font-body);
+  outline: none;
+}
+
+.ui-combobox-popup {
+  max-height: min(var(--available-height), 23rem);
+  overflow: auto;
+  border-radius: var(--border-r1);
+  border: 1px solid var(--N100);
+  background-color: var(--background);
+  padding: var(--size-1);
+  font-size: var(--font-body);
+  box-shadow: var(--shadow-lg);
+  animation: combobox-popup-enter 0.2s ease-out;
+}
+
+.ui-combobox-popup[data-starting-style] {
+  animation: combobox-popup-exit 0.2s ease-in;
+}
+
+@keyframes combobox-popup-enter {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes combobox-popup-exit {
+  to {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+.ui-combobox-item {
+  position: relative;
+  display: flex;
+  height: 1.9375rem;
+  align-items: center;
+  padding: var(--size-2) var(--size-2) var(--size-2) 2rem;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+  border-radius: var(--border-r1);
+  transition: background-color 100ms ease;
+}
+
+.ui-combobox-item[data-highlighted]:not([data-selected]) {
+  background-color: var(--P50);
+}
+
+.ui-combobox-item[data-selected] {
+  background-color: var(--P300);
+  color: var(--background);
+  z-index: 0;
+}
+
+.ui-combobox-item-indicator {
+  position: absolute;
+  left: var(--size-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.ui-combobox-empty {
+  padding: var(--size-2);
+  line-height: 1;
+  color: var(--N700);
+}
