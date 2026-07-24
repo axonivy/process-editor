@@ -5,14 +5,14 @@ test('default', () => {
   expect(
     params(
       new URL(
-        'http://localhost:3001/?server=localhost:8081&mode=viewer&app=designer&pmv=workflow-demos&file=/processes/Humantask/ProcurementRequestParallel.p.json'
+        'http://localhost:3001/?server=localhost:8081&mode=viewer&app=designer&project=workflow-demos&file=/processes/Humantask/ProcurementRequestParallel.p.json'
       )
     )
   ).toEqual({
     app: 'designer',
     highlight: '',
     pid: '',
-    pmv: 'workflow-demos',
+    project: 'workflow-demos',
     previewMode: false,
     select: null,
     sourceUri: '/processes/Humantask/ProcurementRequestParallel.p.json',
@@ -26,14 +26,14 @@ test('demo', () => {
   expect(
     params(
       new URL(
-        'https://dev.demo.ivyteam.io/demo-app-10/1/process-viewer/?app=demo-app-10&mode=viewer&highlight=15255056043EE914-f0&pmv=workflow-demos&pid=15255056043EE914&theme=light'
+        'https://dev.demo.ivyteam.io/demo-app-10/1/process-viewer/?app=demo-app-10&mode=viewer&highlight=15255056043EE914-f0&project=workflow-demos&pid=15255056043EE914&theme=light'
       )
     )
   ).toEqual({
     app: 'demo-app-10',
     highlight: '15255056043EE914-f0',
     pid: '15255056043EE914',
-    pmv: 'workflow-demos',
+    project: 'workflow-demos',
     previewMode: false,
     select: null,
     sourceUri: '',
@@ -47,14 +47,14 @@ test('security context', () => {
   expect(
     params(
       new URL(
-        'https://dev.demo.ivyteam.io/sec/demo-app-10/1/process-viewer/?app=demo-app-10&mode=viewer&highlight=15255056043EE914-f0&pmv=workflow-demos&pid=15255056043EE914&theme=light'
+        'https://dev.demo.ivyteam.io/sec/demo-app-10/1/process-viewer/?app=demo-app-10&mode=viewer&highlight=15255056043EE914-f0&project=workflow-demos&pid=15255056043EE914&theme=light'
       )
     )
   ).toEqual({
     app: 'demo-app-10',
     highlight: '15255056043EE914-f0',
     pid: '15255056043EE914',
-    pmv: 'workflow-demos',
+    project: 'workflow-demos',
     previewMode: false,
     select: null,
     sourceUri: '',
@@ -68,14 +68,14 @@ test('portal', () => {
   expect(
     params(
       new URL(
-        'http://portal01.server.ivy-cloud.com:8080/portal/1/process-viewer/?app=portal&mode=viewer&highlight=15255056043EE914-f0&pmv=internalSupport&pid=15255056043EE914&theme=light'
+        'http://portal01.server.ivy-cloud.com:8080/portal/1/process-viewer/?app=portal&mode=viewer&highlight=15255056043EE914-f0&project=internalSupport&pid=15255056043EE914&theme=light'
       )
     )
   ).toEqual({
     app: 'portal',
     highlight: '15255056043EE914-f0',
     pid: '15255056043EE914',
-    pmv: 'internalSupport',
+    project: 'internalSupport',
     previewMode: false,
     select: null,
     sourceUri: '',

@@ -41,7 +41,7 @@ const renderHistory = (request: ReturnType<typeof vi.fn>, options?: { pid?: stri
       <HistoryContent
         actionDispatcher={{ request } as unknown as IActionDispatcher}
         app='app'
-        pmv='pmv'
+        project='project'
         pid={options?.pid ?? 'pid'}
         togglePinned={() => undefined}
         closeHistory={() => undefined}
@@ -57,7 +57,7 @@ const renderHistory = (request: ReturnType<typeof vi.fn>, options?: { pid?: stri
           <HistoryContent
             actionDispatcher={{ request } as unknown as IActionDispatcher}
             app='app'
-            pmv='pmv'
+            project='project'
             pid={pid}
             togglePinned={() => undefined}
             closeHistory={() => undefined}
@@ -217,12 +217,12 @@ test('refresh clears cached lazy subtree queries for the current element', async
   await userEvent.click(screen.getByLabelText('Expand row'));
   await screen.findByText('name = Luke');
 
-  expect(queryClient.getQueriesData({ queryKey: ['process', 'history', 'lazy', 'app', 'pmv', 'pid'], exact: false })).toHaveLength(1);
+  expect(queryClient.getQueriesData({ queryKey: ['process', 'history', 'lazy', 'app', 'project', 'pid'], exact: false })).toHaveLength(1);
 
   await userEvent.click(screen.getByLabelText('Refresh'));
 
   await waitFor(() => expect(request).toHaveBeenCalledTimes(3));
   await waitFor(() =>
-    expect(queryClient.getQueriesData({ queryKey: ['process', 'history', 'lazy', 'app', 'pmv', 'pid'], exact: false })).toHaveLength(0)
+    expect(queryClient.getQueriesData({ queryKey: ['process', 'history', 'lazy', 'app', 'project', 'pid'], exact: false })).toHaveLength(0)
   );
 });

@@ -85,7 +85,7 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
       <ClientContextProvider client={this.resolvedInscriptionClient}>
         <InscriptionView
           app={this.inscriptionContext.app}
-          pmv={this.inscriptionContext.pmv}
+          project={this.inscriptionContext.project}
           pid={this.inscriptionElement}
           outline={{
             selection: this.selectionService.getSelectedElementIDs()[0],
@@ -163,7 +163,7 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
     }
     return {
       app: GArgument.getString(model, 'app') ?? 'designer',
-      pmv: GArgument.getString(model, 'pmv') ?? ''
+      project: GArgument.getString(model, 'project') ?? ''
     };
   }
 

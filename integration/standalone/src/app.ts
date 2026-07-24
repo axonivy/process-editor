@@ -25,7 +25,7 @@ if (!server) {
   server = getServerDomain().replace(app, '');
 }
 
-const pmv = parameters.get('pmv') ?? '';
+const project = parameters.get('project') ?? '';
 const pid = parameters.get('pid') ?? '';
 const sourceUri = parameters.get('file') ?? '';
 const select = parameters.get('select');
@@ -60,7 +60,7 @@ async function initialize(connectionProvider: MessageConnection, isReconnecting 
     theme,
     inscriptionContext: {
       app,
-      pmv,
+      project,
       server: webSocketBase
     }
   });
@@ -68,7 +68,7 @@ async function initialize(connectionProvider: MessageConnection, isReconnecting 
   const diagramLoader = container.get(DiagramLoader);
   await diagramLoader.load({
     // Our custom server needs the 'readonly' argument here as well and not only set through the edit mode in the diagram options
-    requestModelOptions: { isReconnecting, app, pmv, pid, readonly: isReadonly() },
+    requestModelOptions: { isReconnecting, app, project, pid, readonly: isReadonly() },
     initializeParameters: {
       applicationId: ApplicationIdProvider.get(),
       protocolVersion: GLSPClient.protocolVersion

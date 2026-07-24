@@ -60,20 +60,20 @@ export const HistoryPopover = ({ bounds, containerElement, ...props }: HistoryPo
 type HistoryProps = {
   actionDispatcher: IActionDispatcher;
   app: string;
-  pmv: string;
+  project: string;
   pid: string;
   togglePinned: () => void;
   closeHistory: () => void;
 };
 
-export const HistoryContent = ({ actionDispatcher, togglePinned, closeHistory, app, pmv, pid }: HistoryProps) => {
+export const HistoryContent = ({ actionDispatcher, togglePinned, closeHistory, app, project, pid }: HistoryProps) => {
   const { t } = useTranslation();
   const [searchActive, setSearchActive] = useState(false);
   const [expandedByPid, setExpandedByPid] = useState<Record<string, ExpandedState>>({});
   const { data, isSuccess, isPending, isError, lazyState, loadLazyNodeData, refreshHistory } = useLazyHistory({
     actionDispatcher,
     app,
-    pmv,
+    project,
     pid
   });
   const expanded = useMemo(() => expandedByPid[pid] ?? (data ? lastLeafPathExpandedState(data) : {}), [data, expandedByPid, pid]);
@@ -178,18 +178,18 @@ type HistoryLazyLoadResult = 'error' | 'invalid' | 'loaded' | 'skipped';
 type UseLazyHistoryOptions = {
   actionDispatcher: IActionDispatcher;
   app: string;
-  pmv: string;
+  project: string;
   pid: string;
 };
 
 const emptyTransientState = (): HistoryTransientState => ({ loadingById: {}, errorById: {} });
 
-const useLazyHistory = ({ actionDispatcher, app, pmv, pid }: UseLazyHistoryOptions) => {
+const useLazyHistory = ({ actionDispatcher, app, project, pid }: UseLazyHistoryOptions) => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [transientState, setTransientState] = useState<HistoryTransientState>(emptyTransientState);
-  const rootQueryKey = createHistoryRootQueryKey(app, pmv, pid);
-  const lazyQueryKeyPrefix = createHistoryLazyQueryKeyPrefix(app, pmv, pid);
+  const rootQueryKey = createHistoryRootQueryKey(app, project, pid);
+  const lazyQueryKeyPrefix = createHistoryLazyQueryKeyPrefix(app, project, pid);
   const query = useQuery({
     queryKey: rootQueryKey,
     queryFn: async () => (await actionDispatcher.request(RequestHistoryAction.create({ elementId: pid }))).historyNodes
@@ -211,7 +211,7 @@ const useLazyHistory = ({ actionDispatcher, app, pmv, pid }: UseLazyHistoryOptio
 
   const loadLazyNodeData = useCallback(
     async (node: HistoryNode): Promise<HistoryLazyLoadResult> => {
-      const lazyQueryKey = createHistoryLazyQueryKey(app, pmv, pid, node.id);
+      const lazyQueryKey = createHistoryLazyQueryKey(app, project, pid, node.id);
       const lazyQueryState = queryClient.getQueryState<HistoryResponse>(lazyQueryKey);
       if (lazyQueryState?.fetchStatus === 'fetching' || lazyQueryState?.data || loadedById[node.id]) {
         return 'skipped';
@@ -279,7 +279,7 @@ const useLazyHistory = ({ actionDispatcher, app, pmv, pid }: UseLazyHistoryOptio
         return 'error';
       }
     },
-    [actionDispatcher, app, loadedById, pid, pmv, queryClient, rootQueryKey, t]
+    [actionDispatcher, app, loadedById, pid, project, queryClient, rootQueryKey, t]
   );
 
   const { refetch } = query;
@@ -300,12 +300,13 @@ const useLazyHistory = ({ actionDispatcher, app, pmv, pid }: UseLazyHistoryOptio
   };
 };
 
-const createHistoryRootQueryKey = (app: string, pmv: string, pid: string) => ['process', 'history', app, pmv, pid] as const;
+const createHistoryRootQueryKey = (app: string, project: string, pid: string) => ['process', 'history', app, project, pid] as const;
 
-const createHistoryLazyQueryKeyPrefix = (app: string, pmv: string, pid: string) => ['process', 'history', 'lazy', app, pmv, pid] as const;
+const createHistoryLazyQueryKeyPrefix = (app: string, project: string, pid: string) =>
+  ['process', 'history', 'lazy', app, project, pid] as const;
 
-const createHistoryLazyQueryKey = (app: string, pmv: string, pid: string, nodeId: string) =>
-  [...createHistoryLazyQueryKeyPrefix(app, pmv, pid), nodeId] as const;
+const createHistoryLazyQueryKey = (app: string, project: string, pid: string, nodeId: string) =>
+  [...createHistoryLazyQueryKeyPrefix(app, project, pid), nodeId] as const;
 
 const getLazySubtreeRoot = (response: HistoryResponse): HistoryNode | undefined => {
   const subtreeRoot = response.historyNodes[0];

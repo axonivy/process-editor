@@ -26,7 +26,7 @@ export const CodeEditor = ({ value, onChange, context, macro, onMountFuncs, opti
   const placeholderElementRef = useRef<HTMLDivElement>(null);
 
   const monacoOptions = useMemo(() => ({ ...(options ?? MONACO_OPTIONS), readOnly: readonly }), [options, readonly]);
-  const contextPath = `${elementContext.app}/${elementContext.pmv}/${elementContext.pid}`;
+  const contextPath = `${elementContext.app}/${elementContext.project}/${elementContext.pid}`;
   const language = macro ? IvyMacroLanguage.Language.id : IvyScriptLanguage.Language.id;
 
   const updatePlaceholder = (showPlaceholder: boolean) => {

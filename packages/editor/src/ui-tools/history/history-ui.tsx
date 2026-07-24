@@ -57,7 +57,7 @@ export class HistoryUi extends ReactUIExtension implements IActionHandler, ISele
       return null;
     }
     const app = GArgument.getString(this.editorContext.modelRoot, 'app') ?? '';
-    const pmv = GArgument.getString(this.editorContext.modelRoot, 'pmv') ?? '';
+    const project = GArgument.getString(this.editorContext.modelRoot, 'project') ?? '';
     const bounds = getAbsoluteBounds(this.element);
     return (
       <HistoryPopover
@@ -65,7 +65,7 @@ export class HistoryUi extends ReactUIExtension implements IActionHandler, ISele
         containerElement={this.containerElement}
         actionDispatcher={this.actionDispatcher}
         app={app}
-        pmv={pmv}
+        project={project}
         pid={this.element.id}
         closeHistory={() => this.closeHistory()}
       />

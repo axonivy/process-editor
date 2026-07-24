@@ -5,11 +5,11 @@ import { Outline } from './outline';
 
 export const server = process.env.BASE_URL ? `${process.env.BASE_URL}` : 'localhost:8080/~Developer-inscription-test-project';
 const app = process.env.TEST_APP ?? 'Developer-inscription-test-project';
-const pmv = 'inscription-test-project';
+const project = 'inscription-test-project';
 
 export const openElementInscription = async (page: Page, pid: string) => {
   const serverUrl = server.replace(/^https?:\/\//, '');
-  const url = `?server=${serverUrl}&app=${app}&pmv=${pmv}&pid=${pid}`;
+  const url = `?server=${serverUrl}&app=${app}&project=${project}&pid=${pid}`;
   await page.goto(url);
   await initPage(page);
   const view = new Inscription(page);
