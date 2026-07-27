@@ -45,7 +45,7 @@
     "@hediet/json-rpc-browser": "^0.5.1",
     "@hediet/json-rpc-websocket": "^0.5.1",
     "@monaco-editor/react": "4.8.0-rc.3",
-    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@types/node": "^24.13.2",
