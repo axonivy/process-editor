@@ -29,7 +29,7 @@ export async function start(): Promise<void> {
       <ThemeProvider defaultTheme={theme}>
         <ClientContextProvider client={client}>
           <QueryProvider client={queryClient}>
-            <App app='' pmv='' pid='1' />
+            <App app='' project='' pid='1' />
             <Toaster closeButton={true} position='bottom-left' />
           </QueryProvider>
         </ClientContextProvider>

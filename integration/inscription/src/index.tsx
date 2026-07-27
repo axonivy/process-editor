@@ -13,7 +13,7 @@ import { URLParams } from './url-helper';
 export async function start(): Promise<void> {
   const server = URLParams.webSocketBase();
   const app = URLParams.app();
-  const pmv = URLParams.pmv();
+  const project = URLParams.project();
   const pid = URLParams.pid();
   const theme = URLParams.themeMode();
   const queryClient = new QueryClient();
@@ -41,7 +41,7 @@ export async function start(): Promise<void> {
         <ThemeProvider defaultTheme={theme}>
           <ClientContextProvider client={client}>
             <QueryProvider client={queryClient}>
-              <App app={app} pmv={pmv} pid={pid} />
+              <App app={app} project={project} pid={pid} />
               <Toaster closeButton={true} position='bottom-left' />
             </QueryProvider>
           </ClientContextProvider>

@@ -8,8 +8,8 @@ export namespace URLParams {
     return parameter('app') ?? '';
   }
 
-  export function pmv(): string {
-    return parameter('pmv') ?? '';
+  export function project(): string {
+    return parameter('project') ?? '';
   }
 
   export function pid(): string {

@@ -7,27 +7,22 @@
  */
 
 export type PID = string
-export type ContentObjectType = "STRING" | "FILE" | "FOLDER";
-export type WfFieldType = "STRING" | "TEXT" | "NUMBER" | "TIMESTAMP";
+export type ContentObjectType = 'STRING' | 'FILE' | 'FOLDER';
+export type WfFieldType = 'STRING' | 'TEXT' | 'NUMBER' | 'TIMESTAMP';
 export type Widget = Script | Label | Text | MultiSelect;
-export type WidgetType = "TEXT" | "LABEL" | "SCRIPT" | "MULTI_SELECT";
+export type WidgetType = 'TEXT' | 'LABEL' | 'SCRIPT' | 'MULTI_SELECT';
 /**
  * Supports macros for dynamic content.
  * Macros are IvyScript expressions enclosed in '<%=' and '%>', enabling the embedding of dynamic values such as data class attributes.
  * For example, to interpolate an attribute of a data class use '<%=in.attribute%>'.
  */
 export type ScriptMacro = string;
-export type WfLevel = "EXCEPTION" | "HIGH" | "NORMAL" | "LOW" | "SCRIPT";
-export type WfResponsibleType =
-  | "ROLES"
-  | "ROLE_FROM_ATTRIBUTE"
-  | "USER_FROM_ATTRIBUTE"
-  | "MEMBERS_FROM_ATTRIBUTE"
-  | "DELETE_TASK";
-export type CacheInvalidation = "NONE" | "FIXED_TIME" | "LIFETIME";
-export type CacheMode = "DO_NOT_CACHE" | "CACHE" | "INVALIDATE_CACHE";
-export type CacheScope = "SESSION" | "APPLICATION";
-export type QueryKind = "READ" | "WRITE" | "UPDATE" | "DELETE" | "ANY";
+export type WfLevel = 'EXCEPTION' | 'HIGH' | 'NORMAL' | 'LOW' | 'SCRIPT';
+export type WfResponsibleType = 'ROLES' | 'ROLE_FROM_ATTRIBUTE' | 'USER_FROM_ATTRIBUTE' | 'MEMBERS_FROM_ATTRIBUTE' | 'DELETE_TASK';
+export type CacheInvalidation = 'NONE' | 'FIXED_TIME' | 'LIFETIME';
+export type CacheMode = 'DO_NOT_CACHE' | 'CACHE' | 'INVALIDATE_CACHE';
+export type CacheScope = 'SESSION' | 'APPLICATION';
+export type QueryKind = 'READ' | 'WRITE' | 'UPDATE' | 'DELETE' | 'ANY';
 /**
  * The dialog and respective method start to invoke in the format '<dialog-namespace>.<dialog-name>:<start-method-signature>(<parameter-types>)'.
  */
@@ -36,13 +31,13 @@ export type DialogReference = string;
  * Reference to a Process separated by a ':' to the signature of a startable element.
  */
 export type ProcessReference = string;
-export type IntermediateEventTimeoutAction = "NOTHING" | "DESTROY_TASK" | "CONTINUE_WITHOUT_EVENT";
-export type HttpMethod = "GET" | "POST" | "PUT" | "HEAD" | "DELETE" | "PATCH" | "OPTIONS" | "JAX_RS";
-export type InputType = "ENTITY" | "FORM" | "RAW";
-export type WsAuth = "NONE" | "WS_SECURITY" | "HTTP_BASIC";
-export type Type = "START" | "INTERMEDIATE" | "ACTIVITY";
-export type Severity = "INFO" | "WARNING" | "ERROR";
-export type WorkflowType = "START" | "TASK" | "CASE";
+export type IntermediateEventTimeoutAction = 'NOTHING' | 'DESTROY_TASK' | 'CONTINUE_WITHOUT_EVENT';
+export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'HEAD' | 'DELETE' | 'PATCH' | 'OPTIONS' | 'JAX_RS';
+export type InputType = 'ENTITY' | 'FORM' | 'RAW';
+export type WsAuth = 'NONE' | 'WS_SECURITY' | 'HTTP_BASIC';
+export type Type = 'START' | 'INTERMEDIATE' | 'ACTIVITY';
+export type Severity = 'INFO' | 'WARNING' | 'ERROR';
+export type WorkflowType = 'START' | 'TASK' | 'CASE';
 
 export interface Inscription {
   addRoleRequest: AddRoleRequest;
@@ -103,7 +98,7 @@ export interface AddRoleRequest {
 }
 export interface InscriptionContext {
   app: string;
-  pmv: string;
+  project: string;
 }
 export interface AddNewRole {
   identifier: string;
@@ -168,60 +163,60 @@ export interface InscriptionType {
   helpUrl: string;
   iconId: string;
   id:
-    | "Alternative"
-    | "CallSubEnd"
-    | "CallSubStart"
-    | "CallableSubProcess"
-    | "Database"
-    | "DialogCall"
-    | "EMail"
-    | "EmbeddedEnd"
-    | "EmbeddedProcessElement"
-    | "EmbeddedStart"
-    | "ErrorBoundaryEvent"
-    | "ErrorEnd"
-    | "ErrorStartEvent"
-    | "GenericActivity"
-    | "GenericBpmnElement"
-    | "HtmlDialogEnd"
-    | "HtmlDialogEventStart"
-    | "HtmlDialogExit"
-    | "HtmlDialogMethodStart"
-    | "HtmlDialogProcess"
-    | "HtmlDialogStart"
-    | "Join"
-    | "ManualBpmnElement"
-    | "Process"
-    | "ProcessAnnotation"
-    | "ProgramInterface"
-    | "ProgramStart"
-    | "ReceiveBpmnElement"
-    | "RequestStart"
-    | "RestClientCall"
-    | "RuleBpmnElement"
-    | "Script"
-    | "ScriptBpmnElement"
-    | "SendBpmnElement"
-    | "ServiceBpmnElement"
-    | "SignalBoundaryEvent"
-    | "SignalStartEvent"
-    | "Split"
-    | "SubProcessCall"
-    | "TaskEnd"
-    | "TaskEndPage"
-    | "TaskSwitchEvent"
-    | "TaskSwitchGateway"
-    | "ThirdPartyProgramInterface"
-    | "ThirdPartyProgramStart"
-    | "ThirdPartyWaitEvent"
-    | "TriggerCall"
-    | "UserBpmnElement"
-    | "UserTask"
-    | "WaitEvent"
-    | "WebServiceCall"
-    | "WebserviceEnd"
-    | "WebserviceProcess"
-    | "WebserviceStart";
+    | 'Alternative'
+    | 'CallSubEnd'
+    | 'CallSubStart'
+    | 'CallableSubProcess'
+    | 'Database'
+    | 'DialogCall'
+    | 'EMail'
+    | 'EmbeddedEnd'
+    | 'EmbeddedProcessElement'
+    | 'EmbeddedStart'
+    | 'ErrorBoundaryEvent'
+    | 'ErrorEnd'
+    | 'ErrorStartEvent'
+    | 'GenericActivity'
+    | 'GenericBpmnElement'
+    | 'HtmlDialogEnd'
+    | 'HtmlDialogEventStart'
+    | 'HtmlDialogExit'
+    | 'HtmlDialogMethodStart'
+    | 'HtmlDialogProcess'
+    | 'HtmlDialogStart'
+    | 'Join'
+    | 'ManualBpmnElement'
+    | 'Process'
+    | 'ProcessAnnotation'
+    | 'ProgramInterface'
+    | 'ProgramStart'
+    | 'ReceiveBpmnElement'
+    | 'RequestStart'
+    | 'RestClientCall'
+    | 'RuleBpmnElement'
+    | 'Script'
+    | 'ScriptBpmnElement'
+    | 'SendBpmnElement'
+    | 'ServiceBpmnElement'
+    | 'SignalBoundaryEvent'
+    | 'SignalStartEvent'
+    | 'Split'
+    | 'SubProcessCall'
+    | 'TaskEnd'
+    | 'TaskEndPage'
+    | 'TaskSwitchEvent'
+    | 'TaskSwitchGateway'
+    | 'ThirdPartyProgramInterface'
+    | 'ThirdPartyProgramStart'
+    | 'ThirdPartyWaitEvent'
+    | 'TriggerCall'
+    | 'UserBpmnElement'
+    | 'UserTask'
+    | 'WaitEvent'
+    | 'WebServiceCall'
+    | 'WebserviceEnd'
+    | 'WebserviceProcess'
+    | 'WebserviceStart';
   impl?: string;
   label: string;
   shortLabel: string;
@@ -258,7 +253,7 @@ export interface DatabaseColumnRequest {
 export interface InscriptionElementContext {
   app: string;
   pid: PID;
-  pmv: string;
+  project: string;
 }
 export interface DatabaseTablesRequest {
   context: InscriptionElementContext;
@@ -844,26 +839,26 @@ export interface RoleMeta {
   label: string;
 }
 export interface SchemaKey {
-  Common: "output" | "exceptionHandler" | "code" | "map";
-  Alternative: "conditions";
-  Cachable: "cache";
-  Callable: "signature" | "input" | "result" | "guid" | "params";
-  Caller: "dialog" | "processCall" | "call";
-  Database: "query";
-  Error: "errorCode" | "throws";
-  Mail: "headers" | "message" | "attachments" | "failIfMissingAttachments";
-  Process: "data" | "permissions";
-  Programmed: "javaClass" | "userConfig" | "link" | "timeout" | "eventId";
+  Common: 'output' | 'exceptionHandler' | 'code' | 'map';
+  Alternative: 'conditions';
+  Cachable: 'cache';
+  Callable: 'signature' | 'input' | 'result' | 'guid' | 'params';
+  Caller: 'dialog' | 'processCall' | 'call';
+  Database: 'query';
+  Error: 'errorCode' | 'throws';
+  Mail: 'headers' | 'message' | 'attachments' | 'failIfMissingAttachments';
+  Process: 'data' | 'permissions';
+  Programmed: 'javaClass' | 'userConfig' | 'link' | 'timeout' | 'eventId';
   RestClient: {
-    Common: "method" | "target" | "body" | "response";
-    Body: "form" | "entity" | "raw";
+    Common: 'method' | 'target' | 'body' | 'response';
+    Body: 'form' | 'entity' | 'raw';
   };
-  Script: "sudo";
-  Signal: "signalCode" | "attachToBusinessCase";
-  Start: "request" | "permission" | "triggerable" | "persistOnStart";
-  WebService: "clientId" | "operation" | "properties";
-  Workflow: "task" | "tasks" | "case" | "page" | "customFields";
-  WsProcess: "wsAuth" | "wsTypeName" | "exception";
+  Script: 'sudo';
+  Signal: 'signalCode' | 'attachToBusinessCase';
+  Start: 'request' | 'permission' | 'triggerable' | 'persistOnStart';
+  WebService: 'clientId' | 'operation' | 'properties';
+  Workflow: 'task' | 'tasks' | 'case' | 'page' | 'customFields';
+  WsProcess: 'wsAuth' | 'wsTypeName' | 'exception';
 }
 export interface ScriptingDataArgs {
   context: InscriptionElementContext;

@@ -13,7 +13,7 @@ export async function jumpToExternalTargetAndAssert(
   await element.quickActionBar().trigger('Jump', 'startsWith');
   await expect(element.locator()).toBeHidden();
   await page.waitForLoadState();
-  expect(page.url()).toContain('pmv=process-test-project');
+  expect(page.url()).toContain('project=process-test-project');
   expect(page.url()).toContain(`pid=${expectedProcessPid}`);
   expect(page.url()).toContain(`select=${expectedElementPid}`);
   await processEditor.elementByPid(expectedElementPid).expectSelected();

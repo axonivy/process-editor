@@ -10,8 +10,8 @@ type EditorContext = {
 };
 
 export const DEFAULT_EDITOR_CONTEXT: EditorContext = {
-  context: { app: '', pmv: '' },
-  elementContext: { app: '', pmv: '', pid: '' },
+  context: { app: '', project: '' },
+  elementContext: { app: '', project: '', pid: '' },
   editorRef: { current: null },
   type: {
     id: 'Script',

@@ -100,7 +100,7 @@ function App({ outline, ...context }: InscriptionElementContext & InscriptionOut
       <ReadonlyProvider readonly={data.readonly ?? false}>
         <EditorContextProvider
           context={{
-            context: { app: context.app, pmv: context.pmv },
+            context: { app: context.app, project: context.project },
             elementContext: context,
             editorRef,
             type: data.type ?? DEFAULT_EDITOR_CONTEXT.type,

@@ -16,7 +16,7 @@ import { initTranslation } from './i18n';
 import './index.css';
 import { params } from './url-helper';
 
-const { webSocketUrl, app, pmv, pid, sourceUri, highlight, select, zoom, theme, previewMode } = params(
+const { webSocketUrl, app, project, pid, sourceUri, highlight, select, zoom, theme, previewMode } = params(
   new URL(window.location.href),
   prefsColorScheme
 );
@@ -52,7 +52,7 @@ async function initialize(connectionProvider: MessageConnection, isReconnecting 
   const diagramLoader = container.get(DiagramLoader);
   await diagramLoader.load({
     // Our custom server needs the 'readonly' argument here as well and not only set through the edit mode in the diagram options
-    requestModelOptions: { isReconnecting, app, pmv, pid, highlight, readonly: true, diagramType },
+    requestModelOptions: { isReconnecting, app, project, pid, highlight, readonly: true, diagramType },
     initializeParameters: {
       applicationId: ApplicationIdProvider.get(),
       protocolVersion: GLSPClient.protocolVersion

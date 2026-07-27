@@ -5,7 +5,7 @@ import { randomUUID } from 'crypto';
 
 export const server = process.env.BASE_URL ? `${process.env.BASE_URL}` : 'http://localhost:8080/~Developer-inscription-test-project';
 const app = process.env.TEST_APP ?? 'Developer-inscription-test-project';
-const pmv = 'inscription-test-project';
+const project = 'inscription-test-project';
 
 const SELECT_KIND = 'elementSelected';
 const SET_KIND = 'setModel';
@@ -170,7 +170,7 @@ export class GlspProtocol {
         needsServerLayout: false,
         sourceUri: this.processUri,
         app,
-        pmv,
+        project,
         pid: '',
         readonly: false,
         diagramType: this.glspDiagramType

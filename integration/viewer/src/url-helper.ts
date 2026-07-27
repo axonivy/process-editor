@@ -15,7 +15,7 @@ export const params = (url: URL, defaultTheme?: () => ThemeMode) => {
   return {
     webSocketUrl,
     app,
-    pmv: parameters.get('pmv') ?? '',
+    project: parameters.get('project') ?? '',
     pid: parameters.get('pid') ?? '',
     sourceUri: parameters.get('file') ?? '',
     highlight: parameters.get('highlight') ?? '',
