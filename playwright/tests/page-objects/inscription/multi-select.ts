@@ -16,14 +16,12 @@ export class MultiSelect {
     }
   }
 
-  async fill(value: string) {
-    await this.locator.fill(value);
-    await this.locator.blur();
-  }
-
   async choose(value: string) {
+    await this.locator.click();
     await this.locator.fill(value);
+    await expect(this.page.getByRole('presentation').first()).toBeVisible();
     await this.page.getByRole('option', { name: value }).first().click();
+    await expect(this.page.getByRole('presentation').first()).toBeHidden();
   }
 
   async expectValue(value: string | RegExp) {
@@ -31,7 +29,7 @@ export class MultiSelect {
   }
 
   async expectChipItem(label: string, options?: { emoji?: string; description?: string }) {
-    const chipLocator = this.page.locator('[class*="ui-combobox-root-chip"]').filter({ hasText: label });
+    const chipLocator = this.page.locator('.ui-combobox-chip').filter({ hasText: label });
 
     await expect(chipLocator).toBeVisible();
     await expect(chipLocator.getByText(label, { exact: true })).toBeVisible();
@@ -41,7 +39,7 @@ export class MultiSelect {
       await expect(emojiSpan).toContainText(options.emoji);
     }
     if (options?.description) {
-      await expect(chipLocator).toHaveAttribute('title', options.description);
+      await expect(chipLocator.locator('div')).toHaveAccessibleDescription(options.description);
     }
   }
 }

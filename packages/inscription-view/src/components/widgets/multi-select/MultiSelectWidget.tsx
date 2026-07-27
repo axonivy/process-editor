@@ -1,8 +1,5 @@
-import { Button, Flex, IvyIcon, useField, useReadonly } from '@axonivy/ui-components';
-import { IvyIcons } from '@axonivy/ui-icons';
-import { Combobox } from '@base-ui/react/combobox';
-import React, { useMemo, useRef } from 'react';
-import './MultiSelectWidget.css';
+import { BasicMultiCombobox, Flex, useField, useReadonly, type BasicComboboxItem } from '@axonivy/ui-components';
+import React, { useMemo } from 'react';
 
 type SelectableItem = {
   id: string;
@@ -34,84 +31,44 @@ function renderIcon(icon: string): React.ReactNode {
   );
 }
 
+type MultiSelectWidgetItem = BasicComboboxItem & {
+  icon?: string;
+  description?: string;
+};
+
 export function MultiSelectWidget({ value, onChange, items, configKey }: MultiSelectWidgetProps) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
   const { inputProps } = useField();
   const readonly = useReadonly();
 
-  const itemIds = useMemo(() => items.map(item => item.id), [items]);
-
-  const mergedItems = useMemo(() => {
+  const comboItems = useMemo(() => {
     const merged = [...items];
     const mergedIds = merged.map(item => item.id);
     value.filter(v => !mergedIds.includes(v)).forEach(v => merged.push({ id: v, label: v, description: '', icon: '' }));
-    return merged;
+    return merged.map(item => ({ value: item.id, label: item.label, icon: item.icon, description: item.description }));
   }, [items, value]);
+  const comboValue = useMemo(() => value.map(v => comboItems.find(r => r.value === v) ?? { value: v, label: v }), [value, comboItems]);
 
   return (
-    <Combobox.Root items={itemIds} multiple value={value} onValueChange={onChange} disabled={readonly}>
-      <Combobox.Chips className='ui-combobox-root' ref={containerRef}>
-        <Combobox.Value>
-          {(selectedItems: string[]) => (
-            <>
-              {selectedItems.map(itemId => {
-                const item = mergedItems.find(i => i.id === itemId);
-                return (
-                  <Combobox.Chip
-                    key={itemId}
-                    className='ui-combobox-root-chip'
-                    aria-label={item?.label || itemId}
-                    title={item ? `${item.description}` : itemId}
-                  >
-                    <Flex alignItems='center' gap={1}>
-                      {renderIcon(item?.icon || '')}
-                      <span>{item?.label || itemId}</span>
-                    </Flex>
-                    <Combobox.ChipRemove render={<Button icon={IvyIcons.Close} />} />
-                  </Combobox.Chip>
-                );
-              })}
-              <Flex alignItems='center' gap={1} className='flex-1 min-w-fit'>
-                <Combobox.Input
-                  className='ui-combobox-root-input'
-                  {...inputProps}
-                  aria-label={configKey}
-                  data-value={selectedItems.join(',')}
-                />
-                <Combobox.Trigger render={<Button icon={IvyIcons.Chevron} rotate={90} />} />
-              </Flex>
-            </>
-          )}
-        </Combobox.Value>
-      </Combobox.Chips>
-
-      <Combobox.Portal>
-        <Combobox.Positioner sideOffset={4} anchor={containerRef}>
-          <Combobox.Popup className='ui-combobox-popup'>
-            <Combobox.Empty className='ui-combobox-empty'></Combobox.Empty>
-            <Combobox.List>
-              {(itemId: string) => (
-                <Combobox.Item key={itemId} className='ui-combobox-item' value={itemId}>
-                  <Combobox.ItemIndicator className='ui-combobox-item-indicator'>
-                    <IvyIcon icon={IvyIcons.Check} />
-                  </Combobox.ItemIndicator>
-                  <div className='flex-1 truncate'>{itemLabel(itemId, mergedItems)}</div>
-                </Combobox.Item>
-              )}
-            </Combobox.List>
-          </Combobox.Popup>
-        </Combobox.Positioner>
-      </Combobox.Portal>
-    </Combobox.Root>
+    <BasicMultiCombobox
+      items={comboItems}
+      isItemEqualToValue={(itemValue, value) => itemValue.value === value.value}
+      value={comboValue}
+      onValueChange={items => onChange(items.map(item => item.value))}
+      disabled={readonly}
+      chipRenderer={(item: MultiSelectWidgetItem) => (
+        <Flex alignItems='center' gap={1} title={item.description || item.value}>
+          {renderIcon(item?.icon || '')}
+          <span>{item?.label || item.value}</span>
+        </Flex>
+      )}
+      itemRenderer={(item: MultiSelectWidgetItem) => <div className='flex-1 truncate'>{itemLabel(item)}</div>}
+      aria-label={configKey}
+      {...inputProps}
+    />
   );
 }
 
-function itemLabel(itemId: string, items: SelectableItem[]): React.ReactNode {
-  const item = items.find(i => i.id === itemId);
-  if (!item) {
-    return itemId;
-  }
-
+function itemLabel(item: MultiSelectWidgetItem): React.ReactNode {
   if (item.icon && item.icon !== '') {
     return (
       <Flex alignItems='center' gap={2}>
