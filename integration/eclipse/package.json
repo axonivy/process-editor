@@ -6,7 +6,7 @@
   "license": "(EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0)",
   "author": "Axon Ivy AG",
   "dependencies": {
-    "@axonivy/process-editor": "workspace:^10.0.1",
+    "@axonivy/process-editor": "workspace:^",
     "@eclipse-glsp/client": "1.1.0-RC02",
     "@eclipse-glsp/ide": "1.1.0-RC02",
     "@eclipse-glsp/protocol": "1.1.0-RC02",
@@ -17,8 +17,8 @@
     "vscode-jsonrpc": "5.0.1"
   },
   "devDependencies": {
-    "@types/toastify-js": "^1.11.1",
-    "reflect-metadata": "^0.2.0"
+    "@types/toastify-js": "^1.12.4",
+    "reflect-metadata": "^0.2.2"
   },
   "type": "module",
   "scripts": {
