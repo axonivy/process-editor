@@ -16,9 +16,9 @@
   "dependencies": {
     "@axonivy/process-editor-inscription-core": "workspace:~",
     "@axonivy/process-editor-inscription-protocol": "workspace:~",
-    "@tanstack/react-virtual": "^3.14.3",
-    "dompurify": "^3.4.11",
-    "immer": "^11.1.8",
+    "@tanstack/react-virtual": "^3.14.8",
+    "dompurify": "^3.4.12",
+    "immer": "^11.1.15",
     "react-aria": "^3.50.0",
     "react-error-boundary": "^6.1.2"
   },
@@ -47,13 +47,13 @@
     "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
-    "@types/node": "^24.13.2",
+    "@types/node": "^24.13.3",
     "@types/react": "^19.2.17",
     "deepmerge-ts": "^7.1.5",
     "jsdom": "^29.1.1",
     "monaco-editor": "0.55.1",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "type": "module",
   "module": "lib/index",
