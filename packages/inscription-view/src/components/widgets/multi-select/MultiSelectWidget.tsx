@@ -1,5 +1,6 @@
 import { BasicMultiCombobox, Flex, useField, useReadonly, type BasicComboboxItem } from '@axonivy/ui-components';
 import React, { useMemo } from 'react';
+import { useEditorContext } from '../../../context/useEditorContext';
 
 type SelectableItem = {
   id: string;
@@ -39,6 +40,7 @@ type MultiSelectWidgetItem = BasicComboboxItem & {
 export function MultiSelectWidget({ value, onChange, items, configKey }: MultiSelectWidgetProps) {
   const { inputProps } = useField();
   const readonly = useReadonly();
+  const { editorRef } = useEditorContext();
 
   const comboItems = useMemo(() => {
     const merged = [...items];
@@ -63,6 +65,7 @@ export function MultiSelectWidget({ value, onChange, items, configKey }: MultiSe
       )}
       itemRenderer={(item: MultiSelectWidgetItem) => <div className='flex-1 truncate'>{itemLabel(item)}</div>}
       aria-label={configKey}
+      container={editorRef}
       {...inputProps}
     />
   );
