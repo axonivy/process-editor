@@ -20,8 +20,7 @@ describe('ConfigurationPart', () => {
             {
               name: 'Configuration',
               widgets: [
-                { text: 'Path of directory to scan', multiline: false, widgetType: 'LABEL' },
-                { configKey: 'directory', multiline: false, widgetType: 'TEXT' },
+                { configKey: 'directory', multiline: false, widgetType: 'TEXT', label: 'Directory', help: 'Path of directory to scan' },
                 { text: 'Multiline-Text', multiline: true, widgetType: 'LABEL' }
               ]
             }
@@ -40,8 +39,8 @@ describe('ConfigurationPart', () => {
     renderPart({
       userConfig: { directory: '/tmp/myDir' }
     });
-    await screen.findByText('Path of directory to scan');
-    expect(screen.getByDisplayValue('/tmp/myDir')).toBeInTheDocument();
+    await screen.findByText('Directory');
+    expect(screen.getByLabelText('Directory')).toHaveValue('/tmp/myDir');
   });
 
   function assertState(expectedState: PartStateFlag, data?: DeepPartial<ConfigurationData>, validation?: ValidationResult) {

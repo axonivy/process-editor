@@ -1,6 +1,13 @@
-import type { ConfigurationData, Label, MultiSelect, Script, Text, Widget } from '@axonivy/process-editor-inscription-protocol';
+import type {
+  ConfigurationData,
+  MultiSelect,
+  Script,
+  Text,
+  Widget,
+  Label as WidgetLabel
+} from '@axonivy/process-editor-inscription-protocol';
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { Flex, Message } from '@axonivy/ui-components';
+import { Field, Label, Message } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
@@ -32,92 +39,9 @@ export function useConfigurationPart(): PartProps {
 
 const ConfigurationPart = () => {
   const { t } = useTranslation();
-  const { config, updateUserConfig } = useConfigurationData();
+  const { config } = useConfigurationData();
   const { context } = useEditorContext();
   const editorItems = useMeta('meta/program/editor', { context, type: config.javaClass }, []).data;
-
-  function isLabel(object: Widget): object is Label {
-    return object.widgetType === 'LABEL';
-  }
-
-  function isScript(object: Widget): object is Script {
-    return object.widgetType === 'SCRIPT';
-  }
-
-  function isText(object: Widget): object is Text {
-    return object.widgetType == 'TEXT';
-  }
-
-  function isMultiSelect(object: Widget): object is MultiSelect {
-    return object.widgetType === 'MULTI_SELECT';
-  }
-
-  const renderWidgetComponent = (widget: Widget) => {
-    if (isLabel(widget)) {
-      const message = widget.text;
-
-      if (widget.multiline) {
-        const sentences = message.split('\n');
-        return (
-          <div className='info-text'>
-            {sentences.map((sentence, index) => (
-              // eslint-disable-next-line @eslint-react/no-array-index-key
-              <p key={index}>{sentence?.length > 0 ? sentence : ' '}</p>
-            ))}
-          </div>
-        );
-      } else {
-        return <div className='info-text'>{message}</div>;
-      }
-    }
-    if (isScript(widget)) {
-      const typeToUse = widget.requiredType || IVY_SCRIPT_TYPES.STRING;
-      return (
-        <ScriptInput
-          type={typeToUse}
-          value={config.userConfig[widget.configKey] ?? ''}
-          aria-label={widget.configKey}
-          onChange={change => updateUserConfig(widget.configKey, change)}
-          browsers={['attr', 'func', 'type', 'cms']}
-        />
-      );
-    }
-    if (isText(widget)) {
-      if (widget.multiline) {
-        return (
-          <MacroArea
-            value={config.userConfig[widget.configKey] ?? ''}
-            aria-label={widget.configKey}
-            minHeight={50}
-            onChange={change => updateUserConfig(widget.configKey, change)}
-            browsers={['attr', 'func', 'cms']}
-          />
-        );
-      }
-      return (
-        <MacroInput
-          value={config.userConfig[widget.configKey] ?? ''}
-          aria-label={widget.configKey}
-          onChange={change => updateUserConfig(widget.configKey, change)}
-          browsers={['attr', 'func', 'cms']}
-        />
-      );
-    }
-    if (isMultiSelect(widget)) {
-      const multiSelectWidget = widget as MultiSelect;
-      const selectedValue = config.userConfig[multiSelectWidget.configKey] ?? '';
-      const value = typeof selectedValue === 'string' && selectedValue.length > 0 ? selectedValue.split(',').map(v => v.trim()) : [];
-      return (
-        <MultiSelectWidget
-          value={value}
-          onChange={change => updateUserConfig(multiSelectWidget.configKey, change.join(', '))}
-          items={multiSelectWidget.items}
-          configKey={multiSelectWidget.configKey}
-        />
-      );
-    }
-    return null;
-  };
 
   return (
     <>
@@ -130,9 +54,9 @@ const ConfigurationPart = () => {
           <PathCollapsible label={group.name} defaultOpen={index === 0} path={'userConfig'} key={group.name}>
             {group.widgets.map((widget, wIndex) => (
               // eslint-disable-next-line @eslint-react/no-array-index-key
-              <Flex direction='column' className='configuration-widget' key={wIndex}>
-                {renderWidgetComponent(widget)}
-              </Flex>
+              <Field className='configuration-widget' key={wIndex}>
+                <Widget widget={widget} />
+              </Field>
             ))}
           </PathCollapsible>
         ))
@@ -140,3 +64,107 @@ const ConfigurationPart = () => {
     </>
   );
 };
+
+const Widget = ({ widget }: { widget: Widget }) => {
+  const { config, updateUserConfig } = useConfigurationData();
+  if (isLabel(widget)) {
+    const message = widget.text;
+
+    if (widget.multiline) {
+      const sentences = message.split('\n');
+      return (
+        <div className='info-text'>
+          {sentences.map((sentence, index) => (
+            // eslint-disable-next-line @eslint-react/no-array-index-key
+            <p key={index}>{sentence?.length > 0 ? sentence : ' '}</p>
+          ))}
+        </div>
+      );
+    } else {
+      return <div className='info-text'>{message}</div>;
+    }
+  }
+  if (isScript(widget)) {
+    const typeToUse = widget.requiredType || IVY_SCRIPT_TYPES.STRING;
+    return (
+      <>
+        {widget.label && <Label>{widget.label}</Label>}
+        <ScriptInput
+          type={typeToUse}
+          value={config.userConfig[widget.configKey] ?? ''}
+          aria-label={widget.configKey}
+          onChange={change => updateUserConfig(widget.configKey, change)}
+          browsers={['attr', 'func', 'type', 'cms']}
+        />
+        {widget.help && <Message message={widget.help} variant='info' />}
+      </>
+    );
+  }
+  if (isText(widget)) {
+    if (widget.multiline) {
+      return (
+        <>
+          {widget.label && <Label>{widget.label}</Label>}
+          <MacroArea
+            value={config.userConfig[widget.configKey] ?? ''}
+            aria-label={widget.configKey}
+            minHeight={90}
+            onChange={change => updateUserConfig(widget.configKey, change)}
+            browsers={['attr', 'func', 'cms']}
+          />
+          {widget.help && <Message message={widget.help} variant='info' />}
+        </>
+      );
+    }
+    return (
+      <>
+        {widget.label && <Label>{widget.label}</Label>}
+        <MacroInput
+          value={config.userConfig[widget.configKey] ?? ''}
+          aria-label={widget.configKey}
+          onChange={change => updateUserConfig(widget.configKey, change)}
+          browsers={['attr', 'func', 'cms']}
+        />
+        {widget.help && <Message message={widget.help} variant='info' />}
+      </>
+    );
+  }
+  if (isMultiSelect(widget)) {
+    const selectedValue = config.userConfig[widget.configKey] ?? '';
+    const value = typeof selectedValue === 'string' && selectedValue.length > 0 ? selectedValue.split(',').map(v => v.trim()) : [];
+    return (
+      <>
+        {widget.label && <Label>{widget.label}</Label>}
+        <MultiSelectWidget
+          value={value}
+          onChange={change => updateUserConfig(widget.configKey, change.join(', '))}
+          items={widget.items}
+          configKey={widget.configKey}
+        />
+        {widget.help && <Message message={widget.help} variant='info' />}
+      </>
+    );
+  }
+  return null;
+};
+
+type LabelWidget = WidgetLabel & { widgetType: 'LABEL' };
+type ScriptWidget = Script & { widgetType: 'SCRIPT' };
+type TextWidget = Text & { widgetType: 'TEXT' };
+type MultiSelectWidgetType = MultiSelect & { widgetType: 'MULTI_SELECT' };
+
+function isLabel(object: Widget): object is LabelWidget {
+  return object.widgetType === 'LABEL';
+}
+
+function isScript(object: Widget): object is ScriptWidget {
+  return object.widgetType === 'SCRIPT';
+}
+
+function isText(object: Widget): object is TextWidget {
+  return object.widgetType === 'TEXT';
+}
+
+function isMultiSelect(object: Widget): object is MultiSelectWidgetType {
+  return object.widgetType === 'MULTI_SELECT';
+}

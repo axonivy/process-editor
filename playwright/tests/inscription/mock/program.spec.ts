@@ -7,14 +7,14 @@ test.describe('ProgramInterface', () => {
     const configs = inscriptionView.inscriptionTab('Configuration');
     await configs.open();
 
-    const query = configs.macroArea('query');
+    const query = configs.macroArea('User');
     await query.expectValue('Help me, my computer is beeping with in.error .');
 
-    const system = configs.macroInput('system');
+    const system = configs.macroInput('System');
     await system.expectValue('You are a polite and helpful Support Agent trying to achieve in.goal ');
 
     await configs.section('Output').open();
-    const returnType = configs.scriptInput('returnType');
+    const returnType = configs.scriptInput('Return type');
     await returnType.expectValue('com.axonivy.utils.ai.SupportTicket.class');
   });
 });
