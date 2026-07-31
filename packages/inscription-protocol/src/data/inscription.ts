@@ -303,6 +303,8 @@ export interface Script {
   multiline: boolean;
   requiredType: string;
   widgetType: WidgetType;
+  label: string;
+  help: string;
 }
 export interface Label {
   multiline: boolean;
@@ -313,12 +315,16 @@ export interface Text {
   configKey: string;
   multiline: boolean;
   widgetType: WidgetType;
+  label: string;
+  help: string;
 }
 export interface MultiSelect {
   configKey: string;
   items: SelectableItem[];
   multiline: boolean;
   widgetType: WidgetType;
+  label: string;
+  help: string;
 }
 export interface SelectableItem {
   description: string;
