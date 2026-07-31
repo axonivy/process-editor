@@ -1,0 +1,93 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "16BD5F7B1D71F926",
+  "config" : {
+    "data" : "screenshot.project.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "city", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.city" : "param.city"
+          }
+        },
+        "triggerable" : true
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f2" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "RequestStart",
+      "name" : "start2.ivp",
+      "config" : {
+        "signature" : "start2"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 224 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 224 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "TriggerCall",
+      "name" : "processCallElements",
+      "config" : {
+        "processCall" : "screenshots/processCallElements:start(String)",
+        "call" : {
+          "map" : {
+            "param.city" : "\"Zug\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 224 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f2",
+      "type" : "SubProcessCall",
+      "name" : "subProcess",
+      "config" : {
+        "processCall" : "screenshots/subProcess:call(screenshot.project.Data,String)",
+        "call" : {
+          "map" : {
+            "param.data.city" : "\"Luzern\"",
+            "param.newCity" : "\"Zug\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f1" }
+      ]
+    } ]
+}

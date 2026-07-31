@@ -1,0 +1,107 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "168F0C6DF682858E",
+  "config" : {
+    "data" : "ch.ivyteam.documentation.project.AddContactData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "signature" : "start"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 544, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Add Person to Organisation",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.addPerson" : "\"John Doe\"",
+            "out.organisation" : "\"AXON ivy\""
+          },
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "",
+            "if(StringUtils.isNotEmpty(in.addPerson))",
+            "{",
+            "  ivy.log.debug(\"About to add '\" + in.addPerson + \"' to \" + in.organisation);",
+            "}"
+          ]
+        }
+      },
+      "docs" : {
+        "Documentation of user ID list" : "http://acme.greatproduct.com/internal/doc/useridlist.html"
+      },
+      "tags" : [
+        "PERSON",
+        "COMMON"
+      ],
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 192 },
+        "description" : [
+          "Checks if user id `userid` exists:",
+          "- If `true` then the user id is transformed into user name, user address and user location.",
+          "- If `false` then the flag *unknownuser* is set.",
+          "Uses the **system wide user id** list to find and expand users.",
+          "",
+          "# Markdown formatting",
+          "You may format descriptive text **bold** or *italic* or ++underlined++ or simply as `code`.",
+          "While you hover the element, these markups will be rendered as nice HTML to the end-user."
+        ]
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "UserTask",
+      "name" : "Verify Person",
+      "config" : {
+        "dialog" : "com.acme.PersonEditor:start(ch.ivyteam.test.Person)",
+        "call" : {
+          "map" : {
+            "param.person.name" : "in.addPerson"
+          },
+          "code" : "param.person.country = ivy.session.getContentLocale().getCountry();"
+        },
+        "task" : {
+          "name" : "Verify Request",
+          "category" : "Review/Procurement"
+        },
+        "case" : {
+          "name" : "Personal Case",
+          "category" : "Personal"
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.addPerson" : "\"Henry Ford\"",
+            "out.organisation" : "\"Ford\""
+          },
+          "code" : "out.persons = com.axonivy.EmployeeLookup.getEmployees(\"Ford\");"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 416, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    } ]
+}

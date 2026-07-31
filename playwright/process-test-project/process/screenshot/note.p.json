@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "19301F1B07D7AD9F",
+  "config" : {
+    "data" : "process.test.project.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "ProcessAnnotation",
+      "name" : "Note",
+      "visual" : {
+        "at" : { "x" : 136, "y" : 72 }
+      }
+    } ]
+}

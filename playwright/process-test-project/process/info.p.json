@@ -1,0 +1,290 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "1842D6FBB6A107AB",
+  "config" : {
+    "data" : "process.test.project.Data"
+  },
+  "elements" : [ {
+      "id" : "S10",
+      "type" : "EmbeddedProcess",
+      "name" : "Sub 1",
+      "elements" : [ {
+          "id" : "S10-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 }
+          },
+          "parentConnector" : "f19",
+          "connect" : [
+            { "id" : "S10-f0", "to" : "S10-g1" }
+          ]
+        }, {
+          "id" : "S10-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 160 }
+          },
+          "parentConnector" : "f20"
+        } ],
+      "visual" : {
+        "at" : { "x" : 536, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f16" }
+      ]
+    }, {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "signature" : "start",
+        "permission" : {
+          "anonymous" : false,
+          "roles" : [
+            "TestRole1"
+          ]
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "roles" : [
+              "TestRole2"
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "RestClientCall",
+      "name" : "rest",
+      "config" : {
+        "target" : {
+          "clientId" : "test",
+          "path" : "/asdf"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "description" : [
+          "# title",
+          "blablabla"
+        ]
+      }
+    }, {
+      "id" : "f5",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f7" : "false"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 272 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f6", "label" : {
+            "name" : "false",
+            "offset" : { "x" : -6, "y" : -15 }
+          } },
+        { "id" : "f13", "to" : "f12", "label" : {
+            "name" : "true"
+          } }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 176, "y" : 232 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 208, "y" : 336 }
+      }
+    }, {
+      "id" : "f14",
+      "type" : "RequestStart",
+      "name" : "start4.ivp",
+      "config" : {
+        "signature" : "start4"
+      },
+      "visual" : {
+        "at" : { "x" : 416, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f19", "to" : "S10" }
+      ]
+    }, {
+      "id" : "f16",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 656, "y" : 64 }
+      }
+    }, {
+      "id" : "f22",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "responsible" : {
+              "roles" : [
+                "TestRole1"
+              ]
+            }
+          }, {
+            "id" : "TaskB",
+            "responsible" : {
+              "roles" : [
+                "TestRole2"
+              ]
+            }
+          } ],
+        "page" : "view/info.xhtml"
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 272 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f9", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f11", "to" : "f8", "condition" : "ivp==\"TaskB.ivp\"" }
+      ]
+    }, {
+      "id" : "f27",
+      "type" : "RequestStart",
+      "name" : "start6.ivp",
+      "config" : {
+        "signature" : "start6"
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 248 }
+      },
+      "connect" : [
+        { "id" : "f28", "to" : "f22", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f29",
+      "type" : "RequestStart",
+      "name" : "start7.ivp",
+      "config" : {
+        "signature" : "start7"
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 328 }
+      },
+      "connect" : [
+        { "id" : "f30", "to" : "f22", "label" : {
+            "name" : "blu",
+            "offset" : { "x" : 16, "y" : 11 }
+          }, "var" : "in2" }
+      ]
+    }, {
+      "id" : "f31",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.vars.Variable;",
+            "",
+            "Variable variable = ivy.var.variable(\"myVariable\"); //badfasdf asdfasdf asdfasdfasdfasdf asdfasdfasdf asdfadsf111",
+            "//log output",
+            "ivy.log.info(\"my variable source\" + variable.source());",
+            "",
+            "variable.value();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 152 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "ErrorStartEvent",
+      "name" : "test:error",
+      "config" : {
+        "errorCode" : "test:error"
+      },
+      "visual" : {
+        "at" : { "x" : 328, "y" : 136 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "SignalStartEvent",
+      "name" : "test:signal",
+      "config" : {
+        "signalCode" : "test:signal"
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 136 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "ProgramStart",
+      "config" : {
+        "javaClass" : "ch.ivyteam.ivy.process.eventstart.beans.FileStartEventBean",
+        "link" : "eventLink.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 136 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 392, "y" : 248 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 392, "y" : 304 }
+      }
+    }, {
+      "id" : "f15",
+      "type" : "DialogCall",
+      "name" : "hd",
+      "config" : {
+        "dialog" : "process.test.project.hd:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 560, "y" : 144 }
+      }
+    }, {
+      "id" : "f17",
+      "type" : "Database",
+      "config" : {
+        "query" : {
+          "dbName" : "IvySystemDatabase"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 224 }
+      }
+    }, {
+      "id" : "f21",
+      "type" : "EMail",
+      "config" : {
+        "headers" : {
+          "subject" : "subject",
+          "from" : "from",
+          "to" : "to",
+          "replyTo" : "reply to",
+          "cc" : "cc",
+          "bcc" : "bcc"
+        },
+        "message" : {
+          "body" : "content"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 560, "y" : 296 }
+      }
+    } ]
+}

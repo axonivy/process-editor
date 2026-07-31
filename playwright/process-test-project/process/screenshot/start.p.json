@@ -1,0 +1,49 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "192FC5451F92E6C5",
+  "config" : {
+    "data" : "process.test.project.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "Start",
+      "config" : {
+        "signature" : "start"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 80 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "SignalStartEvent",
+      "name" : "Signal Start",
+      "visual" : {
+        "at" : { "x" : 208, "y" : 80 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "ProgramStart",
+      "name" : "Program Start",
+      "config" : {
+        "javaClass" : "ch.ivyteam.ivy.process.eventstart.beans.TimerBean",
+        "userConfig" : {
+          "time" : "\"15 10 * * MON\""
+        },
+        "link" : "eventLink.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 80 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "ErrorStartEvent",
+      "name" : "Error Start",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 80 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    } ]
+}

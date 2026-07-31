@@ -1,0 +1,36 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "16BBC3FED3A47640",
+  "config" : {
+    "data" : "screenshot.project.SignalElementsDataClass"
+  },
+  "elements" : [ {
+      "id" : "f47",
+      "type" : "SignalStartEvent",
+      "name" : "user:created",
+      "config" : {
+        "signalCode" : "user:created"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 56 }
+      }
+    }, {
+      "id" : "f0",
+      "type" : "UserTask",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "boundaries" : [ {
+          "id" : "f1",
+          "type" : "SignalBoundaryEvent",
+          "name" : "admin:quit:userKey",
+          "config" : {
+            "signalCode" : "admin:quit:<%=in.user.userKey%>"
+          },
+          "visual" : {
+            "at" : { "x" : 256, "y" : 96 },
+            "labelOffset" : { "x" : -72, "y" : 20 }
+          }
+        } ]
+    } ]
+}

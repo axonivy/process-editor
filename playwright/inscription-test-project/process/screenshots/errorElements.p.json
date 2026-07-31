@@ -1,0 +1,50 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "16BBC1007C5F8F69",
+  "config" : {
+    "data" : "screenshot.project.Data"
+  },
+  "elements" : [ {
+      "id" : "f3",
+      "type" : "ErrorStartEvent",
+      "name" : "mybank:account:closed",
+      "config" : {
+        "errorCode" : "mybank:account:closed"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 72 },
+        "labelOffset" : { "x" : 27, "y" : 43 }
+      }
+    }, {
+      "id" : "f0",
+      "type" : "UserTask",
+      "visual" : {
+        "at" : { "x" : 256, "y" : 64 }
+      },
+      "boundaries" : [ {
+          "id" : "f1",
+          "type" : "ErrorBoundaryEvent",
+          "name" : "mybank:account:closed",
+          "config" : {
+            "errorCode" : "mybank:account:closed"
+          },
+          "visual" : {
+            "at" : { "x" : 288, "y" : 96 },
+            "labelOffset" : { "x" : -59, "y" : 17 }
+          }
+        } ]
+    }, {
+      "id" : "f2",
+      "type" : "ErrorEnd",
+      "name" : "mybank:account:closed:no511",
+      "config" : {
+        "throws" : {
+          "error" : "mybank:account:closed:no511"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 160, "y" : 208 },
+        "labelOffset" : { "x" : 31, "y" : 43 }
+      }
+    } ]
+}

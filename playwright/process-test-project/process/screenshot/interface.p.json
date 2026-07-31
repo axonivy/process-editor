@@ -1,0 +1,66 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "192FC4D4F5911DE2",
+  "config" : {
+    "data" : "process.test.project.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "Database",
+      "name" : "Database",
+      "config" : {
+        "query" : {
+          "dbName" : "IvySystemDatabase",
+          "sql" : {
+            "table" : "IWA_APPLICATION"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 120, "y" : 80 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "WebServiceCall",
+      "name" : "Web Service",
+      "config" : {
+        "clientId" : "webservice",
+        "operation" : {
+          "name" : "GetGeoIP",
+          "port" : "GeoIPServiceSoap"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 80 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "RestClientCall",
+      "name" : "Rest Client",
+      "config" : {
+        "target" : {
+          "clientId" : "test"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 80 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "EMail",
+      "name" : "Mail",
+      "visual" : {
+        "at" : { "x" : 120, "y" : 192 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "ProgramInterface",
+      "name" : "Program",
+      "config" : {
+        "javaClass" : "com.axonivy.wf.custom.AcmeProgram"
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 192 }
+      }
+    } ]
+}
