@@ -1,0 +1,57 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "192FC5A2B7487E7F",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "process.test.project.screenshot.hd.hdData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "UD Init Start",
+      "config" : {
+        "signature" : "start",
+        "guid" : "192FC5A2B74D9CD9"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "name" : "UD Process End",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "UD Event Start",
+      "config" : {
+        "guid" : "192FC5A2B75D9F69"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "name" : "UD Exit End",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "UD Method Start",
+      "config" : {
+        "signature" : "method",
+        "guid" : "192FC5AD1501A3DE"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 }
+      }
+    } ]
+}

@@ -1,0 +1,93 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "1562D1CBAC49CCF8",
+  "config" : {
+    "data" : "com.axonivy.CreditDossier"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "city", "type" : "String", "desc" : "" }
+          ],
+          "map" : { },
+          "code" : "ivy.log.debug(\"City added: \" + param.city);"
+        },
+        "request" : {
+          "name" : "Create new invoice",
+          "description" : "Region: City"
+        },
+        "permission" : {
+          "anonymous" : false,
+          "roles" : [
+            "Secretary"
+          ],
+          "error" : ">> Ignore Exception"
+        },
+        "triggerable" : true,
+        "task" : {
+          "name" : "Call Manager",
+          "category" : "Personal/Tasks",
+          "responsible" : {
+            "roles" : [
+              "FacilityManager"
+            ]
+          },
+          "priority" : {
+            "level" : "HIGH"
+          },
+          "delay" : "'300s'",
+          "expiry" : {
+            "timeout" : "ivy.cal.getWorkDayIn(3).getDurationFromNow()",
+            "responsible" : {
+              "type" : "USER_FROM_ATTRIBUTE",
+              "script" : "\"Supervisor\""
+            }
+          },
+          "customFields" : [
+            { "name" : "CustomDecimalField1", "type" : "NUMBER", "value" : "0416666666" }
+          ]
+        },
+        "case" : {
+          "name" : "Personal Case",
+          "category" : "Personal"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : 12, "y" : 37 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "Call Html Dialog",
+      "config" : {
+        "dialog" : "com.acme.PersonEditor:start(ch.ivyteam.test.Person)",
+        "call" : {
+          "map" : {
+            "param.person" : "in.customer"
+          },
+          "code" : "param.person.country = ivy.session.getContentLocale().getCountry();"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    } ]
+}

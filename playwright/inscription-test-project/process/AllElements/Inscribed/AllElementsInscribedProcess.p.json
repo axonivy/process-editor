@@ -1,0 +1,303 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "16C51F1EE34D5EF5",
+  "config" : {
+    "data" : "screenshot.project.Order"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "requester", "type" : "String", "desc" : "" },
+            { "name" : "product", "type" : "String", "desc" : "" },
+            { "name" : "quantity", "type" : "Number", "desc" : "" },
+            { "name" : "unitPrice", "type" : "Number", "desc" : "" },
+            { "name" : "street", "type" : "String", "desc" : "" },
+            { "name" : "housenumber", "type" : "Number", "desc" : "" },
+            { "name" : "city", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.product" : "param.product",
+            "out.quantity" : "param.quantity",
+            "out.requester" : "param.requester",
+            "out.unitPrice" : "param.unitPrice"
+          }
+        },
+        "request" : {
+          "name" : "New order",
+          "description" : "Place new order"
+        },
+        "permission" : {
+          "anonymous" : false,
+          "error" : ">> Ignore Exception"
+        },
+        "triggerable" : true,
+        "persistOnStart" : true,
+        "task" : {
+          "name" : "New Order",
+          "description" : "For: <%=param.requester%>",
+          "category" : "<%=param.product%>",
+          "priority" : {
+            "level" : "HIGH"
+          },
+          "delay" : "'1s'",
+          "expiry" : {
+            "timeout" : "ivy.cal.getWorkDayIn(5).getDurationFromNow()",
+            "responsible" : {
+              "roles" : [
+                "CREATOR"
+              ]
+            },
+            "priority" : {
+              "level" : "HIGH"
+            }
+          },
+          "customFields" : [
+            { "name" : "city", "type" : "STRING", "value" : "param.city" },
+            { "name" : "price", "type" : "NUMBER", "value" : "param.quantity * param.unitPrice" },
+            { "name" : "product", "type" : "STRING", "value" : "param.product" },
+            { "name" : "quantity", "type" : "NUMBER", "value" : "param.quantity" },
+            { "name" : "requester", "type" : "STRING", "value" : "param.requester" }
+          ]
+        },
+        "case" : {
+          "name" : "Order <%=param.requester%>",
+          "category" : "<%=param.product%>",
+          "customFields" : [
+            { "name" : "city", "type" : "STRING", "value" : "param.city" },
+            { "name" : "price", "type" : "NUMBER", "value" : "param.unitPrice" },
+            { "name" : "product", "type" : "STRING", "value" : "param.product" },
+            { "name" : "quantity", "type" : "NUMBER", "value" : "\tparam.quantity" },
+            { "name" : "requester", "type" : "STRING", "value" : "\tparam.requester" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "description" : "Place new order"
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "name" : "Order placed",
+      "visual" : {
+        "at" : { "x" : 1064, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 38 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "Alternative",
+      "name" : "Check discount",
+      "config" : {
+        "conditions" : {
+          "f21" : "in.quantity <= 100",
+          "f12" : "in.quantity > 100 && in.quantity <= 500",
+          "f4" : "in.quantity > 500"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 936, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : -15 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f1" },
+        { "id" : "f12", "to" : "f19" },
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "Split",
+      "name" : "Check stock and validate customer",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 },
+        "labelOffset" : { "x" : 62, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f15", "outVar" : "out1" },
+        { "id" : "f14", "to" : "f2", "outVar" : "out2" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Join",
+      "name" : "Customer validated and product available",
+      "visual" : {
+        "at" : { "x" : 744, "y" : 64 },
+        "labelOffset" : { "x" : 27, "y" : 56 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f8" }
+      ]
+    }, {
+      "id" : "f2",
+      "type" : "UserTask",
+      "name" : "Check stock",
+      "config" : {
+        "dialog" : "screenshot.project.exampleHtmlDialog:start()",
+        "task" : {
+          "name" : "Check stock: <%=in.product%>",
+          "description" : "Ordered quantity: <%=in.quantity%>"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f18" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "DialogCall",
+      "name" : "Verify customer address",
+      "config" : {
+        "dialog" : "com.acme.PersonEditor:start(ch.ivyteam.test.Person)"
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 64 },
+        "size" : { "width" : 160 },
+        "description" : "Verify that customer exists and that order is real."
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f10", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "Script",
+      "name" : "Calculate discount",
+      "config" : {
+        "output" : {
+          "code" : [
+            "/*",
+            "* Calcualte new unit price",
+            "*/",
+            "out.unitPrice = in.unitPrice * (in.quantity * 0.01);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 936, "y" : 320 },
+        "size" : { "width" : 128 },
+        "description" : "Discount is calculated on basis of unit price and quantity"
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f20" }
+      ]
+    }, {
+      "id" : "f20",
+      "type" : "TaskEndPage",
+      "name" : "Manual discount check",
+      "config" : {
+        "page" : "endpage.xhtml"
+      },
+      "visual" : {
+        "at" : { "x" : 936, "y" : 424 },
+        "labelOffset" : { "y" : 37 }
+      }
+    }, {
+      "id" : "f25",
+      "type" : "ProcessAnnotation",
+      "name" : "Automatically calculate discount",
+      "visual" : {
+        "at" : { "x" : 1072, "y" : 384 },
+        "size" : { "width" : 208, "height" : 30 },
+        "description" : "Discount is calculated on basis of unit price and quantity"
+      },
+      "connect" : [
+        { "id" : "f26", "to" : "f19" }
+      ]
+    }, {
+      "id" : "f3",
+      "type" : "SubProcessCall",
+      "name" : "Custom discount",
+      "config" : {
+        "processCall" : "AllElements/Inscribed/AllElementsInscribedSubProcess:call(String,Integer,String,Double)"
+      },
+      "visual" : {
+        "at" : { "x" : 1056, "y" : 192 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "WebServiceCall",
+      "name" : "Check IP",
+      "config" : {
+        "clientId" : "GeoIpService",
+        "operation" : {
+          "name" : "GetGeoIP",
+          "port" : "GeoIPServiceSoap"
+        },
+        "properties" : {
+          "proxy.auth.username" : "\"proxy-admin\"",
+          "proxy.auth.password" : "\"proxy-password\"",
+          "username" : "\"admin\"",
+          "password" : "\"password\"",
+          "policy.disabled" : "true",
+          "proxy.port" : "1234",
+          "schema-validation-enabled" : "false"
+        },
+        "cache" : {
+          "mode" : "CACHE",
+          "group" : {
+            "name" : "\"ip-group\""
+          },
+          "entry" : {
+            "name" : "\"ip-entry\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f18",
+      "type" : "RestClientCall",
+      "name" : "Update stock",
+      "config" : {
+        "method" : "POST",
+        "target" : {
+          "clientId" : "stock",
+          "templateParams" : {
+            "request.kind" : "\"approve\"",
+            "product.quantity" : "in.quantity",
+            "product.number" : "in.product"
+          },
+          "headers" : {
+            "X-Requested-By" : "\"ivy\"",
+            "Retry-After" : "\"30s\"",
+            "Expires" : "\"1d\"",
+            "Date" : "new Date()",
+            "Accept-Language" : "\"en\""
+          },
+          "properties" : {
+            "username" : "\"admin\"",
+            "password" : "\"password\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f10", "via" : [ { "x" : 744, "y" : 160 } ], "var" : "in2" }
+      ]
+    }, {
+      "id" : "f24",
+      "type" : "ErrorStartEvent",
+      "name" : "test:error",
+      "config" : {
+        "errorCode" : "test:error"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 272 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    } ]
+}

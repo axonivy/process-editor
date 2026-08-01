@@ -1,0 +1,101 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "160DF556A2226E66",
+  "config" : {
+    "data" : "com.axonivy.JaxWsServiceCallData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "geoIpCache.ivp",
+      "config" : {
+        "signature" : "geoIpCached"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "WebServiceCall",
+      "name" : "get GEO IP cached",
+      "config" : {
+        "clientId" : "GeoIpService",
+        "operation" : {
+          "name" : "GetGeoIPContext",
+          "port" : "GeoIPServiceSoap"
+        },
+        "cache" : {
+          "mode" : "CACHE",
+          "scope" : "SESSION",
+          "group" : {
+            "name" : "\"geoip\""
+          },
+          "entry" : {
+            "name" : "\"address\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 354, "y" : 167 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "WebServiceCall",
+      "name" : "get GEO IP",
+      "config" : {
+        "clientId" : "GeoIpService",
+        "operation" : {
+          "name" : "GetGeoIP",
+          "port" : "GeoIPServiceSoap",
+          "parameters" : {
+            "parameters.iPAddress" : "\"172.217.19.163\""
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.user.country" : "wsResponse.countryCode"
+          },
+          "code" : "ivy.log.info(wsResponse.returnCode);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 226, "y" : 167 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "geoIp.ivp",
+      "config" : {
+        "signature" : "geoIp"
+      },
+      "visual" : {
+        "at" : { "x" : 98, "y" : 167 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f6" }
+      ]
+    } ]
+}

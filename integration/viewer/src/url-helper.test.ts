@@ -5,7 +5,7 @@ test('default', () => {
   expect(
     params(
       new URL(
-        'http://localhost:3001/?server=localhost:8081&mode=viewer&app=designer&project=workflow-demos&file=/processes/Humantask/ProcurementRequestParallel.p.json'
+        'http://localhost:3001/?server=localhost:8081&mode=viewer&app=designer&project=workflow-demos&file=/process/Humantask/ProcurementRequestParallel.p.json'
       )
     )
   ).toEqual({
@@ -15,7 +15,7 @@ test('default', () => {
     project: 'workflow-demos',
     previewMode: false,
     select: null,
-    sourceUri: '/processes/Humantask/ProcurementRequestParallel.p.json',
+    sourceUri: '/process/Humantask/ProcurementRequestParallel.p.json',
     theme: undefined,
     webSocketUrl: 'ws://localhost:8081/designer/1',
     zoom: ''

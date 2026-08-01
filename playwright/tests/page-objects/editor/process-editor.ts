@@ -42,7 +42,7 @@ export class ProcessEditor {
 
   static async openProcess(page: Page, options?: { urlQueryParam?: string; file?: string; waitFor?: string }) {
     const serverUrl = server.replace(/^https?:\/\//, '');
-    const file = options?.file ?? `processes/test/${randomUUID()}.p.json`;
+    const file = options?.file ?? `process/test/${randomUUID()}.p.json`;
     await page.goto(`?server=${serverUrl}&app=${app}&project=${project}&file=${file}` + (options?.urlQueryParam ?? ''));
     await page.addStyleTag({ content: '.palette-body {transition: none !important;}' });
     await page.emulateMedia({ reducedMotion: 'reduce' });

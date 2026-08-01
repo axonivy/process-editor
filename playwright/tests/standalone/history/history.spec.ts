@@ -52,7 +52,7 @@ test('pin history', async ({ page, context }) => {
 
 const setupExecutions = async (page: Page, context: BrowserContext) => {
   await resetEngine();
-  const editor = await ProcessEditor.openProcess(page, { file: 'processes/quickstart.p.json' });
+  const editor = await ProcessEditor.openProcess(page, { file: 'process/quickstart.p.json' });
   const pagePromise = context.waitForEvent('page');
   await editor.startElement.quickActionBar().trigger('Start Process', 'startsWith');
   const newPage = await pagePromise;

@@ -1,0 +1,28 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "192FC54650F6224A",
+  "config" : {
+    "data" : "process.test.project.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "TaskSwitchEvent",
+      "name" : "Task",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 80 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "WaitEvent",
+      "name" : "Wait",
+      "config" : {
+        "javaClass" : "ch.ivyteam.ivy.process.intermediateevent.beans.FileIntermediateEventBean",
+        "eventId" : "1"
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 80 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      }
+    } ]
+}

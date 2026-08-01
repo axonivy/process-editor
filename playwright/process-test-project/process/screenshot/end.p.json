@@ -1,0 +1,40 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "192FC546CBD7B7EF",
+  "config" : {
+    "data" : "process.test.project.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "TaskEnd",
+      "name" : "End",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 80 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEndPage",
+      "name" : "End Page",
+      "config" : {
+        "page" : "view/info.xhtml"
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 80 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "ErrorEnd",
+      "name" : "Error End",
+      "config" : {
+        "throws" : {
+          "error" : "test:error"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 80 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    } ]
+}
