@@ -26,7 +26,7 @@ test('toggle grid', async ({ page }) => {
 });
 
 test('toggle custom icons', async ({ page }) => {
-  const editor = await ProcessEditor.openProcess(page, { file: 'processes/market/UserEnroll.p.json' });
+  const editor = await ProcessEditor.openProcess(page, { file: 'process/market/UserEnroll.p.json' });
   await expect(editor.element('subProcessCall').icon).toBeVisible();
   await expect(editor.element('subProcessCall').icon.locator('img')).toHaveAttribute('src', /user.png/);
 

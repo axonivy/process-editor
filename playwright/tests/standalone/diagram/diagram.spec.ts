@@ -8,7 +8,7 @@ test('diagram', async ({ page }) => {
 });
 
 test('problem marker', async ({ page }) => {
-  const editor = await ProcessEditor.openProcess(page, { file: 'processes/empty.p.json' });
+  const editor = await ProcessEditor.openProcess(page, { file: 'process/empty.p.json' });
   const hd = await editor.createActivity('User Dialog');
   await hd.expectHasWarning();
 

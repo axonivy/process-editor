@@ -22,8 +22,8 @@ pipeline {
             }
           }
           archiveArtifacts 'integration/*/build/**'
-          currentBuild.description = "<a href=${BUILD_URL}artifact/integration/standalone/build/index.html?server=dev.demo.ivyteam.io&app=demo-app-dev&project=workflow-demos&file=/processes/Humantask/ProcurementRequestParallel.p.json>Standalone</a><br>" + 
-            "<a href=${BUILD_URL}artifact/integration/viewer/build/index.html?server=dev.demo.ivyteam.io&app=demo-app-dev&project=workflow-demos&file=/processes/Humantask/ProcurementRequestParallel.p.json>Viewer</a>"
+          currentBuild.description = "<a href=${BUILD_URL}artifact/integration/standalone/build/index.html?server=dev.demo.ivyteam.io&app=demo-app-dev&project=workflow-demos&file=/process/Humantask/ProcurementRequestParallel.p.json>Standalone</a><br>" + 
+            "<a href=${BUILD_URL}artifact/integration/viewer/build/index.html?server=dev.demo.ivyteam.io&app=demo-app-dev&project=workflow-demos&file=/process/Humantask/ProcurementRequestParallel.p.json>Viewer</a>"
           withChecks('ESLint') {
             recordIssues enabledForFailure: true, publishAllIssues: true, aggregatingResults: true, tools: [esLint(pattern: 'eslint.xml', skipSymbolicLinks: true)], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]]
           }

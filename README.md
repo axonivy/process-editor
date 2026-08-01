@@ -50,7 +50,7 @@ This will launch the latest prebuild **process editor within the eclipse integra
 - **Standalone**: To start the Standalone integration you can start the Launch
   Standalone config directly inside the VS Code. If it can not open the browser you can
   manually open the browser and modify the URL accordingly:
-  <http://localhost:3000/?server=localhost:8081&app=designer&project=base&file=/processes/testRequestStart.p.json>
+  <http://localhost:3000/?server=localhost:8081&app=designer&project=base&file=/process/testRequestStart.p.json>
 
 ---
 
