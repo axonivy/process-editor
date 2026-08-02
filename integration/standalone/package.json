@@ -19,7 +19,7 @@
     "vscode-jsonrpc": "5.0.1"
   },
   "devDependencies": {
-    "@playwright/test": "1.61.1",
+    "@playwright/test": "1.62.1",
     "@types/toastify-js": "^1.12.4",
     "reflect-metadata": "^0.2.2"
   },
