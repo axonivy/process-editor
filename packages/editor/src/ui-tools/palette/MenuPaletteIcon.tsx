@@ -92,12 +92,5 @@ const path = (iconUri: string) => {
   if (iconUri === ActivityTypes.BPMN_GENERIC || iconUri === ActivityTypes.SUB_PROCESS || iconUri === ActivityTypes.EMBEDDED_PROCESS) {
     return standardIcons['std:Join'];
   }
-  if (
-    iconUri.startsWith(ActivityTypes.THIRD_PARTY) ||
-    iconUri.startsWith(EventStartTypes.START_THIRD_PARTY) ||
-    iconUri.startsWith(EventIntermediateTypes.INTERMEDIATE_THIRD_PARTY)
-  ) {
-    return standardIcons['other:Puzzle'];
-  }
   return '';
 };

@@ -243,7 +243,7 @@ export class GlspProtocol {
 export type CreateProcessResult = { processId: string; elementId: string; processUUID: string };
 
 export async function createProcess(
-  type: ElementType | `ThirdPartyProgramInterface:${string}`,
+  type: ElementType,
   options?: {
     location?: { x: number; y: number };
     connectTo?: ElementType[];

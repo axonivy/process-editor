@@ -16,17 +16,10 @@ import { eventEditors } from './event/all-event-editors';
 import { gatewayEditors } from './gateway/all-gateway-editors';
 import { otherEditors } from './other-editors';
 import { usePartDirty } from './part/usePart';
-import { thirdPartyEditors } from './third-party/all-third-party-editors';
 
 export type KnownEditor = { editor: ReactNode; icon?: IvyIcons };
 
-const editors = new Map<ElementType, KnownEditor>([
-  ...eventEditors,
-  ...gatewayEditors,
-  ...activityEditors,
-  ...thirdPartyEditors,
-  ...otherEditors
-]);
+const editors = new Map<ElementType, KnownEditor>([...eventEditors, ...gatewayEditors, ...activityEditors, ...otherEditors]);
 
 const inscriptionEditor = (type?: ElementType): ReactNode => {
   if (type) {

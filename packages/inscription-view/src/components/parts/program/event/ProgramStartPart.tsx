@@ -7,7 +7,7 @@ import { Permission } from '../../common/permission/Permission';
 import JavaClassSelector from '../JavaClassSelector';
 import { useProgramStartData } from './useProgramStartData';
 
-export function useProgramStartPart(options?: { thirdParty?: boolean }): PartProps {
+export function useProgramStartPart(): PartProps {
   const { t } = useTranslation();
   const { config, defaultConfig } = useProgramStartData();
   const compareData = (data: ProgramStartData) => [data.javaClass, data.permission];
@@ -17,20 +17,17 @@ export function useProgramStartPart(options?: { thirdParty?: boolean }): PartPro
     id: 'Java Bean',
     name: t('part.program.start.title'),
     state,
-    content: <ProgramStartPart thirdParty={options?.thirdParty} />,
+    content: <ProgramStartPart />,
     icon: IvyIcons.StartProgram
   };
 }
 
-const ProgramStartPart = ({ thirdParty }: { thirdParty?: boolean }) => {
+const ProgramStartPart = () => {
   const { config, defaultConfig, update, updatePermission } = useProgramStartData();
 
   return (
     <>
-      {(thirdParty === undefined || thirdParty === false) && (
-        <JavaClassSelector javaClass={config.javaClass} onChange={change => update('javaClass', change)} type='START' />
-      )}
-
+      <JavaClassSelector javaClass={config.javaClass} onChange={change => update('javaClass', change)} type='START' />
       <Permission
         anonymousFieldActive={true}
         config={config.permission}
