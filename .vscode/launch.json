@@ -8,7 +8,7 @@
       "name": "Launch Standalone (Chrome)",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:3000?server=localhost:8080/~Developer-process-test-project&app=Developer-process-test-project&project=process-test-project&file/quickstart.p.json",
+      "url": "http://localhost:3000?server=localhost:8080/~Developer-process-test-project&app=Developer-process-test-project&project=process-test-project&file=process/quickstart.p.json",
       "preLaunchTask": "Start Standalone",
       "postDebugTask": "Terminate All Tasks"
     },
