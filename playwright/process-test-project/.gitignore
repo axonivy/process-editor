@@ -13,5 +13,3 @@ target/
 
 # ivy
 classes/
-src_generated/dataclass/
-src_generated/wsprocess/
