@@ -50,7 +50,7 @@
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.17",
     "deepmerge-ts": "^7.1.5",
-    "jsdom": "^29.1.1",
+    "jsdom": "^30.0.0",
     "monaco-editor": "0.55.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
