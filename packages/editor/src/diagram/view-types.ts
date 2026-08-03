@@ -14,7 +14,6 @@ export namespace EventStartTypes {
   export const START_HD_METHOD = DEFAULT + ':htmlDialogMethodStart';
   export const START_HD_EVENT = DEFAULT + ':htmlDialogEventStart';
   export const START_EMBEDDED = DEFAULT + ':embeddedStart';
-  export const START_THIRD_PARTY = DEFAULT + ':thirdPartyProgramStart';
 }
 
 export namespace EventEndTypes {
@@ -33,7 +32,6 @@ export namespace EventIntermediateTypes {
   export const DEFAULT = EventTypes.DEFAULT + ':intermediate';
   export const INTERMEDIATE_TASK = DEFAULT + ':taskSwitchEvent';
   export const INTERMEDIATE_WAIT = DEFAULT + ':waitEvent';
-  export const INTERMEDIATE_THIRD_PARTY = DEFAULT + ':thirdPartyWaitEvent';
 }
 
 export namespace EventBoundaryTypes {
@@ -73,8 +71,6 @@ export namespace ActivityTypes {
   export const BPMN_RULE = DEFAULT + ':ruleBpmnElement';
   export const BPMN_SEND = DEFAULT + ':sendBpmnElement';
   export const BPMN_SERVICE = DEFAULT + ':serviceBpmnElement';
-  export const THIRD_PARTY = DEFAULT + ':thirdPartyProgramInterface';
-  export const THIRD_PARTY_RULE = THIRD_PARTY + ':RuleActivity';
   export const LABEL = DEFAULT + '-label';
 }
 

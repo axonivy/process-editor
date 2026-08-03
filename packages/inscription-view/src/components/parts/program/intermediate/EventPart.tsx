@@ -15,7 +15,7 @@ import { ValidationFieldset } from '../../common/path/validation/ValidationField
 import JavaClassSelector from '../JavaClassSelector';
 import { useEventData } from './useEventData';
 
-export function useEventPart(options?: { thirdParty?: boolean }): PartProps {
+export function useEventPart(): PartProps {
   const { t } = useTranslation();
   const { config, defaultConfig } = useEventData();
   const compareData = (data: EventData) => [data.javaClass, data.eventId, data.timeout];
@@ -25,7 +25,7 @@ export function useEventPart(options?: { thirdParty?: boolean }): PartProps {
     id: 'Event',
     name: t('part.program.event.title'),
     state,
-    content: <EventPart thirdParty={options?.thirdParty} />,
+    content: <EventPart />,
     icon: IvyIcons.Clock
   };
 }
@@ -42,16 +42,13 @@ const useEventTypes = () => {
   );
 };
 
-const EventPart = ({ thirdParty }: { thirdParty?: boolean }) => {
+const EventPart = () => {
   const { t } = useTranslation();
   const { config, defaultConfig, update, updateTimeout } = useEventData();
   const items = useEventTypes();
   return (
     <>
-      {(thirdParty === undefined || thirdParty === false) && (
-        <JavaClassSelector javaClass={config.javaClass} onChange={change => update('javaClass', change)} type='INTERMEDIATE' />
-      )}
-
+      <JavaClassSelector javaClass={config.javaClass} onChange={change => update('javaClass', change)} type='INTERMEDIATE' />
       <PathCollapsible label={t('part.program.event.id')} path='eventId' defaultOpen={true}>
         <ValidationFieldset>
           <ScriptInput

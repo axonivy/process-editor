@@ -18,7 +18,6 @@ function createModel(graphFactory: GModelFactory): GGraph {
   children.push({ id: 'startHd', type: EventStartTypes.START_HD, position: { x: 100, y: 400 }, size: eventNodeSize });
   children.push({ id: 'startHdMethod', type: EventStartTypes.START_HD_METHOD, position: { x: 100, y: 450 }, size: eventNodeSize });
   children.push({ id: 'startHdEvent', type: EventStartTypes.START_HD_EVENT, position: { x: 100, y: 500 }, size: eventNodeSize });
-  children.push({ id: 'startThirdparty', type: EventStartTypes.START_THIRD_PARTY, position: { x: 100, y: 550 }, size: eventNodeSize });
   children.push({ id: 'end', type: EventEndTypes.END, position: { x: 200, y: 100 }, size: eventNodeSize });
   children.push({ id: 'endError', type: EventEndTypes.END_ERROR, position: { x: 200, y: 150 }, size: eventNodeSize });
   children.push({ id: 'endPage', type: EventEndTypes.END_PAGE, position: { x: 200, y: 200 }, size: eventNodeSize });
@@ -36,12 +35,6 @@ function createModel(graphFactory: GModelFactory): GGraph {
     id: 'intermediateWait',
     type: EventIntermediateTypes.INTERMEDIATE_WAIT,
     position: { x: 300, y: 200 },
-    size: eventNodeSize
-  });
-  children.push({
-    id: 'intermediateThirdparty',
-    type: EventIntermediateTypes.INTERMEDIATE_THIRD_PARTY,
-    position: { x: 300, y: 250 },
     size: eventNodeSize
   });
   children.push({ id: 'boundaryError', type: EventBoundaryTypes.BOUNDARY_ERROR, position: { x: 400, y: 100 }, size: eventNodeSize });
@@ -104,10 +97,6 @@ describe('EventNodeView', () => {
 
   test('render start hd event event node', () => {
     assertEvent(EventStartTypes.START_HD_EVENT, 'startHdEvent', {});
-  });
-
-  test('render start hd event event node', () => {
-    assertEvent(EventStartTypes.START_THIRD_PARTY, 'startThirdparty', {});
   });
 
   test('render end event node', () => {

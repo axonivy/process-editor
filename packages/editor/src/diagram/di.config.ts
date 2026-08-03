@@ -77,7 +77,6 @@ const ivyDiagramModule = new FeatureModule((bind, unbind, isBound, rebind) => {
   configureStartEvent(EventStartTypes.START_HD_METHOD);
   configureStartEvent(EventStartTypes.START_HD_EVENT);
   configureStartEvent(EventStartTypes.START_EMBEDDED);
-  configureStartEvent(EventStartTypes.START_THIRD_PARTY);
 
   configureEndEvent(EventEndTypes.END);
   configureEndEvent(EventEndTypes.END_ERROR);
@@ -92,7 +91,6 @@ const ivyDiagramModule = new FeatureModule((bind, unbind, isBound, rebind) => {
   configureModelElement(context, EventIntermediateTypes.INTERMEDIATE_WAIT, EventNode, IntermediateEventNodeView, {
     enable: [goToSourceFeature]
   });
-  configureModelElement(context, EventIntermediateTypes.INTERMEDIATE_THIRD_PARTY, EventNode, IntermediateEventNodeView);
 
   configureModelElement(context, EventBoundaryTypes.BOUNDARY_ERROR, StartEventNode, IntermediateEventNodeView);
   configureModelElement(context, EventBoundaryTypes.BOUNDARY_SIGNAL, StartEventNode, IntermediateEventNodeView);
@@ -112,8 +110,6 @@ const ivyDiagramModule = new FeatureModule((bind, unbind, isBound, rebind) => {
   configureActivity(ActivityTypes.REST);
   configureActivity(ActivityTypes.DB);
   configureActivity(ActivityTypes.EMAIL);
-  configureActivity(ActivityTypes.THIRD_PARTY);
-  configureActivity(ActivityTypes.THIRD_PARTY_RULE);
   configureActivity(ActivityTypes.PROGRAM, { enable: [goToSourceFeature] });
   configureActivity(ActivityTypes.TRIGGER, { enable: [jumpFeature] });
   configureActivity(ActivityTypes.HD, { enable: [goToFormFeature] });

@@ -21,14 +21,8 @@ export function useProgramInterfaceStartPart(): PartProps {
   };
 }
 
-const ProgramInterfaceStartPart = ({ thirdParty }: { thirdParty?: boolean }) => {
+const ProgramInterfaceStartPart = () => {
   const { config, update } = useProgramInterfaceData();
 
-  return (
-    <>
-      {(thirdParty === undefined || thirdParty === false) && (
-        <JavaClassSelector javaClass={config.javaClass} onChange={change => update('javaClass', change)} type='ACTIVITY' />
-      )}
-    </>
-  );
+  return <JavaClassSelector javaClass={config.javaClass} onChange={change => update('javaClass', change)} type='ACTIVITY' />;
 };

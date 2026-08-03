@@ -29,8 +29,6 @@ function createModel(graphFactory: GModelFactory): GGraph {
   children.push({ id: 'embeddedProcess', type: ActivityTypes.EMBEDDED_PROCESS, position: { x: 600, y: 550 }, size: taskNodeSize });
   children.push({ id: 'trigger', type: ActivityTypes.TRIGGER, position: { x: 600, y: 650 }, size: taskNodeSize });
   children.push({ id: 'program', type: ActivityTypes.PROGRAM, position: { x: 600, y: 700 }, size: taskNodeSize });
-  children.push({ id: 'thirdParty', type: ActivityTypes.THIRD_PARTY, position: { x: 600, y: 750 }, size: taskNodeSize });
-  children.push({ id: 'thirdPartyRule', type: ActivityTypes.THIRD_PARTY_RULE, position: { x: 600, y: 800 }, size: taskNodeSize });
   children.push({ id: 'webPage', type: ActivityTypes.GENERIC, position: { x: 600, y: 600 }, size: taskNodeSize });
   return graphFactory.createRoot({ id: 'graph', type: 'graph', children: children }) as GGraph;
 }
@@ -101,14 +99,6 @@ describe('ActivityNodeView', () => {
 
   test('render program node', () => {
     assertNode(ActivityTypes.PROGRAM, 'program', { icon: standardIcons['std:Program'] });
-  });
-
-  test('render third party node', () => {
-    assertNode(ActivityTypes.THIRD_PARTY, 'thirdParty', { icon: standardIcons['other:Puzzle'] });
-  });
-
-  test('render third party rule node', () => {
-    assertNode(ActivityTypes.THIRD_PARTY_RULE, 'thirdPartyRule', { icon: standardIcons['std:Rule'] });
   });
 
   test('render unknown node', () => {
