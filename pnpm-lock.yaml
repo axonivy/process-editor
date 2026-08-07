@@ -41,7 +41,7 @@ importers:
         specifier: npm:typescript@^7.0.2
         version: typescript@7.0.2
       i18next-cli:
-        specifier: ^1.66.2
+        specifier: ^1.67.3
         version: 1.67.3(@swc/helpers@0.5.23)(@types/node@24.13.3)(@typescript/typescript6@6.0.2)(react-dom@19.2.8(react@19.2.8))
       prettier:
         specifier: ^3.9.6
@@ -53,10 +53,10 @@ importers:
         specifier: npm:@typescript/typescript6@^6.0.2
         version: '@typescript/typescript6@6.0.2'
       typescript-cp:
-        specifier: ^0.1.9
+        specifier: ^0.1.10
         version: 0.1.10(@typescript/typescript6@6.0.2)
       vite:
-        specifier: ^8.1.5
+        specifier: ^8.2.0
         version: 8.2.0(@types/node@24.13.3)(jiti@2.7.0)(yaml@2.9.0)
       vitest:
         specifier: ^4.1.10
@@ -102,13 +102,13 @@ importers:
         specifier: workspace:~
         version: link:../monaco-vite-plugin
       '@types/react':
-        specifier: ^19.2.17
+        specifier: ^19.2.18
         version: 19.2.18
       '@types/react-dom':
-        specifier: ^19.2.3
+        specifier: ^19.2.4
         version: 19.2.4(@types/react@19.2.18)
       '@vitejs/plugin-react':
-        specifier: ^6.0.4
+        specifier: ^6.0.5
         version: 6.0.5(vite@8.2.0(@types/node@24.13.3)(jiti@2.7.0)(yaml@2.9.0))
       deepmerge-ts:
         specifier: ^7.1.5
@@ -120,7 +120,7 @@ importers:
         specifier: ^19.2.8
         version: 19.2.8(react@19.2.8)
       vite:
-        specifier: ^8.1.5
+        specifier: ^8.2.0
         version: 8.2.0(@types/node@24.13.3)(jiti@2.7.0)(yaml@2.9.0)
 
   integration/monaco-vite-plugin:
@@ -187,7 +187,7 @@ importers:
         specifier: ~0.2.2
         version: 0.2.2
       vite:
-        specifier: ^8.1.5
+        specifier: ^8.2.0
         version: 8.2.0(@types/node@24.13.3)(jiti@2.7.0)(yaml@2.9.0)
 
   integration/viewer:
@@ -227,7 +227,7 @@ importers:
         specifier: ~0.2.2
         version: 0.2.2
       vite:
-        specifier: ^8.1.5
+        specifier: ^8.2.0
         version: 8.2.0(@types/node@24.13.3)(jiti@2.7.0)(yaml@2.9.0)
 
   packages/editor:
@@ -285,10 +285,10 @@ importers:
         specifier: ^14.6.1
         version: 14.6.1(@testing-library/dom@10.4.1)
       '@types/react':
-        specifier: ^19.2.17
+        specifier: ^19.2.18
         version: 19.2.18
       '@types/react-dom':
-        specifier: ^19.2.3
+        specifier: ^19.2.4
         version: 19.2.4(@types/react@19.2.18)
       '@vanilla-extract/recipes':
         specifier: ^0.5.7
@@ -349,10 +349,10 @@ importers:
         specifier: next-14.0.0
         version: 14.0.0-next.1222.a75c2ea
       '@types/react':
-        specifier: ^19.2.17
+        specifier: ^19.2.18
         version: 19.2.18
       '@types/react-dom':
-        specifier: ^19.2.3
+        specifier: ^19.2.4
         version: 19.2.4(@types/react@19.2.18)
       react:
         specifier: ^19.2.8
@@ -401,7 +401,7 @@ importers:
         specifier: ^8.20
         version: 8.21.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@tanstack/react-virtual':
-        specifier: ^3.14.8
+        specifier: ^3.14.9
         version: 3.14.9(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       dompurify:
         specifier: ^3.4.12
@@ -459,13 +459,13 @@ importers:
         specifier: ^24.13.3
         version: 24.13.3
       '@types/react':
-        specifier: ^19.2.17
+        specifier: ^19.2.18
         version: 19.2.18
       deepmerge-ts:
         specifier: ^7.1.5
         version: 7.1.5
       jsdom:
-        specifier: ^30.0.0
+        specifier: ^30.0.1
         version: 30.0.1
       monaco-editor:
         specifier: 0.55.1
