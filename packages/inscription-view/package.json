@@ -17,7 +17,7 @@
     "@axonivy/process-editor-inscription-core": "workspace:~",
     "@axonivy/process-editor-inscription-protocol": "workspace:~",
     "@monaco-editor/react": "^4.7.0",
-    "@tanstack/react-virtual": "^3.14.8",
+    "@tanstack/react-virtual": "^3.14.9",
     "dompurify": "^3.4.12",
     "immer": "^10.2.0",
     "react-aria": "^3.50.0",
