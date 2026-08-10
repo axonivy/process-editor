@@ -215,7 +215,6 @@ export interface InscriptionType {
     | "WebserviceEnd"
     | "WebserviceProcess"
     | "WebserviceStart";
-  impl?: string;
   label: string;
   shortLabel: string;
 }

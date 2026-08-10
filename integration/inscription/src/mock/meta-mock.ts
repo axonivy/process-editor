@@ -335,7 +335,6 @@ export namespace MetaMock {
       shortLabel: 'Element',
       description: 'This is a mock element',
       iconId: 'mock icon',
-      impl: '',
       helpUrl: 'mock url'
     }
   };
