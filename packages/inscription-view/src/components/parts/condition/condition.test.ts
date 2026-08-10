@@ -19,7 +19,6 @@ describe('Condition', () => {
     description: '',
     iconId: '',
     id: 'Alternative',
-    impl: '',
     label: '',
     shortLabel: '',
     helpUrl: ''
