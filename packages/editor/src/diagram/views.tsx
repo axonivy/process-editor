@@ -20,10 +20,8 @@ import {
   toDegrees
 } from '@eclipse-glsp/client';
 import { injectable } from 'inversify';
-import type { VNode } from 'snabbdom';
-import virtualize from 'sprotty/lib/lib/virtualize';
+import { h, type VNode } from 'snabbdom';
 import { Edge, MulitlineEditLabel } from './model';
-import { escapeHtmlWithLineBreaks } from './util';
 
 import { isLaneResizable, type LaneResizable } from '../lanes/model';
 import { ActivityTypes } from './view-types';
@@ -33,9 +31,20 @@ const JSX = { createElement: svg };
 @injectable()
 export class ForeignLabelView implements IView {
   render(model: MulitlineEditLabel, context: RenderingContext): VNode {
-    const replacement = escapeHtmlWithLineBreaks(model.text);
     const labelBounds = model.labelBounds;
-    const foreignObjectContents = virtualize(`<div style="height: ${labelBounds.height}px;">${replacement}</div>`);
+    const lines = model.text.split(/\r?\n/u);
+    const lineBreakContents = lines.flatMap((line, index) => {
+      return index < lines.length - 1 ? [line, h('br')] : [line];
+    });
+    const foreignObjectContents = h(
+      'div',
+      {
+        style: {
+          height: `${labelBounds.height}px`
+        }
+      },
+      lineBreakContents
+    );
     return (
       <g>
         <foreignObject
