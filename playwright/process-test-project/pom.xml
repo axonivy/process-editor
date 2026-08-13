@@ -15,7 +15,6 @@
   <version>14.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
-    <engine.test.app>Developer-process-test-project</engine.test.app>
     <engine.dir>${project.build.directory}/ivyEngine</engine.dir>
     <engine.page.url>https://product.ivyteam.io/</engine.page.url>
     <webtest.cmd>webtest</webtest.cmd>
@@ -164,8 +163,6 @@
               </arguments>
               <environmentVariables>
                 <BASE_URL>${test.engine.url}</BASE_URL>
-                <TEST_WS>~Developer-${project.artifactId}</TEST_WS>
-                <TEST_APP>${engine.test.app}</TEST_APP>
                 <SCREENSHOT_DIR>${project.build.directory}</SCREENSHOT_DIR>
                 <REPORT_DIR>${project.build.directory}</REPORT_DIR>
               </environmentVariables>
