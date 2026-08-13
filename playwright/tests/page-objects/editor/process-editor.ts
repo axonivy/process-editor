@@ -14,9 +14,10 @@ import type { CmdCtrl, Point } from './types';
 import { ViewportBar } from './viewport';
 
 const startSelector = GRAPH_SELECTOR + ' .start\\:requestStart';
-export const server = process.env.BASE_URL ? process.env.BASE_URL : 'http://localhost:8080/~Developer-process-test-project';
-export const app = process.env.TEST_APP ? process.env.TEST_APP : 'Developer-process-test-project';
-export const project = 'process-test-project';
+const ws = process.env.TEST_WS ?? '';
+const server = process.env.BASE_URL ? process.env.BASE_URL : 'http://localhost:8080/~Developer-process-test-project';
+const app = process.env.TEST_APP ? process.env.TEST_APP : 'Developer-process-test-project';
+const project = 'process-test-project';
 
 export class ProcessEditor {
   readonly page: Page;
@@ -43,7 +44,7 @@ export class ProcessEditor {
   static async openProcess(page: Page, options?: { urlQueryParam?: string; file?: string; waitFor?: string }) {
     const serverUrl = server.replace(/^https?:\/\//, '');
     const file = options?.file ?? `process/test/${randomUUID()}.p.json`;
-    await page.goto(`?server=${serverUrl}&app=${app}&project=${project}&file=${file}` + (options?.urlQueryParam ?? ''));
+    await page.goto(`?server=${serverUrl}${ws}&app=${app}&project=${project}&file=${file}` + (options?.urlQueryParam ?? ''));
     await page.addStyleTag({ content: '.palette-body {transition: none !important;}' });
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
