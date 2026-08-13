@@ -3,7 +3,7 @@ import { expect } from '@playwright/test';
 import { InscriptionTab } from './inscription-tab';
 import { Outline } from './outline';
 
-const server = (process.env.BASE_URL ? `${process.env.BASE_URL}` : 'localhost:8080') + '/~Developer-inscription-test-project';
+const server = (process.env.BASE_URL ? `${process.env.BASE_URL}` : 'localhost:8080/') + '~Developer-inscription-test-project';
 const app = 'Developer-inscription-test-project';
 const project = 'inscription-test-project';
 

@@ -3,7 +3,7 @@ import type { ElementType } from '@axonivy/process-editor-inscription-protocol';
 import { Client, RequestManager, WebSocketTransport } from '@open-rpc/client-js';
 import { randomUUID } from 'crypto';
 
-const server = (process.env.BASE_URL ? `${process.env.BASE_URL}` : 'http://localhost:8080') + '/~Developer-inscription-test-project';
+const server = (process.env.BASE_URL ? `${process.env.BASE_URL}` : 'http://localhost:8080/') + '~Developer-inscription-test-project';
 const app = 'Developer-inscription-test-project';
 const project = 'inscription-test-project';
 
