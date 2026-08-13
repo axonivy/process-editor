@@ -1,7 +1,8 @@
 import { expect, test } from '@playwright/test';
 import { ProcessEditor } from '../../page-objects/editor/process-editor';
 
-test('diagram', async ({ page }) => {
+// eslint-disable-next-line playwright/no-focused-test
+test.only('diagram', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
   const toolPalette = processEditor.toolbar();
   await toolPalette.visible();

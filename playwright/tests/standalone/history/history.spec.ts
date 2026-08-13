@@ -1,5 +1,5 @@
 import { expect, test, type BrowserContext, type Page } from '@playwright/test';
-import { app, ProcessEditor, project, server } from '../../page-objects/editor/process-editor';
+import { app, ProcessEditor, project, server, ws } from '../../page-objects/editor/process-editor';
 
 test('open history', async ({ page, context }) => {
   const editor = await setupExecutions(page, context);
@@ -63,7 +63,7 @@ const setupExecutions = async (page: Page, context: BrowserContext) => {
 };
 
 const resetEngine = async () =>
-  fetch(`${server}/api/web-ide/project/stop-bpm-engine?app=${app}&project=${project}`, {
+  fetch(`${server}/${ws ? ws + '/' : ''}api/web-ide/project/stop-bpm-engine?app=${app}&project=${project}`, {
     method: 'POST',
     headers: {
       'X-Requested-By': 'ivy-process-editor-test'
