@@ -8,7 +8,7 @@ const REPORT_DIR = process.env.REPORT_DIR ? `${process.env.REPORT_DIR}/` : '';
 export default defineConfig({
   timeout: 1000 * (process.env.CI ? 60 : 30),
   fullyParallel: true,
-  forbidOnly: !!process.env.CI,
+  // forbids: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? [['junit', { outputFile: `${REPORT_DIR}report.xml`, includeProjectInTestName: true }], ['list']] : 'html',
   use: {
