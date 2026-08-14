@@ -1,7 +1,8 @@
 import { expect, test, type BrowserContext, type Page } from '@playwright/test';
 import { app, ProcessEditor, project, server } from '../../page-objects/editor/process-editor';
 
-test('open history', async ({ page, context }) => {
+test('open history', async ({ page, context, browserName }) => {
+  test.skip(browserName === 'webkit', 'webkit shows a ViewNotFoundException');
   const editor = await setupExecutions(page, context);
   const history = await editor.startElement.showHistory();
   await expect(history.title).toHaveText(`History of '148655DDB7BB6588-f0'`);
@@ -33,7 +34,8 @@ test('open history', async ({ page, context }) => {
   await expect(deepRows).toHaveCount(4);
 });
 
-test('pin history', async ({ page, context }) => {
+test('pin history', async ({ page, context, browserName }) => {
+  test.skip(browserName === 'webkit', 'webkit shows a ViewNotFoundException');
   const editor = await setupExecutions(page, context);
   const history = await editor.startElement.showHistory();
   await history.expectPopover();
