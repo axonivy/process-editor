@@ -15,7 +15,7 @@ import { ViewportBar } from './viewport';
 
 const startSelector = GRAPH_SELECTOR + ' .start\\:requestStart';
 export const server = (process.env.BASE_URL ? process.env.BASE_URL : 'http://localhost:8080/') + '~Developer-process-test-project';
-export const app = process.env.TEST_APP ? process.env.TEST_APP : 'Developer-process-test-project';
+export const app = 'Developer-process-test-project';
 export const project = 'process-test-project';
 
 export class ProcessEditor {
