@@ -147,7 +147,10 @@
           <useLatestMinor>true</useLatestMinor>
           <engineListPageUrl>${engine.page.url}</engineListPageUrl>
           <engineDirectory>${engine.dir}</engineDirectory>
-          <additionalVmArgs>-Dglsp.test.mode=true -Ddev.mode=true</additionalVmArgs>
+          <additionalVmArgs>
+            <arg>-Dglsp.test.mode=true</arg>
+            <arg>-Ddev.mode=true</arg>
+          </additionalVmArgs>
         </configuration>
       </plugin>
       <plugin>
