@@ -107,7 +107,7 @@
                   </excludes>
                 </resource>
               </resources>
-              <overwrite>true</overwrite>
+              <changeDetection>always</changeDetection>
             </configuration>
           </execution>
         </executions>
@@ -142,12 +142,13 @@
           <useLatestMinor>true</useLatestMinor>
           <engineListPageUrl>${engine.page.url}</engineListPageUrl>
           <engineDirectory>${engine.dir}</engineDirectory>
-          <additionalVmOptions>-Dglsp.test.mode=true -Ddev.mode=true</additionalVmOptions>
+          <additionalVmArgs>-Dglsp.test.mode=true -Ddev.mode=true</additionalVmArgs>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
+        <version>3.6.3</version>
         <executions>
           <execution>
             <phase>integration-test</phase>
