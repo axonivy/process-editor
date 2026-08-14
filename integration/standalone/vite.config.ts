@@ -36,12 +36,12 @@ export default defineConfig(() => ({
   },
   resolve: {
     alias: {
-      '@axonivy/process-editor': resolve(__dirname, '../../packages/editor/src'),
-      '@axonivy/process-editor-inscription': resolve(__dirname, '../../packages/inscription/src'),
-      '@axonivy/process-editor-inscription-view': resolve(__dirname, '../../packages/inscription-view/src'),
-      '@axonivy/process-editor-inscription-core': resolve(__dirname, '../../packages/inscription-core/src'),
-      '@axonivy/process-editor-inscription-protocol': resolve(__dirname, '../../packages/inscription-protocol/src'),
-      '@axonivy/process-editor-protocol': resolve(__dirname, '../../packages/protocol/src')
+      '@axonivy/process-editor': resolve(import.meta.dirname, '../../packages/editor/src'),
+      '@axonivy/process-editor-inscription': resolve(import.meta.dirname, '../../packages/inscription/src'),
+      '@axonivy/process-editor-inscription-view': resolve(import.meta.dirname, '../../packages/inscription-view/src'),
+      '@axonivy/process-editor-inscription-core': resolve(import.meta.dirname, '../../packages/inscription-core/src'),
+      '@axonivy/process-editor-inscription-protocol': resolve(import.meta.dirname, '../../packages/inscription-protocol/src'),
+      '@axonivy/process-editor-protocol': resolve(import.meta.dirname, '../../packages/protocol/src')
     }
   },
   base: './',

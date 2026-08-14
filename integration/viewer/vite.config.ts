@@ -30,8 +30,8 @@ export default defineConfig(() => ({
   },
   resolve: {
     alias: {
-      '@axonivy/process-editor': resolve(__dirname, '../../packages/editor/src'),
-      '@axonivy/process-editor-protocol': resolve(__dirname, '../../packages/protocol/src')
+      '@axonivy/process-editor': resolve(import.meta.dirname, '../../packages/editor/src'),
+      '@axonivy/process-editor-protocol': resolve(import.meta.dirname, '../../packages/protocol/src')
     }
   },
   base: './',
