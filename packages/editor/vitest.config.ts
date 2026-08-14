@@ -11,7 +11,7 @@ export default defineProject({
     name: 'editor',
     include: ['src/**/*.test.ts?(x)'],
     alias: {
-      '@axonivy/process-editor-protocol': resolve(__dirname, '../protocol/src')
+      '@axonivy/process-editor-protocol': resolve(import.meta.dirname, '../protocol/src')
     },
     environment: 'happy-dom',
     setupFiles: ['src/test-utils/setupTests.ts'],

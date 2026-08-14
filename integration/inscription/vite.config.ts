@@ -24,9 +24,9 @@ export default defineConfig(() => ({
   preview: { port: 4003 },
   resolve: {
     alias: {
-      '@axonivy/process-editor-inscription-core': resolve(__dirname, '../../packages/inscription-core/src'),
-      '@axonivy/process-editor-inscription-view': resolve(__dirname, '../../packages/inscription-view/src'),
-      '@axonivy/process-editor-inscription-protocol': resolve(__dirname, '../../packages/inscription-protocol/src')
+      '@axonivy/process-editor-inscription-core': resolve(import.meta.dirname, '../../packages/inscription-core/src'),
+      '@axonivy/process-editor-inscription-view': resolve(import.meta.dirname, '../../packages/inscription-view/src'),
+      '@axonivy/process-editor-inscription-protocol': resolve(import.meta.dirname, '../../packages/inscription-protocol/src')
     }
   },
   base: './',
