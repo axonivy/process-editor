@@ -1,6 +1,7 @@
 import { QUERY_ORDER } from '@axonivy/process-editor-inscription-protocol';
 import {
   arraymove,
+  dataTableHelper,
   indexOf,
   ReorderHandleWrapper,
   ReorderRow,
@@ -11,7 +12,6 @@ import {
   TableCell,
   TableResizableHeader
 } from '@axonivy/ui-components';
-import { dataTableHelper } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { RowSelectionState, SortingState } from '@tanstack/react-table';
 import { flexRender, useTable } from '@tanstack/react-table';
@@ -56,6 +56,8 @@ const columnsToOrderBy = (data: Column[]) => {
   return orderBy;
 };
 
+const { columnHelper, tableOptions } = dataTableHelper<Column>();
+
 export const TableSort = () => {
   const { t } = useTranslation();
   const { config, updateSql } = useQueryData();
@@ -65,25 +67,22 @@ export const TableSort = () => {
   const columnItems = useMeta('meta/database/columns', { context, database: config.query.dbName, table: config.query.sql.table }, []).data;
   const orderItems = useMemo<SelectItem[]>(() => Object.entries(QUERY_ORDER).map(([label, value]) => ({ label, value })), []);
 
-  const { columnHelper, tableOptions } = dataTableHelper<Column>();
-
   const columns = useMemo(
-    () => columnHelper.columns([
-      {
-        accessorKey: 'name',
-        header: () => <span>{t('label.column')}</span>,
-        cell: cell => <SelectCell cell={cell} items={columnItems.map(c => ({ label: c.name, value: c.name }))} />
-      },
-      {
-        accessorKey: 'sorting',
-        header: () => <span>{t('part.db.direction')}</span>,
-        cell: cell => (
-          <ReorderHandleWrapper>
-            <SelectCell cell={cell} items={orderItems} />
-          </ReorderHandleWrapper>
-        )
-      }
-    ]),
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('name', {
+          header: () => <span>{t('label.column')}</span>,
+          cell: cell => <SelectCell cell={cell} items={columnItems.map(c => ({ label: c.name, value: c.name }))} />
+        }),
+        columnHelper.accessor('sorting', {
+          header: () => <span>{t('part.db.direction')}</span>,
+          cell: cell => (
+            <ReorderHandleWrapper>
+              <SelectCell cell={cell} items={orderItems} />
+            </ReorderHandleWrapper>
+          )
+        })
+      ]),
     [columnItems, orderItems, t]
   );
 
@@ -94,7 +93,6 @@ export const TableSort = () => {
 
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-
 
   const table = useTable({
     ...tableOptions,

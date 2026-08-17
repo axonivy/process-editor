@@ -1,7 +1,7 @@
 import type { DataclassType } from '@axonivy/process-editor-inscription-protocol';
-import { dataTreeHelper, type DataTableFeatures, TableBody, TableCell, useTableKeyHandler, type BrowserNode } from '@axonivy/ui-components';
+import { dataTreeHelper, TableBody, TableCell, useTableKeyHandler, type BrowserNode, type DataTableFeatures } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ExpandedState, FilterFn, RowSelectionState } from '@tanstack/react-table';
+import type { FilterFn } from '@tanstack/react-table';
 import { useTable } from '@tanstack/react-table';
 import DOMPurify from 'dompurify';
 import { useEffect, useMemo, useState } from 'react';
@@ -46,6 +46,8 @@ interface TypeBrowserProps {
   location: string;
 }
 
+const { columnHelper, tableOptions } = dataTreeHelper<BrowserNode<DataclassType>>();
+
 const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, location }: TypeBrowserProps) => {
   const { t } = useTranslation();
   const { context } = useEditorContext();
@@ -69,27 +71,22 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
   const [type, setType] = useState('');
   const { data: doc } = useMeta('meta/scripting/apiDoc', { context, method: '', paramTypes: [], type }, '');
 
-  const { columnHelper, tableOptions } = dataTreeHelper<BrowserNode<DataclassType>>();
   const columns = useMemo(
-    () => columnHelper.columns([
-      {
-        accessorKey: 'value',
-        cell: cell => (
-          <ExpandableCell
-            cell={cell}
-            title={cell.row.original.value}
-            additionalInfo={cell.row.original.info}
-            icon={cell.row.original.icon}
-          />
-        )
-      }
-    ]),
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('value', {
+          cell: cell => (
+            <ExpandableCell
+              cell={cell}
+              title={cell.row.original.value}
+              additionalInfo={cell.row.original.info}
+              icon={cell.row.original.icon}
+            />
+          )
+        })
+      ]),
     []
   );
-
-  const [expanded, setExpanded] = useState<ExpandedState>(true);
-  const [globalFilter, setGlobalFilter] = useState(initSearchFilter);
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
   const regexFilter: FilterFn<DataTableFeatures, BrowserNode<DataclassType>> = (row, _columnId, filterValue) => {
     const cellValue = row.original.value || '';
@@ -97,80 +94,61 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
     return regexPattern.test(cellValue);
   };
 
-  const tableDynamic = useTable({
+  const table = useTable({
     ...tableOptions,
     data: types,
     columns: columns,
-    state: {
-      expanded,
-      globalFilter,
-      rowSelection
+    initialState: {
+      globalFilter: initSearchFilter
     },
     globalFilterFn: regexFilter,
-    filterFromLeafRows: true,
     enableRowSelection: true,
     enableMultiRowSelection: false,
     enableSubRowSelection: false,
-    enableFilters: true,
-    onExpandedChange: setExpanded,
-    getSubRows: row => row.children,
-    onGlobalFilterChange: setGlobalFilter,
-    onRowSelectionChange: setRowSelection,
+    enableFilters: true
   });
 
-  const { handleKeyDown } = useTableKeyHandler({ table: tableDynamic, data: types });
+  const { handleKeyDown } = useTableKeyHandler({ table, data: types });
 
   useEffect(() => {
-    const selectedRow = tableDynamic.getSelectedRowModel().flatRows[0];
-    if (selectedRow === undefined) {
-      onChange({ value: '' });
-      // eslint-disable-next-line @eslint-react/set-state-in-effect
-      setShowHelper(false);
-      return;
-    }
+    const subscription = table.atoms.rowSelection.subscribe(() => {
+      const selectedRow = table.getSelectedRowModel().flatRows[0];
+      if (selectedRow === undefined) {
+        onChange({ value: '' });
 
-    // eslint-disable-next-line @eslint-react/set-state-in-effect
-    setShowHelper(true);
-    const isIvyType = ivyTypes.some(javaClass => javaClass.fullQualifiedName === selectedRow.original.data?.fullQualifiedName);
+        setShowHelper(false);
+        return;
+      }
 
-    // eslint-disable-next-line @eslint-react/set-state-in-effect
-    setType(selectedRow.original.data?.fullQualifiedName ?? '');
+      setShowHelper(true);
+      const isIvyType = ivyTypes.some(javaClass => javaClass.fullQualifiedName === selectedRow.original.data?.fullQualifiedName);
 
-    if (location.includes('code')) {
-      onChange({
-        value: getCursorValue(selectedRow.original, isIvyType, typeAsList, true),
-        firstLine: isIvyType ? undefined : 'import ' + selectedRow.original.data?.fullQualifiedName + ';\n'
-      });
-    } else {
-      onChange({
-        value: getCursorValue(selectedRow.original, isIvyType, typeAsList, false)
-      });
-    }
-  }, [ivyTypes, location, onChange, rowSelection, tableDynamic, typeAsList]);
+      setType(selectedRow.original.data?.fullQualifiedName ?? '');
 
-  const [debouncedFilterValue, setDebouncedFilterValue] = useState('');
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedFilterValue(globalFilter);
-    }, 150);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [globalFilter]);
+      if (location.includes('code')) {
+        onChange({
+          value: getCursorValue(selectedRow.original, isIvyType, typeAsList, true),
+          firstLine: isIvyType ? undefined : 'import ' + selectedRow.original.data?.fullQualifiedName + ';\n'
+        });
+      } else {
+        onChange({
+          value: getCursorValue(selectedRow.original, isIvyType, typeAsList, false)
+        });
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [ivyTypes, location, onChange, table, typeAsList]);
 
   useEffect(() => {
-    if (debouncedFilterValue.length > 0) {
-      // eslint-disable-next-line @eslint-react/set-state-in-effect
-      setMainFilter(debouncedFilterValue);
-    } else {
-      // eslint-disable-next-line @eslint-react/set-state-in-effect
-      setMainFilter('');
-    }
-    // eslint-disable-next-line @eslint-react/set-state-in-effect
-    setExpanded(true);
-  }, [debouncedFilterValue]);
+    table.atoms.globalFilter.subscribe(() => {
+      const timer = setTimeout(() => {
+        setMainFilter(table.atoms.globalFilter.get());
+        table.setExpanded(true);
+      }, 150);
+
+      return () => clearTimeout(timer);
+    });
+  }, [table]);
 
   return (
     <>
@@ -180,25 +158,15 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
           value={allTypesSearchActive}
           onChange={() => {
             setAllTypesSearchActive(!allTypesSearchActive);
-            setRowSelection({});
+            table.setRowSelection({});
           }}
         />
       </div>
-      <SearchTable
-        search={{
-          value: globalFilter,
-          onChange: newFilterValue => {
-            setGlobalFilter(newFilterValue);
-            setRowSelection({});
-          }
-        }}
-        onKeyDown={e => handleKeyDown(e, onDoubleClick)}
-      >
+      <SearchTable table={table} onSearchChange={() => table.setRowSelection({})} onKeyDown={e => handleKeyDown(e, onDoubleClick)}>
         <TableBody>
-          {tableDynamic.getRowModel().rows.length > 0 ? (
+          {table.getRowModel().rows.length > 0 ? (
             <>
-              {!isFetching &&
-                tableDynamic.getRowModel().rows.map(row => <BrowserTableRow key={row.id} row={row} onDoubleClick={onDoubleClick} />)}
+              {!isFetching && table.getRowModel().rows.map(row => <BrowserTableRow key={row.id} row={row} onDoubleClick={onDoubleClick} />)}
             </>
           ) : (
             <tr>

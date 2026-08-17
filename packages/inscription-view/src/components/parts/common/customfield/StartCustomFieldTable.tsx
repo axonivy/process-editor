@@ -20,6 +20,8 @@ type StartCustomFieldTableProps = {
 
 const EMPTY_STARTCUSTOMSTARTFIELD: StartCustomStartField = { name: '', value: '' } as const;
 
+const { columnHelper } = dataTableHelper<StartCustomStartField>();
+
 const StartCustomFieldTable = ({ data, onChange }: StartCustomFieldTableProps) => {
   const { t } = useTranslation();
   const { context } = useEditorContext();
@@ -31,20 +33,18 @@ const StartCustomFieldTable = ({ data, onChange }: StartCustomFieldTableProps) =
     value: pcf.name
   }));
 
-  const { columnHelper } = dataTableHelper<StartCustomStartField>();
   const columns = useMemo(
-    () => columnHelper.columns([
-      {
-        accessorKey: 'name',
-        header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
-        cell: cell => <ComboCell cell={cell} options={predefinedCustomField.filter(pcf => !data.find(d => d.name === pcf.value))} />
-      },
-      {
-        accessorKey: 'value',
-        header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
-        cell: cell => <MacroCell cell={cell} placeholder={'Enter an Expression'} />
-      }
-    ]),
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('name', {
+          header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
+          cell: cell => <ComboCell cell={cell} options={predefinedCustomField.filter(pcf => !data.find(d => d.name === pcf.value))} />
+        }),
+        columnHelper.accessor('value', {
+          header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
+          cell: cell => <MacroCell cell={cell} placeholder={'Enter an Expression'} />
+        })
+      ]),
     [data, predefinedCustomField, t]
   );
 

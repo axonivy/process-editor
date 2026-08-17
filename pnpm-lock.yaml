@@ -65,7 +65,7 @@ importers:
     dependencies:
       '@axonivy/jsonrpc':
         specifier: next-14.1.0
-        version: 14.1.0-next.1230.4182537
+        version: 14.1.0-next.1232.8aa2d51
       '@axonivy/process-editor-inscription-core':
         specifier: workspace:~
         version: link:../../packages/inscription-core
@@ -77,10 +77,10 @@ importers:
         version: link:../../packages/inscription-view
       '@axonivy/ui-components':
         specifier: next-14.1.0
-        version: 14.1.0-next.1230.4182537(@axonivy/ui-icons@14.1.0-next.1230.4182537)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        version: 14.1.0-next.1232.8aa2d51(@axonivy/ui-icons@14.1.0-next.1232.8aa2d51)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@axonivy/ui-icons':
         specifier: next-14.1.0
-        version: 14.1.0-next.1230.4182537
+        version: 14.1.0-next.1232.8aa2d51
       '@tanstack/react-query':
         specifier: ^5.101.4
         version: 5.101.4(react@19.2.8)
@@ -132,7 +132,7 @@ importers:
     dependencies:
       '@axonivy/jsonrpc':
         specifier: next-14.1.0
-        version: 14.1.0-next.1230.4182537
+        version: 14.1.0-next.1232.8aa2d51
       '@axonivy/process-editor':
         specifier: workspace:~
         version: link:../../packages/editor
@@ -150,10 +150,10 @@ importers:
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: next-14.1.0
-        version: 14.1.0-next.1230.4182537(@axonivy/ui-icons@14.1.0-next.1230.4182537)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        version: 14.1.0-next.1232.8aa2d51(@axonivy/ui-icons@14.1.0-next.1232.8aa2d51)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@axonivy/ui-icons':
         specifier: next-14.1.0
-        version: 14.1.0-next.1230.4182537
+        version: 14.1.0-next.1232.8aa2d51
       '@eclipse-glsp/client':
         specifier: 2.7.0
         version: 2.7.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
@@ -199,10 +199,10 @@ importers:
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: next-14.1.0
-        version: 14.1.0-next.1230.4182537(@axonivy/ui-icons@14.1.0-next.1230.4182537)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        version: 14.1.0-next.1232.8aa2d51(@axonivy/ui-icons@14.1.0-next.1232.8aa2d51)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@axonivy/ui-icons':
         specifier: next-14.1.0
-        version: 14.1.0-next.1230.4182537
+        version: 14.1.0-next.1232.8aa2d51
       '@eclipse-glsp/client':
         specifier: 2.7.0
         version: 2.7.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
@@ -343,10 +343,10 @@ importers:
     devDependencies:
       '@axonivy/ui-components':
         specifier: next-14.1.0
-        version: 14.1.0-next.1230.4182537(@axonivy/ui-icons@14.1.0-next.1230.4182537)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        version: 14.1.0-next.1232.8aa2d51(@axonivy/ui-icons@14.1.0-next.1232.8aa2d51)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@axonivy/ui-icons':
         specifier: next-14.1.0
-        version: 14.1.0-next.1230.4182537
+        version: 14.1.0-next.1232.8aa2d51
       '@types/react':
         specifier: ^19.2.17
         version: 19.2.18
@@ -368,7 +368,7 @@ importers:
     devDependencies:
       '@axonivy/jsonrpc':
         specifier: next-14.1.0
-        version: 14.1.0-next.1230.4182537
+        version: 14.1.0-next.1232.8aa2d51
 
   packages/inscription-protocol:
     devDependencies:

@@ -1,5 +1,6 @@
 import { IVY_SCRIPT_TYPES, REST_PARAM_KIND } from '@axonivy/process-editor-inscription-protocol';
 import {
+  dataTableHelper,
   InputCell,
   SelectCell,
   SortableHeader,
@@ -9,7 +10,6 @@ import {
   TableCell,
   TableResizableHeader
 } from '@axonivy/ui-components';
-import { dataTableHelper } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { RowSelectionState, SortingState } from '@tanstack/react-table';
 import { flexRender, useTable } from '@tanstack/react-table';
@@ -29,6 +29,8 @@ import { useFindPathParams } from './usePathParams';
 
 const EMPTY_PARAMETER: Parameter = { kind: 'Query', name: '', expression: '', known: false };
 
+const { columnHelper, tableOptions } = dataTableHelper<Parameter>();
+
 export const RestParameters = () => {
   const { t } = useTranslation();
   const { config, updateParameters } = useRestRequestData();
@@ -47,33 +49,29 @@ export const RestParameters = () => {
     updateParameters({ queryParams: Parameter.to(props, 'Query'), templateParams: Parameter.to(props, 'Path') });
   const kindItems = useMemo<SelectItem[]>(() => Object.entries(REST_PARAM_KIND).map(([value, label]) => ({ label, value })), []);
 
-  const { columnHelper, tableOptions } = dataTableHelper<Parameter>();
-
   const columns = useMemo(
-    () => columnHelper.columns([
-      {
-        accessorKey: 'kind',
-        header: ({ column }) => <SortableHeader column={column} name={t('part.rest.kind')} />,
-        cell: cell => <SelectCell cell={cell} items={kindItems} disabled={cell.row.original.known} />
-      },
-      {
-        accessorKey: 'name',
-        header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
-        cell: cell => <InputCell cell={cell} disabled={cell.row.original.known} />
-      },
-      {
-        accessorKey: 'expression',
-        header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
-        cell: cell => (
-          <ScriptCell
-            cell={cell}
-            type={cell.row.original.type ?? IVY_SCRIPT_TYPES.OBJECT}
-            browsers={['attr', 'func', 'type', 'cms']}
-            placeholder={cell.row.original.type}
-          />
-        )
-      }
-    ]),
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('kind', {
+          header: ({ column }) => <SortableHeader column={column} name={t('part.rest.kind')} />,
+          cell: cell => <SelectCell cell={cell} items={kindItems} disabled={cell.row.original.known} />
+        }),
+        columnHelper.accessor('name', {
+          header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
+          cell: cell => <InputCell cell={cell} disabled={cell.row.original.known} />
+        }),
+        columnHelper.accessor('expression', {
+          header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
+          cell: cell => (
+            <ScriptCell
+              cell={cell}
+              type={cell.row.original.type ?? IVY_SCRIPT_TYPES.OBJECT}
+              browsers={['attr', 'func', 'type', 'cms']}
+              placeholder={cell.row.original.type}
+            />
+          )
+        })
+      ]),
     [kindItems, t]
   );
 
@@ -104,7 +102,6 @@ export const RestParameters = () => {
     }
     onChange(newData);
   };
-
 
   const table = useTable({
     ...tableOptions,

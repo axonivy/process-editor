@@ -39,22 +39,22 @@ const MailAttachmentsPart = () => {
 type MailAttachment = { attachment: string };
 const EMPTY_ATTACHMENT: MailAttachment = { attachment: '' } as const;
 
+const { columnHelper } = dataTableHelper<MailAttachment>();
+
 const MailAttachmentTable = () => {
   const { t } = useTranslation();
   const { config, update } = useMailData();
   const data = useMemo<MailAttachment[]>(() => config.attachments.map(filename => ({ attachment: filename })), [config.attachments]);
 
-  const { columnHelper } = dataTableHelper<MailAttachment>();
   const columns = useMemo(
-    () => columnHelper.columns([
-      {
-        id: 'attachment',
-        accessorFn: row => row.attachment,
-        cell: cell => (
-          <ScriptCell cell={cell} type='Attachment' browsers={['attr', 'func', 'type', 'cms']} placeholder={'Enter the Attachment'} />
-        )
-      }
-    ]),
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('attachment', {
+          cell: cell => (
+            <ScriptCell cell={cell} type='Attachment' browsers={['attr', 'func', 'type', 'cms']} placeholder={'Enter the Attachment'} />
+          )
+        })
+      ]),
     []
   );
 

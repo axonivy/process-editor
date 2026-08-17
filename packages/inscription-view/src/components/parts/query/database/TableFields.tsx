@@ -1,6 +1,5 @@
 import type { DatabaseColumn } from '@axonivy/process-editor-inscription-protocol';
-import { SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
-import { dataTableHelper } from '@axonivy/ui-components';
+import { dataTableHelper, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
 import type { RowSelectionState, SortingState } from '@tanstack/react-table';
 import { flexRender, useTable } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
@@ -16,6 +15,8 @@ import { useQueryData } from '../useQueryData';
 type Column = DatabaseColumn & {
   expression: string;
 };
+
+const { columnHelper, tableOptions } = dataTableHelper<Column>();
 
 export const TableFields = () => {
   const { t } = useTranslation();
@@ -34,32 +35,28 @@ export const TableFields = () => {
     return columnData;
   }, [columnMetas, config.query.sql.fields]);
 
-  const { columnHelper, tableOptions } = dataTableHelper<Column>();
-
   const columns = useMemo(
-    () => columnHelper.columns([
-      {
-        accessorKey: 'name',
-        header: ({ column }) => <SortableHeader column={column} name={t('label.column')} />,
-        cell: cell => (
-          <>
-            <span>{cell.getValue()}</span>
-            <span className='row-expand-label-info'> : {cell.row.original.type}</span>
-          </>
-        )
-      },
-      {
-        accessorKey: 'expression',
-        header: ({ column }) => <SortableHeader column={column} name={t('common.label.value')} />,
-        cell: cell => <ScriptCell cell={cell} type={cell.row.original.ivyType} browsers={['attr', 'func', 'type', 'cms']} />
-      }
-    ]),
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('name', {
+          header: ({ column }) => <SortableHeader column={column} name={t('label.column')} />,
+          cell: cell => (
+            <>
+              <span>{cell.getValue()}</span>
+              <span className='row-expand-label-info'> : {cell.row.original.type}</span>
+            </>
+          )
+        }),
+        columnHelper.accessor('expression', {
+          header: ({ column }) => <SortableHeader column={column} name={t('common.label.value')} />,
+          cell: cell => <ScriptCell cell={cell} type={cell.row.original.ivyType} browsers={['attr', 'func', 'type', 'cms']} />
+        })
+      ]),
     [t]
   );
 
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-
 
   const table = useTable({
     ...tableOptions,

@@ -1,8 +1,16 @@
 import type { VariableInfo } from '@axonivy/process-editor-inscription-protocol';
-import { ExpandableHeader, TableBody, TableHead, TableHeader, TableRow, useTableKeyHandler } from '@axonivy/ui-components';
-import { dataTreeHelper, type DataTableFeatures } from '@axonivy/ui-components';
+import {
+  dataTreeHelper,
+  ExpandableHeader,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+  useTableKeyHandler,
+  type DataTableFeatures
+} from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ExpandedState, Row, RowSelectionState } from '@tanstack/react-table';
+import type { Row } from '@tanstack/react-table';
 import { flexRender, useTable } from '@tanstack/react-table';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -28,6 +36,8 @@ export const useAttributeBrowser = (onDoubleClick: () => void, location: string)
     accept: () => value
   };
 };
+
+const { columnHelper, tableOptions } = dataTreeHelper<MappingTreeData>();
 
 const AttributeBrowser = ({
   value,
@@ -70,51 +80,35 @@ const AttributeBrowser = ({
     [varInfo]
   );
 
-  const { columnHelper, tableOptions } = dataTreeHelper<MappingTreeData>();
-
   const columns = useMemo(
-    () => columnHelper.columns([
-      {
-        accessorFn: row => row.attribute,
-        id: 'attribute',
-        header: header => <ExpandableHeader header={header} name={t('browser.attribute.title')} />,
-        cell: cell => (
-          <ExpandableCell
-            cell={cell}
-            isLoaded={cell.row.original.isLoaded}
-            loadChildren={() => loadChildren(cell.row.original)}
-            title={cell.row.original.description}
-            additionalInfo={cell.row.original.simpleType}
-            icon={IvyIcons.Attribute}
-          />
-        )
-      }
-    ]),
+    () =>
+      columnHelper.columns([
+        {
+          accessorFn: row => row.attribute,
+          id: 'attribute',
+          header: header => <ExpandableHeader header={header} name={t('browser.attribute.title')} />,
+          cell: cell => (
+            <ExpandableCell
+              cell={cell}
+              isLoaded={cell.row.original.isLoaded}
+              loadChildren={() => loadChildren(cell.row.original)}
+              title={cell.row.original.description}
+              additionalInfo={cell.row.original.simpleType}
+              icon={IvyIcons.Attribute}
+            />
+          )
+        }
+      ]),
     [loadChildren, t]
   );
-
-  const [expanded, setExpanded] = useState<ExpandedState>(true);
-  const [globalFilter, setGlobalFilter] = useState('');
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-
 
   const table = useTable({
     ...tableOptions,
     data: tree,
     columns: columns,
-    state: {
-      expanded,
-      globalFilter,
-      rowSelection
-    },
-    filterFromLeafRows: true,
     enableRowSelection: true,
     enableMultiRowSelection: false,
-    enableSubRowSelection: false,
-    onExpandedChange: setExpanded,
-    onGlobalFilterChange: setGlobalFilter,
-    onRowSelectionChange: setRowSelection,
-    getSubRows: row => row.children,
+    enableSubRowSelection: false
   });
 
   const { handleKeyDown } = useTableKeyHandler({
@@ -126,18 +120,21 @@ const AttributeBrowser = ({
   });
 
   useEffect(() => {
-    const selectedRow = table.getSelectedRowModel().flatRows[0];
-    if (selectedRow === undefined) {
-      return;
-    }
-    // eslint-disable-next-line @eslint-react/set-state-in-effect
-    setShowHelper(true);
-    onChange({ value: calcFullPathId(selectedRow) });
-  }, [onChange, rowSelection, table]);
+    const subscribed = table.atoms.rowSelection.subscribe(() => {
+      const selectedRow = table.getSelectedRowModel().flatRows[0];
+      if (selectedRow === undefined) {
+        return;
+      }
+
+      setShowHelper(true);
+      onChange({ value: calcFullPathId(selectedRow) });
+    });
+    return () => subscribed.unsubscribe();
+  }, [onChange, table]);
 
   return (
     <>
-      <SearchTable search={{ value: globalFilter, onChange: setGlobalFilter }} onKeyDown={e => handleKeyDown(e, onDoubleClick)}>
+      <SearchTable table={table} onKeyDown={e => handleKeyDown(e, onDoubleClick)}>
         <TableHeader>
           {table.getHeaderGroups().map(headerGroup => (
             <TableRow key={headerGroup.id}>

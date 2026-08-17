@@ -1,12 +1,7 @@
 import type { RoleMeta } from '@axonivy/process-editor-inscription-protocol';
-import { Flex, TableBody, TableCell, TableRow, useTableKeyHandler } from '@axonivy/ui-components';
-import { dataTreeHelper } from '@axonivy/ui-components';
+import { dataTreeHelper, Flex, TableBody, TableCell, TableRow, useTableKeyHandler } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import {
-  useTable,
-  type ExpandedState,
-  type RowSelectionState
-} from '@tanstack/react-table';
+import { useTable } from '@tanstack/react-table';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRoles } from '../../parts/common/role/useRoles';
@@ -40,61 +35,57 @@ type RoleBrowserProps = {
   onDoubleClick: () => void;
 };
 
+const { columnHelper, tableOptions } = dataTreeHelper<RoleMeta>();
+
 const RoleBrowser = ({ value, showtaskRoles, onChange, onDoubleClick }: RoleBrowserProps) => {
   const { t } = useTranslation();
   const { rolesAsTree: roleItems } = useRoles(showtaskRoles);
 
   const [showHelper, setShowHelper] = useState(false);
 
-  const { columnHelper, tableOptions } = dataTreeHelper<RoleMeta>();
-
   const columns = useMemo(
-    () => columnHelper.columns([
-      {
-        accessorFn: row => row.id,
-        id: 'name',
-        cell: cell => {
-          return <ExpandableCell cell={cell} title={cell.row.original.id} icon={IvyIcons.User} additionalInfo={cell.row.original.label} />;
-        }
-      }
-    ]),
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('id', {
+          id: 'name',
+          cell: cell => {
+            return (
+              <ExpandableCell cell={cell} title={cell.row.original.id} icon={IvyIcons.User} additionalInfo={cell.row.original.label} />
+            );
+          }
+        })
+      ]),
     []
   );
-
-  const [expanded, setExpanded] = useState<ExpandedState>({ [0]: true, [1]: true, [2]: true, [3]: true });
-  const [globalFilter, setGlobalFilter] = useState('');
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-
 
   const table = useTable({
     ...tableOptions,
     data: roleItems,
     columns: columns,
-    state: { expanded, globalFilter, rowSelection },
-    filterFromLeafRows: true,
+    initialState: {
+      expanded: { [0]: true, [1]: true, [2]: true, [3]: true }
+    },
     enableRowSelection: true,
     enableMultiRowSelection: false,
-    enableSubRowSelection: false,
-    onExpandedChange: setExpanded,
-    onGlobalFilterChange: setGlobalFilter,
-    getSubRows: row => row.children,
-    onRowSelectionChange: setRowSelection,
+    enableSubRowSelection: false
   });
   const { handleKeyDown } = useTableKeyHandler({ table, data: roleItems });
 
   useEffect(() => {
-    const selectedRow = table.getSelectedRowModel().flatRows[0];
-    if (selectedRow === undefined) {
-      onChange({ value: '' });
-      // eslint-disable-next-line @eslint-react/set-state-in-effect
-      setShowHelper(false);
-      return;
-    }
+    const subscription = table.atoms.rowSelection.subscribe(() => {
+      const selectedRow = table.getSelectedRowModel().flatRows[0];
+      if (selectedRow === undefined) {
+        onChange({ value: '' });
 
-    // eslint-disable-next-line @eslint-react/set-state-in-effect
-    setShowHelper(true);
-    onChange({ value: selectedRow.original.id });
-  }, [onChange, rowSelection, table]);
+        setShowHelper(false);
+        return;
+      }
+
+      setShowHelper(true);
+      onChange({ value: selectedRow.original.id });
+    });
+    return () => subscription.unsubscribe();
+  }, [onChange, table]);
 
   const [addedRole, setAddedRole] = useState('');
 
@@ -105,8 +96,8 @@ const RoleBrowser = ({ value, showtaskRoles, onChange, onDoubleClick }: RoleBrow
     const newRow = table.getRowModel().flatRows.find(row => row.original.id === addedRole);
     if (newRow) {
       newRow.getParentRow()?.toggleExpanded(true);
-      // eslint-disable-next-line @eslint-react/set-state-in-effect
-      setRowSelection({ [newRow.id]: true });
+
+      table.setRowSelection({ [newRow.id]: true });
       // eslint-disable-next-line @eslint-react/set-state-in-effect
       setAddedRole('');
     }
@@ -118,13 +109,10 @@ const RoleBrowser = ({ value, showtaskRoles, onChange, onDoubleClick }: RoleBrow
         <AddRolePopover value={value} table={table} setAddedRoleName={setAddedRole} />
       </Flex>
       <SearchTable
-        search={{
-          value: globalFilter,
-          onChange: newFilterValue => {
-            setGlobalFilter(newFilterValue);
-            setRowSelection({});
-            setExpanded(true);
-          }
+        table={table}
+        onSearchChange={filter => {
+          table.setExpanded(filter.length > 0 ? true : { [0]: true });
+          table.setRowSelection({});
         }}
         onKeyDown={e => handleKeyDown(e, onDoubleClick)}
       >

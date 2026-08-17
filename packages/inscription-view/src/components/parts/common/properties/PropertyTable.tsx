@@ -1,7 +1,15 @@
 import type { ScriptMappings } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { ComboCell, SortableHeader, Table, TableAddRow, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
-import { dataTableHelper } from '@axonivy/ui-components';
+import {
+  ComboCell,
+  dataTableHelper,
+  SortableHeader,
+  Table,
+  TableAddRow,
+  TableBody,
+  TableCell,
+  TableResizableHeader
+} from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { RowSelectionState, SortingState } from '@tanstack/react-table';
 import { flexRender, useTable } from '@tanstack/react-table';
@@ -26,6 +34,8 @@ type PropertyTableProps = {
 
 const EMPTY_PROPERTY: Property = { expression: '', name: '' };
 
+const { columnHelper, tableOptions } = dataTableHelper<Property>();
+
 export const PropertyTable = ({ properties, update, knownProperties, hideProperties, label, defaultOpen }: PropertyTableProps) => {
   const { t } = useTranslation();
   const data = useMemo(() => Property.of(properties), [properties]);
@@ -34,28 +44,25 @@ export const PropertyTable = ({ properties, update, knownProperties, hidePropert
 
   const knownPropertyItems = knownProperties.map<ComboboxItem>(prop => ({ value: prop }));
 
-  const { columnHelper, tableOptions } = dataTableHelper<Property>();
-
   const columns = useMemo(
-    () => columnHelper.columns([
-      {
-        accessorKey: 'name',
-        header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
-        cell: cell => <ComboCell cell={cell} options={knownPropertyItems} />
-      },
-      {
-        accessorKey: 'expression',
-        header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
-        cell: cell => (
-          <ScriptCell
-            cell={cell}
-            type={IVY_SCRIPT_TYPES.OBJECT}
-            browsers={['attr', 'func', 'type', 'cms']}
-            placeholder={t('label.enterExpression')}
-          />
-        )
-      }
-    ]),
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('name', {
+          header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
+          cell: cell => <ComboCell cell={cell} options={knownPropertyItems} />
+        }),
+        columnHelper.accessor('expression', {
+          header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
+          cell: cell => (
+            <ScriptCell
+              cell={cell}
+              type={IVY_SCRIPT_TYPES.OBJECT}
+              browsers={['attr', 'func', 'type', 'cms']}
+              placeholder={t('label.enterExpression')}
+            />
+          )
+        })
+      ]),
     [knownPropertyItems, t]
   );
 
@@ -83,7 +90,6 @@ export const PropertyTable = ({ properties, update, knownProperties, hidePropert
     }
     onChange(newData);
   };
-
 
   const table = useTable({
     ...tableOptions,

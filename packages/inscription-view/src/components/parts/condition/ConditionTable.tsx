@@ -1,6 +1,5 @@
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { ReorderHandleWrapper, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
-import { dataTableHelper } from '@axonivy/ui-components';
+import { dataTableHelper, ReorderHandleWrapper, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { RowSelectionState, SortingState } from '@tanstack/react-table';
 import { flexRender, useTable } from '@tanstack/react-table';
@@ -18,6 +17,8 @@ const ConditionTypeCell = ({ condition }: { condition: Condition }) => {
   }
   return <span>⛔ {condition.fid}</span>;
 };
+
+const { columnHelper, tableOptions } = dataTableHelper<Condition>();
 
 const ConditionTable = ({ data, onChange }: { data: Condition[]; onChange: (change: Condition[]) => void }) => {
   const { t } = useTranslation();
@@ -38,36 +39,32 @@ const ConditionTable = ({ data, onChange }: { data: Condition[]; onChange: (chan
     onChange(newData);
   };
 
-  const { columnHelper, tableOptions } = dataTableHelper<Condition>();
-
   const columns = useMemo(
-    () => columnHelper.columns([
-      {
-        accessorKey: 'fid',
-        header: () => <span>{t('common.label.type')}</span>,
-        cell: cell => <ConditionTypeCell condition={cell.row.original} />
-      },
-      {
-        accessorKey: 'expression',
-        header: () => <span>{t('label.expression')}</span>,
-        cell: cell => (
-          <ReorderHandleWrapper>
-            <ScriptCell
-              cell={cell}
-              type={IVY_SCRIPT_TYPES.BOOLEAN}
-              browsers={['condition', 'attr', 'func']}
-              placeholder={t('label.enterExpression')}
-            />
-          </ReorderHandleWrapper>
-        )
-      }
-    ]),
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('fid', {
+          header: () => <span>{t('common.label.type')}</span>,
+          cell: cell => <ConditionTypeCell condition={cell.row.original} />
+        }),
+        columnHelper.accessor('expression', {
+          header: () => <span>{t('label.expression')}</span>,
+          cell: cell => (
+            <ReorderHandleWrapper>
+              <ScriptCell
+                cell={cell}
+                type={IVY_SCRIPT_TYPES.BOOLEAN}
+                browsers={['condition', 'attr', 'func']}
+                placeholder={t('label.enterExpression')}
+              />
+            </ReorderHandleWrapper>
+          )
+        })
+      ]),
     [t]
   );
 
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-
 
   const table = useTable({
     ...tableOptions,

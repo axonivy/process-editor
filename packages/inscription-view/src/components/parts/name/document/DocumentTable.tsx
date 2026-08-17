@@ -1,5 +1,14 @@
 import type { Document } from '@axonivy/process-editor-inscription-protocol';
-import { dataTableHelper, InputCell, SelectRow, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import {
+  dataTableHelper,
+  InputCell,
+  SelectRow,
+  SortableHeader,
+  Table,
+  TableBody,
+  TableCell,
+  TableResizableHeader
+} from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { flexRender } from '@tanstack/react-table';
 import { memo, useMemo } from 'react';
@@ -10,23 +19,22 @@ import { useResizableEditableTable } from '../../common/table/useResizableEditab
 
 const EMPTY_DOCUMENT: Document = { name: '', url: '' } as const;
 
+const { columnHelper } = dataTableHelper<Document>();
+
 const DocumentTable = ({ data, onChange }: { data: Document[]; onChange: (change: Document[]) => void }) => {
   const { t } = useTranslation();
-  const { columnHelper } = dataTableHelper<Document>();
   const columns = useMemo(
-    () => columnHelper.columns([
-      {
-        accessorKey: 'name',
-        header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
-        cell: cell => <InputCell cell={cell} placeholder={t('label.enterName')} />
-      },
-      {
-        accessorFn: row => row.url,
-        id: 'url',
-        header: ({ column }) => <SortableHeader column={column} name={t('label.URL')} />,
-        cell: cell => <InputCell cell={cell} placeholder={t('label.enterUrl')} />
-      }
-    ]),
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('name', {
+          header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
+          cell: cell => <InputCell cell={cell} placeholder={t('label.enterName')} />
+        }),
+        columnHelper.accessor('url', {
+          header: ({ column }) => <SortableHeader column={column} name={t('label.URL')} />,
+          cell: cell => <InputCell cell={cell} placeholder={t('label.enterUrl')} />
+        })
+      ]),
     [t]
   );
 

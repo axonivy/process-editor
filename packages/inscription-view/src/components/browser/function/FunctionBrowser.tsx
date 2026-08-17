@@ -1,12 +1,7 @@
 import type { Function } from '@axonivy/process-editor-inscription-protocol';
-import { TableBody, TableFooter, useTableKeyHandler } from '@axonivy/ui-components';
-import { dataTableHelper } from '@axonivy/ui-components';
+import { dataTableHelper, TableBody, TableFooter, useTableKeyHandler } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import {
-  useTable,
-  type ExpandedState,
-  type RowSelectionState
-} from '@tanstack/react-table';
+import { useTable } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import DOMPurify from 'dompurify';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -40,6 +35,8 @@ type FunctionBrowserProps = {
   onDoubleClick: () => void;
 };
 
+const { columnHelper, tableOptions } = dataTableHelper<Function>();
+
 const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProps) => {
   const { t } = useTranslation();
   const { context } = useEditorContext();
@@ -72,53 +69,44 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
   const [selectedFunctionDoc, setSelectedFunctionDoc] = useState('');
   const [showHelper, setShowHelper] = useState(false);
 
-  const { columnHelper, tableOptions } = dataTableHelper<Function>();
-
   const columns = useMemo(
-    () => columnHelper.columns([
-      {
-        accessorFn: row =>
-          `${row.name.split('.').pop()}${
-            row.isField === false ? `(${row.params.map(param => param.type.split('.').pop()).join(', ')})` : ''
-          }`,
-        id: 'name',
-        cell: cell => {
-          return (
-            <ExpandableCell
-              cell={cell}
-              title={cell.row.original.name}
-              icon={cell.row.original.isField ? IvyIcons.FolderOpen : IvyIcons.Function}
-              additionalInfo={cell.row.original.returnType ? cell.row.original.returnType.simpleName : t('browser.function.noType')}
-            />
-          );
-        }
-      }
-    ]),
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor(
+          row =>
+            `${row.name.split('.').pop()}${
+              row.isField === false ? `(${row.params.map(param => param.type.split('.').pop()).join(', ')})` : ''
+            }`,
+          {
+            id: 'name',
+            cell: cell => {
+              return (
+                <ExpandableCell
+                  cell={cell}
+                  title={cell.row.original.name}
+                  icon={cell.row.original.isField ? IvyIcons.FolderOpen : IvyIcons.Function}
+                  additionalInfo={cell.row.original.returnType ? cell.row.original.returnType.simpleName : t('browser.function.noType')}
+                />
+              );
+            }
+          }
+        )
+      ]),
     [t]
   );
-
-  const [expanded, setExpanded] = useState<ExpandedState>({ [0]: true });
-  const [globalFilter, setGlobalFilter] = useState('');
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-
 
   const table = useTable({
     ...tableOptions,
     data: sortedTree,
     columns: columns,
-    state: {
-      expanded,
-      globalFilter,
-      rowSelection
+    initialState: {
+      expanded: { [0]: true }
     },
     filterFromLeafRows: true,
     enableRowSelection: true,
     enableMultiRowSelection: false,
     enableSubRowSelection: false,
-    onExpandedChange: setExpanded,
-    onGlobalFilterChange: setGlobalFilter,
-    onRowSelectionChange: setRowSelection,
-    getSubRows: row => (row.returnType ? row.returnType.functions : []),
+    getSubRows: row => (row.returnType ? row.returnType.functions : [])
   });
   const { handleKeyDown } = useTableKeyHandler({ table, data: sortedTree });
   const { rows } = table.getRowModel();
@@ -132,48 +120,43 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
   });
 
   useEffect(() => {
-    const selectedRow = table.getSelectedRowModel().flatRows[0];
-    if (selectedRow === undefined) {
-      // eslint-disable-next-line @eslint-react/set-state-in-effect
-      setShowHelper(false);
-      onChange({ value: '' });
-      return;
-    }
-    //setup correct functionName for the accept-method
-    const parentNames = getParentNames(selectedRow);
-    const selectedName = parentNames.reverse().join('.');
-    onChange({ value: selectedName });
+    const subscription = table.atoms.rowSelection.subscribe(() => {
+      const selectedRow = table.getSelectedRowModel().flatRows[0];
+      if (selectedRow === undefined) {
+        setShowHelper(false);
+        onChange({ value: '' });
+        return;
+      }
+      //setup correct functionName for the accept-method
+      const parentNames = getParentNames(selectedRow);
+      const selectedName = parentNames.reverse().join('.');
+      onChange({ value: selectedName });
 
-    //setup Meta-Call for docApi
-    const parentRow = selectedRow.getParentRow();
-    // eslint-disable-next-line @eslint-react/set-state-in-effect
-    setType(
-      parentRow
-        ? parentRow.original.returnType.packageName + '.' + parentRow.original.returnType.simpleName
-        : selectedRow.original.returnType.packageName + '.' + selectedRow.original.returnType.simpleName
-    );
-    // eslint-disable-next-line @eslint-react/set-state-in-effect
-    setMethod(selectedRow.original.name);
-    // eslint-disable-next-line @eslint-react/set-state-in-effect
-    setParamTypes(selectedRow.original.params.map(param => param.type));
-    //setup Helpertext
-    // eslint-disable-next-line @eslint-react/set-state-in-effect
-    setSelectedFunctionDoc(doc);
-    // eslint-disable-next-line @eslint-react/set-state-in-effect
-    setShowHelper(true);
-  }, [doc, onChange, rowSelection, table]);
+      //setup Meta-Call for docApi
+      const parentRow = selectedRow.getParentRow();
+
+      setType(
+        parentRow
+          ? parentRow.original.returnType.packageName + '.' + parentRow.original.returnType.simpleName
+          : selectedRow.original.returnType.packageName + '.' + selectedRow.original.returnType.simpleName
+      );
+      setMethod(selectedRow.original.name);
+      setParamTypes(selectedRow.original.params.map(param => param.type));
+      //setup Helpertext
+      setSelectedFunctionDoc(doc);
+      setShowHelper(true);
+    });
+    return () => subscription.unsubscribe();
+  }, [doc, onChange, table]);
 
   return (
     <>
       <SearchTable
-        search={{
-          value: globalFilter,
-          onChange: newFilterValue => {
-            setGlobalFilter(newFilterValue);
-            setExpanded(newFilterValue.length > 0 ? true : { [0]: true });
-            setRowSelection({});
-            setRowNumber(100);
-          }
+        table={table}
+        onSearchChange={filter => {
+          table.setExpanded(filter.length > 0 ? true : { [0]: true });
+          table.setRowSelection({});
+          setRowNumber(100);
         }}
         onKeyDown={e => handleKeyDown(e, onDoubleClick)}
         ref={parentRef}
