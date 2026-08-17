@@ -1,8 +1,9 @@
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
 import { InputCell, SortableHeader, Table, TableAddRow, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import { dataTableHelper } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import type { RowSelectionState, SortingState } from '@tanstack/react-table';
+import { flexRender, useTable } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PathProvider } from '../../../../../context/usePath';
@@ -32,8 +33,10 @@ export const RestForm = () => {
 
   const onChange = (params: RestParam[]) => updateBody('form', toRestMap(params));
 
-  const columns = useMemo<ColumnDef<RestParam, string>[]>(
-    () => [
+  const { columnHelper, tableOptions } = dataTableHelper<RestParam>();
+
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorKey: 'name',
         header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
@@ -51,7 +54,7 @@ export const RestForm = () => {
           />
         )
       }
-    ],
+    ]),
     [t]
   );
 
@@ -83,7 +86,9 @@ export const RestForm = () => {
     onChange(newData);
   };
 
-  const table = useReactTable({
+
+  const table = useTable({
+    ...tableOptions,
     data,
     columns,
     state: { sorting, rowSelection },
@@ -94,10 +99,11 @@ export const RestForm = () => {
     enableSubRowSelection: false,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     meta: {
-      updateData: (rowId: string, columnId: string, value: string) => {
+      updateData: (rowId: string, columnId: string, value: unknown) => {
+        if (typeof value !== 'string') {
+          return;
+        }
         const rowIndex = parseInt(rowId);
         onChange(updateRestParams(data, rowIndex, columnId, value));
       }

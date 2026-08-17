@@ -1,9 +1,10 @@
 import type { ContentObject, ContentObjectType } from '@axonivy/process-editor-inscription-protocol';
 import { Button, Flex, Message, SelectRow, TableBody, TableCell, toast, useTableKeyHandler } from '@axonivy/ui-components';
+import { dataTreeHelper } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useQueryClient } from '@tanstack/react-query';
-import type { ColumnDef, ColumnFiltersState, ExpandedState, RowSelectionState, VisibilityState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getExpandedRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table';
+import type { ColumnFiltersState, ColumnVisibilityState, ExpandedState, RowSelectionState } from '@tanstack/react-table';
+import { flexRender, useTable } from '@tanstack/react-table';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
@@ -90,8 +91,10 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
     }
   );
 
-  const columns = useMemo<ColumnDef<ContentObject, string>[]>(
-    () => [
+  const { columnHelper, tableOptions } = dataTreeHelper<ContentObject>();
+
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorFn: row => row.name,
         id: 'name',
@@ -115,26 +118,28 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
       {
         accessorFn: row => row.type,
         id: 'type',
-        cell: cell => <span title={cell.row.original.type}>{cell.getValue() as string}</span>
+        cell: cell => <span title={cell.row.original.type}>{cell.getValue()}</span>
       },
       {
         accessorFn: row => JSON.stringify(row.values),
         id: 'values',
         cell: cell => <span title={JSON.stringify(cell.row.original.values)}>{JSON.stringify(cell.getValue())}</span>
       }
-    ],
+    ]),
     []
   );
 
   const [expanded, setExpanded] = useState<ExpandedState>(false as ExpandedState);
   const [globalFilter, setGlobalFilter] = useState('');
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({ type: false, values: false });
+  const [columnVisibility, setColumnVisibility] = useState<ColumnVisibilityState>({ type: false, values: false });
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
     typeFilter === 'NONE' || typeFilter === undefined ? [] : [{ id: 'type', value: typeFilter }]
   );
 
-  const table = useReactTable({
+
+  const table = useTable({
+    ...tableOptions,
     data: tree,
     columns: columns,
     state: {
@@ -153,9 +158,6 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
     onColumnFiltersChange: setColumnFilters,
     onRowSelectionChange: setRowSelection,
     getSubRows: row => row.children,
-    getCoreRowModel: getCoreRowModel(),
-    getExpandedRowModel: getExpandedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility
   });
   const { handleKeyDown } = useTableKeyHandler({ table, data: tree });

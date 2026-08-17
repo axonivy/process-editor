@@ -11,9 +11,10 @@ import {
   TableCell,
   TableResizableHeader
 } from '@axonivy/ui-components';
+import { dataTableHelper } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import type { RowSelectionState, SortingState } from '@tanstack/react-table';
+import { flexRender, useTable } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
@@ -64,8 +65,10 @@ export const TableSort = () => {
   const columnItems = useMeta('meta/database/columns', { context, database: config.query.dbName, table: config.query.sql.table }, []).data;
   const orderItems = useMemo<SelectItem[]>(() => Object.entries(QUERY_ORDER).map(([label, value]) => ({ label, value })), []);
 
-  const columns = useMemo<ColumnDef<Column, string>[]>(
-    () => [
+  const { columnHelper, tableOptions } = dataTableHelper<Column>();
+
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorKey: 'name',
         header: () => <span>{t('label.column')}</span>,
@@ -80,7 +83,7 @@ export const TableSort = () => {
           </ReorderHandleWrapper>
         )
       }
-    ],
+    ]),
     [columnItems, orderItems, t]
   );
 
@@ -92,7 +95,9 @@ export const TableSort = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
-  const table = useReactTable({
+
+  const table = useTable({
+    ...tableOptions,
     data,
     columns,
     state: { sorting, rowSelection },
@@ -103,10 +108,11 @@ export const TableSort = () => {
     enableSubRowSelection: false,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     meta: {
-      updateData: (rowId: string, columnId: string, value: string) => {
+      updateData: (rowId: string, columnId: string, value: unknown) => {
+        if (typeof value !== 'string') {
+          return;
+        }
         const rowIndex = parseInt(rowId);
         const newData = data.map((row, index) => {
           if (index === rowIndex && data[rowIndex]) {

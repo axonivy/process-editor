@@ -1,12 +1,9 @@
 import type { RoleMeta } from '@axonivy/process-editor-inscription-protocol';
 import { Flex, TableBody, TableCell, TableRow, useTableKeyHandler } from '@axonivy/ui-components';
+import { dataTreeHelper } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import {
-  getCoreRowModel,
-  getExpandedRowModel,
-  getFilteredRowModel,
-  useReactTable,
-  type ColumnDef,
+  useTable,
   type ExpandedState,
   type RowSelectionState
 } from '@tanstack/react-table';
@@ -49,8 +46,10 @@ const RoleBrowser = ({ value, showtaskRoles, onChange, onDoubleClick }: RoleBrow
 
   const [showHelper, setShowHelper] = useState(false);
 
-  const columns = useMemo<ColumnDef<RoleMeta, string>[]>(
-    () => [
+  const { columnHelper, tableOptions } = dataTreeHelper<RoleMeta>();
+
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorFn: row => row.id,
         id: 'name',
@@ -58,7 +57,7 @@ const RoleBrowser = ({ value, showtaskRoles, onChange, onDoubleClick }: RoleBrow
           return <ExpandableCell cell={cell} title={cell.row.original.id} icon={IvyIcons.User} additionalInfo={cell.row.original.label} />;
         }
       }
-    ],
+    ]),
     []
   );
 
@@ -66,7 +65,9 @@ const RoleBrowser = ({ value, showtaskRoles, onChange, onDoubleClick }: RoleBrow
   const [globalFilter, setGlobalFilter] = useState('');
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
-  const table = useReactTable({
+
+  const table = useTable({
+    ...tableOptions,
     data: roleItems,
     columns: columns,
     state: { expanded, globalFilter, rowSelection },
@@ -77,10 +78,7 @@ const RoleBrowser = ({ value, showtaskRoles, onChange, onDoubleClick }: RoleBrow
     onExpandedChange: setExpanded,
     onGlobalFilterChange: setGlobalFilter,
     getSubRows: row => row.children,
-    getExpandedRowModel: getExpandedRowModel(),
     onRowSelectionChange: setRowSelection,
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel()
   });
   const { handleKeyDown } = useTableKeyHandler({ table, data: roleItems });
 

@@ -1,4 +1,5 @@
 import { IvyIcons } from '@axonivy/ui-icons';
+import type { DataTableFeatures } from '@axonivy/ui-components';
 import type { ColumnFiltersState, ExpandedStateList, Row } from '@tanstack/react-table';
 import type { Dispatch } from 'react';
 import { useState } from 'react';
@@ -53,7 +54,7 @@ export const useTableOnlyInscribed = (): TableFilter<ColumnFiltersState> => {
   };
 };
 
-export const calcFullPathId = (row: Row<MappingTreeData>) => {
+export const calcFullPathId = (row: Row<DataTableFeatures, MappingTreeData>) => {
   return [...row.getParentRows().map(parent => parent.original.attribute), row.original.attribute].join('.');
 };
 

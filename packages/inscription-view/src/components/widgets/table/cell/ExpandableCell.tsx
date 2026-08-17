@@ -1,11 +1,11 @@
-import { Button, Flex } from '@axonivy/ui-components';
+import { Button, type DataTableFeatures, Flex } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { CellContext } from '@tanstack/react-table';
+import type { CellContext, RowData } from '@tanstack/react-table';
 import IvyIcon from '../../IvyIcon';
 import './ExpandableCell.css';
 
-type ExpandableCellProps<TData> = {
-  cell: CellContext<TData, string>;
+type ExpandableCellProps<TData extends RowData> = {
+  cell: CellContext<DataTableFeatures, TData, string>;
   isLoaded?: boolean;
   loadChildren?: () => void;
   isUnknown?: boolean;
@@ -14,7 +14,7 @@ type ExpandableCellProps<TData> = {
   additionalInfo?: string;
 };
 
-export function ExpandableCell<TData>({
+export function ExpandableCell<TData extends RowData>({
   cell,
   isLoaded,
   loadChildren,
@@ -64,7 +64,7 @@ export function ExpandableCell<TData>({
       ) : (
         <>{icon && <IvyIcon icon={icon} />}</>
       )}
-      <span className={additionalInfo ? 'row-expand-label' : ''}>{cell.getValue() as string}</span>
+      <span className={additionalInfo ? 'row-expand-label' : ''}>{cell.getValue()}</span>
       {additionalInfo && <span className='row-expand-label-info'> : {additionalInfo}</span>}
     </Flex>
   );

@@ -1,7 +1,6 @@
 import type { StartCustomStartField } from '@axonivy/process-editor-inscription-protocol';
-import { ComboCell, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import { ComboCell, dataTableHelper, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -32,8 +31,9 @@ const StartCustomFieldTable = ({ data, onChange }: StartCustomFieldTableProps) =
     value: pcf.name
   }));
 
-  const columns = useMemo<ColumnDef<StartCustomStartField, string>[]>(
-    () => [
+  const { columnHelper } = dataTableHelper<StartCustomStartField>();
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorKey: 'name',
         header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
@@ -44,7 +44,7 @@ const StartCustomFieldTable = ({ data, onChange }: StartCustomFieldTableProps) =
         header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
         cell: cell => <MacroCell cell={cell} placeholder={'Enter an Expression'} />
       }
-    ],
+    ]),
     [data, predefinedCustomField, t]
   );
 

@@ -1,8 +1,9 @@
 import type { VariableInfo } from '@axonivy/process-editor-inscription-protocol';
 import { ExpandableHeader, TableBody, TableHead, TableHeader, TableRow, useTableKeyHandler } from '@axonivy/ui-components';
+import { dataTreeHelper, type DataTableFeatures } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef, ExpandedState, Row, RowSelectionState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getExpandedRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table';
+import type { ExpandedState, Row, RowSelectionState } from '@tanstack/react-table';
+import { flexRender, useTable } from '@tanstack/react-table';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
@@ -69,8 +70,10 @@ const AttributeBrowser = ({
     [varInfo]
   );
 
-  const columns = useMemo<ColumnDef<MappingTreeData, string>[]>(
-    () => [
+  const { columnHelper, tableOptions } = dataTreeHelper<MappingTreeData>();
+
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorFn: row => row.attribute,
         id: 'attribute',
@@ -86,7 +89,7 @@ const AttributeBrowser = ({
           />
         )
       }
-    ],
+    ]),
     [loadChildren, t]
   );
 
@@ -94,7 +97,9 @@ const AttributeBrowser = ({
   const [globalFilter, setGlobalFilter] = useState('');
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
-  const table = useReactTable({
+
+  const table = useTable({
+    ...tableOptions,
     data: tree,
     columns: columns,
     state: {
@@ -110,16 +115,13 @@ const AttributeBrowser = ({
     onGlobalFilterChange: setGlobalFilter,
     onRowSelectionChange: setRowSelection,
     getSubRows: row => row.children,
-    getCoreRowModel: getCoreRowModel(),
-    getExpandedRowModel: getExpandedRowModel(),
-    getFilteredRowModel: getFilteredRowModel()
   });
 
   const { handleKeyDown } = useTableKeyHandler({
     table,
     data: tree,
     options: {
-      lazyLoadChildren: (row: Row<MappingTreeData>) => loadChildren(row.original)
+      lazyLoadChildren: (row: Row<DataTableFeatures, MappingTreeData>) => loadChildren(row.original)
     }
   });
 

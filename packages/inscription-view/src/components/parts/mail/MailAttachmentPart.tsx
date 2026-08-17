@@ -1,7 +1,6 @@
 import type { MailData } from '@axonivy/process-editor-inscription-protocol';
-import { Table, TableBody, TableCell } from '@axonivy/ui-components';
+import { dataTableHelper, Table, TableBody, TableCell } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -45,8 +44,9 @@ const MailAttachmentTable = () => {
   const { config, update } = useMailData();
   const data = useMemo<MailAttachment[]>(() => config.attachments.map(filename => ({ attachment: filename })), [config.attachments]);
 
-  const columns = useMemo<ColumnDef<MailAttachment, string>[]>(
-    () => [
+  const { columnHelper } = dataTableHelper<MailAttachment>();
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         id: 'attachment',
         accessorFn: row => row.attachment,
@@ -54,7 +54,7 @@ const MailAttachmentTable = () => {
           <ScriptCell cell={cell} type='Attachment' browsers={['attr', 'func', 'type', 'cms']} placeholder={'Enter the Attachment'} />
         )
       }
-    ],
+    ]),
     []
   );
 

@@ -9,9 +9,10 @@ import {
   TableCell,
   TableResizableHeader
 } from '@axonivy/ui-components';
+import { dataTableHelper } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import type { RowSelectionState, SortingState } from '@tanstack/react-table';
+import { flexRender, useTable } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { deepEqual } from '../../../../../utils/equals';
@@ -46,8 +47,10 @@ export const RestParameters = () => {
     updateParameters({ queryParams: Parameter.to(props, 'Query'), templateParams: Parameter.to(props, 'Path') });
   const kindItems = useMemo<SelectItem[]>(() => Object.entries(REST_PARAM_KIND).map(([value, label]) => ({ label, value })), []);
 
-  const columns = useMemo<ColumnDef<Parameter, string>[]>(
-    () => [
+  const { columnHelper, tableOptions } = dataTableHelper<Parameter>();
+
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorKey: 'kind',
         header: ({ column }) => <SortableHeader column={column} name={t('part.rest.kind')} />,
@@ -70,7 +73,7 @@ export const RestParameters = () => {
           />
         )
       }
-    ],
+    ]),
     [kindItems, t]
   );
 
@@ -102,7 +105,9 @@ export const RestParameters = () => {
     onChange(newData);
   };
 
-  const table = useReactTable({
+
+  const table = useTable({
+    ...tableOptions,
     data,
     columns,
     state: { sorting, rowSelection },
@@ -113,10 +118,11 @@ export const RestParameters = () => {
     enableSubRowSelection: false,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     meta: {
-      updateData: (rowId: string, columnId: string, value: string) => {
+      updateData: (rowId: string, columnId: string, value: unknown) => {
+        if (typeof value !== 'string') {
+          return;
+        }
         const rowIndex = parseInt(rowId);
         onChange(Parameter.update(data, rowIndex, columnId, value));
       }

@@ -1,8 +1,8 @@
 import type { DataclassType } from '@axonivy/process-editor-inscription-protocol';
-import { TableBody, TableCell, useTableKeyHandler, type BrowserNode } from '@axonivy/ui-components';
+import { dataTreeHelper, type DataTableFeatures, TableBody, TableCell, useTableKeyHandler, type BrowserNode } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef, ExpandedState, FilterFn, RowSelectionState } from '@tanstack/react-table';
-import { getCoreRowModel, getExpandedRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table';
+import type { ExpandedState, FilterFn, RowSelectionState } from '@tanstack/react-table';
+import { useTable } from '@tanstack/react-table';
 import DOMPurify from 'dompurify';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -69,8 +69,9 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
   const [type, setType] = useState('');
   const { data: doc } = useMeta('meta/scripting/apiDoc', { context, method: '', paramTypes: [], type }, '');
 
-  const columns = useMemo<ColumnDef<BrowserNode<DataclassType>, string>[]>(
-    () => [
+  const { columnHelper, tableOptions } = dataTreeHelper<BrowserNode<DataclassType>>();
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorKey: 'value',
         cell: cell => (
@@ -82,7 +83,7 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
           />
         )
       }
-    ],
+    ]),
     []
   );
 
@@ -90,13 +91,14 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
   const [globalFilter, setGlobalFilter] = useState(initSearchFilter);
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
-  const regexFilter: FilterFn<BrowserNode<DataclassType>> = (row, columnId, filterValue) => {
+  const regexFilter: FilterFn<DataTableFeatures, BrowserNode<DataclassType>> = (row, _columnId, filterValue) => {
     const cellValue = row.original.value || '';
     const regexPattern = new RegExp(filterValue.replace(/\*/g, '.*'), 'i');
     return regexPattern.test(cellValue);
   };
 
-  const tableDynamic = useReactTable({
+  const tableDynamic = useTable({
+    ...tableOptions,
     data: types,
     columns: columns,
     state: {
@@ -114,9 +116,6 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
     getSubRows: row => row.children,
     onGlobalFilterChange: setGlobalFilter,
     onRowSelectionChange: setRowSelection,
-    getCoreRowModel: getCoreRowModel(),
-    getExpandedRowModel: getExpandedRowModel(),
-    getFilteredRowModel: getFilteredRowModel()
   });
 
   const { handleKeyDown } = useTableKeyHandler({ table: tableDynamic, data: types });

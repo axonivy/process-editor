@@ -1,12 +1,9 @@
 import { ExpandableHeader, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
-import type { ColumnDef, ColumnFiltersState, ExpandedState, RowSelectionState } from '@tanstack/react-table';
+import { dataTreeHelper } from '@axonivy/ui-components';
+import type { ColumnFiltersState, ExpandedState, RowSelectionState } from '@tanstack/react-table';
 import {
   flexRender,
-  getCoreRowModel,
-  getExpandedRowModel,
-  getFilteredRowModel,
-  getSortedRowModel,
-  useReactTable
+  useTable
 } from '@tanstack/react-table';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -47,8 +44,10 @@ const MappingTree = ({ data, variableInfo, onChange, globalFilter, onlyInscribed
     [variableInfo, setTree]
   );
 
-  const columns = useMemo<ColumnDef<MappingTreeData, string>[]>(
-    () => [
+  const { columnHelper, tableOptions } = dataTreeHelper<MappingTreeData>();
+
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorFn: row => row.attribute,
         id: 'attribute',
@@ -72,11 +71,13 @@ const MappingTree = ({ data, variableInfo, onChange, globalFilter, onlyInscribed
         cell: cell => <ScriptCell cell={cell} type={cell.row.original.type} browsers={browsers} placeholder={cell.row.original.type} />,
         filterFn: (row, columnId, filterValue) => filterValue || row.original.value.length > 0
       }
-    ],
+    ]),
     [browsers, loadChildren, t]
   );
 
-  const table = useReactTable({
+
+  const table = useTable({
+    ...tableOptions,
     data: tree,
     columns: columns,
     state: {
@@ -96,12 +97,11 @@ const MappingTree = ({ data, variableInfo, onChange, globalFilter, onlyInscribed
     onGlobalFilterChange: globalFilter.setFilter,
     onColumnFiltersChange: onlyInscribedFilter.setFilter,
     getSubRows: row => row.children,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getExpandedRowModel: getExpandedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
     meta: {
-      updateData: (rowId: string, columnId: string, value: string) => {
+      updateData: (rowId: string, columnId: string, value: unknown) => {
+        if (typeof value !== 'string') {
+          return;
+        }
         const rowIndex = rowId.split('.').map(parseFloat);
         setUpdateExpanded(false);
         onChange(MappingTreeData.to(MappingTreeData.updateDeep(tree, rowIndex, columnId, value)));

@@ -1,7 +1,6 @@
 import type { Document } from '@axonivy/process-editor-inscription-protocol';
-import { InputCell, SelectRow, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import { dataTableHelper, InputCell, SelectRow, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,8 +12,9 @@ const EMPTY_DOCUMENT: Document = { name: '', url: '' } as const;
 
 const DocumentTable = ({ data, onChange }: { data: Document[]; onChange: (change: Document[]) => void }) => {
   const { t } = useTranslation();
-  const columns = useMemo<ColumnDef<Document, string>[]>(
-    () => [
+  const { columnHelper } = dataTableHelper<Document>();
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorKey: 'name',
         header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
@@ -26,7 +26,7 @@ const DocumentTable = ({ data, onChange }: { data: Document[]; onChange: (change
         header: ({ column }) => <SortableHeader column={column} name={t('label.URL')} />,
         cell: cell => <InputCell cell={cell} placeholder={t('label.enterUrl')} />
       }
-    ],
+    ]),
     [t]
   );
 

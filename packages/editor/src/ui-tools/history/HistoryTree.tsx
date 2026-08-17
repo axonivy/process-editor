@@ -1,16 +1,19 @@
 // @jsxRuntime automatic
 import { type HistoryNode } from '@axonivy/process-editor-protocol';
-import { BasicTooltip, ExpandableCell, IvyIcon, Table, TableBody, TableCell, TableRow, useTableGlobalFilter } from '@axonivy/ui-components';
-import { IvyIcons } from '@axonivy/ui-icons';
 import {
-  flexRender,
-  getCoreRowModel,
-  getExpandedRowModel,
-  useReactTable,
-  type ColumnDef,
-  type ExpandedState,
-  type OnChangeFn
-} from '@tanstack/react-table';
+  BasicTooltip,
+  type DataTableFeatures,
+  dataTreeHelper,
+  ExpandableCell,
+  IvyIcon,
+  Table,
+  TableBody,
+  TableCell,
+  TableGlobalFilter,
+  TableRow
+} from '@axonivy/ui-components';
+import { IvyIcons } from '@axonivy/ui-icons';
+import { flexRender, useTable, type ExpandedState, type OnChangeFn } from '@tanstack/react-table';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { isExpandableDataNode, isHistoryNodeLoaded, type HistoryLazyState } from './history-tree-state';
@@ -24,12 +27,13 @@ export type HistoryTreeProps = {
   onLoadLazyNode: (node: HistoryNode) => void;
 };
 
+const { columnHelper, tableOptions } = dataTreeHelper<HistoryNode>();
+
 export const HistoryTree = ({ data, searchActive, expanded, onExpandedChange, lazyState, onLoadLazyNode }: HistoryTreeProps) => {
-  const globalFilter = useTableGlobalFilter({ searchAutoFocus: true });
-  const columns: ColumnDef<HistoryNode, string>[] = useMemo(
-    () => [
-      {
-        accessorKey: 'description',
+  const columns = useMemo(
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('description', {
         cell: cell => {
           const node = cell.row.original;
           const label =
@@ -60,29 +64,25 @@ export const HistoryTree = ({ data, searchActive, expanded, onExpandedChange, la
             </ExpandableCell>
           );
         }
-      }
-    ],
+        })
+      ]),
     [lazyState, onLoadLazyNode]
   );
-  const table = useReactTable({
-    ...globalFilter.options,
+  const table = useTable<DataTableFeatures, HistoryNode>({
+    ...tableOptions,
     data,
     columns,
-    getCoreRowModel: getCoreRowModel(),
-    getExpandedRowModel: getExpandedRowModel(),
-    getSubRows: row => row.children,
     getRowId: row => row.id,
     getRowCanExpand: row => row.original.children.length > 0,
     onExpandedChange,
     state: {
-      expanded,
-      ...globalFilter.tableState
+      expanded
     }
   });
 
   return (
     <>
-      {searchActive && globalFilter.filter}
+      {searchActive && <TableGlobalFilter table={table} autoFocus={true} />}
       <Table>
         <TableBody>
           {table.getRowModel().rows.map(row => (

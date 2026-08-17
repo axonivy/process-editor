@@ -1,12 +1,9 @@
 import type { Function } from '@axonivy/process-editor-inscription-protocol';
 import { TableBody, TableFooter, useTableKeyHandler } from '@axonivy/ui-components';
+import { dataTableHelper } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import {
-  getCoreRowModel,
-  getExpandedRowModel,
-  getFilteredRowModel,
-  useReactTable,
-  type ColumnDef,
+  useTable,
   type ExpandedState,
   type RowSelectionState
 } from '@tanstack/react-table';
@@ -75,8 +72,10 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
   const [selectedFunctionDoc, setSelectedFunctionDoc] = useState('');
   const [showHelper, setShowHelper] = useState(false);
 
-  const columns = useMemo<ColumnDef<Function, string>[]>(
-    () => [
+  const { columnHelper, tableOptions } = dataTableHelper<Function>();
+
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorFn: row =>
           `${row.name.split('.').pop()}${
@@ -94,7 +93,7 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
           );
         }
       }
-    ],
+    ]),
     [t]
   );
 
@@ -102,7 +101,9 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
   const [globalFilter, setGlobalFilter] = useState('');
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
-  const table = useReactTable({
+
+  const table = useTable({
+    ...tableOptions,
     data: sortedTree,
     columns: columns,
     state: {
@@ -118,9 +119,6 @@ const FunctionBrowser = ({ value, onChange, onDoubleClick }: FunctionBrowserProp
     onGlobalFilterChange: setGlobalFilter,
     onRowSelectionChange: setRowSelection,
     getSubRows: row => (row.returnType ? row.returnType.functions : []),
-    getCoreRowModel: getCoreRowModel(),
-    getExpandedRowModel: getExpandedRowModel(),
-    getFilteredRowModel: getFilteredRowModel()
   });
   const { handleKeyDown } = useTableKeyHandler({ table, data: sortedTree });
   const { rows } = table.getRowModel();

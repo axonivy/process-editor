@@ -1,7 +1,8 @@
 import type { DatabaseColumn } from '@axonivy/process-editor-inscription-protocol';
-import { SortableHeader, Table, TableBody, TableCell, TableResizableHeader, TableRow } from '@axonivy/ui-components';
-import type { ColumnDef, Row, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import { type DataTableFeatures, SortableHeader, Table, TableBody, TableCell, TableResizableHeader, TableRow } from '@axonivy/ui-components';
+import { dataTableHelper } from '@axonivy/ui-components';
+import type { Row, SortingState } from '@tanstack/react-table';
+import { flexRender, useTable } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
@@ -26,14 +27,16 @@ export const TableReadFields = () => {
     return columnMetas.map<Column>(c => ({ ...c, selected: select.includes(c.name) }));
   }, [columnMetas, config.query.sql.select]);
 
-  const columns = useMemo<ColumnDef<Column>[]>(
-    () => [
+  const { columnHelper, tableOptions } = dataTableHelper<Column>();
+
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorKey: 'name',
         header: ({ column }) => <SortableHeader column={column} name={t('label.column')} />,
         cell: cell => (
           <>
-            <span>{cell.getValue() as string}</span>
+            <span>{cell.getValue()}</span>
             <span className='row-expand-label-info'> : {cell.row.original.type}</span>
           </>
         )
@@ -43,23 +46,23 @@ export const TableReadFields = () => {
         header: ({ column }) => <SortableHeader column={column} name={t('part.db.read')} />,
         cell: cell => <span>{(cell.getValue() as boolean) ? '✅' : ''}</span>
       }
-    ],
+    ]),
     [t]
   );
 
   const [sorting, setSorting] = useState<SortingState>([]);
-  const table = useReactTable({
+
+  const table = useTable({
+    ...tableOptions,
     data,
     columns,
     state: { sorting },
     columnResizeMode: 'onChange',
     columnResizeDirection: 'ltr',
     onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel()
   });
 
-  const selectRow = (row: Row<Column>) => {
+  const selectRow = (row: Row<DataTableFeatures, Column>) => {
     const column = row.original.name;
     const select = data.filter(c => c.selected).map(c => c.name);
     const index = select.indexOf(column);

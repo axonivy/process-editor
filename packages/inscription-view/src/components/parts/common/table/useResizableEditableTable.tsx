@@ -1,22 +1,24 @@
-import { TableAddRow } from '@axonivy/ui-components';
+import { dataTableHelper, TableAddRow, type DataTableFeatures } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef, Row, RowSelectionState, SortingState } from '@tanstack/react-table';
-import { getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import type { Row, RowData, RowSelectionState, SortingState } from '@tanstack/react-table';
+import { useTable } from '@tanstack/react-table';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { deepEqual } from '../../../../utils/equals';
 import type { FieldsetControl } from '../../../widgets/fieldset/fieldset-control';
 import { focusNewCell } from './cellFocus-utils';
 
-interface UseResizableEditableTableProps<TData> {
+type DataTableColumns<TData extends RowData> = Parameters<ReturnType<typeof dataTableHelper<TData>>['columnHelper']['columns']>[0];
+
+interface UseResizableEditableTableProps<TData extends RowData> {
   data: TData[];
-  columns: ColumnDef<TData, string>[];
+  columns: DataTableColumns<TData>;
   onChange: (change: TData[]) => void;
   emptyDataObject: TData;
   specialUpdateData?: (data: Array<TData>, rowIndex: number, columnId: string) => void;
 }
 
-const useResizableEditableTable = <TData,>({
+const useResizableEditableTable = <TData extends RowData,>({
   data,
   columns,
   onChange,
@@ -33,7 +35,10 @@ const useResizableEditableTable = <TData,>({
     onChange(tableData.filter(obj => !deepEqual(obj, emptyDataObject)));
   };
 
-  const updateData = (rowId: string, columnId: string, value: string) => {
+  const updateData = (rowId: string, columnId: string, value: unknown) => {
+    if (typeof value !== 'string') {
+      return;
+    }
     const rowIndex = parseInt(rowId);
     const updatedData = tableData.map((row, index) => {
       if (index === rowIndex && tableData[rowIndex]) {
@@ -52,7 +57,10 @@ const useResizableEditableTable = <TData,>({
     }
   };
 
-  const table = useReactTable({
+  const { tableOptions } = dataTableHelper<TData>();
+
+  const table = useTable({
+    ...tableOptions,
     data: tableData,
     columns,
     state: { sorting, rowSelection },
@@ -63,8 +71,6 @@ const useResizableEditableTable = <TData,>({
     enableSubRowSelection: false,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     meta: { updateData }
   });
 
@@ -100,7 +106,7 @@ const useResizableEditableTable = <TData,>({
     }
   };
 
-  const selectedRowActions = (additionalActionsSupplier?: (row: Row<TData>, rowIndex: number) => FieldsetControl[]) => {
+  const selectedRowActions = (additionalActionsSupplier?: (row: Row<DataTableFeatures, TData>, rowIndex: number) => FieldsetControl[]) => {
     if (table.getSelectedRowModel().rows.length === 0) {
       return [];
     }

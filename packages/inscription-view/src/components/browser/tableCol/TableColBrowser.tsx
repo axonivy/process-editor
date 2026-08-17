@@ -1,7 +1,8 @@
 import type { DatabaseColumn } from '@axonivy/process-editor-inscription-protocol';
 import { TableBody, TableCell, TableRow, useTableKeyHandler } from '@axonivy/ui-components';
+import { dataTableHelper } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { getCoreRowModel, getFilteredRowModel, useReactTable, type ColumnDef, type RowSelectionState } from '@tanstack/react-table';
+import { useTable, type RowSelectionState } from '@tanstack/react-table';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
@@ -52,28 +53,32 @@ const TableColumnBrowser = ({ value, onChange, onDoubleClick }: TableColumnBrows
     setData(columns);
   }, [columnMetas, config.query.sql.select]);
 
-  const columns = useMemo<ColumnDef<DatabaseColumn>[]>(
-    () => [
+  const { columnHelper, tableOptions } = dataTableHelper<DatabaseColumn>();
+
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorFn: row => row.name,
         id: 'name',
         cell: cell => {
           return (
             <>
-              <span>{cell.getValue() as string}</span>
+              <span>{cell.getValue()}</span>
               <span className='row-expand-label-info'>: {cell.row.original.type}</span>
             </>
           );
         }
       }
-    ],
+    ]),
     []
   );
 
   const [globalFilter, setGlobalFilter] = useState('');
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
-  const table = useReactTable({
+
+  const table = useTable({
+    ...tableOptions,
     data: data,
     columns: columns,
     state: {
@@ -86,8 +91,6 @@ const TableColumnBrowser = ({ value, onChange, onDoubleClick }: TableColumnBrows
     enableSubRowSelection: false,
     onGlobalFilterChange: setGlobalFilter,
     onRowSelectionChange: setRowSelection,
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel()
   });
   const { handleKeyDown } = useTableKeyHandler({ table, data });
   useEffect(() => {

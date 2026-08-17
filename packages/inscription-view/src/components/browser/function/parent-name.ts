@@ -1,7 +1,8 @@
 import type { Function } from '@axonivy/process-editor-inscription-protocol';
+import type { DataTableFeatures } from '@axonivy/ui-components';
 import type { Row } from '@tanstack/react-table';
 
-export const getParentNames = (currentRow: Row<Function>, parentNames: string[] = []): string[] => {
+export const getParentNames = (currentRow: Row<DataTableFeatures, Function>, parentNames: string[] = []): string[] => {
   parentNames.push(
     currentRow.original.isField
       ? currentRow.original.name

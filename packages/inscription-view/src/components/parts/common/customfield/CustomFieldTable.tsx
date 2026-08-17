@@ -1,8 +1,7 @@
 import type { WfCustomField, WorkflowType } from '@axonivy/process-editor-inscription-protocol';
 import { CUSTOM_FIELD_TYPE } from '@axonivy/process-editor-inscription-protocol';
-import { ComboCell, SelectCell, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import { ComboCell, dataTableHelper, SelectCell, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -31,8 +30,9 @@ const CustomFieldTable = ({ data, onChange, type }: CustomFieldTableProps) => {
 
   const predefinedCustomField: WfCustomField[] = useMeta('meta/workflow/customFields', { context, type: type }, []).data;
 
-  const columns = useMemo<ColumnDef<WfCustomField, string>[]>(
-    () => [
+  const { columnHelper } = dataTableHelper<WfCustomField>();
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorKey: 'name',
         header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
@@ -53,7 +53,7 @@ const CustomFieldTable = ({ data, onChange, type }: CustomFieldTableProps) => {
         header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
         cell: cell => <ScriptCell cell={cell} type={CUSTOM_FIELD_TYPE[cell.row.original.type]} browsers={['attr', 'func', 'type', 'cms']} />
       }
-    ],
+    ]),
     [data, items, predefinedCustomField, t]
   );
 

@@ -1,8 +1,9 @@
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
 import { ReorderHandleWrapper, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import { dataTableHelper } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import type { RowSelectionState, SortingState } from '@tanstack/react-table';
+import { flexRender, useTable } from '@tanstack/react-table';
 import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { FieldsetControl } from '../../widgets/fieldset/fieldset-control';
@@ -37,8 +38,10 @@ const ConditionTable = ({ data, onChange }: { data: Condition[]; onChange: (chan
     onChange(newData);
   };
 
-  const columns = useMemo<ColumnDef<Condition, string>[]>(
-    () => [
+  const { columnHelper, tableOptions } = dataTableHelper<Condition>();
+
+  const columns = useMemo(
+    () => columnHelper.columns([
       {
         accessorKey: 'fid',
         header: () => <span>{t('common.label.type')}</span>,
@@ -58,14 +61,16 @@ const ConditionTable = ({ data, onChange }: { data: Condition[]; onChange: (chan
           </ReorderHandleWrapper>
         )
       }
-    ],
+    ]),
     [t]
   );
 
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
-  const table = useReactTable({
+
+  const table = useTable({
+    ...tableOptions,
     data,
     columns,
     state: { sorting, rowSelection },
@@ -76,10 +81,11 @@ const ConditionTable = ({ data, onChange }: { data: Condition[]; onChange: (chan
     enableSubRowSelection: false,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     meta: {
-      updateData: (rowId: string, columnId: string, value: string) => {
+      updateData: (rowId: string, columnId: string, value: unknown) => {
+        if (typeof value !== 'string') {
+          return;
+        }
         const rowIndex = parseInt(rowId);
         onChange(Condition.update(data, rowIndex, columnId, value));
       }
