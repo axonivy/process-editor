@@ -1,15 +1,15 @@
-import { Flex, useEditCell } from '@axonivy/ui-components';
-import type { CellContext } from '@tanstack/react-table';
+import { type DataTableFeatures, Flex, useEditCell } from '@axonivy/ui-components';
+import type { CellContext, RowData } from '@tanstack/react-table';
 import { usePath } from '../../../../context/usePath';
 import Browser from '../../../browser/Browser';
 import { useBrowser } from '../../../browser/useBrowser';
 import { Input } from '../../input/Input';
 
-type BrowserInputCellProps<TData> = {
-  cell: CellContext<TData, string>;
+type BrowserInputCellProps<TData extends RowData> = {
+  cell: CellContext<DataTableFeatures, TData, string>;
 };
 
-export function BrowserInputCell<TData>({ cell }: BrowserInputCellProps<TData>) {
+export function BrowserInputCell<TData extends RowData>({ cell }: BrowserInputCellProps<TData>) {
   const { value, setValue, updateValue, onBlur, className: editCell } = useEditCell(cell);
   const browser = useBrowser();
   const path = usePath();

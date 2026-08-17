@@ -1,7 +1,6 @@
 import type { StartCustomStartField } from '@axonivy/process-editor-inscription-protocol';
-import { ComboCell, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import { ComboCell, dataTableHelper, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,6 +20,8 @@ type StartCustomFieldTableProps = {
 
 const EMPTY_STARTCUSTOMSTARTFIELD: StartCustomStartField = { name: '', value: '' } as const;
 
+const { columnHelper } = dataTableHelper<StartCustomStartField>();
+
 const StartCustomFieldTable = ({ data, onChange }: StartCustomFieldTableProps) => {
   const { t } = useTranslation();
   const { context } = useEditorContext();
@@ -32,23 +33,22 @@ const StartCustomFieldTable = ({ data, onChange }: StartCustomFieldTableProps) =
     value: pcf.name
   }));
 
-  const columns = useMemo<ColumnDef<StartCustomStartField, string>[]>(
-    () => [
-      {
-        accessorKey: 'name',
-        header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
-        cell: cell => <ComboCell cell={cell} options={predefinedCustomField.filter(pcf => !data.find(d => d.name === pcf.value))} />
-      },
-      {
-        accessorKey: 'value',
-        header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
-        cell: cell => <MacroCell cell={cell} placeholder={'Enter an Expression'} />
-      }
-    ],
+  const columns = useMemo(
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('name', {
+          header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
+          cell: cell => <ComboCell cell={cell} options={predefinedCustomField.filter(pcf => !data.find(d => d.name === pcf.value))} />
+        }),
+        columnHelper.accessor('value', {
+          header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
+          cell: cell => <MacroCell cell={cell} placeholder={'Enter an Expression'} />
+        })
+      ]),
     [data, predefinedCustomField, t]
   );
 
-  const { table, setRowSelection, selectedRowActions, showAddButton } = useResizableEditableTable({
+  const { table, selectedRowActions, showAddButton } = useResizableEditableTable({
     data,
     columns,
     onChange,
@@ -69,7 +69,7 @@ const StartCustomFieldTable = ({ data, onChange }: StartCustomFieldTableProps) =
     <PathCollapsible path='customFields' controls={tableActions} label={t('label.customFields')} defaultOpen={data.length > 0}>
       <div>
         <Table>
-          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
+          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => table.setRowSelection({})} />
           <TableBody>
             {table.getRowModel().rows.map(row => (
               <ValidationRow row={row} key={row.id} rowPathSuffix={row.original.name}>

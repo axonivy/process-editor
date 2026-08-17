@@ -1,4 +1,5 @@
 import type { ValidationResult } from '@axonivy/process-editor-inscription-protocol';
+import type { DataTableFeatures } from '@axonivy/ui-components';
 import type { Row } from '@tanstack/react-table';
 import { customRender, screen } from 'test-utils';
 import { describe, expect, test } from 'vitest';
@@ -11,7 +12,7 @@ describe('ValidationRow', () => {
       <table>
         <tbody>
           <ValidationRow
-            row={{ getIsSelected: () => false, getVisibleCells: () => [{}] } as Row<object>}
+            row={{ getIsSelected: () => false, getVisibleCells: () => [{}] } as Row<DataTableFeatures, Record<string, never>>}
             rowPathSuffix={path}
             title='this is a title'
           >

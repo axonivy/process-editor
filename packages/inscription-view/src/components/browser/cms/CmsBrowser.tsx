@@ -1,9 +1,8 @@
 import type { ContentObject, ContentObjectType } from '@axonivy/process-editor-inscription-protocol';
-import { Button, Flex, Message, SelectRow, TableBody, TableCell, toast, useTableKeyHandler } from '@axonivy/ui-components';
+import { Button, dataTreeHelper, Flex, Message, SelectRow, TableBody, TableCell, toast, useTableKeyHandler } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useQueryClient } from '@tanstack/react-query';
-import type { ColumnDef, ColumnFiltersState, ExpandedState, RowSelectionState, VisibilityState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getExpandedRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table';
+import { flexRender, useTable } from '@tanstack/react-table';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
@@ -62,6 +61,8 @@ interface CmsBrowserProps {
   typeFilter?: CmsTypeFilter;
 }
 
+const { columnHelper, tableOptions } = dataTreeHelper<ContentObject>();
+
 const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, location, setDisableApply }: CmsBrowserProps) => {
   const { t } = useTranslation();
   const { context } = useEditorContext();
@@ -90,108 +91,74 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
     }
   );
 
-  const columns = useMemo<ColumnDef<ContentObject, string>[]>(
-    () => [
-      {
-        accessorFn: row => row.name,
-        id: 'name',
-        cell: cell => {
-          return (
-            <ExpandableCell
-              cell={cell}
-              title={cell.row.original.name}
-              icon={
-                cell.row.original.type === 'FOLDER'
-                  ? IvyIcons.FolderOpen
-                  : cell.row.original.type === 'FILE'
-                    ? IvyIcons.File
-                    : IvyIcons.ChangeType
-              }
-              additionalInfo={cell.row.original.type}
-            />
-          );
-        }
-      },
-      {
-        accessorFn: row => row.type,
-        id: 'type',
-        cell: cell => <span title={cell.row.original.type}>{cell.getValue() as string}</span>
-      },
-      {
-        accessorFn: row => JSON.stringify(row.values),
-        id: 'values',
-        cell: cell => <span title={JSON.stringify(cell.row.original.values)}>{JSON.stringify(cell.getValue())}</span>
-      }
-    ],
+  const columns = useMemo(
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('name', {
+          cell: cell => {
+            return (
+              <ExpandableCell
+                cell={cell}
+                title={cell.row.original.name}
+                icon={
+                  cell.row.original.type === 'FOLDER'
+                    ? IvyIcons.FolderOpen
+                    : cell.row.original.type === 'FILE'
+                      ? IvyIcons.File
+                      : IvyIcons.ChangeType
+                }
+                additionalInfo={cell.row.original.type}
+              />
+            );
+          }
+        }),
+        columnHelper.accessor('type', {
+          cell: cell => <span title={cell.row.original.type}>{cell.getValue()}</span>
+        }),
+        columnHelper.accessor(row => row.values, {
+          id: 'values',
+          cell: cell => <span title={JSON.stringify(cell.getValue())}>{JSON.stringify(cell.getValue())}</span>
+        })
+      ]),
     []
   );
 
-  const [expanded, setExpanded] = useState<ExpandedState>(false as ExpandedState);
-  const [globalFilter, setGlobalFilter] = useState('');
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({ type: false, values: false });
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
-    typeFilter === 'NONE' || typeFilter === undefined ? [] : [{ id: 'type', value: typeFilter }]
-  );
-
-  const table = useReactTable({
+  const table = useTable({
+    ...tableOptions,
     data: tree,
     columns: columns,
-    state: {
-      expanded,
-      globalFilter,
-      rowSelection,
-      columnFilters,
-      columnVisibility
+    initialState: {
+      expanded: undefined,
+      columnFilters: typeFilter === 'NONE' || typeFilter === undefined ? [] : [{ id: 'type', value: typeFilter }]
     },
-    filterFromLeafRows: true,
+    state: {
+      columnVisibility: { type: false, values: false }
+    },
     enableRowSelection: true,
     enableMultiRowSelection: false,
-    enableSubRowSelection: false,
-    onExpandedChange: setExpanded,
-    onGlobalFilterChange: setGlobalFilter,
-    onColumnFiltersChange: setColumnFilters,
-    onRowSelectionChange: setRowSelection,
-    getSubRows: row => row.children,
-    getCoreRowModel: getCoreRowModel(),
-    getExpandedRowModel: getExpandedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onColumnVisibilityChange: setColumnVisibility
+    enableSubRowSelection: false
   });
   const { handleKeyDown } = useTableKeyHandler({ table, data: tree });
   useEffect(() => {
-    const addIvyPathToValue = (value: string, type: ContentObjectType, noApiCall?: boolean) => {
-      if (noApiCall || value.length === 0) {
-        return value;
-      }
-      if (type === 'FOLDER') {
-        return value;
-      }
-      if (type === 'FILE' && location === 'attachments') {
-        return `ivy.cm.findObject("${value}")`;
-      } else if (type === 'FILE' && location !== 'message') {
-        return `ivy.cms.cr("${value}")`;
-      }
-      return `ivy.cms.co("${value}")`;
-    };
+    const subscription = table.atoms.rowSelection.subscribe(() => {
+      const selectedRow = table.getSelectedRowModel().flatRows[0];
+      if (selectedRow === undefined) {
+        setSelectedContentObject({ name: '', children: [], fullPath: '', type: 'STRING', values: {} });
 
-    const selectedRow = table.getSelectedRowModel().flatRows[0];
-    if (selectedRow === undefined) {
-      // eslint-disable-next-line @eslint-react/set-state-in-effect
-      setSelectedContentObject({ name: '', children: [], fullPath: '', type: 'STRING', values: {} });
-      // eslint-disable-next-line @eslint-react/set-state-in-effect
-      setShowHelper(false);
-      onChange({ value: '' });
-      return;
-    }
-    // eslint-disable-next-line @eslint-react/set-state-in-effect
-    setSelectedContentObject(selectedRow.original);
-    // eslint-disable-next-line @eslint-react/set-state-in-effect
-    setShowHelper(true);
-    onChange({ value: addIvyPathToValue(selectedRow.original.fullPath, selectedRow.original.type, noApiCall) });
-  }, [onChange, rowSelection, noApiCall, table, location]);
+        setShowHelper(false);
+        onChange({ value: '' });
+        return;
+      }
 
-  const folderSelected = () => table.getSelectedRowModel().flatRows[0]?.original.type === 'FOLDER';
+      setSelectedContentObject(selectedRow.original);
+
+      setShowHelper(true);
+      onChange({ value: addIvyPathToValue(selectedRow.original.fullPath, selectedRow.original.type, location, noApiCall) });
+    });
+    return () => subscription.unsubscribe();
+  }, [onChange, noApiCall, table, location]);
+
+  const folderSelected = table.getSelectedRowModel().flatRows[0]?.original.type === 'FOLDER';
 
   return (
     <>
@@ -203,37 +170,23 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
             onClick={() => addNewCmsString.mutate({ context, parentUri: table.getSelectedRowModel().flatRows[0]?.original.fullPath ?? '' })}
             aria-label={t('browser.cms.add')}
             title={t('browser.cms.add')}
-            disabled={
-              table.getSelectedRowModel().flatRows.length === 0 ||
-              requiredProject ||
-              table.getSelectedRowModel().flatRows[0]?.original.type !== 'FOLDER'
-            }
+            disabled={table.getSelectedRowModel().flatRows.length === 0 || requiredProject || !folderSelected}
           />
         )}
       </Flex>
 
-      <SearchTable
-        search={{
-          value: globalFilter,
-          onChange: newFilterValue => {
-            setGlobalFilter(newFilterValue);
-            setExpanded(true);
-          }
-        }}
-        onKeyDown={e => handleKeyDown(e, onDoubleClick)}
-      >
+      <SearchTable table={table} onKeyDown={e => handleKeyDown(e, onDoubleClick)} onSearchChange={() => table.setExpanded(true)}>
         <TableBody>
           {table.getRowModel().rows.map(row => (
             <SelectRow
               key={row.id}
               row={row}
-              onDoubleClick={folderSelected() ? undefined : onDoubleClick}
+              onDoubleClick={folderSelected ? undefined : onDoubleClick}
               onClick={() => (row.original.type === 'FOLDER' ? setDisableApply(true) : setDisableApply(false))}
             >
               {row.getVisibleCells().map(cell => (
                 <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
               ))}
-              <TableCell />
             </SelectRow>
           ))}
         </TableBody>
@@ -258,4 +211,19 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
         ))}
     </>
   );
+};
+
+const addIvyPathToValue = (value: string, type: ContentObjectType, location: string, noApiCall?: boolean) => {
+  if (noApiCall || value.length === 0) {
+    return value;
+  }
+  if (type === 'FOLDER') {
+    return value;
+  }
+  if (type === 'FILE' && location === 'attachments') {
+    return `ivy.cm.findObject("${value}")`;
+  } else if (type === 'FILE' && location !== 'message') {
+    return `ivy.cms.cr("${value}")`;
+  }
+  return `ivy.cms.co("${value}")`;
 };

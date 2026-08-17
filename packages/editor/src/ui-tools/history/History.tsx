@@ -82,7 +82,7 @@ export const HistoryContent = ({ actionDispatcher, togglePinned, closeHistory, a
     updater => {
       setExpandedByPid(current => ({
         ...current,
-        [pid]: typeof updater === 'function' ? updater(expanded) : updater
+        [pid]: typeof updater === 'function' ? updater(current[pid] ?? expanded) : updater
       }));
     },
     [expanded, pid]
@@ -92,17 +92,17 @@ export const HistoryContent = ({ actionDispatcher, togglePinned, closeHistory, a
     async (node: HistoryNode) => {
       setExpandedByPid(current => ({
         ...current,
-        [pid]: setExpandedNode(current[pid] ?? (data ? lastLeafPathExpandedState(data) : {}), node.id, true)
+        [pid]: setExpandedNode(current[pid] ?? expanded, node.id, true)
       }));
       const result = await loadLazyNodeData(node);
       if (result === 'error' || result === 'invalid') {
         setExpandedByPid(current => ({
           ...current,
-          [pid]: setExpandedNode(current[pid] ?? (data ? lastLeafPathExpandedState(data) : {}), node.id, false)
+          [pid]: setExpandedNode(current[pid] ?? expanded, node.id, false)
         }));
       }
     },
-    [data, loadLazyNodeData, pid]
+    [expanded, loadLazyNodeData, pid]
   );
 
   const successActions: Array<ButtonProps> = [
