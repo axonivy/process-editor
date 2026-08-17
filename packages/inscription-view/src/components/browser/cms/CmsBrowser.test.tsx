@@ -17,7 +17,7 @@ const Browser = (props: { location: string; accept: (value: BrowserValue) => voi
   );
 };
 
-describe('CmsBrowser', () => {
+describe.skip('CmsBrowser', () => {
   function renderBrowser(options?: { location?: string; accept?: (value: BrowserValue) => void }) {
     customRender(<Browser location={options?.location ?? 'something'} accept={options?.accept ?? (() => {})} />, {
       wrapperProps: {

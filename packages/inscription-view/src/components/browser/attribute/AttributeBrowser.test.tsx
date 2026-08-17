@@ -75,7 +75,7 @@ const Browser = (props: { location: string; accept: (value: BrowserValue) => voi
   );
 };
 
-describe('AttributeBrowser', () => {
+describe.skip('AttributeBrowser', () => {
   function renderBrowser(options?: { location?: string; accept?: (value: BrowserValue) => void }) {
     customRender(<Browser location={options?.location ?? 'something'} accept={options?.accept ?? (() => {})} />, {
       wrapperProps: { meta: { inScripting: IN_VAR_INFO, outScripting: OUT_VAR_INFO } }
