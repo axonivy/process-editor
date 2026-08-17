@@ -49,7 +49,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.17",
-    "deepmerge-ts": "^7.1.5",
+    "deepmerge-ts": "^8.0.0",
     "jsdom": "^30.0.0",
     "monaco-editor": "0.55.1",
     "react": "^19.2.8",
