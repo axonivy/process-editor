@@ -24,8 +24,8 @@
     "marked": "^18.0.7"
   },
   "peerDependencies": {
-    "@axonivy/ui-components": "~14.0.0-next",
-    "@axonivy/ui-icons": "~14.0.0-next",
+    "@axonivy/ui-components": "~14.1.0-next",
+    "@axonivy/ui-icons": "~14.1.0-next",
     "@tanstack/react-query": "^5.64",
     "@tanstack/react-query-devtools": "^5.64",
     "@tanstack/react-table": "^8.20",
@@ -37,8 +37,8 @@
     "snabbdom": "^3.5.1"
   },
   "devDependencies": {
-    "@axonivy/ui-components": "next-14.0.0",
-    "@axonivy/ui-icons": "next-14.0.0",
+    "@axonivy/ui-components": "next-14.1.0",
+    "@axonivy/ui-icons": "next-14.1.0",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.2.17",
