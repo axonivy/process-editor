@@ -1,26 +1,42 @@
 import type { HistoryNode, LazyDataRequest } from '@axonivy/process-editor-protocol';
-import type { ExpandedState } from '@tanstack/react-table';
+export const LAZY_PLACEHOLDER_PREFIX = 'lazy-placeholder:';
 
-export type HistoryLazyState = {
-  loadedById: Record<string, boolean>;
-  loadingById: Record<string, boolean>;
-  errorById: Record<string, string>;
-};
+export type LazyPlaceholderState = 'idle' | 'loading' | 'error';
 
-export const collectLoadedLazyNodeIds = (nodes: Array<HistoryNode>, loadedById: Record<string, boolean> = {}): Record<string, boolean> => {
-  nodes.forEach(node => {
-    if (isExpandableDataNode(node) && node.children.length > 0) {
-      loadedById[node.id] = true;
-    }
-    collectLoadedLazyNodeIds(node.children, loadedById);
-  });
-  return loadedById;
+export type LazyHistoryNode = HistoryNode & {
+  lazyPlaceholderState?: LazyPlaceholderState;
+  lazyParent?: HistoryNode;
 };
 
 export const isExpandableDataNode = (node: HistoryNode) => node.type === 'DATA' && node.expandable;
 
-export const isHistoryNodeLoaded = (node: HistoryNode, lazyState: HistoryLazyState) =>
-  !isExpandableDataNode(node) || node.children.length > 0 || lazyState.loadedById[node.id] === true;
+export const createLazyPlaceholderNode = (parent: HistoryNode, state: LazyPlaceholderState): LazyHistoryNode => ({
+  id: `${LAZY_PLACEHOLDER_PREFIX}${parent.id}`,
+  type: 'DATA',
+  description: state,
+  expandable: true,
+  children: [],
+  lazyPlaceholderState: state,
+  lazyParent: parent
+});
+
+export const isLazyPlaceholderNode = (node: HistoryNode): node is LazyHistoryNode => node.id.startsWith(LAZY_PLACEHOLDER_PREFIX);
+
+export const addLazyPlaceholderNodes = (
+  nodes: Array<HistoryNode>,
+  statesByParentId: Record<string, LazyPlaceholderState>
+): Array<LazyHistoryNode> =>
+  nodes.map(node => {
+    const children = addLazyPlaceholderNodes(node.children, statesByParentId);
+    if (!isExpandableDataNode(node) || node.children.length > 0) {
+      return { ...node, children };
+    }
+
+    return {
+      ...node,
+      children: [createLazyPlaceholderNode(node, statesByParentId[node.id] ?? 'idle')]
+    };
+  });
 
 export const createLazyDataRequest = (node: HistoryNode): LazyDataRequest | undefined => {
   if (!isExpandableDataNode(node) || !node.requestId || !node.executionTime || !node.dataPath) {
@@ -37,22 +53,6 @@ export const createLazyDataRequest = (node: HistoryNode): LazyDataRequest | unde
     executionTime: new Date(executionTime).toISOString(),
     dataPath: node.dataPath
   };
-};
-
-export const lastLeafPathExpandedState = (nodes: Array<HistoryNode>) => {
-  const state: ExpandedState = {};
-  let current = nodes;
-
-  while (current.length > 0) {
-    const lastNode = current[current.length - 1];
-    if (!lastNode) {
-      break;
-    }
-    state[lastNode.id] = true;
-    current = lastNode.children;
-  }
-
-  return state;
 };
 
 export const mergeHistorySubtree = (nodes: Array<HistoryNode>, subtreeRoot: HistoryNode): Array<HistoryNode> | undefined => {

@@ -149,12 +149,15 @@ test('reuses cached lazy subtree when reopening a previously viewed element', as
   await screen.findByText('other = Data()');
 
   rerenderHistory('pid-a');
+  await screen.findByText('customer = Data()');
+  await waitFor(() => expect(request).toHaveBeenCalledTimes(4));
+  await userEvent.click(screen.getByLabelText('Expand row'));
   await screen.findByText('name = Luke');
 
   expect(request.mock.calls.filter(([action]) => RequestHistoryAction.is(action) && action.lazyDataRequest !== undefined)).toHaveLength(1);
 });
 
-test('shows lazy-load failure indicator and retries on the next expand', async () => {
+test('shows lazy-load failure on the placeholder icon and retries on the next expand', async () => {
   const lazyNode = createNode({
     id: 'lazy-root',
     type: 'DATA',

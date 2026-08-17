@@ -1,6 +1,6 @@
 import type { HistoryNode } from '@axonivy/process-editor-protocol';
 import { expect, test } from 'vitest';
-import { createLazyDataRequest, lastLeafPathExpandedState, mergeHistorySubtree } from './history-tree-state';
+import { addLazyPlaceholderNodes, createLazyDataRequest, mergeHistorySubtree } from './history-tree-state';
 
 const createNode = (overrides: Partial<HistoryNode> & Pick<HistoryNode, 'id' | 'type' | 'description'>): HistoryNode => ({
   id: overrides.id,
@@ -61,22 +61,29 @@ test('createLazyDataRequest builds the backend payload from node metadata', () =
   });
 });
 
-test('lastLeafPathExpandedState uses stable node ids', () => {
+test('adds a loading placeholder child for an unloaded expandable data node', () => {
   const tree = [
     createNode({
-      id: 'request',
-      type: 'REQUEST_FINISHED',
-      description: 'request',
-      children: [
-        createNode({
-          id: 'data',
-          type: 'DATA',
-          description: 'in = Data()',
-          children: [createNode({ id: 'leaf', type: 'DATA', description: 'price = 42' })]
-        })
-      ]
+      id: 'data',
+      type: 'DATA',
+      description: 'in = Data()',
+      expandable: true,
+      requestId: 'req-1',
+      executionTime: '2026-03-11T10:00:00.000Z',
+      dataPath: 'in'
     })
   ];
 
-  expect(lastLeafPathExpandedState(tree)).toEqual({ request: true, data: true, leaf: true });
+  expect(addLazyPlaceholderNodes(tree, {})).toMatchObject([
+    {
+      id: 'data',
+      children: [
+        {
+          id: 'lazy-placeholder:data',
+          description: 'idle',
+          lazyPlaceholderState: 'idle'
+        }
+      ]
+    }
+  ]);
 });

@@ -1,32 +1,22 @@
 // @jsxRuntime automatic
 import { type HistoryNode } from '@axonivy/process-editor-protocol';
-import { BasicTooltip, ExpandableCell, IvyIcon, Table, TableBody, TableCell, TableRow, useTableGlobalFilter } from '@axonivy/ui-components';
+import { ExpandableCell, IvyIcon, Table, TableBody, TableCell, TableRow, useTableGlobalFilter } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import {
-  flexRender,
-  getCoreRowModel,
-  getExpandedRowModel,
-  useReactTable,
-  type ColumnDef,
-  type ExpandedState,
-  type OnChangeFn
-} from '@tanstack/react-table';
+import { flexRender, getCoreRowModel, getExpandedRowModel, useReactTable, type ColumnDef } from '@tanstack/react-table';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { isExpandableDataNode, isHistoryNodeLoaded, type HistoryLazyState } from './history-tree-state';
+import { isExpandableDataNode, isLazyPlaceholderNode, type LazyHistoryNode } from './history-tree-state';
 
 export type HistoryTreeProps = {
-  data: Array<HistoryNode>;
+  data: Array<LazyHistoryNode>;
   searchActive: boolean;
-  expanded: ExpandedState;
-  onExpandedChange: OnChangeFn<ExpandedState>;
-  lazyState: HistoryLazyState;
   onLoadLazyNode: (node: HistoryNode) => void;
 };
 
-export const HistoryTree = ({ data, searchActive, expanded, onExpandedChange, lazyState, onLoadLazyNode }: HistoryTreeProps) => {
+export const HistoryTree = ({ data, searchActive, onLoadLazyNode }: HistoryTreeProps) => {
+  const { t } = useTranslation();
   const globalFilter = useTableGlobalFilter({ searchAutoFocus: true });
-  const columns: ColumnDef<HistoryNode, string>[] = useMemo(
+  const columns: ColumnDef<LazyHistoryNode, string>[] = useMemo(
     () => [
       {
         accessorKey: 'description',
@@ -45,24 +35,16 @@ export const HistoryTree = ({ data, searchActive, expanded, onExpandedChange, la
           return (
             <ExpandableCell
               cell={cell}
-              icon={historyNodeIcon(node)}
-              lazy={
-                isExpandableDataNode(node)
-                  ? {
-                      isLoaded: isHistoryNodeLoaded(node, lazyState),
-                      loadChildren: () => onLoadLazyNode(node)
-                    }
-                  : undefined
-              }
+              lazy={isLazyParentNode(node) ? { isLoaded: false, loadChildren: () => onLoadLazyNode(node) } : undefined}
             >
-              <LazyStatus lazyState={lazyState} node={node} />
-              <span>{label}</span>
+              <HistoryNodeIcon node={node} />
+              <span>{lazyPlaceholderLabel(node, label, t)}</span>
             </ExpandableCell>
           );
         }
       }
     ],
-    [lazyState, onLoadLazyNode]
+    [onLoadLazyNode, t]
   );
   const table = useReactTable({
     ...globalFilter.options,
@@ -72,12 +54,8 @@ export const HistoryTree = ({ data, searchActive, expanded, onExpandedChange, la
     getExpandedRowModel: getExpandedRowModel(),
     getSubRows: row => row.children,
     getRowId: row => row.id,
-    getRowCanExpand: row => row.original.children.length > 0,
-    onExpandedChange,
-    state: {
-      expanded,
-      ...globalFilter.tableState
-    }
+    getRowCanExpand: row => row.original.children.length > 0 && !isLazyParentNode(row.original),
+    state: globalFilter.tableState
   });
 
   return (
@@ -98,23 +76,27 @@ export const HistoryTree = ({ data, searchActive, expanded, onExpandedChange, la
   );
 };
 
-const LazyStatus = ({ lazyState, node }: { lazyState: HistoryLazyState; node: HistoryNode }) => {
+const HistoryNodeIcon = ({ node }: { node: LazyHistoryNode }) => {
   const { t } = useTranslation();
-  if (lazyState.loadingById[node.id]) {
-    return (
-      <BasicTooltip content={t('history.loadingNode')}>
-        <IvyIcon icon={IvyIcons.Spinner} spin className='lazy-state-icon' role='status' aria-label={t('history.loadingNode')} />
-      </BasicTooltip>
-    );
+  if (isLazyPlaceholderNode(node) && node.lazyPlaceholderState === 'loading') {
+    return <IvyIcon icon={IvyIcons.Spinner} spin className='lazy-state-icon' role='status' aria-label={t('history.loadingNode')} />;
   }
-  const error = lazyState.errorById[node.id];
-  if (error) {
-    return (
-      <BasicTooltip content={error}>
-        <IvyIcon icon={IvyIcons.ErrorXMark} className='lazy-state-icon' role='status' aria-label={error} />
-      </BasicTooltip>
-    );
+  if (isLazyPlaceholderNode(node) && node.lazyPlaceholderState === 'error') {
+    return <IvyIcon icon={IvyIcons.ErrorXMark} className='lazy-state-icon' role='status' aria-label={t('history.lazyLoadError')} />;
   }
+  return <IvyIcon icon={historyNodeIcon(node)} />;
+};
+
+const isLazyParentNode = (node: LazyHistoryNode) => isExpandableDataNode(node) && node.children.some(isLazyPlaceholderNode);
+
+const lazyPlaceholderLabel = (node: LazyHistoryNode, label: string, t: ReturnType<typeof useTranslation>['t']) => {
+  if (node.lazyPlaceholderState === 'idle' || node.lazyPlaceholderState === 'loading') {
+    return t('history.loadingNode');
+  }
+  if (node.lazyPlaceholderState === 'error') {
+    return t('history.lazyLoadError');
+  }
+  return label;
 };
 
 const historyNodeIcon = (node: HistoryNode) => {

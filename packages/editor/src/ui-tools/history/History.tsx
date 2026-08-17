@@ -4,17 +4,16 @@ import { BasicField, ButtonGroup, Popover, PopoverAnchor, PopoverContent, Spinne
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { Bounds, IActionDispatcher } from '@eclipse-glsp/client';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import type { ExpandedState, OnChangeFn } from '@tanstack/react-table';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HistoryTree } from './HistoryTree';
 import { PinnedHistory } from './PinnedHistory';
 import {
-  collectLoadedLazyNodeIds,
+  addLazyPlaceholderNodes,
   createLazyDataRequest,
-  lastLeafPathExpandedState,
+  isLazyPlaceholderNode,
   mergeHistorySubtree,
-  type HistoryLazyState
+  type LazyPlaceholderState
 } from './history-tree-state';
 import { useHistoryPinnedState } from './useHistoryPinnedState';
 
@@ -69,41 +68,14 @@ type HistoryProps = {
 export const HistoryContent = ({ actionDispatcher, togglePinned, closeHistory, app, project, pid }: HistoryProps) => {
   const { t } = useTranslation();
   const [searchActive, setSearchActive] = useState(false);
-  const [expandedByPid, setExpandedByPid] = useState<Record<string, ExpandedState>>({});
-  const { data, isSuccess, isPending, isError, lazyState, loadLazyNodeData, refreshHistory } = useLazyHistory({
+  const { data, isSuccess, isPending, isError, lazyStatesByParentId, loadLazyNodeData, refreshHistory } = useLazyHistory({
     actionDispatcher,
     app,
     project,
     pid
   });
-  const expanded = useMemo(() => expandedByPid[pid] ?? (data ? lastLeafPathExpandedState(data) : {}), [data, expandedByPid, pid]);
-
-  const onExpandedChange = useCallback<OnChangeFn<ExpandedState>>(
-    updater => {
-      setExpandedByPid(current => ({
-        ...current,
-        [pid]: typeof updater === 'function' ? updater(expanded) : updater
-      }));
-    },
-    [expanded, pid]
-  );
-
-  const loadLazyNode = useCallback(
-    async (node: HistoryNode) => {
-      setExpandedByPid(current => ({
-        ...current,
-        [pid]: setExpandedNode(current[pid] ?? (data ? lastLeafPathExpandedState(data) : {}), node.id, true)
-      }));
-      const result = await loadLazyNodeData(node);
-      if (result === 'error' || result === 'invalid') {
-        setExpandedByPid(current => ({
-          ...current,
-          [pid]: setExpandedNode(current[pid] ?? (data ? lastLeafPathExpandedState(data) : {}), node.id, false)
-        }));
-      }
-    },
-    [data, loadLazyNodeData, pid]
-  );
+  const loadLazyNode = useCallback((node: HistoryNode) => loadLazyNodeData(node), [loadLazyNodeData]);
+  const treeData = useMemo(() => (data ? addLazyPlaceholderNodes(data, lazyStatesByParentId) : []), [data, lazyStatesByParentId]);
 
   const successActions: Array<ButtonProps> = [
     {
@@ -146,34 +118,14 @@ export const HistoryContent = ({ actionDispatcher, togglePinned, closeHistory, a
     >
       {isPending && <Spinner size='small' />}
       {isError && <div>{t('history.error')}</div>}
-      {isSuccess && data && (
-        <HistoryTree
-          data={data}
-          searchActive={searchActive}
-          expanded={expanded}
-          onExpandedChange={onExpandedChange}
-          lazyState={lazyState}
-          onLoadLazyNode={loadLazyNode}
-        />
-      )}
+      {isSuccess && data && <HistoryTree data={treeData} searchActive={searchActive} onLoadLazyNode={loadLazyNode} />}
     </BasicField>
   );
-};
-
-const setExpandedNode = (state: ExpandedState, nodeId: string, isExpanded: boolean): ExpandedState => {
-  if (state === true) {
-    return state;
-  }
-  return { ...state, [nodeId]: isExpanded };
 };
 
 type HistoryResponse = {
   historyNodes: Array<HistoryNode>;
 };
-
-type HistoryTransientState = Pick<HistoryLazyState, 'loadingById' | 'errorById'>;
-
-type HistoryLazyLoadResult = 'error' | 'invalid' | 'loaded' | 'skipped';
 
 type UseLazyHistoryOptions = {
   actionDispatcher: IActionDispatcher;
@@ -182,12 +134,11 @@ type UseLazyHistoryOptions = {
   pid: string;
 };
 
-const emptyTransientState = (): HistoryTransientState => ({ loadingById: {}, errorById: {} });
+const emptyTransientState = (): Record<string, LazyPlaceholderState> => ({});
 
 const useLazyHistory = ({ actionDispatcher, app, project, pid }: UseLazyHistoryOptions) => {
-  const { t } = useTranslation();
   const queryClient = useQueryClient();
-  const [transientState, setTransientState] = useState<HistoryTransientState>(emptyTransientState);
+  const [lazyStatesByParentId, setLazyStatesByParentId] = useState<Record<string, LazyPlaceholderState>>(emptyTransientState);
   const rootQueryKey = createHistoryRootQueryKey(app, project, pid);
   const lazyQueryKeyPrefix = createHistoryLazyQueryKeyPrefix(app, project, pid);
   const query = useQuery({
@@ -199,37 +150,25 @@ const useLazyHistory = ({ actionDispatcher, app, project, pid }: UseLazyHistoryO
     [lazyQueryKeyPrefix, query.data, queryClient]
   );
 
-  const loadedById = useMemo(() => collectLoadedLazyNodeIds(data ?? []), [data]);
-  const lazyState = useMemo<HistoryLazyState>(
-    () => ({
-      loadedById,
-      loadingById: transientState.loadingById,
-      errorById: transientState.errorById
-    }),
-    [loadedById, transientState.errorById, transientState.loadingById]
-  );
-
   const loadLazyNodeData = useCallback(
-    async (node: HistoryNode): Promise<HistoryLazyLoadResult> => {
+    async (node: HistoryNode) => {
       const lazyQueryKey = createHistoryLazyQueryKey(app, project, pid, node.id);
       const lazyQueryState = queryClient.getQueryState<HistoryResponse>(lazyQueryKey);
-      if (lazyQueryState?.fetchStatus === 'fetching' || lazyQueryState?.data || loadedById[node.id]) {
-        return 'skipped';
+      if (
+        lazyQueryState?.fetchStatus === 'fetching' ||
+        lazyQueryState?.data ||
+        node.children.some(child => !isLazyPlaceholderNode(child))
+      ) {
+        return;
       }
 
       const lazyDataRequest = createLazyDataRequest(node);
       if (!lazyDataRequest) {
-        setTransientState(state => ({
-          ...state,
-          errorById: { ...state.errorById, [node.id]: t('history.lazyInvalid') }
-        }));
-        return 'invalid';
+        setLazyStatesByParentId(state => ({ ...state, [node.id]: 'error' }));
+        return;
       }
 
-      setTransientState(state => ({
-        loadingById: { ...state.loadingById, [node.id]: true },
-        errorById: removeRecordKey(state.errorById, node.id)
-      }));
+      setLazyStatesByParentId(state => ({ ...state, [node.id]: 'loading' }));
 
       try {
         const response = await queryClient.fetchQuery({
@@ -266,26 +205,18 @@ const useLazyHistory = ({ actionDispatcher, app, project, pid }: UseLazyHistoryO
           return mergedHistoryNodes;
         });
 
-        setTransientState(state => ({
-          loadingById: removeRecordKey(state.loadingById, node.id),
-          errorById: removeRecordKey(state.errorById, node.id)
-        }));
-        return 'loaded';
+        setLazyStatesByParentId(state => removeRecordKey(state, node.id));
       } catch {
-        setTransientState(state => ({
-          loadingById: removeRecordKey(state.loadingById, node.id),
-          errorById: { ...state.errorById, [node.id]: t('history.lazyLoadError') }
-        }));
-        return 'error';
+        setLazyStatesByParentId(state => ({ ...state, [node.id]: 'error' }));
       }
     },
-    [actionDispatcher, app, loadedById, pid, project, queryClient, rootQueryKey, t]
+    [actionDispatcher, app, pid, project, queryClient, rootQueryKey]
   );
 
   const { refetch } = query;
   const refreshHistory = useCallback(() => {
     queryClient.removeQueries({ queryKey: lazyQueryKeyPrefix, exact: false });
-    setTransientState(emptyTransientState());
+    setLazyStatesByParentId(emptyTransientState());
     return refetch();
   }, [lazyQueryKeyPrefix, queryClient, refetch]);
 
@@ -294,7 +225,7 @@ const useLazyHistory = ({ actionDispatcher, app, project, pid }: UseLazyHistoryO
     isError: query.isError,
     isPending: query.isPending,
     isSuccess: query.isSuccess,
-    lazyState,
+    lazyStatesByParentId,
     loadLazyNodeData,
     refreshHistory
   };
@@ -336,7 +267,7 @@ const hydrateHistoryNodes = (
   return hydratedNodes;
 };
 
-const removeRecordKey = <T extends Record<string, boolean | string>>(record: T, key: string): T => {
+const removeRecordKey = <T extends Record<string, LazyPlaceholderState>>(record: T, key: string): T => {
   const { [key]: removed, ...rest } = record;
   void removed;
   return rest as T;
