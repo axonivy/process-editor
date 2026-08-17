@@ -64,8 +64,8 @@ importers:
   integration/inscription:
     dependencies:
       '@axonivy/jsonrpc':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1230.1c0722d
+        specifier: next-14.1.0
+        version: 14.1.0-next.1230.4182537
       '@axonivy/process-editor-inscription-core':
         specifier: workspace:~
         version: link:../../packages/inscription-core
@@ -76,11 +76,11 @@ importers:
         specifier: workspace:~
         version: link:../../packages/inscription-view
       '@axonivy/ui-components':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1230.1c0722d(@axonivy/ui-icons@14.0.0-next.1230.1c0722d)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: next-14.1.0
+        version: 14.1.0-next.1230.4182537(@axonivy/ui-icons@14.1.0-next.1230.4182537)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@axonivy/ui-icons':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1230.1c0722d
+        specifier: next-14.1.0
+        version: 14.1.0-next.1230.4182537
       '@tanstack/react-query':
         specifier: ^5.101.4
         version: 5.101.4(react@19.2.8)
@@ -131,8 +131,8 @@ importers:
   integration/standalone:
     dependencies:
       '@axonivy/jsonrpc':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1230.1c0722d
+        specifier: next-14.1.0
+        version: 14.1.0-next.1230.4182537
       '@axonivy/process-editor':
         specifier: workspace:~
         version: link:../../packages/editor
@@ -149,11 +149,11 @@ importers:
         specifier: workspace:~
         version: link:../../packages/protocol
       '@axonivy/ui-components':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1230.1c0722d(@axonivy/ui-icons@14.0.0-next.1230.1c0722d)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: next-14.1.0
+        version: 14.1.0-next.1230.4182537(@axonivy/ui-icons@14.1.0-next.1230.4182537)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@axonivy/ui-icons':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1230.1c0722d
+        specifier: next-14.1.0
+        version: 14.1.0-next.1230.4182537
       '@eclipse-glsp/client':
         specifier: 2.7.0
         version: 2.7.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
@@ -198,11 +198,11 @@ importers:
         specifier: workspace:~
         version: link:../../packages/protocol
       '@axonivy/ui-components':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1230.1c0722d(@axonivy/ui-icons@14.0.0-next.1230.1c0722d)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: next-14.1.0
+        version: 14.1.0-next.1230.4182537(@axonivy/ui-icons@14.1.0-next.1230.4182537)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@axonivy/ui-icons':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1230.1c0722d
+        specifier: next-14.1.0
+        version: 14.1.0-next.1230.4182537
       '@eclipse-glsp/client':
         specifier: 2.7.0
         version: 2.7.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
@@ -342,11 +342,11 @@ importers:
         version: 3.51.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
     devDependencies:
       '@axonivy/ui-components':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1230.1c0722d(@axonivy/ui-icons@14.0.0-next.1230.1c0722d)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: next-14.1.0
+        version: 14.1.0-next.1230.4182537(@axonivy/ui-icons@14.1.0-next.1230.4182537)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@axonivy/ui-icons':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1230.1c0722d
+        specifier: next-14.1.0
+        version: 14.1.0-next.1230.4182537
       '@types/react':
         specifier: ^19.2.17
         version: 19.2.18
@@ -367,8 +367,8 @@ importers:
         version: link:../inscription-protocol
     devDependencies:
       '@axonivy/jsonrpc':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1230.1c0722d
+        specifier: next-14.1.0
+        version: 14.1.0-next.1230.4182537
 
   packages/inscription-protocol:
     devDependencies:
@@ -5963,12 +5963,6 @@ snapshots:
       react-dom: 19.2.8(react@19.2.8)
       use-sync-external-store: 1.6.0(react@19.2.8)
 
-  '@tanstack/react-table@8.21.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
-    dependencies:
-      '@tanstack/table-core': 8.21.3
-      react: 19.2.8
-      react-dom: 19.2.8(react@19.2.8)
-
   '@tanstack/react-table@9.1.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
       '@tanstack/react-store': 0.11.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -5984,8 +5978,6 @@ snapshots:
       react-dom: 19.2.8(react@19.2.8)
 
   '@tanstack/store@0.11.1': {}
-
-  '@tanstack/table-core@8.21.3': {}
 
   '@tanstack/table-core@9.1.0':
     dependencies:
@@ -7960,13 +7952,6 @@ snapshots:
     dependencies:
       ip-address: 10.5.0
       smart-buffer: 4.2.0
-
-  sonner@2.0.8(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
-    dependencies:
-      react: 19.2.8
-      react-dom: 19.2.8(react@19.2.8)
-    optionalDependencies:
-      '@types/react': 19.2.18
 
   sonner@2.0.8(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
     dependencies:
