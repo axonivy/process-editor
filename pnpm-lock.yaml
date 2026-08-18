@@ -10,7 +10,7 @@ overrides:
   ws@>=8.0.0 <8.20.1: ^8.20.1
 
 patchedDependencies:
-  monaco-editor: 899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f
+  monaco-editor: a7ef5f69f9d0f345143db9a17c505cdf046585e639a2448c68dec2403a6dbaf5
 
 importers:
 
@@ -396,7 +396,7 @@ importers:
         version: 0.5.1(ws@8.21.0)
       '@monaco-editor/react':
         specifier: ^4.8.0-rc.3
-        version: 4.8.0-rc.3(monaco-editor@0.56.0(patch_hash=899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        version: 4.8.0-rc.3(monaco-editor@0.56.0(patch_hash=a7ef5f69f9d0f345143db9a17c505cdf046585e639a2448c68dec2403a6dbaf5))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@radix-ui/react-dialog':
         specifier: ^1.1
         version: 1.1.23(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -429,7 +429,7 @@ importers:
         version: 11.1.16
       monaco-editor:
         specifier: ^0.56.0
-        version: 0.56.0(patch_hash=899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f)
+        version: 0.56.0(patch_hash=a7ef5f69f9d0f345143db9a17c505cdf046585e639a2448c68dec2403a6dbaf5)
       react-aria:
         specifier: ^3.50.0
         version: 3.51.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -5042,10 +5042,10 @@ snapshots:
     dependencies:
       state-local: 1.0.7
 
-  '@monaco-editor/react@4.8.0-rc.3(monaco-editor@0.56.0(patch_hash=899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+  '@monaco-editor/react@4.8.0-rc.3(monaco-editor@0.56.0(patch_hash=a7ef5f69f9d0f345143db9a17c505cdf046585e639a2448c68dec2403a6dbaf5))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
       '@monaco-editor/loader': 1.7.0
-      monaco-editor: 0.56.0(patch_hash=899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f)
+      monaco-editor: 0.56.0(patch_hash=a7ef5f69f9d0f345143db9a17c505cdf046585e639a2448c68dec2403a6dbaf5)
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
 
@@ -7447,7 +7447,7 @@ snapshots:
 
   modern-ahocorasick@1.1.0: {}
 
-  monaco-editor@0.56.0(patch_hash=899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f):
+  monaco-editor@0.56.0(patch_hash=a7ef5f69f9d0f345143db9a17c505cdf046585e639a2448c68dec2403a6dbaf5):
     dependencies:
       dompurify: 3.4.8
       marked: 14.0.0
