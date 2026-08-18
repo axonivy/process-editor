@@ -16,9 +16,14 @@
   "dependencies": {
     "@axonivy/process-editor-inscription-core": "workspace:~",
     "@axonivy/process-editor-inscription-protocol": "workspace:~",
+    "@hediet/json-rpc": "^0.5.0",
+    "@hediet/json-rpc-browser": "^0.5.1",
+    "@hediet/json-rpc-websocket": "^0.5.1",
+    "@monaco-editor/react": "^4.8.0-rc.3",
     "@tanstack/react-virtual": "^3.14.8",
     "dompurify": "^3.4.12",
     "immer": "^11.1.15",
+    "monaco-editor": "^0.55.1",
     "react-aria": "^3.50.0",
     "react-error-boundary": "^6.1.2"
   },
@@ -40,10 +45,6 @@
     "@axonivy/jsonrpc": "next-14.0.0",
     "@axonivy/ui-components": "next-14.0.0",
     "@axonivy/ui-icons": "next-14.0.0",
-    "@hediet/json-rpc": "^0.5.0",
-    "@hediet/json-rpc-browser": "^0.5.1",
-    "@hediet/json-rpc-websocket": "^0.5.1",
-    "@monaco-editor/react": "4.8.0-rc.3",
     "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
@@ -51,7 +52,6 @@
     "@types/react": "^19.2.17",
     "deepmerge-ts": "^8.0.0",
     "jsdom": "^30.0.0",
-    "monaco-editor": "0.55.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
