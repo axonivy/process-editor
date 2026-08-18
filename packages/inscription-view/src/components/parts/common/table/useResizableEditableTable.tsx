@@ -1,6 +1,6 @@
 import { dataTableHelper, TableAddRow, type DataTableFeatures } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { Row, RowData, RowSelectionState, SortingState } from '@tanstack/react-table';
+import type { Row, RowData } from '@tanstack/react-table';
 import { useTable } from '@tanstack/react-table';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,7 +18,7 @@ interface UseResizableEditableTableProps<TData extends RowData> {
   specialUpdateData?: (data: Array<TData>, rowIndex: number, columnId: string) => void;
 }
 
-const useResizableEditableTable = <TData extends RowData,>({
+const useResizableEditableTable = <TData extends RowData>({
   data,
   columns,
   onChange,
@@ -27,8 +27,6 @@ const useResizableEditableTable = <TData extends RowData,>({
 }: UseResizableEditableTableProps<TData>) => {
   const { t } = useTranslation();
   const [tableData, setTableData] = useState<TData[]>(data);
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
   const updateTableData = (tableData: Array<TData>) => {
     setTableData(tableData);
@@ -63,14 +61,11 @@ const useResizableEditableTable = <TData extends RowData,>({
     ...tableOptions,
     data: tableData,
     columns,
-    state: { sorting, rowSelection },
     columnResizeMode: 'onChange',
     columnResizeDirection: 'ltr',
     enableRowSelection: true,
     enableMultiRowSelection: false,
     enableSubRowSelection: false,
-    onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
     meta: { updateData }
   });
 
@@ -80,7 +75,7 @@ const useResizableEditableTable = <TData extends RowData,>({
     const newData = [...tableData];
     newData.push(emptyDataObject);
     updateTableData(newData);
-    setRowSelection({ [`${newData.length - 1}`]: true });
+    table.setRowSelection({ [`${newData.length - 1}`]: true });
     focusNewCell(domTable, newData.length, 'input');
   };
 
@@ -95,9 +90,9 @@ const useResizableEditableTable = <TData extends RowData,>({
     const newData = [...tableData];
     newData.splice(index, 1);
     if (newData.length === 0) {
-      setRowSelection({});
+      table.setRowSelection({});
     } else if (index === tableData.length - 1) {
-      setRowSelection({ [`${newData.length - 1}`]: true });
+      table.setRowSelection({ [`${newData.length - 1}`]: true });
     }
     if (newData.length === 1 && deepEqual(newData[0], emptyDataObject)) {
       updateTableData([]);
@@ -122,7 +117,7 @@ const useResizableEditableTable = <TData extends RowData,>({
     return [{ label: t('label.removeRow'), icon: IvyIcons.Trash, action: () => removeRow(firstSelectedRowIndex) }, ...additionalActions];
   };
 
-  return { table, rowSelection, selectedRowActions, setRowSelection, showAddButton };
+  return { table, selectedRowActions, showAddButton };
 };
 
 export { useResizableEditableTable };

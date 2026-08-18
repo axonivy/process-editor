@@ -1,8 +1,7 @@
 import type { DatabaseColumn } from '@axonivy/process-editor-inscription-protocol';
 import { dataTableHelper, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
-import type { RowSelectionState, SortingState } from '@tanstack/react-table';
 import { flexRender, useTable } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
@@ -55,21 +54,15 @@ export const TableFields = () => {
     [t]
   );
 
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-
   const table = useTable({
     ...tableOptions,
     data,
     columns,
-    state: { sorting, rowSelection },
     columnResizeMode: 'onChange',
     columnResizeDirection: 'ltr',
     enableRowSelection: true,
     enableMultiRowSelection: false,
     enableSubRowSelection: false,
-    onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
     meta: {
       updateData: (rowId: string, columnId: string, value: unknown) => {
         if (typeof value !== 'string') {
@@ -102,7 +95,7 @@ export const TableFields = () => {
         defaultOpen={config.query.sql.fields && Object.keys(config.query.sql.fields).length > 0}
       >
         <Table>
-          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
+          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => table.setRowSelection({})} />
           <TableBody>
             {table.getRowModel().rows.map(row => (
               <ValidationRow row={row} key={row.id} rowPathSuffix={row.original.name}>

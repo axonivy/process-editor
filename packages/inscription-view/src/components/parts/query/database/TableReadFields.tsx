@@ -9,9 +9,9 @@ import {
   TableResizableHeader,
   TableRow
 } from '@axonivy/ui-components';
-import type { Row, SortingState } from '@tanstack/react-table';
+import type { Row } from '@tanstack/react-table';
 import { flexRender, useTable } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
@@ -57,16 +57,12 @@ export const TableReadFields = () => {
     [t]
   );
 
-  const [sorting, setSorting] = useState<SortingState>([]);
-
   const table = useTable({
     ...tableOptions,
     data,
     columns,
-    state: { sorting },
     columnResizeMode: 'onChange',
-    columnResizeDirection: 'ltr',
-    onSortingChange: setSorting
+    columnResizeDirection: 'ltr'
   });
 
   const selectRow = (row: Row<DataTableFeatures, Column>) => {

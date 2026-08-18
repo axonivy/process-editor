@@ -11,9 +11,8 @@ import {
   TableResizableHeader
 } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { RowSelectionState, SortingState } from '@tanstack/react-table';
 import { flexRender, useTable } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { deepEqual } from '../../../../utils/equals';
 import type { ComboboxItem } from '../../../widgets/combobox/Combobox';
@@ -66,9 +65,6 @@ export const PropertyTable = ({ properties, update, knownProperties, hidePropert
     [knownPropertyItems, t]
   );
 
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-
   const showAddButton = () => {
     return data.filter(obj => deepEqual(obj, EMPTY_PROPERTY)).length === 0;
   };
@@ -77,16 +73,16 @@ export const PropertyTable = ({ properties, update, knownProperties, hidePropert
     const newData = [...data];
     newData.push(EMPTY_PROPERTY);
     onChange(newData);
-    setRowSelection({ [`${newData.length - 1}`]: true });
+    table.setRowSelection({ [`${newData.length - 1}`]: true });
   };
 
   const removeRow = (index: number) => {
     const newData = [...data];
     newData.splice(index, 1);
     if (newData.length === 0) {
-      setRowSelection({});
+      table.setRowSelection({});
     } else if (index === data.length - 1) {
-      setRowSelection({ [`${newData.length - 1}`]: true });
+      table.setRowSelection({ [`${newData.length - 1}`]: true });
     }
     onChange(newData);
   };
@@ -95,14 +91,11 @@ export const PropertyTable = ({ properties, update, knownProperties, hidePropert
     ...tableOptions,
     data,
     columns,
-    state: { sorting, rowSelection },
     columnResizeMode: 'onChange',
     columnResizeDirection: 'ltr',
     enableRowSelection: true,
     enableMultiRowSelection: false,
     enableSubRowSelection: false,
-    onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
     meta: {
       updateData: (rowId: string, columnId: string, value: unknown) => {
         if (typeof value !== 'string') {
@@ -114,26 +107,23 @@ export const PropertyTable = ({ properties, update, knownProperties, hidePropert
     }
   });
 
-  const firstSelectionId = Object.keys(rowSelection)[0];
+  const firstSelectedRow = table.getSelectedRowModel().rows[0];
   let tableActions: FieldsetControl[] = [];
-  if (firstSelectionId) {
-    const firstSelectionRow = table.getRowModel().rowsById[firstSelectionId];
-    if (firstSelectionRow) {
-      tableActions = [
-        {
-          label: t('label.removeRow'),
-          icon: IvyIcons.Trash,
-          action: () => removeRow(firstSelectionRow?.index)
-        }
-      ];
-    }
+  if (firstSelectedRow) {
+    tableActions = [
+      {
+        label: t('label.removeRow'),
+        icon: IvyIcons.Trash,
+        action: () => removeRow(firstSelectedRow?.index)
+      }
+    ];
   }
 
   return (
     <ValidationCollapsible label={label} defaultOpen={defaultOpen} controls={tableActions}>
       <div>
         <Table>
-          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
+          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => table.setRowSelection({})} />
           <TableBody>
             {table.getRowModel().rows.map(row => {
               if (hideProperties?.includes(row.original.name)) {

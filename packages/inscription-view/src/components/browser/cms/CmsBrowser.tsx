@@ -2,7 +2,6 @@ import type { ContentObject, ContentObjectType } from '@axonivy/process-editor-i
 import { Button, dataTreeHelper, Flex, Message, SelectRow, TableBody, TableCell, toast, useTableKeyHandler } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useQueryClient } from '@tanstack/react-query';
-import type { ColumnFiltersState } from '@tanstack/react-table';
 import { flexRender, useTable } from '@tanstack/react-table';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -124,24 +123,17 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
     []
   );
 
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
-    typeFilter === 'NONE' || typeFilter === undefined ? [] : [{ id: 'type', value: typeFilter }]
-  );
-
   const table = useTable({
     ...tableOptions,
     data: tree,
     columns: columns,
-    state: {
-      columnFilters
-    },
     initialState: {
-      expanded: undefined
+      expanded: undefined,
+      columnFilters: typeFilter === 'NONE' || typeFilter === undefined ? [] : [{ id: 'type', value: typeFilter }]
     },
     enableRowSelection: true,
     enableMultiRowSelection: false,
-    enableSubRowSelection: false,
-    onColumnFiltersChange: setColumnFilters
+    enableSubRowSelection: false
   });
   const { handleKeyDown } = useTableKeyHandler({ table, data: tree });
   useEffect(() => {

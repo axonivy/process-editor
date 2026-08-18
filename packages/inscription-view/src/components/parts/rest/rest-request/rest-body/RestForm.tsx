@@ -10,9 +10,8 @@ import {
   TableResizableHeader
 } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { RowSelectionState, SortingState } from '@tanstack/react-table';
 import { flexRender, useTable } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PathProvider } from '../../../../../context/usePath';
 import { deepEqual } from '../../../../../utils/equals';
@@ -65,9 +64,6 @@ export const RestForm = () => {
     [t]
   );
 
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-
   const showAddButton = () => {
     return data.filter(obj => deepEqual(obj, EMPTY_PARAMETER)).length === 0;
   };
@@ -78,7 +74,7 @@ export const RestForm = () => {
     const newData = [...data];
     newData.push(EMPTY_PARAMETER);
     onChange(newData);
-    setRowSelection({ [`${newData.length - 1}`]: true });
+    table.setRowSelection({ [`${newData.length - 1}`]: true });
     focusNewCell(domTable, newData.length, 'input');
   };
 
@@ -86,9 +82,9 @@ export const RestForm = () => {
     const newData = [...data];
     newData.splice(index, 1);
     if (newData.length === 0) {
-      setRowSelection({});
+      table.setRowSelection({});
     } else if (index === data.length - 1) {
-      setRowSelection({ [`${newData.length - 1}`]: true });
+      table.setRowSelection({ [`${newData.length - 1}`]: true });
     }
     onChange(newData);
   };
@@ -97,14 +93,11 @@ export const RestForm = () => {
     ...tableOptions,
     data,
     columns,
-    state: { sorting, rowSelection },
     columnResizeMode: 'onChange',
     columnResizeDirection: 'ltr',
     enableRowSelection: true,
     enableMultiRowSelection: false,
     enableSubRowSelection: false,
-    onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
     meta: {
       updateData: (rowId: string, columnId: string, value: unknown) => {
         if (typeof value !== 'string') {
@@ -116,19 +109,16 @@ export const RestForm = () => {
     }
   });
 
-  const firstSelectionId = Object.keys(rowSelection)[0];
+  const firstSelectedRow = table.getSelectedRowModel().rows[0];
   let tableActions: FieldsetControl[] = [];
-  if (firstSelectionId) {
-    const firstSelectionRow = table.getRowModel().rowsById[firstSelectionId];
-    if (firstSelectionRow && !firstSelectionRow?.original.known) {
-      tableActions = [
-        {
-          label: t('label.removeRow'),
-          icon: IvyIcons.Trash,
-          action: () => removeRow(firstSelectionRow.index)
-        }
-      ];
-    }
+  if (firstSelectedRow && !firstSelectedRow.original.known) {
+    tableActions = [
+      {
+        label: t('label.removeRow'),
+        icon: IvyIcons.Trash,
+        action: () => removeRow(firstSelectedRow.index)
+      }
+    ];
   }
 
   return (
@@ -136,7 +126,7 @@ export const RestForm = () => {
       <div>
         {tableActions.length > 0 && <Fieldset label=' ' controls={tableActions} />}
         <Table>
-          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
+          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => table.setRowSelection({})} />
           <TableBody>
             {table.getRowModel().rows.map(row => (
               <ValidationRow row={row} key={row.id} rowPathSuffix={row.original.name} title={row.original.doc}>

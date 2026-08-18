@@ -13,7 +13,6 @@ import {
   TableResizableHeader
 } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { RowSelectionState, SortingState } from '@tanstack/react-table';
 import { flexRender, useTable } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -91,21 +90,15 @@ export const TableSort = () => {
     updateSql('orderBy', columnsToOrderBy(data));
   };
 
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-
   const table = useTable({
     ...tableOptions,
     data,
     columns,
-    state: { sorting, rowSelection },
     columnResizeMode: 'onChange',
     columnResizeDirection: 'ltr',
     enableRowSelection: true,
     enableMultiRowSelection: false,
     enableSubRowSelection: false,
-    onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
     meta: {
       updateData: (rowId: string, columnId: string, value: unknown) => {
         if (typeof value !== 'string') {
@@ -130,9 +123,9 @@ export const TableSort = () => {
     const newData = [...data];
     newData.splice(index, 1);
     if (newData.length === 0) {
-      setRowSelection({});
+      table.setRowSelection({});
     } else if (index === data.length - 1) {
-      setRowSelection({ [`${newData.length - 1}`]: true });
+      table.setRowSelection({ [`${newData.length - 1}`]: true });
     }
     updateOrderBy(newData);
   };
@@ -143,7 +136,7 @@ export const TableSort = () => {
     const newData = [...data];
     newData.push(EMPTY_COLUMN);
     setData(newData);
-    setRowSelection({ [`${newData.length - 1}`]: true });
+    table.setRowSelection({ [`${newData.length - 1}`]: true });
     focusNewCell(domTable, newData.length, 'button');
   };
 
@@ -154,26 +147,23 @@ export const TableSort = () => {
     updateOrderBy(data);
   };
 
-  const firstSelectionId = Object.keys(rowSelection)[0];
+  const firstSelectedRow = table.getSelectedRowModel().rows[0];
   let tableActions: FieldsetControl[] = [];
-  if (firstSelectionId) {
-    const firstSelectionRow = table.getRowModel().rowsById[firstSelectionId];
-    if (firstSelectionRow) {
-      tableActions = [
-        {
-          label: t('label.removeRow'),
-          icon: IvyIcons.Trash,
-          action: () => removeRow(firstSelectionRow?.index)
-        }
-      ];
-    }
+  if (firstSelectedRow) {
+    tableActions = [
+      {
+        label: t('label.removeRow'),
+        icon: IvyIcons.Trash,
+        action: () => removeRow(firstSelectedRow?.index)
+      }
+    ];
   }
 
   return (
     <PathCollapsible label={t('part.db.sort')} path='orderBy' defaultOpen={config.query.sql.orderBy?.length > 0} controls={tableActions}>
       <div>
         <Table>
-          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
+          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => table.setRowSelection({})} />
           <TableBody>
             {table.getRowModel().rows.map(row => (
               <ReorderRow row={row} key={row.id} id={row.original.name} updateOrder={updateOrder}>
