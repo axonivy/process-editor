@@ -385,6 +385,18 @@ importers:
       '@axonivy/process-editor-inscription-protocol':
         specifier: workspace:~
         version: link:../inscription-protocol
+      '@hediet/json-rpc':
+        specifier: ^0.5.0
+        version: 0.5.0
+      '@hediet/json-rpc-browser':
+        specifier: ^0.5.1
+        version: 0.5.1
+      '@hediet/json-rpc-websocket':
+        specifier: ^0.5.1
+        version: 0.5.1(ws@8.21.0)
+      '@monaco-editor/react':
+        specifier: ^4.8.0-rc.3
+        version: 4.8.0-rc.3(monaco-editor@0.55.1(patch_hash=899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@radix-ui/react-dialog':
         specifier: ^1.1
         version: 1.1.23(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -415,6 +427,9 @@ importers:
       immer:
         specifier: ^11.1.15
         version: 11.1.16
+      monaco-editor:
+        specifier: ^0.55.1
+        version: 0.55.1(patch_hash=899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f)
       react-aria:
         specifier: ^3.50.0
         version: 3.51.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -434,18 +449,6 @@ importers:
       '@axonivy/ui-icons':
         specifier: next-14.0.0
         version: 14.0.0-next.1230.1c0722d
-      '@hediet/json-rpc':
-        specifier: ^0.5.0
-        version: 0.5.0
-      '@hediet/json-rpc-browser':
-        specifier: ^0.5.1
-        version: 0.5.1
-      '@hediet/json-rpc-websocket':
-        specifier: ^0.5.1
-        version: 0.5.1(ws@8.21.0)
-      '@monaco-editor/react':
-        specifier: 4.8.0-rc.3
-        version: 4.8.0-rc.3(monaco-editor@0.55.1(patch_hash=899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@testing-library/jest-dom':
         specifier: ^7.0.0
         version: 7.0.1(@testing-library/dom@10.4.1)(vitest@4.1.10(@types/node@24.13.3)(happy-dom@20.11.2)(jsdom@30.0.1)(vite@8.2.1(@types/node@24.13.3)(jiti@2.7.0)(yaml@2.9.0)))
@@ -467,9 +470,6 @@ importers:
       jsdom:
         specifier: ^30.0.0
         version: 30.0.1
-      monaco-editor:
-        specifier: 0.55.1
-        version: 0.55.1(patch_hash=899da2f303ca4825b0017a43537473be707dba57c101f26ff4a9aea957f2351f)
       react:
         specifier: ^19.2.8
         version: 19.2.8
