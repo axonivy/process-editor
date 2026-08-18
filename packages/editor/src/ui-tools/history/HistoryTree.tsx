@@ -90,7 +90,7 @@ export const HistoryTree = ({ data, searchActive, expanded, onExpandedChange, la
 
   return (
     <>
-      {searchActive && <TableGlobalFilter table={table} autoFocus={true} />}
+      <TableGlobalFilter table={table} autoFocus={true} active={searchActive} />
       <Table>
         <TableBody>
           {table.getRowModel().rows.map(row => (

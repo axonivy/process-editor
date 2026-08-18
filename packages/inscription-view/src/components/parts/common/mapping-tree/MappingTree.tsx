@@ -13,7 +13,6 @@ type MappingTreeProps = {
 };
 
 const MappingTree = ({ tree, globalFilterActive }: MappingTreeProps) => {
-  console.log(tree.atoms.columnFilters.get());
   return (
     <SearchTable
       table={tree}

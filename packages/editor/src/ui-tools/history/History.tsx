@@ -104,6 +104,7 @@ export const HistoryContent = ({ actionDispatcher, togglePinned, closeHistory, a
     },
     [expanded, loadLazyNodeData, pid]
   );
+
   const successActions: Array<ButtonProps> = [
     {
       title: t('common.label.search'),
@@ -136,7 +137,6 @@ export const HistoryContent = ({ actionDispatcher, togglePinned, closeHistory, a
             {
               title: t('common.label.close'),
               'aria-label': t('common.label.close'),
-
               icon: IvyIcons.Close,
               onClick: closeHistory
             }
@@ -146,7 +146,6 @@ export const HistoryContent = ({ actionDispatcher, togglePinned, closeHistory, a
     >
       {isPending && <Spinner size='small' />}
       {isError && <div>{t('history.error')}</div>}
-
       {isSuccess && data && (
         <HistoryTree
           data={data}

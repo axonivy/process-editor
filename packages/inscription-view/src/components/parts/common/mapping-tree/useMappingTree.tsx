@@ -30,16 +30,6 @@ export const useMappingTree = (
     [variableInfo, setTreeData]
   );
 
-  // useEffect(() => {
-  //   const treeData = MappingTreeData.of(variableInfo);
-  //   Object.entries(data).forEach(mapping => MappingTreeData.update(variableInfo, treeData, mapping[0].split('.'), mapping[1]));
-  //   // eslint-disable-next-line @eslint-react/set-state-in-effect
-  //   setTree(treeData);
-  //   if (updateExpanded) {
-  //     setExpanded(expandState(treeData));
-  //   }
-  // }, [data, variableInfo]);
-
   const columns = useMemo(
     () =>
       columnHelper.columns([
@@ -92,7 +82,7 @@ export const useMappingTree = (
     }
   });
 
-  if (deepEqual(data, prevData) === false || deepEqual(variableInfo, prevVariableInfo) === false) {
+  if (!deepEqual(data, prevData) || !deepEqual(variableInfo, prevVariableInfo)) {
     setPrevData(data);
     setPrevVariableInfo(variableInfo);
     const treeData = createTreeData(variableInfo, data);
