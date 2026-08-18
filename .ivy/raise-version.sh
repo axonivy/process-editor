@@ -14,6 +14,7 @@ NEXT_VERSION="$(to_next_version "$VERSION")"
 NEXT_TAG="$(to_next_tag "$VERSION")"
 
 mvn --batch-mode -f integration/viewer/pom.xml versions:set versions:commit -DnewVersion="$VERSION"
+mvn --batch-mode -f build/sbom/pom.xml versions:set versions:commit -DnewVersion="$VERSION"
 mvn --batch-mode -f playwright/process-test-project/pom.xml versions:set versions:commit -DnewVersion="$VERSION"
 mvn --batch-mode -f playwright/inscription-test-project/pom.xml versions:set versions:commit -DnewVersion="$VERSION"
 mvn --batch-mode -f playwright/tests/screenshots/pom.xml versions:set versions:commit -DnewVersion="$VERSION"

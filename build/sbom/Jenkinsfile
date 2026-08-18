@@ -1,0 +1,32 @@
+pipeline {
+  agent any
+
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '20'))
+  }
+
+  triggers {
+    cron '@midnight'
+  }
+
+  stages {
+    stage('build') {
+      steps {
+        script {
+          if (isReleasingBranch()) {
+            docker.build('node', '-f build/Dockerfile.node .').inside {
+              sh 'pnpm install && pnpm run update:axonivy:next'
+              sh 'pnpm run sbom:dev'
+              def version = sh (script: "node -p \"require('./package.json').version\"", returnStdout: true)
+              uploadBOM(projectName: 'process-editor', projectVersion: version, bomFile: 'bom-dev.json')
+              sh 'pnpm run sbom'
+            }
+            docker.build('maven-build', '-f build/Dockerfile.maven .').inside {
+              maven cmd: '-f build/sbom/pom.xml clean deploy'
+            }
+          }
+        }
+      }
+    }
+  }
+}
