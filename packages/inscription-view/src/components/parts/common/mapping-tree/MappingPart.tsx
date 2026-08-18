@@ -7,7 +7,7 @@ import type { BrowserType } from '../../../browser/useBrowser';
 import Fieldset from '../../../widgets/fieldset/Fieldset';
 import { PathCollapsible } from '../path/PathCollapsible';
 import MappingTree from './MappingTree';
-import { useTableGlobalFilter, useTableOnlyInscribed } from './useMappingTree';
+import { useMappingTree, useTableGlobalFilter, useTableOnlyInscribed } from './useMappingTree';
 
 export type MappingPartProps = {
   data: Record<string, string>;
@@ -20,8 +20,9 @@ export type MappingPartProps = {
 
 const MappingPart = ({ path, data, defaultData, defaultOpen, ...props }: MappingPartProps & { defaultData: Record<string, string> }) => {
   const { t } = useTranslation();
-  const globalFilter = useTableGlobalFilter();
-  const onlyInscribedFilter = useTableOnlyInscribed();
+  const tree = useMappingTree(data, props.variableInfo, props.onChange, props.browsers);
+  const globalFilter = useTableGlobalFilter(tree);
+  const onlyInscribedFilter = useTableOnlyInscribed(tree);
   return (
     <PathCollapsible
       label={t('common.label.mapping')}
@@ -29,19 +30,20 @@ const MappingPart = ({ path, data, defaultData, defaultOpen, ...props }: Mapping
       path={path ?? 'map'}
       defaultOpen={defaultOpen ?? !deepEqual(data, defaultData)}
     >
-      <MappingTree data={data} {...props} globalFilter={globalFilter} onlyInscribedFilter={onlyInscribedFilter} />
+      <MappingTree tree={tree} globalFilterActive={globalFilter.active} />
     </PathCollapsible>
   );
 };
 
 export const MappingField = ({ path, data, ...props }: MappingPartProps) => {
   const { t } = useTranslation();
-  const globalFilter = useTableGlobalFilter();
-  const onlyInscribedFilter = useTableOnlyInscribed();
+  const tree = useMappingTree(data, props.variableInfo, props.onChange, props.browsers);
+  const globalFilter = useTableGlobalFilter(tree);
+  const onlyInscribedFilter = useTableOnlyInscribed(tree);
   return (
     <PathProvider path={path ?? 'map'}>
       <Fieldset label={t('common.label.mapping')} controls={[globalFilter.control, onlyInscribedFilter.control]}>
-        <MappingTree data={data} {...props} globalFilter={globalFilter} onlyInscribedFilter={onlyInscribedFilter} />
+        <MappingTree tree={tree} globalFilterActive={globalFilter.active} />
       </Fieldset>
     </PathProvider>
   );
