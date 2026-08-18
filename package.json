@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@axonivy/process-editor-root",
-  "version": "11.4.0-next",
+  "version": "14.0.0-next",
   "engines": {
     "node": ">=24.11"
   },
@@ -28,7 +28,9 @@
     "webtest": "pnpm run --filter @axonivy/process-editor-playwright webtest",
     "update:axonivy:next": "pnpm update -r @axonivy",
     "raise:version": "lerna version --no-git-tag-version --no-push --ignore-scripts --exact --yes",
-    "publish:next": "lerna publish --exact --canary --preid next --pre-dist-tag next-14.0.0 --no-git-tag-version --no-push --ignore-scripts --yes"
+    "publish:next": "lerna publish --exact --canary --preid next --pre-dist-tag next-14.0.0 --no-git-tag-version --no-push --ignore-scripts --yes",
+    "sbom": "pnpm sbom --sbom-format cyclonedx --prod --filter @axonivy/process-editor-viewer --out bom.json",
+    "sbom:dev": "pnpm sbom --sbom-format cyclonedx --out bom-dev.json"
   },
   "devDependencies": {
     "@axonivy/eslint-config": "next-14.0.0",
