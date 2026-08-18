@@ -27,7 +27,7 @@ import { DEFAULT_DATA, EMPTY_ROLE, EMPTY_VAR_INFO } from '@axonivy/process-edito
 import { ReadonlyProvider } from '@axonivy/ui-components';
 import type { queries, Queries, RenderHookOptions, RenderOptions } from '@testing-library/react';
 import { render, renderHook } from '@testing-library/react';
-import { deepmerge } from 'deepmerge-ts';
+import { deepmergeCustom, type DeepMergeNoFilteringURI } from 'deepmerge-ts';
 import type { ReactElement, ReactNode } from 'react';
 import { useRef } from 'react';
 import type { DeepPartial } from './type-utils';
@@ -79,21 +79,26 @@ type ContextHelperProps = {
   editor?: { title?: string; readonly?: boolean };
 };
 
+const customizedDeepmerge = deepmergeCustom<unknown, { DeepMergeFilterValuesURI: DeepMergeNoFilteringURI }>({
+  filterValues: false,
+  mergeArrays: false
+});
+
 const ContextHelper = (
   props: ContextHelperProps & {
     children: ReactNode;
   }
 ) => {
-  const d = props.data ? deepmerge(DEFAULT_DATA, props.data) : DEFAULT_DATA;
+  const d = props.data ? customizedDeepmerge(DEFAULT_DATA, props.data) : DEFAULT_DATA;
   const data: DataContext = {
     // @ts-ignore
-    data: props.data ? deepmerge(DEFAULT_DATA, props.data) : DEFAULT_DATA,
+    data: props.data ? customizedDeepmerge(DEFAULT_DATA, props.data) : DEFAULT_DATA,
     // @ts-ignore
     setData: props.setData ? getData => props.setData(getData(d)) : () => {},
     // @ts-ignore
-    defaultData: props.defaultData ? deepmerge(DEFAULT_DATA.config, props.defaultData) : DEFAULT_DATA.config,
+    defaultData: props.defaultData ? customizedDeepmerge(DEFAULT_DATA.config, props.defaultData) : DEFAULT_DATA.config,
     // @ts-ignore
-    initData: props.initData ? deepmerge(DEFAULT_DATA, props.initData) : DEFAULT_DATA,
+    initData: props.initData ? customizedDeepmerge(DEFAULT_DATA, props.initData) : DEFAULT_DATA,
     validations: props.validations ?? []
   };
   const client: ClientContext = {

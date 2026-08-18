@@ -18,9 +18,9 @@
     "@axonivy/process-editor-inscription-protocol": "workspace:~",
     "@monaco-editor/react": "^4.7.0",
     "@tanstack/react-virtual": "^3.14.9",
-    "dompurify": "^3.4.12",
+    "dompurify": "^3.4.13",
     "immer": "^10.2.0",
-    "react-aria": "^3.50.0",
+    "react-aria": "^3.51.0",
     "react-error-boundary": "^4.1.2"
   },
   "peerDependencies": {
@@ -40,10 +40,10 @@
     "@tanstack/eslint-plugin-query": "5.101.4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.1",
+    "@testing-library/user-event": "^14.6.4",
     "@types/node": "^24.13.3",
     "@types/react": "^18.3.31",
-    "deepmerge-ts": "^5.1.0",
+    "deepmerge-ts": "^8.0.0",
     "jsdom": "^25.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
