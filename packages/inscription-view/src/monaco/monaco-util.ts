@@ -1,4 +1,5 @@
 import { ConsoleTimer, Deferred } from '@axonivy/process-editor-inscription-core';
+import EditorWorker from 'monaco-editor/editor/editor.worker.js?worker';
 
 import { LogLevel, MonacoLanguagePack, MonacoModule, type MonacoApi } from './monaco-modules';
 
@@ -6,7 +7,7 @@ import { LogLevel, MonacoLanguagePack, MonacoModule, type MonacoApi } from './mo
 // the Worker is only created when Monaco actually needs one (e.g., for color detection)
 self.MonacoEnvironment = {
   getWorker() {
-    return new Worker(new URL('monaco-editor/esm/vs/editor/editor.worker.js', import.meta.url), { type: 'module' });
+    return new EditorWorker();
   }
 };
 

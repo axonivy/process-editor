@@ -9,69 +9,9 @@ export namespace MonacoModule {
 }
 
 export namespace MonacoLanguagePack {
-  export const Czech = new LazyLoader(() => import('monaco-editor/esm/nls.messages.cs.js'));
-  export const German = new LazyLoader(() => import('monaco-editor/esm/nls.messages.de.js'));
-  export const Spanish = new LazyLoader(() => import('monaco-editor/esm/nls.messages.es.js'));
-  export const French = new LazyLoader(() => import('monaco-editor/esm/nls.messages.fr.js'));
-  export const Italian = new LazyLoader(() => import('monaco-editor/esm/nls.messages.it.js'));
-  export const Japanese = new LazyLoader(() => import('monaco-editor/esm/nls.messages.ja.js'));
-  export const Korean = new LazyLoader(() => import('monaco-editor/esm/nls.messages.ko.js'));
-  export const Polish = new LazyLoader(() => import('monaco-editor/esm/nls.messages.pl.js'));
-  export const PortugueseBrazil = new LazyLoader(() => import('monaco-editor/esm/nls.messages.pt-br.js'));
-  export const Russian = new LazyLoader(() => import('monaco-editor/esm/nls.messages.ru.js'));
-  export const Turkish = new LazyLoader(() => import('monaco-editor/esm/nls.messages.tr.js'));
-  export const ChineseSimplified = new LazyLoader(() => import('monaco-editor/esm/nls.messages.zh-cn.js'));
-  export const ChineseTraditional = new LazyLoader(() => import('monaco-editor/esm/nls.messages.zh-tw.js'));
-
   export async function loadLocale(locale: string = 'en'): Promise<void> {
-    if (locale === 'en') {
-      // English is the default language, no need to load anything
-      return;
-    }
-    switch (locale) {
-      case 'cs':
-        await MonacoLanguagePack.Czech.load();
-        break;
-      case 'de':
-        await MonacoLanguagePack.German.load();
-        break;
-      case 'es':
-        await MonacoLanguagePack.Spanish.load();
-        break;
-      case 'fr':
-        await MonacoLanguagePack.French.load();
-        break;
-      case 'it':
-        await MonacoLanguagePack.Italian.load();
-        break;
-      case 'ja':
-        await MonacoLanguagePack.Japanese.load();
-        break;
-      case 'ko':
-        await MonacoLanguagePack.Korean.load();
-        break;
-      case 'pl':
-        await MonacoLanguagePack.Polish.load();
-        break;
-      case 'pt-br':
-        await MonacoLanguagePack.PortugueseBrazil.load();
-        break;
-      case 'ru':
-        await MonacoLanguagePack.Russian.load();
-        break;
-      case 'tr':
-        await MonacoLanguagePack.Turkish.load();
-        break;
-      case 'zh-cn':
-        await MonacoLanguagePack.ChineseSimplified.load();
-        break;
-      case 'zh-tw':
-        await MonacoLanguagePack.ChineseTraditional.load();
-        break;
-      default:
-        console.error(`No locale available for language '${locale}'.`);
-        // no locale available
-        break;
+    if (locale !== 'en') {
+      console.warn(`Monaco language pack '${locale}' is unavailable in Monaco Editor 0.56.0; using English.`);
     }
   }
 }
