@@ -388,12 +388,6 @@ importers:
       '@hediet/json-rpc':
         specifier: ^0.5.0
         version: 0.5.0
-      '@hediet/json-rpc-browser':
-        specifier: ^0.5.1
-        version: 0.5.1
-      '@hediet/json-rpc-websocket':
-        specifier: ^0.5.1
-        version: 0.5.1(ws@8.21.0)
       '@monaco-editor/react':
         specifier: ^4.8.0-rc.3
         version: 4.8.0-rc.3(monaco-editor@0.56.0(patch_hash=a7ef5f69f9d0f345143db9a17c505cdf046585e639a2448c68dec2403a6dbaf5))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -795,12 +789,6 @@ packages:
   '@gar/promise-retry@1.0.3':
     resolution: {integrity: sha512-GmzA9ckNokPypTg10pgpeHNQe7ph+iIKKmhKu3Ob9ANkswreCx7R3cKmY781K8QK3AqVL3xVh9A42JvIAbkkSA==}
     engines: {node: ^20.17.0 || >=22.9.0}
-
-  '@hediet/json-rpc-browser@0.5.1':
-    resolution: {integrity: sha512-iR+WrTdM7WozRJ/MElfeT8CmH2f911Y8P6xfcj5RCfywp7kjnnqKPUV/VnNnzToxRZUO8WAfJtLvmhDBsSjMtA==}
-
-  '@hediet/json-rpc-websocket@0.5.1':
-    resolution: {integrity: sha512-1H9UjKyR00ZjwcReQdzTxyEoZKaEubeOvxBVrwHGo4n9HeQt6SvQgtef+1AJ9MT7/sV2Qfe0VWarYivx6BWgIA==}
 
   '@hediet/json-rpc@0.5.0':
     resolution: {integrity: sha512-SApO7NbKJztClcznEqg46ZGQzO2v3Q3gVIuRVC9QE/m75J/5AipJdclxEXgT++7j4x4LI2JjEpf2xhi67Ngu9A==}
@@ -2042,9 +2030,6 @@ packages:
 
   '@types/whatwg-mimetype@3.0.2':
     resolution: {integrity: sha512-c2AKvDT8ToxLIOUlN51gTiHXflsfIFisS4pO7pDPoKouJCESkhZnEy623gwP9laCy5lnLDAw1vAzu2vM2YLOrA==}
-
-  '@types/ws@6.0.4':
-    resolution: {integrity: sha512-PpPrX7SZW9re6+Ha8ojZG4Se8AZXgf0GK6zmfqEuCsY49LFDNXO3SByp44X3dFEqtB73lkCDAdUazhAjVPiNwg==}
 
   '@types/ws@8.18.1':
     resolution: {integrity: sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==}
@@ -4757,18 +4742,6 @@ snapshots:
 
   '@gar/promise-retry@1.0.3': {}
 
-  '@hediet/json-rpc-browser@0.5.1':
-    dependencies:
-      '@hediet/json-rpc': 0.5.0
-
-  '@hediet/json-rpc-websocket@0.5.1(ws@8.21.0)':
-    dependencies:
-      '@hediet/json-rpc': 0.5.0
-      '@types/ws': 6.0.4
-      isomorphic-ws: 5.0.0(ws@8.21.0)
-    transitivePeerDependencies:
-      - ws
-
   '@hediet/json-rpc@0.5.0': {}
 
   '@humanfs/core@0.19.1': {}
@@ -6054,10 +6027,6 @@ snapshots:
     optional: true
 
   '@types/whatwg-mimetype@3.0.2': {}
-
-  '@types/ws@6.0.4':
-    dependencies:
-      '@types/node': 24.13.3
 
   '@types/ws@8.18.1':
     dependencies:
