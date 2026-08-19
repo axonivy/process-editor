@@ -90,8 +90,7 @@ export class ConnectionTransport extends BaseMessageTransport implements Disposa
   }
 }
 
-// monaco-lsp-client only exposes a few functions so we need to use some imports from the base frameworks, cf. https://github.com/microsoft/monaco-editor/blob/main/monaco-lsp-client/src/index.ts
-// WebSocketTransport has a private constructor so we cannot re-use it
+// Monaco's native WebSocketTransport has no reconnect support and cannot adapt an existing Ivy JSON-RPC connection.
 export class ReconnectingWebSocketTransport extends BaseMessageTransport {
   private readonly errorEmitter = new EventEmitter<{ error: unknown }>();
   public readonly onError = this.errorEmitter.event;
