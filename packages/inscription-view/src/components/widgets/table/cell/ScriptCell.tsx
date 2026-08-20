@@ -1,16 +1,16 @@
-import { Button, Flex, InputCell } from '@axonivy/ui-components';
+import { Button, type DataTableFeatures, Flex, InputCell } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { CellContext } from '@tanstack/react-table';
+import type { CellContext, RowData } from '@tanstack/react-table';
 import type { BrowserType } from '../../../browser/useBrowser';
 import { CodeEditorCell } from './CodeEditorCell';
 
-export const ScriptCell = <TData,>({
+export const ScriptCell = <TData extends RowData,>({
   cell,
   type,
   browsers,
   placeholder
 }: {
-  cell: CellContext<TData, string>;
+  cell: CellContext<DataTableFeatures, TData, string | undefined>;
   type: string;
   browsers: BrowserType[];
   placeholder?: string;

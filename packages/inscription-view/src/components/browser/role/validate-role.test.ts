@@ -1,9 +1,10 @@
 import type { RoleMeta } from '@axonivy/process-editor-inscription-protocol';
+import type { DataTableFeatures } from '@axonivy/ui-components';
 import type { Table } from '@tanstack/react-table'; // replace with the actual path
 import { describe, expect, test } from 'vitest';
 import { isValidRowSelected, newNameExists, newNameIsValid } from './validate-role';
 
-const testTable = (rows: RoleMeta[], selectedRow?: RoleMeta): Table<RoleMeta> => {
+const testTable = (rows: RoleMeta[], selectedRow?: RoleMeta): Table<DataTableFeatures, RoleMeta> => {
   return {
     getRowModel: () => ({
       flatRows: rows.map(row => ({ original: row }))
@@ -11,7 +12,7 @@ const testTable = (rows: RoleMeta[], selectedRow?: RoleMeta): Table<RoleMeta> =>
     getSelectedRowModel: () => ({
       flatRows: selectedRow ? [{ original: selectedRow }] : []
     })
-  } as Table<RoleMeta>;
+  } as Table<DataTableFeatures, RoleMeta>;
 };
 
 describe('newNameExists', () => {

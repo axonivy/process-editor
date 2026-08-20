@@ -1,9 +1,8 @@
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { ReorderHandleWrapper, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import { dataTableHelper, ReorderHandleWrapper, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { useCallback, useMemo, useState } from 'react';
+import { flexRender, useTable } from '@tanstack/react-table';
+import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { FieldsetControl } from '../../widgets/fieldset/fieldset-control';
 import { ScriptCell } from '../../widgets/table/cell/ScriptCell';
@@ -18,6 +17,8 @@ const ConditionTypeCell = ({ condition }: { condition: Condition }) => {
   return <span>⛔ {condition.fid}</span>;
 };
 
+const { columnHelper, tableOptions } = dataTableHelper<Condition>();
+
 const ConditionTable = ({ data, onChange }: { data: Condition[]; onChange: (change: Condition[]) => void }) => {
   const { t } = useTranslation();
   const updateOrder = useCallback(
@@ -30,81 +31,73 @@ const ConditionTable = ({ data, onChange }: { data: Condition[]; onChange: (chan
     const newData = [...data];
     newData.splice(index, 1);
     if (newData.length === 0) {
-      setRowSelection({});
+      table.setRowSelection({});
     } else if (index === data.length - 1) {
-      setRowSelection({ [`${newData.length - 1}`]: true });
+      table.setRowSelection({ [`${newData.length - 1}`]: true });
     }
     onChange(newData);
   };
 
-  const columns = useMemo<ColumnDef<Condition, string>[]>(
-    () => [
-      {
-        accessorKey: 'fid',
-        header: () => <span>{t('common.label.type')}</span>,
-        cell: cell => <ConditionTypeCell condition={cell.row.original} />
-      },
-      {
-        accessorKey: 'expression',
-        header: () => <span>{t('label.expression')}</span>,
-        cell: cell => (
-          <ReorderHandleWrapper>
-            <ScriptCell
-              cell={cell}
-              type={IVY_SCRIPT_TYPES.BOOLEAN}
-              browsers={['condition', 'attr', 'func']}
-              placeholder={t('label.enterExpression')}
-            />
-          </ReorderHandleWrapper>
-        )
-      }
-    ],
+  const columns = useMemo(
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('fid', {
+          header: () => <span>{t('common.label.type')}</span>,
+          cell: cell => <ConditionTypeCell condition={cell.row.original} />
+        }),
+        columnHelper.accessor('expression', {
+          header: () => <span>{t('label.expression')}</span>,
+          cell: cell => (
+            <ReorderHandleWrapper>
+              <ScriptCell
+                cell={cell}
+                type={IVY_SCRIPT_TYPES.BOOLEAN}
+                browsers={['condition', 'attr', 'func']}
+                placeholder={t('label.enterExpression')}
+              />
+            </ReorderHandleWrapper>
+          )
+        })
+      ]),
     [t]
   );
 
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-
-  const table = useReactTable({
+  const table = useTable({
+    ...tableOptions,
     data,
     columns,
-    state: { sorting, rowSelection },
     columnResizeMode: 'onChange',
     columnResizeDirection: 'ltr',
     enableRowSelection: true,
     enableMultiRowSelection: false,
     enableSubRowSelection: false,
-    onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     meta: {
-      updateData: (rowId: string, columnId: string, value: string) => {
+      updateData: (rowId: string, columnId: string, value: unknown) => {
+        if (typeof value !== 'string') {
+          return;
+        }
         const rowIndex = parseInt(rowId);
         onChange(Condition.update(data, rowIndex, columnId, value));
       }
     }
   });
 
-  const firstSelectionId = Object.keys(rowSelection)[0];
+  const firstSelectedRow = table.getSelectedRowModel().rows[0];
   let tableActions: FieldsetControl[] = [];
-  if (firstSelectionId) {
-    const firstSelectionRow = table.getRowModel().rowsById[firstSelectionId];
-    if (firstSelectionRow && !firstSelectionRow?.original.target) {
-      tableActions = [
-        {
-          label: t('label.removeRow'),
-          icon: IvyIcons.Trash,
-          action: () => removeRow(firstSelectionRow.index)
-        }
-      ];
-    }
+  if (firstSelectedRow && !firstSelectedRow?.original.target) {
+    tableActions = [
+      {
+        label: t('label.removeRow'),
+        icon: IvyIcons.Trash,
+        action: () => removeRow(firstSelectedRow.index)
+      }
+    ];
   }
 
   return (
     <ValidationCollapsible label={t('part.condition.title')} controls={tableActions} defaultOpen={true}>
       <Table>
-        <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
+        <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => table.setRowSelection({})} />
         <TableBody>
           {table.getRowModel().rows.map(row => (
             <ValidationSelectableReorderRow

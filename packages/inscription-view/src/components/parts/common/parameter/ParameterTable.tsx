@@ -1,6 +1,5 @@
 import type { ScriptVariable } from '@axonivy/process-editor-inscription-protocol';
-import { InputCell, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
-import type { ColumnDef } from '@tanstack/react-table';
+import { dataTableHelper, InputCell, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
 import { flexRender } from '@tanstack/react-table';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,27 +17,28 @@ type ParameterTableProps = {
 
 const EMPTY_SCRIPT_VARIABLE: ScriptVariable = { name: '', type: 'String', desc: '' } as const;
 
+const { columnHelper } = dataTableHelper<ScriptVariable>();
+
 const ParameterTable = ({ data, onChange, hideDesc, label }: ParameterTableProps) => {
   const { t } = useTranslation();
   const columns = useMemo(() => {
-    const colDef: ColumnDef<ScriptVariable, string>[] = [
-      {
-        accessorKey: 'name',
+    const colDef = columnHelper.columns([
+      columnHelper.accessor('name', {
         header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
         cell: cell => <InputCell cell={cell} placeholder={t('label.enterName')} />
-      },
-      {
-        accessorKey: 'type',
+      }),
+      columnHelper.accessor('type', {
         header: ({ column }) => <SortableHeader column={column} name={t('common.label.type')} />,
         cell: cell => <BrowserInputCell cell={cell} />
-      }
-    ];
+      })
+    ]);
     if (hideDesc === undefined || !hideDesc) {
-      colDef.push({
-        accessorKey: 'desc',
-        header: ({ column }) => <SortableHeader column={column} name={t('common.label.description')} />,
-        cell: cell => <InputCell cell={cell} placeholder={t('label.enterDesc')} />
-      });
+      colDef.push(
+        columnHelper.accessor('desc', {
+          header: ({ column }) => <SortableHeader column={column} name={t('common.label.description')} />,
+          cell: cell => <InputCell cell={cell} placeholder={t('label.enterDesc')} />
+        })
+      );
     }
     return colDef;
   }, [hideDesc, t]);

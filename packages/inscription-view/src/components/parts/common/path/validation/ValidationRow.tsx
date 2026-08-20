@@ -1,18 +1,18 @@
-import type { TableRow } from '@axonivy/ui-components';
+import type { DataTableFeatures, TableRow } from '@axonivy/ui-components';
 import { MessageRow, ReorderRow, SelectRow } from '@axonivy/ui-components';
-import type { Row } from '@tanstack/react-table';
+import type { Row, RowData } from '@tanstack/react-table';
 import type { ComponentPropsWithoutRef } from 'react';
 import { mergePaths, usePath } from '../../../../../context/usePath';
 import { useValidations } from '../../../../../context/useValidation';
 import { toMessageData, type ValidationMessage } from '../../../../widgets/message/Message';
 import './ValidationRow.css';
 
-type ValidationProps<TData> = {
-  row: Row<TData>;
+type ValidationProps<TData extends RowData> = {
+  row: Row<DataTableFeatures, TData>;
   rowPathSuffix: string | number;
 };
 
-type ValidationRowProps<TData> = ComponentPropsWithoutRef<typeof TableRow> & ValidationProps<TData>;
+type ValidationRowProps<TData extends RowData> = ComponentPropsWithoutRef<typeof TableRow> & ValidationProps<TData>;
 
 const styleMessageRow = (validation?: ValidationMessage) => {
   if (validation) {
@@ -28,7 +28,7 @@ const useValidationRow = (rowPathSuffix: string | number) => {
   return validations.find(val => val.path === rowPath);
 };
 
-export const ValidationRow = <TData extends object>({ rowPathSuffix, row, ...props }: ValidationRowProps<TData>) => {
+export const ValidationRow = <TData extends RowData>({ rowPathSuffix, row, ...props }: ValidationRowProps<TData>) => {
   const validation = useValidationRow(rowPathSuffix);
   return (
     <>
@@ -38,9 +38,9 @@ export const ValidationRow = <TData extends object>({ rowPathSuffix, row, ...pro
   );
 };
 
-type ValidationReorderRowProps<TData> = ComponentPropsWithoutRef<typeof ReorderRow<TData>> & ValidationProps<TData>;
+type ValidationReorderRowProps<TData extends RowData> = ComponentPropsWithoutRef<typeof ReorderRow<TData>> & ValidationProps<TData>;
 
-export const ValidationSelectableReorderRow = <TData extends object>({
+export const ValidationSelectableReorderRow = <TData extends RowData>({
   rowPathSuffix,
   row,
   ...props

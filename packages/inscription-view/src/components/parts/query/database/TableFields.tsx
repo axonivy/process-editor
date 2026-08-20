@@ -1,8 +1,7 @@
 import type { DatabaseColumn } from '@axonivy/process-editor-inscription-protocol';
-import { SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
-import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
+import { dataTableHelper, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import { flexRender, useTable } from '@tanstack/react-table';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
@@ -15,6 +14,8 @@ import { useQueryData } from '../useQueryData';
 type Column = DatabaseColumn & {
   expression: string;
 };
+
+const { columnHelper, tableOptions } = dataTableHelper<Column>();
 
 export const TableFields = () => {
   const { t } = useTranslation();
@@ -33,45 +34,40 @@ export const TableFields = () => {
     return columnData;
   }, [columnMetas, config.query.sql.fields]);
 
-  const columns = useMemo<ColumnDef<Column, string>[]>(
-    () => [
-      {
-        accessorKey: 'name',
-        header: ({ column }) => <SortableHeader column={column} name={t('label.column')} />,
-        cell: cell => (
-          <>
-            <span>{cell.getValue()}</span>
-            <span className='row-expand-label-info'> : {cell.row.original.type}</span>
-          </>
-        )
-      },
-      {
-        accessorKey: 'expression',
-        header: ({ column }) => <SortableHeader column={column} name={t('common.label.value')} />,
-        cell: cell => <ScriptCell cell={cell} type={cell.row.original.ivyType} browsers={['attr', 'func', 'type', 'cms']} />
-      }
-    ],
+  const columns = useMemo(
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('name', {
+          header: ({ column }) => <SortableHeader column={column} name={t('label.column')} />,
+          cell: cell => (
+            <>
+              <span>{cell.getValue()}</span>
+              <span className='row-expand-label-info'> : {cell.row.original.type}</span>
+            </>
+          )
+        }),
+        columnHelper.accessor('expression', {
+          header: ({ column }) => <SortableHeader column={column} name={t('common.label.value')} />,
+          cell: cell => <ScriptCell cell={cell} type={cell.row.original.ivyType} browsers={['attr', 'func', 'type', 'cms']} />
+        })
+      ]),
     [t]
   );
 
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-
-  const table = useReactTable({
+  const table = useTable({
+    ...tableOptions,
     data,
     columns,
-    state: { sorting, rowSelection },
     columnResizeMode: 'onChange',
     columnResizeDirection: 'ltr',
     enableRowSelection: true,
     enableMultiRowSelection: false,
     enableSubRowSelection: false,
-    onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     meta: {
-      updateData: (rowId: string, columnId: string, value: string) => {
+      updateData: (rowId: string, columnId: string, value: unknown) => {
+        if (typeof value !== 'string') {
+          return;
+        }
         const rowIndex = parseInt(rowId);
         const fields: Record<string, string> = {};
         data
@@ -99,7 +95,7 @@ export const TableFields = () => {
         defaultOpen={config.query.sql.fields && Object.keys(config.query.sql.fields).length > 0}
       >
         <Table>
-          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
+          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => table.setRowSelection({})} />
           <TableBody>
             {table.getRowModel().rows.map(row => (
               <ValidationRow row={row} key={row.id} rowPathSuffix={row.original.name}>

@@ -1,10 +1,18 @@
 import type { ScriptMappings } from '@axonivy/process-editor-inscription-protocol';
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { ComboCell, SortableHeader, Table, TableAddRow, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import {
+  ComboCell,
+  dataTableHelper,
+  SortableHeader,
+  Table,
+  TableAddRow,
+  TableBody,
+  TableCell,
+  TableResizableHeader
+} from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
+import { flexRender, useTable } from '@tanstack/react-table';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { deepEqual } from '../../../../utils/equals';
 import type { ComboboxItem } from '../../../widgets/combobox/Combobox';
@@ -25,6 +33,8 @@ type PropertyTableProps = {
 
 const EMPTY_PROPERTY: Property = { expression: '', name: '' };
 
+const { columnHelper, tableOptions } = dataTableHelper<Property>();
+
 export const PropertyTable = ({ properties, update, knownProperties, hideProperties, label, defaultOpen }: PropertyTableProps) => {
   const { t } = useTranslation();
   const data = useMemo(() => Property.of(properties), [properties]);
@@ -33,31 +43,27 @@ export const PropertyTable = ({ properties, update, knownProperties, hidePropert
 
   const knownPropertyItems = knownProperties.map<ComboboxItem>(prop => ({ value: prop }));
 
-  const columns = useMemo<ColumnDef<Property, string>[]>(
-    () => [
-      {
-        accessorKey: 'name',
-        header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
-        cell: cell => <ComboCell cell={cell} options={knownPropertyItems} />
-      },
-      {
-        accessorKey: 'expression',
-        header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
-        cell: cell => (
-          <ScriptCell
-            cell={cell}
-            type={IVY_SCRIPT_TYPES.OBJECT}
-            browsers={['attr', 'func', 'type', 'cms']}
-            placeholder={t('label.enterExpression')}
-          />
-        )
-      }
-    ],
+  const columns = useMemo(
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('name', {
+          header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
+          cell: cell => <ComboCell cell={cell} options={knownPropertyItems} />
+        }),
+        columnHelper.accessor('expression', {
+          header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
+          cell: cell => (
+            <ScriptCell
+              cell={cell}
+              type={IVY_SCRIPT_TYPES.OBJECT}
+              browsers={['attr', 'func', 'type', 'cms']}
+              placeholder={t('label.enterExpression')}
+            />
+          )
+        })
+      ]),
     [knownPropertyItems, t]
   );
-
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
   const showAddButton = () => {
     return data.filter(obj => deepEqual(obj, EMPTY_PROPERTY)).length === 0;
@@ -67,61 +73,57 @@ export const PropertyTable = ({ properties, update, knownProperties, hidePropert
     const newData = [...data];
     newData.push(EMPTY_PROPERTY);
     onChange(newData);
-    setRowSelection({ [`${newData.length - 1}`]: true });
+    table.setRowSelection({ [`${newData.length - 1}`]: true });
   };
 
   const removeRow = (index: number) => {
     const newData = [...data];
     newData.splice(index, 1);
     if (newData.length === 0) {
-      setRowSelection({});
+      table.setRowSelection({});
     } else if (index === data.length - 1) {
-      setRowSelection({ [`${newData.length - 1}`]: true });
+      table.setRowSelection({ [`${newData.length - 1}`]: true });
     }
     onChange(newData);
   };
 
-  const table = useReactTable({
+  const table = useTable({
+    ...tableOptions,
     data,
     columns,
-    state: { sorting, rowSelection },
     columnResizeMode: 'onChange',
     columnResizeDirection: 'ltr',
     enableRowSelection: true,
     enableMultiRowSelection: false,
     enableSubRowSelection: false,
-    onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     meta: {
-      updateData: (rowId: string, columnId: string, value: string) => {
+      updateData: (rowId: string, columnId: string, value: unknown) => {
+        if (typeof value !== 'string') {
+          return;
+        }
         const rowIndex = parseInt(rowId);
         onChange(Property.update(data, rowIndex, columnId, value));
       }
     }
   });
 
-  const firstSelectionId = Object.keys(rowSelection)[0];
+  const firstSelectedRow = table.getSelectedRowModel().rows[0];
   let tableActions: FieldsetControl[] = [];
-  if (firstSelectionId) {
-    const firstSelectionRow = table.getRowModel().rowsById[firstSelectionId];
-    if (firstSelectionRow) {
-      tableActions = [
-        {
-          label: t('label.removeRow'),
-          icon: IvyIcons.Trash,
-          action: () => removeRow(firstSelectionRow?.index)
-        }
-      ];
-    }
+  if (firstSelectedRow) {
+    tableActions = [
+      {
+        label: t('label.removeRow'),
+        icon: IvyIcons.Trash,
+        action: () => removeRow(firstSelectedRow?.index)
+      }
+    ];
   }
 
   return (
     <ValidationCollapsible label={label} defaultOpen={defaultOpen} controls={tableActions}>
       <div>
         <Table>
-          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
+          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => table.setRowSelection({})} />
           <TableBody>
             {table.getRowModel().rows.map(row => {
               if (hideProperties?.includes(row.original.name)) {

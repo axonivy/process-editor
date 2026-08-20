@@ -1,7 +1,7 @@
 import type { DatabaseColumn } from '@axonivy/process-editor-inscription-protocol';
-import { TableBody, TableCell, TableRow, useTableKeyHandler } from '@axonivy/ui-components';
+import { dataTableHelper, TableBody, TableCell, TableRow, useTableKeyHandler } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import { getCoreRowModel, getFilteredRowModel, useReactTable, type ColumnDef, type RowSelectionState } from '@tanstack/react-table';
+import { useTable } from '@tanstack/react-table';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../context/useEditorContext';
@@ -31,6 +31,8 @@ type TableColumnBrowserProps = {
   onDoubleClick: () => void;
 };
 
+const { columnHelper, tableOptions } = dataTableHelper<DatabaseColumn>();
+
 const TableColumnBrowser = ({ value, onChange, onDoubleClick }: TableColumnBrowserProps) => {
   const { t } = useTranslation();
   const { elementContext: context } = useEditorContext();
@@ -52,69 +54,50 @@ const TableColumnBrowser = ({ value, onChange, onDoubleClick }: TableColumnBrows
     setData(columns);
   }, [columnMetas, config.query.sql.select]);
 
-  const columns = useMemo<ColumnDef<DatabaseColumn>[]>(
-    () => [
-      {
-        accessorFn: row => row.name,
-        id: 'name',
-        cell: cell => {
-          return (
-            <>
-              <span>{cell.getValue() as string}</span>
-              <span className='row-expand-label-info'>: {cell.row.original.type}</span>
-            </>
-          );
-        }
-      }
-    ],
+  const columns = useMemo(
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('name', {
+          cell: cell => {
+            return (
+              <>
+                <span>{cell.getValue()}</span>
+                <span className='row-expand-label-info'>: {cell.row.original.type}</span>
+              </>
+            );
+          }
+        })
+      ]),
     []
   );
 
-  const [globalFilter, setGlobalFilter] = useState('');
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-
-  const table = useReactTable({
+  const table = useTable({
+    ...tableOptions,
     data: data,
     columns: columns,
-    state: {
-      globalFilter,
-      rowSelection
-    },
-    filterFromLeafRows: true,
     enableRowSelection: true,
     enableMultiRowSelection: false,
-    enableSubRowSelection: false,
-    onGlobalFilterChange: setGlobalFilter,
-    onRowSelectionChange: setRowSelection,
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel()
+    enableSubRowSelection: false
   });
   const { handleKeyDown } = useTableKeyHandler({ table, data });
   useEffect(() => {
-    const selectedRow = table.getSelectedRowModel().flatRows[0];
-    if (selectedRow === undefined) {
-      onChange({ value: '' });
-      // eslint-disable-next-line @eslint-react/set-state-in-effect
-      setShowHelper(false);
-      return;
-    }
+    const subscription = table.atoms.rowSelection.subscribe(() => {
+      const selectedRow = table.getSelectedRowModel().flatRows[0];
+      if (selectedRow === undefined) {
+        onChange({ value: '' });
+        setShowHelper(false);
+        return;
+      }
 
-    // eslint-disable-next-line @eslint-react/set-state-in-effect
-    setShowHelper(true);
-    onChange({ value: selectedRow.original.name, data: selectedRow.original });
-  }, [onChange, rowSelection, table]);
+      setShowHelper(true);
+      onChange({ value: selectedRow.original.name, data: selectedRow.original });
+    });
+    return () => subscription.unsubscribe();
+  }, [onChange, table]);
 
   return (
     <>
-      <SearchTable
-        search={{
-          value: globalFilter,
-          onChange: newFilterValue => {
-            setGlobalFilter(newFilterValue);
-          }
-        }}
-        onKeyDown={e => handleKeyDown(e, onDoubleClick)}
-      >
+      <SearchTable table={table} onKeyDown={e => handleKeyDown(e, onDoubleClick)}>
         <TableBody>
           {table.getRowModel().rows.length > 0 ? (
             table.getRowModel().rows.map(row => <BrowserTableRow key={row.id} row={row} onDoubleClick={onDoubleClick} />)

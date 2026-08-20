@@ -17,10 +17,10 @@
     "@axonivy/process-editor-inscription-protocol": "workspace:~"
   },
   "peerDependencies": {
-    "@axonivy/jsonrpc": "~14.0.0-next"
+    "@axonivy/jsonrpc": "~14.1.0-next"
   },
   "devDependencies": {
-    "@axonivy/jsonrpc": "next-14.0.0"
+    "@axonivy/jsonrpc": "next-14.1.0"
   },
   "type": "module",
   "types": "lib/index",

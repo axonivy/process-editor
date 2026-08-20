@@ -1,9 +1,17 @@
 import { IVY_SCRIPT_TYPES } from '@axonivy/process-editor-inscription-protocol';
-import { InputCell, SortableHeader, Table, TableAddRow, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import {
+  dataTableHelper,
+  InputCell,
+  SortableHeader,
+  Table,
+  TableAddRow,
+  TableBody,
+  TableCell,
+  TableResizableHeader
+} from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef, RowSelectionState, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
+import { flexRender, useTable } from '@tanstack/react-table';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PathProvider } from '../../../../../context/usePath';
 import { deepEqual } from '../../../../../utils/equals';
@@ -19,6 +27,8 @@ import { restParamBuilder, toRestMap, updateRestParams } from './rest-parameter'
 
 const EMPTY_PARAMETER: RestParam = { name: '', expression: '', known: false };
 
+const { columnHelper, tableOptions } = dataTableHelper<RestParam>();
+
 export const RestForm = () => {
   const { t } = useTranslation();
   const { config, updateBody } = useRestRequestData();
@@ -32,31 +42,27 @@ export const RestForm = () => {
 
   const onChange = (params: RestParam[]) => updateBody('form', toRestMap(params));
 
-  const columns = useMemo<ColumnDef<RestParam, string>[]>(
-    () => [
-      {
-        accessorKey: 'name',
-        header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
-        cell: cell => <InputCell cell={cell} disabled={cell.row.original.known} />
-      },
-      {
-        accessorKey: 'expression',
-        header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
-        cell: cell => (
-          <ScriptCell
-            placeholder={cell.row.original.type}
-            cell={cell}
-            type={cell.row.original.type ?? IVY_SCRIPT_TYPES.OBJECT}
-            browsers={['attr', 'func', 'type', 'cms']}
-          />
-        )
-      }
-    ],
+  const columns = useMemo(
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('name', {
+          header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
+          cell: cell => <InputCell cell={cell} disabled={cell.row.original.known} />
+        }),
+        columnHelper.accessor('expression', {
+          header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
+          cell: cell => (
+            <ScriptCell
+              placeholder={cell.row.original.type}
+              cell={cell}
+              type={cell.row.original.type ?? IVY_SCRIPT_TYPES.OBJECT}
+              browsers={['attr', 'func', 'type', 'cms']}
+            />
+          )
+        })
+      ]),
     [t]
   );
-
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
   const showAddButton = () => {
     return data.filter(obj => deepEqual(obj, EMPTY_PARAMETER)).length === 0;
@@ -68,7 +74,7 @@ export const RestForm = () => {
     const newData = [...data];
     newData.push(EMPTY_PARAMETER);
     onChange(newData);
-    setRowSelection({ [`${newData.length - 1}`]: true });
+    table.setRowSelection({ [`${newData.length - 1}`]: true });
     focusNewCell(domTable, newData.length, 'input');
   };
 
@@ -76,47 +82,43 @@ export const RestForm = () => {
     const newData = [...data];
     newData.splice(index, 1);
     if (newData.length === 0) {
-      setRowSelection({});
+      table.setRowSelection({});
     } else if (index === data.length - 1) {
-      setRowSelection({ [`${newData.length - 1}`]: true });
+      table.setRowSelection({ [`${newData.length - 1}`]: true });
     }
     onChange(newData);
   };
 
-  const table = useReactTable({
+  const table = useTable({
+    ...tableOptions,
     data,
     columns,
-    state: { sorting, rowSelection },
     columnResizeMode: 'onChange',
     columnResizeDirection: 'ltr',
     enableRowSelection: true,
     enableMultiRowSelection: false,
     enableSubRowSelection: false,
-    onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     meta: {
-      updateData: (rowId: string, columnId: string, value: string) => {
+      updateData: (rowId: string, columnId: string, value: unknown) => {
+        if (typeof value !== 'string') {
+          return;
+        }
         const rowIndex = parseInt(rowId);
         onChange(updateRestParams(data, rowIndex, columnId, value));
       }
     }
   });
 
-  const firstSelectionId = Object.keys(rowSelection)[0];
+  const firstSelectedRow = table.getSelectedRowModel().rows[0];
   let tableActions: FieldsetControl[] = [];
-  if (firstSelectionId) {
-    const firstSelectionRow = table.getRowModel().rowsById[firstSelectionId];
-    if (firstSelectionRow && !firstSelectionRow?.original.known) {
-      tableActions = [
-        {
-          label: t('label.removeRow'),
-          icon: IvyIcons.Trash,
-          action: () => removeRow(firstSelectionRow.index)
-        }
-      ];
-    }
+  if (firstSelectedRow && !firstSelectedRow.original.known) {
+    tableActions = [
+      {
+        label: t('label.removeRow'),
+        icon: IvyIcons.Trash,
+        action: () => removeRow(firstSelectedRow.index)
+      }
+    ];
   }
 
   return (
@@ -124,7 +126,7 @@ export const RestForm = () => {
       <div>
         {tableActions.length > 0 && <Fieldset label=' ' controls={tableActions} />}
         <Table>
-          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
+          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => table.setRowSelection({})} />
           <TableBody>
             {table.getRowModel().rows.map(row => (
               <ValidationRow row={row} key={row.id} rowPathSuffix={row.original.name} title={row.original.doc}>
