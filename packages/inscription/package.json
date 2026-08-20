@@ -18,8 +18,8 @@
     "@eclipse-glsp/client": "2.7.0"
   },
   "peerDependencies": {
-    "@axonivy/jsonrpc": "~14.0.0-next",
-    "@axonivy/ui-icons": "~14.0.0-next",
+    "@axonivy/jsonrpc": "~14.1.0-next",
+    "@axonivy/ui-icons": "~14.1.0-next",
     "i18next": "^25.0.0 || ^26.0.0",
     "inversify": "^6.2",
     "react": "^19.0",
