@@ -38,7 +38,7 @@ const DocumentTable = ({ data, onChange }: { data: Document[]; onChange: (change
     [t]
   );
 
-  const { table, setRowSelection, selectedRowActions, showAddButton } = useResizableEditableTable({
+  const { table, selectedRowActions, showAddButton } = useResizableEditableTable({
     data,
     columns,
     onChange,
@@ -59,7 +59,7 @@ const DocumentTable = ({ data, onChange }: { data: Document[]; onChange: (change
     <Collapsible label={t('part.general.meansAndDocuments')} controls={tableActions} defaultOpen={data !== undefined && data.length > 0}>
       <div>
         <Table>
-          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
+          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => table.setRowSelection({})} />
           <TableBody>
             {table.getRowModel().rows.map(row => (
               <SelectRow key={row.id} row={row}>

@@ -48,7 +48,7 @@ const StartCustomFieldTable = ({ data, onChange }: StartCustomFieldTableProps) =
     [data, predefinedCustomField, t]
   );
 
-  const { table, setRowSelection, selectedRowActions, showAddButton } = useResizableEditableTable({
+  const { table, selectedRowActions, showAddButton } = useResizableEditableTable({
     data,
     columns,
     onChange,
@@ -69,7 +69,7 @@ const StartCustomFieldTable = ({ data, onChange }: StartCustomFieldTableProps) =
     <PathCollapsible path='customFields' controls={tableActions} label={t('label.customFields')} defaultOpen={data.length > 0}>
       <div>
         <Table>
-          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
+          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => table.setRowSelection({})} />
           <TableBody>
             {table.getRowModel().rows.map(row => (
               <ValidationRow row={row} key={row.id} rowPathSuffix={row.original.name}>

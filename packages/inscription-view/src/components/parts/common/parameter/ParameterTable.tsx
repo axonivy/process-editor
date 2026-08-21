@@ -43,7 +43,7 @@ const ParameterTable = ({ data, onChange, hideDesc, label }: ParameterTableProps
     return colDef;
   }, [hideDesc, t]);
 
-  const { table, setRowSelection, selectedRowActions, showAddButton } = useResizableEditableTable({
+  const { table, selectedRowActions, showAddButton } = useResizableEditableTable({
     data,
     columns,
     onChange,
@@ -54,7 +54,7 @@ const ParameterTable = ({ data, onChange, hideDesc, label }: ParameterTableProps
     <PathCollapsible path='params' label={label} controls={selectedRowActions()}>
       <div>
         <Table>
-          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
+          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => table.setRowSelection({})} />
           <TableBody>
             {table.getRowModel().rows.map(row => (
               <ValidationRow key={row.id} row={row} rowPathSuffix={row.original.name}>
