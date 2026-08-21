@@ -1,6 +1,6 @@
 import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
-import { ProcessEditor } from '../../page-objects/editor/process-editor';
+import { ProcessEditor, resetEngine, runProcess } from '../../page-objects/editor/process-editor';
 
 test.beforeEach(async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'light' });
@@ -33,11 +33,25 @@ test('extensions', async ({ page }) => {
   const editor = await ProcessEditor.openProcess(page, { file: 'process/quickstart.p.json' });
   const menu = await editor.toolbar().openElementPalette('extensions');
   await menu.expectVisible();
+  await expect(menu.searchInput()).toBeVisible();
   for (const img of await menu.locator().locator('img').all()) {
     await expect(img).toHaveJSProperty('complete', true);
     await expect(img).not.toHaveJSProperty('naturalWidth', 0);
   }
   await screenshot(page, 'extensions.png');
+});
+
+test('history', async ({ page, context }) => {
+  await resetEngine();
+  const editor = await ProcessEditor.openProcess(page, { file: 'process/quickstart.p.json' });
+  await runProcess(editor, context);
+  const dialog = editor.elementByPid('148655DDB7BB6588-f3');
+  const history = await dialog.showHistory();
+  await expect(history.title).toHaveText(`History of '148655DDB7BB6588-f3'`);
+  await expect(history.table).toContainText('HTTP GET quickstart.p.json/start.ivp');
+  await expect(history.table).toContainText('in = Data');
+  await expect(history.table).toContainText('price = null');
+  await screenshot(page, 'history.png');
 });
 
 test('connector-process', async ({ page }) => {

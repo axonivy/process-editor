@@ -67,7 +67,7 @@
       },
       "visual" : {
         "at" : { "x" : 352, "y" : 64 },
-        "labelOffset" : { "x" : 17, "y" : -14 }
+        "labelOffset" : { "x" : 48, "y" : -24 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f1", "label" : {
