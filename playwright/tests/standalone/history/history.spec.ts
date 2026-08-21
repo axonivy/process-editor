@@ -1,5 +1,5 @@
 import { expect, test, type BrowserContext, type Page } from '@playwright/test';
-import { app, ProcessEditor, project, server } from '../../page-objects/editor/process-editor';
+import { ProcessEditor, resetEngine, runProcess } from '../../page-objects/editor/process-editor';
 
 test('open history', async ({ page, context, browserName }) => {
   test.skip(browserName === 'webkit', 'webkit shows a ViewNotFoundException');
@@ -55,19 +55,6 @@ test('pin history', async ({ page, context, browserName }) => {
 const setupExecutions = async (page: Page, context: BrowserContext) => {
   await resetEngine();
   const editor = await ProcessEditor.openProcess(page, { file: 'process/quickstart.p.json' });
-  const pagePromise = context.waitForEvent('page');
-  await editor.startElement.quickActionBar().trigger('Start Process', 'startsWith');
-  const newPage = await pagePromise;
-  await expect(newPage.locator('#iFrameForm\\:frameTaskName')).toContainText('Task:', { timeout: 10000 });
-  await newPage.close();
-  await expect(editor.startElement.executionBadge).toBeVisible();
+  await runProcess(editor, context);
   return editor;
 };
-
-const resetEngine = async () =>
-  fetch(`${server}/api/web-ide/project/stop-bpm-engine?app=${app}&project=${project}`, {
-    method: 'POST',
-    headers: {
-      'X-Requested-By': 'ivy-process-editor-test'
-    }
-  });

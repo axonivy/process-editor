@@ -1,4 +1,4 @@
-import type { ConsoleMessage, Locator, Page } from '@playwright/test';
+import type { BrowserContext, ConsoleMessage, Locator, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
 import { randomUUID } from 'crypto';
 import { Inscription } from '../inscription/inscription-view';
@@ -228,3 +228,21 @@ async function waitForConsoleMessage(
     page.on('console', onConsoleMessage);
   });
 }
+
+export const runProcess = async (editor: ProcessEditor, context: BrowserContext) => {
+  const pagePromise = context.waitForEvent('page');
+  await editor.startElement.quickActionBar().trigger('Start Process', 'startsWith');
+  const newPage = await pagePromise;
+  await expect(newPage.locator('#iFrameForm\\:frameTaskName')).toContainText('Task:', { timeout: 10000 });
+  await newPage.close();
+  await expect(editor.startElement.executionBadge).toBeVisible();
+  return editor;
+};
+
+export const resetEngine = async () =>
+  fetch(`${server}/api/web-ide/project/stop-bpm-engine?app=${app}&project=${project}`, {
+    method: 'POST',
+    headers: {
+      'X-Requested-By': 'ivy-process-editor-test'
+    }
+  });
