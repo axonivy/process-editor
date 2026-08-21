@@ -435,14 +435,14 @@ importers:
         version: 17.0.11(i18next@26.3.6(typescript@6.0.3))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@6.0.3)
     devDependencies:
       '@axonivy/jsonrpc':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1232.745bdb0
+        specifier: next-14.1.0
+        version: 14.1.0-next.1232.8aa2d51
       '@axonivy/ui-components':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1232.745bdb0(@axonivy/ui-icons@14.0.0-next.1232.745bdb0)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: next-14.1.0
+        version: 14.1.0-next.1232.8aa2d51(@axonivy/ui-icons@14.1.0-next.1232.8aa2d51)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@axonivy/ui-icons':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1232.745bdb0
+        specifier: next-14.1.0
+        version: 14.1.0-next.1232.8aa2d51
       '@testing-library/jest-dom':
         specifier: ^7.0.0
         version: 7.0.1(@testing-library/dom@10.4.1)(vitest@4.1.10(@types/node@24.13.3)(happy-dom@20.11.2)(jsdom@30.0.1)(vite@8.2.1(@types/node@24.13.3)(jiti@2.7.0)(yaml@2.9.0)))
@@ -512,9 +512,6 @@ packages:
   '@axonivy/eslint-config@14.0.0-next.1232.745bdb0':
     resolution: {integrity: sha512-w70nkgP3IfUDyR864UUs8r6mG3zy2FndPJDsFyaiBYvuKtt2PiJticeVxoe9KFJj5R+SlvcFdsTTaJYZ19KSHg==}
 
-  '@axonivy/jsonrpc@14.0.0-next.1232.745bdb0':
-    resolution: {integrity: sha512-emGuJduocT3V7WhscXNBYt1LeBkojxJ7V6JAlWUm/FtqMZMgQs0u+hdqQYQ8Gx+xEf/gqgwp+ReU17ocEd2aRA==}
-
   '@axonivy/jsonrpc@14.1.0-next.1232.8aa2d51':
     resolution: {integrity: sha512-8G7kBXfpklO3w230VBC4CJ8Hr+I+cQHD/b4xqWoDWXg96prA95svgIopUhhQdSx+sXXSM7AtuSay83SrjxLqBA==}
 
@@ -524,20 +521,11 @@ packages:
   '@axonivy/ts-config@14.0.0-next.1232.745bdb0':
     resolution: {integrity: sha512-d/o+/6zr9l2DAI2f+EGKao/BtEn+EkXHDUCypLKmIq5ufMFOnqWp5mMlozmXLgU01svWZpBXh7VxdxNE69gJWQ==}
 
-  '@axonivy/ui-components@14.0.0-next.1232.745bdb0':
-    resolution: {integrity: sha512-3+SOMkvFN7QsFU6G0fAD/TwmYz/crjdHWZ24niyU0oyXNKffvcEzfHNkfjH/6rq9jTjmtcBMsQXhh0Az0r8Uww==}
-    peerDependencies:
-      '@axonivy/ui-icons': ~14.0.0-next
-      react: ^19.0
-
   '@axonivy/ui-components@14.1.0-next.1232.8aa2d51':
     resolution: {integrity: sha512-wwx5bwQ+p6+O7H5HIQewOf2b4JRuT949MXgDhvQtcxGFrZXZtrVU9Sdm6fKF0d2iIihZODpmTdEi0YDM7mi5KA==}
     peerDependencies:
       '@axonivy/ui-icons': ~14.1.0-next
       react: ^19.0
-
-  '@axonivy/ui-icons@14.0.0-next.1232.745bdb0':
-    resolution: {integrity: sha512-+VJOqtZCeqtccvcGTj9j9u4GZlE+/xQJeJgr+HsiGa9vBQseim4EoAOE93IP3d+gaXSCrqJLrc4fmpdg0N4BpQ==}
 
   '@axonivy/ui-icons@14.1.0-next.1232.8aa2d51':
     resolution: {integrity: sha512-P9fXeAUX4sMDQCjCLtwswfoPDpswGlTNqJur46fE/Ztvi5JlwFj96ZyOu56Or956lR27sLgTnPthA4OPicZipA==}
@@ -1944,13 +1932,6 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  '@tanstack/react-table@8.21.3':
-    resolution: {integrity: sha512-5nNMTSETP4ykGegmVkhjcS8tTLW6Vl4axfEGQN3v0zdHYbK4UfoqfPChclTrJ4EoK9QynqAu9oUf8VEmrpZ5Ww==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
-
   '@tanstack/react-table@9.1.0':
     resolution: {integrity: sha512-KXZDQ+MjmacO6KG0Fo019UMHJV7nXVzf/GeBiwSK7a52RVcycFJWRx88OYtOfGPMDRfAK5vyyguC8B2zvc95HA==}
     engines: {node: '>=20'}
@@ -1971,10 +1952,6 @@ packages:
 
   '@tanstack/store@0.11.1':
     resolution: {integrity: sha512-mzTOBhypOuDJAy/D8n2MfUZ1HFkXnmSETviRyhqEC8LUE7/IZQExOTxMANj3KjTofYTkFNpBY67qaVrT41YccA==}
-
-  '@tanstack/table-core@8.21.3':
-    resolution: {integrity: sha512-ldZXEhOBb8Is7xLs01fR3YEc3DERiz5silj8tnGkFZytt1abEvl/GhUmCE0PMLaMPTa3Jk4HbKmRlHmu+gCftg==}
-    engines: {node: '>=12'}
 
   '@tanstack/table-core@9.1.0':
     resolution: {integrity: sha512-tvnnqdWlvF/l6P65yS4ca4keW2VCC3e+OTT8/pUM7ZF5OQBJ7zTVy67T0lLpWBpkELrZN8sFJxY5DHF05fLUDQ==}
@@ -3917,16 +3894,6 @@ packages:
       react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
       react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
 
-  sonner@2.0.8:
-    resolution: {integrity: sha512-UM/ByIoFra8yzV75n1o0Puu0bw5U/9UNnDacrJNspekBewIfsQ3D6ez1nvlWpt7aTsO6rujQtifBpycwIivqlg==}
-    peerDependencies:
-      '@types/react': ^18.0.0 || ^19.0.0
-      react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
-      react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-
   sort-keys@6.0.1:
     resolution: {integrity: sha512-w7xWRu8U9MneKNna8ptG194jp9PLtbd/Rl6gwrmbK4yUeKbE66a64rHgl0iKTBBDr/hpanx7zMGP1Qo8MRkc/w==}
     engines: {node: '>=20'}
@@ -4471,10 +4438,6 @@ snapshots:
       - tailwindcss
       - typescript
 
-  '@axonivy/jsonrpc@14.0.0-next.1232.745bdb0':
-    dependencies:
-      vscode-jsonrpc: 8.2.1
-
   '@axonivy/jsonrpc@14.1.0-next.1232.8aa2d51':
     dependencies:
       vscode-jsonrpc: 8.2.1
@@ -4484,41 +4447,6 @@ snapshots:
       prettier: 3.9.6
 
   '@axonivy/ts-config@14.0.0-next.1232.745bdb0': {}
-
-  '@axonivy/ui-components@14.0.0-next.1232.745bdb0(@axonivy/ui-icons@14.0.0-next.1232.745bdb0)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
-    dependencies:
-      '@axonivy/ui-icons': 14.0.0-next.1232.745bdb0
-      '@base-ui/react': 1.7.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-accordion': 1.2.20(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-checkbox': 1.3.11(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-collapsible': 1.1.20(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-dialog': 1.1.23(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-dropdown-menu': 2.1.24(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-label': 2.1.15(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-popover': 1.1.23(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-radio-group': 1.4.7(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-select': 2.3.7(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-separator': 1.1.15(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-slot': 1.3.3(@types/react@19.2.18)(react@19.2.8)
-      '@radix-ui/react-switch': 1.3.7(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-tabs': 1.1.21(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-toggle-group': 1.1.19(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-tooltip': 1.2.16(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@react-aria/dnd': 3.12.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@tanstack/react-table': 8.21.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      class-variance-authority: 0.7.1
-      cnfast: 0.1.0
-      downshift: 9.0.13(react@19.2.8)
-      react: 19.2.8
-      react-hotkeys-hook: 5.2.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      react-resizable-panels: 4.12.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      sonner: 2.0.8(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-    transitivePeerDependencies:
-      - '@date-fns/tz'
-      - '@types/react'
-      - '@types/react-dom'
-      - date-fns
-      - react-dom
 
   '@axonivy/ui-components@14.1.0-next.1232.8aa2d51(@axonivy/ui-icons@14.1.0-next.1232.8aa2d51)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
@@ -4554,8 +4482,6 @@ snapshots:
       - '@types/react-dom'
       - date-fns
       - react-dom
-
-  '@axonivy/ui-icons@14.0.0-next.1232.745bdb0': {}
 
   '@axonivy/ui-icons@14.1.0-next.1232.8aa2d51': {}
 
@@ -6025,12 +5951,6 @@ snapshots:
       react-dom: 19.2.8(react@19.2.8)
       use-sync-external-store: 1.6.0(react@19.2.8)
 
-  '@tanstack/react-table@8.21.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
-    dependencies:
-      '@tanstack/table-core': 8.21.3
-      react: 19.2.8
-      react-dom: 19.2.8(react@19.2.8)
-
   '@tanstack/react-table@9.1.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
       '@tanstack/react-store': 0.11.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -6054,8 +5974,6 @@ snapshots:
       react-dom: 19.2.8(react@19.2.8)
 
   '@tanstack/store@0.11.1': {}
-
-  '@tanstack/table-core@8.21.3': {}
 
   '@tanstack/table-core@9.1.0':
     dependencies:
@@ -8039,13 +7957,6 @@ snapshots:
     dependencies:
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
-
-  sonner@2.0.8(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
-    dependencies:
-      react: 19.2.8
-      react-dom: 19.2.8(react@19.2.8)
-    optionalDependencies:
-      '@types/react': 19.2.18
 
   sort-keys@6.0.1:
     dependencies:
