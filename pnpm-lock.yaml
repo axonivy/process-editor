@@ -69,7 +69,7 @@ importers:
         version: 1.1.0-RC02
       dompurify:
         specifier: ^3.4.12
-        version: 3.4.13
+        version: 3.4.14
       inversify:
         specifier: 5.1.1
         version: 5.1.1
@@ -90,7 +90,7 @@ importers:
         version: 1.12.0
       uuid:
         specifier: ^14.0.1
-        version: 14.0.1
+        version: 14.0.2
       vscode-jsonrpc:
         specifier: 5.0.1
         version: 5.0.1
@@ -1056,8 +1056,8 @@ packages:
     resolution: {integrity: sha512-IGBwjF7tNk3cwypFNH/7bfzBcgSCbaMOD3GsaY1AU/JRrnHnYgEM0+9kQt52iZxjNsjBtJYtao146V+f8jFZNw==}
     engines: {node: '>=10'}
 
-  dompurify@3.4.13:
-    resolution: {integrity: sha512-2vmYIoqjze2d+kakP8S/nS5shfsl587kzwEjcGlTdiksUVgFHnFCsLYDVj/JNqJVOQZGSYBTmuycv0PodwmnMQ==}
+  dompurify@3.4.14:
+    resolution: {integrity: sha512-dVoH9z+MY+C9IilgGCk3YfFqjLi3fChm2OiKJMzh6axrJ5qwxqWaZamgmHrpv22CN/KdbZJuGEGgfQoL00LTdg==}
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -1159,6 +1159,7 @@ packages:
   eslint@9.39.5:
     resolution: {integrity: sha512-DgZS62aPLXKlnxILS/AYCoRvHaZeXceIzlXPkkGGzJWSow1aEk0lbTlxUSlyjC8jcaKxAdOnTDz+o1JFSBsyjw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -2263,8 +2264,8 @@ packages:
   util@0.12.5:
     resolution: {integrity: sha512-kZf/K6hEIrWHI6XqOFUiiMa+79wE/D8Q+NCNAWclkyg3b4d2k7s0QGepNjiABc+aR3N1PAyHL7p6UcLY6LmrnA==}
 
-  uuid@14.0.1:
-    resolution: {integrity: sha512-6ZxzVpzDXDa3bJWaHilVayA+BH/1zmxCJoVgvmqJnid/gPoKHxUrS/aC/T6LGQtNHT+XHG9fXPJB4d+IrU30Ew==}
+  uuid@14.0.2:
+    resolution: {integrity: sha512-xZe/16rV4aa+HGSOCiY2YeLT1OybRLrrkL/Rqaq7p7GMVXjFh+6wN4oMYgjFmnSnhY8t6Xpdl2l9qmnHYuMHwQ==}
     hasBin: true
 
   vite-node@3.2.4:
@@ -2502,7 +2503,7 @@ snapshots:
   '@eclipse-glsp/protocol@1.1.0-RC02':
     dependencies:
       sprotty-protocol: 0.12.0
-      uuid: 14.0.1
+      uuid: 14.0.2
       vscode-ws-jsonrpc: 0.2.0
 
   '@esbuild/aix-ppc64@0.25.12':
@@ -3294,7 +3295,7 @@ snapshots:
 
   domain-browser@4.22.0: {}
 
-  dompurify@3.4.13:
+  dompurify@3.4.14:
     optionalDependencies:
       '@types/trusted-types': 2.0.7
 
@@ -4665,7 +4666,7 @@ snapshots:
       is-typed-array: 1.1.15
       which-typed-array: 1.1.22
 
-  uuid@14.0.1: {}
+  uuid@14.0.2: {}
 
   vite-node@3.2.4(@types/node@24.13.3)(supports-color@7.2.0):
     dependencies:
