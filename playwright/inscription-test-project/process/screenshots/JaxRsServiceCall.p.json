@@ -43,14 +43,14 @@
         },
         "response" : {
           "entity" : {
-            "type" : "com.fasterxml.jackson.databind.JsonNode",
+            "type" : "tools.jackson.databind.JsonNode",
             "map" : {
               "out.name" : "result.get(\"user\").asText();"
             }
           }
         },
         "code" : [
-          "import com.fasterxml.jackson.databind.JsonNode;",
+          "import tools.jackson.databind.JsonNode;",
           "",
           "JsonNode node = client",
           "  .path(\"statuses/user_timeline.json\")",
@@ -186,7 +186,7 @@
         },
         "code" : [
           "import jakarta.ws.rs.client.Entity;",
-          "import com.fasterxml.jackson.databind.JsonNode;",
+          "import tools.jackson.databind.JsonNode;",
           "import jakarta.ws.rs.core.MultivaluedHashMap;",
           "import jakarta.ws.rs.core.MultivaluedMap;",
           "",
@@ -233,7 +233,7 @@
         },
         "response" : {
           "entity" : {
-            "type" : "com.fasterxml.jackson.databind.JsonNode",
+            "type" : "tools.jackson.databind.JsonNode",
             "code" : "ivy.log.info(result);"
           }
         }
@@ -312,7 +312,7 @@
         },
         "response" : {
           "entity" : {
-            "type" : "com.fasterxml.jackson.databind.JsonNode",
+            "type" : "tools.jackson.databind.JsonNode",
             "code" : "ivy.log.info(result);"
           }
         }

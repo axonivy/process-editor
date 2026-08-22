@@ -15,7 +15,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.ext.MessageBodyReader;
 import jakarta.ws.rs.ext.MessageBodyWriter;
-import com.fasterxml.jackson.jakarta.rs.json.JacksonJsonProvider;
+import tools.jackson.jakarta.rs.json.JacksonJsonProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
