@@ -30,7 +30,7 @@ import type {
 } from './inscription';
 import type { GeneralData } from './part-data';
 
-export type ConfigData = UnionToIntersection<Data['config']>;
+export type ConfigData = UnionToIntersection<Data['config']> & { rule: { ruleSet: string; data: string } };
 
 export type ElementData = GeneralData & { config: ConfigData };
 

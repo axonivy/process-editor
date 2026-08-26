@@ -64,3 +64,5 @@ export type ProgramInterfaceStartData = Pick<ConfigData, 'javaClass' | 'exceptio
 export type EventData = Pick<ConfigData, 'javaClass' | 'eventId' | 'timeout'>;
 
 export type ConfigurationData = Pick<ConfigData, 'userConfig' | 'javaClass'>;
+
+export type RuleData = Pick<ConfigData, 'rule'>;

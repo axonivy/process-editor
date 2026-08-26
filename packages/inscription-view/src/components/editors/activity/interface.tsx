@@ -17,6 +17,7 @@ import { useQueryPart } from '../../parts/query/QueryPart';
 import { useRestErrorPart } from '../../parts/rest/RestErrorPart';
 import { useRestOutputPart } from '../../parts/rest/RestOutputPart';
 import { useRestRequestPart } from '../../parts/rest/RestRequestPart';
+import { useRulePart } from '../../parts/rule/RulePart';
 import { useWsErrorPart } from '../../parts/ws-error/WsErrorPart';
 import { useWsRequestPart } from '../../parts/ws-request/WsRequestPart';
 import { type KnownEditor } from '../InscriptionEditor';
@@ -63,7 +64,8 @@ const EMailEditor = memo(() => {
 
 const RuleEditor = memo(() => {
   const name = useGeneralPart();
-  return <Part parts={[name]} />;
+  const rule = useRulePart();
+  return <Part parts={[name, rule]} />;
 });
 
 const ProgramInterfaceEditor = memo(() => {
