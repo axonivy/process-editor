@@ -21,14 +21,15 @@ export function useRulePart(): PartProps {
 
 const RulePart = () => {
   const { t } = useTranslation();
+  const { config, update } = useRuleData();
   return (
     <>
       <Collapsible label={t('part.rule.title')} defaultOpen={true}>
         <Fieldset label={t('part.rule.configuration')}>
-          <BasicInput />
+          <BasicInput value={config.rule.rule} onChange={change => update('rule', change.target.value)} />
         </Fieldset>
         <Fieldset label={t('part.rule.data')}>
-          <BasicInput />
+          <BasicInput value={config.rule.data} onChange={change => update('data', change.target.value)} />
         </Fieldset>
       </Collapsible>
     </>

@@ -81,7 +81,7 @@ export interface Inscription {
   schemaKey: SchemaKey;
   scriptingDataArgs: ScriptingDataArgs;
   signalCodeRequest: SignalCodeRequest;
-  string: string[];
+  string: string;
   typeSearchRequest: TypeSearchRequest;
   validationResult: ValidationResult[];
   variableInfo: VariableInfo;
@@ -350,6 +350,7 @@ export interface Data {
     | ElementHtmlDialogStart
     | ElementSplit
     | ElementErrorEnd
+    | ElementRuleCall
     | ElementErrorBoundaryEvent
     | ElementHtmlDialogEventStart
     | ElementProgramStart
@@ -529,6 +530,13 @@ export interface ElementErrorEnd {
 export interface ErrorDefinition {
   cause: string;
   error: string;
+}
+export interface ElementRuleCall {
+  rule: Rule;
+}
+export interface Rule {
+  data: string;
+  rule: string;
 }
 export interface ElementErrorBoundaryEvent {
   output: ScriptMapCode;
