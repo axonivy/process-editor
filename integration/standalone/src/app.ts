@@ -16,14 +16,11 @@ import type { Container } from 'inversify';
 import createContainer from './di.config';
 import { initTranslation } from './i18n';
 import './index.css';
-import { getParameters, getServerDomain, isReadonly, isSecureConnection } from './url-helper';
+import { getParameters, isReadonly, isSecureConnection } from './url-helper';
 
 const parameters = getParameters();
 const app = parameters.get('app') ?? '';
-let server = parameters.get('server');
-if (!server) {
-  server = getServerDomain().replace(app, '');
-}
+const server = parameters.get('server');
 
 const project = parameters.get('project') ?? '';
 const pid = parameters.get('pid') ?? '';
@@ -37,7 +34,7 @@ const diagramType = 'ivy-glsp-process';
 const clientId = ApplicationIdProvider.get() + '_' + sourceUri + pid;
 
 const webSocketBase = `${isSecureConnection() ? 'wss' : 'ws'}://${server}/`;
-const webSocketUrl = `${webSocketBase}${app}/1/${id}`;
+const webSocketUrl = `${webSocketBase}${id}`;
 
 let glspClient: GLSPClient;
 let container: Container;
