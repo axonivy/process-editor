@@ -81,7 +81,7 @@ export interface Inscription {
   schemaKey: SchemaKey;
   scriptingDataArgs: ScriptingDataArgs;
   signalCodeRequest: SignalCodeRequest;
-  string: string;
+  string: string[];
   typeSearchRequest: TypeSearchRequest;
   validationResult: ValidationResult[];
   variableInfo: VariableInfo;
@@ -195,6 +195,7 @@ export interface InscriptionType {
     | "RequestStart"
     | "RestClientCall"
     | "RuleBpmnElement"
+    | "RuleCall"
     | "Script"
     | "ScriptBpmnElement"
     | "SendBpmnElement"
@@ -339,33 +340,33 @@ export interface InscriptionRequest {
 export interface Data {
   config:
     | ElementTaskEndPage
-    | ElementErrorEnd
     | ElementTaskSwitchGateway
-    | ElementErrorBoundaryEvent
     | ElementSubProcessCall
+    | ElementDatabase
+    | ElementCallSubStart
+    | ElementScript
+    | ElementAlternative
+    | ElementProgramInterface
+    | ElementHtmlDialogStart
+    | ElementSplit
+    | ElementErrorEnd
+    | ElementErrorBoundaryEvent
     | ElementHtmlDialogEventStart
     | ElementProgramStart
-    | ElementDatabase
     | ElementWebServiceCall
-    | ElementCallSubStart
     | ElementDialogCall
     | ElementTriggerCall
     | ElementErrorStartEvent
-    | ElementScript
     | ElementRequestStart
-    | ElementAlternative
     | ElementWebserviceStart
     | ElementUserTask
     | ElementJoin
-    | ElementProgramInterface
     | ElementSignalBoundaryEvent
     | ElementEMail
     | ElementTaskSwitchEvent
     | ElementHtmlDialogMethodStart
     | ElementWaitEvent
-    | ElementHtmlDialogStart
     | ElementRestClientCall
-    | ElementSplit
     | ElementSignalStartEvent
     | ProcessConfig
     | WebserviceProcessConfig;
@@ -376,14 +377,6 @@ export interface Data {
 }
 export interface ElementTaskEndPage {
   page: string;
-}
-export interface ElementErrorEnd {
-  code: string;
-  throws: ErrorDefinition;
-}
-export interface ErrorDefinition {
-  cause: string;
-  error: string;
 }
 export interface ElementTaskSwitchGateway {
   output: ScriptMapCode;
@@ -438,10 +431,6 @@ export interface WfNotification {
   suppress: boolean;
   template: string;
 }
-export interface ElementErrorBoundaryEvent {
-  output: ScriptMapCode;
-  errorCode: string;
-}
 export interface ElementSubProcessCall {
   call: ScriptMapCode;
   output: ScriptMapCode;
@@ -449,24 +438,6 @@ export interface ElementSubProcessCall {
    * Process of kind CALLABLE_SUB only. To signature from ElementCallSubStart
    */
   processCall: string;
-}
-export interface ElementHtmlDialogEventStart {
-  output: ScriptMapCode;
-  guid: string;
-}
-export interface ElementProgramStart {
-  javaClass: string;
-  link: string;
-  permission: StartPermission;
-  userConfig: JavaProgramConfig;
-}
-export interface StartPermission {
-  anonymous: boolean;
-  error: string;
-  roles: string[];
-}
-export interface JavaProgramConfig {
-  [k: string]: string;
 }
 export interface ElementDatabase {
   output: ScriptMapCode;
@@ -501,19 +472,6 @@ export interface DbSqlStatement {
   stmt: ScriptMacro;
   table: string;
 }
-export interface ElementWebServiceCall {
-  output: ScriptMapCode;
-  cache: Cache;
-  clientId: string;
-  operation: SoapOperation;
-  exceptionHandler: string;
-  properties: ScriptMappings;
-}
-export interface SoapOperation {
-  name: string;
-  parameters: ScriptMappings;
-  port: string;
-}
 export interface ElementCallSubStart {
   result: ScriptParameterizedMapCode;
   input: ScriptParameterizedMapCode;
@@ -529,6 +487,81 @@ export interface ScriptVariable {
   name: string;
   type: string;
 }
+export interface ElementScript {
+  output: ScriptMapCode;
+  sudo: boolean;
+}
+export interface ElementAlternative {
+  conditions: AlternativeConditions;
+}
+/**
+ * Conditions map connector IDs to the logical statement that must be satisfied for that path to be taken
+ */
+export interface AlternativeConditions {
+  [k: string]: string;
+}
+export interface ElementProgramInterface {
+  javaClass: string;
+  userConfig: JavaProgramConfig;
+  exceptionHandler: string;
+  timeout: JavaTimeout;
+}
+export interface JavaProgramConfig {
+  [k: string]: string;
+}
+export interface JavaTimeout {
+  error: string;
+  seconds: string;
+}
+export interface ElementHtmlDialogStart {
+  result: ScriptParameterizedMapCode;
+  input: ScriptParameterizedMapCode;
+  signature: string;
+  guid: string;
+}
+export interface ElementSplit {
+  output: ScriptMapCode;
+}
+export interface ElementErrorEnd {
+  code: string;
+  throws: ErrorDefinition;
+}
+export interface ErrorDefinition {
+  cause: string;
+  error: string;
+}
+export interface ElementErrorBoundaryEvent {
+  output: ScriptMapCode;
+  errorCode: string;
+}
+export interface ElementHtmlDialogEventStart {
+  output: ScriptMapCode;
+  guid: string;
+}
+export interface ElementProgramStart {
+  javaClass: string;
+  link: string;
+  permission: StartPermission;
+  userConfig: JavaProgramConfig;
+}
+export interface StartPermission {
+  anonymous: boolean;
+  error: string;
+  roles: string[];
+}
+export interface ElementWebServiceCall {
+  output: ScriptMapCode;
+  cache: Cache;
+  clientId: string;
+  operation: SoapOperation;
+  exceptionHandler: string;
+  properties: ScriptMappings;
+}
+export interface SoapOperation {
+  name: string;
+  parameters: ScriptMappings;
+  port: string;
+}
 export interface ElementDialogCall {
   call: ScriptMapCode;
   output: ScriptMapCode;
@@ -542,10 +575,6 @@ export interface ElementTriggerCall {
 export interface ElementErrorStartEvent {
   output: ScriptMapCode;
   errorCode: string;
-}
-export interface ElementScript {
-  output: ScriptMapCode;
-  sudo: boolean;
 }
 export interface ElementRequestStart {
   input: ScriptParameterizedMapCode;
@@ -570,15 +599,6 @@ export interface StartCustomStartField {
   name: string;
   value: ScriptMacro;
 }
-export interface ElementAlternative {
-  conditions: AlternativeConditions;
-}
-/**
- * Conditions map connector IDs to the logical statement that must be satisfied for that path to be taken
- */
-export interface AlternativeConditions {
-  [k: string]: string;
-}
 export interface ElementWebserviceStart {
   result: ScriptParameterizedMapCode;
   exception: SoapWsProcessException;
@@ -602,16 +622,6 @@ export interface ElementUserTask {
 }
 export interface ElementJoin {
   output: ScriptMapCode;
-}
-export interface ElementProgramInterface {
-  javaClass: string;
-  userConfig: JavaProgramConfig;
-  exceptionHandler: string;
-  timeout: JavaTimeout;
-}
-export interface JavaTimeout {
-  error: string;
-  seconds: string;
 }
 export interface ElementSignalBoundaryEvent {
   output: ScriptMapCode;
@@ -661,12 +671,6 @@ export interface JavaEventTimeout {
   duration: string;
   error: string;
 }
-export interface ElementHtmlDialogStart {
-  result: ScriptParameterizedMapCode;
-  input: ScriptParameterizedMapCode;
-  signature: string;
-  guid: string;
-}
 export interface ElementRestClientCall {
   code: string;
   method: HttpMethod;
@@ -701,9 +705,6 @@ export interface RestTarget {
   properties: ScriptMappings;
   queryParams: ScriptMappings;
   templateParams: ScriptMappings;
-}
-export interface ElementSplit {
-  output: ScriptMapCode;
 }
 export interface ElementSignalStartEvent {
   output: ScriptMapCode;
@@ -833,6 +834,7 @@ export interface SchemaKey {
     Common: "method" | "target" | "body" | "response";
     Body: "form" | "entity" | "raw";
   };
+  Rule: "rule";
   Script: "sudo";
   Signal: "signalCode" | "attachToBusinessCase";
   Start: "request" | "permission" | "triggerable" | "persistOnStart";

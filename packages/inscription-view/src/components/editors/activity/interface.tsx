@@ -79,6 +79,6 @@ export const interfaceActivityEditors = new Map<ElementType, KnownEditor>([
   ['WebServiceCall', { editor: <WebServiceEditor />, icon: IvyIcons.WebService }],
   ['RestClientCall', { editor: <RestEditor />, icon: IvyIcons.RestClient }],
   ['EMail', { editor: <EMailEditor />, icon: IvyIcons.EMail }],
-  // ['Rule', { editor: <RuleEditor />, icon: IvyIcons.Rule }],
+  ['RuleCall', { editor: <RuleEditor />, icon: IvyIcons.Rule }],
   ['ProgramInterface', { editor: <ProgramInterfaceEditor />, icon: IvyIcons.ProgramOutline }]
 ]);
