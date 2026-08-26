@@ -25,6 +25,7 @@ function createModel(graphFactory: GModelFactory): GGraph {
   children.push({ id: 'rest', type: ActivityTypes.REST, position: { x: 600, y: 350 }, size: taskNodeSize });
   children.push({ id: 'db', type: ActivityTypes.DB, position: { x: 600, y: 400 }, size: taskNodeSize });
   children.push({ id: 'email', type: ActivityTypes.EMAIL, position: { x: 600, y: 450 }, size: taskNodeSize });
+  children.push({ id: 'rule', type: ActivityTypes.RULE, position: { x: 600, y: 480 }, size: taskNodeSize });
   children.push({ id: 'subProcess', type: ActivityTypes.SUB_PROCESS, position: { x: 600, y: 500 }, size: taskNodeSize });
   children.push({ id: 'embeddedProcess', type: ActivityTypes.EMBEDDED_PROCESS, position: { x: 600, y: 550 }, size: taskNodeSize });
   children.push({ id: 'trigger', type: ActivityTypes.TRIGGER, position: { x: 600, y: 650 }, size: taskNodeSize });
@@ -83,6 +84,10 @@ describe('ActivityNodeView', () => {
 
   test('render email node', () => {
     assertNode(ActivityTypes.EMAIL, 'email', { icon: standardIcons['std:Mail'] });
+  });
+
+  test('render rule node', () => {
+    assertNode(ActivityTypes.RULE, 'rule', { icon: standardIcons['std:Rule'] });
   });
 
   test('render sub process node', () => {

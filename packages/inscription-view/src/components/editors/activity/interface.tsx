@@ -61,6 +61,11 @@ const EMailEditor = memo(() => {
   return <Part parts={[name, header, content, attachment, error]} />;
 });
 
+const RuleEditor = memo(() => {
+  const name = useGeneralPart();
+  return <Part parts={[name]} />;
+});
+
 const ProgramInterfaceEditor = memo(() => {
   const name = useGeneralPart();
   const start = useProgramInterfaceStartPart();
@@ -74,5 +79,6 @@ export const interfaceActivityEditors = new Map<ElementType, KnownEditor>([
   ['WebServiceCall', { editor: <WebServiceEditor />, icon: IvyIcons.WebService }],
   ['RestClientCall', { editor: <RestEditor />, icon: IvyIcons.RestClient }],
   ['EMail', { editor: <EMailEditor />, icon: IvyIcons.EMail }],
+  // ['Rule', { editor: <RuleEditor />, icon: IvyIcons.Rule }],
   ['ProgramInterface', { editor: <ProgramInterfaceEditor />, icon: IvyIcons.ProgramOutline }]
 ]);
