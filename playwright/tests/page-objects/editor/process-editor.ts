@@ -1,6 +1,7 @@
 import type { BrowserContext, ConsoleMessage, Locator, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
 import { randomUUID } from 'crypto';
+import { resolve } from 'path';
 import { Inscription } from '../inscription/inscription-view';
 import { Connector } from './connector';
 import { Activity, Element, Lane, Pool } from './element';
@@ -14,9 +15,11 @@ import type { CmdCtrl, Point } from './types';
 import { ViewportBar } from './viewport';
 
 const startSelector = GRAPH_SELECTOR + ' .start\\:requestStart';
-export const server = (process.env.BASE_URL ? process.env.BASE_URL : 'http://localhost:8080/') + '~Developer-process-test-project';
+export const server = process.env.BASE_URL ?? 'http://localhost:8080/';
+const ws = '~Developer-process-test-project';
 export const app = 'Developer-process-test-project';
 export const project = 'process-test-project';
+const engineWsDir = process.env.ENGINE_WS_DIR ?? resolve(import.meta.dirname, '../../', project);
 
 export class ProcessEditor {
   readonly page: Page;
@@ -43,7 +46,7 @@ export class ProcessEditor {
   static async openProcess(page: Page, options?: { urlQueryParam?: string; file?: string; waitFor?: string }) {
     const serverUrl = server.replace(/^https?:\/\//, '');
     const file = options?.file ?? `process/test/${randomUUID()}.p.json`;
-    await page.goto(`?server=${serverUrl}&app=${app}&project=${project}&file=${file}` + (options?.urlQueryParam ?? ''));
+    await page.goto(`?server=${serverUrl}${ws}&app=${app}&project=${project}&file=${file}` + (options?.urlQueryParam ?? ''));
     await page.addStyleTag({ content: '.palette-body {transition: none !important;}' });
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
@@ -240,7 +243,7 @@ export const runProcess = async (editor: ProcessEditor, context: BrowserContext)
 };
 
 export const resetEngine = async () =>
-  fetch(`${server}/api/web-ide/project/stop-bpm-engine?app=${app}&project=${project}`, {
+  fetch(`${server}designer/api/web-ide/project/stop-bpm-engine?workspaceId=${project}&projectDir=${engineWsDir}`, {
     method: 'POST',
     headers: {
       'X-Requested-By': 'ivy-process-editor-test'
