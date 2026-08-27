@@ -28,8 +28,35 @@ const tree = (mailValue = ''): MappingTreeData[] => [
   }
 ];
 
+const treeWithDirectIdValue: MappingTreeData[] = [
+  {
+    attribute: 'param',
+    children: [
+      {
+        attribute: 'category',
+        children: [
+          { attribute: 'id', children: [], value: '', type: 'Long', simpleType: 'Long', isLoaded: true, description: '' },
+          { attribute: 'name', children: [], value: '', type: 'String', simpleType: 'String', isLoaded: true, description: '' }
+        ],
+        value: '',
+        type: 'api.v3.client.Category',
+        simpleType: 'Category',
+        isLoaded: true,
+        description: ''
+      },
+      { attribute: 'id', children: [], value: 'CH', type: 'String', simpleType: 'String', isLoaded: true, description: '' }
+    ],
+    value: '',
+    type: 'api.v3.client.Pet',
+    simpleType: 'Pet',
+    isLoaded: true,
+    description: ''
+  }
+];
+
 test('expandState', () => {
   expect(expandState([])).toEqual({ '0': true });
   expect(expandState(tree())).toEqual({ '0': true });
-  expect(expandState(tree('louis'))).toEqual({ '0': true, '0.2': true, '0.2.0': true });
+  expect(expandState(tree('louis'))).toEqual({ '0': true, '0.2': true });
+  expect(expandState(treeWithDirectIdValue)).toEqual({ '0': true });
 });

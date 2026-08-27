@@ -1,5 +1,5 @@
-import { Button, selectNextPreviousCell } from '@axonivy/ui-components';
-import type { CellContext } from '@tanstack/react-table';
+import { Button, type DataTableFeatures, selectNextPreviousCell } from '@axonivy/ui-components';
+import type { CellContext, RowData } from '@tanstack/react-table';
 import { useState } from 'react';
 import { usePath } from '../../../../context/usePath';
 import { focusAdjacentTabIndexMonaco } from '../../../../utils/focus';
@@ -13,16 +13,16 @@ import { useMonacoEditor } from '../../code-editor/useCodeEditor';
 import { Input } from '../../input/Input';
 import './CodeEditorCell.css';
 
-type CodeEditorCellProps<TData> = {
-  cell: CellContext<TData, string>;
+type CodeEditorCellProps<TData extends RowData> = {
+  cell: CellContext<DataTableFeatures, TData, string | undefined>;
   macro: boolean;
   type?: string;
   placeholder?: string;
   browsers: BrowserType[];
 };
 
-export function CodeEditorCell<TData>({ cell, macro, type, browsers, placeholder }: CodeEditorCellProps<TData>) {
-  const initialValue = cell.getValue() as string;
+export function CodeEditorCell<TData extends RowData>({ cell, macro, type, browsers, placeholder }: CodeEditorCellProps<TData>) {
+  const initialValue = cell.getValue() ?? '';
   const [value, setValue] = useState(initialValue);
   const [prevValue, setPrevValue] = useState(initialValue);
   if (prevValue !== initialValue) {

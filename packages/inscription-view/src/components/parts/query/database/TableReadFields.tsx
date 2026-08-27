@@ -1,8 +1,17 @@
 import type { DatabaseColumn } from '@axonivy/process-editor-inscription-protocol';
-import { SortableHeader, Table, TableBody, TableCell, TableResizableHeader, TableRow } from '@axonivy/ui-components';
-import type { ColumnDef, Row, SortingState } from '@tanstack/react-table';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
+import {
+  type DataTableFeatures,
+  dataTableHelper,
+  SortableHeader,
+  Table,
+  TableBody,
+  TableCell,
+  TableResizableHeader,
+  TableRow
+} from '@axonivy/ui-components';
+import type { Row } from '@tanstack/react-table';
+import { flexRender, useTable } from '@tanstack/react-table';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEditorContext } from '../../../../context/useEditorContext';
 import { useMeta } from '../../../../context/useMeta';
@@ -13,6 +22,8 @@ import { useQueryData } from '../useQueryData';
 type Column = Omit<DatabaseColumn, 'ivyType'> & {
   selected: boolean;
 };
+
+const { columnHelper, tableOptions } = dataTableHelper<Column>();
 
 export const TableReadFields = () => {
   const { t } = useTranslation();
@@ -26,40 +37,35 @@ export const TableReadFields = () => {
     return columnMetas.map<Column>(c => ({ ...c, selected: select.includes(c.name) }));
   }, [columnMetas, config.query.sql.select]);
 
-  const columns = useMemo<ColumnDef<Column>[]>(
-    () => [
-      {
-        accessorKey: 'name',
-        header: ({ column }) => <SortableHeader column={column} name={t('label.column')} />,
-        cell: cell => (
-          <>
-            <span>{cell.getValue() as string}</span>
-            <span className='row-expand-label-info'> : {cell.row.original.type}</span>
-          </>
-        )
-      },
-      {
-        accessorKey: 'selected',
-        header: ({ column }) => <SortableHeader column={column} name={t('part.db.read')} />,
-        cell: cell => <span>{(cell.getValue() as boolean) ? '✅' : ''}</span>
-      }
-    ],
+  const columns = useMemo(
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('name', {
+          header: ({ column }) => <SortableHeader column={column} name={t('label.column')} />,
+          cell: cell => (
+            <>
+              <span>{cell.getValue()}</span>
+              <span className='row-expand-label-info'> : {cell.row.original.type}</span>
+            </>
+          )
+        }),
+        columnHelper.accessor('selected', {
+          header: ({ column }) => <SortableHeader column={column} name={t('part.db.read')} />,
+          cell: cell => <span>{(cell.getValue() as boolean) ? '✅' : ''}</span>
+        })
+      ]),
     [t]
   );
 
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const table = useReactTable({
+  const table = useTable({
+    ...tableOptions,
     data,
     columns,
-    state: { sorting },
     columnResizeMode: 'onChange',
-    columnResizeDirection: 'ltr',
-    onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel()
+    columnResizeDirection: 'ltr'
   });
 
-  const selectRow = (row: Row<Column>) => {
+  const selectRow = (row: Row<DataTableFeatures, Column>) => {
     const column = row.original.name;
     const select = data.filter(c => c.selected).map(c => c.name);
     const index = select.indexOf(column);

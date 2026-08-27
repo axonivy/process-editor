@@ -1,17 +1,20 @@
-import { Flex, SearchInput, Table } from '@axonivy/ui-components';
+import { Flex, Table, TableGlobalFilter, type DataTableFeatures } from '@axonivy/ui-components';
+import type { ReactTable, RowData } from '@tanstack/react-table';
 import { type ComponentProps } from 'react';
 import { useTranslation } from 'react-i18next';
 import './Table.css';
 
-type TableProps = ComponentProps<typeof Table> & {
-  search?: { value: string; onChange: (value: string) => void };
+type TableProps<TData extends RowData> = ComponentProps<typeof Table> & {
+  table: ReactTable<DataTableFeatures, TData>;
+  searchActive?: boolean;
+  onSearchChange?: (filter: string) => void;
 };
 
-export const SearchTable = ({ search, ...props }: TableProps) => {
+export const SearchTable = <TData extends RowData>({ table, searchActive, onSearchChange, ...props }: TableProps<TData>) => {
   const { t } = useTranslation();
   return (
     <Flex direction='column' gap={1} style={{ overflow: 'auto' }}>
-      {search && <SearchInput placeholder={t('common.label.search')} {...search} />}
+      <TableGlobalFilter table={table} placeholder={t('common.label.search')} active={searchActive} onChange={onSearchChange} />
       <Table {...props} />
     </Flex>
   );

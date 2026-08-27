@@ -1,8 +1,16 @@
 import type { WfCustomField, WorkflowType } from '@axonivy/process-editor-inscription-protocol';
 import { CUSTOM_FIELD_TYPE } from '@axonivy/process-editor-inscription-protocol';
-import { ComboCell, SelectCell, SortableHeader, Table, TableBody, TableCell, TableResizableHeader } from '@axonivy/ui-components';
+import {
+  ComboCell,
+  dataTableHelper,
+  SelectCell,
+  SortableHeader,
+  Table,
+  TableBody,
+  TableCell,
+  TableResizableHeader
+} from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -23,6 +31,8 @@ type CustomFieldTableProps = {
 
 const EMPTY_WFCUSTOMFIELD: WfCustomField = { name: '', type: 'STRING', value: '' } as const;
 
+const { columnHelper } = dataTableHelper<WfCustomField>();
+
 const CustomFieldTable = ({ data, onChange, type }: CustomFieldTableProps) => {
   const { t } = useTranslation();
   const items = useMemo<SelectItem[]>(() => Object.entries(CUSTOM_FIELD_TYPE).map(([value, label]) => ({ label, value })), []);
@@ -31,29 +41,29 @@ const CustomFieldTable = ({ data, onChange, type }: CustomFieldTableProps) => {
 
   const predefinedCustomField: WfCustomField[] = useMeta('meta/workflow/customFields', { context, type: type }, []).data;
 
-  const columns = useMemo<ColumnDef<WfCustomField, string>[]>(
-    () => [
-      {
-        accessorKey: 'name',
-        header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
-        cell: cell => (
-          <ComboCell
-            options={predefinedCustomField.filter(pcf => !data.find(d => d.name === pcf.name)).map(pcf => ({ value: pcf.name }))}
-            cell={cell}
-          />
-        )
-      },
-      {
-        accessorKey: 'type',
-        header: ({ column }) => <SortableHeader column={column} name={t('common.label.type')} />,
-        cell: cell => <SelectCell cell={cell} items={items} />
-      },
-      {
-        accessorKey: 'value',
-        header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
-        cell: cell => <ScriptCell cell={cell} type={CUSTOM_FIELD_TYPE[cell.row.original.type]} browsers={['attr', 'func', 'type', 'cms']} />
-      }
-    ],
+  const columns = useMemo(
+    () =>
+      columnHelper.columns([
+        columnHelper.accessor('name', {
+          header: ({ column }) => <SortableHeader column={column} name={t('common.label.name')} />,
+          cell: cell => (
+            <ComboCell
+              options={predefinedCustomField.filter(pcf => !data.find(d => d.name === pcf.name)).map(pcf => ({ value: pcf.name }))}
+              cell={cell}
+            />
+          )
+        }),
+        columnHelper.accessor('type', {
+          header: ({ column }) => <SortableHeader column={column} name={t('common.label.type')} />,
+          cell: cell => <SelectCell cell={cell} items={items} />
+        }),
+        columnHelper.accessor('value', {
+          header: ({ column }) => <SortableHeader column={column} name={t('label.expression')} />,
+          cell: cell => (
+            <ScriptCell cell={cell} type={CUSTOM_FIELD_TYPE[cell.row.original.type]} browsers={['attr', 'func', 'type', 'cms']} />
+          )
+        })
+      ]),
     [data, items, predefinedCustomField, t]
   );
 
@@ -73,7 +83,7 @@ const CustomFieldTable = ({ data, onChange, type }: CustomFieldTableProps) => {
     });
   };
 
-  const { table, setRowSelection, selectedRowActions, showAddButton } = useResizableEditableTable({
+  const { table, selectedRowActions, showAddButton } = useResizableEditableTable({
     data,
     columns,
     onChange,
@@ -95,7 +105,7 @@ const CustomFieldTable = ({ data, onChange, type }: CustomFieldTableProps) => {
     <PathCollapsible path='customFields' label={t('label.customFields')} defaultOpen={data.length > 0} controls={tableActions}>
       <div>
         <Table>
-          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => setRowSelection({})} />
+          <TableResizableHeader headerGroups={table.getHeaderGroups()} onClick={() => table.setRowSelection({})} />
           <TableBody>
             {table.getRowModel().rows.map(row => (
               <ValidationRow row={row} key={row.id} rowPathSuffix={row.original.name}>

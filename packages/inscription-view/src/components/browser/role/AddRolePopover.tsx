@@ -9,7 +9,8 @@ import {
   PopoverArrow,
   PopoverContent,
   PopoverTrigger,
-  toast
+  toast,
+  type DataTableFeatures
 } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import { useQueryClient } from '@tanstack/react-query';
@@ -28,7 +29,7 @@ export const AddRolePopover = ({
   setAddedRoleName
 }: {
   value: string;
-  table: Table<RoleMeta>;
+  table: Table<DataTableFeatures, RoleMeta>;
   setAddedRoleName: (value: string) => void;
 }) => {
   const { t } = useTranslation();

@@ -1,22 +1,24 @@
-import { TableAddRow } from '@axonivy/ui-components';
+import { dataTableHelper, TableAddRow, type DataTableFeatures } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
-import type { ColumnDef, Row, RowSelectionState, SortingState } from '@tanstack/react-table';
-import { getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import type { Row, RowData } from '@tanstack/react-table';
+import { useTable } from '@tanstack/react-table';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { deepEqual } from '../../../../utils/equals';
 import type { FieldsetControl } from '../../../widgets/fieldset/fieldset-control';
 import { focusNewCell } from './cellFocus-utils';
 
-interface UseResizableEditableTableProps<TData> {
+type DataTableColumns<TData extends RowData> = Parameters<ReturnType<typeof dataTableHelper<TData>>['columnHelper']['columns']>[0];
+
+interface UseResizableEditableTableProps<TData extends RowData> {
   data: TData[];
-  columns: ColumnDef<TData, string>[];
+  columns: DataTableColumns<TData>;
   onChange: (change: TData[]) => void;
   emptyDataObject: TData;
   specialUpdateData?: (data: Array<TData>, rowIndex: number, columnId: string) => void;
 }
 
-const useResizableEditableTable = <TData,>({
+const useResizableEditableTable = <TData extends RowData>({
   data,
   columns,
   onChange,
@@ -25,15 +27,16 @@ const useResizableEditableTable = <TData,>({
 }: UseResizableEditableTableProps<TData>) => {
   const { t } = useTranslation();
   const [tableData, setTableData] = useState<TData[]>(data);
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
   const updateTableData = (tableData: Array<TData>) => {
     setTableData(tableData);
     onChange(tableData.filter(obj => !deepEqual(obj, emptyDataObject)));
   };
 
-  const updateData = (rowId: string, columnId: string, value: string) => {
+  const updateData = (rowId: string, columnId: string, value: unknown) => {
+    if (typeof value !== 'string') {
+      return;
+    }
     const rowIndex = parseInt(rowId);
     const updatedData = tableData.map((row, index) => {
       if (index === rowIndex && tableData[rowIndex]) {
@@ -52,19 +55,17 @@ const useResizableEditableTable = <TData,>({
     }
   };
 
-  const table = useReactTable({
+  const { tableOptions } = dataTableHelper<TData>();
+
+  const table = useTable({
+    ...tableOptions,
     data: tableData,
     columns,
-    state: { sorting, rowSelection },
     columnResizeMode: 'onChange',
     columnResizeDirection: 'ltr',
     enableRowSelection: true,
     enableMultiRowSelection: false,
     enableSubRowSelection: false,
-    onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     meta: { updateData }
   });
 
@@ -74,7 +75,7 @@ const useResizableEditableTable = <TData,>({
     const newData = [...tableData];
     newData.push(emptyDataObject);
     updateTableData(newData);
-    setRowSelection({ [`${newData.length - 1}`]: true });
+    table.setRowSelection({ [`${newData.length - 1}`]: true });
     focusNewCell(domTable, newData.length, 'input');
   };
 
@@ -89,9 +90,9 @@ const useResizableEditableTable = <TData,>({
     const newData = [...tableData];
     newData.splice(index, 1);
     if (newData.length === 0) {
-      setRowSelection({});
+      table.setRowSelection({});
     } else if (index === tableData.length - 1) {
-      setRowSelection({ [`${newData.length - 1}`]: true });
+      table.setRowSelection({ [`${newData.length - 1}`]: true });
     }
     if (newData.length === 1 && deepEqual(newData[0], emptyDataObject)) {
       updateTableData([]);
@@ -100,7 +101,7 @@ const useResizableEditableTable = <TData,>({
     }
   };
 
-  const selectedRowActions = (additionalActionsSupplier?: (row: Row<TData>, rowIndex: number) => FieldsetControl[]) => {
+  const selectedRowActions = (additionalActionsSupplier?: (row: Row<DataTableFeatures, TData>, rowIndex: number) => FieldsetControl[]) => {
     if (table.getSelectedRowModel().rows.length === 0) {
       return [];
     }
@@ -116,7 +117,7 @@ const useResizableEditableTable = <TData,>({
     return [{ label: t('label.removeRow'), icon: IvyIcons.Trash, action: () => removeRow(firstSelectedRowIndex) }, ...additionalActions];
   };
 
-  return { table, rowSelection, selectedRowActions, setRowSelection, showAddButton };
+  return { table, selectedRowActions, showAddButton };
 };
 
 export { useResizableEditableTable };
