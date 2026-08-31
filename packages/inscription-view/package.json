@@ -33,11 +33,11 @@
     "@radix-ui/react-tabs": "^1.1",
     "@tanstack/react-query": "^5.64",
     "@tanstack/react-query-devtools": "^5.64",
-    "@tanstack/react-table": "^9.0.0",
+    "@tanstack/react-table": "^9.1",
     "downshift": "^9.0",
-    "i18next": "^25.0.0 || ^26.0.0",
+    "i18next": "^26.0.0",
     "react": "^19.0",
-    "react-i18next": "^16.0.0 || ^17.0.0"
+    "react-i18next": "^17.0.0"
   },
   "devDependencies": {
     "@axonivy/jsonrpc": "next-14.0.0",
