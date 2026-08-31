@@ -21,10 +21,10 @@
     "vscode-languageserver-protocol": "^3.18.2"
   },
   "peerDependencies": {
-    "@axonivy/jsonrpc": "~12.0.17-next"
+    "@axonivy/jsonrpc": "~12.0.18-next"
   },
   "devDependencies": {
-    "@axonivy/jsonrpc": "next-12.0.17"
+    "@axonivy/jsonrpc": "next-12.0.18"
   },
   "type": "module",
   "types": "lib/index",
