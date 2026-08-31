@@ -8,7 +8,6 @@ minimumReleaseAgeExclude:
   - '@axonivy/*'
 overrides:
   dompurify@<=3.4.12: ^3.4.13
-  typescript-cp>tar: '>=7.5.11'
   ws@>=8.0.0 <8.20.1: ^8.20.1
 patchedDependencies:
   monaco-editor: patches/monaco-editor.patch
