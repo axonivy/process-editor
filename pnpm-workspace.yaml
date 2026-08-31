@@ -8,6 +8,7 @@ minimumReleaseAgeExclude:
   - '@axonivy/*'
 overrides:
   dompurify@<=3.4.12: ^3.4.13
+  typescript-cp>tar: '>=7.5.11'
   ws@>=8.0.0 <8.20.1: ^8.20.1
 patchedDependencies:
   monaco-editor: patches/monaco-editor.patch
@@ -18,8 +19,4 @@ registries:
   '@axonivy': 'https://npmjs-registry.ivyteam.ch/'
 trustPolicy: no-downgrade
 trustPolicyIgnoreAfter: 43200 # minutes (30 days)
-trustPolicyExclude:
-  - '@eclipse-glsp/protocol@2.8.0'
-  - '@eclipse-glsp/client@2.8.0'
-  - '@eclipse-glsp/sprotty@2.8.0'
 verifyDepsBeforeRun: warn
