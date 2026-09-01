@@ -31,6 +31,10 @@ export class InscriptionTab extends Part {
     return page.getByRole('tab', { name: label });
   }
 
+  get content() {
+    return this.locator.locator('.ui-inscription-tabs-content[data-state="active"]');
+  }
+
   tab(label: string) {
     return new Tab(this.page, this.locator, label);
   }

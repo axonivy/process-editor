@@ -19,6 +19,13 @@ export async function screenshotInscriptionTab(
     await screenshot(editor, screenshotName);
     await editor.evaluate(element => (element.style.height = '100%'));
   } else {
+    const tabContent = tab.content.locator('> .ui-flex');
+    await tabContent.evaluate(element => (element.style.flex = 'unset'));
+    const size = await tabContent.boundingBox();
+    await page.setViewportSize({
+      width: Math.ceil(size?.width ?? 500),
+      height: Math.ceil((size?.height ?? 800) + 120)
+    });
     await screenshot(tab.currentLocator(), screenshotName);
   }
   await tab.open();
