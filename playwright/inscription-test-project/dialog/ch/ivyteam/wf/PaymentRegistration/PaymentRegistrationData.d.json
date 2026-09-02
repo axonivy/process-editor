@@ -4,6 +4,7 @@
   "namespace" : "ch.ivyteam.wf.PaymentRegistration",
   "fields" : [ {
     "name" : "person",
-    "type" : "ch.ivyteam.test.Person"
+    "type" : "ch.ivyteam.test.Person",
+    "modifiers" : [ ]
   } ]
 }

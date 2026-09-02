@@ -4,6 +4,7 @@
   "namespace" : "screenshot.project.exampleHtmlDialog",
   "fields" : [ {
     "name" : "data",
-    "type" : "screenshot.project.Data"
+    "type" : "screenshot.project.Data",
+    "modifiers" : [ ]
   } ]
 }
