@@ -3,6 +3,7 @@
   "simpleName" : "PersonEditorData",
   "namespace" : "com.acme.PersonEditor",
   "fields" : [ {
-    "name" : "addPerson"
+    "name" : "addPerson",
+    "modifiers" : [ ]
   } ]
 }
