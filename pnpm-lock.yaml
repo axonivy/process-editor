@@ -312,7 +312,7 @@ importers:
     dependencies:
       '@axonivy/jsonrpc':
         specifier: ~14.0.0-next
-        version: 14.0.0-next.1238.10a41e2
+        version: 14.0.0-next.1240.fed1cd5
       '@axonivy/process-editor':
         specifier: workspace:~
         version: link:../editor
@@ -373,8 +373,8 @@ importers:
   packages/inscription-protocol:
     devDependencies:
       json-schema-to-typescript:
-        specifier: ^15.0.4
-        version: 15.0.4
+        specifier: ^16.0.0
+        version: 16.0.0
 
   packages/inscription-view:
     dependencies:
@@ -496,8 +496,8 @@ packages:
   '@adobe/css-tools@4.5.0':
     resolution: {integrity: sha512-6OzddxPio9UiWTCemp4N8cYLV2ZN1ncRnV1cVGtve7dhPOtRkleRyx32GQCYSwDYgaHU3USMm84tNsvKzRCa1Q==}
 
-  '@apidevtools/json-schema-ref-parser@11.7.3':
-    resolution: {integrity: sha512-WApSdLdXEBb/1FUPca2lteASewEfpjEYJ8oXZP+0gExK5qSfsEKBKcA+WjY6Q4wvXwyv0+W6Kvc372pSceib9w==}
+  '@apidevtools/json-schema-ref-parser@11.9.3':
+    resolution: {integrity: sha512-60vepv88RwcJtSHrD6MjIL6Ta3SOYbgfnkHb+ppAVK+o9mXprRtulx7VlRl3lN3bbvysAfCS7WMVfhUYemB0IQ==}
     engines: {node: '>= 16'}
 
   '@asamuzakjp/css-color@6.0.5':
@@ -510,9 +510,6 @@ packages:
 
   '@axonivy/eslint-config@14.0.0-next.1240.fed1cd5':
     resolution: {integrity: sha512-10o3NmJILVL6589O/vlvqY6AhotD3IlHV2J8VObcpIBQhFQGc4Hnz3iDzwRU/xesy8wCUW21bbwQh5y0270S/Q==}
-
-  '@axonivy/jsonrpc@14.0.0-next.1238.10a41e2':
-    resolution: {integrity: sha512-JlZ7k8hqnQpirOKRNdTQdN3HAfszWs1hu2rujqU9rlcqankxGQbjXE9Tstaejo09J5M3ZxeGR5fiAurMCIj1Uw==}
 
   '@axonivy/jsonrpc@14.0.0-next.1240.fed1cd5':
     resolution: {integrity: sha512-p92UZ7AzURy7XUYXQ7O/DF7AuIjVsJalmfJA/lcXTQ1ShCF1BRJ9S/ZXhKGfLd7sM8dPwSGiMJoAsCII7gUBzg==}
@@ -2015,8 +2012,8 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/lodash@4.17.14':
-    resolution: {integrity: sha512-jsxagdikDiDBeIRaPYtArcT8my4tN1og7MtMRquFT3XNA6axxyHDRUemqDz/taRDdOUn0GnGHRCuff4q48sW9A==}
+  '@types/lodash@4.17.25':
+    resolution: {integrity: sha512-+K1NIO8I+F9/wNulfVvu23QYd0Pe9/OCqRrim4NoYIf1VoEDL90Ve4ClzpyqBLc7NpGGWRvYNCKZ1BE/Jpf8dQ==}
 
   '@types/node@24.13.3':
     resolution: {integrity: sha512-Dh8vAsV36ig5wa9OX4pXvMc9D3Veibfw2wix0CUwYODLD8nkj9UsLjASr49nPg+2eKzxhBV+v7L8pXvT4e639Q==}
@@ -3125,6 +3122,10 @@ packages:
     resolution: {integrity: sha512-CY6crGq313MX8GkwvB7tzgp99vjQxY1++5y10/BKN/GUfHqWaOGQMNZkBvqSzsZKWk/ijwHlWzzkLulsGHhjWQ==}
     hasBin: true
 
+  js-yaml@5.4.1:
+    resolution: {integrity: sha512-28R/k+NAjeuf7+CKlTxWZVExJGwVVLwY06DgEnOMz2gEpfNkDcD7QvyiVPT0xy0XXhU8vHsd4Ot42OOPdJG7dQ==}
+    hasBin: true
+
   jsdom@30.0.1:
     resolution: {integrity: sha512-52v7mUVUfNQVYYqE1lcdaymWL0njO7lTLUog6ZvW2U5KsbiLk/GnZlVJ+qx0xfNJZ6Gn+KSpPNE52vurbxZwrA==}
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
@@ -3144,8 +3145,8 @@ packages:
     resolution: {integrity: sha512-ZF1nxZ28VhQouRWhUcVlUIN3qwSgPuswK05s/HIaoetAoE/9tngVmCHjSxmSQPav1nd+lPtTL0YZ/2AFdR/iYQ==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  json-schema-to-typescript@15.0.4:
-    resolution: {integrity: sha512-Su9oK8DR4xCmDsLlyvadkXzX6+GGXJpbhwoLtOGArAG61dvbW4YQmSEno2y66ahpIdmLMg6YUf/QHLgiwvkrHQ==}
+  json-schema-to-typescript@16.0.0:
+    resolution: {integrity: sha512-Ah6kK4q6SjlMzWBH1eNOQkdRh5Qhr5T/RCFwfjQqWZA7UDW+N47A8wfyoiN0L884s4L4bAEI54IjIuN3/u0B/A==}
     engines: {node: '>=16.0.0'}
     hasBin: true
 
@@ -4392,7 +4393,7 @@ snapshots:
 
   '@adobe/css-tools@4.5.0': {}
 
-  '@apidevtools/json-schema-ref-parser@11.7.3':
+  '@apidevtools/json-schema-ref-parser@11.9.3':
     dependencies:
       '@jsdevtools/ono': 7.1.3
       '@types/json-schema': 7.0.15
@@ -4435,10 +4436,6 @@ snapshots:
       - supports-color
       - tailwindcss
       - typescript
-
-  '@axonivy/jsonrpc@14.0.0-next.1238.10a41e2':
-    dependencies:
-      vscode-jsonrpc: 8.2.1
 
   '@axonivy/jsonrpc@14.0.0-next.1240.fed1cd5':
     dependencies:
@@ -6033,7 +6030,7 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/lodash@4.17.14': {}
+  '@types/lodash@4.17.25': {}
 
   '@types/node@24.13.3':
     dependencies:
@@ -7166,6 +7163,10 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
+  js-yaml@5.4.1:
+    dependencies:
+      argparse: 2.0.1
+
   jsdom@30.0.1:
     dependencies:
       '@asamuzakjp/css-color': 6.0.5
@@ -7198,13 +7199,12 @@ snapshots:
 
   json-parse-even-better-errors@5.0.0: {}
 
-  json-schema-to-typescript@15.0.4:
+  json-schema-to-typescript@16.0.0:
     dependencies:
-      '@apidevtools/json-schema-ref-parser': 11.7.3
+      '@apidevtools/json-schema-ref-parser': 11.9.3
       '@types/json-schema': 7.0.15
-      '@types/lodash': 4.17.14
-      is-glob: 4.0.3
-      js-yaml: 4.3.1
+      '@types/lodash': 4.17.25
+      js-yaml: 5.4.1
       lodash: 4.18.1
       minimist: 1.2.8
       prettier: 3.9.6
