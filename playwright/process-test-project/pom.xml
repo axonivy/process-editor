@@ -17,8 +17,6 @@
   <properties>
     <engine.dir>${project.build.directory}/ivyEngine</engine.dir>
     <engine.page.url>https://product.ivyteam.io/</engine.page.url>
-    <engine.ws.dir>
-      ${engine.dir}/data/default/workspaces/Developer/${project.artifactId}/${project.artifactId}</engine.ws.dir>
     <webtest.cmd>webtest</webtest.cmd>
   </properties>
   <dependencies>
@@ -60,59 +58,7 @@
     </pluginRepository>
   </pluginRepositories>
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <versionRange>*</versionRange>
-                    <goals>
-                      <goal>copy-resources</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore />
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
-      <plugin>
-        <artifactId>maven-resources-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>create-workspace</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${engine.ws.dir}</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>.</directory>
-                  <excludes>
-                    <exclude>.DS_Store</exclude>
-                  </excludes>
-                </resource>
-              </resources>
-              <changeDetection>always</changeDetection>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
@@ -170,7 +116,6 @@
                 <BASE_URL>${test.engine.url}</BASE_URL>
                 <SCREENSHOT_DIR>${project.build.directory}</SCREENSHOT_DIR>
                 <REPORT_DIR>${project.build.directory}</REPORT_DIR>
-                <ENGINE_WS_DIR>${engine.ws.dir}</ENGINE_WS_DIR>
               </environmentVariables>
               <successCodes>
                 <successCode>0</successCode>
