@@ -17,6 +17,7 @@ import { useQueryPart } from '../../parts/query/QueryPart';
 import { useRestErrorPart } from '../../parts/rest/RestErrorPart';
 import { useRestOutputPart } from '../../parts/rest/RestOutputPart';
 import { useRestRequestPart } from '../../parts/rest/RestRequestPart';
+import { useRulePart } from '../../parts/rule/RulePart';
 import { useWsErrorPart } from '../../parts/ws-error/WsErrorPart';
 import { useWsRequestPart } from '../../parts/ws-request/WsRequestPart';
 import { type KnownEditor } from '../InscriptionEditor';
@@ -61,6 +62,12 @@ const EMailEditor = memo(() => {
   return <Part parts={[name, header, content, attachment, error]} />;
 });
 
+const RuleEditor = memo(() => {
+  const name = useGeneralPart();
+  const rule = useRulePart();
+  return <Part parts={[name, rule]} />;
+});
+
 const ProgramInterfaceEditor = memo(() => {
   const name = useGeneralPart();
   const start = useProgramInterfaceStartPart();
@@ -74,5 +81,6 @@ export const interfaceActivityEditors = new Map<ElementType, KnownEditor>([
   ['WebServiceCall', { editor: <WebServiceEditor />, icon: IvyIcons.WebService }],
   ['RestClientCall', { editor: <RestEditor />, icon: IvyIcons.RestClient }],
   ['EMail', { editor: <EMailEditor />, icon: IvyIcons.EMail }],
+  ['RuleCall', { editor: <RuleEditor />, icon: IvyIcons.Rule }],
   ['ProgramInterface', { editor: <ProgramInterfaceEditor />, icon: IvyIcons.ProgramOutline }]
 ]);

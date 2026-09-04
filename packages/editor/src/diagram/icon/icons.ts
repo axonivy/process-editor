@@ -97,6 +97,7 @@ export const elementIcons = {
   [ActivityTypes.SOAP]: 'std:WebService',
   [ActivityTypes.REST]: 'std:RestClient',
   [ActivityTypes.EMAIL]: 'std:Mail',
+  [ActivityTypes.RULE]: 'std:Rule',
   [ActivityTypes.PROGRAM]: 'std:Program',
   // BPMN Activities
   [ActivityTypes.BPMN_USER]: 'std:User',
