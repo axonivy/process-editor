@@ -61,60 +61,7 @@
     </pluginRepository>
   </pluginRepositories>
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <versionRange>*</versionRange>
-                    <goals>
-                      <goal>copy-resources</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore />
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
-      <plugin>
-        <artifactId>maven-resources-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>create-workspace</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>
-                ${engine.dir}/data/default/workspaces/Developer/${project.artifactId}/${project.artifactId}</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>.</directory>
-                  <excludes>
-                    <exclude>.DS_Store</exclude>
-                  </excludes>
-                </resource>
-              </resources>
-              <changeDetection>always</changeDetection>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>

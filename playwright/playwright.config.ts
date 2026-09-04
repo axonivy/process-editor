@@ -33,6 +33,7 @@ export default defineConfig({
       reuseExistingServer: !process.env.CI
     }
   ],
+  globalSetup: './tests/global.setup',
   projects: [
     { name: 'standalone-chrome', use: { ...devices['Desktop Chrome'], baseURL: STANDALONE_URL }, testDir: './tests/standalone' },
     { name: 'standalone-firefox', use: { ...devices['Desktop Firefox'], baseURL: STANDALONE_URL }, testDir: './tests/standalone' },
