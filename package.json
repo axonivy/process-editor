@@ -47,7 +47,7 @@
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-cp": "^0.1.11",
     "vite": "^8.2.2",
-    "vitest": "^4.1.11"
+    "vitest": "^5.0.0"
   },
   "prettier": "@axonivy/prettier-config"
 }
