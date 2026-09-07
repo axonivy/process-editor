@@ -108,6 +108,7 @@
             <configuration>
               <skip>${maven.test.skip}</skip>
               <executable>pnpm</executable>
+              <workingDirectory>${project.basedir}/..</workingDirectory>
               <arguments>
                 <argument>run</argument>
                 <argument>${webtest.cmd}</argument>
