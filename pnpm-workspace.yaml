@@ -18,6 +18,7 @@ preferWorkspacePackages: true
 publicHoistPattern:
   - eslint
   - monaco-editor
+  - monaco-languageclient
 trustPolicy: no-downgrade
 trustPolicyIgnoreAfter: 43200 # minutes (30 days)
 verifyDepsBeforeRun: warn
