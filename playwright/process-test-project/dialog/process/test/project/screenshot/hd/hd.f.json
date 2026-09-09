@@ -1,4 +1,4 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/form.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/form.json",
   "components" : [ ]
 }
