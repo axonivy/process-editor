@@ -1,15 +1,20 @@
-import { BasicInput } from '@axonivy/ui-components';
+import type { VariableInfo } from '@axonivy/process-editor-inscription-protocol';
 import { IvyIcons } from '@axonivy/ui-icons';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useEditorContext } from '../../../context/useEditorContext';
+import { useMeta } from '../../../context/useMeta';
 import { usePartState, type PartProps } from '../../editors/part/usePart';
 import Collapsible from '../../widgets/collapsible/Collapsible';
-import Fieldset from '../../widgets/fieldset/Fieldset';
+import MappingPart from '../common/mapping-tree/MappingPart';
+import RuleSelect from './RuleSelect';
 import { useRuleData } from './useRuleData';
 
 export function useRulePart(): PartProps {
   const { t } = useTranslation();
   const { config, defaultConfig } = useRuleData();
   const state = usePartState(defaultConfig, config, []);
+
   return {
     id: 'Rule',
     name: t('part.rule.title'),
@@ -21,17 +26,32 @@ export function useRulePart(): PartProps {
 
 const RulePart = () => {
   const { t } = useTranslation();
-  const { config, update } = useRuleData();
+  const { config, defaultConfig, update } = useRuleData();
+  const { context } = useEditorContext();
+  const { data: startItems } = useMeta('meta/start/rules', context, []);
+
+  const variableInfo = useMemo<VariableInfo>(
+    () => startItems.find(start => start.id === config.rule.rule)?.callParameter ?? { variables: [], types: {} },
+    [config.rule.rule, startItems]
+  );
   return (
     <>
       <Collapsible label={t('part.rule.title')} defaultOpen={true}>
-        <Fieldset label={t('part.rule.configuration')}>
-          <BasicInput value={config.rule.rule} onChange={change => update('rule', change.target.value)} />
-        </Fieldset>
-        <Fieldset label={t('part.rule.data')}>
-          <BasicInput value={config.rule.data} onChange={change => update('data', change.target.value)} />
-        </Fieldset>
+        <RuleSelect
+          start={config.rule.rule}
+          onChange={change => update('rule', change)}
+          starts={startItems}
+          startIcon={IvyIcons.InitStart}
+        />
       </Collapsible>
+      <MappingPart
+        data={config.rule.data}
+        defaultData={defaultConfig.rule.data}
+        variableInfo={variableInfo}
+        onChange={change => update('data', change)}
+        browsers={['attr', 'func', 'type']}
+        defaultOpen={true}
+      />
     </>
   );
 };
