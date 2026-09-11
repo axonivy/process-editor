@@ -372,6 +372,11 @@
       "paramter": "Ergebnisparameter",
       "title": "Ergebnis"
     },
+    "rule": {
+      "configuration": "__MISSING_TRANSLATION__",
+      "data": "__MISSING_TRANSLATION__",
+      "title": "__MISSING_TRANSLATION__"
+    },
     "signal": {
       "attachBusinessCase": "An den Business Case anhängen, der diesen Prozess ausgelöst hat",
       "code": "Signalcode",

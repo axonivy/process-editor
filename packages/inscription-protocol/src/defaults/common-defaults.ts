@@ -18,6 +18,7 @@ import type {
   RestRequestData,
   RestResponseData,
   ResultData,
+  RuleData,
   SignalCatchData,
   StartData,
   TriggerData,
@@ -233,6 +234,13 @@ export const DEFAULT_CONFIGURATION_DATA: ConfigurationData = {
   userConfig: {}
 } as const;
 
+export const DEFAULT_RULE_DATA: RuleData = {
+  rule: {
+    ruleSet: '',
+    data: ''
+  }
+} as const;
+
 export const DEFAULT_DATA: ElementData = {
   ...DEFAULT_NAME_DATA,
   config: {
@@ -259,6 +267,7 @@ export const DEFAULT_DATA: ElementData = {
     ...DEFAULT_REST_REQUEST_DATA,
     ...DEFAULT_PROGRAM_INTERFACE_START_DATA,
     ...DEFAULT_CONFIGURATION_DATA,
+    ...DEFAULT_RULE_DATA,
     // Other defaults, not implemented yet, but needed to satisfy TS
     guid: '',
     link: '',

@@ -372,6 +372,11 @@
       "paramter": "Result parameters",
       "title": "Result"
     },
+    "rule": {
+      "configuration": "Configuration",
+      "data": "Data",
+      "title": "Rule"
+    },
     "signal": {
       "attachBusinessCase": "Attach to Business Case that signaled this process",
       "code": "Signal Code",

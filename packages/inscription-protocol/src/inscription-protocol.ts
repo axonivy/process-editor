@@ -33,6 +33,7 @@ import type {
   RestResource,
   RestResourceRequest,
   RoleMeta,
+  RuleStart,
   ScriptingDataArgs,
   SignalCodeRequest,
   TypeSearchRequest,
@@ -51,6 +52,7 @@ export interface InscriptionMetaRequestTypes {
   'meta/start/dialogs': [CallableDialogRequest, CallableStart[]];
   'meta/start/triggers': [InscriptionContext, CallableStart[]];
   'meta/start/calls': [InscriptionContext, CallableStart[]];
+  'meta/start/rules': [InscriptionContext, RuleStart[]];
 
   'meta/workflow/roleTree': [InscriptionContext, RoleMeta];
   'meta/workflow/taskRoles': [InscriptionElementContext, RoleMeta[]];

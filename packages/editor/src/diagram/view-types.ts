@@ -59,6 +59,7 @@ export namespace ActivityTypes {
   export const REST = DEFAULT + ':restClientCall';
   export const DB = DEFAULT + ':database';
   export const EMAIL = DEFAULT + ':eMail';
+  export const RULE = DEFAULT + ':ruleCall';
   export const SUB_PROCESS = DEFAULT + ':subProcessCall';
   export const EMBEDDED_PROCESS = DEFAULT + ':embeddedProcessElement';
   export const TRIGGER = DEFAULT + ':triggerCall';
