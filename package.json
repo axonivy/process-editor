@@ -39,6 +39,6 @@
     "typescript": "^5.9.3",
     "typescript-cp": "^0.1.10",
     "vitest": "^4.1.10",
-    "vscode": "npm:@codingame/monaco-vscode-api@1.83.3"
+    "vscode": "npm:@codingame/monaco-vscode-api@1.85.6"
   }
 }
