@@ -48,7 +48,11 @@ const TriggerCallPart = () => {
   );
 
   const action = useAction('newProcess');
-  const createProcess: FieldsetControl = { label: t('part.call.trigger.create'), icon: IvyIcons.Plus, action: () => action() };
+  const createProcess: FieldsetControl = {
+    label: t('part.call.trigger.create'),
+    icon: IvyIcons.Plus,
+    action: () => action('Business Process')
+  };
   return (
     <>
       <PathCollapsible label={t('part.call.processStart')} controls={[createProcess]} defaultOpen={true} path='processCall'>
