@@ -12,7 +12,7 @@ test('extensions with entries', async ({ page }) => {
   const programGroup = menu.group('Program Elements');
   await expect(menu.items(restGroup)).toHaveCount(2);
   await expect(menu.items(callableGroup)).toHaveCount(3);
-  await expect(menu.items(programGroup)).toHaveCount(1);
+  await expect(menu.items(programGroup)).toHaveCount(2);
 
   const genderizeItem = menu.items(restGroup).nth(0);
   await expect(genderizeItem).toContainText('genderizehttp://localhost/');
