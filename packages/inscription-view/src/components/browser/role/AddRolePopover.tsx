@@ -48,7 +48,7 @@ export const AddRolePopover = ({
     {
       onSuccess: () => {
         toast.info(t('browser.role.addSuccess'));
-        queryClient.invalidateQueries({ queryKey: genQueryKey('meta/workflow/roleTree', context) });
+        queryClient.invalidateQueries({ queryKey: genQueryKey('meta', 'workflow', 'roleTree', context) });
         setOpen(false);
       },
       onError: error => {
