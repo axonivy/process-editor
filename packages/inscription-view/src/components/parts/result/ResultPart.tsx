@@ -40,7 +40,7 @@ const ResultPart = ({ hideParamDesc }: { hideParamDesc?: boolean }) => {
   const { data: variableInfo } = useMeta('meta/scripting/out', { context, location: 'result' }, { variables: [], types: {} });
   const queryClient = useQueryClient();
   useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: genQueryKey('meta/scripting/out') });
+    queryClient.invalidateQueries({ queryKey: genQueryKey('meta', 'scripting', 'out') });
   }, [config.result.params, queryClient]);
 
   const { maximizeState, maximizeCode } = useMaximizedCodeEditor();

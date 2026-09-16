@@ -14,7 +14,7 @@ export function useMeta<TMeta extends keyof InscriptionMetaRequestTypes>(
   const client = useClient();
   return useQuery({
     enabled: !options?.disable,
-    queryKey: genQueryKey(path, args),
+    queryKey: genQueryKey(...path.split('/'), args),
     queryFn: () => client.meta(path, args),
     initialData: initialData
   });

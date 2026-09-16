@@ -83,7 +83,7 @@ const CmsBrowser = ({ value, onChange, noApiCall, typeFilter, onDoubleClick, loc
     {
       onSuccess: () => {
         toast.info(t('browser.cms.addSuccess'));
-        queryClient.invalidateQueries({ queryKey: genQueryKey('meta/cms/tree', { context, requiredProjects: requiredProject }) });
+        queryClient.invalidateQueries({ queryKey: genQueryKey('meta', 'cms', 'tree', { context, requiredProjects: requiredProject }) });
       },
       onError: error => {
         toast.error(t('browser.cms.addFailed'), { description: error.message });

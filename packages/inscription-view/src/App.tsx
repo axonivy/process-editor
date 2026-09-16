@@ -38,7 +38,10 @@ function App({ outline, ...context }: InscriptionElementContext & InscriptionOut
 
   useEffect(() => {
     const validationDispose = client.onValidation(() => queryClient.invalidateQueries({ queryKey: queryKeys.validation(context) }));
-    const dataDispose = client.onDataChanged(() => queryClient.invalidateQueries({ queryKey: queryKeys.data(context) }));
+    const dataDispose = client.onDataChanged(() => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.data(context) });
+      queryClient.invalidateQueries({ queryKey: genQueryKey('meta') });
+    });
     return () => {
       validationDispose.dispose();
       dataDispose.dispose();
