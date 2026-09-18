@@ -50,6 +50,7 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
   @multiInject(IVY_TYPES.ToolBarButtonProvider) protected toolBarButtonProvider!: ToolBarButtonProvider[];
 
   protected lastButtonClickEvent?: ToolBarButtonClickEvent;
+  protected lastMenuButtonClickEvent?: ToolBarButtonClickEvent;
   protected activeMenuAction?: ShowToolBarMenuAction | ShowToolBarOptionsMenuAction;
 
   protected toDisposeOnDisable = new DisposableCollection();
@@ -108,7 +109,7 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
         <Popover open={this.activeMenuAction !== undefined}>
           <PopoverAnchor
             style={{ display: 'none' }}
-            virtualRef={this.lastButtonClickEvent?.reference ? { current: this.lastButtonClickEvent.reference } : undefined}
+            virtualRef={this.lastMenuButtonClickEvent?.reference ? { current: this.lastMenuButtonClickEvent.reference } : undefined}
           />
           {this.activeMenuAction && ShowToolBarMenuAction.is(this.activeMenuAction) && (
             <PopoverContent
@@ -225,6 +226,7 @@ export class ToolBar extends ReactUIExtension implements IActionHandler, IEditMo
       this.closeMenu();
     }
     this.lastButtonClickEvent = evt;
+    this.lastMenuButtonClickEvent = evt;
     this.update();
   }
 

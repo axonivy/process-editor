@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import type { Menu } from '../../page-objects/editor/menu';
 import { ProcessEditor } from '../../page-objects/editor/process-editor';
 import type { Toolbar } from '../../page-objects/editor/toolbar';
@@ -19,6 +19,23 @@ test('menus show / hide', async ({ page }) => {
 
   await toolbar.triggerElementPalette('gateways');
   await assertNoOpenMenu(toolbar);
+});
+
+test('reopening the same palette keeps its position', async ({ page }) => {
+  const processEditor = await ProcessEditor.openProcess(page);
+  const toolbar = processEditor.toolbar();
+
+  await toolbar.openElementPalette('events');
+  const initialBounds = await toolbar.menu().locator().boundingBox();
+  expect(initialBounds).not.toBeNull();
+
+  await toolbar.triggerElementPalette('events');
+  await toolbar.menu().expectHidden();
+  await toolbar.openElementPalette('events');
+  const reopenedBounds = await toolbar.menu().locator().boundingBox();
+  expect(reopenedBounds).not.toBeNull();
+  expect(reopenedBounds?.x).toBeCloseTo(initialBounds?.x ?? Number.NaN, 0);
+  expect(reopenedBounds?.y).toBeCloseTo(initialBounds?.y ?? Number.NaN, 0);
 });
 
 test('menus close on focus loose', async ({ page }) => {
