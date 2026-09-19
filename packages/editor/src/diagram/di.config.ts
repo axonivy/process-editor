@@ -110,6 +110,7 @@ const ivyDiagramModule = new FeatureModule((bind, unbind, isBound, rebind) => {
   configureActivity(ActivityTypes.REST);
   configureActivity(ActivityTypes.DB);
   configureActivity(ActivityTypes.EMAIL);
+  configureActivity(ActivityTypes.RULE);
   configureActivity(ActivityTypes.PROGRAM, { enable: [goToSourceFeature] });
   configureActivity(ActivityTypes.TRIGGER, { enable: [jumpFeature] });
   configureActivity(ActivityTypes.HD, { enable: [goToFormFeature] });
