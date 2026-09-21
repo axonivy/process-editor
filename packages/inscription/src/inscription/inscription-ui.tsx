@@ -149,9 +149,12 @@ export class InscriptionUi extends ReactUIExtension implements IActionHandler, I
     if (UndoAction.is(action) || RedoAction.is(action)) {
       this.invalidateAfterNextUpdate = true;
     }
-    if (Action.hasKind(action, UpdateModelAction.KIND) && this.invalidateAfterNextUpdate) {
-      this.invalidateAfterNextUpdate = false;
-      this.queryClient?.invalidateQueries({ queryKey: genQueryKey('data') });
+    if (Action.hasKind(action, UpdateModelAction.KIND)) {
+      this.queryClient?.invalidateQueries({ queryKey: genQueryKey('meta', 'process', 'outline') });
+      if (this.invalidateAfterNextUpdate) {
+        this.invalidateAfterNextUpdate = false;
+        this.queryClient?.invalidateQueries({ queryKey: genQueryKey('data') });
+      }
     }
     return;
   }
