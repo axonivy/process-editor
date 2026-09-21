@@ -34,7 +34,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^17.0.0",
-    "snabbdom": "3.5.1"
+    "snabbdom": "3.6.4"
   },
   "devDependencies": {
     "@axonivy/ui-components": "next-14.0.0",
