@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@axonivy/process-editor-viewer",
-  "version": "14.0.0-next",
+  "version": "15.1.0-next",
   "description": "Viewer browser-app for the Axon Ivy process editor",
   "author": "Axon Ivy AG",
   "homepage": "https://developer.axonivy.com",
