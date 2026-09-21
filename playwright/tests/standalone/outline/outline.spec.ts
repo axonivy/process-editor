@@ -23,6 +23,22 @@ test('select element', async ({ page }) => {
   await outline.expectSelected('Start');
 });
 
+test('updates after adding and deleting an element', async ({ page }) => {
+  const { processEditor, outline } = await openOutline(page);
+  const start = processEditor.startElement;
+
+  await outline.select('Start');
+
+  await start.quickActionBar().createElement('Activities', 'User Dialog');
+  const userDialog = processEditor.element('dialogCall');
+  await expect(userDialog.locator()).toBeVisible();
+  await expect(outline.view.getByRole('row', { name: 'User Dialog' })).toHaveCount(1);
+
+  await userDialog.quickActionBar().trigger('Delete');
+  await expect(userDialog.locator()).toBeHidden();
+  await expect(outline.view.getByRole('row', { name: 'User Dialog' })).toHaveCount(0);
+});
+
 test('select node', async ({ page }) => {
   const { processEditor, outline } = await openOutline(page, 'process/jump.p.json');
   const embeddedScript = processEditor.elementByPid('183E4A356E771204-S10-f9');
