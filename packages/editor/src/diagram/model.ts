@@ -314,7 +314,7 @@ export class MulitlineEditLabel extends GLabel implements EditableLabel {
     const font = this.font();
     const lines = this.text.split('\n');
     const textWidth = Math.max(...lines.map(line => this.textWidth(line, font)));
-    const textHeight = 14 * lines.length;
+    const textHeight = 18 * lines.length;
     return { x: -textWidth / 2, y: 0, width: textWidth, height: textHeight };
   }
 
