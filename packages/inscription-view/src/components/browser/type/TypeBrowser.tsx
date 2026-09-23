@@ -52,7 +52,7 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
   const { t } = useTranslation();
   const { context } = useEditorContext();
   const [allTypesSearchActive, setAllTypesSearchActive] = useState(false);
-  const [mainFilter, setMainFilter] = useState('');
+  const [mainFilter, setMainFilter] = useState(initSearchFilter);
 
   const dataClasses = useMeta('meta/scripting/dataClasses', context, []).data;
   const ivyTypes = useMeta('meta/scripting/ivyTypes', undefined, []).data;
@@ -99,10 +99,11 @@ const TypeBrowser = ({ value, onChange, onDoubleClick, initSearchFilter, locatio
     data: types,
     columns: columns,
     initialState: {
-      globalFilter: initSearchFilter,
+      globalFilter: initSearchFilter(),
       expanded: true
     },
     globalFilterFn: regexFilter,
+    filterFromLeafRows: true,
     enableRowSelection: true,
     enableMultiRowSelection: false,
     enableSubRowSelection: false,
