@@ -16,14 +16,14 @@ importers:
   .:
     devDependencies:
       '@axonivy/eslint-config':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b(@typescript/typescript6@6.0.2)(jiti@2.7.0)(supports-color@7.2.0)(tailwindcss@4.3.3)
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b(@typescript/typescript6@6.0.2)(jiti@2.7.0)(supports-color@7.2.0)(tailwindcss@4.3.3)
       '@axonivy/prettier-config':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b
       '@axonivy/ts-config':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b
       '@lerna-lite/cli':
         specifier: ^5.6.1
         version: 5.6.1(@lerna-lite/publish@5.6.1(@types/node@24.13.5)(conventional-commits-filter@6.0.1)(supports-color@7.2.0))(@lerna-lite/version@5.6.1(@lerna-lite/publish@5.6.1(@types/node@24.13.5)(conventional-commits-filter@6.0.1)(supports-color@7.2.0))(@types/node@24.13.5)(conventional-commits-filter@6.0.1))(@types/node@24.13.5)
@@ -59,13 +59,13 @@ importers:
         version: 8.3.0(@types/node@24.13.5)(jiti@2.7.0)(yaml@2.9.1)
       vitest:
         specifier: ^5.0.0
-        version: 5.0.1(@types/node@24.13.5)(happy-dom@20.14.5)(jsdom@30.0.1)(vite@8.3.0(@types/node@24.13.5)(jiti@2.7.0)(yaml@2.9.1))
+        version: 5.0.1(@types/node@24.13.5)(happy-dom@20.14.5)(jsdom@30.1.0)(vite@8.3.0(@types/node@24.13.5)(jiti@2.7.0)(yaml@2.9.1))
 
   integration/inscription:
     dependencies:
       '@axonivy/jsonrpc':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b
       '@axonivy/process-editor-inscription-core':
         specifier: workspace:~
         version: link:../../packages/inscription-core
@@ -76,11 +76,11 @@ importers:
         specifier: workspace:~
         version: link:../../packages/inscription-view
       '@axonivy/ui-components':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b(@axonivy/ui-icons@14.0.0-next.1259.fb9a40b)(@tanstack/react-table@9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b(@axonivy/ui-icons@14.0.1-next.1268.ba0085b)(@tanstack/react-table@9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@axonivy/ui-icons':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b
       '@tanstack/react-query':
         specifier: ^5.102.8
         version: 5.103.1(react@19.3.0)
@@ -131,8 +131,8 @@ importers:
   integration/standalone:
     dependencies:
       '@axonivy/jsonrpc':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b
       '@axonivy/process-editor':
         specifier: workspace:~
         version: link:../../packages/editor
@@ -149,11 +149,11 @@ importers:
         specifier: workspace:~
         version: link:../../packages/protocol
       '@axonivy/ui-components':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b(@axonivy/ui-icons@14.0.0-next.1259.fb9a40b)(@tanstack/react-table@9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b(@axonivy/ui-icons@14.0.1-next.1268.ba0085b)(@tanstack/react-table@9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@axonivy/ui-icons':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b
       '@eclipse-glsp/client':
         specifier: 2.7.0
         version: 2.7.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
@@ -204,11 +204,11 @@ importers:
         specifier: workspace:~
         version: link:../../packages/protocol
       '@axonivy/ui-components':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b(@axonivy/ui-icons@14.0.0-next.1259.fb9a40b)(@tanstack/react-table@9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b(@axonivy/ui-icons@14.0.1-next.1268.ba0085b)(@tanstack/react-table@9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@axonivy/ui-icons':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b
       '@eclipse-glsp/client':
         specifier: 2.7.0
         version: 2.7.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
@@ -284,11 +284,11 @@ importers:
         version: 3.5.1
     devDependencies:
       '@axonivy/ui-components':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b(@axonivy/ui-icons@14.0.0-next.1259.fb9a40b)(@tanstack/react-table@9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b(@axonivy/ui-icons@14.0.1-next.1268.ba0085b)(@tanstack/react-table@9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@axonivy/ui-icons':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b
       '@testing-library/react':
         specifier: ^16.3.3
         version: 16.3.3(@testing-library/dom@10.4.1)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -323,8 +323,8 @@ importers:
   packages/inscription:
     dependencies:
       '@axonivy/jsonrpc':
-        specifier: ~14.0.0-next
-        version: 14.0.0-next.1257.121de40
+        specifier: ~14.0.1-next
+        version: 14.0.1-next.1268.ba0085b
       '@axonivy/process-editor':
         specifier: workspace:~
         version: link:../editor
@@ -354,11 +354,11 @@ importers:
         version: 3.52.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
     devDependencies:
       '@axonivy/ui-components':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b(@axonivy/ui-icons@14.0.0-next.1259.fb9a40b)(@tanstack/react-table@9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b(@axonivy/ui-icons@14.0.1-next.1268.ba0085b)(@tanstack/react-table@9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@axonivy/ui-icons':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b
       '@types/react':
         specifier: ^19.3.0
         version: 19.3.0
@@ -379,8 +379,8 @@ importers:
         version: link:../inscription-protocol
     devDependencies:
       '@axonivy/jsonrpc':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b
 
   packages/inscription-protocol:
     devDependencies:
@@ -446,14 +446,14 @@ importers:
         version: 17.0.14(i18next@26.4.2(typescript@6.0.3))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)
     devDependencies:
       '@axonivy/jsonrpc':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b
       '@axonivy/ui-components':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b(@axonivy/ui-icons@14.0.0-next.1259.fb9a40b)(@tanstack/react-table@9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b(@axonivy/ui-icons@14.0.1-next.1268.ba0085b)(@tanstack/react-table@9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@axonivy/ui-icons':
-        specifier: next-14.0.0
-        version: 14.0.0-next.1259.fb9a40b
+        specifier: next-14.0.1
+        version: 14.0.1-next.1268.ba0085b
       '@testing-library/jest-dom':
         specifier: ^7.0.1
         version: 7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.1(@types/node@24.13.5)(happy-dom@20.14.5)(jsdom@30.1.0)(vite@8.3.0(@types/node@24.13.5)(jiti@2.7.0)(yaml@2.9.1)))
@@ -515,46 +515,35 @@ packages:
     resolution: {integrity: sha512-60vepv88RwcJtSHrD6MjIL6Ta3SOYbgfnkHb+ppAVK+o9mXprRtulx7VlRl3lN3bbvysAfCS7WMVfhUYemB0IQ==}
     engines: {node: '>= 16'}
 
-  '@asamuzakjp/css-color@6.0.7':
-    resolution: {integrity: sha512-vC/bk1Lz7Tn/EfU9/apOTBk80/8dyGyWMowPoV1tJ52muDGsDqt2HPT2klrFUiY60MQmQv9q8yIht15JnBgDGw==}
-    engines: {node: ^22.13.0 || >=24.0.0}
-
   '@asamuzakjp/css-color@7.0.0':
     resolution: {integrity: sha512-IxddtGnnoidVSO6O/aiTueptbTThHvi2qGHu9/AWuD1J7i86Ox+jl+Y5SXcDH1RixzQlP2cjH/PjnlImZiAurQ==}
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
-
-  '@asamuzakjp/dom-selector@8.3.2':
-    resolution: {integrity: sha512-93Z1N+BQNXysodoicpOIyNh2drHfz/CTf9nnT0FEx72GJcIiwgydD7tGAr78j41LsYn3hlRn+LdGPuBLn1Bl8Q==}
-    engines: {node: ^22.13.0 || >=24.0.0}
 
   '@asamuzakjp/dom-selector@9.2.0':
     resolution: {integrity: sha512-qKvLetaSd/OTWif9JT0eu1SHBg3H7Nvp9SoMwMxqT5tmYyrxea/P1A5pIfGbnIJlOtm3yVeqw+ORxDOkjN1aEw==}
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
 
-  '@axonivy/eslint-config@14.0.0-next.1259.fb9a40b':
-    resolution: {integrity: sha512-TQwiLSltdUhQIIYCdVJpZhQMuiQxYfgMoXq5p+GUqmo/Z7d2haHcyRvn0geUn7lf2xioSlGjcxCTlu/t+FjmGA==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/eslint-config/-/eslint-config-14.0.0-next.1259.fb9a40b.tgz}
+  '@axonivy/eslint-config@14.0.1-next.1268.ba0085b':
+    resolution: {integrity: sha512-cszHUX3PtlB2xp9ABewRY5xbPbKYVkdr2yUYvy2NGqvowKAj+KxgtuZur7ySuslS9unDV1OMIOcwbrv503G04g==}
 
-  '@axonivy/jsonrpc@14.0.0-next.1257.121de40':
-    resolution: {integrity: sha512-tEQfzoeovYoWwc3XaWwILw+EXCDPzU1X41lg++/BKQlSSbMQN7SuWxjzhs05hs82+g0HzZMMwxUTJqihM4YDsA==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/jsonrpc/-/jsonrpc-14.0.0-next.1257.121de40.tgz}
+  '@axonivy/jsonrpc@14.0.1-next.1268.ba0085b':
+    resolution: {integrity: sha512-fXdQfsaC8IubHf+B4P1AVcpJyxCiXaCsVmT4pxWwUeCjub47wxDf4WUhYB24tbwIn4IORTMbIA1e8zZV4W5i4Q==}
 
-  '@axonivy/jsonrpc@14.0.0-next.1259.fb9a40b':
-    resolution: {integrity: sha512-8+iMt50dVyuSM/k0Zag6LBBd2k1lb8MeWx6nPrBLeKlYEl/nNAxjDdCJUZqx3EDL+Fmndg1yaPiNg65JSCZJNA==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/jsonrpc/-/jsonrpc-14.0.0-next.1259.fb9a40b.tgz}
+  '@axonivy/prettier-config@14.0.1-next.1268.ba0085b':
+    resolution: {integrity: sha512-weur379n63o68bUVuBTOOHgatALwV9HGFCOqnR4ssqvywG9efcJ3lKTiKu4WfMazxVfuUvdPYu2RDj9H0XttsQ==}
 
-  '@axonivy/prettier-config@14.0.0-next.1259.fb9a40b':
-    resolution: {integrity: sha512-W7EZmSMhUajqF4GULRDkQr7wiKpc/owM1a+h4A4NlX5x0q64svyEI2IMUEYvnVmI0GANDVPflP7uBDZcbOy0xA==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/prettier-config/-/prettier-config-14.0.0-next.1259.fb9a40b.tgz}
+  '@axonivy/ts-config@14.0.1-next.1268.ba0085b':
+    resolution: {integrity: sha512-eJlhw5c3XrKr4W+zQuc4/n1kIIWA6ZW45sLNHUiwqdm4z9rhzwvVNibbVm9GKspwJ5sycATIIJLMhBrxOZl6ZA==}
 
-  '@axonivy/ts-config@14.0.0-next.1259.fb9a40b':
-    resolution: {integrity: sha512-qi/mk4k7y5j2DQGH5Iikcp+xMnVBGLE0+2P4WCIchc6cnGoLBlcjD8unJbXXvUSgLNPdAl947DnKzCI3CZdZ9A==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/ts-config/-/ts-config-14.0.0-next.1259.fb9a40b.tgz}
-
-  '@axonivy/ui-components@14.0.0-next.1259.fb9a40b':
-    resolution: {integrity: sha512-B9ZHH9Sgzw1ua+KM8GqJqjgOfB8IIeeAiAQxe+8SHoXntYGAt0LnVcnimaSvpYXMyHb5cxlrrt/jtj7aHzV82w==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/ui-components/-/ui-components-14.0.0-next.1259.fb9a40b.tgz}
+  '@axonivy/ui-components@14.0.1-next.1268.ba0085b':
+    resolution: {integrity: sha512-X0OqKxtOSsRbCo0+CvT3dRQ7dIwEDTq7HQX6cbpiy16vKRtEYc5K8tgIYdp3tInYB3Zz2QHC4sig3ef8Vy4ZiQ==}
     peerDependencies:
-      '@axonivy/ui-icons': ~14.0.0-next
+      '@axonivy/ui-icons': ~14.0.1-next
       '@tanstack/react-table': ^9.2
       react: ^19.0
 
-  '@axonivy/ui-icons@14.0.0-next.1259.fb9a40b':
-    resolution: {integrity: sha512-7PE+hBsRw+KqcQiVnKSprBsa6nEZqgprk0dzy7lBYSdJpsvX2GJFigx6pUmYdS18hg2BNTI4tLEt84KAhapilA==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/ui-icons/-/ui-icons-14.0.0-next.1259.fb9a40b.tgz}
+  '@axonivy/ui-icons@14.0.1-next.1268.ba0085b':
+    resolution: {integrity: sha512-sLwJOV/a3bXlkuAg1XP7IaWg85/+/s8AjmV3TbvZn1I2TvV7B1RqukNXDJd1FOCssLagLYTi8SwQaN6+Y77f8w==}
 
   '@babel/code-frame@7.29.7':
     resolution: {integrity: sha512-Aup7aUOfpbAUg2ROOJN6Iw5f9DMBlzu0mIkm/malLQFN/YQgO48wCj0Kxa3sEHJvPVFg7siR+qRInwXd2qhQKw==}
@@ -3260,15 +3249,6 @@ packages:
     resolution: {integrity: sha512-m+aqu+LwO1O6sIopafj8HUVl5aawITwZQe/yHpMCKjaWBaA/d07B/QdMb3529REftiU+RMMHL3Vlsw3hON7vWg==}
     hasBin: true
 
-  jsdom@30.0.1:
-    resolution: {integrity: sha512-52v7mUVUfNQVYYqE1lcdaymWL0njO7lTLUog6ZvW2U5KsbiLk/GnZlVJ+qx0xfNJZ6Gn+KSpPNE52vurbxZwrA==}
-    engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
-    peerDependencies:
-      canvas: ^3.2.3
-    peerDependenciesMeta:
-      canvas:
-        optional: true
-
   jsdom@30.1.0:
     resolution: {integrity: sha512-h/Q+H+KmlGf49ITw3TrykSVbg04S75S2O7ZtJc9gMGOWBrQRZmx5AJIKLtJ01e6Kszl+/tpFthCVqxNifxhoqg==}
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
@@ -4148,9 +4128,6 @@ packages:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
 
-  symbol-tree@3.2.4:
-    resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
-
   synckit@0.11.13:
     resolution: {integrity: sha512-eNRKgb3z66Yp3D2CixVujOUvXLFUTij/zVnV8KRyvFdQwpz7I5DS8UfRkTeLzb64u+dkzDSdelE24izu+zSSUg==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -4577,15 +4554,6 @@ snapshots:
       '@types/json-schema': 7.0.15
       js-yaml: 4.3.2
 
-  '@asamuzakjp/css-color@6.0.7':
-    dependencies:
-      '@csstools/css-calc': 3.4.0(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
-      '@csstools/css-color-parser': 4.2.3(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
-      '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
-      '@csstools/css-tokenizer': 4.0.0
-      lru-cache: 11.5.2
-    optional: true
-
   '@asamuzakjp/css-color@7.0.0':
     dependencies:
       '@csstools/css-calc': 3.4.0(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
@@ -4594,14 +4562,6 @@ snapshots:
       '@csstools/css-tokenizer': 4.0.0
       lru-cache: 11.5.2
 
-  '@asamuzakjp/dom-selector@8.3.2':
-    dependencies:
-      bidi-js: 1.1.0
-      css-tree: 3.2.1
-      is-potential-custom-element-name: 1.0.1
-      lru-cache: 11.5.2
-    optional: true
-
   '@asamuzakjp/dom-selector@9.2.0':
     dependencies:
       bidi-js: 1.1.0
@@ -4609,7 +4569,7 @@ snapshots:
       is-potential-custom-element-name: 1.0.1
       lru-cache: 11.5.2
 
-  '@axonivy/eslint-config@14.0.0-next.1259.fb9a40b(@typescript/typescript6@6.0.2)(jiti@2.7.0)(supports-color@7.2.0)(tailwindcss@4.3.3)':
+  '@axonivy/eslint-config@14.0.1-next.1268.ba0085b(@typescript/typescript6@6.0.2)(jiti@2.7.0)(supports-color@7.2.0)(tailwindcss@4.3.3)':
     dependencies:
       '@eslint-react/eslint-plugin': 5.19.1(@typescript/typescript6@6.0.2)(eslint@10.10.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)
       '@eslint/compat': 2.1.1(eslint@10.10.0(jiti@2.7.0)(supports-color@7.2.0))
@@ -4632,23 +4592,19 @@ snapshots:
       - tailwindcss
       - typescript
 
-  '@axonivy/jsonrpc@14.0.0-next.1257.121de40':
+  '@axonivy/jsonrpc@14.0.1-next.1268.ba0085b':
     dependencies:
       vscode-jsonrpc: 8.2.1
 
-  '@axonivy/jsonrpc@14.0.0-next.1259.fb9a40b':
-    dependencies:
-      vscode-jsonrpc: 8.2.1
-
-  '@axonivy/prettier-config@14.0.0-next.1259.fb9a40b':
+  '@axonivy/prettier-config@14.0.1-next.1268.ba0085b':
     dependencies:
       prettier: 3.9.8
 
-  '@axonivy/ts-config@14.0.0-next.1259.fb9a40b': {}
+  '@axonivy/ts-config@14.0.1-next.1268.ba0085b': {}
 
-  '@axonivy/ui-components@14.0.0-next.1259.fb9a40b(@axonivy/ui-icons@14.0.0-next.1259.fb9a40b)(@tanstack/react-table@9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@axonivy/ui-components@14.0.1-next.1268.ba0085b(@axonivy/ui-icons@14.0.1-next.1268.ba0085b)(@tanstack/react-table@9.2.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
-      '@axonivy/ui-icons': 14.0.0-next.1259.fb9a40b
+      '@axonivy/ui-icons': 14.0.1-next.1268.ba0085b
       '@base-ui/react': 1.8.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@radix-ui/react-accordion': 1.2.20(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@radix-ui/react-checkbox': 1.3.11(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -4681,7 +4637,7 @@ snapshots:
       - date-fns
       - react-dom
 
-  '@axonivy/ui-icons@14.0.0-next.1259.fb9a40b': {}
+  '@axonivy/ui-icons@14.0.1-next.1268.ba0085b': {}
 
   '@babel/code-frame@7.29.7':
     dependencies:
@@ -7504,33 +7460,6 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  jsdom@30.0.1:
-    dependencies:
-      '@asamuzakjp/css-color': 6.0.7
-      '@asamuzakjp/dom-selector': 8.3.2
-      '@bramus/specificity': 2.4.2
-      '@csstools/css-syntax-patches-for-csstree': 1.1.13(css-tree@3.2.1)
-      '@exodus/bytes': 1.15.1
-      css-tree: 3.2.1
-      data-urls: 7.0.0
-      decimal.js: 10.6.0
-      html-encoding-sniffer: 6.0.0
-      is-potential-custom-element-name: 1.0.1
-      lru-cache: 11.5.2
-      parse5: 8.0.1
-      saxes: 6.0.0
-      symbol-tree: 3.2.4
-      tough-cookie: 6.0.2
-      undici: 8.10.2
-      w3c-xmlserializer: 5.0.0
-      webidl-conversions: 8.0.1
-      whatwg-mimetype: 5.0.0
-      whatwg-url: 17.1.1
-      xml-name-validator: 5.0.0
-    transitivePeerDependencies:
-      - '@noble/hashes'
-    optional: true
-
   jsdom@30.1.0:
     dependencies:
       '@asamuzakjp/css-color': 7.0.0
@@ -8415,9 +8344,6 @@ snapshots:
     dependencies:
       has-flag: 4.0.0
 
-  symbol-tree@3.2.4:
-    optional: true
-
   synckit@0.11.13:
     dependencies:
       '@pkgr/core': 0.3.6
@@ -8612,29 +8538,6 @@ snapshots:
       jiti: 2.7.0
       yaml: 2.9.1
 
-  vitest@5.0.1(@types/node@24.13.5)(happy-dom@20.14.5)(jsdom@30.0.1)(vite@8.3.0(@types/node@24.13.5)(jiti@2.7.0)(yaml@2.9.1)):
-    dependencies:
-      '@types/chai': 5.2.3
-      '@vitest/mocker': 5.0.1(vite@8.3.0(@types/node@24.13.5)(jiti@2.7.0)(yaml@2.9.1))
-      chai: 6.2.2
-      es-module-lexer: 2.3.2
-      expect-type: 1.4.0
-      magic-string: 1.3.1
-      obug: 2.2.1
-      picomatch: 4.0.7
-      std-env: 4.2.0
-      tinybench: 6.1.4
-      tinyexec: 1.3.0
-      tinyglobby: 0.2.17
-      vite: 8.3.0(@types/node@24.13.5)(jiti@2.7.0)(yaml@2.9.1)
-      why-is-node-running: 2.3.0
-    optionalDependencies:
-      '@types/node': 24.13.5
-      happy-dom: 20.14.5
-      jsdom: 30.0.1
-    transitivePeerDependencies:
-      - msw
-
   vitest@5.0.1(@types/node@24.13.5)(happy-dom@20.14.5)(jsdom@30.1.0)(vite@8.3.0(@types/node@24.13.5)(jiti@2.7.0)(yaml@2.9.1)):
     dependencies:
       '@types/chai': 5.2.3
@@ -8657,7 +8560,6 @@ snapshots:
       jsdom: 30.1.0
     transitivePeerDependencies:
       - msw
-    optional: true
 
   vscode-jsonrpc@8.2.0: {}
 
