@@ -1,5 +1,5 @@
 import type { ProgramStartData } from '@axonivy/process-editor-inscription-protocol';
-import { CollapsableUtil, SelectUtil, customRender } from 'test-utils';
+import { CollapsableUtil, ComboboxUtil, customRender } from 'test-utils';
 import { describe, test } from 'vitest';
 import JavaClassSelector from './JavaClassSelector';
 
@@ -25,7 +25,7 @@ describe('StartPart', () => {
 
   test('meta', async () => {
     renderPart({ javaClass: 'bla' });
-    await SelectUtil.assertEmpty();
-    await SelectUtil.assertOptionsCount(2);
+    await ComboboxUtil.assertValue('bla');
+    await ComboboxUtil.assertOptionsCount(2);
   });
 });
