@@ -1,5 +1,5 @@
 import type { WfCustomField } from '@axonivy/process-editor-inscription-protocol';
-import { customRender, fireEvent, screen, TableUtil, userEvent } from 'test-utils';
+import { customRender, screen, TableUtil, userEvent } from 'test-utils';
 import { describe, expect, test } from 'vitest';
 import CustomFieldTable from './CustomFieldTable';
 
@@ -63,8 +63,8 @@ describe('CustomFieldTable', () => {
     view.rerender();
 
     const type = screen.getAllByRole('combobox')[1]!;
-    fireEvent.click(type);
-    await userEvent.keyboard('[ArrowDown][Enter]');
+    type.focus();
+    await userEvent.keyboard('[Enter][ArrowDown][Enter]');
 
     expect(view.data()).toEqual([
       { name: 'Hello', type: 'TEXT', value: 'this is a string' },
