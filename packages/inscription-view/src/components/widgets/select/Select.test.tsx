@@ -1,4 +1,4 @@
-import { customRender, screen, userEvent } from 'test-utils';
+import { customRender, fireEvent, screen, userEvent } from 'test-utils';
 import { describe, expect, test } from 'vitest';
 import type { SelectItem } from './Select';
 import { Select } from './Select';
@@ -46,9 +46,9 @@ describe('Select', () => {
     expect(select).toHaveTextContent(/label/);
     expect(view.data().value).toEqual('value');
 
-    await userEvent.click(select);
+    fireEvent.click(select);
     expect(screen.getAllByRole('option')).toHaveLength(2);
-    await userEvent.click(screen.getByRole('option', { name: 'test' }));
+    fireEvent.click(screen.getByRole('option', { name: 'test' }));
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     view.rerender();
     expect(select).toHaveTextContent(/test/);

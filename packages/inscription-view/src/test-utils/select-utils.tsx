@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { screen, userEvent, waitFor } from 'test-utils';
+import { fireEvent, screen, userEvent, waitFor } from 'test-utils';
 import { expect } from 'vitest';
 
 type SelectUtilOptions = {
@@ -27,8 +27,8 @@ export namespace SelectUtil {
   }
 
   export async function assertOptionsCount(count: number, options?: SelectUtilOptions) {
-    await userEvent.click(select(options)!);
-    expect(screen.getAllByRole('option')).toHaveLength(count);
+    fireEvent.click(select(options)!);
+    await waitFor(() => expect(screen.getAllByRole('option')).toHaveLength(count));
     await userEvent.keyboard('[Escape]');
   }
 }
