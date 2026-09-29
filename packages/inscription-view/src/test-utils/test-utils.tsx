@@ -11,6 +11,8 @@ import type {
   ErrorStartMeta,
   EventCodeMeta,
   Group,
+  InscriptionActionArgs,
+  InscriptionElementContext,
   InscriptionMetaRequestTypes,
   JavaType,
   ProgramInterface,
@@ -42,11 +44,13 @@ import { OpenApiContextProvider } from '../context/useOpenApi';
 import type { DeepPartial } from './type-utils';
 
 type ContextHelperProps = {
+  elementContext?: InscriptionElementContext;
   data?: DeepPartial<ElementData>;
   setData?: (data: ElementData) => void;
   defaultData?: DeepPartial<ConfigData>;
   initData?: DeepPartial<ElementData>;
   validations?: ValidationResult[];
+  action?: (action: InscriptionActionArgs) => void;
   meta?: {
     roleTree?: RoleMeta;
     taskRoles?: RoleMeta[];
@@ -200,10 +204,14 @@ const ContextHelper = (
           default:
             throw Error('mock meta path not programmed');
         }
-      }
+      },
+      action: props.action ?? (() => {})
     }
   };
   const editorContext = JSON.parse(JSON.stringify(DEFAULT_EDITOR_CONTEXT));
+  if (props.elementContext) {
+    editorContext.elementContext = props.elementContext;
+  }
   if (props.editor?.title) {
     editorContext.type.shortLabel = props.editor.title;
   }

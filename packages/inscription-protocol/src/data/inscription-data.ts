@@ -25,8 +25,7 @@ import type {
   SoapWsProcessException,
   StartPermission,
   WebserviceProcessConfig,
-  WfTask,
-  WorkflowType
+  WfTask
 } from './inscription';
 import type { GeneralData } from './part-data';
 
@@ -86,9 +85,12 @@ export interface InscriptionActionArgs {
     | 'openPage'
     | 'openProgram';
   context: InscriptionElementContext;
-  payload: string | OpenCustomField;
+  payload: string;
 }
-export interface OpenCustomField {
-  name: string;
-  type: WorkflowType;
+export type InscriptionActionArgsPayload = OpenConfigEditorPayload;
+export interface OpenConfigEditorPayload {
+  project: string;
 }
+export const isOpenConfigEditorPayload = (obj: unknown): obj is OpenConfigEditorPayload => {
+  return typeof obj === 'object' && obj !== null && 'project' in obj && typeof obj.project === 'string';
+};

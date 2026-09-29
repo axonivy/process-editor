@@ -57,11 +57,11 @@ const StartCustomFieldTable = ({ data, onChange }: StartCustomFieldTableProps) =
 
   const action = useAction('openCustomField');
 
-  const tableActions = selectedRowActions(row => [
+  const tableActions = selectedRowActions(() => [
     {
       label: t('label.openCustomField'),
       icon: IvyIcons.GoToSource,
-      action: () => action({ name: row.original.name, type: 'START' })
+      action
     }
   ]);
 
