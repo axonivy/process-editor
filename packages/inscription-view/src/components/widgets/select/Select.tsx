@@ -35,6 +35,7 @@ export const Select = ({ value, onChange, items, emptyItem, disabled }: SelectPr
 };
 
 export type IconSelectItem = SelectItem & { iconUrl?: string };
+export type IconSelectItemWithProject = IconSelectItem & { project?: string };
 
 export const IconSelect = ({ value, onChange, items, emptyItem, ...props }: SelectProps<IconSelectItem>) => {
   const unknownValue = useMemo(() => {
