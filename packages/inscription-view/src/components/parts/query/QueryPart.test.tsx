@@ -17,8 +17,8 @@ describe('QueryPart', () => {
         data: data && { config: data },
         meta: {
           databases: [
-            { name: 'IvySystemDatabase', iconUrl: '' },
-            { name: 'test', iconUrl: '' }
+            { name: 'IvySystemDatabase', iconUrl: '', project: '' },
+            { name: 'test', iconUrl: '', project: '' }
           ],
           tables: ['Person'],
           columns: [{ name: 'column', type: 'VarChar(10)', ivyType: 'String' }]
