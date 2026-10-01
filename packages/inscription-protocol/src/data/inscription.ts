@@ -767,6 +767,7 @@ export interface RestClient {
   clientId: string;
   iconUrl: string;
   name: string;
+  project: string;
 }
 export interface RestClientRequest {
   clientId: string;

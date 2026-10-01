@@ -1,16 +1,22 @@
 import type { RestRequestData } from '@axonivy/process-editor-inscription-protocol';
-import type { DeepPartial } from 'test-utils';
-import { customRender, SelectUtil } from 'test-utils';
-import { describe, test } from 'vitest';
+import { customRender, screen, SelectUtil, type DeepPartial } from 'test-utils';
+import { describe, expect, test, vi } from 'vitest';
 import { RestClientSelect } from './RestClientSelect';
 
 describe('RestClientSelect', () => {
-  function renderSelect(data?: DeepPartial<RestRequestData>) {
+  function renderSelect(data?: DeepPartial<RestRequestData>, action?: () => void) {
     const restClients = [
-      { clientId: '0', name: 'fake', iconUrl: '' },
-      { clientId: '1234', name: 'personService', iconUrl: '' }
+      { clientId: '0', name: 'fake', iconUrl: '', project: 'project0' },
+      { clientId: '1234', name: 'personService', iconUrl: '', project: 'project1' }
     ];
-    customRender(<RestClientSelect />, { wrapperProps: { data: data && { config: data }, meta: { restClients } } });
+    customRender(<RestClientSelect />, {
+      wrapperProps: {
+        data: data && { config: data },
+        elementContext: { app: '', pid: '', project: 'baseProject' },
+        action,
+        meta: { restClients }
+      }
+    });
   }
 
   test('render', async () => {
@@ -27,5 +33,71 @@ describe('RestClientSelect', () => {
   test('known value', async () => {
     renderSelect({ target: { clientId: '1234' } });
     await SelectUtil.assertValue('personService');
+  });
+
+  describe('openRestConfig', () => {
+    test('no selection', async () => {
+      const action = vi.fn();
+      renderSelect(undefined, action);
+      screen.getByRole('button', { name: 'Open Rest config' }).click();
+      expect(action).toHaveBeenCalledWith({
+        actionId: 'openRestConfig',
+        context: {
+          app: '',
+          pid: '',
+          project: 'baseProject'
+        },
+        payload: ''
+      });
+    });
+
+    test('selection', async () => {
+      const action = vi.fn();
+      renderSelect({ target: { clientId: '1234' } }, action);
+      await SelectUtil.assertValue('personService');
+      screen.getByRole('button', { name: 'Open Rest config' }).click();
+      expect(action).toHaveBeenCalledWith({
+        actionId: 'openRestConfig',
+        context: {
+          app: '',
+          pid: '',
+          project: 'baseProject'
+        },
+        payload: '{"project":"project1"}'
+      });
+    });
+  });
+
+  describe('newRestClient', () => {
+    test('no selection', async () => {
+      const action = vi.fn();
+      renderSelect(undefined, action);
+      screen.getByRole('button', { name: 'Create new Rest Client' }).click();
+      expect(action).toHaveBeenCalledWith({
+        actionId: 'newRestClient',
+        context: {
+          app: '',
+          pid: '',
+          project: 'baseProject'
+        },
+        payload: ''
+      });
+    });
+
+    test('selection', async () => {
+      const action = vi.fn();
+      renderSelect({ target: { clientId: '1234' } }, action);
+      await SelectUtil.assertValue('personService');
+      screen.getByRole('button', { name: 'Create new Rest Client' }).click();
+      expect(action).toHaveBeenCalledWith({
+        actionId: 'newRestClient',
+        context: {
+          app: '',
+          pid: '',
+          project: 'baseProject'
+        },
+        payload: ''
+      });
+    });
   });
 });

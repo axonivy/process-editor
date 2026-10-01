@@ -93,11 +93,11 @@ const CustomFieldTable = ({ data, onChange, type }: CustomFieldTableProps) => {
 
   const action = useAction('openCustomField');
 
-  const tableActions = selectedRowActions(row => [
+  const tableActions = selectedRowActions(() => [
     {
       label: t('label.openCustomField'),
       icon: IvyIcons.GoToSource,
-      action: () => action({ name: row.original.name, type })
+      action
     }
   ]);
 

@@ -9,15 +9,18 @@ import { IconSelect } from '../../../../widgets/select/Select';
 import { PathFieldset } from '../../../common/path/PathFieldset';
 import { useRestRequestData } from '../../useRestRequestData';
 
+type RestClientItem = IconSelectItem & { project?: string };
+
 export const RestClientSelect = () => {
   const { t } = useTranslation();
   const { config, updateTarget } = useRestRequestData();
 
   const { context } = useEditorContext();
-  const items = useMeta('meta/rest/clients', context, []).data.map<IconSelectItem>(client => ({
+  const items = useMeta('meta/rest/clients', context, []).data.map<RestClientItem>(client => ({
     label: client.name,
     value: client.clientId,
-    iconUrl: client.iconUrl
+    iconUrl: client.iconUrl,
+    project: client.project
   }));
   const selectedItem = items.find(i => i.value === config.target.clientId) ?? {
     label: config.target.clientId,
@@ -27,7 +30,11 @@ export const RestClientSelect = () => {
   const newAction = useAction('newRestClient');
   const openAction = useAction('openRestConfig');
   const controls: FieldsetControl[] = [
-    { label: t('part.rest.restConfigOpen'), icon: IvyIcons.GoToSource, action: () => openAction() },
+    {
+      label: t('part.rest.restConfigOpen'),
+      icon: IvyIcons.GoToSource,
+      action: () => openAction(selectedItem.project ? { project: selectedItem.project } : undefined)
+    },
     { label: t('part.rest.restConfigCreate'), icon: IvyIcons.Plus, action: () => newAction() }
   ];
 
