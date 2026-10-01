@@ -15,6 +15,7 @@ import type {
   InscriptionElementContext,
   InscriptionMetaRequestTypes,
   JavaType,
+  PredefinedCustomField,
   ProgramInterface,
   RestClient,
   RestClientRequest,
@@ -83,6 +84,7 @@ type ContextHelperProps = {
     ivyTypes?: JavaType[];
     dataClasses?: DataclassType[];
     tags?: string[];
+    customFields?: PredefinedCustomField[];
   };
   editor?: { title?: string; readonly?: boolean };
 };
@@ -132,6 +134,8 @@ const ContextHelper = (
           case 'meta/start/triggers':
           case 'meta/start/calls':
             return Promise.resolve(props.meta?.callableStarts ?? []);
+          case 'meta/workflow/customFields':
+            return Promise.resolve(props.meta?.customFields ?? []);
           case 'meta/workflow/roleTree':
             return Promise.resolve(props.meta?.roleTree ?? EMPTY_ROLE);
           case 'meta/workflow/taskRoles':
