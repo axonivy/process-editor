@@ -4,19 +4,17 @@ import { useAction } from '../../../../../context/useAction';
 import { useEditorContext } from '../../../../../context/useEditorContext';
 import { useMeta } from '../../../../../context/useMeta';
 import type { FieldsetControl } from '../../../../widgets/fieldset/fieldset-control';
-import type { IconSelectItem } from '../../../../widgets/select/Select';
+import type { IconSelectItemWithProject } from '../../../../widgets/select/Select';
 import { IconSelect } from '../../../../widgets/select/Select';
 import { PathFieldset } from '../../../common/path/PathFieldset';
 import { useRestRequestData } from '../../useRestRequestData';
-
-type RestClientItem = IconSelectItem & { project?: string };
 
 export const RestClientSelect = () => {
   const { t } = useTranslation();
   const { config, updateTarget } = useRestRequestData();
 
   const { context } = useEditorContext();
-  const items = useMeta('meta/rest/clients', context, []).data.map<RestClientItem>(client => ({
+  const items = useMeta('meta/rest/clients', context, []).data.map<IconSelectItemWithProject>(client => ({
     label: client.name,
     value: client.clientId,
     iconUrl: client.iconUrl,

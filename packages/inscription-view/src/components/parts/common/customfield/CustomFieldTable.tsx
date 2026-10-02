@@ -1,4 +1,4 @@
-import type { WfCustomField, WorkflowType } from '@axonivy/process-editor-inscription-protocol';
+import type { PredefinedCustomField, WfCustomField, WorkflowType } from '@axonivy/process-editor-inscription-protocol';
 import { CUSTOM_FIELD_TYPE } from '@axonivy/process-editor-inscription-protocol';
 import {
   ComboCell,
@@ -22,6 +22,7 @@ import { ScriptCell } from '../../../widgets/table/cell/ScriptCell';
 import { PathCollapsible } from '../path/PathCollapsible';
 import { ValidationRow } from '../path/validation/ValidationRow';
 import { useResizableEditableTable } from '../table/useResizableEditableTable';
+import { resolveProject } from './custom-field-utils';
 
 type CustomFieldTableProps = {
   data: WfCustomField[];
@@ -39,7 +40,7 @@ const CustomFieldTable = ({ data, onChange, type }: CustomFieldTableProps) => {
 
   const { context } = useEditorContext();
 
-  const predefinedCustomField: WfCustomField[] = useMeta('meta/workflow/customFields', { context, type: type }, []).data;
+  const predefinedCustomField: Array<PredefinedCustomField> = useMeta('meta/workflow/customFields', { context, type: type }, []).data;
 
   const columns = useMemo(
     () =>
@@ -91,15 +92,18 @@ const CustomFieldTable = ({ data, onChange, type }: CustomFieldTableProps) => {
     specialUpdateData: updateCustomFields
   });
 
-  const action = useAction('openCustomField');
+  const openAction = useAction('openCustomField');
+  const action = () => {
+    const project = resolveProject(table, predefinedCustomField);
+    openAction(project ? { project } : undefined);
+  };
 
-  const tableActions = selectedRowActions(() => [
-    {
-      label: t('label.openCustomField'),
-      icon: IvyIcons.GoToSource,
-      action
-    }
-  ]);
+  const tableActions = selectedRowActions();
+  tableActions.push({
+    label: t('label.openCustomField'),
+    icon: IvyIcons.GoToSource,
+    action
+  });
 
   return (
     <PathCollapsible path='customFields' label={t('label.customFields')} defaultOpen={data.length > 0} controls={tableActions}>

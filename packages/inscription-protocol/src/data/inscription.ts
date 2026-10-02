@@ -8,9 +8,9 @@
 
 export type PID = string
 export type ContentObjectType = "STRING" | "FILE" | "FOLDER";
-export type WfFieldType = "STRING" | "TEXT" | "NUMBER" | "TIMESTAMP";
 export type Widget = Script | Label | Text | MultiSelect;
 export type WidgetType = "TEXT" | "LABEL" | "SCRIPT" | "MULTI_SELECT";
+export type WfFieldType = "STRING" | "TEXT" | "NUMBER" | "TIMESTAMP";
 /**
  * Supports macros for dynamic content.
  * Macros are IvyScript expressions enclosed in '<%=' and '%>', enabling the embedding of dynamic values such as data class attributes.
@@ -50,7 +50,6 @@ export interface Inscription {
   cmsMetaRequest: CmsMetaRequest;
   connectorRef: ConnectorRef[];
   contentObject: ContentObject[];
-  customFieldSchema: WfCustomField[];
   databaseClient: DatabaseClient[];
   databaseColumn: DatabaseColumn[];
   databaseColumnRequest: DatabaseColumnRequest;
@@ -68,6 +67,7 @@ export interface Inscription {
   javaType: JavaType[];
   newCmsStringRequest: NewCmsStringRequest;
   outlineNode: OutlineNode;
+  predefinedCustomField: PredefinedCustomField[];
   programEditorRequest: ProgramEditorRequest;
   programInterface: ProgramInterface[];
   programInterfacesRequest: ProgramInterfacesRequest;
@@ -81,7 +81,7 @@ export interface Inscription {
   schemaKey: SchemaKey;
   scriptingDataArgs: ScriptingDataArgs;
   signalCodeRequest: SignalCodeRequest;
-  string: string;
+  string: string[];
   typeSearchRequest: TypeSearchRequest;
   validationResult: ValidationResult[];
   variableInfo: VariableInfo;
@@ -228,14 +228,10 @@ export interface ContentObject {
 export interface MapStringString {
   [k: string]: string;
 }
-export interface WfCustomField {
-  name: string;
-  type: WfFieldType;
-  value: string;
-}
 export interface DatabaseClient {
   iconUrl: string;
   name: string;
+  project: string;
 }
 export interface DatabaseColumn {
   ivyType: string;
@@ -404,6 +400,11 @@ export interface WfCase {
   customFields: WfCustomField[];
   description: ScriptMacro;
   name: ScriptMacro;
+}
+export interface WfCustomField {
+  name: string;
+  type: WfFieldType;
+  value: string;
 }
 export interface WfTask {
   category: string;
@@ -750,6 +751,12 @@ export interface OutlineNode {
   title: string;
   type: string;
 }
+export interface PredefinedCustomField {
+  name: string;
+  project: string;
+  type: WfFieldType;
+  value: string;
+}
 export interface ProgramEditorRequest {
   context: InscriptionContext;
   type: string;
@@ -864,6 +871,7 @@ export interface WebServiceClient {
   clientId: string;
   iconUrl: string;
   name: string;
+  project: string;
 }
 export interface WebServiceClientRequest {
   clientId: string;

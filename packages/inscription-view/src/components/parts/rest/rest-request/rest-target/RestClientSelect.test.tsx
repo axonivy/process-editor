@@ -1,5 +1,5 @@
 import type { RestRequestData } from '@axonivy/process-editor-inscription-protocol';
-import { customRender, screen, SelectUtil, type DeepPartial } from 'test-utils';
+import { customRender, screen, SelectUtil, userEvent, type DeepPartial } from 'test-utils';
 import { describe, expect, test, vi } from 'vitest';
 import { RestClientSelect } from './RestClientSelect';
 
@@ -39,7 +39,7 @@ describe('RestClientSelect', () => {
     test('no selection', async () => {
       const action = vi.fn();
       renderSelect(undefined, action);
-      screen.getByRole('button', { name: 'Open Rest config' }).click();
+      await userEvent.click(screen.getByRole('button', { name: 'Open Rest config' }));
       expect(action).toHaveBeenCalledWith({
         actionId: 'openRestConfig',
         context: {
@@ -55,7 +55,7 @@ describe('RestClientSelect', () => {
       const action = vi.fn();
       renderSelect({ target: { clientId: '1234' } }, action);
       await SelectUtil.assertValue('personService');
-      screen.getByRole('button', { name: 'Open Rest config' }).click();
+      await userEvent.click(screen.getByRole('button', { name: 'Open Rest config' }));
       expect(action).toHaveBeenCalledWith({
         actionId: 'openRestConfig',
         context: {
@@ -72,7 +72,7 @@ describe('RestClientSelect', () => {
     test('no selection', async () => {
       const action = vi.fn();
       renderSelect(undefined, action);
-      screen.getByRole('button', { name: 'Create new Rest Client' }).click();
+      await userEvent.click(screen.getByRole('button', { name: 'Create new Rest Client' }));
       expect(action).toHaveBeenCalledWith({
         actionId: 'newRestClient',
         context: {
@@ -88,7 +88,7 @@ describe('RestClientSelect', () => {
       const action = vi.fn();
       renderSelect({ target: { clientId: '1234' } }, action);
       await SelectUtil.assertValue('personService');
-      screen.getByRole('button', { name: 'Create new Rest Client' }).click();
+      await userEvent.click(screen.getByRole('button', { name: 'Create new Rest Client' }));
       expect(action).toHaveBeenCalledWith({
         actionId: 'newRestClient',
         context: {

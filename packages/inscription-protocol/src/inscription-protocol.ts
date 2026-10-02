@@ -23,6 +23,7 @@ import type {
   JavaType,
   NewCmsStringRequest,
   OutlineNode,
+  PredefinedCustomField,
   ProgramEditorRequest,
   ProgramInterface,
   ProgramInterfacesRequest,
@@ -42,7 +43,6 @@ import type {
   WebServiceClientRequest,
   WebServiceOperation,
   WebServicePortRequest,
-  WfCustomField,
   WorkflowTypeRequest
 } from './data/inscription';
 import type { InscriptionActionArgs, InscriptionData, InscriptionSaveData } from './data/inscription-data';
@@ -61,7 +61,7 @@ export interface InscriptionMetaRequestTypes {
   'meta/workflow/notificationTemplates': [InscriptionContext, string[]];
   'meta/workflow/tags': [InscriptionElementContext, string[]];
   'meta/workflow/categoryPaths': [WorkflowTypeRequest, CategoryPathMeta[]];
-  'meta/workflow/customFields': [WorkflowTypeRequest, WfCustomField[]];
+  'meta/workflow/customFields': [WorkflowTypeRequest, PredefinedCustomField[]];
 
   'meta/database/clients': [InscriptionContext, DatabaseClient[]];
   'meta/database/tables': [DatabaseTablesRequest, string[]];
