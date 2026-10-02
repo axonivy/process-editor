@@ -43,7 +43,7 @@ const Information = <T extends InformationConfig>({ config, update }: Informatio
   const { t } = useTranslation();
   const { context } = useEditorContext();
   const path = usePath();
-  const openAction = useAction('openOrCreateCmsCategory');
+  const openAction = useAction('openCms');
 
   const categories = [
     { value: '', label: t('part.category.empty'), info: t('part.category.emptyDesc') },
@@ -63,7 +63,7 @@ const Information = <T extends InformationConfig>({ config, update }: Informatio
       <PathFieldset
         label={t('common.label.category')}
         path='category'
-        controls={[{ label: t('label.openCMS'), icon: IvyIcons.Cms, action: () => openAction('/Categories/' + config.category + '/name') }]}
+        controls={[{ label: t('label.openCMS'), icon: IvyIcons.Cms, action: () => openAction() }]}
       >
         <ClassificationCombobox
           value={config.category}
