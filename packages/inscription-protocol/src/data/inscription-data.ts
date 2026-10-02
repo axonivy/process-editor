@@ -81,16 +81,16 @@ export interface InscriptionActionArgs {
     | 'openDatabaseConfig'
     | 'openCustomField'
     | 'openEndPage'
-    | 'openOrCreateCmsCategory'
+    | 'openCms'
     | 'openPage'
     | 'openProgram';
   context: InscriptionElementContext;
   payload: string;
 }
-export type InscriptionActionArgsPayload = OpenConfigEditorPayload;
-export interface OpenConfigEditorPayload {
+export type InscriptionActionArgsPayload = OpenActionPayload;
+export interface OpenActionPayload {
   project: string;
 }
-export const isOpenConfigEditorPayload = (obj: unknown): obj is OpenConfigEditorPayload => {
+export const isOpenActionPayload = (obj: unknown): obj is OpenActionPayload => {
   return typeof obj === 'object' && obj !== null && 'project' in obj && typeof obj.project === 'string';
 };
