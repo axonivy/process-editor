@@ -27,7 +27,6 @@
     "@axonivy/ui-components": "~14.0.1-next",
     "@axonivy/ui-icons": "~14.0.1-next",
     "@tanstack/react-query": "^5.64",
-    "@tanstack/react-query-devtools": "^5.64",
     "@tanstack/react-table": "^9.1",
     "i18next": "^26.0.0",
     "inversify": "^6.2",
