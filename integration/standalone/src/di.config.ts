@@ -3,7 +3,6 @@ import {
   IVY_ACCESSIBILITY_MODULES,
   ivyBreakpointModule,
   ivyHistoryModule,
-  ivyReactQueryDevToolsModule,
   ivyStandaloneCopyPasteModule,
   ivyThemeModule
 } from '@axonivy/process-editor';
@@ -16,6 +15,7 @@ import type { Container } from 'inversify';
 import ivyStandaloneBreakpointModule from './breakpoint/di.config';
 import ivyDirtyStateModule from './dirty-state/di.config';
 import ivyNavigationModule from './navigate/di.config';
+import { ivyReactQueryDevToolsModule } from './query-client-devtools/di.config';
 import ivyStandaloneStartProcessModule from './start-process/di.config';
 import { ivyStartupDiagramModule } from './startup';
 
