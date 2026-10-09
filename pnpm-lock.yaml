@@ -86,9 +86,6 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.101.4
         version: 5.104.1(react@18.3.1)
-      '@tanstack/react-query-devtools':
-        specifier: ^5.101.4
-        version: 5.104.1(@tanstack/react-query@5.104.1(react@18.3.1))(@types/react@18.3.31)(csstype@3.2.3)(react@18.3.1)
       inversify:
         specifier: ^6.2.2
         version: 6.2.2(reflect-metadata@0.2.2)
@@ -199,12 +196,15 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.101.4
         version: 5.104.1(react@18.3.1)
-      '@tanstack/react-query-devtools':
-        specifier: ^5.101.4
-        version: 5.104.1(@tanstack/react-query@5.104.1(react@18.3.1))(@types/react@18.3.31)(csstype@3.2.3)(react@18.3.1)
       inversify:
         specifier: ^6.2.2
         version: 6.2.2(reflect-metadata@0.2.2)
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
     devDependencies:
       '@vscode/codicons':
         specifier: ^0.0.45
@@ -423,9 +423,6 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.32
         version: 5.104.1(react@18.3.1)
-      '@tanstack/react-query-devtools':
-        specifier: ^5.32
-        version: 5.104.1(@tanstack/react-query@5.104.1(react@18.3.1))(@types/react@18.3.31)(csstype@3.2.3)(react@18.3.1)
       '@tanstack/react-table':
         specifier: ^8.20
         version: 8.21.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
