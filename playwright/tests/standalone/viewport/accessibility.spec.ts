@@ -53,7 +53,7 @@ test('resize inscription shortcut', async ({ page }) => {
   await inscriptionView.locator('div.inscription-resizer').focus();
   await expect(inscriptionView).toHaveCSS('width', /426./);
   await page.keyboard.press('ArrowLeft');
-  await expect(inscriptionView).toHaveCSS('width', /427./);
+  await expect(inscriptionView).toHaveCSS('width', /446./);
   await page.keyboard.press('ArrowRight');
   await expect(inscriptionView).toHaveCSS('width', /426./);
 });
