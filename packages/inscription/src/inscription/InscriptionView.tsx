@@ -5,6 +5,7 @@ import { useMove } from 'react-aria';
 import { inscriptionWidthStorage } from './inscription-width-storage';
 
 const InscriptionView = ({ pid, ...props }: ComponentProps<typeof App>) => {
+  const keyboardResizeStep = 20;
   const [element, setElement] = useState(pid);
   if (pid !== element) {
     setElement(pid);
@@ -17,8 +18,9 @@ const InscriptionView = ({ pid, ...props }: ComponentProps<typeof App>) => {
       setResizeActive(true);
     },
     onMove(e) {
+      const deltaX = e.pointerType === 'keyboard' ? e.deltaX * keyboardResizeStep : e.deltaX;
       setWidth(oldWidth => {
-        const newWidth = inscriptionWidthStorage().fixWidth(oldWidth - e.deltaX);
+        const newWidth = inscriptionWidthStorage().fixWidth(oldWidth - deltaX);
         inscriptionWidthStorage().setWidth(newWidth);
         return newWidth;
       });
