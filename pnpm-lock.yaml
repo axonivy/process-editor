@@ -16,7 +16,7 @@ importers:
     devDependencies:
       '@axonivy/eslint-config':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8(supports-color@7.2.0)(typescript@5.9.3)
+        version: 12.0.18-next.824.9bbfc52(supports-color@7.2.0)(typescript@5.9.3)
       '@lerna-lite/cli':
         specifier: ^5.6.2
         version: 5.6.2(@lerna-lite/publish@5.6.2(@types/node@24.19.1)(conventional-commits-filter@6.0.1)(supports-color@7.2.0))(@lerna-lite/version@5.6.2(@lerna-lite/publish@5.6.2(@types/node@24.19.1)(conventional-commits-filter@6.0.1)(supports-color@7.2.0))(@types/node@24.19.1)(conventional-commits-filter@6.0.1))(@types/node@24.19.1)
@@ -43,7 +43,7 @@ importers:
         version: 0.1.11(typescript@5.9.3)
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@types/node@24.19.1)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@7.2.0))(vite@7.3.6(@types/node@24.19.1)(yaml@2.9.1))
+        version: 4.1.11(@types/node@24.19.1)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@7.2.0))(vite@7.3.7(@types/node@24.19.1)(yaml@2.9.1))
       vscode:
         specifier: npm:@codingame/monaco-vscode-api@1.83.3
         version: '@codingame/monaco-vscode-api@1.83.3'
@@ -52,7 +52,7 @@ importers:
     dependencies:
       '@axonivy/jsonrpc':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8
+        version: 12.0.18-next.824.9bbfc52
       '@axonivy/process-editor':
         specifier: workspace:~
         version: link:../../packages/editor
@@ -70,10 +70,10 @@ importers:
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8(@axonivy/ui-icons@12.0.18-next.822.c9513a8)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 12.0.18-next.824.9bbfc52(@axonivy/ui-icons@12.0.18-next.824.9bbfc52)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@axonivy/ui-icons':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8
+        version: 12.0.18-next.824.9bbfc52
       '@eclipse-glsp/client':
         specifier: 2.3.0
         version: 2.3.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
@@ -98,16 +98,16 @@ importers:
         version: 0.2.2
       vite:
         specifier: ^7.3.6
-        version: 7.3.6(@types/node@24.19.1)(yaml@2.9.1)
+        version: 7.3.7(@types/node@24.19.1)(yaml@2.9.1)
       vite-tsconfig-paths:
         specifier: ^5.1.4
-        version: 5.1.4(supports-color@7.2.0)(typescript@5.9.3)(vite@7.3.6(@types/node@24.19.1)(yaml@2.9.1))
+        version: 5.1.4(supports-color@7.2.0)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.1)(yaml@2.9.1))
 
   integration/inscription:
     dependencies:
       '@axonivy/jsonrpc':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8
+        version: 12.0.18-next.824.9bbfc52
       '@axonivy/process-editor-inscription-core':
         specifier: workspace:~
         version: link:../../packages/inscription-core
@@ -119,10 +119,10 @@ importers:
         version: link:../../packages/inscription-view
       '@axonivy/ui-components':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8(@axonivy/ui-icons@12.0.18-next.822.c9513a8)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 12.0.18-next.824.9bbfc52(@axonivy/ui-icons@12.0.18-next.824.9bbfc52)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@axonivy/ui-icons':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8
+        version: 12.0.18-next.824.9bbfc52
       '@tanstack/react-query':
         specifier: ^5.101.4
         version: 5.104.1(react@18.3.1)
@@ -141,7 +141,7 @@ importers:
         version: 18.3.7(@types/react@18.3.31)
       '@vitejs/plugin-react':
         specifier: ^4.7.0
-        version: 4.7.0(supports-color@7.2.0)(vite@7.3.6(@types/node@24.19.1)(yaml@2.9.1))
+        version: 4.7.0(supports-color@7.2.0)(vite@7.3.7(@types/node@24.19.1)(yaml@2.9.1))
       deepmerge-ts:
         specifier: ^8.0.0
         version: 8.0.2
@@ -156,16 +156,16 @@ importers:
         version: 18.3.1(react@18.3.1)
       vite:
         specifier: ^7.3.6
-        version: 7.3.6(@types/node@24.19.1)(yaml@2.9.1)
+        version: 7.3.7(@types/node@24.19.1)(yaml@2.9.1)
       vite-tsconfig-paths:
         specifier: ^5.1.4
-        version: 5.1.4(supports-color@7.2.0)(typescript@5.9.3)(vite@7.3.6(@types/node@24.19.1)(yaml@2.9.1))
+        version: 5.1.4(supports-color@7.2.0)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.1)(yaml@2.9.1))
 
   integration/standalone:
     dependencies:
       '@axonivy/jsonrpc':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8
+        version: 12.0.18-next.824.9bbfc52
       '@axonivy/process-editor':
         specifier: workspace:~
         version: link:../../packages/editor
@@ -183,10 +183,10 @@ importers:
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8(@axonivy/ui-icons@12.0.18-next.822.c9513a8)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 12.0.18-next.824.9bbfc52(@axonivy/ui-icons@12.0.18-next.824.9bbfc52)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@axonivy/ui-icons':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8
+        version: 12.0.18-next.824.9bbfc52
       '@eclipse-glsp/client':
         specifier: 2.3.0
         version: 2.3.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
@@ -217,10 +217,10 @@ importers:
         version: 0.2.2
       vite:
         specifier: ^7.3.6
-        version: 7.3.6(@types/node@24.19.1)(yaml@2.9.1)
+        version: 7.3.7(@types/node@24.19.1)(yaml@2.9.1)
       vite-tsconfig-paths:
         specifier: ^5.1.4
-        version: 5.1.4(supports-color@7.2.0)(typescript@5.9.3)(vite@7.3.6(@types/node@24.19.1)(yaml@2.9.1))
+        version: 5.1.4(supports-color@7.2.0)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.1)(yaml@2.9.1))
 
   integration/viewer:
     dependencies:
@@ -232,10 +232,10 @@ importers:
         version: link:../../packages/protocol
       '@axonivy/ui-components':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8(@axonivy/ui-icons@12.0.18-next.822.c9513a8)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 12.0.18-next.824.9bbfc52(@axonivy/ui-icons@12.0.18-next.824.9bbfc52)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@axonivy/ui-icons':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8
+        version: 12.0.18-next.824.9bbfc52
       '@eclipse-glsp/client':
         specifier: 2.3.0
         version: 2.3.0(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
@@ -257,10 +257,10 @@ importers:
         version: 0.2.2
       vite:
         specifier: ^7.3.6
-        version: 7.3.6(@types/node@24.19.1)(yaml@2.9.1)
+        version: 7.3.7(@types/node@24.19.1)(yaml@2.9.1)
       vite-tsconfig-paths:
         specifier: ^5.1.4
-        version: 5.1.4(supports-color@7.2.0)(typescript@5.9.3)(vite@7.3.6(@types/node@24.19.1)(yaml@2.9.1))
+        version: 5.1.4(supports-color@7.2.0)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.1)(yaml@2.9.1))
 
   packages/editor:
     dependencies:
@@ -297,7 +297,7 @@ importers:
     devDependencies:
       '@axonivy/ui-icons':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8
+        version: 12.0.18-next.824.9bbfc52
       '@types/toastify-js':
         specifier: ^1.12.4
         version: 1.12.4
@@ -355,10 +355,10 @@ importers:
     devDependencies:
       '@axonivy/jsonrpc':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8
+        version: 12.0.18-next.824.9bbfc52
       '@axonivy/ui-icons':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8
+        version: 12.0.18-next.824.9bbfc52
       '@types/react':
         specifier: ^18.3.31
         version: 18.3.31
@@ -395,7 +395,7 @@ importers:
     devDependencies:
       '@axonivy/jsonrpc':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8
+        version: 12.0.18-next.824.9bbfc52
 
   packages/inscription-protocol:
     devDependencies:
@@ -447,13 +447,13 @@ importers:
     devDependencies:
       '@axonivy/ui-components':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8(@axonivy/ui-icons@12.0.18-next.822.c9513a8)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 12.0.18-next.824.9bbfc52(@axonivy/ui-icons@12.0.18-next.824.9bbfc52)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@axonivy/ui-icons':
         specifier: next-12.0.18
-        version: 12.0.18-next.822.c9513a8
+        version: 12.0.18-next.824.9bbfc52
       '@tanstack/eslint-plugin-query':
-        specifier: 5.104.0
-        version: 5.104.0(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@5.9.3)
+        specifier: 5.104.1
+        version: 5.104.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@5.9.3)
       '@testing-library/jest-dom':
         specifier: ^6.9.1
         version: 6.9.1
@@ -500,8 +500,8 @@ importers:
         specifier: 1.8.1
         version: 1.8.1
       '@playwright/test':
-        specifier: 1.63.0
-        version: 1.63.0
+        specifier: 1.64.0
+        version: 1.64.0
 
 packages:
 
@@ -511,20 +511,20 @@ packages:
   '@asamuzakjp/css-color@3.2.0':
     resolution: {integrity: sha512-K1A6z8tS3XsmCMM86xoWdn7Fkdn9m6RSVtocUrJYIwZnFVkng/PvkEoWtOWmP+Scc6saYWHWZYbndEEXxl24jw==}
 
-  '@axonivy/eslint-config@12.0.18-next.822.c9513a8':
-    resolution: {integrity: sha512-TW4L4zcnY1uBJ9l8a+AlmYcIMoIp29m/NxSa19EKzPc9BhB0+B6RD98c2hx15v/iHrA3wKF3G5/KyNwtYtW2ww==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/eslint-config/-/eslint-config-12.0.18-next.822.c9513a8.tgz}
+  '@axonivy/eslint-config@12.0.18-next.824.9bbfc52':
+    resolution: {integrity: sha512-vPHu8h5INtYbEqPFBUdtyeSElLB3DnyWD4g4uEco0yPKuuZJzWcscKIR5coEcfPCjo2O3coEi2HrjKngibsoFA==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/eslint-config/-/eslint-config-12.0.18-next.824.9bbfc52.tgz}
 
-  '@axonivy/jsonrpc@12.0.18-next.822.c9513a8':
-    resolution: {integrity: sha512-a41VajzVK36rfSKTM6ucrqTg7rjLMK20ySkgUcKfjP1Vltp9Vi43qqHx+eoB7Mik/zGOk54Moj0UYkjcO32nDg==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/jsonrpc/-/jsonrpc-12.0.18-next.822.c9513a8.tgz}
+  '@axonivy/jsonrpc@12.0.18-next.824.9bbfc52':
+    resolution: {integrity: sha512-GO7ptJq/YKLW9UknQBi7f+ihRWsYz1i8sZwJ70+T2mRpvR1UyUqcLUiO7AJLJy36YLAmxw4AagLDb4KROqvZPg==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/jsonrpc/-/jsonrpc-12.0.18-next.824.9bbfc52.tgz}
 
-  '@axonivy/ui-components@12.0.18-next.822.c9513a8':
-    resolution: {integrity: sha512-tcLTZwKhlE3goCSy9HTXMOUpNYtDQEpAOmBG5GIYQfC81FMCsDIPmgp5qZr6FclhBk+zUhy47pEU7UeJf/NQzw==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/ui-components/-/ui-components-12.0.18-next.822.c9513a8.tgz}
+  '@axonivy/ui-components@12.0.18-next.824.9bbfc52':
+    resolution: {integrity: sha512-pVI5YoTbrBRSYmB1mEj3zhFUZT4j+SgXfQ3wTAHl4tBcZjswjozluntFGrM92tmYvLJokn0y/M04BiZa7Zx5Rg==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/ui-components/-/ui-components-12.0.18-next.824.9bbfc52.tgz}
     peerDependencies:
       '@axonivy/ui-icons': ~12.0.18-next
       react: ^18.2 || ^19.0
 
-  '@axonivy/ui-icons@12.0.18-next.822.c9513a8':
-    resolution: {integrity: sha512-y4yuo1hAaYPEmvkBLxNaZW4EHOezDNYnVHjKnQbpxehNGihZWWign+h7r1oiEyj0lrFw4Lm+OIOUtI2ytbay8g==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/ui-icons/-/ui-icons-12.0.18-next.822.c9513a8.tgz}
+  '@axonivy/ui-icons@12.0.18-next.824.9bbfc52':
+    resolution: {integrity: sha512-HQsZb4SsYHgHyHd+mjkm4AvJy8Uz6eJQKrMt4dWitdEWdO3DfQig1fts4dWiSc/de4brf8fFa4eKCRfcKRhLGQ==, tarball: https://npmjs-registry.ivyteam.ch/@axonivy/ui-icons/-/ui-icons-12.0.18-next.824.9bbfc52.tgz}
 
   '@babel/code-frame@7.29.7':
     resolution: {integrity: sha512-Aup7aUOfpbAUg2ROOJN6Iw5f9DMBlzu0mIkm/malLQFN/YQgO48wCj0Kxa3sEHJvPVFg7siR+qRInwXd2qhQKw==}
@@ -1236,8 +1236,8 @@ packages:
   '@open-rpc/client-js@1.8.1':
     resolution: {integrity: sha512-vV+Hetl688nY/oWI9IFY0iKDrWuLdYhf7OIKI6U1DcnJV7r4gAgwRJjEr1QVYszUc0gjkHoQJzqevmXMGLyA0g==}
 
-  '@playwright/test@1.63.0':
-    resolution: {integrity: sha512-oxMK4vllB9RK5NQ2l1pq1IfOf2AvnEuj/vYGDj0H2nMtmtZpKtCwt/l00GEO6xjGfpBNAvjovvYdCm50dRQkpQ==}
+  '@playwright/test@1.64.0':
+    resolution: {integrity: sha512-oTN9FNYuN6bqQMwiho6jJKLCG2/QOYCixGXuCjRmzOq23eODeukuY2XiAVoVpAECbuezMt1MHQjAiQxK8F+Y+g==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -1979,6 +1979,15 @@ packages:
 
   '@tanstack/eslint-plugin-query@5.104.0':
     resolution: {integrity: sha512-WHStlNTKraESaAjeuZ0zJr+t3ZigZgAJ/FQX1sdLGSF+U0vXlHgcAoPqm27VixMRyXaFHCx9xBJiUmPNcxMpjQ==}
+    peerDependencies:
+      eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
+      typescript: ^5.6.0 || ^6.0.0 || ^7.0.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
+  '@tanstack/eslint-plugin-query@5.104.1':
+    resolution: {integrity: sha512-7LmiJkxzuy0YrCoL0q5yWz9NsW39h2CeuKjvetjVaFCJ9hrS4UM9TiCEx0rWeLDe6ff1r1KwV+yzclCvzzrnQg==}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: ^5.6.0 || ^6.0.0 || ^7.0.0
@@ -3784,13 +3793,13 @@ packages:
     resolution: {integrity: sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==}
     engines: {node: '>=8'}
 
-  playwright-core@1.63.0:
-    resolution: {integrity: sha512-rYCsBF/M5HjUch52bbtVONEFjv6Xu8sm8h72dNlR5bzIE1fvC/bxgspzkjSfU+MweEMmPM8KJebG6nnyxo5mCg==}
+  playwright-core@1.64.0:
+    resolution: {integrity: sha512-T9r+MZkTECl2+oUcZ26YgZzTrYidTsIhYYkJix+6iDOymOb1FB2RLLSOxRGnZGv5DStt+aduIVbt+E8WygXYpg==}
     engines: {node: '>=20'}
     hasBin: true
 
-  playwright@1.63.0:
-    resolution: {integrity: sha512-+7ziBLidS4NaNCdt57SUDT+wYmmd5fmiQejUic/kb+YsYSCPyOOE9sebzMjNmQrsnNpDJqd4WHvV/8lfKfUDUg==}
+  playwright@1.64.0:
+    resolution: {integrity: sha512-kVzTnYFYEyQ9RGzBjNCd2+yEqWmVbxl3AHPynv3qQ6JTjv4a+kwRcnqQwIpuP3NnrnIrE/Q6wWAIAvMfIE2/Yg==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -4445,8 +4454,8 @@ packages:
       vite:
         optional: true
 
-  vite@7.3.6:
-    resolution: {integrity: sha512-4XP60spRGjSZFf1qYH+dJIkK2znL3zQfl9KkOV9MkkRR/3Dls0dxaBsQPTloEc5BLXWPL9vsOxopxyKoMmDueg==}
+  vite@7.3.7:
+    resolution: {integrity: sha512-AHEzTORMbi7/7aXp7w7KZ5+DCUdSeLsJz0grY8xHpc9DHdYb0vQu6DqJfm2tOw3gDExNgPgnJTXxM6syYFHaCA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -4730,7 +4739,7 @@ snapshots:
       '@csstools/css-tokenizer': 3.0.4
       lru-cache: 10.4.3
 
-  '@axonivy/eslint-config@12.0.18-next.822.c9513a8(supports-color@7.2.0)(typescript@5.9.3)':
+  '@axonivy/eslint-config@12.0.18-next.824.9bbfc52(supports-color@7.2.0)(typescript@5.9.3)':
     dependencies:
       '@eslint/js': 9.39.5
       '@tanstack/eslint-plugin-query': 5.104.0(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@5.9.3)
@@ -4749,13 +4758,13 @@ snapshots:
       - supports-color
       - typescript
 
-  '@axonivy/jsonrpc@12.0.18-next.822.c9513a8':
+  '@axonivy/jsonrpc@12.0.18-next.824.9bbfc52':
     dependencies:
       vscode-jsonrpc: 8.2.1
 
-  '@axonivy/ui-components@12.0.18-next.822.c9513a8(@axonivy/ui-icons@12.0.18-next.822.c9513a8)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@axonivy/ui-components@12.0.18-next.824.9bbfc52(@axonivy/ui-icons@12.0.18-next.824.9bbfc52)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@axonivy/ui-icons': 12.0.18-next.822.c9513a8
+      '@axonivy/ui-icons': 12.0.18-next.824.9bbfc52
       '@radix-ui/react-accordion': 1.2.20(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-checkbox': 1.3.11(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-collapsible': 1.1.20(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4783,7 +4792,7 @@ snapshots:
       - '@types/react-dom'
       - react-dom
 
-  '@axonivy/ui-icons@12.0.18-next.822.c9513a8': {}
+  '@axonivy/ui-icons@12.0.18-next.824.9bbfc52': {}
 
   '@babel/code-frame@7.29.7':
     dependencies:
@@ -5603,9 +5612,9 @@ snapshots:
       - encoding
       - utf-8-validate
 
-  '@playwright/test@1.63.0':
+  '@playwright/test@1.64.0':
     dependencies:
-      playwright: 1.63.0
+      playwright: 1.64.0
 
   '@radix-ui/number@1.1.3': {}
 
@@ -6318,6 +6327,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@tanstack/eslint-plugin-query@5.104.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@5.9.3)':
+    dependencies:
+      '@typescript-eslint/utils': 8.71.0(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@5.9.3)
+      eslint: 9.39.5(supports-color@7.2.0)
+    optionalDependencies:
+      typescript: 5.9.3
+    transitivePeerDependencies:
+      - supports-color
+
   '@tanstack/match-sorter-utils@9.1.2':
     dependencies:
       remove-accents: 0.5.0
@@ -6575,7 +6593,7 @@ snapshots:
       '@typescript-eslint/types': 8.71.0
       eslint-visitor-keys: 5.0.1
 
-  '@vitejs/plugin-react@4.7.0(supports-color@7.2.0)(vite@7.3.6(@types/node@24.19.1)(yaml@2.9.1))':
+  '@vitejs/plugin-react@4.7.0(supports-color@7.2.0)(vite@7.3.7(@types/node@24.19.1)(yaml@2.9.1))':
     dependencies:
       '@babel/core': 7.29.7(supports-color@7.2.0)
       '@babel/plugin-transform-react-jsx-self': 7.29.7(@babel/core@7.29.7(supports-color@7.2.0))
@@ -6583,7 +6601,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.27
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 7.3.6(@types/node@24.19.1)(yaml@2.9.1)
+      vite: 7.3.7(@types/node@24.19.1)(yaml@2.9.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -6596,13 +6614,13 @@ snapshots:
       chai: 6.3.0
       tinyrainbow: 3.2.0
 
-  '@vitest/mocker@4.1.11(vite@7.3.6(@types/node@24.19.1)(yaml@2.9.1))':
+  '@vitest/mocker@4.1.11(vite@7.3.7(@types/node@24.19.1)(yaml@2.9.1))':
     dependencies:
       '@vitest/spy': 4.1.11
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 7.3.6(@types/node@24.19.1)(yaml@2.9.1)
+      vite: 7.3.7(@types/node@24.19.1)(yaml@2.9.1)
 
   '@vitest/pretty-format@4.1.11':
     dependencies:
@@ -8422,11 +8440,11 @@ snapshots:
     dependencies:
       find-up: 4.1.0
 
-  playwright-core@1.63.0: {}
+  playwright-core@1.64.0: {}
 
-  playwright@1.63.0:
+  playwright@1.64.0:
     dependencies:
-      playwright-core: 1.63.0
+      playwright-core: 1.64.0
 
   possible-typed-array-names@1.1.0: {}
 
@@ -9142,18 +9160,18 @@ snapshots:
 
   verkit@0.5.0: {}
 
-  vite-tsconfig-paths@5.1.4(supports-color@7.2.0)(typescript@5.9.3)(vite@7.3.6(@types/node@24.19.1)(yaml@2.9.1)):
+  vite-tsconfig-paths@5.1.4(supports-color@7.2.0)(typescript@5.9.3)(vite@7.3.7(@types/node@24.19.1)(yaml@2.9.1)):
     dependencies:
       debug: 4.4.3(supports-color@7.2.0)
       globrex: 0.1.2
       tsconfck: 3.1.6(typescript@5.9.3)
     optionalDependencies:
-      vite: 7.3.6(@types/node@24.19.1)(yaml@2.9.1)
+      vite: 7.3.7(@types/node@24.19.1)(yaml@2.9.1)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@7.3.6(@types/node@24.19.1)(yaml@2.9.1):
+  vite@7.3.7(@types/node@24.19.1)(yaml@2.9.1):
     dependencies:
       esbuild: 0.28.2
       fdir: 6.5.0(picomatch@4.0.7)
@@ -9166,10 +9184,10 @@ snapshots:
       fsevents: 2.3.3
       yaml: 2.9.1
 
-  vitest@4.1.11(@types/node@24.19.1)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@7.2.0))(vite@7.3.6(@types/node@24.19.1)(yaml@2.9.1)):
+  vitest@4.1.11(@types/node@24.19.1)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@7.2.0))(vite@7.3.7(@types/node@24.19.1)(yaml@2.9.1)):
     dependencies:
       '@vitest/expect': 4.1.11
-      '@vitest/mocker': 4.1.11(vite@7.3.6(@types/node@24.19.1)(yaml@2.9.1))
+      '@vitest/mocker': 4.1.11(vite@7.3.7(@types/node@24.19.1)(yaml@2.9.1))
       '@vitest/pretty-format': 4.1.11
       '@vitest/runner': 4.1.11
       '@vitest/snapshot': 4.1.11
@@ -9186,7 +9204,7 @@ snapshots:
       tinyexec: 1.3.1
       tinyglobby: 0.2.17
       tinyrainbow: 3.2.0
-      vite: 7.3.6(@types/node@24.19.1)(yaml@2.9.1)
+      vite: 7.3.7(@types/node@24.19.1)(yaml@2.9.1)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 24.19.1
