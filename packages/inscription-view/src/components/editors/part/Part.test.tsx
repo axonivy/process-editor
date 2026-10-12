@@ -93,7 +93,8 @@ describe('Part', () => {
 
     await userEvent.click(screen.getByRole('tab', { name: 'General' }));
     const input = screen.getByRole('textbox', { name: 'cell-input' });
-    const blurSpy = vi.spyOn(input, 'blur');
+    const blurSpy = vi.fn();
+    input.addEventListener('blur', blurSpy);
     await userEvent.click(input);
     expect(input).toHaveFocus();
 
