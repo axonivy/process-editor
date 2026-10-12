@@ -13,6 +13,13 @@ const InscriptionView = ({ pid, ...props }: ComponentProps<typeof App>) => {
 
   const [width, setWidth] = useState(inscriptionWidthStorage().getWidth());
   const [resizeActive, setResizeActive] = useState(false);
+  const resizeTo = (newWidth: number) => {
+    const storage = inscriptionWidthStorage();
+    const fixedWidth = storage.fixWidth(newWidth);
+    setWidth(fixedWidth);
+    storage.setWidth(fixedWidth);
+    setTimeout(() => window.dispatchEvent(new CustomEvent('resize')), 0);
+  };
   const { moveProps } = useMove({
     onMoveStart() {
       setResizeActive(true);
@@ -30,9 +37,21 @@ const InscriptionView = ({ pid, ...props }: ComponentProps<typeof App>) => {
       setResizeActive(false);
     }
   });
+  const toggleWidth = () => {
+    const storage = inscriptionWidthStorage();
+    const maximizedWidth = storage.fixWidth((window.innerWidth * 2) / 3);
+    resizeTo(width === maximizedWidth ? storage.getDefaultWidth() : maximizedWidth);
+  };
   return (
     <div style={{ width: width }}>
-      <div tabIndex={0} className={`inscription-resizer${resizeActive ? ' active' : ''}`} {...moveProps} />
+      <div
+        role='separator'
+        aria-orientation='vertical'
+        tabIndex={0}
+        className={`inscription-resizer${resizeActive ? ' active' : ''}`}
+        {...moveProps}
+        onDoubleClick={toggleWidth}
+      />
       <App pid={element} {...props} />
     </div>
   );

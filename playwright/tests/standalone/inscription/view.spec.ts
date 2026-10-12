@@ -63,6 +63,25 @@ test('process', async ({ page }) => {
   await view.expectClosed();
 });
 
+test('resize inscription', async ({ page }) => {
+  const processEditor = await ProcessEditor.openProcess(page);
+  const view = await processEditor.startElement.inscribe();
+  const resizer = view.locator().locator('.inscription-resizer');
+  const container = resizer.locator('..');
+  const defaultWidth = await container.evaluate(element => Number.parseFloat(getComputedStyle(element).width));
+
+  await resizer.click();
+  await expect(container).toHaveCSS('width', `${defaultWidth}px`);
+
+  await resizer.dblclick();
+  const expandedWidth = await container.evaluate(element => Number.parseFloat(getComputedStyle(element).width));
+  expect(expandedWidth).toBeGreaterThan(defaultWidth);
+  expect(expandedWidth).toBeCloseTo((await page.evaluate(() => window.innerWidth)) * (2 / 3), 0);
+
+  await resizer.dblclick();
+  await expect(container).toHaveCSS('width', `${defaultWidth}px`);
+});
+
 test('hold accordion state', async ({ page }) => {
   const processEditor = await ProcessEditor.openProcess(page);
   const view = await processEditor.endElement.inscribe();
