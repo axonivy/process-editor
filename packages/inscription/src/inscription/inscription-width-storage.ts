@@ -1,5 +1,13 @@
 export const inscriptionWidthStorage = () => {
   const inscriptionWidthKey = 'inscription-view-width';
+  const getDefaultWidth = () => {
+    let width = window.innerWidth / 3;
+    if (width > 600) {
+      width = 600;
+    }
+    return fixWidth(width);
+  };
+
   const fixWidth = (newWidth: number) => {
     if (newWidth > window.innerWidth - 250) {
       return window.innerWidth - 250;
@@ -19,10 +27,7 @@ export const inscriptionWidthStorage = () => {
   };
 
   const getWidth = () => {
-    let width = window.innerWidth / 3;
-    if (width > 600) {
-      width = 600;
-    }
+    let width = getDefaultWidth();
     try {
       width = Number(localStorage.getItem(inscriptionWidthKey) ?? width);
     } catch (e) {
@@ -31,5 +36,5 @@ export const inscriptionWidthStorage = () => {
     return fixWidth(width);
   };
 
-  return { setWidth, getWidth, fixWidth };
+  return { setWidth, getWidth, getDefaultWidth, fixWidth };
 };
