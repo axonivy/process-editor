@@ -24,7 +24,7 @@
     "test": "vitest test",
     "test:ci": "vitest run --reporter=default --reporter=junit --outputFile=report.xml",
     "webtest": "pnpm run --filter @axonivy/process-editor-playwright webtest",
-    "update:axonivy:next": "pnpm update -r @axonivy",
+    "update:axonivy:next": "pnpm update -r @axonivy --ignore-scripts",
     "raise:version": "lerna version --no-git-tag-version --no-push --ignore-scripts --exact --yes",
     "publish:next": "lerna publish --exact --canary --preid next --pre-dist-tag next-12.0.19 --no-git-tag-version --no-push --ignore-scripts --yes"
   },
