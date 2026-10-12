@@ -40,8 +40,9 @@
   },
   "devDependencies": {
     "@axonivy/jsonrpc": "next-14.0.1",
-    "@axonivy/ui-components": "next-14.0.1",
-    "@axonivy/ui-icons": "next-14.0.1",
+    "@axonivy/ui-components": "link:../../../ui-components/packages/components",
+    "@axonivy/ui-icons": "link:../../../ui-components/packages/icons",
+    "@tanstack/react-table": "9.2.8",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.6",

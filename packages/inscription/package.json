@@ -26,8 +26,8 @@
     "react-aria": "^3.38"
   },
   "devDependencies": {
-    "@axonivy/ui-components": "next-14.0.1",
-    "@axonivy/ui-icons": "next-14.0.1",
+    "@axonivy/ui-components": "link:../../../ui-components/packages/components",
+    "@axonivy/ui-icons": "link:../../../ui-components/packages/icons",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "react": "^19.2.8",
