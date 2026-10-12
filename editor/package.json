@@ -39,7 +39,7 @@
     "jsdom": "^26.1.0",
     "reflect-metadata": "^0.2.2",
     "snabbdom-to-html": "^7.1.0",
-    "vitest": "^3.2.7"
+    "vitest": "^5.0.3"
   },
   "scripts": {
     "clean": "rimraf lib tsconfig.*tsbuildinfo",
