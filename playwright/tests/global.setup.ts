@@ -47,7 +47,14 @@ const setupProject = async (engineUrl: string, projectName: string, workspacePat
 const setup = async () => {
   const engineUrl = process.env.BASE_URL ?? 'http://localhost:8080';
   const workspacePath = path.resolve(import.meta.dirname, '..');
-  await Promise.all(projects.map(project => setupProject(engineUrl, project, workspacePath)));
+  try {
+    await Promise.all(projects.map(project => setupProject(engineUrl, project, workspacePath)));
+  } catch (error) {
+    if (process.env.CI) {
+      throw new Error(`Failed to set up projects: ${error}`, { cause: error });
+    }
+    console.error('Error setting up projects:', error);
+  }
 };
 
 export default setup;
