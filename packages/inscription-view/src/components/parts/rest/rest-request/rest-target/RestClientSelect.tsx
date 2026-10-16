@@ -31,7 +31,7 @@ export const RestClientSelect = () => {
     {
       label: t('part.rest.restConfigOpen'),
       icon: IvyIcons.GoToSource,
-      action: () => openAction({ project: selectedItem.project ?? context.project, selection: selectedItem.value })
+      action: () => openAction(selectedItem.project ? { project: selectedItem.project, selection: selectedItem.value } : undefined)
     },
     { label: t('part.rest.restConfigCreate'), icon: IvyIcons.Plus, action: () => newAction() }
   ];
