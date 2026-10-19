@@ -1,0 +1,61 @@
+name: Process-Editor-Standalone
+
+on:
+  push:
+    branches:
+      - master
+      - release/*
+      - standalone.action
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_ACTOR: ${{ github.actor }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 25
+          cache: maven
+          server-id: github
+          server-username: GITHUB_ACTOR
+          server-password: GITHUB_TOKEN
+
+      - name: Install NPM dependencies
+        run: |
+          pnpm install
+          pnpm run update:axonivy:next
+
+      - name: Build NPM packages
+        run: |
+          pnpm run build
+          pnpm run package
+          pnpm run check
+
+      - name: Publish standalone Maven package
+        run: >-
+          mvn -ntp -f integration/standalone clean deploy
+          -DaltDeploymentRepository=github::https://maven.pkg.github.com/${GITHUB_REPOSITORY}
+          -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
