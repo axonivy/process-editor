@@ -5,7 +5,7 @@ import { DEFAULT_TASK, DEFAULT_TASK_DATA } from '@axonivy/process-editor-inscrip
 import type { PartStateFlag } from '../../editors/part/usePart';
 import { useMultiTasksPart } from './MultiTasksPart';
 import { deepmerge } from 'deepmerge-ts';
-import { describe, test, expect, vi } from 'vitest';
+import { describe, test, expect } from 'vitest';
 
 const Part = () => {
   const part = useMultiTasksPart();
@@ -55,13 +55,12 @@ describe('MultiTasksPart', () => {
     });
 
     const input = screen.getByLabelText('Name');
-    const blurSpy = vi.spyOn(input, 'blur');
     await userEvent.click(input);
     expect(input).toHaveFocus();
 
     await userEvent.click(screen.getByRole('tab', { name: 'TaskB' }));
 
-    expect(blurSpy).toHaveBeenCalledTimes(1);
+    expect(input).not.toHaveFocus();
   });
 
   function assertState(expectedState: PartStateFlag, data?: DeepPartial<TaskData>) {
