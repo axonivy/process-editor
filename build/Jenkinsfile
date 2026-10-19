@@ -42,8 +42,9 @@ pipeline {
         script {
           docker.build('maven-build', '-f build/Dockerfile.maven .').inside {
             maven cmd: '-ntp -f integration/viewer clean deploy -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn'
+            maven cmd: '-ntp -f integration/standalone clean deploy -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn'
           }
-          archiveArtifacts 'integration/viewer/target/process-viewer-client*.jar'
+          archiveArtifacts 'integration/*/target/process*.jar'
         }
       }
     }
