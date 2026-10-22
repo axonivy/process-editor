@@ -7,6 +7,8 @@ import Collapsible from '../../widgets/collapsible/Collapsible';
 import Fieldset from '../../widgets/fieldset/Fieldset';
 import Textarea from '../../widgets/input/Textarea';
 import Tags from '../../widgets/tag/Tags';
+import { PathCollapsible } from '../common/path/PathCollapsible';
+import { ValidationFieldset } from '../common/path/validation/ValidationFieldset';
 import DocumentTable from './document/DocumentTable';
 import { useGeneralData } from './useGeneralData';
 
@@ -33,14 +35,14 @@ const GeneralPart = ({ hideTags, disableName }: { hideTags?: boolean; disableNam
 
   return (
     <>
-      <Collapsible label={t('part.general.nameAndDescription')} defaultOpen={true}>
-        <Fieldset label={t('part.general.displayName')}>
+      <PathCollapsible label={t('part.general.nameAndDescription')} path='name' defaultOpen={true}>
+        <ValidationFieldset label={t('part.general.displayName')}>
           <Textarea maxRows={3} disabled={!!disableName} value={data.name} onChange={change => update('name', change)} />
-        </Fieldset>
+        </ValidationFieldset>
         <Fieldset label={t('common.label.description')}>
           <Textarea maxRows={10} value={data.description} onChange={change => update('description', change)} />
         </Fieldset>
-      </Collapsible>
+      </PathCollapsible>
 
       <DocumentTable data={data.docs} onChange={change => update('docs', change)} />
 
