@@ -16,10 +16,11 @@
     "@axonivy/ui-components": "next-12.0.19",
     "@axonivy/ui-icons": "next-12.0.19",
     "@tanstack/react-query": "^5.101.4",
-    "@tanstack/react-query-devtools": "^5.101.4",
+
     "vscode-jsonrpc": "8.2.1"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.101.4",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^4.7.0",
