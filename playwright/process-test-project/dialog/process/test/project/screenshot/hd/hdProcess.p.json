@@ -27,7 +27,7 @@
     }, {
       "id" : "f3",
       "type" : "HtmlDialogEventStart",
-      "name" : "UD Event Start",
+      "name" : "UDEventStart",
       "config" : {
         "guid" : "192FC5A2B75D9F69"
       },
