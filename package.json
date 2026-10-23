@@ -36,18 +36,18 @@
     "@axonivy/eslint-config": "next-14.0.1",
     "@axonivy/prettier-config": "next-14.0.1",
     "@axonivy/ts-config": "next-14.0.1",
-    "@lerna-lite/cli": "^5.6.2",
-    "@lerna-lite/publish": "^5.6.2",
-    "@lerna-lite/version": "^5.6.2",
-    "@types/node": "^24.19.1",
+    "@lerna-lite/cli": "^5.6.3",
+    "@lerna-lite/publish": "^5.6.3",
+    "@lerna-lite/version": "^5.6.3",
+    "@types/node": "^24.19.2",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "i18next-cli": "^1.75.1",
-    "prettier": "^3.9.9",
+    "i18next-cli": "^1.75.3",
+    "prettier": "^3.9.10",
     "rimraf": "^6.1.3",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-cp": "^0.1.11",
     "vite": "^8.3.4",
-    "vitest": "^5.0.3"
+    "vitest": "^5.0.5"
   },
   "prettier": "@axonivy/prettier-config"
 }
