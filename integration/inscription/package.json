@@ -16,7 +16,6 @@
     "@axonivy/ui-components": "next-12.0.19",
     "@axonivy/ui-icons": "next-12.0.19",
     "@tanstack/react-query": "^5.101.4",
-
     "vscode-jsonrpc": "8.2.1"
   },
   "devDependencies": {
