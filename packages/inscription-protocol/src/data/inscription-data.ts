@@ -90,7 +90,14 @@ export interface InscriptionActionArgs {
 export type InscriptionActionArgsPayload = OpenActionPayload;
 export interface OpenActionPayload {
   project: string;
+  selection?: string;
 }
 export const isOpenActionPayload = (obj: unknown): obj is OpenActionPayload => {
-  return typeof obj === 'object' && obj !== null && 'project' in obj && typeof obj.project === 'string';
+  return (
+    typeof obj === 'object' &&
+    obj !== null &&
+    'project' in obj &&
+    typeof obj.project === 'string' &&
+    ('selection' in obj ? typeof obj.selection === 'string' : true)
+  );
 };
