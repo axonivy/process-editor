@@ -43,7 +43,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vanilla-extract/recipes": "^0.5.7",
-    "happy-dom": "^20.11.12",
+    "happy-dom": "^21.0.4",
     "reflect-metadata": "~0.2.2",
     "snabbdom-to-html": "^7.1.0",
     "sprotty": "1.4.0",
