@@ -63,7 +63,7 @@ describe('RestClientSelect', () => {
           pid: '',
           project: 'baseProject'
         },
-        payload: '{"project":"project1"}'
+        payload: '{"project":"project1","selection":"1234"}'
       });
     });
   });
