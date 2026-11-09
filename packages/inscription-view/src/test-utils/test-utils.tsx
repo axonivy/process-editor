@@ -29,7 +29,7 @@ import type { queries, Queries, RenderHookOptions, RenderOptions } from '@testin
 import { render, renderHook } from '@testing-library/react';
 import { deepmergeCustom, type DeepMergeNoFilteringURI } from 'deepmerge-ts';
 import type { ReactElement, ReactNode } from 'react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import type { DeepPartial } from './type-utils';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { DataContextInstance, type DataContext } from '../context/useDataContext';
@@ -194,7 +194,7 @@ const ContextHelper = (
   }
   const editorRef = useRef(null);
   editorContext.editorRef = editorRef;
-  const queryClient = new QueryClient();
+  const [queryClient] = useState(() => new QueryClient());
   return (
     <div ref={editorRef}>
       <ReadonlyProvider readonly={props.editor?.readonly ?? false}>
