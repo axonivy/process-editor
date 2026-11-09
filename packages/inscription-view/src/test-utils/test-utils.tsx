@@ -35,7 +35,7 @@ import { render, renderHook } from '@testing-library/react';
 import { deepmergeCustom, type DeepMergeNoFilteringURI } from 'deepmerge-ts';
 import i18n from 'i18next';
 import type { ReactElement, ReactNode } from 'react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { initReactI18next } from 'react-i18next';
 import enTranslation from '../../../editor/src/translation/process-editor/en.json';
 import { ClientContextProvider, type ClientContext } from '../context/useClient';
@@ -221,7 +221,7 @@ const ContextHelper = (
   }
   const editorRef = useRef(null);
   editorContext.editorRef = editorRef;
-  const queryClient = new QueryClient();
+  const [queryClient] = useState(() => new QueryClient());
   initTranslation();
   return (
     <div ref={editorRef}>
@@ -254,11 +254,11 @@ const customRenderHook = <
   options?: RenderHookOptions<Props, Q, Container, BaseElement> & { wrapperProps: ContextHelperProps }
 ) => renderHook(render, { wrapper: props => <ContextHelper {...props} {...options?.wrapperProps} />, ...options });
 
-export * from '@testing-library/react';
-export { default as userEvent } from '@testing-library/user-event';
 export * from './collapsible-utils';
 export * from './combobox-utils';
 export * from './select-utils';
 export * from './table-utils';
 export * from './type-utils';
+export * from '@testing-library/react';
+export { default as userEvent } from '@testing-library/user-event';
 export { customRender, customRenderHook };
