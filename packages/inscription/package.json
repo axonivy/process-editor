@@ -31,11 +31,12 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "vite": "^8.3.5"
   },
   "scripts": {
     "clean": "rimraf lib tsconfig.tsbuildinfo",
-    "build": "tsc --build && tscp",
+    "build": "tsc --build && vite build",
     "type": "tsc --noEmit"
   },
   "files": [
@@ -43,6 +44,7 @@
     "src"
   ],
   "type": "module",
-  "types": "lib/index",
-  "module": "lib/index"
+  "main": "lib/inscription.js",
+  "types": "lib/index.d.ts",
+  "module": "lib/inscription.js"
 }
