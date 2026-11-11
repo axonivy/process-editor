@@ -1,7 +1,9 @@
+import type { FullConfig } from '@playwright/test';
 import path from 'node:path';
 
 const user = 'Developer';
-const projects = ['process-test-project', 'inscription-test-project'];
+const inscriptionProject = 'inscription-test-project';
+const projects = ['process-test-project', inscriptionProject];
 const requestHeaders = {
   'X-Requested-By': 'process-editor-tests',
   'Content-Type': 'application/json',
@@ -44,16 +46,27 @@ const setupProject = async (engineUrl: string, projectName: string, workspacePat
   }
 };
 
-const setup = async () => {
+const setup = async (config: FullConfig) => {
   const engineUrl = process.env.BASE_URL ?? 'http://localhost:8080';
   const workspacePath = path.resolve(import.meta.dirname, '..');
   try {
     await Promise.all(projects.map(project => setupProject(engineUrl, project, workspacePath)));
+    await activateInscriptionApp(config, engineUrl);
   } catch (error) {
     if (process.env.CI) {
       throw new Error(`Failed to set up projects: ${error}`, { cause: error });
     }
     console.error('Error setting up projects:', error);
+  }
+};
+
+const activateInscriptionApp = async (config: FullConfig, engineUrl: string) => {
+  const playwrightProjects = config.filteredProjects.map(project => project.name);
+  if (playwrightProjects.includes('screenshots-inscription')) {
+    const result = await fetch(engineUrl + `/~${user}-${inscriptionProject}`);
+    if (!result.ok) {
+      throw new Error(`Failed to activate inscription app: ${result.status} ${await result.text()}`);
+    }
   }
 };
 
