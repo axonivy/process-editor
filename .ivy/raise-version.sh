@@ -22,5 +22,5 @@ mvn --batch-mode -f playwright/tests/screenshots/pom.xml versions:set versions:c
 
 pnpm install
 pnpm run raise:version "$NEXT_VERSION"
-sed -i -E "s/(--pre-dist-tag )next-[0-9]+\.[0-9]+\.[0-9]+/\1$NEXT_TAG/" package.json
+sed -i -E "s/(--dist-tag )next-[0-9]+\.[0-9]+\.[0-9]+/\1$NEXT_TAG/" package.json
 pnpm install --no-frozen-lockfile
