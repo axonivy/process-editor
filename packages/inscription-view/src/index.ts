@@ -4,6 +4,7 @@ export * from './context/useClient';
 
 export * from './monaco/ivy-language-client';
 export * from './monaco/ivy-macro-language';
+export * from './monaco/java-language';
 export * from './monaco/ivy-monaco-theme';
 export * from './monaco/ivy-script-language';
 export * from './monaco/monaco-editor-util';
