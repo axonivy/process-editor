@@ -16,7 +16,12 @@ export namespace IvyMonacoTheme {
           'editor.background': '#33333300'
         },
         inherit: true,
-        rules: []
+        rules: [
+          { token: 'entity.name.type.java', foreground: '4EC9B0' },
+          { token: 'entity.name.function.java', foreground: 'DCDCAA' },
+          { token: 'variable.other.object.java', foreground: '9CDCFE' },
+          { token: 'variable.other.constant.java', foreground: '4FC1FF' }
+        ]
       };
     }
     return {
@@ -27,7 +32,12 @@ export namespace IvyMonacoTheme {
         'editor.background': '#fafafa'
       },
       inherit: true,
-      rules: []
+      rules: [
+        { token: 'entity.name.type.java', foreground: '267F99' },
+        { token: 'entity.name.function.java', foreground: '795E26' },
+        { token: 'variable.other.object.java', foreground: '001080' },
+        { token: 'variable.other.constant.java', foreground: '0070C1' }
+      ]
     };
   }
 

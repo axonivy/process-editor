@@ -1,5 +1,5 @@
 import { describe, expect, test, vi } from 'vitest';
-import { IvyScriptLanguage } from './ivy-script-language';
+import { createIvyScriptLanguage, IvyScriptLanguage } from './ivy-script-language';
 import type { MonacoApi, monaco } from './monaco-modules';
 
 const createModel = (text: string): monaco.editor.ITextModel => {
@@ -35,6 +35,27 @@ const createMonacoMock = () => {
     getProvider: () => provider
   };
 };
+
+describe('ivy script tokenizer', () => {
+  test('reuses Java tokenizer and adds Ivy-only keywords and operators', async () => {
+    const { language: javaLanguage } = await import('monaco-editor/languages/definitions/java/java');
+    const ivyScriptLanguage = createIvyScriptLanguage(javaLanguage);
+    const root = ivyScriptLanguage.tokenizer.root ?? [];
+
+    expect(ivyScriptLanguage.keywords).toContain('public');
+    expect(ivyScriptLanguage.keywords).toContain('null');
+    expect(ivyScriptLanguage.keywords).toContain('initialized');
+    expect(ivyScriptLanguage.keywords).toContain('IF');
+    expect(ivyScriptLanguage.operators).toContain('**');
+    expect(ivyScriptLanguage.operators).toContain('<>');
+    expect(root[0]).toEqual([/[A-Z_$][A-Z0-9_$]*_[A-Z0-9_$]+(?![a-zA-Z0-9_$])/, 'variable.other.constant.java']);
+    expect(root[1]).toEqual([/I[A-Z][\w$]*/, { cases: { '@keywords': 'keyword.$0', '@default': 'entity.name.type.java' } }]);
+    expect(root[2]).toEqual([/[A-Z_$][\w$]*/, { cases: { '@keywords': 'keyword.$0', '@default': 'entity.name.type.java' } }]);
+    expect(root[3]).toEqual([/[a-zA-Z_$][\w$]*(?=\s*\()/, { cases: { '@keywords': 'keyword.$0', '@default': 'entity.name.function.java' } }]);
+    expect(((root[1] as [RegExp, unknown])[0]).exec('ITask')?.[0]).toBe('ITask');
+    expect(((root[0] as [RegExp, unknown])[0]).test('ITask')).toBe(false);
+  });
+});
 
 describe('ivy script folding provider', () => {
   test('adds import folding and preserves block folding', async () => {

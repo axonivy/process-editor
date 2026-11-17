@@ -3,6 +3,7 @@ import React, { useSyncExternalStore } from 'react';
 import { focusAdjacentTabIndexMonaco } from '../utils/focus';
 import { IvyMacroLanguage } from './ivy-macro-language';
 import { IvyMonacoTheme } from './ivy-monaco-theme';
+import { JavaLanguage } from './java-language';
 import { IvyScriptLanguage } from './ivy-script-language';
 import { MonacoLanguageUtil } from './monaco-language-util';
 import type { MonacoApi, monaco } from './monaco-modules';
@@ -90,7 +91,12 @@ export namespace MonacoEditorUtil {
       return MonacoUtil.monaco();
     }
     const monaco = await MonacoUtil.initialize(initConfig);
-    await Promise.all([IvyScriptLanguage.install(monaco), IvyMacroLanguage.install(monaco), IvyMonacoTheme.setTheme(theme, monaco)]);
+    await Promise.all([
+      IvyScriptLanguage.install(monaco),
+      IvyMacroLanguage.install(monaco),
+      JavaLanguage.install(monaco),
+      IvyMonacoTheme.setTheme(theme, monaco)
+    ]);
     return monaco;
   }
 
