@@ -485,7 +485,7 @@
     "extensions": "Erweiterungen",
     "gateways": "Gateways",
     "grid": "Raster",
-    "marquee": "Auswahl-Werkzeug ({{hotkey}})",
+    "marquee": "Marquee Tool ({{hotkey}})",
     "openDataClass": "Datenklasse öffnen ({{hotkey}})",
     "openFormEditor": "Formulareditor öffnen ({{hotkey}})",
     "selection": "Auswahlwerkzeug"
