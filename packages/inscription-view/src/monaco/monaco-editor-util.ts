@@ -54,9 +54,9 @@ export const SINGLE_LINE_MONACO_OPTIONS: monaco.editor.IStandaloneEditorConstruc
     autoFindInSelection: 'never',
     seedSearchStringFromSelection: 'never'
   },
-  links: false,
+  links: true,
   renderLineHighlight: 'none',
-  contextmenu: false
+  contextmenu: true
 };
 
 export type MonacoEditorConfiguration = MonacoInitParams & { theme?: IvyMonacoTheme };
