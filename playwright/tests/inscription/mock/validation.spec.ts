@@ -22,6 +22,19 @@ test.describe('Validations', () => {
     await desc.clear();
     await expect(name.locator).toHaveCSS('border-color', errorColor);
     await expect(desc.locator).toHaveCSS('border-color', warningColor);
+
+    const nameReference = page.getByRole('button', { name: 'CASE_NAME_REQUIRED' }).first();
+    await expect(nameReference).toBeVisible();
+
+    const actionDialogPromise = page.waitForEvent('dialog').then(async actionDialog => {
+      const message = actionDialog.message();
+      await actionDialog.accept();
+      return message;
+    });
+    await nameReference.click();
+    const actionMessage = await actionDialogPromise;
+    expect(actionMessage).toContain('actionId: openPage');
+    expect(actionMessage).toContain('https://example.com/validation/case-name-required');
   });
 
   test('dialog', async ({ page }) => {

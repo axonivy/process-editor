@@ -38,6 +38,6 @@ describe('RestErrorPart', () => {
     assertState(undefined);
     assertState('configured', { response: { clientError: 'asdf' } });
 
-    assertState('error', undefined, { path: 'response.statusError', message: '', severity: 'ERROR' });
+    assertState('error', undefined, { path: 'response.statusError', message: '', severity: 'ERROR', code: '', url: '' });
   });
 });

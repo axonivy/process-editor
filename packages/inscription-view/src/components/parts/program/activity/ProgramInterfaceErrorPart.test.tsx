@@ -46,7 +46,7 @@ describe('ProgramInterfaceErrorPart', () => {
     assertState('configured', { exceptionHandler: '>> Ignore Exception' });
     assertState('configured', { timeout: { seconds: '123' } });
 
-    assertState('warning', undefined, { path: 'exceptionHandler.error', message: '', severity: 'WARNING' });
-    assertState('error', undefined, { path: 'timeout.cause', message: '', severity: 'ERROR' });
+    assertState('warning', undefined, { path: 'exceptionHandler.error', message: '', severity: 'WARNING', code: '', url: '' });
+    assertState('error', undefined, { path: 'timeout.cause', message: '', severity: 'ERROR', code: '', url: '' });
   });
 });

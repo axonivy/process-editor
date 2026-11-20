@@ -39,6 +39,6 @@ describe('RestOutputPart', () => {
     assertState(undefined);
     assertState('configured', { response: { entity: { code: 'a' } } });
 
-    assertState('error', undefined, { path: 'response.entity.code', message: '', severity: 'ERROR' });
+    assertState('error', undefined, { path: 'response.entity.code', message: '', severity: 'ERROR', code: '', url: '' });
   });
 });

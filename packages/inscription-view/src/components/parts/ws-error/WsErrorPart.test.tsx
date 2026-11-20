@@ -37,7 +37,7 @@ describe('WsResponsePart', () => {
     assertState(undefined);
     assertState('configured', { exceptionHandler: 'ex' });
 
-    assertState('error', undefined, { path: 'exceptionHandler', message: '', severity: 'ERROR' });
-    assertState('warning', undefined, { path: 'exceptionHandler', message: '', severity: 'WARNING' });
+    assertState('error', undefined, { path: 'exceptionHandler', message: '', severity: 'ERROR', code: '', url: '' });
+    assertState('warning', undefined, { path: 'exceptionHandler', message: '', severity: 'WARNING', code: '', url: '' });
   });
 });

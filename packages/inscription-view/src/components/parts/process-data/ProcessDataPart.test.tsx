@@ -42,6 +42,6 @@ describe('ProcessDataPart', () => {
       data: 'screenshot.project.Order'
     });
 
-    assertState('warning', undefined, { path: 'data.error', message: '', severity: 'WARNING' });
+    assertState('warning', undefined, { path: 'data.error', message: '', severity: 'WARNING', code: '', url: '' });
   });
 });

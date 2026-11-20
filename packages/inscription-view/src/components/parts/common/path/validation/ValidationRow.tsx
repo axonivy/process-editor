@@ -2,6 +2,7 @@ import type { DataTableFeatures, TableRow } from '@axonivy/ui-components';
 import { MessageRow, ReorderRow, SelectRow } from '@axonivy/ui-components';
 import type { Row, RowData } from '@tanstack/react-table';
 import type { ComponentPropsWithoutRef } from 'react';
+import { useAction } from '../../../../../context/useAction';
 import { mergePaths, usePath } from '../../../../../context/usePath';
 import { useValidations } from '../../../../../context/useValidation';
 import { toMessageData, type ValidationMessage } from '../../../../widgets/message/Message';
@@ -30,10 +31,11 @@ const useValidationRow = (rowPathSuffix: string | number) => {
 
 export const ValidationRow = <TData extends RowData>({ rowPathSuffix, row, ...props }: ValidationRowProps<TData>) => {
   const validation = useValidationRow(rowPathSuffix);
+  const openUrl = useAction('openPage');
   return (
     <>
       <SelectRow row={row} {...props} className={styleMessageRow(validation)} />
-      <MessageRow columnCount={row.getVisibleCells().length} message={toMessageData(validation)} />
+      <MessageRow columnCount={row.getVisibleCells().length} message={toMessageData(openUrl, validation)} />
     </>
   );
 };
@@ -46,10 +48,11 @@ export const ValidationSelectableReorderRow = <TData extends RowData>({
   ...props
 }: ValidationReorderRowProps<TData>) => {
   const validation = useValidationRow(rowPathSuffix);
+  const openUrl = useAction('openPage');
   return (
     <>
       <ReorderRow row={row} {...props} className={styleMessageRow(validation)} />
-      <MessageRow columnCount={row.getVisibleCells().length} message={toMessageData(validation)} />
+      <MessageRow columnCount={row.getVisibleCells().length} message={toMessageData(openUrl, validation)} />
     </>
   );
 };

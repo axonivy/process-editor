@@ -1,4 +1,4 @@
-import type { ElementType, Severity } from '@axonivy/process-editor-inscription-protocol';
+import type { ElementType } from '@axonivy/process-editor-inscription-protocol';
 import { Button, Flex, Message, SidebarHeader, SidebarMessages, Switch, useHotkeys } from '@axonivy/ui-components';
 import { IvyIcons } from '@axonivy/ui-icons';
 import type { ReactNode } from 'react';
@@ -8,6 +8,7 @@ import { useDataContext } from '../../context/useDataContext';
 import { useEditorContext } from '../../context/useEditorContext';
 import { useKnownHotkeys } from '../../utils/useKnownHotkeys';
 import { useGeneralData } from '../parts/name/useGeneralData';
+import { toMessageData } from '../widgets/message/Message';
 import './InscriptionEditor.css';
 import NoEditor from './NoEditor';
 import { ProcessOutline, type ProcessOutlineProps } from './ProcessOutline';
@@ -37,6 +38,7 @@ const Header = ({ children }: { children?: ReactNode }) => {
   const { type } = useEditorContext();
   const helpUrl = type.helpUrl;
   const action = useAction('openPage');
+  const openUrl = useAction('openPage');
   const title = type.id?.length === 0 ? t('title.inscription') : `${type.shortLabel}${data.name?.length > 0 ? ` - ${data.name}` : ''}`;
   const icon = editors.get(type.id)?.icon;
   const { openHelp } = useKnownHotkeys();
@@ -59,10 +61,14 @@ const Header = ({ children }: { children?: ReactNode }) => {
       </SidebarHeader>
       {tabValidations.length > 0 && (
         <SidebarMessages className='header-messages'>
-          {tabValidations.map((validaiton, index) => (
+          {tabValidations.map((validation, index) => {
+            const message = toMessageData(openUrl, validation);
+            if (!message) {
+              return null;
+            }
             // eslint-disable-next-line @eslint-react/no-array-index-key
-            <Message key={index} message={validaiton.message} variant={validaiton.severity.toLocaleLowerCase() as Lowercase<Severity>} />
-          ))}
+            return <Message key={index} {...message} />;
+          })}
         </SidebarMessages>
       )}
     </>

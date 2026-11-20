@@ -56,8 +56,8 @@ describe('EventPart', () => {
     assertState('configured', { eventId: '123' });
     assertState('configured', { timeout: { duration: '123' } });
 
-    assertState('error', undefined, { path: 'javaClass.cause', message: '', severity: 'ERROR' });
-    assertState('warning', undefined, { path: 'eventId.error', message: '', severity: 'WARNING' });
-    assertState('warning', undefined, { path: 'timeout.error', message: '', severity: 'WARNING' });
+    assertState('error', undefined, { path: 'javaClass.cause', message: '', severity: 'ERROR', code: '', url: '' });
+    assertState('warning', undefined, { path: 'eventId.error', message: '', severity: 'WARNING', code: '', url: '' });
+    assertState('warning', undefined, { path: 'timeout.error', message: '', severity: 'WARNING', code: '', url: '' });
   });
 });

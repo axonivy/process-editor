@@ -13,15 +13,15 @@ describe('usePartState', () => {
   test('states', async () => {
     assertState(undefined);
     assertState('configured', { something: 'else' });
-    assertState('configured', { something: 'else' }, [{ path: '', severity: 'INFO', message: '' }]);
+    assertState('configured', { something: 'else' }, [{ path: '', severity: 'INFO', message: '', code: '', url: '' }]);
     assertState('warning', { something: 'else' }, [
-      { path: '', severity: 'INFO', message: '' },
-      { path: '', severity: 'WARNING', message: '' }
+      { path: '', severity: 'INFO', message: '', code: '', url: '' },
+      { path: '', severity: 'WARNING', message: '', code: '', url: '' }
     ]);
     assertState('error', { something: 'else' }, [
-      { path: '', severity: 'INFO', message: '' },
-      { path: '', severity: 'WARNING', message: '' },
-      { path: '', severity: 'ERROR', message: '' }
+      { path: '', severity: 'INFO', message: '', code: '', url: '' },
+      { path: '', severity: 'WARNING', message: '', code: '', url: '' },
+      { path: '', severity: 'ERROR', message: '', code: '', url: '' }
     ]);
   });
 });

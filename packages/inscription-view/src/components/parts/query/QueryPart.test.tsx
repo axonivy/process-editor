@@ -134,7 +134,7 @@ describe('QueryPart', () => {
     assertState(undefined);
     assertState('configured', { query: { dbName: 'bla' } });
 
-    assertState('error', undefined, { path: 'query.dbName', message: '', severity: 'ERROR' });
-    assertState('warning', undefined, { path: 'query.dbName', message: '', severity: 'WARNING' });
+    assertState('error', undefined, { path: 'query.dbName', message: '', severity: 'ERROR', code: '', url: '' });
+    assertState('warning', undefined, { path: 'query.dbName', message: '', severity: 'WARNING', code: '', url: '' });
   });
 });

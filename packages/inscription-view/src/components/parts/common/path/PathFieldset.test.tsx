@@ -15,18 +15,18 @@ describe('PathFieldset', () => {
   }
 
   test('validaiton wrong path', () => {
-    renderFieldset([{ path: 'test', message: 'this is a error', severity: 'ERROR' }]);
+    renderFieldset([{ path: 'test', message: 'this is a error', severity: 'ERROR', code: '', url: '' }]);
     expect(screen.queryByText('this is a error')).not.toBeInTheDocument();
 
-    renderFieldset([{ path: 'test.name', message: 'this is a error', severity: 'ERROR' }]);
+    renderFieldset([{ path: 'test.name', message: 'this is a error', severity: 'ERROR', code: '', url: '' }]);
     expect(screen.queryByText('this is a error')).not.toBeInTheDocument();
 
-    renderFieldset([{ path: 'name.test', message: 'this is a error', severity: 'ERROR' }]);
+    renderFieldset([{ path: 'name.test', message: 'this is a error', severity: 'ERROR', code: '', url: '' }]);
     expect(screen.queryByText('this is a error')).not.toBeInTheDocument();
   });
 
   test('validations visible', () => {
-    renderFieldset([{ path: 'name', message: 'this is a error', severity: 'ERROR' }]);
+    renderFieldset([{ path: 'name', message: 'this is a error', severity: 'ERROR', code: '', url: '' }]);
     expect(screen.getByTitle('this is a error')).toHaveClass('ui-message');
   });
 });

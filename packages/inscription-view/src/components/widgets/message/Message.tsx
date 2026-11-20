@@ -5,15 +5,27 @@ export type ValidationMessage = Omit<ValidationResult, 'path'>;
 export type MessageData = {
   message?: string;
   variant?: Lowercase<Severity>;
+  reference?: { tooltip: string; openUrl: () => void };
 };
 
-export const toMessageDataArray = (validations: Array<ValidationMessage>): Array<MessageData> => {
-  return validations.map(toMessageData) as Array<MessageData>;
+export const toMessageDataArray = (validations: Array<ValidationMessage>, openUrl: (url: string) => void): Array<MessageData> => {
+  return validations.flatMap(validation => {
+    const message = toMessageData(openUrl, validation);
+    return message ? [message] : [];
+  });
 };
 
-export const toMessageData = (validation?: ValidationMessage): MessageData | undefined => {
+export const toMessageData = (openUrl: (url: string) => void, validation?: ValidationMessage): MessageData | undefined => {
   if (validation) {
-    return { message: validation.message, variant: validation.severity.toLocaleLowerCase() as Lowercase<Severity> };
+    const message: MessageData = {
+      message: validation.message,
+      variant: validation.severity.toLocaleLowerCase() as Lowercase<Severity>,
+      reference: {
+        tooltip: validation.code,
+        openUrl: () => openUrl(validation.url)
+      }
+    };
+    return message;
   }
   return undefined;
 };

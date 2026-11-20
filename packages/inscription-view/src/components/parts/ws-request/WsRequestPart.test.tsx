@@ -35,8 +35,8 @@ describe('WsRequestPart', () => {
     assertState('configured', { properties: { name: 'a' } });
     assertState('configured', { operation: { name: 'asdf' } });
 
-    assertState('error', undefined, { path: 'clientId', message: '', severity: 'ERROR' });
-    assertState('warning', undefined, { path: 'properties.name', message: '', severity: 'WARNING' });
-    assertState('warning', undefined, { path: 'operation.name', message: '', severity: 'WARNING' });
+    assertState('error', undefined, { path: 'clientId', message: '', severity: 'ERROR', code: '', url: '' });
+    assertState('warning', undefined, { path: 'properties.name', message: '', severity: 'WARNING', code: '', url: '' });
+    assertState('warning', undefined, { path: 'operation.name', message: '', severity: 'WARNING', code: '', url: '' });
   });
 });

@@ -98,7 +98,7 @@ describe('RequestPart', () => {
     assertState('configured', { request: { isHttpRequestable: true }, permission: { error: 'a' } });
     assertState('configured', { request: { isHttpRequestable: true }, permission: { roles: ['a'] } });
 
-    assertState('error', undefined, { path: 'permission.role', message: '', severity: 'ERROR' });
-    assertState('warning', undefined, { path: 'request.name', message: '', severity: 'WARNING' });
+    assertState('error', undefined, { path: 'permission.role', message: '', severity: 'ERROR', code: '', url: '' });
+    assertState('warning', undefined, { path: 'request.name', message: '', severity: 'WARNING', code: '', url: '' });
   });
 });
