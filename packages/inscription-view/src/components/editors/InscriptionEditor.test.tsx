@@ -11,8 +11,8 @@ describe('Editor', () => {
 
   test('editor show messages', () => {
     const headerState: ValidationResult[] = [
-      { path: '', message: 'this is an error', severity: 'ERROR' },
-      { path: '', message: 'this is an warning', severity: 'WARNING' }
+      { path: '', message: 'this is an error', severity: 'ERROR', code: '', url: '' },
+      { path: '', message: 'this is an warning', severity: 'WARNING', code: '', url: '' }
     ];
     renderEditor({ headerState: headerState });
     expect(screen.getByTitle(/this is an error/i)).toHaveAttribute('data-state', 'error');
@@ -20,7 +20,7 @@ describe('Editor', () => {
   });
 
   test('editor do not show messages with path', () => {
-    const headerState: ValidationResult[] = [{ path: 'output', message: 'message on output', severity: 'ERROR' }];
+    const headerState: ValidationResult[] = [{ path: 'output', message: 'message on output', severity: 'ERROR', code: '', url: '' }];
     renderEditor({ headerState: headerState });
     expect(screen.queryByTitle(/message on output/i)).not.toBeInTheDocument();
   });

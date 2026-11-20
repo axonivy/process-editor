@@ -27,7 +27,7 @@ describe('Fieldset', () => {
   });
 
   test('message', () => {
-    renderFieldset({ label: 'label', validation: { message: 'this is a error', severity: 'ERROR' } });
+    renderFieldset({ label: 'label', validation: { message: 'this is a error', severity: 'ERROR', code: '', url: '' } });
     expect(screen.getByTitle('this is a error')).toHaveClass('ui-message');
   });
 

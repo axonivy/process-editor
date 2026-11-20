@@ -60,7 +60,7 @@ describe('CachePart', () => {
       }
     });
 
-    assertState('error', undefined, { path: 'cache.cause', message: '', severity: 'ERROR' });
-    assertState('warning', undefined, { path: 'cache.error', message: '', severity: 'WARNING' });
+    assertState('error', undefined, { path: 'cache.cause', message: '', severity: 'ERROR', code: '', url: '' });
+    assertState('warning', undefined, { path: 'cache.error', message: '', severity: 'WARNING', code: '', url: '' });
   });
 });

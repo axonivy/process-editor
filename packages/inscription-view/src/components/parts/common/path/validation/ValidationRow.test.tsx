@@ -7,7 +7,7 @@ import { ValidationRow } from './ValidationRow';
 
 describe('ValidationRow', () => {
   function renderTable(path: string) {
-    const validations: ValidationResult[] = [{ path: 'test.bla', message: 'this is an error', severity: 'ERROR' }];
+    const validations: ValidationResult[] = [{ path: 'test.bla', message: 'this is an error', severity: 'ERROR', code: '', url: '' }];
     customRender(
       <table>
         <tbody>

@@ -67,8 +67,8 @@ describe('TriggerPart', () => {
     assertState(undefined);
     assertState('configured', { triggerable: true });
 
-    assertState(undefined, undefined, { path: 'task.name', message: '', severity: 'ERROR' });
-    assertState('error', undefined, { path: 'task.delay', message: '', severity: 'ERROR' });
-    assertState('warning', undefined, { path: 'task.responsible', message: '', severity: 'WARNING' });
+    assertState(undefined, undefined, { path: 'task.name', message: '', severity: 'ERROR', code: '', url: '' });
+    assertState('error', undefined, { path: 'task.delay', message: '', severity: 'ERROR', code: '', url: '' });
+    assertState('warning', undefined, { path: 'task.responsible', message: '', severity: 'WARNING', code: '', url: '' });
   });
 });

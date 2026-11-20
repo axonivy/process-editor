@@ -40,7 +40,7 @@ describe('ProgramInterfaceStartPart', () => {
     assertState(undefined);
     assertState('configured', { javaClass: 'Bla' });
 
-    assertState('error', undefined, { path: 'javaClass.cause', message: '', severity: 'ERROR' });
-    assertState('warning', undefined, { path: 'javaClass.cause', message: '', severity: 'WARNING' });
+    assertState('error', undefined, { path: 'javaClass.cause', message: '', severity: 'ERROR', code: '', url: '' });
+    assertState('warning', undefined, { path: 'javaClass.cause', message: '', severity: 'WARNING', code: '', url: '' });
   });
 });

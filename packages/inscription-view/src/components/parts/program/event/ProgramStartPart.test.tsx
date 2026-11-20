@@ -52,7 +52,7 @@ describe('StartPart', () => {
     assertState(undefined);
     assertState('configured', { javaClass: 'Bla' });
     assertState('configured', { permission: { anonymous: false } });
-    assertState('error', undefined, { path: 'javaClass.cause', message: '', severity: 'ERROR' });
-    assertState('warning', undefined, { path: 'javaClass.error', message: '', severity: 'WARNING' });
+    assertState('error', undefined, { path: 'javaClass.cause', message: '', severity: 'ERROR', code: '', url: '' });
+    assertState('warning', undefined, { path: 'javaClass.error', message: '', severity: 'WARNING', code: '', url: '' });
   });
 });

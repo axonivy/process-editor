@@ -11,11 +11,11 @@ describe('Tabs', () => {
       name: 'Call',
       content: <h1>Call</h1>,
       messages: [
-        { message: 'hi1', severity: 'WARNING' },
-        { message: 'hi2', severity: 'ERROR' }
+        { message: 'hi1', severity: 'WARNING', code: '', url: '' },
+        { message: 'hi2', severity: 'ERROR', code: '', url: '' }
       ]
     },
-    { id: 'hi', name: 'Result', content: <h1>Result</h1>, messages: [{ message: 'hi1', severity: 'WARNING' }] }
+    { id: 'hi', name: 'Result', content: <h1>Result</h1>, messages: [{ message: 'hi1', severity: 'WARNING', code: '', url: '' }] }
   ];
 
   function renderTabs() {

@@ -44,7 +44,7 @@ describe('ErrorThrowPart', () => {
     assertState('configured', { throws: { error: 'error' } });
     assertState('configured', { throws: { cause: 'cause' } });
 
-    assertState('error', undefined, { path: 'throws.cause', message: '', severity: 'ERROR' });
-    assertState('warning', undefined, { path: 'throws.error', message: '', severity: 'WARNING' });
+    assertState('error', undefined, { path: 'throws.cause', message: '', severity: 'ERROR', code: '', url: '' });
+    assertState('warning', undefined, { path: 'throws.error', message: '', severity: 'WARNING', code: '', url: '' });
   });
 });

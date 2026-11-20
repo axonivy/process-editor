@@ -41,7 +41,7 @@ describe('WebServicePart', () => {
       }
     });
 
-    assertState('error', undefined, { path: 'permission.cause', message: '', severity: 'ERROR' });
-    assertState('warning', undefined, { path: 'exception.error', message: '', severity: 'WARNING' });
+    assertState('error', undefined, { path: 'permission.cause', message: '', severity: 'ERROR', code: '', url: '' });
+    assertState('warning', undefined, { path: 'exception.error', message: '', severity: 'WARNING', code: '', url: '' });
   });
 });

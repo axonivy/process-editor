@@ -20,7 +20,7 @@ describe('MultiTasksPart', () => {
       wrapperProps: {
         data: data && { config: data },
         defaultData,
-        validations: [{ path: 'tasks.[1].name', message: 'this is an error', severity: 'ERROR' }]
+        validations: [{ path: 'tasks.[1].name', message: 'this is an error', severity: 'ERROR', code: '', url: '' }]
       }
     });
   }

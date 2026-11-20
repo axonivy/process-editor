@@ -19,7 +19,7 @@ describe('Collapsible', () => {
   }
 
   test('open if validations', async () => {
-    renderCollapsible(false, { validations: [{ message: '', severity: 'ERROR' }] });
+    renderCollapsible(false, { validations: [{ message: '', severity: 'ERROR', code: '', url: '' }] });
     await CollapsableUtil.assertOpen('Test');
   });
 

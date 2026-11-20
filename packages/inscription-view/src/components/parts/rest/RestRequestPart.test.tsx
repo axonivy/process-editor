@@ -54,10 +54,10 @@ describe('RestRequestPart', () => {
     assertState('configured', { body: { mediaType: 'app/json' } });
     assertState('configured', { target: { clientId: 'client' } });
 
-    assertState('error', undefined, { path: 'code', message: '', severity: 'ERROR' });
-    assertState('error', undefined, { path: 'method', message: '', severity: 'ERROR' });
-    assertState('warning', undefined, { path: 'body.mediaType', message: '', severity: 'WARNING' });
-    assertState('warning', undefined, { path: 'target.clientId', message: '', severity: 'WARNING' });
+    assertState('error', undefined, { path: 'code', message: '', severity: 'ERROR', code: '', url: '' });
+    assertState('error', undefined, { path: 'method', message: '', severity: 'ERROR', code: '', url: '' });
+    assertState('warning', undefined, { path: 'body.mediaType', message: '', severity: 'WARNING', code: '', url: '' });
+    assertState('warning', undefined, { path: 'target.clientId', message: '', severity: 'WARNING', code: '', url: '' });
   });
 
   async function renderControl() {

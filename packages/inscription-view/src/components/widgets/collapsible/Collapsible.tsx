@@ -9,6 +9,7 @@ import {
 } from '@axonivy/ui-components';
 import type { ReactNode } from 'react';
 import { memo, useState } from 'react';
+import { useAction } from '../../../context/useAction';
 import type { FieldsetControl } from '../fieldset/fieldset-control';
 import { type ValidationMessage, toMessageDataArray } from '../message/Message';
 
@@ -39,8 +40,9 @@ const Controls = ({ controls, ...props }: Pick<CollapsibleProps, 'controls'> & C
 };
 
 const State = ({ validations }: Pick<CollapsibleProps, 'validations'>) => {
+  const openUrl = useAction('openPage');
   if (validations) {
-    return <CollapsibleState messages={toMessageDataArray(validations)} />;
+    return <CollapsibleState messages={toMessageDataArray(validations, openUrl)} />;
   }
   return null;
 };
