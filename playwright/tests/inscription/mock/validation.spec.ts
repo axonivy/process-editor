@@ -25,7 +25,6 @@ test.describe('Validations', () => {
 
     const nameReference = page.getByRole('button', { name: 'CASE_NAME_REQUIRED' }).first();
     await expect(nameReference).toBeVisible();
-    await expect(page.getByRole('button', { name: 'CASE_DESCRIPTION_EMPTY' })).toHaveCount(0);
 
     const actionDialogPromise = page.waitForEvent('dialog').then(async actionDialog => {
       const message = actionDialog.message();

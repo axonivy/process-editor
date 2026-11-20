@@ -17,17 +17,14 @@ export const toMessageDataArray = (validations: Array<ValidationMessage>, openUr
 
 export const toMessageData = (openUrl: (url: string) => void, validation?: ValidationMessage): MessageData | undefined => {
   if (validation) {
-    const url = validation.url;
     const message: MessageData = {
       message: validation.message,
-      variant: validation.severity.toLocaleLowerCase() as Lowercase<Severity>
-    };
-    if (url) {
-      message.reference = {
+      variant: validation.severity.toLocaleLowerCase() as Lowercase<Severity>,
+      reference: {
         tooltip: validation.code,
-        openUrl: () => openUrl(url)
-      };
-    }
+        openUrl: () => openUrl(validation.url)
+      }
+    };
     return message;
   }
   return undefined;

@@ -32,7 +32,13 @@ export namespace ValidationMock {
       });
     }
     if (desc === undefined || desc.length === 0) {
-      msgs.push({ path: 'case.description', severity: 'WARNING', message: 'Description is empty', code: 'CASE_DESCRIPTION_EMPTY', url: '' });
+      msgs.push({
+        path: 'case.description',
+        severity: 'WARNING',
+        message: 'Description is empty',
+        code: 'CASE_DESCRIPTION_EMPTY',
+        url: 'https://example.com/validation/case-description-empty'
+      });
     }
     return msgs;
   };
@@ -45,9 +51,15 @@ export namespace ValidationMock {
         severity: 'WARNING',
         message: 'No User Dialog specified, auto dialog will be shown.',
         code: 'NO_USER_DIALOG',
-        url: ''
+        url: 'https://example.com/validation/no-user-dialog'
       });
-      msgs.push({ path: 'call.map.param.procurementRequest', severity: 'WARNING', message: 'Unknown mapping', code: 'UNKNOWN_MAPPING', url: '' });
+      msgs.push({
+        path: 'call.map.param.procurementRequest',
+        severity: 'WARNING',
+        message: 'Unknown mapping',
+        code: 'UNKNOWN_MAPPING',
+        url: 'https://example.com/validation/unknown-mapping'
+      });
     }
     return msgs;
   };
