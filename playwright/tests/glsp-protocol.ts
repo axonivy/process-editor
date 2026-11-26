@@ -34,7 +34,7 @@ export class GlspProtocol {
     this.client.onError(error => console.error(error));
     this.appId = randomUUID();
     this.processUUID = randomUUID();
-    this.processUri = `/processes/${this.kind}-${this.processUUID}`;
+    this.processUri = `processes/${this.kind}-${this.processUUID}`;
     this.sessionId = `${this.appId}_${this.processUri}`;
   }
 
