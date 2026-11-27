@@ -8,8 +8,8 @@
 
 export type PID = string
 export type ContentObjectType = "STRING" | "FILE" | "FOLDER";
-export type Widget = Script | Label | Text | MultiSelect;
-export type WidgetType = "TEXT" | "LABEL" | "SCRIPT" | "MULTI_SELECT";
+export type Widget = Script | Label | Text | MultiSelect | Select;
+export type WidgetType = "TEXT" | "LABEL" | "SCRIPT" | "MULTI_SELECT" | "SELECT";
 export type WfFieldType = "STRING" | "TEXT" | "NUMBER" | "TIMESTAMP";
 /**
  * Supports macros for dynamic content.
@@ -81,7 +81,7 @@ export interface Inscription {
   schemaKey: SchemaKey;
   scriptingDataArgs: ScriptingDataArgs;
   signalCodeRequest: SignalCodeRequest;
-  string: string[];
+  string: string;
   typeSearchRequest: TypeSearchRequest;
   validationResult: ValidationResult[];
   variableInfo: VariableInfo;
@@ -324,6 +324,14 @@ export interface SelectableItem {
   icon: string;
   id: string;
   label: string;
+}
+export interface Select {
+  configKey: string;
+  help: string;
+  items: SelectableItem[];
+  label: string;
+  multiline: boolean;
+  widgetType: WidgetType;
 }
 export interface InscriptionRequest {
   context: InscriptionElementContext;
@@ -862,10 +870,10 @@ export interface TypeSearchRequest {
   type: string;
 }
 export interface ValidationResult {
+  code: string;
   message: string;
   path: string;
   severity: Severity;
-  code: string;
   url: string;
 }
 export interface Void {}

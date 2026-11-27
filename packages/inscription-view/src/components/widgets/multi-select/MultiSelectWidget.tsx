@@ -1,36 +1,14 @@
 import { BasicMultiCombobox, Flex, useField, useReadonly, type BasicComboboxItem } from '@axonivy/ui-components';
 import React, { useMemo } from 'react';
 import { useEditorContext } from '../../../context/useEditorContext';
-
-type SelectableItem = {
-  id: string;
-  label: string;
-  description: string;
-  icon: string;
-};
+import { ProgramSelectIcon, type ProgramSelectableItem } from '../select/ProgramSelectItem';
 
 type MultiSelectWidgetProps = {
   value: string[];
   onChange: (value: string[]) => void;
-  items: SelectableItem[];
+  items: ProgramSelectableItem[];
   configKey: string;
 };
-
-function isImageUrl(url: string): boolean {
-  if (!url) return false;
-  return url.startsWith('http://') || url.startsWith('https://') || url.startsWith('/') || url.startsWith('data:');
-}
-
-function renderIcon(icon: string): React.ReactNode {
-  if (!icon || icon === '') return null;
-  return isImageUrl(icon) ? (
-    <img src={icon} alt='' aria-hidden='true' style={{ height: 18, width: 18 }} />
-  ) : (
-    <span aria-hidden='true' style={{ fontSize: 18 }}>
-      {icon}
-    </span>
-  );
-}
 
 type MultiSelectWidgetItem = BasicComboboxItem & {
   icon?: string;
@@ -59,7 +37,7 @@ export function MultiSelectWidget({ value, onChange, items, configKey }: MultiSe
       disabled={readonly}
       chipRenderer={(item: MultiSelectWidgetItem) => (
         <Flex alignItems='center' gap={1} title={item.description || item.value}>
-          {renderIcon(item?.icon || '')}
+          <ProgramSelectIcon icon={item?.icon} />
           <span>{item?.label || item.value}</span>
         </Flex>
       )}
@@ -75,7 +53,7 @@ function itemLabel(item: MultiSelectWidgetItem): React.ReactNode {
   if (item.icon && item.icon !== '') {
     return (
       <Flex alignItems='center' gap={2}>
-        {renderIcon(item.icon)}
+        <ProgramSelectIcon icon={item.icon} />
         <span>{item.label}</span>
         {item.description && <span className='combobox-menu-entry-additional'>{` - ${item.description}`}</span>}
       </Flex>

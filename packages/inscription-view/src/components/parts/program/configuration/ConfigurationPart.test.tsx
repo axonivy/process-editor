@@ -1,6 +1,6 @@
 import type { ConfigurationData, ValidationResult } from '@axonivy/process-editor-inscription-protocol';
 import type { DeepPartial } from 'test-utils';
-import { customRender, customRenderHook, screen } from 'test-utils';
+import { customRender, customRenderHook, screen, userEvent } from 'test-utils';
 import { describe, expect, test } from 'vitest';
 import type { PartStateFlag } from '../../../editors/part/usePart';
 import { useConfigurationPart } from './ConfigurationPart';
@@ -21,6 +21,17 @@ describe('ConfigurationPart', () => {
               name: 'Configuration',
               widgets: [
                 { configKey: 'directory', multiline: false, widgetType: 'TEXT', label: 'Directory', help: 'Path of directory to scan' },
+                {
+                  configKey: 'language',
+                  help: 'Choose a language',
+                  label: 'Language',
+                  items: [
+                    { id: 'en', label: 'English', icon: '🇬🇧', description: 'English language' },
+                    { id: 'de', label: 'German', icon: '', description: 'German language' }
+                  ],
+                  multiline: false,
+                  widgetType: 'SELECT'
+                },
                 { text: 'Multiline-Text', multiline: true, widgetType: 'LABEL' }
               ]
             }
@@ -41,6 +52,17 @@ describe('ConfigurationPart', () => {
     });
     await screen.findByText('Directory');
     expect(screen.getByLabelText('Directory')).toHaveValue('/tmp/myDir');
+  });
+
+  test('single-select configuration', async () => {
+    renderPart({ userConfig: { language: 'en' } });
+
+    const select = await screen.findByRole('combobox', { name: 'Language' });
+    expect(screen.getByText('Language')).toBeInTheDocument();
+    expect(screen.getByText('Choose a language')).toBeInTheDocument();
+    expect(select).toHaveTextContent('English');
+    await userEvent.click(select);
+    expect(screen.getByRole('option', { name: /German.*German language/ })).toBeInTheDocument();
   });
 
   function assertState(expectedState: PartStateFlag, data?: DeepPartial<ConfigurationData>, validation?: ValidationResult) {

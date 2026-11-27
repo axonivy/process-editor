@@ -1,6 +1,7 @@
 import type {
   ConfigurationData,
   MultiSelect,
+  Select,
   Script,
   Text,
   Widget,
@@ -18,6 +19,7 @@ import { MacroArea } from '../../../widgets/code-editor/MacroArea';
 import { MacroInput } from '../../../widgets/code-editor/MacroInput';
 import { ScriptInput } from '../../../widgets/code-editor/ScriptInput';
 import { MultiSelectWidget } from '../../../widgets/multi-select/MultiSelectWidget';
+import { ProgramSelectWidget } from '../../../widgets/select/ProgramSelectWidget';
 import { PathCollapsible } from '../../common/path/PathCollapsible';
 import './Configuration.css';
 import { useConfigurationData } from './useConfigurationData';
@@ -145,6 +147,20 @@ const Widget = ({ widget }: { widget: Widget }) => {
       </>
     );
   }
+  if (isSelect(widget)) {
+    return (
+      <>
+        {widget.label && <Label>{widget.label}</Label>}
+        <ProgramSelectWidget
+          value={typeof config.userConfig[widget.configKey] === 'string' ? config.userConfig[widget.configKey] as string : ''}
+          onChange={change => updateUserConfig(widget.configKey, change)}
+          items={widget.items}
+          configKey={widget.configKey}
+        />
+        {widget.help && <Message message={widget.help} variant='info' />}
+      </>
+    );
+  }
   return null;
 };
 
@@ -152,6 +168,7 @@ type LabelWidget = WidgetLabel & { widgetType: 'LABEL' };
 type ScriptWidget = Script & { widgetType: 'SCRIPT' };
 type TextWidget = Text & { widgetType: 'TEXT' };
 type MultiSelectWidgetType = MultiSelect & { widgetType: 'MULTI_SELECT' };
+type SelectWidgetType = Select & { widgetType: 'SELECT' };
 
 function isLabel(object: Widget): object is LabelWidget {
   return object.widgetType === 'LABEL';
@@ -167,4 +184,8 @@ function isText(object: Widget): object is TextWidget {
 
 function isMultiSelect(object: Widget): object is MultiSelectWidgetType {
   return object.widgetType === 'MULTI_SELECT';
+}
+
+function isSelect(object: Widget): object is SelectWidgetType {
+  return object.widgetType === 'SELECT';
 }

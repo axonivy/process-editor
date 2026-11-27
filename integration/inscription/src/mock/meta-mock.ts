@@ -416,6 +416,17 @@ export namespace MetaMock {
           configKey: 'tools',
           multiline: false,
           help: 'Select the tools you want to use in your program. You can use the tools to get information about the user, the weather, or to perform web searches.'
+        },
+        {
+          items: [
+            { id: 'balanced', label: 'Balanced', description: 'A balanced default model', icon: '⚖️' },
+            { id: 'precise', label: 'Precise', description: 'Prioritizes exact calculations', icon: '🎯' }
+          ],
+          label: 'Primary tool',
+          widgetType: 'SELECT',
+          configKey: 'primaryTool',
+          multiline: false,
+          help: 'Choose the default tool.'
         }
       ]
     }
