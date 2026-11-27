@@ -13,6 +13,12 @@ test.describe('ProgramInterface', () => {
     const system = configs.macroInput('System');
     await system.expectValue('You are a polite and helpful Support Agent trying to achieve in.goal ');
 
+    await configs.section('Model').open();
+    const primaryTool = configs.select({ label: 'Primary tool' });
+    await primaryTool.expectValue(/Balanced/);
+    await primaryTool.choose('Precise - Prioritizes exact calculations');
+    await primaryTool.expectValue(/Precise/);
+
     await configs.section('Output').open();
     const returnType = configs.scriptInput('Return type');
     await returnType.expectValue('com.axonivy.utils.ai.SupportTicket.class');

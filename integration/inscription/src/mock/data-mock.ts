@@ -91,7 +91,8 @@ blalbalba
       userConfig: {
         query: 'Help me, my computer is beeping with <%= in.error %> .',
         system: 'You are a polite and helpful Support Agent trying to achieve <%= in.goal %> ',
-        returnType: 'com.axonivy.utils.ai.SupportTicket.class'
+        returnType: 'com.axonivy.utils.ai.SupportTicket.class',
+        primaryTool: 'balanced'
       }
     }
   };
